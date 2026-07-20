@@ -38,6 +38,71 @@ export function useAgentRun() {
       default:
         return 'running' //其他事件都认为是运行中
     }
-
+    
  })
+
+  // 从事件流算出时间线(computed 会缓存，事件变了才会重新计算)
+  const timeline = computed<TimelineItem[]>(() => {
+    
+     const items: TimelineItem[] = []
+
+events.value.forEach((event, index) => {
+      switch (event.type) {
+        case 'text.delta':
+          // 注意：TS 在这里知道 event 一定是 { type: 'text.delta'; text: string }
+          // 写 event.text 有类型提示，写 event.toolName 会报错
+          items.push({
+            key: `text-${index}`,
+            kind: 'text',
+            title: '模型输出',
+            detail: event.text,
+          })
+          break
+
+        case 'tool.started':
+          items.push({
+            key: `tool-${event.callId}`,
+            kind: 'tool',
+            title: `调用工具：${event.toolName}`,
+            detail: `参数：${event.args}`,
+          })
+          break
+
+        case 'tool.succeeded':
+          // 通过 callId 找到对应的 tool 卡片，更新它的 detail
+          // 这就是"事件关联"：succeeded 事件和 started 事件通过 callId 关联
+          const existing = items.find((item) => item.key === `tool-${event.callId}`)
+          if (existing) {
+            existing.detail = `完成 (${event.durationMs}ms)：${event.result}`
+          }
+          break
+
+        case 'approval.required':
+          items.push({
+            key: `approval-${event.approvalId}`,
+            kind: 'approval',
+            title: `等待审批：${event.action}`,
+            detail: `风险级别：${event.risk}`,
+          })
+          break
+
+        // run.started / run.finished 不产生时间线项，只影响 status
+        case 'run.started':
+        case 'run.finished':
+          break
+      }
+    })
+
+    return items
+  })
+
+  const pushEvent = (event: AgentEvent) => {
+    events.value.push(event)
+  }
+  return {
+    status,
+    timeline,
+    pushEvent,
+  }
 }
+

@@ -1,28 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useAgentRun, type AgentEvent } from '../composables/useAgentRun'
 
-// 你熟悉的 Vue 响应式：几个 ref 描述 UI 状态
-const status = ref<'idle' | 'running' | 'completed'>('idle')
-const text = ref('')
+const { status, timeline, pushEvent } = useAgentRun()
 
-// 假的事件流：一秒后开始，然后每 300ms 追加一段文字，最后完成
+// 假事件序列
+const fakeEvents: AgentEvent[] = [
+  { type: 'run.started' },
+  { type: 'text.delta', text: '正在检查服务器 srv-042 的 CPU 指标...' },
+  { type: 'tool.started', callId: 'c1', toolName: 'read_metrics', args: 'last 10min' },
+  { type: 'tool.succeeded', callId: 'c1', result: 'CPU 平均 87%，异常', durationMs: 1800 },
+  { type: 'text.delta', text: '检测到 CPU 持续过载，建议重启异常进程。' },
+  { type: 'approval.required', approvalId: 'a1', action: 'restart_process', risk: 'high' },
+]
+
 function startFakeRun() {
-  status.value = 'running'
-  text.value = ''
-
-  const chunks = [
-    '正在检查服务器 srv-042 的 CPU 指标...',
-    '\n\n最近 10 分钟平均 CPU 为 87%，超过阈值。',
-    '\n\n建议进一步排查异常进程。',
-  ]
-
-  chunks.forEach((chunk, i) => {
-    setTimeout(() => {
-      text.value += chunk  // 追加到已有文本后面
-      if (i === chunks.length - 1) {
-        status.value = 'completed'
-      }
-    }, (i + 1) * 800)
+  fakeEvents.forEach((event, i) => {
+    setTimeout(() => pushEvent(event), (i + 1) * 700)
   })
 }
 </script>
@@ -34,15 +27,15 @@ function startFakeRun() {
       <output :data-status="status">{{ status }}</output>
     </header>
 
-    <button @click="startFakeRun" :disabled="status === 'running'">
+    <button @click="startFakeRun" :disabled="status !== 'idle' && status !== 'completed'">
       开始诊断
     </button>
 
-    <p style="white-space: pre-wrap;">{{ text }}</p>
+    <ol>
+      <li v-for="item in timeline" :key="item.key" :data-kind="item.kind">
+        <strong>{{ item.title }}</strong>
+        <p v-if="item.detail" style="white-space: pre-wrap;">{{ item.detail }}</p>
+      </li>
+    </ol>
   </section>
 </template>
-
-<style scoped>
-output[data-status='running'] { color: orange; }
-output[data-status='completed'] { color: green; }
-</style>
