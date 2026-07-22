@@ -1,26 +1,21 @@
-// 假事件序列（未来 WebSocket / SSE 的替身）
-// 覆盖一次完整运行：started → 消息增量 → 一次工具调用 → finished。
-import type { AgentEvent } from '@/domain/agent/agent-event'
-import { toRunId, toToolCallId } from '@/domain/agent/agent-event'
+import type { AgentEvent, RunId } from '@/domain/agent/agent-event'
 
-const runId = toRunId('run_demo_001')
-const callId = toToolCallId('call_weather_001')
+const runId = 'run-fixture-1' as RunId
 
-export const sampleRun: AgentEvent[] = [
-  { type: 'run/started', runId, startedAt: 0 },
-  { type: 'message/delta', runId, text: '正在' },
-  { type: 'message/delta', runId, text: '为你' },
-  { type: 'message/delta', runId, text: '查询天气' },
-  { type: 'tool/call-started', runId, callId, name: 'getWeather', args: { city: '北京' } },
-  { type: 'tool/call-result', runId, callId, result: { temp: 26, desc: '晴' } },
-  { type: 'message/delta', runId, text: '。北京今天 26°C，晴。' },
-  { type: 'message/completed', runId },
-  { type: 'run/finished', runId, finishedAt: 1200 },
-]
-
-// 一条以错误结尾的序列，用于测异常路径 UI。
-export const sampleErrorRun: AgentEvent[] = [
-  { type: 'run/started', runId, startedAt: 0 },
-  { type: 'message/delta', runId, text: '尝试处理请求…' },
-  { type: 'run/error', runId, message: '上游模型超时' },
+export const sampleEvents: AgentEvent[] = [
+  { runId, sequence: 0, occurredAt: '2026-07-14T10:00:00Z',
+    type: 'run.started', payload: {} },
+  { runId, sequence: 1, occurredAt: '2026-07-14T10:00:01Z',
+    type: 'text.delta', payload: { text: '正在检查服务器 srv-042 的 CPU 指标...' } },
+  { runId, sequence: 2, occurredAt: '2026-07-14T10:00:02Z',
+    type: 'tool.started',
+    payload: { callId: 'c1', toolName: 'read_metrics', argumentSummary: 'last 10min' } },
+  { runId, sequence: 3, occurredAt: '2026-07-14T10:00:04Z',
+    type: 'tool.succeeded',
+    payload: { callId: 'c1', resultSummary: 'CPU 平均 87%，异常', durationMs: 1800 } },
+  { runId, sequence: 4, occurredAt: '2026-07-14T10:00:05Z',
+    type: 'text.delta', payload: { text: '检测到 CPU 持续过载，建议重启异常进程。' } },
+  { runId, sequence: 5, occurredAt: '2026-07-14T10:00:06Z',
+    type: 'approval.required',
+    payload: { approvalId: 'a1', action: 'restart_process', risk: 'high' } },
 ]

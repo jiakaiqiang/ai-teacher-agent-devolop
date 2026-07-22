@@ -8,7 +8,7 @@ export type RunId = string & { readonly __brand: 'RunId' }
 export type EventMeta = {
   runId: RunId,
   sequence: number ,// 事件在一次运行中的顺序号，从 0 开始
-  timestamp: number // 事件发生的时间戳
+  occurredAt: string // 事件发生的时间戳
 }
 
 //定义事件类型
