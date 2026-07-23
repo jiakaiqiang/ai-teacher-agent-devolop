@@ -135,6 +135,7 @@ App.vue → composables → features → domain/contracts/adapters → domain/co
 **动手前先问自己 3 个问题**（答不上就带着问题往下读 v1 → v2 → v3）：
 
 1. 为什么必须分 DTO 和 Domain 两层？直接把 `z.infer` 出来的类型当业务对象用不行吗？—— 见 v3 的第 5.4 节「DTO / Domain 分层的必要性」。
+**DTO只保证结构合法 不保证业务的可用 Domain保证数据在业务上是合法好用的，z.infer能用不建议用，如果直接使用的话会存在 脏数据进业务逻辑，业务层和后端返回字段强耦合等**
 2. `schemaVersion` 放在事件的哪一层？payload 内还是外？—— 见 v3 的第 5.4 节「版本字段位置的权衡」。
 3. 兼容适配器什么时候删？—— 见 v3 的第 5.4 节「弃用窗口」。
 
@@ -180,7 +181,11 @@ New-Item -ItemType Directory -Force -Path `
 **边写边问自己**：
 
 - `z.object()` 和 `z.discriminatedUnion()` 分别在什么场景用？
+数据只有一种形状 → z.object()
+数据分几种变体,靠某个字段的值区分是哪种 → z.discriminatedUnion()
 - `safeParse` 相比 `parse` 的区别？为什么生产代码不该用 `parse`？
+parse 用异常表达失败,漏接就崩;safeParse 把失败变成必须处理的返回值,编译器逼你兜底。生产代码在处理外部不可信数据(后端响应、事件流),失败是预期内的事,所以用 safePars
+(个人看法)  **safeParse 返回一个带 success 和 error 的结果对象,我必须先判断 success 才能拿 data,不判断的话 TS 在编译时就报错逼我处理。后端数据校验失败时,就走 error 分支跑我自己的报错/兜底流程。而 parse 是直接抛异常,粗暴,漏接就整个崩。**
 - `schemaVersion` 为什么放在 event 外层而不是 payload 内？
 
 ### 1.5.4 D-4：实现 adapters 层（约 4 分钟）
