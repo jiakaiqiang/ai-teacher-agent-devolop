@@ -20,21 +20,38 @@
 //     setTimeout(() => receivedEvents.value.push(event), (i + 1) * 800)
 //   })
 // })
-import type { Server } from '@/domain/contracts/domain/server'
+// import type { Server } from '@/domain/contracts/domain/server'
 
-// 从网络拿到的数据
-const rawData: unknown = {
-      id:'12',
-    name: '张三',
-    ip: '10.173.30.75',
-    status: 'online',
-    tags: [],
+// // 从网络拿到的数据
+// const rawData: unknown = {
+//       id:'12',
+//     name: '张三',
+//     ip: '10.173.30.75',
+//     status: 'online',
+//     tags: [],
+// }
+
+// // v1 的做法：直接强断言
+// const server = rawData as Server
+
+// console.log(server.name)  // 如果后端返回的 rawData 没有 name 字段，这里会是 undefined，但 TS 认为它是 string
+
+
+import { toServer } from '@/domain/contracts/adapters/dto-to-domain'
+
+const rawData: unknown = await fetch('/api/servers/srv-001').then(r => r.json())
+
+const server = toServer(rawData)
+
+if (server === null) {
+  // 校验失败，rawData 不符合 ServerSchema
+  console.error('Invalid server data')
+} else {
+  // 校验通过，server 是合法的 Server 对象
+  console.log(server.name)
 }
 
-// v1 的做法：直接强断言
-const server = rawData as Server
-
-console.log(server.name)  // 如果后端返回的 rawData 没有 name 字段，这里会是 undefined，但 TS 认为它是 string
+console.log('server', server)
 </script>
 
 <template>
