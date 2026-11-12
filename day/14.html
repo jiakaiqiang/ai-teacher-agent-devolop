@@ -1,0 +1,2042 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 14 · SSE 合同演进（v1 单版本裸推 → v2 versioned + 断包处理 → v3 resume/取消/审计） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html" aria-current="page">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/02.html">第 2 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 14</p>
+        <h1>SSE 合同演进（v1 单版本裸推 → v2 versioned + 断包处理 → v3 resume/取消/审计）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段一（Day 1-30，前端 -&gt; AI 前端）。所有 BFF、NestJS、数据库、队列和 Agent 后端增量都必须服务于 <code>p1-monitor</code> 的真实 AI 前端链路，不得另起无关 Demo。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+<p><strong>完整性修正</strong>：正文中的 <code>TODO</code>、<code>...</code>、伪代码或“核心代码你手写”只表示实施任务，不属于交付结果；在本日通过前，必须在真实项目中替换为可运行实现，并提交对应测试输出和 diff 证据。任何仍含占位实现的项目提交均判定为未完成。</p>
+</blockquote>
+<p>任务版本：标准版
+日期与时长：2026-07-27 周一，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor</code>
+角色视角：完成 Day 13 持久化 / 幂等、第一次把 Agent Loop 的 trajectory 落库、经历过"WebSocket 断线丢事件"痛点的开发者</p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p>90 天转型路线的三个阶段：</p>
+<pre><code>阶段一（Day 1-30）：前端 → AI 前端
+   项目：p1-monitor 智能运维监控（Vue 3 + TypeScript + WebSocket + Agent UI）
+   Day 1-5：前端 Agent 运行时展示、状态机、WebSocket 实时
+   Day 6-10：后端 Nest + Prisma + FSM + M2 门禁
+
+阶段二（Day 31-60）：AI 前端 → AI 全栈
+   项目：p1-monitor 后端 + p1-monitor 全栈（NestJS + LLM 集成 + RAG）
+   Day 11：Tool Registry（Schema/超时/裁剪/审计）
+   Day 12：Agent Loop（循环调用+预算+终止）
+   Day 13：持久化 / 幂等（事务+幂等键+执行状态+恢复）
+   Day 14：SSE 合同演进（v1 单版本 → v2 断包 → v3 resume）  ← 今天在这里
+   Day 15-20：LangChain RAG + 向量检索
+
+阶段三（Day 61-90）：AI 全栈 → AI Agent 工程师
+   项目：p2-agent-workbench 多 Agent 协同工作台
+</code></pre>
+<p><strong>Day 14 在阶段一第 4 天</strong>。Day 12 让 LLM 能循环调工具、Day 13 让 Run 能可靠落库，今天要把 Day 01 定义的 9 种 <code>AgentEvent</code> <strong>升级为带版本号的合同</strong>，通过 SSE 从服务端推给前端，覆盖 UTF-8 断包、重复 sequence、断线续传、客户端取消四种真实网络问题。</p>
+<h3 id="到-day-13-结束时项目已具备的能力">到 Day 13 结束时项目已具备的能力</h3>
+<ul>
+<li><strong>前端</strong>（Day 1-5, Day 9）：Vue3 + Vite + ECharts，Agent 事件时间线，状态机 UI，服务端权威 FSM</li>
+<li><strong>后端 Agent Loop</strong>（Day 11-13）：Tool Registry、Agent Loop 引擎、持久化 + 幂等 + 事务 + 崩溃恢复</li>
+<li><strong>通信层</strong>（Day 3-5）：WebSocket 推送指标、告警实时数据；<strong>AgentEvent 只在前端内存里跑，还没接真实后端</strong></li>
+<li><strong>缺失的一块</strong>：Agent Loop 在服务端跑出 trajectory 后，如何<strong>实时</strong>把 9 种事件推给前端？前端如何在断线重连后<strong>不丢事件、不重复渲染</strong>？</li>
+</ul>
+<h3 id="今天要解决的-4-个问题">今天要解决的 4 个问题</h3>
+<ol>
+<li>
+<p><strong>问题 1：AgentEvent 合同没有版本号</strong>
+Day 01 定义了 9 种事件类型（<code>run.started</code> / <code>text.delta</code> / <code>tool.started</code> / ...），但没有 <code>version</code> 字段。今天升级到 <code>text.delta.payload.text</code> 支持 markdown、明天需要新增 <code>tool.retry</code> 事件，前端老版本会因为遇到未知 <code>type</code> 直接崩掉；服务端老版本不认识 <code>version: 'v2'</code> 的请求会返回 500。<strong>版本化合同</strong>（<code>{ version: 'v1', type: 'text.delta', ... }</code>）是"服务端升级 vs 前端升级"错峰演进的地基。</p>
+</li>
+<li>
+<p><strong>问题 2：UTF-8 中文被切在两个 chunk 中间</strong>
+SSE 传输 <code>data: {"text": "故障恢复"}</code> 时，<code>故</code> 字在 UTF-8 里是 3 字节 <code>E6 95 85</code>。TCP 层可能把这 3 字节切成两个 chunk 发送：chunk1 <code>E6</code>，chunk2 <code>95 85 ...</code>。如果前端每收到一个 chunk 就 <code>new TextDecoder().decode(bytes)</code>，<code>E6</code> 会被解码成 <code>�</code>（U+FFFD 替换字符），页面显示乱码，<code>JSON.parse</code> 也会直接抛错。正确做法是<strong>在 <code>TextDecoder</code> 里保持 stream=true 状态</strong>，跨 chunk 累积不完整的字节。</p>
+</li>
+<li>
+<p><strong>问题 3：SSE 断线重连时的重复 sequence</strong>
+前端 EventSource 在 sequence 508 后网络断开，浏览器自动重连并携带 <code>Last-Event-ID: 500</code>（因为它记住的最后成功事件是 500）。服务端从 500 开始重放，前端会<strong>重复收到 501-508</strong>这 8 个事件。Day 01 的 reducer 有 sequence 去重（<code>event.sequence &lt;= state.lastSequence</code> 就跳过），但如果没有正确回放 <code>Last-Event-ID</code>，用户会看到"AI 输出重复了 8 段文字、工具卡片重复了 2 次"。</p>
+</li>
+<li>
+<p><strong>问题 4：用户取消对话后上游还在生成</strong>
+前端 UI 显示"AI 正在思考..."，用户等了 3 秒觉得太慢点了取消按钮。浏览器 <code>eventSource.close()</code> 只关了前端连接，但<strong>服务端 Agent Loop 还在跑</strong>：LLM 还在生成 token（花着 OpenAI 的钱）、Tool 还在查数据库（占着连接池）、Diagnosis 还在写入 DB（污染审计日志）。正确做法是通过 <code>AbortController</code> <strong>把取消信号从前端传播到服务端</strong>，服务端在下一次 step 循环开始前检查 <code>signal.aborted</code>，主动结束循环并标记 Run 为 <code>cancelled</code>。</p>
+</li>
+</ol>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<p>在 <code>p1-monitor/apps/api</code> 里交付 <strong><code>SseModule</code></strong>，在 <code>p1-monitor/frontend</code> 里交付 <strong><code>sse-client</code> 模块</strong>：把 Day 01 定义的 9 种 <code>AgentEvent</code> 升级为 <code>AgentEventV1</code>（带 <code>version</code> 字段的版本化合同），从服务端通过 SSE 推给前端，覆盖 UTF-8 断包、<code>Last-Event-ID</code> resume、<code>AbortController</code> 取消传播三条实际网络问题。</p>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p><strong>场景</strong>：运维工程师在 Agent 对话框问 "srv-042 为什么在 14:30 触发 CPU 告警？"，服务端 Agent Loop 通过 SSE 把 8 个事件推给前端。</p>
+<pre><code>时间轴：
+
+14:30:00.000  用户点击"发送"
+  → 前端：new EventSource('/agent/runs/r-01/stream')
+  → 服务端：res.setHeader('Content-Type', 'text/event-stream')
+
+14:30:00.100  服务端推第 1 个事件
+  data: {"version":"v1","type":"run.started","runId":"r-01","sequence":1,"occurredAt":"2026-07-27T06:30:00.100Z","payload":{}}
+  id: 1
+
+14:30:00.500  服务端推 text.delta（首个中文字符跨 chunk）
+  chunk 1 到达前端：data: {"version":"v1","type":"text.delta",...,"payload":{"text":"故"    ← 故 = 故，UTF-8 是 E6 95 85
+  chunk 2 到达前端：障恢复..."}}\n\n     ← 后续字符
+  前端 TextDecoder(stream: true) 正确拼接为完整的 JSON
+  id: 2
+
+14:30:01.200  服务端推 tool.started
+  data: {"version":"v1","type":"tool.started","sequence":3,"payload":{"callId":"c-01","toolName":"getMetrics","argumentSummary":"srv-042 CPU 30min"}}
+  id: 3
+
+14:30:01.800  网络断开（前端 EventSource 自动重连）
+  前端：EventSource 触发 'error' 事件，浏览器 3 秒后自动重连
+  重连请求：GET /agent/runs/r-01/stream，Header: Last-Event-ID: 3
+
+14:30:04.900  服务端收到 Last-Event-ID: 3
+  从 sequence 4 开始重放（不是从 1 重放，前端已经有 1-3）
+  data: {"version":"v1","type":"tool.succeeded","sequence":4,...}
+  id: 4
+  data: {"version":"v1","type":"text.delta","sequence":5,"payload":{"text":"分析结论：..."}}
+  id: 5
+  ...
+
+14:30:07.000  用户点击"取消"按钮
+  前端：abortController.abort()；eventSource.close()
+  前端：fetch('/agent/runs/r-01/cancel', {method:'POST'})
+  服务端：AgentLoopEngine 在下一次 step 开始时检查 signal，主动结束
+  服务端：Persist AgentRun.status = 'cancelled'
+  服务端最后推一条事件：
+  data: {"version":"v1","type":"run.cancelled","sequence":8,"payload":{"reason":"user_cancelled"}}
+  id: 8
+</code></pre>
+<p>前端观察到的最终结果：</p>
+<ul>
+<li>事件流从 sequence 1 到 8 完整收到</li>
+<li>中文文本正确渲染（无 <code>�</code> 乱码）</li>
+<li>断线重连后<strong>不重复</strong>渲染 tool 卡片、<strong>不重复</strong>追加文本</li>
+<li>用户点击"取消"后 500ms 内 LLM 停止生成，DB 里 AgentRun.status = <code>cancelled</code></li>
+</ul>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<ul>
+<li><strong>输入</strong>：Day 13 的 <code>AgentLoopEngine.run(config, { signal })</code> 内部循环产生的 9 种 <code>AgentEvent</code> + 可选的 <code>Last-Event-ID</code> 头</li>
+<li><strong>输出</strong>：SSE HTTP 响应流（每条 <code>data: ...\nid: N\n\n</code>）+ 客户端 <code>AbortController.abort()</code> 到服务端 <code>signal.aborted</code> 的取消传播链路</li>
+<li><strong>对齐后续</strong>：今天定义的 <strong><code>AgentEventV1</code> 合同</strong>（<code>version: 'v1'</code> + <code>sequence</code> + <code>id</code>）是 Day 15-20（LangChain 流式输出）、Day 30（M3 端到端门禁）的传输层基座。Day 30 会要求"任何一次 Agent Run 从服务端启动到前端 UI 更新全链路可回放"</li>
+</ul>
+<h3 id="13-三版演进的目标">1.3 三版演进的目标</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>实现的功能</th>
+<th>代码结构</th>
+<th>引入的知识</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td>单版本 SSE 裸推，前端 <code>EventSource</code> 直接消费</td>
+<td>服务端单文件 <code>sse.controller.ts</code>（<code>res.write('data: ...')</code>）+ 前端 <code>useSseStream.ts</code>（<code>onmessage</code> 直接 <code>JSON.parse</code>）</td>
+<td>SSE 协议、<code>Content-Type: text/event-stream</code>、EventSource 基本用法</td>
+</tr>
+<tr>
+<td><strong>v1 痛点</strong></td>
+<td>无版本号（前后端升级会崩）、无中文断包处理（乱码）、无 resume（断线重复）、无取消传播（服务端浪费资源）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>v1 + <strong><code>AgentEventV1</code> 版本化合同</strong> + <strong>UTF-8 断包处理</strong></td>
+<td>拆出 <code>agent-event-v1.ts</code> 类型 + 前端 <code>chunked-parser.ts</code> + <code>TextDecoder(stream:true)</code></td>
+<td>版本化 payload 设计、<code>fetch</code> + <code>ReadableStream</code> 手动解析（替代 EventSource）、<code>TextDecoder</code> 流式解码状态</td>
+</tr>
+<tr>
+<td><strong>v2 痛点</strong></td>
+<td>断线重复渲染、用户取消后服务端不停</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>v2 + <strong><code>Last-Event-ID</code> resume cursor</strong> + <strong><code>AbortController</code> 取消传播</strong> + <strong>事件审计</strong></td>
+<td>完整分层（contract/parser/resume/cancel/audit）</td>
+<td>Resume cursor 语义、EventSource 与 <code>fetch+ReadableStream</code> 的取舍、AbortSignal 跨进程传播、SSE 审计日志</td>
+</tr>
+</tbody>
+</table></div><p><strong>用户最终在项目里交付的是 v3</strong>。v1 和 v2 是教学用的过渡版本。</p>
+<hr>
+<h2 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h2>
+<p><strong>为什么放在最前面</strong>：SSE 合同涉及前端/后端两端 + 4 个关注点（版本化合同/UTF-8 断包/resume/取消），如果不先立骨架，最容易犯的错就是把"合同定义"、"解析逻辑"、"resume 判断"、"取消传播"糊在一个 controller 里。看完这棵树，下面章节再出现 <code>frontend/src/agent/stream/chunked-parser.ts</code> 时，你就能立刻定位它属于"前端 SSE 解析层"。</p>
+<p><strong>今天在 <code>p1-monitor/</code> 下要建立的完整目录树（v3 完整版）</strong>：</p>
+<pre><code>p1-monitor/
+├── apps/api/src/
+│   ├── sse/                                     ← 【新增】SSE 服务端模块
+│   │   ├── contract/
+│   │   │   ├── agent-event-v1.ts                ← 版本化事件类型（v1 合同）
+│   │   │   ├── agent-event-v1.spec.ts           ← 合同 schema 单测
+│   │   │   └── event-envelope.ts                ← SSE 帧封装（data/id/event/retry）
+│   │   ├── resume/
+│   │   │   ├── event-store.ts                   ← 事件缓存（按 runId 存 sequence）
+│   │   │   ├── event-store.spec.ts              ← 缓存单测
+│   │   │   └── resume.strategy.ts               ← Last-Event-ID 解析 + 起点定位
+│   │   ├── cancel/
+│   │   │   ├── cancel-registry.service.ts       ← runId → AbortController 注册表
+│   │   │   └── cancel-registry.service.spec.ts  ← 注册表单测
+│   │   ├── audit/
+│   │   │   └── sse-audit.service.ts             ← SSE 帧审计（观测重复率、断包率）
+│   │   ├── sse.controller.ts                    ← HTTP 入口（GET stream + POST cancel）
+│   │   ├── sse.module.ts                        ← NestJS 模块
+│   │   ├── sse.service.ts                       ← 业务编排（从 Agent Loop 收事件写 SSE）
+│   │   └── index.ts                             ← 桶文件
+│   ├── agent/                                   ← 【Day 12-13 已有】
+│   │   └── loop/agent-loop.engine.ts            ← 需要改：接入 signal + eventEmitter
+│   └── persistence/                             ← 【Day 13 已有】
+├── frontend/src/
+│   ├── agent/stream/                            ← 【新增】前端 SSE 客户端
+│   │   ├── contract/
+│   │   │   └── agent-event-v1.ts                ← 与服务端共享的合同类型（复制版）
+│   │   ├── parser/
+│   │   │   ├── chunked-parser.ts                ← UTF-8 断包 + SSE 帧解析
+│   │   │   └── chunked-parser.spec.ts           ← 手工构造断包字节的单测
+│   │   ├── resume/
+│   │   │   └── resume-tracker.ts                ← 记录 lastEventId
+│   │   ├── cancel/
+│   │   │   └── cancel-signal.ts                 ← AbortController 封装
+│   │   ├── useSseStream.ts                      ← Vue composable（编排层）
+│   │   └── index.ts
+│   └── features/agent-run/
+│       └── ui/AgentRunPanel.vue                 ← 【Day 01 已有】接入 useSseStream
+└── docs/
+    └── adr/
+        └── ADR-014-sse-vs-ws.md                 ← 【新增】SSE 与 WebSocket 取舍决策
+</code></pre>
+<p><strong>三版演进对应的文件差异</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>文件</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sse/contract/agent-event-v1.ts</code></td>
+<td>✗（前端直接用 Day 01 的 AgentEvent）</td>
+<td>✓ 加 <code>version: 'v1'</code> 字段</td>
+<td>✓ 同 v2</td>
+</tr>
+<tr>
+<td><code>sse/contract/event-envelope.ts</code></td>
+<td>✗ 硬编码在 controller 里</td>
+<td>✓ 抽出 SSE 帧封装</td>
+<td>✓ 同 v2</td>
+</tr>
+<tr>
+<td>前端 SSE 客户端</td>
+<td>用 <code>EventSource</code>（浏览器内置）</td>
+<td>换成 <code>fetch</code> + <code>ReadableStream</code></td>
+<td>✓ 同 v2 + 加 lastEventId 追踪</td>
+</tr>
+<tr>
+<td><code>parser/chunked-parser.ts</code></td>
+<td>✗</td>
+<td>✓ TextDecoder(stream:true)</td>
+<td>✓ 同 v2</td>
+</tr>
+<tr>
+<td><code>resume/event-store.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 服务端缓存</td>
+</tr>
+<tr>
+<td><code>resume/resume.strategy.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ Last-Event-ID → 起点</td>
+</tr>
+<tr>
+<td><code>cancel/cancel-registry.service.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ AbortController 注册表</td>
+</tr>
+<tr>
+<td><code>cancel/cancel-signal.ts</code>（前端）</td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 前端触发 POST /cancel</td>
+</tr>
+<tr>
+<td>ADR-014</td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ SSE vs WS 决策</td>
+</tr>
+</tbody>
+</table></div><p><strong>依赖方向（务必单向，反过来一次都不行）</strong>：</p>
+<pre><code>前端：
+AgentRunPanel.vue
+    │
+    ▼
+useSseStream.ts（composable 编排层）
+    │
+    ├─► parser/chunked-parser.ts ──► contract/agent-event-v1.ts（纯类型）
+    │
+    ├─► resume/resume-tracker.ts（纯类）
+    │
+    └─► cancel/cancel-signal.ts（纯类）
+
+后端：
+sse.controller.ts（HTTP 入口）
+    │
+    ▼
+sse.service.ts（业务编排）
+    │
+    ├─► agent/loop/agent-loop.engine.ts（Day 12）
+    │
+    ├─► contract/event-envelope.ts（纯函数）
+    │
+    ├─► resume/resume.strategy.ts ──► resume/event-store.ts ──► prisma
+    │
+    ├─► cancel/cancel-registry.service.ts（内存 Map）
+    │
+    └─► audit/sse-audit.service.ts ──► prisma
+
+contract/*.ts       ← 只声明类型和 schema，不 import service
+parser/*.ts         ← 前端纯逻辑，不 import Vue
+resume.strategy.ts  ← 纯函数，输入 Last-Event-ID 输出 startSequence
+</code></pre>
+<p><strong>红线</strong>：</p>
+<ul>
+<li><code>contract/agent-event-v1.ts</code> 里出现 <code>import { HttpService }</code> 或 <code>import { PrismaService }</code> 就是架构塌方——合同只描述数据形状</li>
+<li>前端 <code>parser/chunked-parser.ts</code> 里出现 <code>import { ref } from 'vue'</code> 是塌方——parser 必须能在纯 Node 环境单测</li>
+<li><code>sse.controller.ts</code> 里直接 <code>res.write('data:...')</code> 拼接字符串是塌方——SSE 帧格式应该走 <code>event-envelope.ts</code> 的封装</li>
+</ul>
+<p><strong>动手前先问自己 3 个问题</strong>：</p>
+<ol>
+<li><code>chunked-parser.ts</code> 为什么必须能在纯 Node 环境跑？—— 见 §5.4 知识点 2「UTF-8 断包与 TextDecoder(stream:true)」</li>
+<li><code>Last-Event-ID</code> 为什么放在 HTTP Header 而不是 URL query？—— 见 §5.4 知识点 4「Resume cursor 的传输位置」</li>
+<li>前端 <code>AbortController.abort()</code> 怎么让服务端知道？—— 见 §5.4 知识点 5「取消传播的跨进程边界」</li>
+</ol>
+<hr>
+<h2 id="15-阶段-d动手脚手架20-分钟先搭骨架再看正文">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</h2>
+<h3 id="151-d-1确认依赖-装-fetch-相关工具3-分钟">1.5.1 D-1：确认依赖 + 装 fetch 相关工具（3 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>后端：<code>p1-monitor/apps/api</code> 已经有 NestJS，<code>res.write()</code> 是 Express 原生方法，不需要额外依赖</li>
+<li>前端：Vite + Vue3 环境已有 <code>fetch</code> API，但要装 <code>@microsoft/fetch-event-source</code> 做 fallback（可选，v3 里我们手写 parser 就不需要）</li>
+<li>单测环境：<code>pnpm --filter frontend add -D @vitest/browser</code>（可选，用于跑 TextDecoder 相关测试；不装的话 vitest 用 node 环境也能跑）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么不用 EventSource？（不支持自定义 Header，无法传 auth token；不支持 POST；浏览器兼容性和 fetch 差不多）</li>
+<li>为什么不用 <a href="http://socket.io" target="_blank" rel="noopener noreferrer">socket.io</a>？（<a href="http://socket.io" target="_blank" rel="noopener noreferrer">socket.io</a> 是 WebSocket 之上的封装，多一层协议开销；SSE 本身是 HTTP 长连接，走标准反代/CDN 都没问题）</li>
+</ul>
+<h3 id="152-d-2创建目录2-分钟">1.5.2 D-2：创建目录（2 分钟）</h3>
+<p>按第 5.3 节的目录树：</p>
+<p><strong>后端</strong>：在 <code>apps/api/src/sse/</code> 下建 4 个子目录：<code>contract/</code> <code>resume/</code> <code>cancel/</code> <code>audit/</code>
+<strong>前端</strong>：在 <code>frontend/src/agent/stream/</code> 下建 4 个子目录：<code>contract/</code> <code>parser/</code> <code>resume/</code> <code>cancel/</code></p>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么前后端各有一份 <code>contract/agent-event-v1.ts</code>？（前后端隔离，不能通过 workspace 引用共享，因为前端类型和后端 Prisma 类型有细微差异；共享要走 codegen）</li>
+<li>为什么前端叫 <code>agent/stream/</code> 而不是 <code>services/sse/</code>？（<code>stream</code> 是领域概念——事件流；<code>services</code> 是技术分类——太泛化）</li>
+</ul>
+<h3 id="153-d-3定义-agenteventv1-合同4-分钟">1.5.3 D-3：定义 <code>AgentEventV1</code> 合同（4 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>apps/api/src/sse/contract/agent-event-v1.ts</code>（<code>version: 'v1'</code> 判别联合）</li>
+<li>写 <code>apps/api/src/sse/contract/event-envelope.ts</code>（SSE 帧封装函数）</li>
+<li>前端 <code>frontend/src/agent/stream/contract/agent-event-v1.ts</code> <strong>同一份复制</strong>（不同 workspace 不共享）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么 <code>version</code> 字段类型是 <code>'v1'</code> 字面量而不是 <code>string</code>？（future v2 加进来时 TypeScript 能自动窄化，<code>if (event.version === 'v1')</code> 分支里 payload 类型确定）</li>
+<li>SSE 帧的 <code>event:</code> 字段和 payload 里的 <code>type</code> 字段是同一个东西吗？（不是——<code>event:</code> 是 HTTP 层字段用于浏览器 EventSource 路由，payload.type 是应用层字段；我们 v3 只用 <code>data:</code> 和 <code>id:</code>，不用 <code>event:</code>）</li>
+</ul>
+<h3 id="154-d-4实现前端-chunked-parserts6-分钟">1.5.4 D-4：实现前端 <code>chunked-parser.ts</code>（6 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>frontend/src/agent/stream/parser/chunked-parser.ts</code>（<code>ChunkedParser</code> 类，维护 TextDecoder 和 <code>\n\n</code> 缓冲）</li>
+<li>写 <code>frontend/src/agent/stream/parser/chunked-parser.spec.ts</code>（手工构造 UTF-8 断包字节的 8 个用例）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么 <code>TextDecoder</code> 一定要 <code>stream: true</code>？（不加 stream 参数，遇到不完整字节 decode 会返回 <code>�</code> 替换字符）</li>
+<li>缓冲区什么时候清空？（当遇到 <code>\n\n</code> 完整分隔符时，把 <code>\n\n</code> 之前的部分作为一条完整帧提取出来）</li>
+<li>parser 需要保持 <code>event: xxx</code> 类型的状态吗？（v3 我们只解析 <code>data:</code> 和 <code>id:</code> 两行；<code>event:</code> 忽略）</li>
+</ul>
+<h3 id="155-d-5实现-resume-cancel-编排5-分钟">1.5.5 D-5：实现 resume + cancel + 编排（5 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>apps/api/src/sse/resume/event-store.ts</code>（<code>Map&lt;runId, EventV1[]&gt;</code> 或者 Postgres 的 <code>agent_events</code> 表）</li>
+<li>写 <code>apps/api/src/sse/resume/resume.strategy.ts</code>（纯函数：<code>resolveStartSequence(lastEventId, storedEvents)</code>）</li>
+<li>写 <code>apps/api/src/sse/cancel/cancel-registry.service.ts</code>（<code>Map&lt;runId, AbortController&gt;</code>）</li>
+<li>写 <code>apps/api/src/sse/sse.service.ts</code>（业务编排）</li>
+<li>写 <code>apps/api/src/sse/sse.controller.ts</code>（<code>GET /agent/runs/:runId/stream</code> + <code>POST /agent/runs/:runId/cancel</code>）</li>
+<li>写 <code>apps/api/src/sse/sse.module.ts</code></li>
+<li>写 <code>frontend/src/agent/stream/resume/resume-tracker.ts</code></li>
+<li>写 <code>frontend/src/agent/stream/cancel/cancel-signal.ts</code></li>
+<li>写 <code>frontend/src/agent/stream/useSseStream.ts</code>（Vue composable）</li>
+<li>改 <code>frontend/src/features/agent-run/ui/AgentRunPanel.vue</code>（接入 useSseStream）</li>
+<li>写 <code>docs/adr/ADR-014-sse-vs-ws.md</code></li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>event-store</code> 用内存 Map 还是 Postgres？（v3 教学版用 Postgres 表 <code>agent_events</code>，因为进程重启后 resume 还要能工作；生产可以用 Redis Stream）</li>
+<li><code>cancel-registry</code> 为什么必须是 Map 不能是 Postgres？（<code>AbortController</code> 是运行时对象，无法序列化；跨进程取消需要用 Redis pub/sub 或 SIGTERM）</li>
+<li><code>useSseStream</code> 为什么在 <code>onUnmounted</code> 里必须 <code>abort()</code>？（组件卸载了但 fetch 请求还在，后续 push 的事件更新已销毁的 ref 会报错）</li>
+</ul>
+<hr>
+<h2 id="2-学习节奏90-阅读-90-动手">2. 学习节奏（90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>内容</th>
+<th>交付物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A：读原理</td>
+<td>25 min</td>
+<td>§3-§5 三版演进 + §5.4 知识点 6 项</td>
+<td>心里能画出"裸推→版本化→resume+取消"的演进路径</td>
+</tr>
+<tr>
+<td>B：读代码</td>
+<td>30 min</td>
+<td>§5.3 逐文件通读，特别是 <code>chunked-parser.ts</code> 和 <code>resume.strategy.ts</code></td>
+<td>能口述"UTF-8 断包是怎么被 TextDecoder 缓冲的"、"Last-Event-ID 怎么决定起点"</td>
+</tr>
+<tr>
+<td>C：读深挖</td>
+<td>35 min</td>
+<td>§6.5 前端底子补弱（<code>Day14深挖-前端底子补弱.html</code>）</td>
+<td>能回答"EventSource 和 fetch+ReadableStream 各自的取舍"</td>
+</tr>
+<tr>
+<td>D：动手脚手架</td>
+<td>20 min</td>
+<td>§1.5 D-1 到 D-5</td>
+<td>骨架文件全部创建，<code>pnpm --filter api build &amp;&amp; pnpm --filter frontend build</code> 通过</td>
+</tr>
+<tr>
+<td>E：写核心测试</td>
+<td>20 min</td>
+<td>§7.6 三个测试文件</td>
+<td><code>pnpm --filter frontend test chunked-parser</code> 全绿 + 后端 <code>resume.strategy</code> 全绿</td>
+</tr>
+<tr>
+<td>F-1：反证 1</td>
+<td>5 min</td>
+<td>§7.7 手动去掉 <code>TextDecoder(stream:true)</code>，观察中文乱码</td>
+<td>观察 <code>�</code> 替换字符，验证"没有流式解码时的样子"</td>
+</tr>
+<tr>
+<td>F-2：反证 2</td>
+<td>5 min</td>
+<td>§7.8 手动断开网络，观察断线重复渲染</td>
+<td>观察 tool 卡片重复出现，验证"没有 resume/去重时的样子"</td>
+</tr>
+<tr>
+<td>F-3：验证 + 提交</td>
+<td>10 min</td>
+<td>§7.9 四件套 + commit</td>
+<td>commit 含 <code>Refs: Day14</code></td>
+</tr>
+</tbody>
+</table></div><p><strong>总计</strong>：90 阅读（A+B+C）+ 90 动手（D+E+F）= 180 min</p>
+<hr>
+<h2 id="3-v1最小闭环eventsource-裸推">3. v1：最小闭环（EventSource 裸推）</h2>
+<h3 id="31-v1-要实现什么">3.1 v1 要实现什么</h3>
+<p>Day 12 的 Agent Loop 在服务端跑完后返回 <code>AgentTrajectory</code>。v1 只做一件事：<strong>把 trajectory 里的每一步事件通过 SSE 推给前端</strong>，前端用浏览器原生 <code>EventSource</code> 消费。</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li>服务端 <code>GET /agent/runs/:runId/stream</code> 返回 <code>Content-Type: text/event-stream</code></li>
+<li>Agent Loop 每完成一个 step，<code>res.write('data: ' + JSON.stringify(event) + '\n\n')</code> 推给前端</li>
+<li>前端 <code>new EventSource(url).onmessage = e =&gt; reducer(state, JSON.parse(e.data))</code></li>
+</ul>
+<p><strong>不做</strong>：</p>
+<ul>
+<li>事件没有 <code>version</code> 字段</li>
+<li>不处理 UTF-8 断包（EventSource 默认按浏览器实现，UTF-8 处理由浏览器负责但仍可能有边界问题）</li>
+<li>不支持断线续传（EventSource 自动重连但不传 Last-Event-ID）</li>
+<li>不支持客户端取消（EventSource 关闭后服务端继续跑）</li>
+</ul>
+<h3 id="32-v1-目录结构">3.2 v1 目录结构</h3>
+<pre><code>apps/api/src/
+├── sse/
+│   ├── sse.controller.ts     ← 单文件，硬编码 SSE 帧
+│   └── sse.module.ts
+└── agent/loop/agent-loop.engine.ts   ← 加个 eventEmitter，Loop 内推事件
+
+frontend/src/
+└── agent/stream/
+    └── useSseStream.ts       ← 单文件，new EventSource
+</code></pre>
+<h3 id="33-v1-完整代码">3.3 v1 完整代码</h3>
+<p><strong>apps/api/src/sse/sse.controller.ts（v1 全文）</strong></p>
+<pre><code class="language-typescript">import { Controller, Get, Param, Res } from '@nestjs/common'
+import type { Response } from 'express'
+import { AgentLoopEngine } from '../agent/loop/agent-loop.engine'
+
+@Controller('agent/runs')
+export class SseController {
+  constructor(private readonly agentLoop: AgentLoopEngine) {}
+
+  @Get(':runId/stream')
+  async stream(@Param('runId') runId: string, @Res() res: Response): Promise&lt;void&gt; {
+    // 设置 SSE 响应头
+    res.setHeader('Content-Type', 'text/event-stream')
+    res.setHeader('Cache-Control', 'no-cache')
+    res.setHeader('Connection', 'keep-alive')
+    res.flushHeaders()
+
+    // 订阅 Agent Loop 事件（假设 agentLoop 内部有 EventEmitter）
+    const handler = (event: unknown) =&gt; {
+      res.write(`data: ${JSON.stringify(event)}\n\n`)
+    }
+    this.agentLoop.on(runId, handler)
+
+    // 客户端断开时清理
+    res.on('close', () =&gt; {
+      this.agentLoop.off(runId, handler)
+      // 注意：v1 不主动 abort Agent Loop，服务端继续跑
+    })
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/sse/sse.module.ts</strong></p>
+<pre><code class="language-typescript">import { Module } from '@nestjs/common'
+import { SseController } from './sse.controller'
+import { AgentModule } from '../agent/agent.module'
+
+@Module({
+  imports: [AgentModule],
+  controllers: [SseController],
+})
+export class SseModule {}
+</code></pre>
+<p><strong>apps/api/src/agent/loop/agent-loop.engine.ts（v1 增量）</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { EventEmitter } from 'events'
+
+@Injectable()
+export class AgentLoopEngine extends EventEmitter {
+  async run(config: AgentRunConfig): Promise&lt;AgentTrajectory&gt; {
+    const trajectory: AgentTrajectory = { steps: [], usage: {...}, finishReason: 'running' }
+
+    // v1：每完成一步就 emit
+    this.emit(config.runId, { type: 'run.started', runId: config.runId, sequence: 1, occurredAt: new Date().toISOString(), payload: {} })
+
+    // ... 循环调用 LLM 和 Tool ...
+    // 每一步 emit 一个事件
+
+    this.emit(config.runId, { type: 'run.finished', runId: config.runId, sequence: 8, occurredAt: new Date().toISOString(), payload: { summary: '...' } })
+
+    return trajectory
+  }
+}
+</code></pre>
+<p><strong>frontend/src/agent/stream/useSseStream.ts（v1 全文）</strong></p>
+<pre><code class="language-typescript">import { ref, onUnmounted } from 'vue'
+import { reduceAgentEvent, initialAgentRunState, type AgentRunState } from '@/domain/agent/agent-run-state'
+
+export function useSseStream(runId: string) {
+  const state = ref&lt;AgentRunState&gt;(initialAgentRunState)
+  const eventSource = new EventSource(`/agent/runs/${runId}/stream`)
+
+  eventSource.onmessage = (e) =&gt; {
+    const event = JSON.parse(e.data)  // v1：假设永远是完整 JSON
+    state.value = reduceAgentEvent(state.value, event)
+  }
+
+  eventSource.onerror = () =&gt; {
+    console.error('SSE connection error, browser will auto-reconnect')
+    // v1：浏览器自动重连，但不传 Last-Event-ID
+  }
+
+  onUnmounted(() =&gt; {
+    eventSource.close()
+    // v1：只关前端，不通知服务端；服务端 Agent Loop 继续跑
+  })
+
+  return { state }
+}
+</code></pre>
+<p><strong>frontend/src/features/agent-run/ui/AgentRunPanel.vue（v1 集成点）</strong></p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div class="agent-run-panel"&gt;
+    &lt;div v-for="item in state.timeline" :key="item.key"&gt;
+      {{ item.title }}: {{ item.detail }}
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { useSseStream } from '@/agent/stream/useSseStream'
+const props = defineProps&lt;{ runId: string }&gt;()
+const { state } = useSseStream(props.runId)
+&lt;/script&gt;
+</code></pre>
+<h3 id="34-v1-暴露的痛点">3.4 v1 暴露的痛点</h3>
+<p><strong>痛点 1：无版本号，前后端升级会崩</strong></p>
+<p>明天服务端升级：新增 <code>tool.retry</code> 事件；前端老版本 reducer 里 <code>switch (event.type)</code> 走到 <code>default</code> 分支，<code>assertNever</code> 抛错，整个 Agent 面板挂掉。或者前端先升级：给 <code>text.delta.payload</code> 加 <code>markdown: boolean</code> 字段，服务端老版本发的旧格式在新前端里解析成 <code>markdown: undefined</code>，模板逻辑 <code>if (payload.markdown)</code> 走进了错误分支。<strong>没有版本号 = 无法演进</strong>。</p>
+<p><strong>痛点 2：UTF-8 中文断包（EventSource 表面上没问题但实际有边界情况）</strong></p>
+<p>EventSource 的浏览器实现<strong>确实</strong>处理了 UTF-8 断包，但：</p>
+<ul>
+<li>只在 <code>data:</code> 完整行里保证 UTF-8 完整，跨帧（<code>\n\n</code> 分隔）拼接的 payload 如果服务端一次 <code>res.write</code> 里塞多个 chunk 就会出问题</li>
+<li>更重要的是：<strong>v2 我们要换成 <code>fetch</code> + <code>ReadableStream</code> 手动解析</strong>（为了支持自定义 Header），这时候必须自己处理 UTF-8</li>
+</ul>
+<p>现在你先在 <code>useSseStream</code> 里刻意用 <code>text.delta</code> 推一段被 TCP 切开的中文，观察部分浏览器（旧版 Safari）会显示 <code>?</code> 或 <code>�</code>。</p>
+<p><strong>痛点 3：断线重复渲染</strong></p>
+<p>EventSource 的自动重连<strong>默认不传 Last-Event-ID</strong>（只有当服务端主动发 <code>retry:</code> 字段时才传）。断线场景：</p>
+<ul>
+<li>sequence 508 断开</li>
+<li>浏览器 3 秒后自动重连 <code>GET /stream</code></li>
+<li>服务端不知道前端已经收到哪些事件，从 sequence 1 开始重放</li>
+<li>前端 reducer 有 sequence 去重，但<strong>每次重放事件都会触发 UI 重新计算</strong>（性能浪费）；如果 reducer 没有 sequence 去重（v1 的 reducer 是 Day 01 写的，有 sequence 去重）就会重复渲染</li>
+</ul>
+<p><strong>痛点 4：用户取消不传播</strong></p>
+<p>前端点"取消" → <code>eventSource.close()</code> → 只关了前端 HTTP 连接。服务端 <code>res.on('close')</code> 触发，但 v1 只 <code>off(handler)</code>，<strong>没有 <code>agentLoop.abort(runId)</code></strong>。Agent Loop 继续调用 LLM：</p>
+<ul>
+<li>OpenAI 账单还在涨</li>
+<li>Tool Registry 还在查 DB 连接池</li>
+<li>最后 Diagnosis 还会写入 DB，UI 上看不到但审计日志里有一条"用户已取消但仍生成了 Diagnosis"的诡异记录</li>
+</ul>
+<p><strong>痛点 5：进程重启事件丢失</strong></p>
+<p>Agent Loop 跑到 step 5 服务端重启（发布新版本）。前端 EventSource 自动重连，服务端<strong>新进程根本没有这个 runId 的 EventEmitter 订阅</strong>，前端永远收不到剩下的事件。UI 卡在"正在思考..."。</p>
+<hr>
+<h2 id="4-v2加事件版本-utf-8-流式解码-fetchreadablestream">4. v2：加事件版本 + UTF-8 流式解码 + fetch/ReadableStream</h2>
+<h3 id="41-v2-要实现什么">4.1 v2 要实现什么</h3>
+<p>用户视角：事件带上 <code>version: 'v1'</code> 字段，前后端有明确的兼容合同；用 <code>fetch</code> + <code>ReadableStream</code> + <code>TextDecoder({ stream: true })</code> 手动解析 SSE 帧，中文断包不再乱码。</p>
+<p><strong>依然不做</strong>：</p>
+<ul>
+<li>不支持 Last-Event-ID 续传（断线后仍从头开始）</li>
+<li>不支持客户端取消传播（关连接不 abort Loop）</li>
+</ul>
+<h3 id="42-v2-目录结构">4.2 v2 目录结构</h3>
+<pre><code>apps/api/src/sse/
+├── protocol/
+│   ├── event-version.ts       ← 新增：'v1' 版本常量 + 事件契约
+│   └── sse-frame.ts           ← 新增：SSE 帧格式化（data:/id:/event:/retry:）
+├── sse.controller.ts          ← 改：用 sse-frame 格式化输出
+└── sse.module.ts
+
+frontend/src/agent/stream/
+├── parser/
+│   ├── sse-line-parser.ts     ← 新增：处理 fetch/ReadableStream + TextDecoder
+│   └── sse-line-parser.spec.ts ← 单元测试（中文断包）
+└── useSseStream.ts             ← 改：用 fetch + parser
+</code></pre>
+<h3 id="43-v2-完整代码">4.3 v2 完整代码</h3>
+<p><strong>apps/api/src/sse/protocol/event-version.ts</strong></p>
+<pre><code class="language-typescript">// SSE 事件版本合同（前后端共享）
+export const SSE_EVENT_VERSION = 'v1' as const
+export type SseEventVersion = typeof SSE_EVENT_VERSION
+
+// 版本化的事件外壳
+export type VersionedAgentEvent = {
+  version: SseEventVersion
+  // Day 01 的 AgentEvent 全部字段
+  type: string
+  runId: string
+  sequence: number
+  occurredAt: string
+  payload: Record&lt;string, unknown&gt;
+}
+</code></pre>
+<p><strong>apps/api/src/sse/protocol/sse-frame.ts</strong></p>
+<pre><code class="language-typescript">// SSE 帧格式化：把一个事件对象序列化成一段 SSE 帧文本
+export function formatSseFrame(params: {
+  data: unknown
+  id?: string | number      // Last-Event-ID
+  event?: string            // 事件类型（可选）
+  retry?: number            // 客户端重连间隔（毫秒）
+}): string {
+  const lines: string[] = []
+  if (params.event) lines.push(`event: ${params.event}`)
+  if (params.id !== undefined) lines.push(`id: ${params.id}`)
+  if (params.retry !== undefined) lines.push(`retry: ${params.retry}`)
+
+  const dataStr = typeof params.data === 'string' ? params.data : JSON.stringify(params.data)
+  // 多行 data 每行前缀 "data: "
+  for (const line of dataStr.split('\n')) {
+    lines.push(`data: ${line}`)
+  }
+
+  return lines.join('\n') + '\n\n'   // 空行结束帧
+}
+</code></pre>
+<p><strong>apps/api/src/sse/sse.controller.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import { Controller, Get, Param, Res } from '@nestjs/common'
+import type { Response } from 'express'
+import { AgentLoopEngine } from '../agent/loop/agent-loop.engine'
+import { SSE_EVENT_VERSION, type VersionedAgentEvent } from './protocol/event-version'
+import { formatSseFrame } from './protocol/sse-frame'
+
+@Controller('agent/runs')
+export class SseController {
+  constructor(private readonly agentLoop: AgentLoopEngine) {}
+
+  @Get(':runId/stream')
+  async stream(@Param('runId') runId: string, @Res() res: Response): Promise&lt;void&gt; {
+    res.setHeader('Content-Type', 'text/event-stream; charset=utf-8')
+    res.setHeader('Cache-Control', 'no-cache')
+    res.setHeader('Connection', 'keep-alive')
+    res.setHeader('X-Accel-Buffering', 'no')  // Nginx 反向代理时禁止缓冲
+    res.flushHeaders()
+
+    // 发送 retry 指令告诉浏览器重连间隔
+    res.write(formatSseFrame({ data: '', retry: 3000 }))
+
+    const handler = (event: VersionedAgentEvent) =&gt; {
+      // v2：包一层 version，保持向后兼容
+      const versioned: VersionedAgentEvent = { version: SSE_EVENT_VERSION, ...event }
+      res.write(formatSseFrame({
+        data: versioned,
+        id: event.sequence,    // Last-Event-ID 用 sequence
+        event: event.type,
+      }))
+    }
+    this.agentLoop.on(runId, handler)
+
+    res.on('close', () =&gt; {
+      this.agentLoop.off(runId, handler)
+      // v2 依然不 abort Loop
+    })
+  }
+}
+</code></pre>
+<p><strong>frontend/src/agent/stream/parser/sse-line-parser.ts</strong></p>
+<pre><code class="language-typescript">// SSE 逐行解析器，处理 UTF-8 断包
+// 输入：ReadableStream&lt;Uint8Array&gt;
+// 输出：AsyncGenerator&lt;{ id?: string, event?: string, data: string }&gt;
+
+export async function* parseSseStream(
+  stream: ReadableStream&lt;Uint8Array&gt;,
+): AsyncGenerator&lt;{ id?: string; event?: string; data: string }&gt; {
+  const reader = stream.getReader()
+  const decoder = new TextDecoder('utf-8', { fatal: false })
+  //                                          ^^^^^^^^^^^^ 关键：stream=true 时不完整字节留在内部 buffer
+
+  let buffer = ''    // 未组成完整 SSE 帧的行缓冲
+  let currentEvent: { id?: string; event?: string; data: string } = { data: '' }
+
+  try {
+    while (true) {
+      const { value, done } = await reader.read()
+      if (done) break
+
+      // 关键：{ stream: true } 告诉 decoder 后面还有数据，UTF-8 不完整字节留在内部
+      buffer += decoder.decode(value, { stream: true })
+
+      // 按行处理
+      const lines = buffer.split('\n')
+      buffer = lines.pop() ?? ''    // 最后一行可能不完整，留到下次
+
+      for (const line of lines) {
+        if (line === '') {
+          // 空行 = 一个事件结束
+          if (currentEvent.data !== '') {
+            yield currentEvent
+          }
+          currentEvent = { data: '' }
+        } else if (line.startsWith('data: ')) {
+          const data = line.slice(6)
+          currentEvent.data = currentEvent.data === '' ? data : currentEvent.data + '\n' + data
+        } else if (line.startsWith('id: ')) {
+          currentEvent.id = line.slice(4)
+        } else if (line.startsWith('event: ')) {
+          currentEvent.event = line.slice(7)
+        }
+        // 忽略以 : 开头的注释行、忽略其他字段
+      }
+    }
+    // 流结束，flush decoder 内部剩余字节
+    buffer += decoder.decode()
+    if (buffer !== '' &amp;&amp; currentEvent.data !== '') {
+      yield currentEvent
+    }
+  } finally {
+    reader.releaseLock()
+  }
+}
+</code></pre>
+<p><strong>frontend/src/agent/stream/parser/sse-line-parser.spec.ts</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect } from 'vitest'
+import { parseSseStream } from './sse-line-parser'
+
+// 辅助：从 Uint8Array 数组构造 ReadableStream
+function chunksToStream(chunks: Uint8Array[]): ReadableStream&lt;Uint8Array&gt; {
+  return new ReadableStream({
+    start(controller) {
+      for (const c of chunks) controller.enqueue(c)
+      controller.close()
+    },
+  })
+}
+
+describe('parseSseStream', () =&gt; {
+  it('解析单个完整事件', async () =&gt; {
+    const encoder = new TextEncoder()
+    const stream = chunksToStream([encoder.encode('data: hello\n\n')])
+    const events = []
+    for await (const e of parseSseStream(stream)) events.push(e)
+    expect(events).toEqual([{ data: 'hello' }])
+  })
+
+  it('中文事件不被断包切乱：一次性 chunk', async () =&gt; {
+    const encoder = new TextEncoder()
+    const stream = chunksToStream([encoder.encode('data: 故障恢复\n\n')])
+    const events = []
+    for await (const e of parseSseStream(stream)) events.push(e)
+    expect(events).toEqual([{ data: '故障恢复' }])
+  })
+
+  it('中文事件跨 chunk 断包（把"障"的 3 个字节切成 2+1）', async () =&gt; {
+    const bytes = new TextEncoder().encode('data: 故障恢复\n\n')
+    // "故障恢复" 的 UTF-8：故=E6 95 85, 障=E9 9A 9C, 恢=E6 81 A2, 复=E5 A4 8D
+    // 找到 "障" 的第一个字节位置，切在字符中间
+    // 'data: ' = 6 字节，'故' = 3 字节，所以 "障" 的第一字节位置 = 9
+    const chunk1 = bytes.slice(0, 10)   // 切在 "障" 中间（"障"的第 1 字节之后）
+    const chunk2 = bytes.slice(10)
+    const stream = chunksToStream([chunk1, chunk2])
+    const events = []
+    for await (const e of parseSseStream(stream)) events.push(e)
+    expect(events).toEqual([{ data: '故障恢复' }])
+  })
+
+  it('两个事件之间的空行分隔', async () =&gt; {
+    const encoder = new TextEncoder()
+    const stream = chunksToStream([encoder.encode('data: one\n\ndata: two\n\n')])
+    const events = []
+    for await (const e of parseSseStream(stream)) events.push(e)
+    expect(events).toEqual([{ data: 'one' }, { data: 'two' }])
+  })
+
+  it('id 字段被正确提取', async () =&gt; {
+    const encoder = new TextEncoder()
+    const stream = chunksToStream([encoder.encode('id: 42\ndata: hello\n\n')])
+    const events = []
+    for await (const e of parseSseStream(stream)) events.push(e)
+    expect(events).toEqual([{ id: '42', data: 'hello' }])
+  })
+
+  it('多行 data 被拼接（换行分隔）', async () =&gt; {
+    const encoder = new TextEncoder()
+    const stream = chunksToStream([encoder.encode('data: line1\ndata: line2\n\n')])
+    const events = []
+    for await (const e of parseSseStream(stream)) events.push(e)
+    expect(events).toEqual([{ data: 'line1\nline2' }])
+  })
+})
+</code></pre>
+<p><strong>frontend/src/agent/stream/useSseStream.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import { ref, onUnmounted } from 'vue'
+import { reduceAgentEvent, initialAgentRunState, type AgentRunState } from '@/domain/agent/agent-run-state'
+import { parseSseStream } from './parser/sse-line-parser'
+
+export function useSseStream(runId: string) {
+  const state = ref&lt;AgentRunState&gt;(initialAgentRunState)
+  const abortController = new AbortController()
+
+  async function start() {
+    const res = await fetch(`/agent/runs/${runId}/stream`, {
+      headers: { Accept: 'text/event-stream' },
+      signal: abortController.signal,
+    })
+    if (!res.body) throw new Error('SSE response has no body')
+
+    for await (const frame of parseSseStream(res.body)) {
+      try {
+        const event = JSON.parse(frame.data)
+        // v2：检查 version 字段，未来 v2 事件老前端可以拒绝或降级
+        if (event.version !== 'v1') {
+          console.warn('Unsupported event version:', event.version)
+          continue
+        }
+        state.value = reduceAgentEvent(state.value, event)
+      } catch (err) {
+        console.error('Failed to parse SSE frame:', frame, err)
+      }
+    }
+  }
+
+  start().catch((err) =&gt; {
+    if (err.name !== 'AbortError') console.error('SSE stream error:', err)
+  })
+
+  onUnmounted(() =&gt; {
+    abortController.abort()
+    // v2 依然不通知服务端 abort Loop
+  })
+
+  return { state }
+}
+</code></pre>
+<h3 id="44-v2-暴露的痛点">4.4 v2 暴露的痛点</h3>
+<p><strong>痛点 1：断线后从头重放，事件重复渲染</strong></p>
+<p>用户在 sequence 508 断线（3G 网络切换）。v2 前端 <code>fetch</code> 抛 <code>TypeError: NetworkError</code>，进入 catch 分支就结束了。用户手动刷新页面 → 重新发起 fetch → 服务端从 sequence 1 开始重放整个 trajectory → 前端 reducer 有 sequence 去重（Day 01 的规则 A：<code>event.sequence &lt;= state.lastSequence</code> 返回 state）所以状态正确，<strong>但</strong> 508 个事件都要走一遍 reducer，UI 会闪一下白（reactive 计算全部重跑）。生产上用户观感很差。</p>
+<p><strong>痛点 2：客户端取消不传播</strong></p>
+<p>用户点"取消对话" → <code>abortController.abort()</code> → fetch 抛 AbortError → 前端连接关闭。服务端 <code>res.on('close')</code> 触发 <code>agentLoop.off(handler)</code>，但 <strong>Agent Loop 还在跑</strong>：</p>
+<ul>
+<li>已经开始的 LLM 调用要等 30 秒超时</li>
+<li>已经启动的 Tool 调用要跑完</li>
+<li>最后 Diagnosis 还是会写进 DB（Day 13 的持久化不会因为前端断开而回滚）</li>
+</ul>
+<p>审计日志里会出现"用户取消后 60 秒生成了一条 Diagnosis"的诡异事件。</p>
+<p><strong>痛点 3：服务端进程重启事件丢失</strong></p>
+<p>Agent Loop 在服务端跑到 step 5，服务端重启（发布新版本）。前端 fetch 断开、AbortError；用户刷新页面重连；<strong>新进程的 <code>AgentLoopEngine</code> 没有这个 runId 的 EventEmitter 订阅</strong>（EventEmitter 是内存对象），前端永远收不到剩下的事件。</p>
+<p>正解：从 Day 13 已经持久化的 <code>AgentRun</code> + <code>ToolCall</code> 表里查历史事件回放给前端，然后如果 status 还是 <code>running</code> 再从 EventEmitter 订阅未来事件。</p>
+<hr>
+<h2 id="5-v3last-event-id-续传-客户端取消传播-db-回放终态">5. v3：Last-Event-ID 续传 + 客户端取消传播 + DB 回放（终态）</h2>
+<h3 id="51-v3-要实现什么">5.1 v3 要实现什么</h3>
+<p>用户视角：</p>
+<ul>
+<li>断线重连时前端发 <code>Last-Event-ID: 507</code>（或用 URL query），服务端从 sequence 508 开始重放，前端一个事件都不重复</li>
+<li>用户点"取消对话"时，前端发 <code>POST /agent/runs/:id/cancel</code> 通知服务端 abort Loop，Loop 内部检查 <code>AbortSignal</code> 并中止 LLM/Tool 调用</li>
+<li>服务端重启后前端重连，先从 DB 查历史事件回放，再挂内存 EventEmitter 订阅未来事件；用户完全感知不到"服务端重启过"</li>
+</ul>
+<h3 id="52-v3-目录结构">5.2 v3 目录结构</h3>
+<pre><code>apps/api/src/sse/
+├── protocol/
+│   ├── event-version.ts
+│   ├── sse-frame.ts
+│   └── resume-cursor.ts        ← 新增：Last-Event-ID 解析 + 边界校验
+├── replay/
+│   ├── db-replay.service.ts    ← 新增：从 AgentRun/ToolCall 表回放事件
+│   └── db-replay.service.spec.ts
+├── cancel/
+│   ├── run-abort-registry.ts   ← 新增：runId → AbortController 的注册表
+│   └── run-abort-registry.spec.ts
+├── sse.controller.ts           ← 改：解析 Last-Event-ID + DB 回放 + AbortController
+├── sse.module.ts
+└── index.ts
+
+frontend/src/agent/stream/
+├── parser/
+│   ├── sse-line-parser.ts
+│   └── sse-line-parser.spec.ts
+├── cursor/
+│   ├── event-cursor.ts         ← 新增：本地缓存最新 sequence
+│   └── event-cursor.spec.ts
+└── useSseStream.ts             ← 改：断线重连 + Last-Event-ID + 取消 POST
+</code></pre>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<p><strong>apps/api/src/sse/protocol/resume-cursor.ts</strong></p>
+<pre><code class="language-typescript">// Last-Event-ID 解析规则（服务端）
+// 前端可以从两个位置传入 cursor：
+//   1. HTTP header: Last-Event-ID: 507   （SSE 标准）
+//   2. URL query:   ?since=507            （轮询/手动重连场景）
+
+export type ResumeCursor = {
+  since: number   // 从 sequence &gt; since 开始
+}
+
+export function parseResumeCursor(input: {
+  header?: string
+  query?: string | number
+}): ResumeCursor {
+  // 优先 header（标准），fallback query
+  const raw = input.header ?? input.query
+  if (raw === undefined || raw === null || raw === '') {
+    return { since: -1 }   // 从头开始
+  }
+  const n = typeof raw === 'number' ? raw : Number.parseInt(raw, 10)
+  if (Number.isNaN(n) || n &lt; 0) {
+    throw new Error(`Invalid resume cursor: ${raw}`)
+  }
+  return { since: n }
+}
+</code></pre>
+<p><strong>apps/api/src/sse/replay/db-replay.service.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { PrismaService } from '../../prisma/prisma.service'
+import type { VersionedAgentEvent } from '../protocol/event-version'
+import { SSE_EVENT_VERSION } from '../protocol/event-version'
+
+@Injectable()
+export class DbReplayService {
+  constructor(private readonly prisma: PrismaService) {}
+
+  // 从 DB 里查这个 runId 已经落库的事件，转成 VersionedAgentEvent
+  // 只回放 sequence &gt; since 的事件
+  async replay(runId: string, since: number): Promise&lt;VersionedAgentEvent[]&gt; {
+    const events: VersionedAgentEvent[] = []
+
+    // 1. AgentRun 本身：started / finished / failed
+    const run = await this.prisma.agentRun.findUnique({ where: { id: runId } })
+    if (!run) return events
+
+    if (run.startedAt &amp;&amp; 0 &gt; since) {
+      events.push({
+        version: SSE_EVENT_VERSION,
+        type: 'run.started',
+        runId,
+        sequence: 0,
+        occurredAt: run.startedAt.toISOString(),
+        payload: {},
+      })
+    }
+
+    // 2. ToolCall：每次调用一对 tool.started + tool.succeeded/failed
+    const toolCalls = await this.prisma.toolCall.findMany({
+      where: { agentRunId: runId },
+      orderBy: { createdAt: 'asc' },
+    })
+    let seq = 1
+    for (const tc of toolCalls) {
+      if (seq &gt; since) {
+        events.push({
+          version: SSE_EVENT_VERSION,
+          type: 'tool.started',
+          runId,
+          sequence: seq,
+          occurredAt: tc.createdAt.toISOString(),
+          payload: { callId: tc.id, toolName: tc.toolName, argumentSummary: tc.argumentJson },
+        })
+      }
+      seq++
+      if (tc.errorCode) {
+        if (seq &gt; since) {
+          events.push({
+            version: SSE_EVENT_VERSION,
+            type: 'tool.failed',
+            runId,
+            sequence: seq,
+            occurredAt: tc.createdAt.toISOString(),
+            payload: { callId: tc.id, code: tc.errorCode, message: 'from DB replay' },
+          })
+        }
+      } else {
+        if (seq &gt; since) {
+          events.push({
+            version: SSE_EVENT_VERSION,
+            type: 'tool.succeeded',
+            runId,
+            sequence: seq,
+            occurredAt: tc.createdAt.toISOString(),
+            payload: { callId: tc.id, resultSummary: tc.resultJson ?? '', durationMs: tc.durationMs },
+          })
+        }
+      }
+      seq++
+    }
+
+    // 3. Diagnosis / 终态
+    const diagnosis = await this.prisma.diagnosis.findFirst({
+      where: { agentRunId: runId },
+      orderBy: { createdAt: 'asc' },
+    })
+    if (diagnosis &amp;&amp; run.finishedAt) {
+      if (seq &gt; since) {
+        events.push({
+          version: SSE_EVENT_VERSION,
+          type: run.status === 'completed' ? 'run.finished' : 'run.failed',
+          runId,
+          sequence: seq,
+          occurredAt: run.finishedAt.toISOString(),
+          payload: { summary: diagnosis.summary, code: run.status === 'failed' ? 'unknown' : undefined, message: '' },
+        })
+      }
+    }
+
+    return events
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/sse/cancel/run-abort-registry.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+
+// runId → AbortController 的进程内注册表
+// 服务端启动一个 Agent Loop 时把 controller 注册进来
+// 用户 POST /cancel 时找到 controller 并调 abort()
+@Injectable()
+export class RunAbortRegistry {
+  private readonly controllers = new Map&lt;string, AbortController&gt;()
+
+  register(runId: string): AbortController {
+    // 如果已存在（进程重启前的残留），先 abort 老的
+    const existing = this.controllers.get(runId)
+    if (existing) existing.abort()
+
+    const controller = new AbortController()
+    this.controllers.set(runId, controller)
+    return controller
+  }
+
+  cancel(runId: string, reason = 'user_cancelled'): boolean {
+    const controller = this.controllers.get(runId)
+    if (!controller) return false
+    controller.abort(reason)
+    this.controllers.delete(runId)
+    return true
+  }
+
+  unregister(runId: string): void {
+    this.controllers.delete(runId)
+  }
+
+  getSignal(runId: string): AbortSignal | undefined {
+    return this.controllers.get(runId)?.signal
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/sse/cancel/run-abort-registry.spec.ts</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect } from 'vitest'
+import { RunAbortRegistry } from './run-abort-registry'
+
+describe('RunAbortRegistry', () =&gt; {
+  it('register 后 getSignal 能拿到未 abort 的 signal', () =&gt; {
+    const reg = new RunAbortRegistry()
+    const controller = reg.register('r-1')
+    expect(reg.getSignal('r-1')?.aborted).toBe(false)
+    expect(controller.signal.aborted).toBe(false)
+  })
+
+  it('cancel 后 signal.aborted = true', () =&gt; {
+    const reg = new RunAbortRegistry()
+    reg.register('r-1')
+    expect(reg.cancel('r-1')).toBe(true)
+    expect(reg.getSignal('r-1')).toBeUndefined()   // 已删除
+  })
+
+  it('cancel 不存在的 runId 返回 false', () =&gt; {
+    const reg = new RunAbortRegistry()
+    expect(reg.cancel('r-none')).toBe(false)
+  })
+
+  it('重复 register 同一个 runId 会 abort 老的', () =&gt; {
+    const reg = new RunAbortRegistry()
+    const first = reg.register('r-1')
+    const second = reg.register('r-1')
+    expect(first.signal.aborted).toBe(true)
+    expect(second.signal.aborted).toBe(false)
+  })
+
+  it('unregister 后 signal 消失但不 abort', () =&gt; {
+    const reg = new RunAbortRegistry()
+    const controller = reg.register('r-1')
+    reg.unregister('r-1')
+    expect(reg.getSignal('r-1')).toBeUndefined()
+    expect(controller.signal.aborted).toBe(false)   // unregister 不 abort，只是解绑
+  })
+})
+</code></pre>
+<p><strong>apps/api/src/sse/sse.controller.ts（v3 全文）</strong></p>
+<pre><code class="language-typescript">import { Controller, Get, Post, Param, Query, Headers, Res, HttpCode } from '@nestjs/common'
+import type { Response } from 'express'
+import { AgentLoopEngine } from '../agent/loop/agent-loop.engine'
+import { SSE_EVENT_VERSION, type VersionedAgentEvent } from './protocol/event-version'
+import { formatSseFrame } from './protocol/sse-frame'
+import { parseResumeCursor } from './protocol/resume-cursor'
+import { DbReplayService } from './replay/db-replay.service'
+import { RunAbortRegistry } from './cancel/run-abort-registry'
+
+@Controller('agent/runs')
+export class SseController {
+  constructor(
+    private readonly agentLoop: AgentLoopEngine,
+    private readonly dbReplay: DbReplayService,
+    private readonly abortRegistry: RunAbortRegistry,
+  ) {}
+
+  @Get(':runId/stream')
+  async stream(
+    @Param('runId') runId: string,
+    @Headers('last-event-id') lastEventId: string | undefined,
+    @Query('since') sinceQuery: string | undefined,
+    @Res() res: Response,
+  ): Promise&lt;void&gt; {
+    res.setHeader('Content-Type', 'text/event-stream; charset=utf-8')
+    res.setHeader('Cache-Control', 'no-cache')
+    res.setHeader('Connection', 'keep-alive')
+    res.setHeader('X-Accel-Buffering', 'no')
+    res.flushHeaders()
+    res.write(formatSseFrame({ data: '', retry: 3000 }))
+
+    // 1. 解析 cursor
+    const cursor = parseResumeCursor({ header: lastEventId, query: sinceQuery })
+
+    // 2. 先从 DB 回放历史事件
+    const historyEvents = await this.dbReplay.replay(runId, cursor.since)
+    let lastSent = cursor.since
+    for (const event of historyEvents) {
+      res.write(formatSseFrame({
+        data: event,
+        id: event.sequence,
+        event: event.type,
+      }))
+      lastSent = event.sequence
+    }
+
+    // 3. 挂 EventEmitter 订阅未来事件（跳过已回放的 sequence）
+    const handler = (event: VersionedAgentEvent) =&gt; {
+      if (event.sequence &lt;= lastSent) return   // DB 回放已经发过了
+      const versioned: VersionedAgentEvent = { version: SSE_EVENT_VERSION, ...event }
+      res.write(formatSseFrame({
+        data: versioned,
+        id: event.sequence,
+        event: event.type,
+      }))
+      lastSent = event.sequence
+    }
+    this.agentLoop.on(runId, handler)
+
+    // 4. 客户端断开时 unsubscribe，但不 abort Loop（用户可能只是切网络）
+    res.on('close', () =&gt; {
+      this.agentLoop.off(runId, handler)
+    })
+  }
+
+  @Post(':runId/cancel')
+  @HttpCode(200)
+  cancel(@Param('runId') runId: string): { cancelled: boolean } {
+    // 显式取消：找到 AbortController，通知 Loop 内部 abort
+    const cancelled = this.abortRegistry.cancel(runId, 'user_cancelled')
+    return { cancelled }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/sse/sse.module.ts</strong></p>
+<pre><code class="language-typescript">import { Module } from '@nestjs/common'
+import { SseController } from './sse.controller'
+import { DbReplayService } from './replay/db-replay.service'
+import { RunAbortRegistry } from './cancel/run-abort-registry'
+import { AgentModule } from '../agent/agent.module'
+import { PrismaModule } from '../prisma/prisma.module'
+
+@Module({
+  imports: [AgentModule, PrismaModule],
+  controllers: [SseController],
+  providers: [DbReplayService, RunAbortRegistry],
+  exports: [RunAbortRegistry],   // AgentLoopEngine 需要用它注册 AbortController
+})
+export class SseModule {}
+</code></pre>
+<p><strong>apps/api/src/agent/loop/agent-loop.engine.ts（v3 改动点）</strong></p>
+<pre><code class="language-typescript">// Day 12 已有代码 ... 增加 AbortSignal 支持
+import { RunAbortRegistry } from '../../sse/cancel/run-abort-registry'
+
+@Injectable()
+export class AgentLoopEngine {
+  constructor(
+    private readonly provider: LLMProvider,
+    private readonly toolRegistry: ToolRegistryService,
+    private readonly persistence: PersistenceService,
+    private readonly abortRegistry: RunAbortRegistry,   // ← v3 新增
+  ) {}
+
+  async run(config: AgentRunConfig): Promise&lt;AgentTrajectory&gt; {
+    // 注册 AbortController，把 signal 传给内部 LLM/Tool 调用
+    const controller = this.abortRegistry.register(config.runId)
+    const signal = controller.signal
+
+    try {
+      const trajectory = await this.executeLoop({ ...config, signal })
+      await this.persistence.persist(config.anomalyId, trajectory)
+      return trajectory
+    } finally {
+      this.abortRegistry.unregister(config.runId)
+    }
+  }
+
+  private async executeLoop(config: AgentRunConfig &amp; { signal: AbortSignal }): Promise&lt;AgentTrajectory&gt; {
+    // 每次循环开始检查 signal
+    while (!this.shouldStop()) {
+      if (config.signal.aborted) {
+        return { ...currentTrajectory, finishReason: 'user_cancelled' }
+      }
+      // 把 signal 传给 provider.call（fetch 会接管）
+      const response = await this.provider.call(messages, tools, { signal: config.signal })
+      // 把 signal 传给 tool.execute（每个 Tool 内部 fetch/DB 调用都接 signal）
+      const toolResult = await this.toolRegistry.execute(toolCall.name, toolCall.args, { signal: config.signal })
+      currentTrajectory.steps.push({ type: 'tool.result', tool: toolCall.name, result: toolResult })
+      messages.push({ role: 'tool', content: JSON.stringify(toolResult), toolCallId: toolCall.id })
+      if (response.finishReason === 'stop') {
+        return { ...currentTrajectory, finishReason: 'completed' }
+      }
+    }
+  }
+}
+</code></pre>
+<p><strong>frontend/src/agent/stream/cursor/event-cursor.ts</strong></p>
+<pre><code class="language-typescript">// 本地缓存最新收到的 sequence，断线重连时用
+// 用 localStorage 保证刷新页面后仍能续传
+
+const STORAGE_KEY_PREFIX = 'agent-run-cursor:'
+
+export function loadCursor(runId: string): number {
+  const raw = localStorage.getItem(`${STORAGE_KEY_PREFIX}${runId}`)
+  if (!raw) return -1
+  const n = Number.parseInt(raw, 10)
+  return Number.isNaN(n) ? -1 : n
+}
+
+export function saveCursor(runId: string, sequence: number): void {
+  localStorage.setItem(`${STORAGE_KEY_PREFIX}${runId}`, String(sequence))
+}
+
+export function clearCursor(runId: string): void {
+  localStorage.removeItem(`${STORAGE_KEY_PREFIX}${runId}`)
+}
+</code></pre>
+<p><strong>frontend/src/agent/stream/cursor/event-cursor.spec.ts</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect, beforeEach } from 'vitest'
+import { loadCursor, saveCursor, clearCursor } from './event-cursor'
+
+describe('event-cursor', () =&gt; {
+  beforeEach(() =&gt; {
+    localStorage.clear()
+  })
+
+  it('无缓存时 loadCursor 返回 -1', () =&gt; {
+    expect(loadCursor('r-1')).toBe(-1)
+  })
+
+  it('saveCursor 后 loadCursor 能读回', () =&gt; {
+    saveCursor('r-1', 42)
+    expect(loadCursor('r-1')).toBe(42)
+  })
+
+  it('损坏数据时 loadCursor 返回 -1', () =&gt; {
+    localStorage.setItem('agent-run-cursor:r-1', 'not-a-number')
+    expect(loadCursor('r-1')).toBe(-1)
+  })
+
+  it('clearCursor 后再 loadCursor 返回 -1', () =&gt; {
+    saveCursor('r-1', 42)
+    clearCursor('r-1')
+    expect(loadCursor('r-1')).toBe(-1)
+  })
+})
+</code></pre>
+<p><strong>frontend/src/agent/stream/useSseStream.ts（v3 全文）</strong></p>
+<pre><code class="language-typescript">import { ref, onUnmounted } from 'vue'
+import { reduceAgentEvent, initialAgentRunState, type AgentRunState } from '@/domain/agent/agent-run-state'
+import { parseSseStream } from './parser/sse-line-parser'
+import { loadCursor, saveCursor, clearCursor } from './cursor/event-cursor'
+
+export function useSseStream(runId: string) {
+  const state = ref&lt;AgentRunState&gt;(initialAgentRunState)
+  const abortController = new AbortController()
+  let reconnectAttempt = 0
+
+  async function connectOnce() {
+    const since = loadCursor(runId)
+    const res = await fetch(`/agent/runs/${runId}/stream?since=${since}`, {
+      headers: { Accept: 'text/event-stream', 'Last-Event-ID': String(since) },
+      signal: abortController.signal,
+    })
+    if (!res.body) throw new Error('SSE response has no body')
+
+    for await (const frame of parseSseStream(res.body)) {
+      try {
+        const event = JSON.parse(frame.data)
+        if (event.version !== 'v1') {
+          console.warn('Unsupported event version:', event.version)
+          continue
+        }
+        state.value = reduceAgentEvent(state.value, event)
+        saveCursor(runId, event.sequence)
+        // 收到终态时清 cursor（不需要续传了）
+        if (['completed', 'failed', 'cancelled'].includes(state.value.status)) {
+          clearCursor(runId)
+        }
+        reconnectAttempt = 0   // 成功接收后重置重连计数
+      } catch (err) {
+        console.error('Failed to parse SSE frame:', frame, err)
+      }
+    }
+  }
+
+  async function startWithReconnect() {
+    while (!abortController.signal.aborted) {
+      try {
+        await connectOnce()
+        // 正常 EOF（终态），不重连
+        return
+      } catch (err) {
+        if (err instanceof Error &amp;&amp; err.name === 'AbortError') return
+        // 网络错误：指数退避重连
+        reconnectAttempt++
+        if (reconnectAttempt &gt; 5) {
+          console.error('SSE reconnect exceeded max attempts')
+          return
+        }
+        const delay = Math.min(1000 * 2 ** reconnectAttempt, 30000)
+        await new Promise((resolve) =&gt; setTimeout(resolve, delay))
+      }
+    }
+  }
+
+  startWithReconnect()
+
+  async function cancel() {
+    // 通知服务端 abort Loop
+    await fetch(`/agent/runs/${runId}/cancel`, { method: 'POST' }).catch(() =&gt; {})
+    abortController.abort()
+    clearCursor(runId)
+  }
+
+  onUnmounted(() =&gt; {
+    abortController.abort()
+    // 组件销毁时不主动 cancel Loop（用户可能只是切页面）
+  })
+
+  return { state, cancel }
+}
+</code></pre>
+<h3 id="54-v3-用到的知识点">5.4 v3 用到的知识点</h3>
+<ol>
+<li>
+<p><strong>SSE 帧格式（<code>data:</code> / <code>id:</code> / <code>event:</code> / <code>retry:</code>）</strong></p>
+<ul>
+<li>解决的问题：HTTP 单向持续推送、防止代理缓冲、天然复用 HTTP 认证/HTTPS/CORS 基础设施</li>
+<li>运行机制：<code>Content-Type: text/event-stream</code>、每帧以空行结束、字段用 <code>field: value</code> 语法、多个 <code>data:</code> 行会被拼成一个字符串（换行分隔）</li>
+<li>项目落点：<code>sse-frame.ts</code> 的 <code>formatSseFrame</code>、<code>sse.controller.ts</code> 的 <code>res.setHeader</code> + <code>res.write</code></li>
+<li>生产误区：忘记设 <code>Cache-Control: no-cache</code>（浏览器或代理缓存 SSE 响应，永远收不到数据）；忘记 <code>X-Accel-Buffering: no</code>（Nginx 默认缓冲 SSE，前端要等 8KB 才能收到）；<code>data:</code> 行内含 <code>\n</code> 不拆分（浏览器只把 <code>\n\n</code> 作为帧结束，你就构造了非法帧）</li>
+<li>验证方法：<code>curl -N /agent/runs/r-1/stream</code> 应该看到 <code>data: {...}\n\nid: 1\n\n...</code> 流式输出；打开浏览器 DevTools Network → EventStream 面板能看到事件列表</li>
+</ul>
+</li>
+<li>
+<p><strong><code>TextDecoder({ stream: true })</code> 流式解码</strong></p>
+<ul>
+<li>解决的问题：UTF-8 变长编码（1-4 字节），一个字符可能被 TCP/HTTP chunk 切成两半；如果每块独立 decode，跨块字符会解码成 U+FFFD 替换字符（就是那个问号菱形）</li>
+<li>运行机制：<code>decoder.decode(chunk, { stream: true })</code> 会把不完整字节留在 decoder 内部 buffer，等下次调用时拼接；流结束时调 <code>decoder.decode()</code>（无参数）flush 剩余字节</li>
+<li>项目落点：<code>sse-line-parser.ts</code> 的 <code>TextDecoder('utf-8', { fatal: false })</code> + <code>decoder.decode(value, { stream: true })</code></li>
+<li>生产误区：<code>new TextDecoder().decode(chunk)</code> 每次新建 decoder（buffer 每次都清空，跨块字符必错）；<code>{ fatal: true }</code> 遇到不完整字节抛错（应该用 <code>fatal: false</code> 配合 stream 模式）；忘记流结束时 flush（最后一个字符如果不完整会丢）</li>
+<li>验证方法：单测里手动构造"故障恢复"的字节数组，切在字符中间（比如 E9 后面切开），断言 decoder 能正确还原；<code>echo -n "中文" | xxd</code> 查看字节序列辅助设计测试</li>
+</ul>
+</li>
+<li>
+<p><strong>事件版本合同（<code>version: 'v1'</code>）</strong></p>
+<ul>
+<li>解决的问题：前后端解耦、演进不破坏老客户端。今天 v1 只有 9 种 type，明天 v2 加了 <code>tool.paused</code>；老前端能识别 v2 事件的 version 字段并选择降级或忽略，而不是解析出未知 type 崩溃</li>
+<li>运行机制：所有事件对象加一个 <code>version: 'v1'</code> 字段；前端在 reduce 之前先看 version，未知版本走 fallback（比如警告 + 忽略、或调 <code>/api/version-mismatch</code> 上报）；后端引入 <code>type: 'tool.paused'</code> 之前先升 <code>version: 'v2'</code></li>
+<li>项目落点：<code>event-version.ts</code> 的 <code>SSE_EVENT_VERSION</code> 常量、<code>useSseStream.ts</code> 里 <code>if (event.version !== 'v1') continue</code></li>
+<li>生产误区：直接在 v1 的 union 里加新 type 而不升版本（老客户端崩溃）；把 version 塞进 payload 里（无法在 reduce 之前查）；每加一个字段就升 major 版本（版本号爆炸）</li>
+<li>验证方法：写一个"未来 v2 事件"的 fixture，前端不应崩溃、应该 console.warn；服务端加个 <code>version=v2 事件计数</code> metrics，观察线上老客户端占比</li>
+</ul>
+</li>
+<li>
+<p><strong>Last-Event-ID 与 <code>id:</code> 字段（续传）</strong></p>
+<ul>
+<li>解决的问题：断线重连时"从上次收到的 sequence 之后开始"，避免重复渲染/重复计费</li>
+<li>运行机制：SSE 帧的 <code>id: 507</code> 会被浏览器（EventSource API）在重连时自动放到 <code>Last-Event-ID</code> header；用 fetch/ReadableStream 时需要手动读 sequence 并保存</li>
+<li>项目落点：<code>resume-cursor.ts</code> 的 <code>parseResumeCursor</code>、<code>event-cursor.ts</code> 的 <code>saveCursor</code>、<code>sse.controller.ts</code> 里 <code>@Headers('last-event-id')</code></li>
+<li>生产误区：cursor 只存内存（刷新页面就丢）；cursor 存在 sessionStorage 而不是 localStorage（关掉标签页丢失）；服务端信任前端传的 cursor 不做上界校验（前端传 <code>since=999999</code> 服务端直接返回空，用户永远看不到内容）</li>
+<li>验证方法：DevTools Network 面板 Offline 模拟断网 5 秒，恢复后应该看到请求 header <code>Last-Event-ID: xxx</code>；断线前后前端 timeline 事件数一致（无重复、无遗漏）</li>
+</ul>
+</li>
+<li>
+<p><strong>DB 回放（服务端进程重启的鲁棒性）</strong></p>
+<ul>
+<li>解决的问题：EventEmitter 是内存对象，服务端进程重启后新进程没有旧 runId 的订阅；如果只从 EventEmitter 推事件，用户重连后什么都收不到</li>
+<li>运行机制：连接时先从 <code>AgentRun</code>/<code>ToolCall</code>/<code>Diagnosis</code> 表查出已完成的事件转成 VersionedAgentEvent 序列一次性 push；然后再挂 EventEmitter 订阅未来事件；用 <code>lastSent</code> 变量记录最大 sequence 避免 DB 事件和 EventEmitter 事件重复</li>
+<li>项目落点：<code>db-replay.service.ts</code> 的 <code>replay(runId, since)</code>、<code>sse.controller.ts</code> 里先 replay 再 subscribe</li>
+<li>生产误区：先 subscribe 再 replay（EventEmitter 推的事件 sequence &lt; replay 最后一条，前端 reducer 去重规则会丢事件）；replay 后不记录 <code>lastSent</code>（未来事件重复推）；DB 里的 ToolCall 和 EventEmitter 里的 tool.started 事件 sequence 对不上（回放序列破碎）</li>
+<li>验证方法：跑到 step 3 时 kill 服务端进程重启，前端应该无缝重连并看到完整 5 步；DB 里插一条 <code>AgentRun.status='completed'</code> 但 EventEmitter 没订阅的 runId，重连应该能收到完整回放然后 EOF</li>
+</ul>
+</li>
+<li>
+<p><strong>客户端取消传播（<code>AbortController</code> + <code>POST /cancel</code>）</strong></p>
+<ul>
+<li>解决的问题：用户"关闭对话"后 Agent Loop 还在跑，浪费 LLM/Tool 调用成本；审计里出现"用户取消后又生成一条 Diagnosis"的诡异事件</li>
+<li>运行机制：服务端为每个 runId 维护 AbortController（<code>RunAbortRegistry</code>）；<code>POST /cancel</code> 时调 <code>controller.abort('user_cancelled')</code>；LLM/Tool 调用把 signal 传给内部 fetch，fetch 收到 abort 抛 AbortError，Loop 捕获后走终态分支</li>
+<li>项目落点：<code>run-abort-registry.ts</code> 全部逻辑、<code>agent-loop.engine.ts</code> 里 <code>signal</code> 从 registry 拿并透传给 provider/tool</li>
+<li>生产误区：只关 SSE 连接不发 cancel POST（服务端 Loop 继续跑）；cancel 请求发出但服务端不检查 signal（LLM 调用超时前不会 abort）；signal 只传给 LLM 不传给 Tool（Tool 内的 HTTP 调用继续，DB 事务继续）；abort 后不清理 AbortController（内存泄漏）</li>
+<li>验证方法：跑 Agent 时点"取消"，服务端日志应该 30ms 内看到"AbortError caught"；DB 里这条 Run 的 <code>status = 'cancelled'</code> 而不是 'completed'；<code>SELECT count(*) FROM diagnoses WHERE agent_run_id = 'r-xxx'</code> = 0</li>
+</ul>
+</li>
+<li>
+<p><strong>指数退避重连</strong></p>
+<ul>
+<li>解决的问题：网络抖动时前端立即重连会打爆服务端；一直不重连用户体验差</li>
+<li>运行机制：<code>connectOnce()</code> 抛错后等 <code>min(1000 * 2 ** attempt, 30000)</code> 毫秒再试；成功接收事件后重置 attempt；超过 5 次放弃</li>
+<li>项目落点：<code>useSseStream.ts</code> 的 <code>startWithReconnect</code> 循环</li>
+<li>生产误区：无退避（服务端崩了前端每秒 fetch 一次，恢复时 QPS 尖峰）；无上限（重试 20 次要等 100 万秒）；attempt 不重置（连上后如果又断，退避从上次继续，用户体验诡异）</li>
+<li>验证方法：DevTools Network 面板 Throttling → Offline 5 秒然后恢复，观察 fetch 请求间隔应该是 2s → 4s → 8s 而不是 1s → 1s → 1s；服务端连续 crash-restart 时，前端总能在 30 秒内重连成功</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="6-三版对比一览表">6. 三版对比一览表</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>功能</strong></td>
+<td>服务端能推事件、前端能显示</td>
+<td>v1 + 事件版本 + UTF-8 流式解码</td>
+<td>v2 + Last-Event-ID 续传 + 客户端取消 + DB 回放</td>
+</tr>
+<tr>
+<td><strong>事件类型 / 数据模型</strong></td>
+<td>明文 JSON.stringify，无版本字段</td>
+<td><code>VersionedAgentEvent</code>（含 <code>version: 'v1'</code>）</td>
+<td>同 v2</td>
+</tr>
+<tr>
+<td><strong>状态存储</strong></td>
+<td>前端 <code>state = ref()</code> 内存</td>
+<td>同 v1</td>
+<td>前端 <code>state = ref()</code> + <code>localStorage</code> cursor；服务端 EventEmitter + DB 回放</td>
+</tr>
+<tr>
+<td><strong>归约逻辑</strong></td>
+<td>Day 01 reducer 直接接 SSE</td>
+<td>reducer + <code>parseSseStream</code> 生成器</td>
+<td>reducer + <code>parseSseStream</code> + <code>if (event.sequence &lt;= lastSent) skip</code> 去重</td>
+</tr>
+<tr>
+<td><strong>可测试</strong></td>
+<td>手动 mock 全字符串</td>
+<td><code>sse-line-parser.spec.ts</code> 12 个 case</td>
+<td>v2 + <code>db-replay.service.spec.ts</code> + <code>run-abort-registry.spec.ts</code> + <code>event-cursor.spec.ts</code></td>
+</tr>
+<tr>
+<td><strong>架构层次</strong></td>
+<td>一个 controller</td>
+<td>protocol 层拆出</td>
+<td>protocol/replay/cancel 三个子目录，controller 只做编排</td>
+</tr>
+<tr>
+<td><strong>换事件源代价</strong></td>
+<td>换成 WebSocket 要重写整个前端逻辑</td>
+<td>换成 WebSocket 只改 controller 层，reducer 不变</td>
+<td>同 v2；还可换存储层（EventEmitter → Redis Pub/Sub）不影响 controller</td>
+</tr>
+<tr>
+<td><strong>编译期抓遗漏</strong></td>
+<td>事件类型是 <code>any</code>，reducer 里拼错字段编译过</td>
+<td><code>VersionedAgentEvent</code> 判别联合 + reducer <code>assertNever</code></td>
+<td>同 v2</td>
+</tr>
+<tr>
+<td><strong>对齐后续 Day</strong></td>
+<td>Day 15 LLM 流式响应会用同一套 protocol</td>
+<td>Day 30 M3 门禁验收"事件回放"</td>
+<td>同 v2；Day 61 多 Agent 协同会复用 <code>RunAbortRegistry</code> 抽象</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="65-前端底子补弱独立深挖-html-入口">6.5 前端底子补弱（独立深挖 HTML 入口）</h2>
+<p>配套深挖 HTML 文件 <code>output/Day13深挖-前端底子补弱.html</code>（复用 Day13 深挖文件，追加两节 Day14 内容）或独立创建 <code>output/Day14深挖-前端底子补弱.html</code>，展开以下四个知识点：</p>
+<ul>
+<li><strong>深挖 1：SSE 协议与 fetch/ReadableStream 组合的三层抽象</strong> —— 从 TCP chunk → UTF-8 bytes → SSE 帧 → JSON 事件的完整解码链</li>
+<li><strong>深挖 2：TextDecoder 的流式模式与 BOM/替换字符</strong> —— 变长编码在 chunk 边界的行为、<code>{ stream: true }</code> 的 buffer 状态</li>
+<li><strong>深挖 3：事件版本管理与判别联合的组合</strong> —— Day 01 的 <code>AgentEvent</code> 演进为 <code>VersionedAgentEvent</code> 的过程、broken change 处理</li>
+<li><strong>深挖 4：AbortController / AbortSignal 的传播与 fetch 集成</strong> —— signal 从组件卸载 → useSseStream → fetch → 服务端；服务端 signal 从 controller → Loop → Provider → Tool</li>
+</ul>
+<p>深挖 HTML 结构按规范 §6.1：8 子节（场景锚点 / 项目代码 / 设计点拆解 / 原理 / 反例 / 分层提问 / 项目对手戏 / 面试真题三档答法）。</p>
+<hr>
+<h2 id="7-项目验收清单阶段-e-f约-55-分钟">7. 项目验收清单（阶段 E-F，约 55 分钟）</h2>
+<h3 id="76-e写核心逻辑单元测试20-分钟">7.6 E：写核心逻辑单元测试（20 分钟）</h3>
+<p>必写 4 个测试文件：</p>
+<ol>
+<li>
+<p><strong><code>apps/api/src/sse/protocol/sse-frame.spec.ts</code></strong>（6 个 case）</p>
+<ul>
+<li>单行 data 正确格式化</li>
+<li>多行 data 用 <code>\ndata:</code> 分隔</li>
+<li>带 id/event/retry 字段</li>
+<li>JSON payload 不被换行破坏</li>
+<li>VersionedAgentEvent 序列化包含 version 字段</li>
+<li>结尾必须有 <code>\n\n</code></li>
+</ul>
+</li>
+<li>
+<p><strong><code>apps/api/src/sse/replay/db-replay.service.spec.ts</code></strong>（8 个 case）</p>
+<ul>
+<li>无 runId 返回空数组</li>
+<li>AgentRun 只 started 未完成时只返回 1 个事件</li>
+<li>有 3 条 ToolCall 时返回 1+6=7 个事件（start+succeeded 各 3 对）</li>
+<li>ToolCall 有 errorCode 时返回 tool.failed 而不是 tool.succeeded</li>
+<li>AgentRun completed 时最后一个事件是 run.finished</li>
+<li>AgentRun failed 时最后一个事件是 run.failed</li>
+<li><code>since=5</code> 时只返回 sequence &gt; 5 的事件</li>
+<li>sequence 严格递增（1,2,3,... 无跳号）</li>
+</ul>
+</li>
+<li>
+<p><strong><code>apps/api/src/sse/cancel/run-abort-registry.spec.ts</code></strong>（5 个 case，已在 §5.3 全文给出）</p>
+</li>
+<li>
+<p><strong><code>frontend/src/agent/stream/parser/sse-line-parser.spec.ts</code></strong>（12 个 case，已在 §4 v2 全文给出）</p>
+</li>
+<li>
+<p><strong><code>frontend/src/agent/stream/cursor/event-cursor.spec.ts</code></strong>（4 个 case，已在 §5.3 全文给出）</p>
+</li>
+</ol>
+<p>跑 <code>pnpm --filter api test sse</code> + <code>pnpm --filter frontend test stream</code> 应该全绿，覆盖率 90%+。</p>
+<h3 id="77-f-1反证实验-15-分钟-手动去掉-textdecoder-stream-true-">7.7 F-1：反证实验 1（5 分钟）—— 手动去掉 <code>TextDecoder({ stream: true })</code></h3>
+<p>在 <code>sse-line-parser.ts</code> 里把：</p>
+<pre><code class="language-typescript">buffer += decoder.decode(value, { stream: true })
+</code></pre>
+<p>改成：</p>
+<pre><code class="language-typescript">buffer += new TextDecoder().decode(value)   // 每块新建 decoder，无 stream
+</code></pre>
+<p>然后跑一个包含中文的 Agent Run（可以在 fixture 里塞 <code>payload: { text: '故障恢复中...' }</code>），观察：</p>
+<ul>
+<li>前端 timeline 中的中文变成 <code>??故障?</code> 或 <code>?复中...</code></li>
+<li>打开 DevTools Console 应该看到 <code>SyntaxError: Unexpected token ...</code> （JSON 解析失败）</li>
+<li>记录：改动前后的 <code>git diff</code>、错误的 Console 输出截图、恢复正常后的 timeline 截图</li>
+</ul>
+<p>结论：<code>{ stream: true }</code> 是必需的，不是"性能优化"。</p>
+<h3 id="78-f-2反证实验-25-分钟-手动去掉-sequence-去重">7.8 F-2：反证实验 2（5 分钟）—— 手动去掉 sequence 去重</h3>
+<p>在 <code>agent-run-state.ts</code>（Day 01 已有的 reducer）里把：</p>
+<pre><code class="language-typescript">if (event.sequence &lt;= state.lastSequence) return state
+</code></pre>
+<p><strong>注释掉</strong>（不删，方便还原），然后触发一次断线重连（DevTools Offline 3 秒然后恢复）：</p>
+<ul>
+<li>前端 timeline 里同一段"模型输出"文字出现两次</li>
+<li>或者同一个 tool.started 卡片出现两个</li>
+<li>DB 里没有脏数据（因为 sequence 是前端 reducer 用的，不改动 DB）</li>
+</ul>
+<p>还原去重规则后重跑，timeline 只有一份。</p>
+<p>结论：sequence 去重是"断线重连"场景的必要保护，不能因为觉得多余而删掉。</p>
+<h3 id="79-f-3验证-提交10-分钟">7.9 F-3：验证 + 提交（10 分钟）</h3>
+<p><strong>四件套</strong>：</p>
+<pre><code class="language-bash">cd D:\demo\ai-techer\p1-monitor
+pnpm --filter api typecheck
+pnpm --filter api lint
+pnpm --filter api test
+pnpm --filter api build
+
+pnpm --filter frontend typecheck
+pnpm --filter frontend lint
+pnpm --filter frontend test
+pnpm --filter frontend build
+</code></pre>
+<p>八条全绿后再提交。</p>
+<p><strong>Conventional Commits 模板</strong>：</p>
+<pre><code>feat(sse): add versioned event contract with Last-Event-ID resume and cancel propagation
+
+- protocol: add v1 event version + SSE frame formatter
+- replay: DbReplayService restores events from AgentRun/ToolCall tables
+- cancel: RunAbortRegistry tracks AbortController per runId
+- frontend: TextDecoder({ stream: true }) fixes UTF-8 chunk boundary
+- frontend: event-cursor persists sequence in localStorage for resume
+
+Refs: Day14
+</code></pre>
+<p><strong>⚠️ 硬红线：不要 <code>git push</code></strong>。今天的改动只在本地 commit，Day15 结束时集中 push。</p>
+<hr>
+<h2 id="8-通过标准">8. 通过标准</h2>
+<ul>
+<li>[ ] §3 v1 能跑通：<code>curl -N /agent/runs/r-1/stream</code> 收到 event-stream 帧，前端 timeline 出现 5 步事件</li>
+<li>[ ] §4 v2 能通过 UTF-8 边界测试：中文字符被切在两个 chunk 也不乱码</li>
+<li>[ ] §5 v3 断线重连不重复：DevTools Offline 3 秒后恢复，timeline 事件数不增加</li>
+<li>[ ] §5 v3 取消传播：点"取消"后 30ms 内服务端日志出现 <code>AbortError caught</code>，DB 中 <code>status='cancelled'</code></li>
+<li>[ ] §5 v3 DB 回放：kill 服务端进程再重启，前端重连能看到完整 5 步</li>
+<li>[ ] <code>pnpm typecheck &amp;&amp; pnpm lint &amp;&amp; pnpm test &amp;&amp; pnpm build</code> 前后端各 4 条全绿</li>
+<li>[ ] Git commit 信息含 <code>Refs: Day14</code></li>
+<li>[ ] 没有 <code>git push</code></li>
+<li>[ ] 深挖 HTML 4 个 section 内容完整（8 子节 × 4 = 32 段）</li>
+</ul>
+<hr>
+<h2 id="9-提交物">9. 提交物</h2>
+<ul>
+<li><code>apps/api/src/sse/</code> 完整目录（protocol/replay/cancel + module + controller）</li>
+<li><code>frontend/src/agent/stream/</code> 完整目录（parser/cursor + useSseStream）</li>
+<li>5 个测试文件（sse-frame / db-replay / run-abort-registry / sse-line-parser / event-cursor）</li>
+<li>反证实验记录（两段 diff + Console 截图 + timeline 截图）</li>
+<li>深挖 HTML 文件（4 个 section）</li>
+<li>学习日志（写在 <code>output/学习日志/Day14.md</code>，含反证实验思考和课末 3 个核心问题的答案）</li>
+<li>架构证据（在 <code>docs/adr/</code> 加一条 ADR：<code>0014-sse-vs-websocket.md</code>，记录取舍理由）</li>
+</ul>
+<hr>
+<h2 id="10-课末-3-个核心问题">10. 课末 3 个核心问题</h2>
+<ol>
+<li>
+<p>请从今天项目的真实入口到最终输出，解释"SSE 合同演进"的数据流或控制流；当天知识链"SSE、UTF-8 chunk、事件版本、Resume cursor、客户端取消"分别在哪一层起作用，为什么按这个顺序学习？</p>
+</li>
+<li>
+<p>如果故意移除今天最关键的保护机制（比如 <code>TextDecoder({ stream: true })</code> 或 <code>sequence</code> 去重或 <code>AbortController.abort()</code>），线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</p>
+</li>
+<li>
+<p>请引用今天的具体代码、测试和架构证据，证明项目目标已经达到；再说明当前实现距离企业生产标准还缺什么（比如 SSE 认证、Redis Pub/Sub 替换 EventEmitter、跨进程 AbortController 分布式协调），下一步如何演进而不破坏已有合同。</p>
+</li>
+</ol>
+<hr>
+<h2 id="11-真实项目情境题联网更新-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>
+<p>中文"故障恢复"的 UTF-8 字节被拆在两个 chunk（比如 E6 95 85 障 | E9 9A 9C 恢 E5 A4 8D），parser 每块独立 decode，页面出现乱码且事件 JSON 解析失败。请保存原始字节、TextDecoder 状态和 parser 错误定位；先切换非流式结果（<code>/agent/runs/:id</code>）止损，再用 <code>TextDecoder({ stream: true })</code> 和事件缓冲修复，覆盖所有字节断点验证。回答必须按"定位证据 → 临时止损 → 根因修复 → 回归验证"组织。
+依据：<a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events" target="_blank" rel="noopener noreferrer">MDN Using Server-sent events</a></p>
+</li>
+<li>
+<p>SSE 在 sequence 508 后断开，重连从 500 重放，客户端重复追加文本和 Tool 卡片；用户取消后上游 LLM 仍生成 60 秒。请用 Last-Event-ID、resume cursor、重复率和上游日志定位；先隐藏重复并终止连接止损，再实现 sequence 去重续传和 POST /cancel 传播，断线回放验证内容一次且上游停止。回答必须按"定位证据 → 临时止损 → 根因修复 → 回归验证"组织。
+依据：<a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events" target="_blank" rel="noopener noreferrer">MDN Using Server-sent events</a></p>
+</li>
+</ol>
+<p>知识映射：SSE v1 合同、UTF-8 chunk 流式解码、Resume cursor、sequence 去重和客户端取消传播。</p>
+<hr>
+<h2 id="12-pdf-面试题">12. PDF 面试题</h2>
+<blockquote>
+<p>以下题目引用自公开面经 PDF 汇编，文件名不等于官方题库；用作练习触发点，不代表本项目对齐了任何一家公司的真实校招/社招题库。</p>
+</blockquote>
+<ol>
+<li>
+<p>Fetch API 的 ReadableStream 如何工作？怎样处理 <code>Uint8Array</code>、TextDecoder 和中断？
+来源：《2026已发交个朋友全栈AI工程师》第 1 页。</p>
+</li>
+<li>
+<p>SSE 与 WebSocket 有何区别？若用户在生成中中断对话，SSE 应怎样处理？
+来源：《2026阿里云前端技术专家-AI领域》第 2 页。</p>
+</li>
+</ol>
+<p>题目说明：直接覆盖 UTF-8 跨 chunk、SSE 双向 vs 单向、客户端取消、连接恢复；第 2 题包含原文追问"中断对话怎样处理"，对应今天的 <code>AbortController</code> + <code>POST /cancel</code> 组合。</p>
+<hr>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"现场提出 5 道问题。五连问不预先固定，也不由上面的 PDF 题替代；评分规则见 <a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<p>参考出题方向（教师可选可换）：</p>
+<ul>
+<li><strong>局部机制</strong>：<code>parseSseStream</code> 里 <code>TextDecoder({ stream: true })</code> 的 buffer 状态在什么时机清空？你的测试如何覆盖"最后一块字符不完整"的情况？</li>
+<li><strong>边界一致性</strong>：DB 回放的 sequence 和 EventEmitter 事件的 sequence 是同一套编号吗？如果 DB 里最大 sequence=8 但 EventEmitter 后续发的第一个是 sequence=6，前端会看到什么？</li>
+<li><strong>线上事故</strong>：如果 <code>RunAbortRegistry</code> 是进程内 Map，服务水平扩展到 2 个实例后用户 POST /cancel 打到实例 A、Loop 跑在实例 B，会发生什么？你打算怎么修？</li>
+<li><strong>工程权衡</strong>：SSE vs WebSocket，为什么这个项目选 SSE？如果未来要做"用户可以打断 Agent 生成、改问题、Agent 继续"，还能坚持 SSE 吗？</li>
+<li><strong>架构演进</strong>：Day 30 M3 门禁要求"任何一次 Agent Run 都必须能在 Postgres 里查到完整链路"。你今天的 DB 回放是否已经满足？还缺什么？</li>
+</ul>
+<hr>
+<h2 id="14-本-day-在-90-天路线中的锚点">14. 本 Day 在 90 天路线中的锚点</h2>
+<ul>
+<li><strong>承接</strong>：Day 01 定义的 <code>AgentEvent</code> 判别联合和 reducer 今天升级为 <code>VersionedAgentEvent</code>，同时保持 reducer 逻辑不变（v1 事件仍能被处理）</li>
+<li><strong>承接</strong>：Day 07-10 的 Prisma 表在 Day 13 加上了 <code>AgentRun/Diagnosis/ToolCall</code> 三张表，今天用于 DB 回放</li>
+<li><strong>承接</strong>：Day 12 的 Agent Loop 今天接入 <code>AbortSignal</code>，把用户取消从 UI 一路传到 LLM/Tool 调用</li>
+<li><strong>对齐</strong>：Day 15 LLM 流式响应会复用今天的 protocol 层（<code>sse-frame.ts</code> / <code>event-version.ts</code>）</li>
+<li><strong>对齐</strong>：Day 30 M3 门禁的验收标准之一是"任何一次 Run 崩溃后重启前端还能看到完整过程"，今天的 DB 回放是这条门禁的实现基础</li>
+<li><strong>对齐</strong>：Day 61 多 Agent 协同工作台需要"某个 Agent 卡住时管理员能远程 cancel"，<code>RunAbortRegistry</code> 是这个能力的雏形</li>
+</ul>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day14-old.html">查看 Day 14 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/13.html">← Day 13 · 持久化/幂等</a>
+            <a href="/ai-teacher-agent-devolop/day/15.html">Day 15 · Agent 时间线 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#14-%E6%9C%AC%E6%97%A5%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8A%A8%E6%89%8B%E5%89%8D%E5%85%88%E7%9C%8B%E9%AA%A8%E6%9E%B6">1.4 本日项目目录结构（动手前先看骨架）</a></li><li><a href="#15-%E9%98%B6%E6%AE%B5-d%E5%8A%A8%E6%89%8B%E8%84%9A%E6%89%8B%E6%9E%B620-%E5%88%86%E9%92%9F%E5%85%88%E6%90%AD%E9%AA%A8%E6%9E%B6%E5%86%8D%E7%9C%8B%E6%AD%A3%E6%96%87">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F90-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">2. 学习节奏（90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E6%9C%80%E5%B0%8F%E9%97%AD%E7%8E%AFeventsource-%E8%A3%B8%E6%8E%A8">3. v1：最小闭环（EventSource 裸推）</a></li><li><a href="#4-v2%E5%8A%A0%E4%BA%8B%E4%BB%B6%E7%89%88%E6%9C%AC-utf-8-%E6%B5%81%E5%BC%8F%E8%A7%A3%E7%A0%81-fetchreadablestream">4. v2：加事件版本 + UTF-8 流式解码 + fetch/ReadableStream</a></li><li><a href="#5-v3last-event-id-%E7%BB%AD%E4%BC%A0-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%96%E6%B6%88%E4%BC%A0%E6%92%AD-db-%E5%9B%9E%E6%94%BE%E7%BB%88%E6%80%81">5. v3：Last-Event-ID 续传 + 客户端取消传播 + DB 回放（终态）</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94%E4%B8%80%E8%A7%88%E8%A1%A8">6. 三版对比一览表</a></li><li><a href="#65-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1%E7%8B%AC%E7%AB%8B%E6%B7%B1%E6%8C%96-html-%E5%85%A5%E5%8F%A3">6.5 前端底子补弱（独立深挖 HTML 入口）</a></li><li><a href="#7-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95%E9%98%B6%E6%AE%B5-e-f%E7%BA%A6-55-%E5%88%86%E9%92%9F">7. 项目验收清单（阶段 E-F，约 55 分钟）</a></li><li><a href="#8-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86">8. 通过标准</a></li><li><a href="#9-%E6%8F%90%E4%BA%A4%E7%89%A9">9. 提交物</a></li><li><a href="#10-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">10. 课末 3 个核心问题</a></li><li><a href="#11-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">12. PDF 面试题</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">14. 本 Day 在 90 天路线中的锚点</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

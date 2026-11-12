@@ -1,0 +1,2177 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 37 · Day 37 - 性能优化（Query Plan + 复合索引 + 连接池 + 缓存 + 流背压） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html" aria-current="page">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/06.html">第 6 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 37</p>
+        <h1>Day 37 - 性能优化（Query Plan + 复合索引 + 连接池 + 缓存 + 流背压）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段二（Day 31-60，AI 前端 -&gt; AI 全栈）。继续在 <code>p1-monitor</code> 中补齐全栈与 AI 能力，并复用前 30 天的事件合同、状态管理和实时链路。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+<p><strong>完整性修正</strong>：正文中的 <code>TODO</code>、<code>...</code>、伪代码或“核心代码你手写”只表示实施任务，不属于交付结果；在本日通过前，必须在真实项目中替换为可运行实现，并提交对应测试输出和 diff 证据。任何仍含占位实现的项目提交均判定为未完成。</p>
+</blockquote>
+<p>日期与时长：2026-08-19 周三，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor</code>
+阶段任务性质：教师基线；实际分发时根据上一日成绩生成补弱版、标准版或挑战版。</p>
+<hr>
+<h2 id="0-在-90-天路线图中的位置">§0 在 90 天路线图中的位置</h2>
+<p><strong>阶段定位</strong>：阶段二第 7 天（Day 31-40：Agent 生产化工程 10 天）</p>
+<p><strong>前置依赖</strong>：</p>
+<ul>
+<li>Day 29（BullMQ 队列）：队列消费速度影响背压</li>
+<li>Day 32（Agent 状态机）：Agent 执行产生的数据库写入需要索引优化</li>
+<li>Day 34（失败恢复）：RecoveryAuditLog 表的查询性能需要复合索引</li>
+<li>Day 35（可观测性）：Trace 查询依赖高效的 traceId 索引</li>
+</ul>
+<p><strong>今天要解决的 5 个核心问题</strong>：</p>
+<ol>
+<li>
+<p><strong>慢查询拖垮系统</strong>：Agent 时间线表 8000 万行，按 <code>tenantId + runId + createdAt</code> 查询的 P95 从 180ms 飙到 4.8s，DB CPU 92%。</p>
+<ul>
+<li><strong>为什么发生</strong>：没有覆盖查询条件的复合索引，PostgreSQL 做了全表扫描或低效的索引回表。</li>
+<li><strong>用户看到什么</strong>：Agent 执行历史加载超时，页面白屏或转圈 5 秒。</li>
+<li><strong>今天如何解决</strong>：<code>EXPLAIN ANALYZE</code> 分析执行计划 + 设计 <code>(tenantId, runId, createdAt)</code> 复合索引 + 验证查询计划从 Seq Scan 变 Index Scan。</li>
+</ul>
+</li>
+<li>
+<p><strong>连接池耗尽导致级联失败</strong>：流式消费者变慢后，连接池占用 95%，新请求拿不到连接，全部超时。</p>
+<ul>
+<li><strong>为什么发生</strong>：默认连接池配置（10 个连接）在高并发下不够；长查询占住连接不释放；没有连接超时和队列机制。</li>
+<li><strong>用户看到什么</strong>：所有 API 请求返回 <code>ETIMEDOUT</code> 或 <code>Pool exhausted</code>，系统完全不可用。</li>
+<li><strong>今天如何解决</strong>：调整连接池大小（<code>max: 20</code>）+ 设置 <code>connectionTimeoutMillis</code> + 监控 <code>pool.totalCount</code> / <code>pool.idleCount</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>缓存命中率骤降导致穿透</strong>：Redis 命中率从 82% 降到 24%，每次缓存 miss 都回源数据库，DB 负载雪崩。</p>
+<ul>
+<li><strong>为什么发生</strong>：缓存键设计不合理（每次查询生成新键）；TTL 设置不当（热数据过早过期）；没有缓存预热。</li>
+<li><strong>用户看到什么</strong>：页面加载变慢（从 200ms 到 2s+），高峰期大量 503。</li>
+<li><strong>今天如何解决</strong>：标准化缓存键（<code>cache:metric:${serverId}:${date}</code>）+ 合理 TTL（热数据 5min，冷数据 1h）+ 监控命中率。</li>
+</ul>
+</li>
+<li>
+<p><strong>流式消费者背压导致内存溢出</strong>：BullMQ 消费者处理慢，队列积压从 100 涨到 1 万，Node.js 进程 OOM。</p>
+<ul>
+<li><strong>为什么发生</strong>：消费者没有限制并发（<code>concurrency: 1</code> 默认），消息堆积在内存；没有背压机制暂停生产。</li>
+<li><strong>用户看到什么</strong>：队列任务延迟越来越高（从秒级到分钟级），最终进程崩溃重启，任务丢失。</li>
+<li><strong>今天如何解决</strong>：设置 <code>concurrency</code> + 监控 <code>queue.count()</code> + 实现背压（队列超阈值时暂停生产）。</li>
+</ul>
+</li>
+<li>
+<p><strong>写放大导致索引维护成本高</strong>：每次插入一条记录，PostgreSQL 要更新 5 个索引，写入 TPS 从 5000 降到 800。</p>
+<ul>
+<li><strong>为什么发生</strong>：表上建了过多冗余索引（7 个单列索引而非必要的 2 个复合索引）。</li>
+<li><strong>用户看到什么</strong>：Agent 执行日志写入变慢，用户感知 Agent 响应延迟增加。</li>
+<li><strong>今天如何解决</strong>：删除冗余索引，只保留高频查询需要的复合索引 + 用 <code>pg_stat_user_indexes</code> 验证索引使用率。</li>
+</ul>
+</li>
+</ol>
+<p><strong>今天的验收硬指标</strong>：慢查询 P95 &lt; 500ms（有基线对比）；连接池峰值占用 &lt; 80%；缓存命中率 &gt; 70%；无查询性能回归。</p>
+<hr>
+<h2 id="1-功能模块职责划分">1. 功能模块职责划分</h2>
+<h3 id="11-用户能看到什么5-个真实场景">1.1 用户能看到什么（5 个真实场景）</h3>
+<p><strong>场景 1：查看 Agent 执行历史（慢查询优化）</strong></p>
+<p>用户在前端点击"查看最近 100 次 Agent 执行记录"：</p>
+<ol>
+<li>后端查询 <code>agent_runs</code> 表：<code>SELECT * FROM agent_runs WHERE tenantId = ? AND createdAt &gt; ? ORDER BY createdAt DESC LIMIT 100</code></li>
+<li><strong>优化前</strong>：表有 8000 万行，无复合索引，PostgreSQL 做全表扫描，耗时 4.8s，DB CPU 92%</li>
+<li><strong>优化后</strong>：建立 <code>(tenantId, createdAt)</code> 复合索引，查询计划变 Index Scan，耗时 180ms，DB CPU 15%</li>
+<li>用户看到：列表瞬间加载（&lt; 200ms），不再白屏等待</li>
+</ol>
+<p><strong>场景 2：高并发下连接池不耗尽（连接池优化）</strong></p>
+<p>100 个并发用户同时查询指标：</p>
+<ol>
+<li>每个查询占用一个 DB 连接，默认连接池 <code>max: 10</code>，第 11 个请求开始排队</li>
+<li><strong>优化前</strong>：第 11+ 个请求等待超时（5s），返回 <code>Pool exhausted</code>，用户看到 503</li>
+<li><strong>优化后</strong>：调整连接池 <code>max: 20</code>，设置 <code>acquireTimeoutMillis: 30000</code>，监控 <code>pool.waitingCount</code></li>
+<li>用户看到：所有请求正常返回（P95 &lt; 1s），无 503</li>
+</ol>
+<p><strong>场景 3：缓存命中率提升（缓存优化）</strong></p>
+<p>用户刷新仪表盘（查询 10 台服务器的 CPU 指标）：</p>
+<ol>
+<li>后端先查 Redis：<code>GET cache:metric:cpu:srv-001:2026-07-17</code></li>
+<li><strong>优化前</strong>：缓存键不一致（每次查询带随机参数），命中率 24%，9/10 次回源 DB</li>
+<li><strong>优化后</strong>：标准化缓存键，TTL 5min，预热热数据，命中率 82%</li>
+<li>用户看到：仪表盘秒开（&lt; 100ms），DB 负载从 80% 降到 20%</li>
+</ol>
+<p><strong>场景 4：流式消费者背压（背压优化）</strong></p>
+<p>Agent 执行产生 1 万条日志消息进入队列：</p>
+<ol>
+<li>消费者处理速度 100 msg/s，队列积压 9900 条</li>
+<li><strong>优化前</strong>：消息堆在内存，Node.js 进程 OOM 崩溃，任务丢失</li>
+<li><strong>优化后</strong>：设置 <code>concurrency: 5</code>，监控队列长度，超 1000 时暂停生产（背压）</li>
+<li>用户看到：日志处理延迟稳定在 10s 内，无消息丢失</li>
+</ol>
+<p><strong>场景 5：索引写放大验证（索引优化）</strong></p>
+<p>Agent 每秒写入 1000 条执行日志：</p>
+<ol>
+<li>表上有 7 个索引（5 个单列 + 2 个复合），每次 INSERT 要更新 7 个索引</li>
+<li><strong>优化前</strong>：写入 TPS 800，DB 写 IOPS 5000（7 倍写放大）</li>
+<li><strong>优化后</strong>：删除 5 个低使用率索引，只保留 2 个高频查询索引，写入 TPS 3000</li>
+<li>用户看到：Agent 响应延迟从 800ms 降到 300ms</li>
+</ol>
+<h3 id="12-核心模块职责">1.2 核心模块职责</h3>
+<p>今天新增/改造的是<strong>性能调优基础设施</strong>，涉及数据库、缓存、队列三层：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>模块</th>
+<th>职责</th>
+<th>输入</th>
+<th>输出</th>
+<th>为什么需要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>QueryAnalyzer</strong></td>
+<td>分析慢查询，输出 EXPLAIN 计划</td>
+<td>SQL + 参数</td>
+<td>执行计划（Seq Scan / Index Scan）</td>
+<td>定位瓶颈查询</td>
+</tr>
+<tr>
+<td><strong>IndexDesigner</strong></td>
+<td>设计复合索引，计算覆盖度</td>
+<td>查询条件</td>
+<td>索引 DDL + 覆盖率</td>
+<td>避免全表扫描</td>
+</tr>
+<tr>
+<td><strong>ConnectionPoolMonitor</strong></td>
+<td>监控连接池状态</td>
+<td>Prisma pool 实例</td>
+<td><code>totalCount / idleCount / waitingCount</code></td>
+<td>预警连接池耗尽</td>
+</tr>
+<tr>
+<td><strong>CacheStrategy</strong></td>
+<td>标准化缓存键，设置 TTL</td>
+<td>查询上下文</td>
+<td>缓存键 + TTL</td>
+<td>提高命中率</td>
+</tr>
+<tr>
+<td><strong>BackpressureController</strong></td>
+<td>队列背压控制</td>
+<td>队列长度</td>
+<td>是否暂停生产</td>
+<td>防止消费者 OOM</td>
+</tr>
+</tbody>
+</table></div><p><strong>模块之间的依赖关系</strong>：</p>
+<pre><code>查询请求
+  ↓
+CacheStrategy（先查缓存）
+  ↓ miss
+ConnectionPoolMonitor（获取连接）
+  ↓
+QueryAnalyzer（执行查询，记录慢查询）
+  ↓
+IndexDesigner（离线分析，建议索引）
+
+队列消息
+  ↓
+BackpressureController（检查队列长度）
+  ↓
+消费者（处理消息）
+</code></pre>
+<p><strong>为什么按这个顺序？</strong></p>
+<ol>
+<li>先查缓存（CacheStrategy），命中则直接返回，不占用连接</li>
+<li>再获取连接（ConnectionPoolMonitor），避免连接池耗尽</li>
+<li>执行查询时记录慢查询（QueryAnalyzer），定位瓶颈</li>
+<li>离线分析建议索引（IndexDesigner），优化后续查询</li>
+<li>队列消费前检查背压（BackpressureController），避免 OOM</li>
+</ol>
+<h3 id="13-三版演进路线图">1.3 三版演进路线图</h3>
+<p><strong>v1：问题暴露 + 基线测量</strong></p>
+<p>能力：</p>
+<ul>
+<li>用 <code>pg_stat_statements</code> 抓取慢查询 TOP 10</li>
+<li>手动 <code>EXPLAIN ANALYZE</code> 查看执行计划</li>
+<li>基线测量：记录优化前的 P95 延迟、DB CPU、缓存命中率</li>
+</ul>
+<p>问题：</p>
+<ul>
+<li>没有索引优化（全表扫描）</li>
+<li>连接池默认配置（10 个连接）</li>
+<li>缓存键不规范（命中率低）</li>
+<li>队列无背压（消息堆积）</li>
+</ul>
+<p><strong>v2：单点优化（索引 + 连接池 + 缓存）</strong></p>
+<p>新增能力：</p>
+<ul>
+<li>设计复合索引（<code>(tenantId, createdAt)</code>），验证查询计划从 Seq Scan 变 Index Scan</li>
+<li>调整连接池配置（<code>max: 20, acquireTimeoutMillis: 30000</code>）</li>
+<li>标准化缓存键（<code>cache:${resource}:${id}:${date}</code>），设置合理 TTL</li>
+</ul>
+<p>解决的问题：</p>
+<ul>
+<li>✅ 慢查询优化（P95 从 4.8s 到 180ms）</li>
+<li>✅ 连接池不耗尽（峰值占用 &lt; 80%）</li>
+<li>✅ 缓存命中率提升（从 24% 到 82%）</li>
+</ul>
+<p>还剩下的问题：</p>
+<ul>
+<li>❌ 队列无背压（消息堆积仍会 OOM）</li>
+<li>❌ 写放大未优化（7 个索引维护成本高）</li>
+</ul>
+<p><strong>v3：全链路优化 + 监控（今天交付）</strong></p>
+<p>新增能力：</p>
+<ul>
+<li>队列背压控制（<code>concurrency</code> + 队列长度监控 + 暂停生产）</li>
+<li>索引使用率分析（<code>pg_stat_user_indexes</code>），删除低使用率索引</li>
+<li>性能监控面板（P95 延迟、连接池状态、缓存命中率、队列积压）</li>
+<li>性能 ADR 文档（优化前后对比数据 + 决策理由）</li>
+</ul>
+<p>解决的问题：</p>
+<ul>
+<li>✅ 队列背压（消息堆积不 OOM）</li>
+<li>✅ 写放大优化（索引从 7 个降到 2 个，TPS 提升 3 倍）</li>
+<li>✅ 可观测（性能回归可快速定位）</li>
+</ul>
+<p>生产级保障：</p>
+<ul>
+<li>✅ 用前后数据证明改善（P95 延迟、TPS、命中率基线对比）</li>
+<li>✅ 无明显回归（所有现有查询的执行计划无劣化）</li>
+<li>✅ 性能监控持续跟踪（P95 &gt; 阈值时自动告警）</li>
+</ul>
+<hr>
+<h2 id="14-目录结构5-个维度完整展示">1.4 目录结构（5 个维度完整展示）</h2>
+<h3 id="141-骨架树今天新增的文件">1.4.1 骨架树（今天新增的文件）</h3>
+<pre><code>apps/api/src/
+├── performance/                       # 【今天新增】性能调优模块
+│   ├── query/
+│   │   ├── query-analyzer.ts          # 【核心】慢查询分析（EXPLAIN ANALYZE）
+│   │   ├── index-designer.ts          # 【核心】索引设计建议
+│   │   └── query-baseline.ts          # 基线测量（优化前后对比）
+│   ├── connection/
+│   │   ├── pool-monitor.ts            # 【核心】连接池监控
+│   │   └── pool-config.ts             # 连接池配置（样板）
+│   ├── cache/
+│   │   ├── cache-strategy.ts          # 【核心】缓存策略（键规范 + TTL）
+│   │   ├── cache-hit-rate-monitor.ts  # 缓存命中率监控
+│   │   └── cache-warmup.ts            # 缓存预热
+│   ├── backpressure/
+│   │   ├── backpressure-controller.ts # 【核心】队列背压控制
+│   │   └── queue-monitor.ts           # 队列长度监控
+│   └── performance.module.ts          # 性能模块聚合
+├── metrics/                           # Day 前期已建
+└── observability/                     # Day 35 已建
+
+apps/api/prisma/
+└── migrations/
+    └── add_composite_indexes.sql      # 【今天产出】复合索引迁移脚本
+
+docs/
+└── adr/
+    └── 003-performance-optimization-day37.md  # 【今天产出】性能优化 ADR
+</code></pre>
+<h3 id="142-为什么这样分层5-个架构问题">1.4.2 为什么这样分层（5 个架构问题）</h3>
+<p><strong>问题 1：为什么 <code>performance/</code> 是独立目录而不是塞进 <code>metrics/</code>？</strong></p>
+<p><strong>回答</strong>：<code>metrics/</code> 关注"采集和聚合业务指标"（CPU/内存/响应时间），<code>performance/</code> 关注"系统层面的性能调优"（查询计划/连接池/缓存）。前者是业务数据，后者是基础设施优化，关注点不同。</p>
+<p><strong>问题 2：为什么索引设计（<code>index-designer.ts</code>）单独拆文件？</strong></p>
+<p><strong>回答</strong>：索引设计是"离线分析"任务（不在请求链路中），需要读取 <code>pg_stat_statements</code> 和查询日志，逻辑复杂且独立。单独文件便于测试和演进（未来可能接入自动索引建议工具）。</p>
+<p><strong>问题 3：为什么缓存预热（<code>cache-warmup.ts</code>）和缓存策略（<code>cache-strategy.ts</code>）分开？</strong></p>
+<p><strong>回答</strong>：缓存策略是"请求时决定缓存键和 TTL"（同步），缓存预热是"系统启动时批量加载热数据"（异步）。一个在请求链路，一个在启动链路，分开更清晰。</p>
+<p><strong>问题 4：为什么背压控制（<code>backpressure-controller.ts</code>）和队列监控（<code>queue-monitor.ts</code>）分开？</strong></p>
+<p><strong>回答</strong>：队列监控是"只读观测"（暴露指标），背压控制是"决策和执行"（暂停/恢复生产）。监控可以独立用于告警，控制依赖监控数据但逻辑独立。</p>
+<p><strong>问题 5：为什么性能优化要写 ADR 文档？</strong></p>
+<p><strong>回答</strong>：性能优化涉及权衡（索引提升读但降低写、缓存 TTL 长提高命中率但数据可能陈旧），必须记录"为什么这样选"和"优化前后数据"，否则 3 个月后没人敢改。</p>
+<h3 id="143-与-day-3536-的-diff">1.4.3 与 Day 35/36 的 diff</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>对比维度</th>
+<th>Day 35（可观测性）</th>
+<th>Day 36（API 安全）</th>
+<th>Day 37（性能优化，今天）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>关注点</strong></td>
+<td>系统能被看见</td>
+<td>入口不能被攻破</td>
+<td>系统快且稳定</td>
+</tr>
+<tr>
+<td><strong>核心动作</strong></td>
+<td>埋 Trace、脱敏日志</td>
+<td>拦攻击、脱敏错误</td>
+<td>加索引、调连接池、优化缓存</td>
+</tr>
+<tr>
+<td><strong>新增目录</strong></td>
+<td><code>observability/</code></td>
+<td><code>security/</code></td>
+<td><code>performance/</code></td>
+</tr>
+<tr>
+<td><strong>复用前两天</strong></td>
+<td>—</td>
+<td>traceId 关联进错误响应</td>
+<td>traceId 关联进慢查询日志</td>
+</tr>
+<tr>
+<td><strong>对下游影响</strong></td>
+<td>提供排查依据</td>
+<td>提供准入闸门</td>
+<td>提供性能基线和监控</td>
+</tr>
+</tbody>
+</table></div><p><strong>关键变化</strong>：Day 37 用"数据驱动"证明优化效果（优化前后 P95 对比），而不是"主观感觉快了"。</p>
+<h3 id="144-依赖箭头从查询到响应的完整链路">1.4.4 依赖箭头（从查询到响应的完整链路）</h3>
+<pre><code>请求
+  → CacheStrategy.getCacheKey()（生成标准缓存键）
+  → Redis.get(key)（查缓存）
+  → 命中 → 直接返回
+  → Miss → PoolMonitor.acquire()（获取连接）
+  → QueryAnalyzer.execute()（执行查询 + 记录慢查询）
+  → IndexDesigner.suggestIndex()（离线分析，建议索引）
+  → Redis.set(key, value, TTL)（写缓存）
+  → 返回结果
+
+队列消息
+  → BackpressureController.check()（检查队列长度）
+  → 超阈值 → 暂停生产
+  → 未超 → 消费者处理
+</code></pre>
+<p><strong>关键依赖</strong>：CacheStrategy 是第一道防线（命中则不占用连接），BackpressureController 是队列的安全阀（防止 OOM）。</p>
+<h3 id="145-三个灵魂拷问">1.4.5 三个灵魂拷问</h3>
+<p><strong>拷问 1：如果查询已经有了 <code>(tenantId)</code> 单列索引，为什么还要建 <code>(tenantId, createdAt)</code> 复合索引？</strong></p>
+<p><strong>回答</strong>：单列索引只能过滤 <code>tenantId</code>，PostgreSQL 仍需回表扫描所有该租户的行再按 <code>createdAt</code> 排序。复合索引覆盖了 <code>WHERE</code> 和 <code>ORDER BY</code> 两个条件，PostgreSQL 可以直接在索引上扫描并返回，避免回表和排序（执行计划从 <code>Index Scan + Sort</code> 变成 <code>Index Scan only</code>）。</p>
+<p><strong>拷问 2：为什么缓存 TTL 不能设太长（如 24h）？</strong></p>
+<p><strong>回答</strong>：TTL 太长会导致数据陈旧（指标更新了但缓存还是旧值）。性能优化的前提是"不改变业务语义"，缓存 TTL 必须在"命中率"和"数据新鲜度"之间权衡。本项目采用"热数据 5min、冷数据 1h"的分层 TTL。</p>
+<p><strong>拷问 3：为什么连接池 <code>max</code> 不能设太大（如 100）？</strong></p>
+<p><strong>回答</strong>：每个连接占用 PostgreSQL 服务器的内存和进程资源。<code>max: 100</code> 意味着单个应用实例可能占用 100 个 DB 连接，若有 10 个应用实例，总连接数就是 1000，会耗尽 PostgreSQL 的 <code>max_connections</code>（默认 100）。正确做法是"连接池大小 ≈ 应用实例数 × CPU 核数 × 2"。</p>
+<hr>
+<h2 id="15-今天动手前的脚手架检查">1.5 今天动手前的脚手架检查</h2>
+<p><strong>为什么放在 §1 里</strong>：Day 37 依赖 Day 29（队列）、Day 32（Agent 执行日志表）、Day 35（Trace）的代码。如果这些依赖缺失或表结构不完整，今天的性能优化无法进行。</p>
+<h3 id="151-day-29-队列代码检查">1.5.1 Day 29 队列代码检查</h3>
+<pre><code class="language-bash"># 检查 BullMQ 是否已安装
+grep "bullmq" apps/api/package.json
+# 检查队列是否已配置
+ls apps/api/src/queue/
+</code></pre>
+<p><strong>如果缺失</strong>：先完成 Day 29（BullMQ 队列），再回来做 Day 37。</p>
+<h3 id="152-day-32-数据表检查">1.5.2 Day 32 数据表检查</h3>
+<pre><code class="language-bash"># 检查 agent_runs 表是否存在
+psql -U postgres -d p1_monitor -c "\d agent_runs"
+# 检查表行数（模拟大数据场景）
+psql -U postgres -d p1_monitor -c "SELECT COUNT(*) FROM agent_runs"
+</code></pre>
+<p><strong>如果行数 &lt; 1000</strong>：需要生成测试数据（见 §2.2 数据准备）。</p>
+<h3 id="153-今天需要新建的表和索引">1.5.3 今天需要新建的表和索引</h3>
+<p><strong>新建监控指标表</strong>（如果还没有）：</p>
+<pre><code class="language-sql">-- apps/api/prisma/schema.prisma
+model Metric {
+  id          String   @id @default(cuid())
+  serverId    String
+  metricName  String   // 'cpu' | 'memory' | 'disk'
+  value       Float
+  timestamp   DateTime
+  createdAt   DateTime @default(now())
+
+  @@index([serverId, metricName, timestamp])  // 【今天优化】复合索引
+}
+</code></pre>
+<p><strong>今天要添加的复合索引</strong>（在现有表上）：</p>
+<pre><code class="language-sql">-- apps/api/prisma/migrations/add_composite_indexes.sql
+-- agent_runs 表优化（最高频查询）
+CREATE INDEX CONCURRENTLY idx_agent_runs_tenant_created 
+ON agent_runs(tenant_id, created_at DESC);
+
+-- recovery_audit_logs 表优化（Day 34 留下的）
+CREATE INDEX CONCURRENTLY idx_recovery_audit_run_event 
+ON recovery_audit_logs(run_id, event, occurred_at DESC);
+
+-- metrics 表优化
+CREATE INDEX CONCURRENTLY idx_metrics_server_name_time 
+ON metrics(server_id, metric_name, timestamp DESC);
+</code></pre>
+<p><strong>为什么用 <code>CONCURRENTLY</code>？</strong></p>
+<p><code>CREATE INDEX CONCURRENTLY</code> 不锁表，可以在生产环境安全执行。普通 <code>CREATE INDEX</code> 会加写锁，阻塞所有写入。</p>
+<p><strong>迁移脚本</strong>：</p>
+<pre><code class="language-bash">cd apps/api
+# 生成迁移文件
+npx prisma migrate dev --name add_composite_indexes_day37
+# 应用迁移
+npx prisma migrate deploy
+</code></pre>
+<p><strong>验证索引创建成功</strong>：</p>
+<pre><code class="language-bash">psql -U postgres -d p1_monitor -c "\d+ agent_runs" | grep idx_agent_runs_tenant_created
+# 预期输出：idx_agent_runs_tenant_created btree (tenant_id, created_at DESC)
+</code></pre>
+<h3 id="154-连接池配置检查">1.5.4 连接池配置检查</h3>
+<pre><code class="language-typescript">// apps/api/src/persistence/prisma.service.ts
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: process.env.DATABASE_URL,
+    },
+  },
+  // 【今天检查/新增】连接池配置
+  // 若已有配置，确认参数合理；若无，按下面补充
+})
+
+// 连接池参数（今天要优化的）
+// DATABASE_URL 格式：postgresql://user:pass@host:5432/db?connection_limit=20&amp;pool_timeout=30
+</code></pre>
+<p><strong>DATABASE_URL 连接池参数说明</strong>：</p>
+<pre><code class="language-bash"># .env
+DATABASE_URL="postgresql://postgres:password@localhost:5432/p1_monitor?connection_limit=20&amp;pool_timeout=30&amp;connect_timeout=10"
+</code></pre>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>Day 37 优化值</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>connection_limit</code></td>
+<td>10</td>
+<td>20</td>
+<td>高并发场景需要更多连接</td>
+</tr>
+<tr>
+<td><code>pool_timeout</code></td>
+<td>10s</td>
+<td>30s</td>
+<td>允许更长等待时间，避免瞬间峰值时失败</td>
+</tr>
+<tr>
+<td><code>connect_timeout</code></td>
+<td>5s</td>
+<td>10s</td>
+<td>数据库重启时有足够时间重连</td>
+</tr>
+</tbody>
+</table></div><p><strong>验证连接池配置生效</strong>：</p>
+<pre><code class="language-typescript">// apps/api/src/performance/connection/pool-monitor.ts
+import { Injectable } from '@nestjs/common'
+import { PrismaService } from '../../persistence/prisma.service'
+
+@Injectable()
+export class PoolMonitor {
+  constructor(private prisma: PrismaService) {}
+
+  getPoolStatus() {
+    // Prisma 内部连接池状态（需要通过 metrics 暴露）
+    return {
+      totalConnections: 20,  // connection_limit
+      activeConnections: 0,  // 当前使用中
+      idleConnections: 0,    // 当前空闲
+      waitingRequests: 0,    // 当前排队等待连接
+    }
+  }
+}
+</code></pre>
+<p><strong>如果配置缺失</strong>：补充 DATABASE_URL 参数，重启应用，用 <code>pgAdmin</code> 或 <code>pg_stat_activity</code> 验证连接数。</p>
+<hr>
+<h2 id="2-今天的开发节奏3-小时90-阅读-90-动手">2. 今天的开发节奏（3 小时：90 阅读 / 90 动手）</h2>
+<p><strong>总计 180 分钟</strong>，按"理解原理 → 建立基线 → 优化索引/缓存/背压 → 验证"推进。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>任务</th>
+<th>输出</th>
+<th>为什么这样安排</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>阶段 1</strong></td>
+<td>90 min</td>
+<td>阅读 Query Plan、复合索引、连接池、缓存和背压的三版演进</td>
+<td>机制笔记与预期瓶颈图</td>
+<td>前 90 分钟只读，避免边写边猜</td>
+</tr>
+<tr>
+<td><strong>阶段 2</strong></td>
+<td>15 min</td>
+<td>建立优化前 P95、DB CPU、缓存命中率和连接池基线</td>
+<td>基线数据表格</td>
+<td>没有基线，无法证明优化有效</td>
+</tr>
+<tr>
+<td><strong>阶段 3</strong></td>
+<td>25 min</td>
+<td>创建复合索引并实现缓存/连接池增量</td>
+<td>DDL + CacheStrategy + PoolMonitor</td>
+<td>先处理高收益瓶颈</td>
+</tr>
+<tr>
+<td><strong>阶段 4</strong></td>
+<td>20 min</td>
+<td>实现队列背压控制</td>
+<td>BackpressureController</td>
+<td>防止积压导致 OOM</td>
+</tr>
+<tr>
+<td><strong>阶段 5</strong></td>
+<td>20 min</td>
+<td>压测与两个反证实验</td>
+<td>前后对比报告</td>
+<td>用数据证明收益和边界</td>
+</tr>
+<tr>
+<td><strong>阶段 6</strong></td>
+<td>10 min</td>
+<td>架构证据与提交</td>
+<td>ADR + commit</td>
+<td>完成可追踪验收</td>
+</tr>
+</tbody>
+</table></div><p><strong>关键里程碑检查点</strong>：</p>
+<ul>
+<li>70 分钟：基线数据收集完成（优化前 P95 &gt; 4s）</li>
+<li>130 分钟：索引创建完成，查询计划变 Index Scan</li>
+<li>200 分钟：缓存+连接池优化完成，命中率 &gt; 70%</li>
+<li>260 分钟：背压控制完成，队列积压 &lt; 1000</li>
+<li>360 分钟：压测完成，前后对比数据写入 ADR</li>
+</ul>
+<p><strong>如果卡住了怎么办</strong>：</p>
+<ul>
+<li>卡在理解 EXPLAIN 输出（阶段 1）→ 读 <a href="https://www.postgresql.org/docs/current/sql-explain.html" target="_blank" rel="noopener noreferrer">PostgreSQL EXPLAIN 官方文档</a></li>
+<li>卡在索引设计（阶段 3）→ 先看 <code>pg_stat_statements</code> 找最慢的 3 条 SQL</li>
+<li>卡在压测（阶段 6）→ 用 <code>k6</code> 或 <code>ab</code> 工具，先跑 10 QPS 简单场景</li>
+</ul>
+<hr>
+<h2 id="3-v1问题暴露-基线测量">3. v1：问题暴露 + 基线测量</h2>
+<h3 id="31-v1-能做什么">3.1 v1 能做什么</h3>
+<p>Day 32 完成后的状态：</p>
+<ul>
+<li><code>agent_runs</code> 表有数据（模拟 8000 万行，实际测试可能只有 1 万行）</li>
+<li>查询能跑通，但很慢（P95 &gt; 4s）</li>
+<li>没有复合索引（只有主键）</li>
+<li>连接池用默认配置（10 个连接）</li>
+<li>没有缓存（每次查询都回源 DB）</li>
+</ul>
+<h3 id="32-v1-代码骨架day-32-版本">3.2 v1 代码骨架（Day 32 版本）</h3>
+<pre><code class="language-typescript">// apps/api/src/agent/agent.service.ts（Day 32 版本）
+import { Injectable } from '@nestjs/common'
+import { PrismaService } from '../persistence/prisma.service'
+
+@Injectable()
+export class AgentService {
+  constructor(private prisma: PrismaService) {}
+
+  // 查询最近 100 次执行记录（无缓存、无索引优化）
+  async getRecentRuns(tenantId: string, limit = 100) {
+    return this.prisma.agentRun.findMany({
+      where: { tenantId },
+      orderBy: { createdAt: 'desc' },
+      take: limit,
+    })
+  }
+}
+</code></pre>
+<p><strong>查询 SQL（Prisma 生成）</strong>：</p>
+<pre><code class="language-sql">SELECT * FROM agent_runs
+WHERE tenant_id = 'tenant-001'
+ORDER BY created_at DESC
+LIMIT 100;
+</code></pre>
+<h3 id="33-v1-的-5-个性能问题">3.3 v1 的 5 个性能问题</h3>
+<p><strong>问题 1：无复合索引，全表扫描</strong></p>
+<pre><code class="language-bash"># 查看执行计划
+EXPLAIN ANALYZE 
+SELECT * FROM agent_runs
+WHERE tenant_id = 'tenant-001'
+ORDER BY created_at DESC
+LIMIT 100;
+</code></pre>
+<p><strong>v1 输出</strong>（无索引）：</p>
+<pre><code>Limit  (cost=185420.12..185420.37 rows=100 width=128) (actual time=4823.456..4823.482 rows=100 loops=1)
+  -&gt;  Sort  (cost=185420.12..185920.12 rows=200000 width=128) (actual time=4823.454..4823.467 rows=100 loops=1)
+        Sort Key: created_at DESC
+        Sort Method: top-N heapsort  Memory: 50kB
+        -&gt;  Seq Scan on agent_runs  (cost=0.00..180000.00 rows=200000 width=128) (actual time=0.013..4720.234 rows=200000 loops=1)
+              Filter: (tenant_id = 'tenant-001')
+              Rows Removed by Filter: 79800000
+Planning Time: 0.145 ms
+Execution Time: 4823.512 ms
+</code></pre>
+<p><strong>关键指标</strong>：</p>
+<ul>
+<li><code>Seq Scan</code>：全表扫描 8000 万行</li>
+<li><code>Rows Removed by Filter: 79800000</code>：过滤掉 7980 万行（浪费）</li>
+<li><code>Execution Time: 4823.512 ms</code>：4.8 秒</li>
+</ul>
+<p><strong>问题 2：连接池默认配置（10 个连接）</strong></p>
+<pre><code class="language-typescript">// 模拟 20 个并发查询
+async function testConcurrency() {
+  const promises = Array.from({ length: 20 }, () =&gt;
+    agentService.getRecentRuns('tenant-001')
+  )
+  await Promise.all(promises)
+}
+</code></pre>
+<p><strong>v1 输出</strong>：</p>
+<pre><code>[Prisma] Query 1-10: OK (4823ms each)
+[Prisma] Query 11-20: Error: Timed out fetching a new connection from the connection pool. (More info: http://pris.ly/d/connection-pool (Current connection pool timeout: 10, connection limit: 10))
+</code></pre>
+<p><strong>问题 3：无缓存，命中率 0%</strong></p>
+<p>每次查询都回源 DB，无缓存层。</p>
+<p><strong>问题 4：队列无背压，消息堆积</strong></p>
+<pre><code class="language-typescript">// 模拟 1 万条消息入队
+for (let i = 0; i &lt; 10000; i++) {
+  await toolQueue.add('execute-tool', { runId: `run-${i}` })
+}
+</code></pre>
+<p><strong>v1 输出</strong>：</p>
+<pre><code>[Queue] 队列长度: 9900（消费速度 100 msg/s）
+[Node.js] Heap usage: 1.8 GB / 2 GB
+[Node.js] Process killed: OOM
+</code></pre>
+<p><strong>问题 5：写放大（7 个索引）</strong></p>
+<pre><code class="language-sql">-- 假设 v1 有 7 个索引（过度索引）
+\d+ agent_runs
+
+Indexes:
+    "agent_runs_pkey" PRIMARY KEY, btree (id)
+    "idx_tenant" btree (tenant_id)
+    "idx_created" btree (created_at)
+    "idx_run_id" btree (run_id)
+    "idx_status" btree (status)
+    "idx_user_id" btree (user_id)
+    "idx_tool_name" btree (tool_name)
+</code></pre>
+<p><strong>写入测试</strong>：</p>
+<pre><code class="language-bash"># 插入 1000 条记录
+INSERT INTO agent_runs (...) VALUES (...);  -- 重复 1000 次
+</code></pre>
+<p><strong>v1 输出</strong>：</p>
+<pre><code>TPS: 800
+DB Write IOPS: 5600  # 每次写入要更新 7 个索引
+</code></pre>
+<h3 id="34-v1-基线测量">3.4 v1 基线测量</h3>
+<p>建立性能基线，记录到 ADR：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>指标</th>
+<th>v1 基线（优化前）</th>
+<th>目标（优化后）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查询 P95 延迟</td>
+<td>4823ms</td>
+<td>&lt; 500ms</td>
+</tr>
+<tr>
+<td>DB CPU</td>
+<td>92%</td>
+<td>&lt; 50%</td>
+</tr>
+<tr>
+<td>连接池峰值占用</td>
+<td>10/10 (100%)</td>
+<td>&lt; 16/20 (80%)</td>
+</tr>
+<tr>
+<td>缓存命中率</td>
+<td>0%</td>
+<td>&gt; 70%</td>
+</tr>
+<tr>
+<td>队列峰值积压</td>
+<td>9900 (OOM)</td>
+<td>&lt; 1000</td>
+</tr>
+<tr>
+<td>写入 TPS</td>
+<td>800</td>
+<td>&gt; 2000</td>
+</tr>
+</tbody>
+</table></div><p><strong>测量方法</strong>：</p>
+<pre><code class="language-bash"># P95 延迟：用 k6 压测
+k6 run --vus 10 --duration 30s test-query.js
+
+# DB CPU：查询 pg_stat_database
+SELECT datname, xact_commit, blks_read, blks_hit FROM pg_stat_database;
+
+# 连接池占用：查询 pg_stat_activity
+SELECT count(*) FROM pg_stat_activity WHERE datname = 'p1_monitor';
+
+# 缓存命中率：Redis INFO stats
+redis-cli INFO stats | grep keyspace_hits
+
+# 队列积压：BullMQ API
+const count = await toolQueue.count()
+</code></pre>
+<hr>
+<h2 id="4-v2索引-连接池-缓存单点优化">4. v2：索引 + 连接池 + 缓存（单点优化）</h2>
+<h3 id="41-v2-新增的能力">4.1 v2 新增的能力</h3>
+<p>v2 在 v1 基础上新增：</p>
+<ul>
+<li><strong>复合索引</strong>：设计 <code>(tenantId, createdAt)</code> 复合索引，覆盖 WHERE 和 ORDER BY</li>
+<li><strong>连接池优化</strong>：调整 <code>max: 20</code>，设置 <code>acquireTimeoutMillis: 30000</code></li>
+<li><strong>缓存策略</strong>：标准化缓存键（<code>cache:runs:${tenantId}:recent</code>），TTL 5min</li>
+</ul>
+<h3 id="42-v2-架构变化">4.2 v2 架构变化</h3>
+<pre><code>v1：请求 → DB 查询（Seq Scan 4.8s）→ 返回
+v2：请求 → 查缓存 → 命中返回（&lt; 10ms）
+              ↓ Miss
+         获取连接（从 20 个连接池）→ DB 查询（Index Scan 180ms）→ 写缓存 → 返回
+</code></pre>
+<p><strong>关键变化</strong>：增加"缓存层"和"索引优化"，查询性能从 4.8s 降到 180ms（命中缓存时 &lt; 10ms）。</p>
+<h3 id="43-v2-核心代码">4.3 v2 核心代码</h3>
+<h4 id="431-复合索引设计你需要理解原理ddl-可-ai-生成">4.3.1 复合索引设计（你需要理解原理，DDL 可 AI 生成）</h4>
+<p><strong>原理讲解（5 要素）</strong>：</p>
+<p><strong>它解决什么问题</strong>：v1 的 <code>WHERE tenant_id = ? ORDER BY created_at DESC</code> 查询，PostgreSQL 先用 <code>idx_tenant</code> 过滤，再回表扫描所有该租户的行并排序（Seq Scan + Sort），耗时 4.8s。</p>
+<p><strong>运行机制</strong>：复合索引 <code>(tenant_id, created_at DESC)</code> 把"过滤"和"排序"两个操作都放在索引上完成。PostgreSQL 可以直接在索引上找到 <code>tenant_id = ?</code> 的行，这些行已经按 <code>created_at DESC</code> 排好序，取前 100 行即可，无需回表排序。</p>
+<p><strong>项目落点</strong>：<code>agent_runs</code> 表建立 <code>idx_agent_runs_tenant_created</code>，验证查询计划从 <code>Seq Scan + Sort</code> 变成 <code>Index Scan</code>。</p>
+<p><strong>生产误区</strong>：</p>
+<ol>
+<li>只建单列索引（<code>idx_tenant</code> + <code>idx_created</code>）而不是复合索引 → PostgreSQL 只会用其中一个，另一个条件仍需回表过滤</li>
+<li>复合索引顺序错误（<code>(created_at, tenant_id)</code>）→ 无法利用索引过滤 <code>tenant_id</code></li>
+<li>不验证查询计划 → 索引建了但没生效（可能因为统计信息未更新）</li>
+</ol>
+<p><strong>验证方法</strong>：<code>EXPLAIN ANALYZE</code> 对比优化前后，确认从 <code>Seq Scan</code> 变成 <code>Index Scan</code>，执行时间从 4.8s 降到 &lt; 500ms。</p>
+<p><strong>索引 DDL</strong>（样板代码，可 AI 生成）：</p>
+<pre><code class="language-sql">-- apps/api/prisma/migrations/add_composite_indexes.sql
+-- agent_runs 表优化
+CREATE INDEX CONCURRENTLY idx_agent_runs_tenant_created 
+ON agent_runs(tenant_id, created_at DESC);
+
+-- 验证索引大小（确保不会占用过多磁盘）
+SELECT 
+  schemaname,
+  tablename,
+  indexname,
+  pg_size_pretty(pg_relation_size(indexrelid)) AS index_size
+FROM pg_stat_user_indexes
+WHERE tablename = 'agent_runs';
+</code></pre>
+<p><strong>v2 查询计划（优化后）</strong>：</p>
+<pre><code>Limit  (cost=0.42..12.56 rows=100 width=128) (actual time=0.021..0.156 rows=100 loops=1)
+  -&gt;  Index Scan using idx_agent_runs_tenant_created on agent_runs  (cost=0.42..24312.42 rows=200000 width=128) (actual time=0.019..0.142 rows=100 loops=1)
+        Index Cond: (tenant_id = 'tenant-001')
+Planning Time: 0.087 ms
+Execution Time: 0.178 ms
+</code></pre>
+<p><strong>关键指标变化</strong>：</p>
+<ul>
+<li><code>Seq Scan</code> → <code>Index Scan</code></li>
+<li><code>Execution Time: 4823.512 ms</code> → <code>0.178 ms</code>（提升 27000 倍）</li>
+</ul>
+<h4 id="432-连接池配置样板代码可-ai-生成">4.3.2 连接池配置（样板代码，可 AI 生成）</h4>
+<pre><code class="language-typescript">// apps/api/src/performance/connection/pool-config.ts
+export const POOL_CONFIG = {
+  connectionLimit: 20,          // 从 10 提升到 20
+  poolTimeout: 30,              // 等待连接超时 30s（从 10s 提升）
+  connectTimeout: 10,           // 连接数据库超时 10s
+}
+
+// .env
+DATABASE_URL="postgresql://postgres:password@localhost:5432/p1_monitor?connection_limit=20&amp;pool_timeout=30&amp;connect_timeout=10"
+</code></pre>
+<p><strong>连接池监控</strong>（核心代码，你手写）：</p>
+<pre><code class="language-typescript">// apps/api/src/performance/connection/pool-monitor.ts
+import { Injectable } from '@nestjs/common'
+import { PrismaService } from '../../persistence/prisma.service'
+
+@Injectable()
+export class PoolMonitor {
+  constructor(private prisma: PrismaService) {}
+
+  /**
+   * 获取连接池状态
+   * 你需要实现的核心逻辑：
+   * 1. 通过 Prisma 内部 API 或数据库查询获取当前连接数
+   * 2. 计算连接池占用率（activeConnections / connectionLimit）
+   * 3. 当占用率 &gt; 80% 时触发告警
+   */
+  async getPoolStatus() {
+    // 提示：Prisma 没有直接暴露连接池状态，需要查询 pg_stat_activity
+    const result = await this.prisma.$queryRaw&lt;Array&lt;{ count: bigint }&gt;&gt;`
+      SELECT count(*) as count 
+      FROM pg_stat_activity 
+      WHERE datname = current_database()
+    `
+    
+    const activeConnections = Number(result[0].count)
+    const connectionLimit = 20  // 从配置读取
+
+    return {
+      activeConnections,
+      connectionLimit,
+      usagePercent: (activeConnections / connectionLimit) * 100,
+      shouldAlert: activeConnections / connectionLimit &gt; 0.8,
+    }
+  }
+
+  /**
+   * 定期监控（每 10 秒检查一次）
+   */
+  @Cron('*/10 * * * * *')  // 需要引入 @nestjs/schedule
+  async monitorPool() {
+    const status = await this.getPoolStatus()
+    
+    if (status.shouldAlert) {
+      console.warn(`[PoolMonitor] 连接池占用高: ${status.usagePercent.toFixed(1)}%`)
+      // 发送告警（关联 Day 35 的告警系统）
+    }
+  }
+}
+</code></pre>
+<p><strong>为什么要监控连接池？</strong></p>
+<p>连接池耗尽是"静默失败"——不会抛异常，只会让新请求排队等待直到超时。监控可以提前预警，避免用户感知到 503。</p>
+<h4 id="433-缓存策略核心代码你手写">4.3.3 缓存策略（核心代码，你手写）</h4>
+<p><strong>缓存键规范（5 要素）</strong>：</p>
+<p><strong>它解决什么问题</strong>：v1 每次查询都生成不同的缓存键（例如带时间戳 <code>cache:runs:${Date.now()}</code>），命中率 0%。</p>
+<p><strong>运行机制</strong>：标准化缓存键格式 <code>cache:${resource}:${id}:${variant}</code>，确保相同查询条件生成相同的键。例如"查询租户 A 的最近 100 次执行"的键始终是 <code>cache:runs:tenant-001:recent</code>。</p>
+<p><strong>项目落点</strong>：<code>CacheStrategy</code> 类封装缓存键生成逻辑，所有查询统一调用。</p>
+<p><strong>生产误区</strong>：</p>
+<ol>
+<li>缓存键包含随机参数（如请求 ID）→ 永远 miss</li>
+<li>TTL 设太长（24h）→ 数据陈旧</li>
+<li>TTL 设太短（10s）→ 命中率低</li>
+</ol>
+<p><strong>验证方法</strong>：压测 100 次相同查询，缓存命中率应 &gt; 99%（第一次 miss，后续 99 次 hit）。</p>
+<p><strong>代码实现</strong>（你手写核心逻辑）：</p>
+<pre><code class="language-typescript">// apps/api/src/performance/cache/cache-strategy.ts
+import { Injectable } from '@nestjs/common'
+import { Redis } from 'ioredis'
+
+export interface CacheKeyContext {
+  resource: string   // 'runs' | 'metrics' | 'traces'
+  id: string         // tenantId / serverId
+  variant?: string   // 'recent' | 'summary' | 'detail'
+}
+
+@Injectable()
+export class CacheStrategy {
+  private redis: Redis
+
+  constructor() {
+    this.redis = new Redis({
+      host: process.env.REDIS_HOST || 'localhost',
+      port: parseInt(process.env.REDIS_PORT || '6379'),
+    })
+  }
+
+  /**
+   * 生成标准化缓存键
+   * 你需要实现的核心逻辑：
+   * 1. 拼接 resource、id、variant 生成唯一键
+   * 2. 确保相同参数生成相同的键（幂等性）
+   * 3. 键格式：cache:{resource}:{id}:{variant}
+   */
+  getCacheKey(ctx: CacheKeyContext): string {
+    const parts = ['cache', ctx.resource, ctx.id]
+    if (ctx.variant) parts.push(ctx.variant)
+    return parts.join(':')
+  }
+
+  /**
+   * 获取缓存（带 TTL）
+   */
+  async get&lt;T&gt;(ctx: CacheKeyContext): Promise&lt;T | null&gt; {
+    const key = this.getCacheKey(ctx)
+    const value = await this.redis.get(key)
+    return value ? JSON.parse(value) : null
+  }
+
+  /**
+   * 写入缓存（带分层 TTL）
+   * 你需要实现的核心逻辑：
+   * 1. 热数据（最近查询）TTL 5min
+   * 2. 冷数据（历史数据）TTL 1h
+   * 3. 统计数据（聚合结果）TTL 10min
+   */
+  async set&lt;T&gt;(ctx: CacheKeyContext, value: T, ttlSeconds?: number): Promise&lt;void&gt; {
+    const key = this.getCacheKey(ctx)
+    
+    // 默认 TTL 策略
+    if (!ttlSeconds) {
+      if (ctx.variant === 'recent') ttlSeconds = 300     // 5min
+      else if (ctx.variant === 'summary') ttlSeconds = 600  // 10min
+      else ttlSeconds = 3600  // 1h
+    }
+
+    await this.redis.setex(key, ttlSeconds, JSON.stringify(value))
+  }
+
+  /**
+   * 监控缓存命中率
+   */
+  async getHitRate(): Promise&lt;number&gt; {
+    const info = await this.redis.info('stats')
+    const hits = parseInt(info.match(/keyspace_hits:(\d+)/)?.[1] || '0')
+    const misses = parseInt(info.match(/keyspace_misses:(\d+)/)?.[1] || '0')
+    
+    if (hits + misses === 0) return 0
+    return (hits / (hits + misses)) * 100
+  }
+}
+</code></pre>
+<p><strong>使用示例</strong>（改造 AgentService）：</p>
+<pre><code class="language-typescript">// apps/api/src/agent/agent.service.ts（v2 版本）
+import { Injectable } from '@nestjs/common'
+import { PrismaService } from '../persistence/prisma.service'
+import { CacheStrategy } from '../performance/cache/cache-strategy'
+
+@Injectable()
+export class AgentService {
+  constructor(
+    private prisma: PrismaService,
+    private cacheStrategy: CacheStrategy,
+  ) {}
+
+  async getRecentRuns(tenantId: string, limit = 100) {
+    // 1. 尝试从缓存获取
+    const cached = await this.cacheStrategy.get({
+      resource: 'runs',
+      id: tenantId,
+      variant: 'recent',
+    })
+
+    if (cached) {
+      console.log('[Cache] Hit')
+      return cached
+    }
+
+    // 2. 缓存 miss，查询数据库（此时会用到复合索引）
+    console.log('[Cache] Miss')
+    const runs = await this.prisma.agentRun.findMany({
+      where: { tenantId },
+      orderBy: { createdAt: 'desc' },
+      take: limit,
+    })
+
+    // 3. 写入缓存
+    await this.cacheStrategy.set(
+      { resource: 'runs', id: tenantId, variant: 'recent' },
+      runs,
+    )
+
+    return runs
+  }
+}
+</code></pre>
+<h3 id="44-v2-测试单元测试-集成测试">4.4 v2 测试（单元测试 + 集成测试）</h3>
+<h4 id="441-单元测试cachestrategy">4.4.1 单元测试（CacheStrategy）</h4>
+<pre><code class="language-typescript">// apps/api/src/performance/cache/cache-strategy.spec.ts
+describe('CacheStrategy', () =&gt; {
+  let strategy: CacheStrategy
+
+  beforeEach(() =&gt; {
+    strategy = new CacheStrategy()
+  })
+
+  it('相同参数生成相同的缓存键', () =&gt; {
+    const key1 = strategy.getCacheKey({ resource: 'runs', id: 'tenant-001', variant: 'recent' })
+    const key2 = strategy.getCacheKey({ resource: 'runs', id: 'tenant-001', variant: 'recent' })
+    expect(key1).toBe(key2)
+    expect(key1).toBe('cache:runs:tenant-001:recent')
+  })
+
+  it('第二次查询命中缓存', async () =&gt; {
+    const ctx = { resource: 'runs', id: 'tenant-001', variant: 'recent' }
+    
+    // 第一次：写入缓存
+    await strategy.set(ctx, [{ id: 'run-001' }])
+    
+    // 第二次：读取缓存
+    const cached = await strategy.get(ctx)
+    expect(cached).toEqual([{ id: 'run-001' }])
+  })
+
+  it('TTL 过期后缓存失效', async () =&gt; {
+    const ctx = { resource: 'runs', id: 'tenant-001', variant: 'recent' }
+    
+    // 写入缓存（TTL 1s）
+    await strategy.set(ctx, [{ id: 'run-001' }], 1)
+    
+    // 等待 2s
+    await new Promise(resolve =&gt; setTimeout(resolve, 2000))
+    
+    // 缓存应该失效
+    const cached = await strategy.get(ctx)
+    expect(cached).toBeNull()
+  })
+})
+</code></pre>
+<h4 id="442-集成测试查询性能">4.4.2 集成测试（查询性能）</h4>
+<pre><code class="language-typescript">// apps/api/test/performance.e2e-spec.ts
+describe('查询性能 (e2e)', () =&gt; {
+  let app: INestApplication
+  let agentService: AgentService
+
+  beforeAll(async () =&gt; {
+    const module = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile()
+
+    app = module.createNestApplication()
+    await app.init()
+    agentService = app.get(AgentService)
+  })
+
+  it('查询 P95 &lt; 500ms', async () =&gt; {
+    const latencies: number[] = []
+
+    // 执行 100 次查询
+    for (let i = 0; i &lt; 100; i++) {
+      const start = Date.now()
+      await agentService.getRecentRuns('tenant-001')
+      const latency = Date.now() - start
+      latencies.push(latency)
+    }
+
+    // 计算 P95
+    latencies.sort((a, b) =&gt; a - b)
+    const p95 = latencies[Math.floor(latencies.length * 0.95)]
+
+    console.log(`P95 延迟: ${p95}ms`)
+    expect(p95).toBeLessThan(500)
+  })
+
+  it('缓存命中率 &gt; 70%', async () =&gt; {
+    const cacheStrategy = app.get(CacheStrategy)
+
+    // 重置 Redis 统计
+    await cacheStrategy['redis'].config('RESETSTAT')
+
+    // 执行 100 次相同查询（第一次 miss，后续 99 次应 hit）
+    for (let i = 0; i &lt; 100; i++) {
+      await agentService.getRecentRuns('tenant-001')
+    }
+
+    const hitRate = await cacheStrategy.getHitRate()
+    console.log(`缓存命中率: ${hitRate.toFixed(1)}%`)
+    expect(hitRate).toBeGreaterThan(70)
+  })
+})
+</code></pre>
+<h3 id="45-v2-还剩下的-2-个问题">4.5 v2 还剩下的 2 个问题</h3>
+<p><strong>问题 4：队列无背压（消息堆积仍会 OOM）</strong></p>
+<p>v2 只优化了查询性能，没有处理队列消费者慢的问题。如果 1 万条消息入队，消费者处理不过来，仍会 OOM。</p>
+<p><strong>问题 5：写放大未优化（7 个索引维护成本高）</strong></p>
+<p>v2 只加了复合索引，没有删除低使用率的单列索引。每次 INSERT 仍要更新 7 个索引，写入 TPS 仍然低。</p>
+<p>v3 用"背压控制 + 索引使用率分析"解决这两个问题。</p>
+<hr>
+<h2 id="5-v3背压控制-索引优化-性能监控生产级">5. v3：背压控制 + 索引优化 + 性能监控（生产级）</h2>
+<h3 id="51-v3-新增的能力">5.1 v3 新增的能力</h3>
+<p>v3 在 v2 基础上新增：</p>
+<ul>
+<li><strong>队列背压控制</strong>：监控队列长度，超阈值时暂停生产，防止 OOM</li>
+<li><strong>索引使用率分析</strong>：用 <code>pg_stat_user_indexes</code> 找出低使用率索引并删除，降低写放大</li>
+<li><strong>性能监控面板</strong>：持续跟踪 P95 延迟、连接池占用、缓存命中率、队列积压</li>
+</ul>
+<h3 id="52-v3-架构变化">5.2 v3 架构变化</h3>
+<pre><code>v2：查询优化（索引 + 缓存 + 连接池）
+v3：v2 + 队列背压（防 OOM）+ 索引瘦身（降低写成本）+ 监控（预警）
+</code></pre>
+<p><strong>关键变化</strong>：从"单点优化"到"全链路性能治理"。</p>
+<h3 id="53-v3-核心代码核心逻辑你手写">5.3 v3 核心代码（核心逻辑你手写）</h3>
+<h4 id="531-队列背压控制核心代码你手写">5.3.1 队列背压控制（核心代码，你手写）</h4>
+<p><strong>知识点 1：背压（Backpressure）</strong></p>
+<p><strong>它解决什么问题</strong>：消费者处理速度 100 msg/s，生产者产生速度 1000 msg/s，队列积压 9000 条消息堆在内存，Node.js OOM 崩溃。</p>
+<p><strong>运行机制</strong>：监控队列长度，超过阈值（如 1000）时暂停生产（或降级非关键任务），等队列消化到安全水位（如 500）再恢复。</p>
+<p><strong>项目落点</strong>：<code>BackpressureController</code> 每 5 秒检查队列长度，超阈值时发送"暂停生产"信号。</p>
+<p><strong>生产误区</strong>：</p>
+<ol>
+<li>只限制消费者并发（<code>concurrency: 5</code>）而不限制生产 → 队列仍会无限积压</li>
+<li>阈值设太低（如 10）→ 频繁触发背压，降低吞吐量</li>
+<li>没有"恢复"机制 → 一旦暂停就永久暂停</li>
+</ol>
+<p><strong>验证方法</strong>：模拟 1 万条消息入队，确认队列长度稳定在 1000 以下，无 OOM。</p>
+<p><strong>代码实现</strong>（你手写核心逻辑）：</p>
+<pre><code class="language-typescript">// apps/api/src/performance/backpressure/backpressure-controller.ts
+import { Injectable } from '@nestjs/common'
+import { InjectQueue } from '@nestjs/bullmq'
+import { Queue } from 'bullmq'
+
+export interface BackpressureConfig {
+  highWaterMark: number   // 高水位（暂停生产）
+  lowWaterMark: number    // 低水位（恢复生产）
+}
+
+@Injectable()
+export class BackpressureController {
+  private isPaused = false
+
+  constructor(
+    @InjectQueue('tool') private toolQueue: Queue,
+  ) {}
+
+  /**
+   * 检查队列长度并决策是否背压
+   * 你需要实现的核心逻辑：
+   * 1. 获取队列当前长度（waiting + active）
+   * 2. 超过 highWaterMark 时暂停生产
+   * 3. 降到 lowWaterMark 时恢复生产
+   */
+  async check(config: BackpressureConfig): Promise&lt;{ shouldPause: boolean; queueLength: number }&gt; {
+    const waitingCount = await this.toolQueue.getWaitingCount()
+    const activeCount = await this.toolQueue.getActiveCount()
+    const queueLength = waitingCount + activeCount
+
+    // 高水位：暂停
+    if (queueLength &gt; config.highWaterMark &amp;&amp; !this.isPaused) {
+      this.isPaused = true
+      console.warn(`[Backpressure] 队列超高水位 (${queueLength}/${config.highWaterMark})，暂停生产`)
+    }
+
+    // 低水位：恢复
+    if (queueLength &lt; config.lowWaterMark &amp;&amp; this.isPaused) {
+      this.isPaused = false
+      console.log(`[Backpressure] 队列降至低水位 (${queueLength}/${config.lowWaterMark})，恢复生产`)
+    }
+
+    return {
+      shouldPause: this.isPaused,
+      queueLength,
+    }
+  }
+
+  /**
+   * 定期检查（每 5 秒）
+   */
+  @Cron('*/5 * * * * *')  // 需要引入 @nestjs/schedule
+  async monitor() {
+    const result = await this.check({
+      highWaterMark: 1000,
+      lowWaterMark: 500,
+    })
+
+    if (result.shouldPause) {
+      // 发送告警（关联 Day 35 的告警系统）
+      console.error(`[Backpressure] 队列积压: ${result.queueLength}`)
+    }
+  }
+}
+</code></pre>
+<p><strong>使用示例</strong>（在生产者里检查背压）：</p>
+<pre><code class="language-typescript">// apps/api/src/agent/agent.service.ts（v3 版本）
+async executeAgent(input: string) {
+  // 1. 检查背压
+  const backpressureStatus = await this.backpressureController.check({
+    highWaterMark: 1000,
+    lowWaterMark: 500,
+  })
+
+  if (backpressureStatus.shouldPause) {
+    throw new Error('队列积压，暂时无法接受新任务')
+  }
+
+  // 2. 正常入队
+  await this.toolQueue.add('execute-tool', { input })
+}
+</code></pre>
+<h4 id="532-索引使用率分析核心代码你手写">5.3.2 索引使用率分析（核心代码，你手写）</h4>
+<p><strong>知识点 2：索引写放大</strong></p>
+<p><strong>它解决什么问题</strong>：表上有 7 个索引，每次 INSERT 要更新 7 个索引，写入 TPS 从 5000 降到 800。</p>
+<p><strong>运行机制</strong>：用 <code>pg_stat_user_indexes</code> 查询每个索引的扫描次数（<code>idx_scan</code>），扫描次数 = 0 的索引是"僵尸索引"（从未被用过），可以删除。</p>
+<p><strong>项目落点</strong>：定期运行索引使用率报告，删除 <code>idx_scan = 0</code> 的索引。</p>
+<p><strong>生产误区</strong>：</p>
+<ol>
+<li>只看索引大小不看使用率 → 大索引不一定是坏索引</li>
+<li>一次性删除所有低使用率索引 → 可能有季节性查询（如月末报表）才用的索引</li>
+<li>删除主键或外键索引 → 破坏数据完整性</li>
+</ol>
+<p><strong>验证方法</strong>：删除索引后，重跑所有查询，确认执行计划无劣化（无 Seq Scan）。</p>
+<p><strong>代码实现</strong>（你手写核心逻辑）：</p>
+<pre><code class="language-typescript">// apps/api/src/performance/query/index-analyzer.ts
+import { Injectable } from '@nestjs/common'
+import { PrismaService } from '../../persistence/prisma.service'
+
+export interface IndexUsage {
+  schemaname: string
+  tablename: string
+  indexname: string
+  idx_scan: bigint      // 索引被扫描的次数
+  idx_tup_read: bigint  // 索引返回的行数
+  idx_tup_fetch: bigint // 索引实际取回的行数
+  index_size: string    // 索引大小
+}
+
+@Injectable()
+export class IndexAnalyzer {
+  constructor(private prisma: PrismaService) {}
+
+  /**
+   * 查询索引使用率
+   * 你需要实现的核心逻辑：
+   * 1. 查询 pg_stat_user_indexes 获取扫描次数
+   * 2. 找出 idx_scan = 0 的索引（从未使用）
+   * 3. 排除主键和外键索引（不能删）
+   */
+  async getIndexUsage(tableName: string): Promise&lt;IndexUsage[]&gt; {
+    const result = await this.prisma.$queryRaw&lt;IndexUsage[]&gt;`
+      SELECT 
+        schemaname,
+        tablename,
+        indexname,
+        idx_scan,
+        idx_tup_read,
+        idx_tup_fetch,
+        pg_size_pretty(pg_relation_size(indexrelid)) AS index_size
+      FROM pg_stat_user_indexes
+      WHERE tablename = ${tableName}
+      ORDER BY idx_scan ASC
+    `
+
+    return result
+  }
+
+  /**
+   * 生成索引优化建议
+   */
+  async suggestIndexOptimization(tableName: string): Promise&lt;{
+    toDelete: string[]    // 建议删除的索引
+    toKeep: string[]      // 必须保留的索引
+    reason: string
+  }&gt; {
+    const usage = await this.getIndexUsage(tableName)
+
+    const toDelete: string[] = []
+    const toKeep: string[] = []
+
+    for (const idx of usage) {
+      // 跳过主键和外键索引
+      if (idx.indexname.includes('_pkey') || idx.indexname.includes('_fkey')) {
+        toKeep.push(idx.indexname)
+        continue
+      }
+
+      // 从未使用的索引建议删除
+      if (idx.idx_scan === 0n) {
+        toDelete.push(idx.indexname)
+      } else {
+        toKeep.push(idx.indexname)
+      }
+    }
+
+    return {
+      toDelete,
+      toKeep,
+      reason: `${toDelete.length} 个索引从未使用，建议删除以降低写放大`,
+    }
+  }
+}
+</code></pre>
+<p><strong>使用示例</strong>（生成索引优化报告）：</p>
+<pre><code class="language-typescript">// 运行索引分析
+const report = await indexAnalyzer.suggestIndexOptimization('agent_runs')
+
+console.log('建议删除的索引:', report.toDelete)
+// 输出: ['idx_status', 'idx_user_id', 'idx_tool_name']
+
+console.log('必须保留的索引:', report.toKeep)
+// 输出: ['agent_runs_pkey', 'idx_agent_runs_tenant_created', 'idx_run_id']
+
+// 生成删除 SQL
+for (const indexName of report.toDelete) {
+  console.log(`DROP INDEX CONCURRENTLY ${indexName};`)
+}
+</code></pre>
+<h4 id="533-性能监控面板核心代码你手写">5.3.3 性能监控面板（核心代码，你手写）</h4>
+<p><strong>知识点 3：性能回归检测</strong></p>
+<p><strong>它解决什么问题</strong>：优化后 P95 从 4.8s 降到 180ms，但 2 周后又升到 2s（性能回归），无人发现。</p>
+<p><strong>运行机制</strong>：持续跟踪关键指标（P95 延迟、缓存命中率、连接池占用），超过阈值时自动告警。</p>
+<p><strong>项目落点</strong>：<code>PerformanceMonitor</code> 暴露 <code>/metrics/performance</code> 接口，前端实时展示。</p>
+<p><strong>生产误区</strong>：</p>
+<ol>
+<li>只在优化时测量，优化后不持续监控 → 性能回归无感知</li>
+<li>监控指标太多（50+ 个）→ 告警疲劳</li>
+<li>阈值设太紧（P95 &lt; 100ms）→ 误报</li>
+</ol>
+<p><strong>验证方法</strong>：故意触发慢查询（如删除索引），确认告警触发。</p>
+<p><strong>代码实现</strong>（你手写核心逻辑）：</p>
+<pre><code class="language-typescript">// apps/api/src/performance/performance-monitor.ts
+import { Injectable } from '@nestjs/common'
+import { CacheStrategy } from './cache/cache-strategy'
+import { PoolMonitor } from './connection/pool-monitor'
+import { BackpressureController } from './backpressure/backpressure-controller'
+
+export interface PerformanceMetrics {
+  queryP95Ms: number          // 查询 P95 延迟
+  cacheHitRate: number        // 缓存命中率 %
+  poolUsagePercent: number    // 连接池占用 %
+  queueBacklog: number        // 队列积压
+  timestamp: string
+}
+
+@Injectable()
+export class PerformanceMonitor {
+  private latencies: number[] = []  // 滑动窗口（最近 1000 次查询）
+
+  constructor(
+    private cacheStrategy: CacheStrategy,
+    private poolMonitor: PoolMonitor,
+    private backpressureController: BackpressureController,
+  ) {}
+
+  /**
+   * 记录查询延迟
+   */
+  recordLatency(latencyMs: number) {
+    this.latencies.push(latencyMs)
+    
+    // 保持滑动窗口大小
+    if (this.latencies.length &gt; 1000) {
+      this.latencies.shift()
+    }
+  }
+
+  /**
+   * 计算 P95 延迟
+   */
+  getP95Latency(): number {
+    if (this.latencies.length === 0) return 0
+    
+    const sorted = [...this.latencies].sort((a, b) =&gt; a - b)
+    const index = Math.floor(sorted.length * 0.95)
+    return sorted[index]
+  }
+
+  /**
+   * 获取性能指标汇总
+   */
+  async getMetrics(): Promise&lt;PerformanceMetrics&gt; {
+    const poolStatus = await this.poolMonitor.getPoolStatus()
+    const cacheHitRate = await this.cacheStrategy.getHitRate()
+    const backpressureStatus = await this.backpressureController.check({
+      highWaterMark: 1000,
+      lowWaterMark: 500,
+    })
+
+    return {
+      queryP95Ms: this.getP95Latency(),
+      cacheHitRate,
+      poolUsagePercent: poolStatus.usagePercent,
+      queueBacklog: backpressureStatus.queueLength,
+      timestamp: new Date().toISOString(),
+    }
+  }
+
+  /**
+   * 检查是否触发告警
+   */
+  async checkAlerts(): Promise&lt;{ hasAlert: boolean; alerts: string[] }&gt; {
+    const metrics = await this.getMetrics()
+    const alerts: string[] = []
+
+    if (metrics.queryP95Ms &gt; 500) {
+      alerts.push(`查询 P95 超阈值: ${metrics.queryP95Ms}ms &gt; 500ms`)
+    }
+
+    if (metrics.cacheHitRate &lt; 70) {
+      alerts.push(`缓存命中率过低: ${metrics.cacheHitRate.toFixed(1)}% &lt; 70%`)
+    }
+
+    if (metrics.poolUsagePercent &gt; 80) {
+      alerts.push(`连接池占用过高: ${metrics.poolUsagePercent.toFixed(1)}% &gt; 80%`)
+    }
+
+    if (metrics.queueBacklog &gt; 1000) {
+      alerts.push(`队列积压过多: ${metrics.queueBacklog} &gt; 1000`)
+    }
+
+    return {
+      hasAlert: alerts.length &gt; 0,
+      alerts,
+    }
+  }
+}
+</code></pre>
+<hr>
+<h2 id="6-前端底子深挖浏览器缓存与请求优化">6. 前端底子深挖：浏览器缓存与请求优化</h2>
+<p>Day 37 的性能优化不只是后端——前端如何高效请求、如何利用浏览器缓存、如何避免重复请求，直接影响用户感知的"快"。</p>
+<h3 id="61-浏览器缓存策略http-缓存">6.1 浏览器缓存策略（HTTP 缓存）</h3>
+<p><strong>深挖点 1：为什么 API 响应要设置 <code>Cache-Control</code>？</strong></p>
+<p>后端已经有 Redis 缓存了，为什么还要设置 HTTP 缓存头？</p>
+<p><strong>答案</strong>：Redis 缓存是"服务端缓存"（节省 DB 查询），HTTP 缓存是"客户端缓存"（节省 HTTP 请求）。用户刷新页面时，浏览器直接用本地缓存，连 HTTP 请求都不发，比 Redis 缓存更快（0ms vs 50ms）。</p>
+<p><strong>运行机制</strong>：</p>
+<ul>
+<li><code>Cache-Control: max-age=300</code>：告诉浏览器"这个响应可以缓存 5 分钟"</li>
+<li><code>ETag: "abc123"</code>：响应指纹，浏览器下次请求时带 <code>If-None-Match: "abc123"</code>，服务器比对，若未变化返回 <code>304 Not Modified</code>（无 body，节省带宽）</li>
+</ul>
+<p><strong>项目落点</strong>：指标查询 API 设置 <code>Cache-Control: max-age=60</code>（1 分钟），Agent 执行历史设置 <code>max-age=300</code>（5 分钟）。</p>
+<p><strong>生产误区</strong>：</p>
+<ol>
+<li>所有 API 都设 <code>Cache-Control: no-cache</code> → 浪费 HTTP 请求</li>
+<li>动态数据也设长缓存（<code>max-age=86400</code>）→ 用户看到陈旧数据</li>
+<li>不设 <code>ETag</code> → 无法利用 304 协商缓存</li>
+</ol>
+<p><strong>验证方法</strong>：DevTools Network 里看到 <code>304 Not Modified</code> 或 <code>from disk cache</code>，说明浏览器缓存生效。</p>
+<h3 id="62-前端请求去重防止重复请求">6.2 前端请求去重（防止重复请求）</h3>
+<p><strong>深挖点 2：为什么需要请求去重？</strong></p>
+<p>用户快速点击"刷新"按钮 3 次，前端发了 3 个相同的 API 请求，后端执行 3 次相同查询，浪费资源。</p>
+<p><strong>运行机制</strong>：前端维护一个"请求池"（Map），相同请求（URL + 参数相同）复用同一个 Promise，等第一个请求返回后，其他请求直接用缓存结果。</p>
+<p><strong>项目落点</strong>：封装 <code>fetchWithDedup</code> 工具函数，所有 API 请求统一走这个函数。</p>
+<p><strong>代码示例</strong>（前端核心逻辑）：</p>
+<pre><code class="language-typescript">// apps/web/src/lib/fetch-with-dedup.ts
+const requestPool = new Map&lt;string, Promise&lt;any&gt;&gt;()
+
+export async function fetchWithDedup&lt;T&gt;(url: string, options?: RequestInit): Promise&lt;T&gt; {
+  const key = `${url}:${JSON.stringify(options)}`
+
+  // 如果池里已有相同请求，复用
+  if (requestPool.has(key)) {
+    console.log('[Dedup] 复用请求:', key)
+    return requestPool.get(key)!
+  }
+
+  // 发起新请求
+  const promise = fetch(url, options).then(res =&gt; res.json())
+
+  // 加入池
+  requestPool.set(key, promise)
+
+  // 请求完成后从池里移除（避免内存泄漏）
+  promise.finally(() =&gt; {
+    requestPool.delete(key)
+  })
+
+  return promise
+}
+</code></pre>
+<p><strong>使用示例</strong>：</p>
+<pre><code class="language-typescript">// 用户快速点击 3 次"刷新"
+for (let i = 0; i &lt; 3; i++) {
+  fetchWithDedup('/api/metrics/cpu')  // 只发 1 个 HTTP 请求
+}
+</code></pre>
+<h3 id="63-分页与虚拟滚动避免一次加载-8000-万行">6.3 分页与虚拟滚动（避免一次加载 8000 万行）</h3>
+<p><strong>深挖点 3：为什么后端已经 <code>LIMIT 100</code> 了，前端还要做优化？</strong></p>
+<p>后端返回 100 条记录（5KB），前端一次性渲染 100 个 DOM 节点，浏览器卡顿（尤其是移动端）。</p>
+<p><strong>运行机制</strong>：虚拟滚动（Virtual Scroll）只渲染可见区域的 DOM（如 10 条），用户滚动时动态替换。100 条记录只渲染 10 个 DOM，性能提升 10 倍。</p>
+<p><strong>项目落点</strong>：Agent 执行历史列表用虚拟滚动（<code>vue-virtual-scroller</code>），指标图表用分页（每页 20 条）。</p>
+<p><strong>代码示例</strong>（Vue3 虚拟滚动）：</p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;RecycleScroller
+    :items="runs"
+    :item-size="60"
+    key-field="id"
+    v-slot="{ item }"
+  &gt;
+    &lt;div class="run-item"&gt;
+      {{ item.id }} - {{ item.createdAt }}
+    &lt;/div&gt;
+  &lt;/RecycleScroller&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { RecycleScroller } from 'vue-virtual-scroller'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
+
+const runs = ref([])  // 100 条记录
+&lt;/script&gt;
+</code></pre>
+<p><strong>验证方法</strong>：DevTools Performance 里录制滚动操作，确认 FPS &gt; 55。</p>
+<h3 id="64-前端性能清单今日必做">6.4 前端性能清单（今日必做）</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>优化</th>
+<th>前端动作</th>
+<th>验证</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP 缓存</td>
+<td>API 设置 <code>Cache-Control</code> + <code>ETag</code></td>
+<td>DevTools 看到 304</td>
+</tr>
+<tr>
+<td>请求去重</td>
+<td>用 <code>fetchWithDedup</code> 复用 Promise</td>
+<td>3 次点击只发 1 个请求</td>
+</tr>
+<tr>
+<td>虚拟滚动</td>
+<td>长列表用 <code>vue-virtual-scroller</code></td>
+<td>FPS &gt; 55</td>
+</tr>
+<tr>
+<td>分页加载</td>
+<td>图表数据分页（每页 20 条）</td>
+<td>首屏加载 &lt; 1s</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="7-测试与验证性能测试四件套">7. 测试与验证：性能测试四件套</h2>
+<p>性能优化必须用"数据"证明，不能靠"感觉"。四件套：基线对比、压测、反证实验、架构证据。</p>
+<h3 id="71-基线对比优化前-vs-优化后">7.1 基线对比（优化前 vs 优化后）</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>指标</th>
+<th>v1 基线</th>
+<th>v2 优化</th>
+<th>v3 优化</th>
+<th>目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查询 P95 延迟</td>
+<td>4823ms</td>
+<td>178ms</td>
+<td>178ms</td>
+<td>&lt; 500ms ✅</td>
+</tr>
+<tr>
+<td>DB CPU</td>
+<td>92%</td>
+<td>18%</td>
+<td>15%</td>
+<td>&lt; 50% ✅</td>
+</tr>
+<tr>
+<td>连接池峰值占用</td>
+<td>10/10 (100%)</td>
+<td>15/20 (75%)</td>
+<td>14/20 (70%)</td>
+<td>&lt; 80% ✅</td>
+</tr>
+<tr>
+<td>缓存命中率</td>
+<td>0%</td>
+<td>85%</td>
+<td>87%</td>
+<td>&gt; 70% ✅</td>
+</tr>
+<tr>
+<td>队列峰值积压</td>
+<td>9900 (OOM)</td>
+<td>9900 (OOM)</td>
+<td>850</td>
+<td>&lt; 1000 ✅</td>
+</tr>
+<tr>
+<td>写入 TPS</td>
+<td>800</td>
+<td>800</td>
+<td>3200</td>
+<td>&gt; 2000 ✅</td>
+</tr>
+</tbody>
+</table></div><p><strong>测量方法</strong>：</p>
+<pre><code class="language-bash"># 查询 P95：用 k6 压测
+k6 run --vus 50 --duration 60s test-query.js
+
+# 缓存命中率：Redis INFO
+redis-cli INFO stats | grep keyspace_hits
+
+# 队列积压：BullMQ API
+await toolQueue.getWaitingCount()
+
+# 写入 TPS：pgbench
+pgbench -c 10 -t 1000 -f insert-test.sql p1_monitor
+</code></pre>
+<h3 id="72-压测模拟高并发">7.2 压测（模拟高并发）</h3>
+<pre><code class="language-typescript">// apps/api/test/load-test.spec.ts
+import { AgentService } from '../src/agent/agent.service'
+
+describe('压测：50 并发查询', () =&gt; {
+  it('P95 &lt; 500ms', async () =&gt; {
+    const latencies: number[] = []
+
+    // 50 并发，每个发 20 次请求
+    const promises = Array.from({ length: 50 }, async () =&gt; {
+      for (let i = 0; i &lt; 20; i++) {
+        const start = Date.now()
+        await agentService.getRecentRuns('tenant-001')
+        latencies.push(Date.now() - start)
+      }
+    })
+
+    await Promise.all(promises)
+
+    // 计算 P95
+    latencies.sort((a, b) =&gt; a - b)
+    const p95 = latencies[Math.floor(latencies.length * 0.95)]
+
+    console.log(`P95: ${p95}ms (${latencies.length} 个请求)`)
+    expect(p95).toBeLessThan(500)
+  })
+})
+</code></pre>
+<h3 id="73-反证实验-1移除索引后查询劣化">7.3 反证实验 1：移除索引后查询劣化</h3>
+<p><strong>假设</strong>：复合索引是可选的优化，移除后只是"慢一点"。</p>
+<p><strong>实验</strong>：</p>
+<pre><code class="language-sql">DROP INDEX idx_agent_runs_tenant_created;
+</code></pre>
+<p><strong>现象</strong>：</p>
+<pre><code class="language-bash">EXPLAIN ANALYZE SELECT * FROM agent_runs WHERE tenant_id = 'tenant-001' ORDER BY created_at DESC LIMIT 100;
+
+# 执行计划变回 Seq Scan
+Seq Scan on agent_runs  (cost=0.00..180000.00 rows=200000 width=128) (actual time=4720.234 rows=100 loops=1)
+Execution Time: 4823.512 ms
+</code></pre>
+<p><strong>结论</strong>：索引不是"可选"，是"必需"——移除后性能从 178ms 劣化到 4823ms（27 倍）。</p>
+<h3 id="74-反证实验-2无背压时队列-oom">7.4 反证实验 2：无背压时队列 OOM</h3>
+<p><strong>假设</strong>：背压只是"降低风险"，不是"防止 OOM"。</p>
+<p><strong>实验</strong>：</p>
+<pre><code class="language-typescript">// 注释掉 BackpressureController
+// 模拟 1 万条消息入队
+for (let i = 0; i &lt; 10000; i++) {
+  await toolQueue.add('execute-tool', { runId: `run-${i}` })
+}
+</code></pre>
+<p><strong>现象</strong>：</p>
+<pre><code>[Queue] 队列长度: 9900
+[Node.js] Heap usage: 1.8 GB / 2 GB
+[Node.js] Process killed: OOM
+</code></pre>
+<p><strong>结论</strong>：背压是"必需"防护——无背压时队列积压直接导致 OOM。</p>
+<h3 id="75-架构证据四件套">7.5 架构证据四件套</h3>
+<ol>
+<li><strong>性能 ADR</strong>：记录优化前后数据、决策理由、权衡（见 <code>docs/adr/003-performance-optimization-day37.md</code>）</li>
+<li><strong>执行计划对比</strong>：v1 的 Seq Scan 截图 vs v3 的 Index Scan 截图</li>
+<li><strong>压测报告</strong>：k6 输出的 P95/P99/TPS 数据</li>
+<li><strong>监控面板截图</strong>：Grafana 或自建面板展示 P95 趋势、缓存命中率趋势</li>
+</ol>
+<hr>
+<h2 id="8-通关检查清单v3-规范-11-项">8. 通关检查清单（v3 规范 11 项）</h2>
+<ul>
+<li>[x] §0 本日在 90 天路线图的坐标已说明（阶段二第 7 天，承 Day 32/34/35，启 Day 38）</li>
+<li>[x] §1.1 用户场景 5 个（慢查询、连接池耗尽、缓存命中率低、队列背压、写放大）</li>
+<li>[x] §1.2 模块职责（QueryAnalyzer、IndexDesigner、PoolMonitor、CacheStrategy、BackpressureController）</li>
+<li>[x] §1.3 三版演进（v1 基线 → v2 索引+缓存+连接池 → v3 背压+索引瘦身+监控）</li>
+<li>[x] §1.4 完整目录结构（performance/ 模块，5 个架构问题，依赖箭头，3 个灵魂拷问）</li>
+<li>[x] §1.5 脚手架检查（Day 29/32/35 依赖，Prisma 迁移脚本，连接池配置）</li>
+<li>[x] §2 开发节奏 6 小时（40min 原理 → 30min 基线 → 60min 索引 → 70min 缓存/连接池 → 60min 背压 → 100min 压测）</li>
+<li>[x] §3 v1 基线测量（5 个性能问题，基线数据表格）</li>
+<li>[x] §4 v2 单点优化（复合索引、连接池、缓存策略，单元测试 + 集成测试）</li>
+<li>[x] §5 v3 生产级（背压控制、索引瘦身、性能监控，3 个知识点五要素）</li>
+<li>[x] §6 前端底子（HTTP 缓存、请求去重、虚拟滚动）</li>
+<li>[x] §7 测试四件套（基线对比、压测、2 个反证实验、架构证据）</li>
+</ul>
+<hr>
+<h2 id="9-从今天的增量到下一站">9. 从今天的增量到下一站</h2>
+<p>今天你把系统性能从"裸奔"（4.8s 查询、连接池耗尽、无缓存）优化到"生产级"（&lt; 200ms 查询、缓存命中率 &gt; 80%、队列背压防 OOM）。但你会发现一个新问题：<strong>性能优化是"一次性动作"还是"持续过程"？</strong></p>
+<p>生产环境的性能不是"优化一次就永远快"——数据量增长（8000 万 → 1 亿）、查询模式变化（新增按 <code>userId</code> 查询）、流量峰值（双 11）都会让性能回归。Day 38 起你会建立"性能回归自动检测 + 自动优化建议"系统，让性能优化从"人工介入"变成"自动巡检"。</p>
+<p>今天手写的每一个性能指标（P95、命中率、连接池占用），都是明天自动化监控的数据源。</p>
+<hr>
+<h2 id="10-本日小结">10. 本日小结</h2>
+<p><strong>标题党 30 字</strong>：从慢查询全表扫描 4.8s 到复合索引 + 缓存 + 背压的 180ms，用数据证明每一步优化的价值。</p>
+<p><strong>三句话</strong>：</p>
+<ol>
+<li>性能优化不是"感觉快了"，而是用基线对比（优化前 4.8s vs 优化后 178ms）+ 压测数据（P95 &lt; 500ms）+ 反证实验（移除索引劣化 27 倍）证明。</li>
+<li>索引、缓存、连接池、背压是四个独立的优化点,但它们组合起来才是"全链路性能治理"——索引降低查询时间、缓存减少 DB 请求、连接池防止耗尽、背压防止 OOM。</li>
+<li>性能优化的终极目标不是"快"，而是"快且稳定"——P95 &lt; 500ms 是"快"，持续监控 + 告警 + 自动巡检是"稳定"。</li>
+</ol>
+<hr>
+<h2 id="11-课后三道核心问题必答先于教师五连问">11. 课后三道核心问题（必答，先于教师五连问）</h2>
+<h3 id="问题-1请从今天项目的真实入口到最终输出解释性能优化的数据流或控制流当天知识链query-plan复合索引连接池缓存命中流背压分别在哪一层起作用为什么按这个顺序学习">问题 1：请从今天项目的真实入口到最终输出，解释"性能优化"的数据流或控制流；当天知识链"Query plan、复合索引、连接池、缓存命中、流背压"分别在哪一层起作用，为什么按这个顺序学习？</h3>
+<p><strong>数据流</strong>（查询链路）：</p>
+<pre><code>用户请求 /api/runs/recent
+  → CacheStrategy.get()（查缓存，L1 防线）
+  → 命中 → 直接返回（&lt; 10ms）
+  → Miss → PoolMonitor.acquire()（获取连接，L2 防线）
+  → QueryAnalyzer.execute()（执行查询，用复合索引）
+  → PostgreSQL Index Scan（&lt; 200ms）
+  → CacheStrategy.set()（写缓存）
+  → 返回结果
+  → PerformanceMonitor.recordLatency()（记录延迟）
+</code></pre>
+<p><strong>控制流</strong>（队列链路）：</p>
+<pre><code>Agent 执行产生消息
+  → BackpressureController.check()（检查队列长度，L1 防线）
+  → 超阈值 → 暂停生产（返回 503）
+  → 未超 → 入队
+  → 消费者处理（concurrency: 5）
+  → 写入 DB（索引优化降低写成本）
+</code></pre>
+<p><strong>知识链分层</strong>：</p>
+<ul>
+<li><strong>Query plan</strong>：QueryAnalyzer 分析层（定位瓶颈）</li>
+<li><strong>复合索引</strong>：数据库存储层（加速查询）</li>
+<li><strong>连接池</strong>：连接管理层（防止耗尽）</li>
+<li><strong>缓存命中</strong>：缓存层（减少 DB 请求）</li>
+<li><strong>流背压</strong>：队列控制层（防止 OOM）</li>
+</ul>
+<p><strong>为什么按这个顺序学习</strong>：</p>
+<ol>
+<li>先学 Query plan（分析工具），才能定位"哪个查询慢"</li>
+<li>再学复合索引（根本解决），才能优化查询本身</li>
+<li>再学连接池（资源管理），才能支撑高并发</li>
+<li>再学缓存（减少请求），才能进一步降低 DB 负载</li>
+<li>最后学背压（防御机制），才能保证系统不崩溃</li>
+</ol>
+<p>这个顺序是"从诊断到优化到防护"的分层学习路径。</p>
+<h3 id="问题-2如果故意移除今天最关键的保护机制线上会出现什么可观察现象请给出最小复现定位证据恢复动作和一条防复发测试">问题 2：如果故意移除今天最关键的保护机制，线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</h3>
+<p><strong>移除的机制</strong>：复合索引（<code>idx_agent_runs_tenant_created</code>）。</p>
+<p><strong>可观察现象</strong>：查询 P95 从 178ms 飙到 4823ms，DB CPU 从 15% 飙到 92%，用户看到页面加载超时。</p>
+<p><strong>最小复现</strong>：</p>
+<pre><code class="language-sql">-- 1. 删除索引
+DROP INDEX idx_agent_runs_tenant_created;
+
+-- 2. 执行查询
+EXPLAIN ANALYZE 
+SELECT * FROM agent_runs 
+WHERE tenant_id = 'tenant-001' 
+ORDER BY created_at DESC 
+LIMIT 100;
+
+-- 3. 观察执行计划
+-- 预期：Seq Scan + Sort，耗时 &gt; 4s
+</code></pre>
+<p><strong>定位证据</strong>：</p>
+<pre><code>-- 查询执行计划
+Seq Scan on agent_runs  (cost=0.00..180000.00 rows=200000 width=128) (actual time=4720.234 rows=100 loops=1)
+Filter: (tenant_id = 'tenant-001')
+Rows Removed by Filter: 79800000
+Execution Time: 4823.512 ms
+
+-- 查询慢查询日志
+SELECT query, calls, mean_exec_time 
+FROM pg_stat_statements 
+ORDER BY mean_exec_time DESC 
+LIMIT 10;
+-- 预期：该查询 mean_exec_time &gt; 4000ms
+</code></pre>
+<p><strong>恢复动作</strong>：</p>
+<pre><code class="language-sql">-- 1. 重建索引
+CREATE INDEX CONCURRENTLY idx_agent_runs_tenant_created 
+ON agent_runs(tenant_id, created_at DESC);
+
+-- 2. 验证执行计划
+EXPLAIN ANALYZE 
+SELECT * FROM agent_runs 
+WHERE tenant_id = 'tenant-001' 
+ORDER BY created_at DESC 
+LIMIT 100;
+-- 预期：Index Scan，耗时 &lt; 200ms
+
+-- 3. 重启服务（更新 Prisma 连接池）
+pm2 restart api
+</code></pre>
+<p><strong>防复发测试</strong>（E2E）：</p>
+<pre><code class="language-typescript">// apps/api/test/performance-regression.e2e-spec.ts
+describe('性能回归检测', () =&gt; {
+  it('查询 P95 &lt; 500ms（防止索引丢失）', async () =&gt; {
+    const latencies: number[] = []
+
+    for (let i = 0; i &lt; 100; i++) {
+      const start = Date.now()
+      await agentService.getRecentRuns('tenant-001')
+      latencies.push(Date.now() - start)
+    }
+
+    latencies.sort((a, b) =&gt; a - b)
+    const p95 = latencies[Math.floor(latencies.length * 0.95)]
+
+    expect(p95).toBeLessThan(500)  // 若索引丢失，P95 会 &gt; 4000ms，测试失败
+  })
+
+  it('验证索引存在', async () =&gt; {
+    const indexes = await prisma.$queryRaw`
+      SELECT indexname 
+      FROM pg_indexes 
+      WHERE tablename = 'agent_runs'
+    `
+    
+    const indexNames = indexes.map((row: any) =&gt; row.indexname)
+    expect(indexNames).toContain('idx_agent_runs_tenant_created')
+  })
+})
+</code></pre>
+<h3 id="问题-3请引用今天的具体代码测试和架构证据证明项目目标已经达到再说明当前实现距离企业生产标准还缺什么下一步如何演进而不破坏已有合同">问题 3：请引用今天的具体代码、测试和架构证据，证明项目目标已经达到；再说明当前实现距离企业生产标准还缺什么，下一步如何演进而不破坏已有合同。</h3>
+<p><strong>代码证据</strong>：</p>
+<ul>
+<li><code>apps/api/src/performance/cache/cache-strategy.ts</code> 第 23 行：<code>getCacheKey()</code> 方法实现标准化缓存键（相同查询生成相同键）</li>
+<li><code>apps/api/src/performance/backpressure/backpressure-controller.ts</code> 第 28 行：<code>check()</code> 方法实现背压检查（超 highWaterMark 暂停生产）</li>
+<li><code>apps/api/prisma/migrations/add_composite_indexes.sql</code> 第 3 行：<code>CREATE INDEX idx_agent_runs_tenant_created</code> 复合索引 DDL</li>
+</ul>
+<p><strong>测试证据</strong>：</p>
+<ul>
+<li><code>apps/api/test/performance.e2e-spec.ts</code> 第 15 行：查询 P95 &lt; 500ms 测试（100 次查询，P95 = 178ms）</li>
+<li><code>apps/api/test/performance.e2e-spec.ts</code> 第 35 行：缓存命中率 &gt; 70% 测试（100 次查询，命中率 = 87%）</li>
+</ul>
+<p><strong>架构证据</strong>：</p>
+<ul>
+<li>基线对比表（§7.1）：展示优化前后 6 个指标变化（P95 从 4823ms 到 178ms，缓存命中率从 0% 到 87%）</li>
+<li>执行计划对比（§3.3 vs §4.3.1）：展示 Seq Scan → Index Scan 的变化</li>
+<li>性能 ADR 文档（<code>docs/adr/003-performance-optimization-day37.md</code>）：记录优化决策和权衡</li>
+</ul>
+<p><strong>项目目标达成</strong>：</p>
+<ul>
+<li>✅ 查询 P95 &lt; 500ms（实际 178ms）</li>
+<li>✅ 连接池峰值占用 &lt; 80%（实际 70%）</li>
+<li>✅ 缓存命中率 &gt; 70%（实际 87%）</li>
+<li>✅ 队列积压 &lt; 1000（实际 850）</li>
+<li>✅ 写入 TPS &gt; 2000（实际 3200）</li>
+</ul>
+<p><strong>距离企业生产标准还缺</strong>：</p>
+<ol>
+<li><strong>自动索引建议</strong>：当前索引是人工分析 <code>pg_stat_statements</code> 后手动创建，生产环境需要"自动扫描慢查询 + 自动建议索引"（类似 AWS RDS Performance Insights）</li>
+<li><strong>动态缓存 TTL</strong>：当前 TTL 写死（热数据 5min、冷数据 1h），生产环境需要"根据访问频率动态调整 TTL"</li>
+<li><strong>分布式缓存一致性</strong>：当前只有单机 Redis，生产环境需要"多级缓存（L1 内存 + L2 Redis）+ 缓存失效广播"</li>
+<li><strong>查询超时熔断</strong>：当前慢查询会一直执行到完成，生产环境需要"查询超时自动 kill（statement_timeout）+ 熔断机制"</li>
+</ol>
+<p><strong>下一步演进（不破坏合同）</strong>：</p>
+<ul>
+<li>在 <code>QueryAnalyzer</code> 里新增 <code>suggestIndex()</code> 方法（自动分析慢查询并建议索引），不改变现有查询逻辑</li>
+<li>在 <code>CacheStrategy</code> 里新增 <code>dynamicTTL()</code> 方法（根据访问频率调整 TTL），不改变现有缓存键格式</li>
+<li>新增 <code>L1Cache</code>（内存缓存）+ <code>CacheInvalidationBus</code>（失效广播），不改变现有 Redis 缓存接口</li>
+<li>在 Prisma 连接池配置里新增 <code>statement_timeout</code>（查询超时），不改变现有连接池大小</li>
+</ul>
+<hr>
+<h2 id="12-真实项目情境题联网更新-2026-07-13">12. 真实项目情境题（联网更新 2026-07-13）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>
+<p>模拟情境：Agent 时间线表有 8000 万行，按 tenantId、runId、createdAt 查询的 P95 从 180 ms 升到 4.8 s，DB CPU 达 92%。请提交 EXPLAIN ANALYZE、慢查询和连接池指标，先限制大范围查询，再设计复合索引或分区并修正 SQL，使用同数据集对比延迟、写放大和回归。
+依据：<a href="https://www.postgresql.org/docs/current/transaction-iso.html" target="_blank" rel="noopener noreferrer">PostgreSQL Transaction Isolation</a></p>
+</li>
+<li>
+<p>模拟情境：流式消费者变慢后连接池占用 95%，Redis 命中率由 82% 降至 24%，请求开始级联超时。请关联 event-loop lag、DB wait、缓存 miss 和流背压指标，先限并发与降级非关键查询，再修复连接生命周期、缓存键和背压，验证峰值流量下池不耗尽且数据不陈旧。
+依据：<a href="https://docs.nestjs.com/techniques/queues" target="_blank" rel="noopener noreferrer">NestJS Queues</a></p>
+</li>
+</ol>
+<p>知识映射：对应 query plan、索引、连接池、缓存与流背压。</p>
+<hr>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 -&gt; 边界一致性 -&gt; 线上事故 -&gt; 工程权衡 -&gt; 架构演进"现场提出 5 道问题。五连问不预先固定，也不由下面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<hr>
+<h2 id="14-pdf-面试题映射">14. PDF 面试题映射</h2>
+<ol>
+<li>
+<p>全栈开发中如何设计数据库表结构以应对高频读写？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E7%25BE%258E%25E5%259B%25A2%25E5%2589%258D%25E7%25AB%25AF%25E5%2585%25A8%25E6%25A0%2588%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026美团前端全栈开发》</a>，第 9 页。</p>
+</li>
+<li>
+<p>Redis 在项目中主要承担什么作用，如何面对穿透、击穿和雪崩？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E7%25BE%258E%25E5%259B%25A2%25E5%2589%258D%25E7%25AB%25AF%25E5%2585%25A8%25E6%25A0%2588%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026美团前端全栈开发》</a>，第 9 页。</p>
+</li>
+</ol>
+<p>题目说明：直接匹配索引、读写、缓存和数据一致性；必须用真实 query plan 与压测数据作答。</p>
+<hr>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day37-old.html">查看 Day 37 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/36.html">← Day 36 · API 安全</a>
+            <a href="/ai-teacher-agent-devolop/day/38.html">Day 38 · 稳定性 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E5%9B%BE%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">§0 在 90 天路线图中的位置</a></li><li><a href="#1-%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E8%81%8C%E8%B4%A3%E5%88%92%E5%88%86">1. 功能模块职责划分</a></li><li><a href="#14-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%845-%E4%B8%AA%E7%BB%B4%E5%BA%A6%E5%AE%8C%E6%95%B4%E5%B1%95%E7%A4%BA">1.4 目录结构（5 个维度完整展示）</a></li><li><a href="#15-%E4%BB%8A%E5%A4%A9%E5%8A%A8%E6%89%8B%E5%89%8D%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6%E6%A3%80%E6%9F%A5">1.5 今天动手前的脚手架检查</a></li><li><a href="#2-%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%BC%80%E5%8F%91%E8%8A%82%E5%A5%8F3-%E5%B0%8F%E6%97%B690-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">2. 今天的开发节奏（3 小时：90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E9%97%AE%E9%A2%98%E6%9A%B4%E9%9C%B2-%E5%9F%BA%E7%BA%BF%E6%B5%8B%E9%87%8F">3. v1：问题暴露 + 基线测量</a></li><li><a href="#4-v2%E7%B4%A2%E5%BC%95-%E8%BF%9E%E6%8E%A5%E6%B1%A0-%E7%BC%93%E5%AD%98%E5%8D%95%E7%82%B9%E4%BC%98%E5%8C%96">4. v2：索引 + 连接池 + 缓存（单点优化）</a></li><li><a href="#5-v3%E8%83%8C%E5%8E%8B%E6%8E%A7%E5%88%B6-%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96-%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E7%94%9F%E4%BA%A7%E7%BA%A7">5. v3：背压控制 + 索引优化 + 性能监控（生产级）</a></li><li><a href="#6-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E6%B7%B1%E6%8C%96%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E4%B8%8E%E8%AF%B7%E6%B1%82%E4%BC%98%E5%8C%96">6. 前端底子深挖：浏览器缓存与请求优化</a></li><li><a href="#7-%E6%B5%8B%E8%AF%95%E4%B8%8E%E9%AA%8C%E8%AF%81%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%9B%9B%E4%BB%B6%E5%A5%97">7. 测试与验证：性能测试四件套</a></li><li><a href="#8-%E9%80%9A%E5%85%B3%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95v3-%E8%A7%84%E8%8C%83-11-%E9%A1%B9">8. 通关检查清单（v3 规范 11 项）</a></li><li><a href="#9-%E4%BB%8E%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%A2%9E%E9%87%8F%E5%88%B0%E4%B8%8B%E4%B8%80%E7%AB%99">9. 从今天的增量到下一站</a></li><li><a href="#10-%E6%9C%AC%E6%97%A5%E5%B0%8F%E7%BB%93">10. 本日小结</a></li><li><a href="#11-%E8%AF%BE%E5%90%8E%E4%B8%89%E9%81%93%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E5%BF%85%E7%AD%94%E5%85%88%E4%BA%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">11. 课后三道核心问题（必答，先于教师五连问）</a></li><li><a href="#12-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-13">12. 真实项目情境题（联网更新 2026-07-13）</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%98%A0%E5%B0%84">14. PDF 面试题映射</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

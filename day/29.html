@@ -1,0 +1,1733 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 29 · 队列/BullMQ（v1 请求内长任务 → v2 队列 + 重试 → v3 jobId 幂等 + 死信 + 取消） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html" aria-current="page">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/05.html">第 5 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 29</p>
+        <h1>队列/BullMQ（v1 请求内长任务 → v2 队列 + 重试 → v3 jobId 幂等 + 死信 + 取消）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段一（Day 1-30，前端 -&gt; AI 前端）。所有 BFF、NestJS、数据库、队列和 Agent 后端增量都必须服务于 <code>p1-monitor</code> 的真实 AI 前端链路，不得另起无关 Demo。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+</blockquote>
+<p>任务版本：标准版
+日期与时长：2026-08-11 周二，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor\apps\api</code>
+角色视角：完成 Day 28 Redis 缓存（Cache-aside + 限流 + 幂等键），第一次遇到"文档摄取在 HTTP 请求里跑 30 秒、用户重试后重复处理、请求超时返回 500 但后台还在跑"痛点的开发者</p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p>90 天转型路线的三个阶段：</p>
+<pre><code>阶段一（Day 1-30）：前端 → AI 前端
+   项目：p1-monitor 智能运维监控（Vue 3 + TypeScript + WebSocket + Agent UI）
+
+阶段二（Day 31-60）：AI 前端 → AI 全栈
+   项目：p1-monitor 后端 + p1-monitor 全栈（NestJS + LLM 集成 + RAG）
+   Day 21：NestJS 架构深化（模块边界 + DI scope）
+   Day 22：API 合同（DTO + OpenAPI + 版本兼容）
+   Day 23：数据建模（Conversation/Message/Citation 聚合 + 索引）
+   Day 24：鉴权/权限（JWT + RBAC/ABAC + 资源授权）
+   Day 25：后端测试（测试金字塔 + mutation）
+   Day 26：流式 BFF（流透传 + 背压 + 取消）
+   Day 27：Postgres 持久化（ACID + Outbox + 乐观锁 + 软删除）
+   Day 28：Redis 缓存（Cache-aside + TTL + 限流 + 幂等键）
+   Day 29：队列/BullMQ（jobId 幂等 + 重试退避 + 死信 + 取消）  ← 今天在这里
+   Day 30：M3 门禁 + 全栈端到端
+
+阶段三（Day 61-90）：AI 全栈 → AI Agent 工程师
+   项目：p2-agent-workbench 多 Agent 协同工作台
+</code></pre>
+<p><strong>Day 29 在阶段一第 9 天</strong>。Day 28 解决了"读多写少数据加速"（缓存），但还没解决"长任务异步化"（队列）。Day 15-20 LangChain RAG 要做"文档摄取"（切块 + embedding），一个 100MB PDF 摄取耗时 30 秒；Day 12 Agent Loop 的"长诊断"（调模型 + 多轮工具）也可能耗时 20 秒。如果这些长任务都在 HTTP 请求里跑，就会出现：请求超时（浏览器 60 秒 timeout）、Event Loop 阻塞（其他请求变慢）、用户重试导致重复处理（没有幂等键）、任务失败不能重试（进程崩溃就丢了）。今天要把长任务从请求里搬到 <strong>BullMQ 队列</strong>，请求快速返回 jobId、worker 异步执行、失败自动重试、毒任务进死信、用户能取消。</p>
+<h3 id="到-day-28-结束时项目已具备的能力">到 Day 28 结束时项目已具备的能力</h3>
+<ul>
+<li><strong>数据建模</strong>（Day 23）：Conversation / Message / Citation / Diagnosis 聚合</li>
+<li><strong>持久化</strong>（Day 27）：Outbox 一致性 + 乐观锁 + 软删除</li>
+<li><strong>缓存</strong>（Day 28）：Redis Cache-aside + 限流 + 分布式幂等键</li>
+<li><strong>缺失的一块</strong>：文档摄取（切块 + embedding）和长诊断（多轮 Agent Loop）都在 HTTP 请求里同步执行——一个 100MB PDF 摄取 30 秒，浏览器超时返回 500，但后台还在跑（占着内存和 DB 连接）；用户刷新重试后，又启动一个重复任务；进程崩溃时，未完成任务直接丢失，没有重试机制</li>
+</ul>
+<h3 id="今天要解决的-4-个问题">今天要解决的 4 个问题</h3>
+<ol>
+<li>
+<p><strong>问题 1：长任务阻塞 HTTP 请求 → 超时 + Event Loop 阻塞</strong>
+用户上传一个 100MB PDF，请求 <code>POST /documents/ingest</code> 在后端要执行"切块（RecursiveCharacterTextSplitter）+ embedding（调 OpenAI embedding API）"，耗时 30 秒。30 秒内浏览器一直等待，其他用户的请求也变慢（Node.js 单线程 Event Loop 被阻塞）。60 秒后浏览器超时返回 <code>Request Timeout</code>，但后台还在执行摄取（浪费资源、用户看不到进度）。<strong>标准解是队列异步化：请求快速返回 jobId（200ms），worker 进程异步执行摄取，前端轮询 job 状态或通过 WebSocket 推送进度。</strong></p>
+</li>
+<li>
+<p><strong>问题 2：用户重试 → 重复处理（无 jobId 幂等）</strong>
+用户上传 PDF 后等了 60 秒超时，浏览器显示"上传失败"，用户点"重试"又上传一次。后端收到两次请求，启动两个摄取任务，同一个 PDF 被切块两次、写入两份重复的 chunks。如果用 Day 28 的 <code>requestId</code> 幂等键，能防止重复调模型，但<strong>队列的幂等性不是靠 Redis key，而是靠 jobId——同一个 jobId 在队列里只存在一次，重复添加时返回已有 job</strong>。jobId 应该用文档的内容哈希（<code>sha256(fileContent)</code>），保证"同一文件只摄取一次"。</p>
+</li>
+<li>
+<p><strong>问题 3：任务失败不能重试 → 进程崩溃丢任务</strong>
+worker 在写入第 3 个 chunk 后崩溃（例如 DB 连接断开、OOM），任务直接丢失。重启后没有重试机制，用户的文档永远停留在"摄取中"状态。<strong>标准解是队列的自动重试 + 退避策略</strong>：BullMQ 会在失败后自动重新入队（最多重试 N 次），每次重试间隔指数增长（1s / 2s / 4s / 8s...，避免瞬间重试把 DB 打挂）。重试 N 次后仍失败的任务进入<strong>死信队列（DLQ）</strong>，人工介入处理。</p>
+</li>
+<li>
+<p><strong>问题 4：毒任务无限重试 → 占满队列 + 用户无法取消</strong>
+某个 PDF 格式损坏，解析时必定抛错。worker 重试 100 次全失败，占满队列（后续正常任务被阻塞）。用户点"取消"按钮，但 worker 没有取消检查（<code>signal.aborted</code>），继续重试。<strong>标准解是有限重试 + 死信 + 取消传播</strong>：最多重试 3 次就进死信；worker 在每个 chunk 写入前检查 <code>signal.aborted</code>，取消时主动结束并标记 job 为 <code>cancelled</code>。</p>
+</li>
+</ol>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<p>在 <code>p1-monitor/apps/api</code> 里交付一个模块 <strong><code>QueueModule</code></strong>：用 BullMQ 把"文档摄取"和"长诊断"从 HTTP 请求迁入队列，请求快速返回 jobId、worker 异步执行、jobId 幂等（同一文件只摄取一次）、失败自动重试（最多 3 次 + 退避）、毒任务进死信、用户能取消。</p>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p><strong>场景 1：文档摄取队列化（请求快速返回 jobId）</strong></p>
+<pre><code>时间轴（v1 vs v3）：
+
+v1 行为（请求内同步执行）：
+15:00:00.000  用户：POST /documents/ingest  Body: {file: 100MB PDF}
+  → 后端同步执行摄取（切块 + embedding）
+  → 30 秒后返回 {chunks: [...]}
+  浏览器等待 30 秒（白屏、无进度）
+
+v3 行为（队列异步化）：
+15:00:00.000  用户：POST /documents/ingest  Body: {file: 100MB PDF}
+  → 后端：计算 jobId = sha256(fileContent)
+  → 添加到 BullMQ 队列：queue.add('ingest', {fileId, jobId}, {jobId})
+  → 200ms 后返回 {jobId: 'job-abc-123', status: 'waiting'}
+  
+15:00:00.200  前端收到 jobId，开始轮询状态：
+  GET /jobs/job-abc-123/status  → {status: 'active', progress: 10}
+  
+15:00:10.000  worker 执行中（切块完成，开始 embedding）
+  GET /jobs/job-abc-123/status  → {status: 'active', progress: 50}
+  
+15:00:30.000  worker 完成
+  GET /jobs/job-abc-123/status  → {status: 'completed', result: {chunks: [...]}}
+</code></pre>
+<p>用户体验：</p>
+<ul>
+<li>v1：浏览器等 30 秒（白屏），超时返回 500</li>
+<li>v3：200ms 返回 jobId，前端显示进度条（10% → 50% → 100%），可以关闭页面、稍后回来看结果</li>
+</ul>
+<p><strong>场景 2：jobId 幂等（重复上传不重复处理）</strong></p>
+<pre><code>时间轴（同一文件上传两次）：
+
+15:00:00.000  用户第 1 次上传：POST /documents/ingest  Body: {file: PDF-A}
+  → jobId = sha256(PDF-A 内容) = 'job-abc-123'
+  → queue.add('ingest', {fileId: 'f-01', jobId}, {jobId: 'job-abc-123'})
+  → 返回 {jobId: 'job-abc-123', status: 'waiting'}
+  → worker 开始执行
+
+15:00:05.000  用户第 2 次上传（浏览器超时后重试）：POST /documents/ingest  Body: {file: PDF-A}
+  → jobId = sha256(PDF-A 内容) = 'job-abc-123'（同一个）
+  → queue.add('ingest', {fileId: 'f-02', jobId}, {jobId: 'job-abc-123'})
+  → BullMQ 发现 jobId 已存在，返回已有 job
+  → 返回 {jobId: 'job-abc-123', status: 'active'}（不创建新 job）
+
+最终：只有 1 个 worker 在执行，PDF-A 只摄取一次
+</code></pre>
+<p><strong>场景 3：失败重试 + 死信（毒任务不占满队列）</strong></p>
+<pre><code>时间轴（worker 崩溃 + 毒文档）：
+
+15:10:00.000  job-001 开始执行（正常 PDF）
+  → worker 写入 chunk 1/10
+  → worker 写入 chunk 2/10
+  → worker 写入 chunk 3/10
+  → worker 崩溃（OOM）
+
+15:10:05.000  BullMQ 自动重试 job-001（第 1 次重试，延迟 1 秒）
+  → worker 重新执行（从头开始，幂等写入）
+  → 成功完成
+
+15:15:00.000  job-002 开始执行（毒文档，PDF 格式损坏）
+  → worker 解析 PDF → 抛 ParsingError
+  → 标记失败
+
+15:15:01.000  第 1 次重试（延迟 1 秒）
+  → worker 再次解析 → 抛 ParsingError
+  → 标记失败
+
+15:15:03.000  第 2 次重试（延迟 2 秒）
+  → worker 再次解析 → 抛 ParsingError
+  → 标记失败
+
+15:15:07.000  第 3 次重试（延迟 4 秒）
+  → worker 再次解析 → 抛 ParsingError
+  → 达到最大重试次数（3 次），移入死信队列（DLQ）
+
+15:15:08.000  job-003 开始执行（正常 PDF）
+  → 不被 job-002 阻塞，正常完成
+</code></pre>
+<p>运维观察：</p>
+<ul>
+<li>死信队列里有 1 个 job-002（毒文档）</li>
+<li>主队列继续处理后续任务（不被阻塞）</li>
+<li>人工介入：查看 job-002 的错误日志、修复格式、手动重新入队</li>
+</ul>
+<p><strong>场景 4：用户取消（传播到 worker）</strong></p>
+<pre><code>时间轴（用户点取消按钮）：
+
+15:20:00.000  job-004 开始执行（100MB PDF，预计 30 秒）
+  → worker 写入 chunk 1/100
+
+15:20:05.000  用户点"取消"按钮
+  → 前端：PUT /jobs/job-004/cancel
+  → 后端：标记 job.data.cancelled = true
+
+15:20:05.100  worker 在写入 chunk 6/100 前检查取消信号
+  → if (job.data.cancelled) { throw new JobCancelledError() }
+  → worker 主动结束，标记 job.status = 'failed'（reason: 'cancelled'）
+
+15:20:05.200  前端轮询状态
+  → GET /jobs/job-004/status  → {status: 'failed', reason: 'cancelled'}
+  → 显示"已取消"
+</code></pre>
+<p>最终用户体验：</p>
+<ul>
+<li>请求快速返回（200ms）</li>
+<li>重复上传不重复处理（jobId 幂等）</li>
+<li>worker 崩溃自动重试（最多 3 次）</li>
+<li>毒任务进死信（不阻塞后续任务）</li>
+<li>用户能取消长任务（5 秒内停止）</li>
+</ul>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<ul>
+<li><strong>输入</strong>：文档摄取请求（<code>POST /documents/ingest</code>）、长诊断请求（<code>POST /agent/runs</code>）、取消请求（<code>PUT /jobs/:id/cancel</code>）</li>
+<li><strong>输出</strong>：快速返回 jobId（200ms）+ worker 异步执行 + WebSocket 推送进度 + 失败自动重试 + 死信队列</li>
+<li><strong>对齐后续</strong>：今天的 <strong>jobId 幂等 + 重试退避 + 死信</strong> 是 Day 30 M3 门禁"可靠性"验收项的核心（要求长任务不阻塞请求、失败可重试、毒任务不占满队列）；也是阶段三 p2-agent-workbench 多 Agent 协同时的异步任务基座</li>
+</ul>
+<h3 id="13-三版演进的目标">1.3 三版演进的目标</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>实现的功能</th>
+<th>代码结构</th>
+<th>引入的知识</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td>请求内同步执行长任务（阻塞）</td>
+<td>单文件 <code>documents.controller.ts</code>（直接调摄取逻辑）</td>
+<td>为什么"请求内长任务"有风险（超时 + 阻塞 + 不可重试）</td>
+</tr>
+<tr>
+<td><strong>v1 痛点</strong></td>
+<td>请求超时、Event Loop 阻塞、重复处理、失败丢任务</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>v1 + <strong>BullMQ 队列 + 重试退避</strong></td>
+<td>拆出 <code>queue/</code> 模块（producer / worker / retry）</td>
+<td>BullMQ 基础、job 状态、重试退避策略</td>
+</tr>
+<tr>
+<td><strong>v2 痛点</strong></td>
+<td>无 jobId 幂等（重复添加）、无死信（毒任务占满队列）、无取消（用户点取消按钮无效）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>v2 + <strong>jobId 幂等 + 死信 + 取消传播</strong></td>
+<td>完整分层（producer / worker / job-registry / dead-letter / cancel）</td>
+<td>jobId 幂等、死信队列、取消传播、进度推送</td>
+</tr>
+</tbody>
+</table></div><p><strong>用户最终在项目里交付的是 v3</strong>。v1 和 v2 是教学用的过渡版本。</p>
+<hr>
+<h2 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h2>
+<p><strong>为什么放在最前面</strong>：队列涉及 5 个独立关注点（producer 添加任务 / worker 执行任务 / jobId 幂等 / 重试退避 + 死信 / 取消传播），如果不先立起骨架，写到一半就会把"job 状态查询"糊进 controller、把重试逻辑散落在 worker、把取消判断写成 if 散落、把死信处理当成普通异常捕获。看完这棵树，下面章节再出现 <code>queue/worker/ingest.worker.ts</code> 时，你就能立刻定位它属于"worker 执行层"而不是 producer。</p>
+<p><strong>今天在 <code>p1-monitor/apps/api/src/</code> 下要建立的完整目录树（v3 完整版）</strong>：</p>
+<pre><code>apps/api/src/
+├── queue/                                      ← 【本日新增】BullMQ 队列模块
+│   ├── producer/
+│   │   ├── queue.producer.ts                   ← 添加 job（带 jobId 幂等）
+│   │   └── queue.producer.spec.ts              ← producer 单测
+│   ├── worker/
+│   │   ├── ingest.worker.ts                    ← 文档摄取 worker
+│   │   ├── diagnosis.worker.ts                 ← 长诊断 worker
+│   │   └── base.worker.ts                      ← worker 基类（取消检查）
+│   ├── job-registry/
+│   │   ├── job-status.service.ts               ← job 状态查询
+│   │   └── job-status.service.spec.ts          ← 状态查询单测
+│   ├── dead-letter/
+│   │   ├── dlq.listener.ts                     ← 死信队列监听器
+│   │   └── dlq.service.ts                      ← 死信处理逻辑
+│   ├── cancel/
+│   │   ├── cancel-propagation.service.ts       ← 取消传播（标记 job.data.cancelled）
+│   │   └── job-cancelled.error.ts              ← 取消异常
+│   ├── config/
+│   │   ├── queue.config.ts                     ← Redis 连接 + 重试策略
+│   │   └── retry-backoff.ts                    ← 退避策略纯函数
+│   ├── queue.module.ts                         ← NestJS 模块
+│   └── index.ts                                ← 桶文件
+├── documents/                                  ← 【Day 15-20 已有】需接入队列
+│   ├── documents.controller.ts                 ← 改：POST /ingest 返回 jobId
+│   └── ingest.service.ts                       ← 改：调 producer.add
+├── agent/                                      ← 【Day 12 已有】需接入队列
+│   ├── agent.controller.ts                     ← 改：POST /runs 返回 jobId
+│   └── agent.service.ts                        ← 改：调 producer.add
+└── config/
+    └── redis.config.ts                         ← 【Day 28 已有】复用
+</code></pre>
+<p><strong>三版演进对应的文件差异</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>文件</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>documents.controller.ts</code></td>
+<td>✓ 请求内同步摄取</td>
+<td>✓ 调 producer.add</td>
+<td>✓ 同 v2</td>
+</tr>
+<tr>
+<td><code>queue.producer.ts</code></td>
+<td>✗</td>
+<td>✓ add job（无 jobId 幂等）</td>
+<td>✓ add job + jobId 幂等</td>
+</tr>
+<tr>
+<td><code>ingest.worker.ts</code></td>
+<td>✗</td>
+<td>✓ 基础执行 + 重试</td>
+<td>✓ 同 v2 + 取消检查</td>
+</tr>
+<tr>
+<td><code>retry-backoff.ts</code></td>
+<td>✗</td>
+<td>✓ 指数退避纯函数</td>
+<td>✓ 同 v2</td>
+</tr>
+<tr>
+<td><code>dlq.listener.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 监听 failed 事件移入 DLQ</td>
+</tr>
+<tr>
+<td><code>cancel-propagation.service.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 标记 job.data.cancelled</td>
+</tr>
+<tr>
+<td><code>base.worker.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 取消检查基类</td>
+</tr>
+</tbody>
+</table></div><p><strong>依赖方向（务必单向，反过来一次都不行）</strong>：</p>
+<pre><code>documents.controller.ts / agent.controller.ts
+        │
+        ▼
+queue.producer.ts                               ← 添加 job（带 jobId）
+        │
+        └─► BullMQ Queue 实例
+
+ingest.worker.ts / diagnosis.worker.ts          ← 执行 job
+        │
+        ├─► base.worker.ts（取消检查基类）
+        │
+        └─► ingest.service.ts（真正的摄取逻辑）
+
+dlq.listener.ts                                 ← 监听 failed 事件
+        │
+        └─► dlq.service.ts（移入死信队列）
+
+cancel-propagation.service.ts                   ← 标记取消
+        │
+        └─► BullMQ Job 实例
+</code></pre>
+<p><strong>红线</strong>：</p>
+<ul>
+<li>worker 里不能直接调 <code>queue.add</code>（循环依赖）——worker 只负责执行，添加 job 是 producer 的职责</li>
+<li>jobId 不能用随机数（重复添加会创建多个 job）——应该用文件内容哈希（<code>sha256(fileContent)</code>）</li>
+<li>重试策略不能是"失败立即重试"（会瞬间把 DB 打挂）——必须有退避延迟（1s / 2s / 4s / 8s...）</li>
+<li>worker 取消检查不能只在开头检查一次（长任务执行到一半取消无效）——应该在每个 chunk 写入前检查</li>
+<li>死信任务不能自动重新入队（会无限循环）——需要人工介入修复、手动重新入队</li>
+</ul>
+<p><strong>动手前先问自己 3 个问题</strong>：</p>
+<ol>
+<li>jobId 幂等为什么用文件内容哈希而不是 <code>requestId</code>？—— 见 §5.4 知识点 3「jobId 语义」</li>
+<li>重试退避为什么是指数增长（1s / 2s / 4s...）而不是固定 1 秒？—— 见 §5.4 知识点 4「退避策略」</li>
+<li>死信队列为什么不能自动重试？—— 见 §5.4 知识点 5「死信 vs 重试」</li>
+</ol>
+<hr>
+<h2 id="15-阶段-d动手脚手架20-分钟先搭骨架再看正文">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</h2>
+<h3 id="151-d-1装-bullmq-依赖3-分钟">1.5.1 D-1：装 BullMQ 依赖（3 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li><code>pnpm --filter api add bullmq</code></li>
+<li><code>pnpm --filter api add -D @types/bullmq</code></li>
+<li>确认 Redis 可用：<code>redis-cli ping</code> → 返回 <code>PONG</code>（Day 28 已启动）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么用 BullMQ 而不是 Bull？（BullMQ 是 Bull v4，用 Redis Streams 替代 List，性能更高、支持优先级队列、死信队列内置）</li>
+<li>BullMQ 依赖 Redis 的什么数据结构？（Redis Streams + Sorted Sets）</li>
+</ul>
+<h3 id="152-d-2创建目录-队列配置5-分钟">1.5.2 D-2：创建目录 + 队列配置（5 分钟）</h3>
+<p>按第 5.3 节的目录树，在 <code>apps/api/src/queue/</code> 下建 5 个子目录：<code>producer/</code> <code>worker/</code> <code>job-registry/</code> <code>dead-letter/</code> <code>cancel/</code> <code>config/</code>。</p>
+<p>在 <code>config/queue.config.ts</code> 里定义重试策略：</p>
+<pre><code class="language-typescript">export const queueConfig = {
+  connection: {
+    host: process.env.REDIS_HOST || 'localhost',
+    port: parseInt(process.env.REDIS_PORT || '6379', 10),
+  },
+  defaultJobOptions: {
+    attempts: 3, // 最多重试 3 次
+    backoff: {
+      type: 'exponential', // 指数退避
+      delay: 1000, // 基础延迟 1 秒
+    },
+    removeOnComplete: false, // 保留完成的 job（方便审计）
+    removeOnFail: false, // 保留失败的 job（移入死信）
+  },
+}
+</code></pre>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>attempts: 3</code> 包括第一次执行吗？（不包括——第一次不算重试，失败后才重试 3 次，共 4 次机会）</li>
+<li><code>removeOnComplete: false</code> 会导致内存泄漏吗？（会——生产要定期清理，例如保留 7 天）</li>
+</ul>
+<h3 id="153-d-3写-producer-queuemodulets7-分钟">1.5.3 D-3：写 producer + queue.module.ts（7 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>producer/queue.producer.ts</code>（封装 <code>queue.add</code> + jobId 幂等）</li>
+<li>写 <code>queue.module.ts</code>（注册 Queue / Worker provider）</li>
+<li>在 <code>app.module.ts</code> 导入 <code>QueueModule</code></li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>queue.add('ingest', data, {jobId})</code> 的第三个参数为什么能保证幂等？（BullMQ 在 Redis 里用 jobId 作 key，重复添加时返回已有 job）</li>
+<li>Worker 为什么要单独进程运行？（隔离故障——worker 崩溃不影响 API 服务；独立扩容——worker 可以横向扩到 10 个实例）</li>
+</ul>
+<h3 id="154-d-4写-ingestworker-核心5-分钟">1.5.4 D-4：写 ingest.worker 核心（5 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>worker/ingest.worker.ts</code>（监听 <code>ingest</code> 队列，执行摄取逻辑）</li>
+<li>写 <code>worker/base.worker.ts</code>（取消检查基类）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>worker 的 <code>process</code> 方法为什么是 async？（可能要调 DB / OpenAI API，异步操作）</li>
+<li>如果 <code>process</code> 抛错，job 会怎样？（标记为 failed，根据重试策略决定是否重新入队）</li>
+</ul>
+<hr>
+<h2 id="2-学习节奏90-阅读-90-动手">2. 学习节奏（90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>内容</th>
+<th>交付物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A：读原理</td>
+<td>20 min</td>
+<td>§3-§5 三版演进 + §5.4 知识点 5 项</td>
+<td>心里能画出"请求内同步→队列+重试→jobId幂等+死信+取消"的演进路径</td>
+</tr>
+<tr>
+<td>B：读代码</td>
+<td>20 min</td>
+<td>§5.3 逐文件通读，特别是 <code>queue.producer.ts</code> 和 <code>ingest.worker.ts</code></td>
+<td>能口述"jobId 幂等的原理"、"退避策略怎么计算延迟"</td>
+</tr>
+<tr>
+<td>C：读深挖</td>
+<td>20 min</td>
+<td>§6.5 前端底子补弱（<code>Day29深挖-前端底子补弱.html</code>）</td>
+<td>能回答"前端任务队列（micro-task / macro-task）vs 后端消息队列的异同"</td>
+</tr>
+<tr>
+<td>D：动手脚手架</td>
+<td>20 min</td>
+<td>§1.5 D-1 到 D-4</td>
+<td>骨架文件全部创建，producer 能添加 job</td>
+</tr>
+<tr>
+<td>E：写核心测试</td>
+<td>40 min</td>
+<td>§7.2 三个 spec（producer / worker / 取消）</td>
+<td><code>pnpm --filter api test queue</code> 全绿</td>
+</tr>
+<tr>
+<td>F-1：反证 1</td>
+<td>20 min</td>
+<td>§7.3 去掉 jobId，验证重复处理</td>
+<td>观察"v2 无 jobId 时同一文件摄取两次"</td>
+</tr>
+<tr>
+<td>F-2：反证 2</td>
+<td>20 min</td>
+<td>§7.4 去掉死信，毒任务占满队列</td>
+<td>观察"v2 无 DLQ 时后续任务被阻塞"</td>
+</tr>
+<tr>
+<td>F-3：验证 + 提交</td>
+<td>20 min</td>
+<td>§7.5 四件套 + commit</td>
+<td>commit 含 <code>Refs: Day29</code></td>
+</tr>
+</tbody>
+</table></div><p><strong>总计</strong>：90 阅读（A+B+C）+ 90 动手（D+E+F）= 180 min</p>
+<hr>
+<h2 id="3-v1最小闭环请求内同步执行长任务阻塞">3. v1：最小闭环（请求内同步执行长任务，阻塞）</h2>
+<h3 id="31-v1-要实现什么">3.1 v1 要实现什么</h3>
+<p>最直觉的做法：文档摄取在 HTTP 请求里同步执行。</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li><code>POST /documents/ingest</code> 接收文件、切块、生成 embedding、写入 DB，完成后返回结果</li>
+<li>整个过程在请求里完成（30 秒）</li>
+</ul>
+<p><strong>不做</strong>：</p>
+<ul>
+<li>不做队列异步化（请求等到任务完成才返回）</li>
+<li>不做 jobId 幂等（重复上传创建重复任务）</li>
+<li>不做重试（失败就失败了）</li>
+<li>不做取消</li>
+</ul>
+<h3 id="32-v1-目录结构">3.2 v1 目录结构</h3>
+<pre><code>apps/api/src/documents/
+├── documents.controller.ts          ← POST /ingest 同步执行
+└── ingest.service.ts                ← 切块 + embedding 逻辑
+</code></pre>
+<h3 id="33-v1-完整代码">3.3 v1 完整代码</h3>
+<p><strong>apps/api/src/documents/ingest.service.ts（v1 全文）</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { PrismaService } from '../prisma/prisma.service'
+import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter'
+import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
+
+@Injectable()
+export class IngestService {
+  constructor(private readonly prisma: PrismaService) {}
+
+  /**
+   * 文档摄取：切块 + embedding + 写入 DB（同步执行，耗时 30 秒）
+   */
+  async ingestDocument(fileContent: string, fileId: string): Promise&lt;{ chunks: number }&gt; {
+    // 第 1 步：切块（耗时 1 秒）
+    const splitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000, chunkOverlap: 200 })
+    const docs = await splitter.createDocuments([fileContent])
+
+    // 第 2 步：生成 embedding（调 OpenAI API，耗时 20 秒）
+    const embeddings = new OpenAIEmbeddings()
+    const vectors = await embeddings.embedDocuments(docs.map((d) =&gt; d.pageContent))
+
+    // 第 3 步：写入 DB（耗时 5 秒）
+    for (let i = 0; i &lt; docs.length; i++) {
+      await this.prisma.chunk.create({
+        data: {
+          fileId,
+          content: docs[i].pageContent,
+          embedding: vectors[i],
+          index: i,
+        },
+      })
+    }
+
+    return { chunks: docs.length }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/documents/documents.controller.ts（v1 全文）</strong></p>
+<pre><code class="language-typescript">import { Controller, Post, Body } from '@nestjs/common'
+import { IngestService } from './ingest.service'
+
+@Controller('documents')
+export class DocumentsController {
+  constructor(private readonly ingest: IngestService) 
+
+  /**
+   * v1：请求内同步执行摄取（阻塞 30 秒）
+   */
+  @Post('/ingest')
+  async ingestDocument(@Body() body: { fileContent: string; fileId: string }) {
+    const result = await this.ingest.ingestDocument(body.fileContent, body.fileId)
+    return result // 30 秒后才返回
+  }
+}
+</code></pre>
+<h3 id="34-v1-暴露的痛点">3.4 v1 暴露的痛点</h3>
+<p><strong>痛点 1：请求超时（浏览器 60 秒 timeout）</strong></p>
+<p>100MB PDF 摄取耗时 30 秒，浏览器等待 30 秒后返回结果。如果摄取耗时超过 60 秒（例如更大的文件），浏览器超时返回 <code>Request Timeout</code>，但后台还在执行（浪费资源）。</p>
+<p><strong>痛点 2：Event Loop 阻塞（其他请求变慢）</strong></p>
+<p>Node.js 单线程，一个请求在等待 <code>embedDocuments</code> 的 30 秒内，虽然 Event Loop 没完全卡死（因为 await 会让出），但如果同时有 10 个文档上传，就有 10 个并发的长任务，内存占用高、DB 连接池吃满，其他用户的查询请求也变慢。</p>
+<p><strong>痛点 3：重复处理（用户重试 → 重复摄取）</strong></p>
+<p>用户上传后等了 60 秒超时，浏览器显示"上传失败"，用户点"重试"又上传一次。后端收到两次请求，同一个 PDF 被摄取两次、写入两份重复的 chunks。</p>
+<p><strong>痛点 4：失败不能重试（进程崩溃 → 任务丢失）</strong></p>
+<p>摄取到一半时进程崩溃（OOM / DB 断开），任务直接丢失，用户的文档永远停留在"处理中"状态。没有重试机制。</p>
+<hr>
+<h2 id="4-v2bullmq-队列-重试退避">4. v2：BullMQ 队列 + 重试退避</h2>
+<h3 id="41-v2-要实现什么">4.1 v2 要实现什么</h3>
+<p>用户视角：上传文档后请求快速返回 jobId（200ms），前端轮询状态；worker 异步执行摄取；失败自动重试（最多 3 次，指数退避）。</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li><code>POST /documents/ingest</code> 快速返回 jobId（不等摄取完成）</li>
+<li>worker 进程监听 <code>ingest</code> 队列，异步执行摄取</li>
+<li>失败自动重试（第 1 次延迟 1 秒、第 2 次 2 秒、第 3 次 4 秒）</li>
+</ul>
+<p><strong>依然不做</strong>：</p>
+<ul>
+<li>jobId 幂等（重复上传创建多个 job）</li>
+<li>死信队列（毒任务无限重试）</li>
+<li>取消传播（用户点取消无效）</li>
+</ul>
+<h3 id="42-v2-目录结构">4.2 v2 目录结构</h3>
+<pre><code>apps/api/src/queue/
+├── producer/
+│   ├── queue.producer.ts                ← 新增：添加 job
+│   └── queue.producer.spec.ts           ← 新增
+├── worker/
+│   ├── ingest.worker.ts                 ← 新增：执行摄取
+│   └── base.worker.ts                   ← 新增：worker 基类
+├── config/
+│   ├── queue.config.ts                  ← 新增：重试策略
+│   └── retry-backoff.ts                 ← 新增：退避计算
+└── queue.module.ts                      ← 新增
+</code></pre>
+<h3 id="43-v2-完整代码">4.3 v2 完整代码</h3>
+<p><strong>apps/api/src/queue/config/retry-backoff.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">/**
+ * 指数退避：第 N 次重试的延迟 = baseDelay * 2^(N-1)
+ * @param attempt 重试次数（1, 2, 3...）
+ * @param baseDelay 基础延迟（毫秒）
+ * @returns 延迟时间（毫秒）
+ */
+export function exponentialBackoff(attempt: number, baseDelay = 1000): number {
+  return baseDelay * Math.pow(2, attempt - 1)
+}
+</code></pre>
+<p><strong>apps/api/src/queue/config/queue.config.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import { ConnectionOptions } from 'bullmq'
+
+export const queueConfig = {
+  connection: {
+    host: process.env.REDIS_HOST || 'localhost',
+    port: parseInt(process.env.REDIS_PORT || '6379', 10),
+  } as ConnectionOptions,
+  defaultJobOptions: {
+    attempts: 3, // 最多重试 3 次
+    backoff: {
+      type: 'exponential', // 指数退避
+      delay: 1000, // 第 1 次重试延迟 1 秒
+    },
+    removeOnComplete: false,
+    removeOnFail: false,
+  },
+}
+</code></pre>
+<p><strong>apps/api/src/queue/producer/queue.producer.ts（v2 全文，无 jobId 幂等）</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { Queue } from 'bullmq'
+import { queueConfig } from '../config/queue.config'
+
+@Injectable()
+export class QueueProducer {
+  private readonly ingestQueue: Queue
+
+  constructor() {
+    this.ingestQueue = new Queue('ingest', queueConfig)
+  }
+
+  /**
+   * 添加文档摄取任务（v2：无 jobId 幂等，重复添加会创建多个 job）
+   */
+  async addIngestJob(data: { fileId: string; fileContent: string }): Promise&lt;string&gt; {
+    const job = await this.ingestQueue.add('ingest', data)
+    return job.id! // 返回 BullMQ 生成的随机 ID
+  }
+
+  async getJobStatus(jobId: string) {
+    const job = await this.ingestQueue.getJob(jobId)
+    if (!job) return { status: 'not_found' }
+
+    const state = await job.getState()
+    const progress = job.progress
+    return { status: state, progress }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/queue/worker/ingest.worker.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import { Worker, Job } from 'bullmq'
+import { Injectable, OnModuleInit } from '@nestjs/common'
+import { IngestService } from '../../documents/ingest.service'
+import { queueConfig } from '../config/queue.config'
+
+@Injectable()
+export class IngestWorker implements OnModuleInit {
+  private worker: Worker
+
+  constructor(private readonly ingest: IngestService) {}
+
+  onModuleInit() {
+    this.worker = new Worker(
+      'ingest',
+      async (job: Job) =&gt; {
+        // 真正的摄取逻辑（调 IngestService）
+        const { fileId, fileContent } = job.data
+        const result = await this.ingest.ingestDocument(fileContent, fileId)
+
+        // 更新进度（可选）
+        await job.updateProgress(100)
+
+        return result
+      },
+      queueConfig,
+    )
+
+    // 监听失败事件
+    this.worker.on('failed', (job, err) =&gt; {
+      console.error(`Job ${job?.id} failed:`, err.message)
+    })
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/documents/documents.controller.ts（v2 改动）</strong></p>
+<pre><code class="language-typescript">import { Controller, Post, Body, Get, Param } from '@nestjs/common'
+import { QueueProducer } from '../queue/producer/queue.producer'
+
+@Controller('documents')
+export class DocumentsController {
+  constructor(private readonly queue: QueueProducer) {}
+
+  /**
+   * v2：请求快速返回 jobId（200ms）
+   */
+  @Post('/ingest')
+  async ingestDocument(@Body() body: { fileContent: string; fileId: string }) {
+    const jobId = await this.queue.addIngestJob(body)
+    return { jobId, status: 'waiting' }
+  }
+
+  /**
+   * 查询 job 状态（前端轮询）
+   */
+  @Get('/jobs/:jobId/status')
+  async getJobStatus(@Param('jobId') jobId: string) {
+    return this.queue.getJobStatus(jobId)
+  }
+}
+</code></pre>
+<h3 id="44-v2-暴露的痛点">4.4 v2 暴露的痛点</h3>
+<p><strong>痛点 1：无 jobId 幂等 → 重复处理</strong></p>
+<p>v2 的 <code>addIngestJob</code> 没有传 <code>jobId</code> 参数，BullMQ 每次都生成随机 ID。用户上传同一文件两次，创建两个 job，同一文件摄取两次。</p>
+<p><strong>痛点 2：无死信队列 → 毒任务占满队列</strong></p>
+<p>某个 PDF 格式损坏，worker 解析时必定抛错。重试 3 次全失败后，job 标记为 <code>failed</code>，但仍然留在主队列里。如果有 100 个毒任务，主队列被占满，后续正常任务被阻塞。</p>
+<p><strong>痛点 3：无取消传播 → 用户点取消无效</strong></p>
+<p>用户点"取消"按钮，前端调 <code>PUT /jobs/:id/cancel</code>，但 worker 没有取消检查，继续执行摄取（30 秒后才完成），浪费资源。</p>
+<p><strong>痛点 4：重试策略不可观测</strong></p>
+<p>v2 配置了指数退避，但没有监控"重试了多少次"、"退避延迟是多少"。生产环境看不到重试行为。</p>
+<hr>
+<h2 id="5-v3jobid-幂等-死信-取消传播终态">5. v3：jobId 幂等 + 死信 + 取消传播（终态）</h2>
+<h3 id="51-v3-要实现什么">5.1 v3 要实现什么</h3>
+<p>用户视角：</p>
+<ol>
+<li>重复上传同一文件只创建一个 job（jobId = sha256(fileContent)）</li>
+<li>重试 3 次仍失败的毒任务移入死信队列（不阻塞后续任务）</li>
+<li>用户点取消按钮后 worker 主动停止（5 秒内）</li>
+<li>继承 v2 的队列异步化 + 重试退避</li>
+</ol>
+<h3 id="52-v3-目录结构">5.2 v3 目录结构</h3>
+<p>与 §1.4 完全一致：</p>
+<pre><code>apps/api/src/queue/
+├── producer/
+│   ├── queue.producer.ts                ← v2 已有，改：加 jobId 参数
+│   └── queue.producer.spec.ts           ← v2 已有
+├── worker/
+│   ├── ingest.worker.ts                 ← v2 已有，改：继承 BaseWorker
+│   └── base.worker.ts                   ← 改：加取消检查
+├── dead-letter/
+│   ├── dlq.listener.ts                  ← 新增：监听 failed 事件
+│   └── dlq.service.ts                   ← 新增：移入 DLQ
+├── cancel/
+│   ├── cancel-propagation.service.ts    ← 新增：标记取消
+│   └── job-cancelled.error.ts           ← 新增
+├── config/                              ← v2 已有
+└── queue.module.ts
+</code></pre>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<h4 id="531-producer-层queueproducerts加-jobid-幂等">5.3.1 producer 层：queue.producer.ts（加 jobId 幂等）</h4>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { Queue } from 'bullmq'
+import { queueConfig } from '../config/queue.config'
+import { createHash } from 'crypto'
+
+@Injectable()
+export class QueueProducer {
+  private readonly ingestQueue: Queue
+
+  constructor() {
+    this.ingestQueue = new Queue('ingest', queueConfig)
+  }
+
+  /**
+   * 添加文档摄取任务（v3：用文件内容哈希作 jobId，保证幂等）
+   */
+  async addIngestJob(data: { fileId: string; fileContent: string }): Promise&lt;string&gt; {
+    // jobId = 文件内容哈希（同一文件只摄取一次）
+    const jobId = this.computeJobId(data.fileContent)
+
+    const job = await this.ingestQueue.add('ingest', data, { jobId })
+    return job.id! // 重复添加时返回已有 job 的 ID
+  }
+
+  private computeJobId(content: string): string {
+    return createHash('sha256').update(content).digest('hex').slice(0, 16)
+  }
+
+  async getJobStatus(jobId: string) {
+    const job = await this.ingestQueue.getJob(jobId)
+    if (!job) return { status: 'not_found' }
+
+    const state = await job.getState()
+    const progress = job.progress
+    return { status: state, progress }
+  }
+}
+</code></pre>
+<h4 id="532-worker-层baseworkerts取消检查基类">5.3.2 worker 层：base.worker.ts（取消检查基类）</h4>
+<pre><code class="language-typescript">import { Job } from 'bullmq'
+import { JobCancelledError } from '../cancel/job-cancelled.error'
+
+export abstract class BaseWorker {
+  /**
+   * 取消检查：如果 job.data.cancelled = true，抛 JobCancelledError。
+   * 子类在每个可中断点调用（例如每写入一个 chunk 前）。
+   */
+  protected checkCancellation(job: Job): void {
+    if (job.data.cancelled) {
+      throw new JobCancelledError(job.id!)
+    }
+  }
+}
+</code></pre>
+<h4 id="533-cancel-层job-cancellederrorts">5.3.3 cancel 层：job-cancelled.error.ts</h4>
+<pre><code class="language-typescript">export class JobCancelledError extends Error {
+  constructor(public readonly jobId: string) {
+    super(`Job ${jobId} was cancelled`)
+    this.name = 'JobCancelledError'
+  }
+}
+</code></pre>
+<h4 id="534-cancel-层cancel-propagationservicets">5.3.4 cancel 层：cancel-propagation.service.ts</h4>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { Queue } from 'bullmq'
+
+@Injectable()
+export class CancelPropagationService {
+  constructor(private readonly ingestQueue: Queue) {}
+
+  /**
+   * 标记 job 为已取消（设置 job.data.cancelled = true）。
+   * worker 在下一次 checkCancellation 时会抛 JobCancelledError。
+   */
+  async cancelJob(jobId: string): Promise&lt;void&gt; {
+    const job = await this.ingestQueue.getJob(jobId)
+    if (!job) throw new Error(`Job ${jobId} not found`)
+
+    // 更新 job.data（标记取消）
+    await job.updateData({ ...job.data, cancelled: true })
+  }
+}
+</code></pre>
+<h4 id="535-worker-层ingestworkerts接入取消检查">5.3.5 worker 层：ingest.worker.ts（接入取消检查）</h4>
+<pre><code class="language-typescript">import { Worker, Job } from 'bullmq'
+import { Injectable, OnModuleInit } from '@nestjs/common'
+import { IngestService } from '../../documents/ingest.service'
+import { queueConfig } from '../config/queue.config'
+import { BaseWorker } from './base.worker'
+
+@Injectable()
+export class IngestWorker extends BaseWorker implements OnModuleInit {
+  private worker: Worker
+
+  constructor(private readonly ingest: IngestService) {
+    super()
+  }
+
+  onModuleInit() {
+    this.worker = new Worker(
+      'ingest',
+      async (job: Job) =&gt; {
+        // 开始前检查取消
+        this.checkCancellation(job)
+
+        const { fileId, fileContent } = job.data
+
+        // 切块
+        const chunks = await this.ingest.splitDocument(fileContent)
+
+        // 逐个 chunk 写入（每次写入前检查取消）
+        for (let i = 0; i &lt; chunks.length; i++) {
+          this.checkCancellation(job) // 可中断点
+
+          await this.ingest.writeChunk(fileId, chunks[i], i)
+          await job.updateProgress((i + 1) / chunks.length * 100)
+        }
+
+        return { chunks: chunks.length }
+      },
+      queueConfig,
+    )
+
+    this.worker.on('failed', (job, err) =&gt; {
+      console.error(`Job ${job?.id} failed:`, err.message)
+    })
+  }
+}
+</code></pre>
+<h4 id="536-dead-letter-层dlqlistenerts">5.3.6 dead-letter 层：dlq.listener.ts</h4>
+<pre><code class="language-typescript">import { Injectable, OnModuleInit } from '@nestjs/common'
+import { QueueEvents } from 'bullmq'
+import { DlqService } from './dlq.service'
+import { queueConfig } from '../config/queue.config'
+
+@Injectable()
+export class DlqListener implements OnModuleInit {
+  private queueEvents: QueueEvents
+
+  constructor(private readonly dlq: DlqService) {}
+
+  onModuleInit() {
+    this.queueEvents = new QueueEvents('ingest', queueConfig)
+
+    /**
+     * 监听 failed 事件：job 重试 3 次仍失败时触发。
+     * 将失败的 job 移入死信队列（DLQ）。
+     */
+    this.queueEvents.on('failed', async ({ jobId, failedReason }) =&gt; {
+      console.warn(`Job ${jobId} moved to DLQ: ${failedReason}`)
+      await this.dlq.moveToDeadLetter(jobId, failedReason)
+    })
+  }
+}
+</code></pre>
+<h4 id="537-dead-letter-层dlqservicets">5.3.7 dead-letter 层：dlq.service.ts</h4>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { Queue } from 'bullmq'
+import { queueConfig } from '../config/queue.config'
+
+@Injectable()
+export class DlqService {
+  private readonly dlq: Queue
+
+  constructor() {
+    this.dlq = new Queue('dead-letter', queueConfig)
+  }
+
+  /**
+   * 将失败的 job 移入死信队列。
+   * DLQ 里的 job 不会自动重试，需要人工介入。
+   */
+  async moveToDeadLetter(jobId: string, reason: string): Promise&lt;void&gt; {
+    await this.dlq.add('dead-job', { jobId, reason, movedAt: new Date() })
+  }
+
+  /**
+   * 查询死信队列（供运维人员查看）
+   */
+  async listDeadLetters(limit = 100) {
+    const jobs = await this.dlq.getJobs(['completed', 'failed'], 0, limit)
+    return jobs.map((j) =&gt; ({ id: j.id, data: j.data, timestamp: j.timestamp }))
+  }
+}
+</code></pre>
+<h4 id="538-documentscontrollerts接入取消">5.3.8 documents.controller.ts：接入取消</h4>
+<pre><code class="language-typescript">import { Controller, Post, Body, Get, Param, Put } from '@nestjs/common'
+import { QueueProducer } from '../queue/producer/queue.producer'
+import { CancelPropagationService } from '../queue/cancel/cancel-propagation.service'
+
+@Controller('documents')
+export class DocumentsController {
+  constructor(
+    private readonly queue: QueueProducer,
+    private readonly cancel: CancelPropagationService,
+  ) 
+
+  @Post('/ingest')
+  async ingestDocument(@Body() body: { fileContent: string; fileId: string }) {
+    const jobId = await this.queue.addIngestJob(body)
+    return { jobId, status: 'waiting' }
+  }
+
+  @Get('/jobs/:jobId/status')
+  async getJobStatus(@Param('jobId') jobId: string) {
+    return this.queue.getJobStatus(jobId)
+  }
+
+  /**
+   * 取消任务（标记 job.data.cancelled = true）
+   */
+  @Put('/jobs/:jobId/cancel')
+  async cancelJob(@Param('jobId') jobId: string) {
+    await this.cancel.cancelJob(jobId)
+    return { cancelled: true }
+  }
+}
+</code></pre>
+<h3 id="54-v3-用到的知识点">5.4 v3 用到的知识点</h3>
+<p><strong>知识点 1：BullMQ 队列 vs HTTP 请求</strong></p>
+<ul>
+<li>解决的问题：长任务阻塞 HTTP 请求 → 超时 + Event Loop 压力大</li>
+<li>运行机制：请求快速返回 jobId（200ms）；worker 进程异步执行；前端轮询状态或 WebSocket 推送进度</li>
+<li>项目落点：<code>queue.add</code> 添加 job；<code>Worker</code> 监听队列执行任务</li>
+<li>生产误区：所有任务都用队列（简单查询不需要队列）；worker 和 API 共用一个进程（worker 崩溃影响 API）</li>
+<li>验证方法：上传文档后请求 200ms 返回；<code>redis-cli XLEN bull:ingest:wait</code> 看队列长度</li>
+</ul>
+<p><strong>知识点 2：job 状态机</strong></p>
+<ul>
+<li>解决的问题：任务执行过程中的状态不可观测（不知道在等待 / 执行中 / 完成 / 失败）</li>
+<li>运行机制：waiting（等待 worker）→ active（执行中）→ completed（成功）/ failed（失败）/ delayed（延迟重试）</li>
+<li>项目落点：<code>job.getState()</code> 查询状态；前端轮询展示进度</li>
+<li>生产误区：状态查询没有缓存（频繁查 Redis 压力大）；前端轮询间隔太短（100ms 一次太频繁）</li>
+<li>验证方法：<code>redis-cli XREAD STREAMS bull:ingest:events $ COUNT 10</code> 看事件流</li>
+</ul>
+<p><strong>知识点 3：jobId 幂等</strong></p>
+<ul>
+<li>解决的问题：重复上传同一文件创建多个 job（重复处理）</li>
+<li>运行机制：<code>queue.add(name, data, {jobId})</code> 时，BullMQ 用 jobId 作 Redis key；重复添加时返回已有 job</li>
+<li>项目落点：<code>jobId = sha256(fileContent)</code>，保证同一文件只摄取一次</li>
+<li>生产误区：jobId 用 <code>requestId</code>（前端每次刷新生成新 requestId，幂等失效）；jobId 用随机数（没有幂等）</li>
+<li>验证方法：同一文件上传两次，<code>redis-cli KEYS bull:ingest:*</code> 只有一个 job key</li>
+</ul>
+<p><strong>知识点 4：重试退避策略</strong></p>
+<ul>
+<li>解决的问题：任务失败立即重试 → 瞬间重试把 DB 打挂（例如 DB 连接断开时重试 100 次）</li>
+<li>运行机制：指数退避 = 第 N 次重试延迟 <code>baseDelay * 2^(N-1)</code>（1s / 2s / 4s / 8s...）</li>
+<li>项目落点：<code>backoff: { type: 'exponential', delay: 1000 }</code></li>
+<li>生产误区：固定延迟 1 秒（DB 恢复需要 10 秒，1 秒重试没用）；无限重试（应该有最大次数，例如 3 次）</li>
+<li>验证方法：注入 DB 断开故障，观察重试间隔（<code>redis-cli XREAD</code> 看 delayed 事件时间戳）</li>
+</ul>
+<p><strong>知识点 5：死信队列（DLQ）</strong></p>
+<ul>
+<li>解决的问题：毒任务无限重试 → 占满队列（后续正常任务被阻塞）</li>
+<li>运行机制：重试 N 次仍失败的 job 移入死信队列；DLQ 里的 job 不会自动重试，需要人工介入</li>
+<li>项目落点：监听 <code>failed</code> 事件，调 <code>dlq.moveToDeadLetter</code></li>
+<li>生产误区：DLQ 自动重试（会无限循环）；DLQ 不监控（毒任务堆积不知道）</li>
+<li>验证方法：上传损坏 PDF，重试 3 次后进 DLQ；<code>redis-cli XLEN bull:dead-letter:wait</code> 看 DLQ 长度</li>
+</ul>
+<p><strong>知识点 6：取消传播</strong></p>
+<ul>
+<li>解决的问题：用户点取消按钮后 worker 还在跑（浪费资源）</li>
+<li>运行机制：前端调 <code>/jobs/:id/cancel</code> → 标记 <code>job.data.cancelled = true</code> → worker 在每个可中断点检查 <code>cancelled</code>，是则抛 <code>JobCancelledError</code></li>
+<li>项目落点：<code>BaseWorker.checkCancellation</code> 在每个 chunk 写入前调用</li>
+<li>生产误区：只在 worker 开头检查一次（长任务执行到一半取消无效）；取消后不清理部分产物（DB 里留下脏数据）</li>
+<li>验证方法：上传大文件，执行 5 秒后点取消，10 秒内 worker 停止</li>
+</ul>
+<h3 id="55-边写边问自己">5.5 边写边问自己</h3>
+<ul>
+<li>jobId 为什么用文件内容哈希而不是 <code>requestId</code>？（requestId 是前端生成的随机 ID，每次刷新都变；内容哈希保证"同一文件同一 jobId"）</li>
+<li>重试退避为什么是指数增长而不是固定 1 秒？（DB 恢复可能需要 10 秒，固定 1 秒重试 10 次还没恢复；指数退避给系统更多恢复时间）</li>
+<li>死信队列为什么不能自动重试？（毒任务的失败是必然的，例如 PDF 格式损坏，自动重试会无限循环；需要人工修复再手动重新入队）</li>
+<li>worker 取消检查为什么在每个 chunk 写入前而不是只在开头？（开头检查只能阻止还没开始的任务；执行到一半的任务需要在循环里每次检查才能及时停止）</li>
+</ul>
+<hr>
+<h2 id="6-三版对比一览表">6. 三版对比一览表</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>对比维度</th>
+<th>v1：请求内同步</th>
+<th>v2：队列 + 重试</th>
+<th>v3：jobId 幂等 + 死信 + 取消（终态）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>任务执行位置</strong></td>
+<td>HTTP 请求内（阻塞 30 秒）</td>
+<td>worker 进程异步</td>
+<td>同 v2</td>
+</tr>
+<tr>
+<td><strong>请求响应时间</strong></td>
+<td>30 秒（等任务完成）</td>
+<td>200ms（返回 jobId）</td>
+<td>同 v2</td>
+</tr>
+<tr>
+<td><strong>失败重试</strong></td>
+<td>✗ 失败即丢失</td>
+<td>✓ 自动重试 3 次 + 退避</td>
+<td>同 v2</td>
+</tr>
+<tr>
+<td><strong>jobId 幂等</strong></td>
+<td>✗ 重复上传重复处理</td>
+<td>✗ 重复上传重复处理</td>
+<td>✓ 同一文件只摄取一次</td>
+</tr>
+<tr>
+<td><strong>死信队列</strong></td>
+<td>✗ 无</td>
+<td>✗ 毒任务占满队列</td>
+<td>✓ 重试 3 次后进 DLQ</td>
+</tr>
+<tr>
+<td><strong>取消传播</strong></td>
+<td>✗ 无法取消</td>
+<td>✗ 点取消无效</td>
+<td>✓ worker 检查 cancelled</td>
+</tr>
+<tr>
+<td><strong>Event Loop</strong></td>
+<td>阻塞（并发 10 个长任务）</td>
+<td>不阻塞（worker 独立进程）</td>
+<td>同 v2</td>
+</tr>
+<tr>
+<td><strong>可观测性</strong></td>
+<td>✗ 不知道进度</td>
+<td>✓ job 状态 + progress</td>
+<td>同 v2 + DLQ 监控</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="65-前端底子补弱独立深挖-html-入口">6.5 前端底子补弱（独立深挖 HTML 入口）</h2>
+<p><strong>为什么要补弱前端任务队列</strong>：今天学的是"后端消息队列"（BullMQ），但前端开发必须同时掌握"浏览器事件循环的任务队列"（micro-task / macro-task）。面试官问"任务队列"时，如果只会 BullMQ 不会事件循环，会暴露前端底子薄弱。</p>
+<p><strong>深挖入口</strong>：</p>
+<p>打开并完整阅读 <code>output/90天逐日任务/Day29深挖-前端底子补弱.html</code>（该文件今天要创建），内容覆盖：</p>
+<ol>
+<li>
+<p><strong>micro-task vs macro-task</strong></p>
+<ul>
+<li>micro-task（微任务）：Promise.then / queueMicrotask / MutationObserver</li>
+<li>macro-task（宏任务）：setTimeout / setInterval / requestAnimationFrame / I/O</li>
+<li>执行顺序：一个 macro-task → 清空 micro-task 队列 → 渲染 → 下一个 macro-task</li>
+<li>为什么 Promise.then 比 setTimeout 先执行？（micro-task 在当前宏任务结束后立即执行；setTimeout 要等下一轮宏任务）</li>
+</ul>
+</li>
+<li>
+<p><strong>前端任务队列 vs 后端消息队列的异同</strong></p>
+<ul>
+<li>相同：都是"异步化"，避免阻塞主线程 / Event Loop</li>
+<li>不同：前端队列在浏览器单个 Tab 里（无持久化）；后端队列在 Redis 里（跨进程、可持久化、可重试）</li>
+<li>为什么前端长任务要用 Web Worker 而不是 Promise？（Promise 仍在主线程，计算密集任务会阻塞 UI；Web Worker 是真正的多线程）</li>
+</ul>
+</li>
+<li>
+<p><strong>requestIdleCallback</strong></p>
+<ul>
+<li>用途：在浏览器空闲时执行低优先级任务（例如日志上报、预加载）</li>
+<li>为什么不用 setTimeout(fn, 0)？（setTimeout 最小延迟 4ms，且会在每一帧执行；requestIdleCallback 只在空闲时执行，不影响渲染）</li>
+<li>React Scheduler 的原理：自己实现了类似 requestIdleCallback 的调度（因为浏览器的 requestIdleCallback 兼容性差）</li>
+</ul>
+</li>
+<li>
+<p><strong>实战案例</strong></p>
+<ul>
+<li>场景：前端上传大文件，需要在浏览器里计算文件哈希（sha256），但计算耗时 5 秒会冻结 UI</li>
+<li>定位：主线程被 <code>crypto.subtle.digest</code> 阻塞</li>
+<li>修复：用 Web Worker 计算哈希，主线程只负责接收结果</li>
+</ul>
+</li>
+</ol>
+<p><strong>验收问题</strong>：</p>
+<ul>
+<li>请对比"浏览器 micro-task 队列"和"BullMQ 队列"：哪个有持久化？哪个能跨进程？哪个能自动重试？</li>
+<li>为什么 <code>Promise.resolve().then(() =&gt; console.log('A'))</code> 比 <code>setTimeout(() =&gt; console.log('B'), 0)</code> 先执行？</li>
+<li>场景：用户上传 100MB 文件需要在浏览器计算哈希，你会用 Promise 包装 <code>crypto.subtle.digest</code> 还是用 Web Worker？为什么？</li>
+</ul>
+<hr>
+<h2 id="7-项目验收清单阶段-e-f约-120-分钟">7. 项目验收清单（阶段 E-F，约 120 分钟）</h2>
+<h3 id="71-四件套前置5-分钟">7.1 四件套（前置，5 分钟）</h3>
+<pre><code class="language-bash">cd apps/api
+pnpm typecheck   # 类型检查
+pnpm lint        # ESLint
+pnpm test        # 单元测试（含 producer / worker / 取消）
+pnpm test:e2e    # E2E 测试（可选）
+</code></pre>
+<p>全部通过再继续。</p>
+<h3 id="72-核心测试40-分钟">7.2 核心测试（40 分钟）</h3>
+<h4 id="721-producer-幂等queueproducerspects">7.2.1 producer 幂等（queue.producer.spec.ts）</h4>
+<pre><code class="language-typescript">import { describe, it, expect } from 'vitest'
+import { QueueProducer } from './queue.producer'
+
+describe('QueueProducer', () =&gt; {
+  it('同一文件内容多次添加返回同一 jobId', async () =&gt; {
+    const producer = new QueueProducer()
+    const data = { fileId: 'f-01', fileContent: 'test content' }
+
+    const jobId1 = await producer.addIngestJob(data)
+    const jobId2 = await producer.addIngestJob(data)
+
+    expect(jobId1).toBe(jobId2) // 幂等：同一 jobId
+  })
+
+  it('不同文件内容返回不同 jobId', async () =&gt; {
+    const producer = new QueueProducer()
+    const data1 = { fileId: 'f-01', fileContent: 'content A' }
+    const data2 = { fileId: 'f-02', fileContent: 'content B' }
+
+    const jobId1 = await producer.addIngestJob(data1)
+    const jobId2 = await producer.addIngestJob(data2)
+
+    expect(jobId1).not.toBe(jobId2)
+  })
+})
+</code></pre>
+<h4 id="722-worker-执行-重试ingestworkerspects">7.2.2 worker 执行 + 重试（ingest.worker.spec.ts）</h4>
+<pre><code class="language-typescript">import { describe, it, expect, vi } from 'vitest'
+import { Job } from 'bullmq'
+import { IngestWorker } from './ingest.worker'
+import { IngestService } from '../../documents/ingest.service'
+
+describe('IngestWorker', () =&gt; {
+  it('成功执行返回 chunks 数量', async () =&gt; {
+    const ingest = {
+      splitDocument: vi.fn().mockResolvedValue(['chunk1', 'chunk2']),
+      writeChunk: vi.fn().mockResolvedValue(undefined),
+    } as any
+    const worker = new IngestWorker(ingest)
+
+    const job = {
+      data: { fileId: 'f-01', fileContent: 'test' },
+      updateProgress: vi.fn(),
+    } as any
+
+    const result = await worker['process'](job)
+    expect(result).toEqual({ chunks: 2 })
+    expect(ingest.writeChunk).toHaveBeenCalledTimes(2)
+  })
+
+  it('失败时抛错触发重试', async () =&gt; {
+    const ingest = {
+      splitDocument: vi.fn().mockRejectedValue(new Error('DB error')),
+    } as any
+    const worker = new IngestWorker(ingest)
+
+    const job = { data: { fileId: 'f-01', fileContent: 'test' } } as any
+
+    await expect(worker['process'](job)).rejects.toThrow('DB error')
+  })
+})
+</code></pre>
+<h4 id="723-取消传播cancel-propagationservicespects">7.2.3 取消传播（cancel-propagation.service.spec.ts）</h4>
+<pre><code class="language-typescript">import { describe, it, expect, vi } from 'vitest'
+import { CancelPropagationService } from './cancel-propagation.service'
+import { Queue } from 'bullmq'
+
+describe('CancelPropagationService', () =&gt; {
+  it('标记 job 为已取消', async () =&gt; {
+    const job = {
+      data: { fileId: 'f-01' },
+      updateData: vi.fn(),
+    }
+    const queue = {
+      getJob: vi.fn().mockResolvedValue(job),
+    } as any
+    const cancel = new CancelPropagationService(queue)
+
+    await cancel.cancelJob('job-123')
+
+    expect(job.updateData).toHaveBeenCalledWith({ fileId: 'f-01', cancelled: true })
+  })
+
+  it('job 不存在时抛错', async () =&gt; {
+    const queue = {
+      getJob: vi.fn().mockResolvedValue(null),
+    } as any
+    const cancel = new CancelPropagationService(queue)
+
+    await expect(cancel.cancelJob('job-999')).rejects.toThrow('Job job-999 not found')
+  })
+})
+</code></pre>
+<h3 id="73-反证实验-1去掉-jobid验证重复处理20-分钟">7.3 反证实验 1：去掉 jobId，验证重复处理（20 分钟）</h3>
+<p><strong>目标</strong>：证明"v2 无 jobId 幂等时同一文件摄取两次"。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>修改 <code>queue.producer.ts</code>：去掉 <code>jobId</code> 参数（让 BullMQ 生成随机 ID）</li>
+</ol>
+<pre><code class="language-typescript">// v2 行为（无 jobId）
+const job = await this.ingestQueue.add('ingest', data) // 不传 {jobId}
+</code></pre>
+<ol start="2">
+<li>上传同一文件两次：</li>
+</ol>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/documents/ingest \
+  -H 'Content-Type: application/json' \
+  -d '{"fileId":"f-01","fileContent":"test content"}'
+
+curl -X POST http://localhost:3000/documents/ingest \
+  -H 'Content-Type: application/json' \
+  -d '{"fileId":"f-01","fileContent":"test content"}'
+</code></pre>
+<ol start="3">
+<li>查看 Redis 队列：</li>
+</ol>
+<pre><code class="language-bash">redis-cli XLEN bull:ingest:wait
+# v2（无 jobId）：返回 2（两个 job）
+# v3（有 jobId）：返回 1（幂等）
+</code></pre>
+<ol start="4">
+<li>查看 DB：</li>
+</ol>
+<pre><code class="language-sql">SELECT COUNT(*) FROM chunk WHERE file_id = 'f-01';
+-- v2：两份重复 chunks
+-- v3：一份 chunks
+</code></pre>
+<p><strong>证据</strong>：截图 Redis 队列长度 + DB 重复数据。</p>
+<h3 id="74-反证实验-2去掉死信毒任务占满队列20-分钟">7.4 反证实验 2：去掉死信，毒任务占满队列（20 分钟）</h3>
+<p><strong>目标</strong>：证明"v2 无 DLQ 时毒任务占满队列"。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>注释 <code>dlq.listener.ts</code> 的监听逻辑（不移入死信）</li>
+<li>上传 10 个损坏 PDF（格式错误，必定解析失败）：</li>
+</ol>
+<pre><code class="language-bash">for i in {1..10}; do
+  curl -X POST http://localhost:3000/documents/ingest \
+    -d '{"fileId":"poison-'$i'","fileContent":"&lt;invalid PDF&gt;"}'
+done
+</code></pre>
+<ol start="3">
+<li>每个毒任务重试 3 次，占用队列 4 次（1 次初始 + 3 次重试）</li>
+<li>查看主队列：</li>
+</ol>
+<pre><code class="language-bash">redis-cli XLEN bull:ingest:failed
+# v2（无 DLQ）：返回 10（毒任务留在主队列）
+# v3（有 DLQ）：返回 0（移入死信）
+</code></pre>
+<ol start="5">
+<li>上传正常文件：</li>
+</ol>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/documents/ingest \
+  -d '{"fileId":"normal","fileContent":"valid content"}'
+</code></pre>
+<ol start="6">
+<li>观察：
+<ul>
+<li>v2：正常任务被阻塞（因为 worker 在处理前面的毒任务）</li>
+<li>v3：正常任务立即执行（毒任务已移入 DLQ）</li>
+</ul>
+</li>
+</ol>
+<p><strong>证据</strong>：截图队列状态 + 正常任务等待时间。</p>
+<h3 id="75-反证实验-3取消传播可选15-分钟">7.5 反证实验 3：取消传播（可选，15 分钟）</h3>
+<p><strong>目标</strong>：证明"v3 用户点取消后 worker 及时停止"。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>上传大文件（模拟 30 秒摄取）：</li>
+</ol>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/documents/ingest \
+  -d '{"fileId":"big","fileContent":"'$(head -c 10MB /dev/urandom | base64)'"}'
+</code></pre>
+<ol start="2">
+<li>5 秒后点取消：</li>
+</ol>
+<pre><code class="language-bash">curl -X PUT http://localhost:3000/jobs/{jobId}/cancel
+</code></pre>
+<ol start="3">
+<li>观察 worker 日志：
+<ul>
+<li>v2（无取消检查）：30 秒后完成（取消无效）</li>
+<li>v3（有取消检查）：5 秒内停止并抛 <code>JobCancelledError</code></li>
+</ul>
+</li>
+</ol>
+<p><strong>证据</strong>：worker 日志时间戳。</p>
+<h3 id="76-四件套-commit20-分钟">7.6 四件套 + commit（20 分钟）</h3>
+<pre><code class="language-bash">pnpm typecheck &amp;&amp; pnpm lint &amp;&amp; pnpm test
+git add .
+git commit -m "feat(queue): BullMQ 队列 + jobId 幂等 + 死信 + 取消
+
+- 文档摄取迁入队列（请求快速返回 jobId）
+- jobId 幂等（同一文件只摄取一次）
+- 重试退避策略（指数退避 1s/2s/4s）
+- 死信队列（重试 3 次后进 DLQ）
+- 取消传播（worker 检查 cancelled）
+
+Refs: Day29"
+</code></pre>
+<p><strong>⚠️ 硬红线：不要 <code>git push</code></strong>。今天的改动只在本地 commit，Day 30 结束时集中 push。</p>
+<hr>
+<h2 id="8-通过标准">8. 通过标准</h2>
+<ul>
+<li>[ ] 文档摄取请求 200ms 返回（不等摄取完成）</li>
+<li>[ ] 同一文件上传两次只创建一个 job（jobId 幂等）</li>
+<li>[ ] worker 失败自动重试 3 次（指数退避）</li>
+<li>[ ] 重试 3 次仍失败的任务进死信队列（不阻塞后续任务）</li>
+<li>[ ] 用户点取消按钮后 10 秒内 worker 停止</li>
+<li>[ ] 四件套全绿，commit 含 <code>Refs: Day29</code>，未执行 <code>git push</code></li>
+</ul>
+<hr>
+<h2 id="9-提交物">9. 提交物</h2>
+<ol>
+<li>commit（含 <code>Refs: Day29</code>，未执行 <code>git push</code>）</li>
+<li>测试输出截图（producer / worker / 取消三个 spec 全绿）</li>
+<li>反证实验证据（无 jobId 时重复处理 + 无 DLQ 时毒任务占满队列）</li>
+<li>学习日志（250 字）</li>
+<li>架构证据（可选）：BullMQ UI dashboard 截图（队列状态 + job 详情）</li>
+</ol>
+<hr>
+<h2 id="10-课末-3-个核心问题">10. 课末 3 个核心问题</h2>
+<ol>
+<li>请从今天项目的真实入口到最终输出，解释"队列/BullMQ"的数据流或控制流；当天知识链"BullMQ、job 状态、退避、死信、可取消任务"分别在哪一层起作用，为什么按这个顺序学习？</li>
+<li>如果故意移除今天最关键的保护机制（例如去掉 jobId 幂等或去掉死信），线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</li>
+<li>请引用今天的具体代码、测试和架构证据，证明项目目标已经达到；再说明当前实现距离企业生产标准还缺什么，下一步如何演进而不破坏已有合同。</li>
+</ol>
+<hr>
+<h2 id="11-真实项目情境题联网更新-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>
+<p><strong>文档摄取仍在 HTTP 请求内执行，20 个 100MB PDF 并发上传使请求超时 60 秒；用户重试后产生 40 个重复任务。</strong> 请用请求耗时、event-loop lag、jobId 和文件 hash 定位；先暂停上传止损，再迁入 BullMQ 并定义幂等 jobId，验证请求快速返回且每文档只处理一次。回答必须按"定位证据 → 临时止损 → 根因修复 → 回归验证"组织。
+依据：<a href="https://docs.nestjs.com/techniques/queues" target="_blank" rel="noopener noreferrer">NestJS queues</a></p>
+</li>
+<li>
+<p><strong>worker 在写入第 3 个 chunk 后崩溃，自动重试从头写入；毒文档重试 100 次占满队列，取消按钮也无效。</strong> 请用 job 状态、attempts、部分产物和队列延迟定位；先移入死信并暂停该类型止损，再拆原子幂等步骤、有限退避和取消检查，故障注入验证可恢复无重复。回答必须按"定位证据 → 临时止损 → 根因修复 → 回归验证"组织。
+依据：<a href="https://docs.bullmq.io/patterns/idempotent-jobs" target="_blank" rel="noopener noreferrer">BullMQ idempotent jobs</a></p>
+</li>
+</ol>
+<p><strong>知识映射</strong>：BullMQ producer/worker、job 状态、退避、死信、取消和 jobId 幂等。</p>
+<hr>
+<h2 id="12-pdf-面试题">12. PDF 面试题</h2>
+<blockquote>
+<p>以下题目引用自公开面经 PDF 汇编，文件名不等于官方题库；用作练习触发点，不代表本项目对齐了任何一家公司的真实校招/社招题库。</p>
+</blockquote>
+<ol>
+<li>
+<p><strong>手写一个带并发限制的异步调度器 Scheduler。</strong>
+来源：[《2026高德 Al agent 前端开发》](../../资源/2026高德 Al agent 前端开发.pdf)，第 4 页。</p>
+</li>
+<li>
+<p><strong>从零设计前端监控系统时，如何用消息队列削峰填谷并规划全链路？</strong>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E7%25BE%258E%25E5%259B%25A2%25E5%2589%258D%25E7%25AB%25AF%25E6%259E%25B6%25E6%259E%2584%25E5%25B8%2588%25E9%259D%25A2%25E8%25AF%2595-%25E6%2595%25B0%25E6%258D%25AE%25E6%259D%2583%25E9%2599%2590%25E6%2596%25B9%25E5%2590%2591.pdf" class="missing-link">《2026美团前端架构师面试-数据权限方向》</a>，第 13 页。</p>
+</li>
+</ol>
+<p><strong>题目说明</strong>：第一题覆盖任务队列和并发槽位；第二题原文答案使用 Kafka，今天需补充 BullMQ 重试、死信、取消和 jobId 幂等。</p>
+<hr>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"现场提出 5 道问题。五连问不预先固定，也不由上面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<hr>
+<h2 id="14-本-day-在-90-天路线中的锚点">14. 本 Day 在 90 天路线中的锚点</h2>
+<ul>
+<li><strong>前置依赖</strong>：Day 15-20 LangChain RAG（文档摄取逻辑）、Day 12 Agent Loop（长诊断）、Day 28 Redis（BullMQ 依赖 Redis）</li>
+<li><strong>直接后继</strong>：Day 30 M3 门禁（可靠性验收：长任务不阻塞请求、失败可重试、毒任务不占满队列）</li>
+<li><strong>远期对齐</strong>：阶段三 p2-agent-workbench 多 Agent 协同（异步任务编排 + 分布式队列）</li>
+</ul>
+<p><strong>Day 29 是阶段一"AI 前端工程化"的异步化关键日</strong>——掌握 BullMQ 队列 + jobId 幂等 + 死信 + 取消后，Day 30 的 M3 门禁才能通过"可靠性"和"可用性"验收项。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day29-old.html">查看 Day 29 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/28.html">← Day 28 · Redis</a>
+            <a href="/ai-teacher-agent-devolop/day/30.html">Day 30 · 月度门禁 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#14-%E6%9C%AC%E6%97%A5%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8A%A8%E6%89%8B%E5%89%8D%E5%85%88%E7%9C%8B%E9%AA%A8%E6%9E%B6">1.4 本日项目目录结构（动手前先看骨架）</a></li><li><a href="#15-%E9%98%B6%E6%AE%B5-d%E5%8A%A8%E6%89%8B%E8%84%9A%E6%89%8B%E6%9E%B620-%E5%88%86%E9%92%9F%E5%85%88%E6%90%AD%E9%AA%A8%E6%9E%B6%E5%86%8D%E7%9C%8B%E6%AD%A3%E6%96%87">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F90-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">2. 学习节奏（90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E6%9C%80%E5%B0%8F%E9%97%AD%E7%8E%AF%E8%AF%B7%E6%B1%82%E5%86%85%E5%90%8C%E6%AD%A5%E6%89%A7%E8%A1%8C%E9%95%BF%E4%BB%BB%E5%8A%A1%E9%98%BB%E5%A1%9E">3. v1：最小闭环（请求内同步执行长任务，阻塞）</a></li><li><a href="#4-v2bullmq-%E9%98%9F%E5%88%97-%E9%87%8D%E8%AF%95%E9%80%80%E9%81%BF">4. v2：BullMQ 队列 + 重试退避</a></li><li><a href="#5-v3jobid-%E5%B9%82%E7%AD%89-%E6%AD%BB%E4%BF%A1-%E5%8F%96%E6%B6%88%E4%BC%A0%E6%92%AD%E7%BB%88%E6%80%81">5. v3：jobId 幂等 + 死信 + 取消传播（终态）</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94%E4%B8%80%E8%A7%88%E8%A1%A8">6. 三版对比一览表</a></li><li><a href="#65-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1%E7%8B%AC%E7%AB%8B%E6%B7%B1%E6%8C%96-html-%E5%85%A5%E5%8F%A3">6.5 前端底子补弱（独立深挖 HTML 入口）</a></li><li><a href="#7-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95%E9%98%B6%E6%AE%B5-e-f%E7%BA%A6-120-%E5%88%86%E9%92%9F">7. 项目验收清单（阶段 E-F，约 120 分钟）</a></li><li><a href="#8-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86">8. 通过标准</a></li><li><a href="#9-%E6%8F%90%E4%BA%A4%E7%89%A9">9. 提交物</a></li><li><a href="#10-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">10. 课末 3 个核心问题</a></li><li><a href="#11-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">12. PDF 面试题</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">14. 本 Day 在 90 天路线中的锚点</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

@@ -1,0 +1,1942 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 31 · Tool Registry v2（租户隔离 + 版本治理 + 风险分级 + 调用审计） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html" aria-current="page">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/05.html">第 5 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 31</p>
+        <h1>Tool Registry v2（租户隔离 + 版本治理 + 风险分级 + 调用审计）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <p>任务版本：标准版
+日期与时长：2026-08-13 周四，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor</code>
+角色视角：完成 Day 11 Tool Registry v1（单租户/无版本/无权限）后，第一次面对"多租户环境下工具注册混乱、旧客户端调用失败、越权调用无法追踪"生产问题的全栈开发者</p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p>90 天转型路线的三个阶段：</p>
+<pre><code>阶段一（Day 1-30）：前端 → AI 前端
+   项目：p1-monitor 智能运维监控（Vue 3 + TypeScript + WebSocket + Agent UI）
+   Day 1-30：全栈基础 + M3 月度门禁
+
+阶段二（Day 31-60）：AI 前端 → AI 全栈
+   项目：p1-monitor 全栈深化 + LangGraph 多 Agent
+   Day 31：Tool Registry v2（租户隔离 + 版本治理）  ← 今天在这里
+   Day 32-40：LangGraph 状态机编排 + 多 Agent 协同
+   Day 41-50：RAG 深化 + Hybrid Search
+   Day 51-60：可观测性 + M6 门禁
+
+阶段三（Day 61-90）：AI 全栈 → AI Agent 工程师
+   项目：p2-agent-workbench 多 Agent 协同工作台
+</code></pre>
+<p><strong>Day 31 在阶段二第 1 天</strong>。Day 11 实现了单租户 Tool Registry v1（能注册工具、执行工具、记录超时），但没有租户隔离、没有版本治理、没有权限控制、没有调用审计。今天要升级为 <strong>Tool Registry v2</strong>，支持多租户隔离、工具版本演进、风险分级授权、不可抵赖调用日志。</p>
+<h3 id="到-day-30-结束时项目已具备的能力">到 Day 30 结束时项目已具备的能力</h3>
+<ul>
+<li><strong>Tool Registry v1</strong>（Day 11）：单租户工具注册 + Schema 校验 + 超时裁剪 + 执行审计</li>
+<li><strong>Agent Loop</strong>（Day 12）：循环调工具 + step/time/token 预算 + Provider 抽象</li>
+<li><strong>持久化</strong>（Day 27）：Outbox 一致性 + 乐观锁 + 软删除</li>
+<li><strong>鉴权</strong>（Day 24）：JWT + RBAC/ABAC + 资源级授权</li>
+<li><strong>队列</strong>（Day 29）：BullMQ jobId 幂等 + 重试退避 + 死信</li>
+</ul>
+<h3 id="今天要解决的-4-个问题">今天要解决的 4 个问题</h3>
+<ol>
+<li>
+<p><strong>问题 1：多租户混用工具（租户隔离）</strong>
+Day 11 的 Registry 全局共享——租户 A 注册的 <code>deleteDisk</code> 工具能被租户 B 调用，导致租户 B 误删租户 A 的磁盘。<strong>如何隔离？</strong></p>
+</li>
+<li>
+<p><strong>问题 2：旧客户端调用新工具失败（版本治理）</strong>
+工具从 v1 升级到 v2（Schema 增加必填字段），旧客户端还在发 v1 Schema 的调用请求，服务端拒绝执行返回 400。<strong>如何兼容？</strong></p>
+</li>
+<li>
+<p><strong>问题 3：只读租户调用删除类工具（风险分级）</strong>
+租户 C 是"只读租户"（业务合同约定只能查询，不能写），但 Registry 里没有"风险分级"概念，租户 C 成功调用了 <code>deleteServer</code> 工具。<strong>如何防护？</strong></p>
+</li>
+<li>
+<p><strong>问题 4：调用无法追踪（审计不完整）</strong>
+审计日志只记录"工具被调用"，但没记录"谁调用的（userId/tenantId）"、"调用参数"、"执行结果"、"是否成功"。运营无法判断某次调用是否真正执行、是否有副作用。<strong>如何补全？</strong></p>
+</li>
+</ol>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<p>在 <code>p1-monitor/apps/api</code> 里交付 <strong>Tool Registry v2</strong>：把 Day 11 的单租户 Registry 升级为支持"租户隔离 + 版本协商 + 风险分级 + 不可抵赖调用日志"的可治理 Capability 层。</p>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p><strong>场景 1：多租户隔离（租户 A 无法调用租户 B 的工具）</strong></p>
+<pre><code>租户 A 注册工具：
+POST /tools/register
+{
+  "tenantId": "tenant-A",
+  "name": "deleteDisk",
+  "version": "v1",
+  "schema": {...},
+  "risk": "high"
+}
+
+租户 B 尝试调用租户 A 的工具：
+POST /tools/execute
+{
+  "tenantId": "tenant-B",
+  "toolName": "deleteDisk",
+  "version": "v1",
+  "arguments": {...}
+}
+
+返回 403 Forbidden：
+{
+  "code": "TOOL_NOT_AUTHORIZED",
+  "message": "Tool deleteDisk@v1 not available for tenant-B"
+}
+</code></pre>
+<p><strong>场景 2：版本协商（旧客户端自动降级到 v1）</strong></p>
+<pre><code>工具演进：deleteDisk v1 → v2（Schema 增加必填字段 dryRun）
+
+旧客户端调用（发送 v1 Schema）：
+POST /tools/execute
+{
+  "tenantId": "tenant-A",
+  "toolName": "deleteDisk",
+  "version": "v1",              ← 明确请求 v1
+  "arguments": {"diskId": "d-001"}
+}
+
+Registry 版本协商：
+1. 检查 tenant-A 是否有 deleteDisk@v1（有，但已标记 deprecated）
+2. 检查 tenant-A 是否有 deleteDisk@v2（有，但客户端请求的是 v1）
+3. 决策：允许降级到 v1（向后兼容窗口 30 天）
+4. 执行 v1 实现（不需要 dryRun 参数）
+
+返回 200 OK + 版本警告：
+{
+  "result": {...},
+  "executedVersion": "v1",
+  "deprecationWarning": "v1 will be removed on 2026-09-12, please upgrade to v2"
+}
+</code></pre>
+<p><strong>场景 3：风险分级（只读租户被拒绝调用高风险工具）</strong></p>
+<pre><code>租户 C 是只读租户（capability: ["read"]）
+
+租户 C 尝试调用高风险工具：
+POST /tools/execute
+{
+  "tenantId": "tenant-C",
+  "toolName": "deleteServer",
+  "version": "v1",
+  "arguments": {...}
+}
+
+Registry 风险检查：
+1. 查询 tenant-C 的 capability: ["read"]
+2. 查询 deleteServer@v1 的 risk: "high"
+3. 决策：high 风险工具需要 "write" capability，租户 C 只有 "read"
+
+返回 403 Forbidden：
+{
+  "code": "CAPABILITY_MISMATCH",
+  "message": "Tool deleteServer requires [write], but tenant-C only has [read]",
+  "requiredCapabilities": ["write"],
+  "actualCapabilities": ["read"]
+}
+</code></pre>
+<p><strong>场景 4：不可抵赖调用日志（每次调用有唯一终态）</strong></p>
+<pre><code>调用工具：
+POST /tools/execute {...}
+
+Registry 记录完整生命周期：
+1. 调用开始：{callId, tenantId, userId, toolName, version, arguments, startedAt}
+2. 执行中：{callId, status: "running", progress: 50%}
+3. 调用结束：{callId, status: "succeeded", result, endedAt, durationMs}
+
+审计日志（Postgres tools_audit 表）：
+call_id | tenant_id | user_id | tool_name | version | arguments_hash | status | result_hash | started_at | ended_at | duration_ms | decision_reason
+c-001   | tenant-A  | u-001   | deleteDisk| v1      | sha256(...)    | succeeded | sha256(...) | 2026-08-13 10:00:00 | 10:00:05 | 5000 | capability_matched
+
+运营查询：
+SELECT * FROM tools_audit WHERE call_id = 'c-001'
+→ 能看到完整证据链：谁调的、调什么、传什么参数、执行结果、是否成功、耗时多久
+</code></pre>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<ul>
+<li><strong>输入</strong>：租户注册工具（tenantId + toolName + version + schema + risk）、租户调用工具（tenantId + userId + toolName + version + arguments）</li>
+<li><strong>输出</strong>：隔离后的工具执行结果 + 版本协商决策 + 风险拒绝理由 + 不可抵赖审计日志</li>
+<li><strong>对齐后续</strong>：Day 32-40 LangGraph 多 Agent 协同时，每个 Agent 有独立的工具权限范围；Day 51-60 可观测性时，调用链路需要 tools_audit 表做追踪</li>
+</ul>
+<h3 id="13-三版演进的目标">1.3 三版演进的目标</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>实现的功能</th>
+<th>代码结构</th>
+<th>引入的知识</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td>单租户全局 Registry，无版本/无权限/无审计</td>
+<td>Day 11 原版：<code>ToolRegistry</code> 单例 + <code>execute(toolName, args)</code></td>
+<td>Schema 校验、超时裁剪、执行审计</td>
+</tr>
+<tr>
+<td><strong>v1 痛点</strong></td>
+<td>租户 A 能调租户 B 的工具；旧客户端调新工具失败；只读租户能调删除工具；调用无法追踪</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>v1 + <strong>租户隔离</strong> + <strong>版本协商</strong></td>
+<td>拆出 <code>tenant-tools</code> 表 + <code>ToolVersionResolver</code></td>
+<td>租户维度注册、版本降级窗口</td>
+</tr>
+<tr>
+<td><strong>v2 痛点</strong></td>
+<td>无风险分级（只读租户仍能调高风险工具）；审计日志不完整（只记开始不记结果）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>v2 + <strong>风险分级授权</strong> + <strong>不可抵赖调用日志</strong></td>
+<td>完整分层（capability/version/risk/audit）</td>
+<td>Capability 策略矩阵、调用生命周期终态、审计不可抵赖</td>
+</tr>
+</tbody>
+</table></div><p><strong>用户最终在项目里交付的是 v3</strong>。v1 是 Day 11 原版，v2 和 v3 是今天增量。</p>
+<hr>
+<h2 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h2>
+<p><strong>为什么放在最前面</strong>：Tool Registry v2 涉及租户隔离、版本协商、风险分级、调用审计 4 个关注点，如果不先立骨架，最容易犯的错就是把"租户查询"、"版本判断"、"风险检查"、"日志记录"糊在一个 service 里。看完这棵树，下面章节再出现 <code>apps/api/src/tools/capability/capability-matrix.ts</code> 时，你就能立刻定位它属于"风险分级授权层"。</p>
+<p><strong>今天在 <code>p1-monitor/</code> 下要建立的完整目录树（v3 完整版）</strong>：</p>
+<pre><code>p1-monitor/
+├── apps/api/src/
+│   ├── tools/                                   ← 【Day 11 已有，今天升级】
+│   │   ├── registry/
+│   │   │   ├── tool-registry.types.ts           ← Day 11 已有
+│   │   │   ├── tool-registry.service.ts         ← Day 11 已有，今天改：接入租户/版本
+│   │   │   └── tool-registry.errors.ts          ← Day 11 已有
+│   │   ├── tenant/                              ← 【新增】租户隔离层
+│   │   │   ├── tenant-tools.repository.ts       ← 租户工具表（按 tenantId 隔离）
+│   │   │   ├── tenant-tools.repository.spec.ts  ← 租户隔离单测
+│   │   │   └── tenant.types.ts                  ← TenantTool 类型
+│   │   ├── version/                             ← 【新增】版本治理层
+│   │   │   ├── version-resolver.service.ts      ← 版本协商策略（降级窗口）
+│   │   │   ├── version-resolver.spec.ts         ← 版本协商单测
+│   │   │   └── version.types.ts                 ← VersionPolicy 类型
+│   │   ├── capability/                          ← 【新增】风险分级授权层
+│   │   │   ├── capability-matrix.ts             ← 风险等级 → capability 映射
+│   │   │   ├── capability-guard.service.ts      ← 权限检查（租户 capability vs 工具 risk）
+│   │   │   ├── capability-guard.spec.ts         ← 风险分级单测
+│   │   │   └── capability.types.ts              ← RiskLevel / Capability 类型
+│   │   ├── audit/                               ← 【新增】不可抵赖调用审计层
+│   │   │   ├── tools-audit.repository.ts        ← tools_audit 表 CRUD
+│   │   │   ├── audit-lifecycle.service.ts       ← 调用生命周期（started/running/succeeded/failed/cancelled）
+│   │   │   ├── audit-lifecycle.spec.ts          ← 生命周期单测
+│   │   │   └── audit.types.ts                   ← ToolCallAudit 类型
+│   │   ├── tools.controller.ts                  ← 【改】接入租户/版本/风险/审计
+│   │   ├── tools.service.ts                     ← 【改】编排层（调用 tenant/version/capability/audit）
+│   │   ├── tools.module.ts                      ← 【改】注册新 Provider
+│   │   └── index.ts                             ← 桶文件
+│   ├── migrations/                              ← 【Prisma 迁移】
+│   │   └── 20260813_tools_v2.sql                ← 新增 tenant_tools / tools_audit 表
+│   └── prisma/
+│       └── schema.prisma                        ← 【改】新增 TenantTool / ToolCallAudit 模型
+├── frontend/src/                                ← 【今天不改前端，Day 32 再接入】
+└── tests/e2e/
+    └── tools-v2.e2e-spec.ts                     ← 【新增】端到端测试（租户隔离/版本协商/风险拒绝/审计完整）
+</code></pre>
+<h3 id="141-为什么这样分层">1.4.1 为什么这样分层</h3>
+<p><strong>分层理由</strong>：</p>
+<ul>
+<li><strong>tenant 层</strong>：管"谁拥有这个工具"（租户隔离）</li>
+<li><strong>version 层</strong>：管"调哪个版本"（版本协商）</li>
+<li><strong>capability 层</strong>：管"有没有权限调"（风险分级）</li>
+<li><strong>audit 层</strong>：管"调用记录"（不可抵赖）</li>
+</ul>
+<p>这 4 层是<strong>正交关注点</strong>——租户隔离失败不影响版本协商、版本协商失败不影响风险检查。分层后每层可以独立单测、独立演进。</p>
+<h3 id="142-与-day-11-v1-的-diff增量对比表">1.4.2 与 Day 11 v1 的 diff（增量对比表）</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>层级</th>
+<th>Day 11 v1</th>
+<th>Day 31 v3</th>
+<th>变化原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>注册层</strong></td>
+<td>全局单例 <code>ToolRegistry</code></td>
+<td><code>TenantToolsRepository</code> 按 tenantId 存储</td>
+<td>多租户隔离</td>
+</tr>
+<tr>
+<td><strong>版本层</strong></td>
+<td>无版本概念</td>
+<td><code>VersionResolverService</code> 协商版本</td>
+<td>向后兼容</td>
+</tr>
+<tr>
+<td><strong>权限层</strong></td>
+<td>无权限检查</td>
+<td><code>CapabilityGuardService</code> 风险分级</td>
+<td>只读租户防护</td>
+</tr>
+<tr>
+<td><strong>审计层</strong></td>
+<td>只记开始日志</td>
+<td><code>AuditLifecycleService</code> 记完整生命周期</td>
+<td>不可抵赖</td>
+</tr>
+<tr>
+<td><strong>DB 表</strong></td>
+<td>无持久化（内存）</td>
+<td><code>tenant_tools</code> + <code>tools_audit</code> 表</td>
+<td>可追踪、可恢复</td>
+</tr>
+</tbody>
+</table></div><h3 id="143-新增的-3-个依赖箭头">1.4.3 新增的 3 个依赖箭头</h3>
+<pre><code>调用流程（v3）：
+
+ToolsController.execute(tenantId, userId, toolName, version, args)
+  │
+  ├─ 1. TenantToolsRepository.findByTenantAndName(tenantId, toolName)
+  │     → 租户隔离检查：tenant-A 不能调 tenant-B 的工具
+  │
+  ├─ 2. VersionResolverService.resolve(requestedVersion, availableVersions)
+  │     → 版本协商：旧客户端降级到 v1（30 天窗口）
+  │
+  ├─ 3. CapabilityGuardService.check(tenantCapabilities, toolRisk)
+  │     → 风险检查：只读租户不能调高风险工具
+  │
+  ├─ 4. AuditLifecycleService.recordStart(callId, tenantId, userId, toolName, version, args)
+  │     → 审计：记录调用开始
+  │
+  ├─ 5. ToolRegistry.execute(toolName, args)  ← Day 11 原有逻辑
+  │     → 真正执行工具
+  │
+  └─ 6. AuditLifecycleService.recordEnd(callId, status, result, durationMs)
+        → 审计：记录调用结束（唯一终态）
+</code></pre>
+<h3 id="144-边写边问自己的-3-个问题">1.4.4 边写边问自己的 3 个问题</h3>
+<ol>
+<li>
+<p><strong>租户隔离为什么不能只在 Controller 层检查？</strong>
+（因为 Agent Loop 直接调 ToolRegistry.execute，绕过 Controller；必须在 Repository 层兜底）</p>
+</li>
+<li>
+<p><strong>版本协商的"降级窗口 30 天"为什么是必要的？</strong>
+（旧客户端不可能在工具升级当天全部更新；30 天给足迁移时间，过期后强制升级）</p>
+</li>
+<li>
+<p><strong>为什么审计日志要记 <code>arguments_hash</code> 而不是明文参数？</strong>
+（参数可能含敏感信息，GDPR 合规要求不能明文存；hash 用于"调用唯一性"判定即可）</p>
+</li>
+</ol>
+<hr>
+<h2 id="15-今天的脚手架动手前先搭骨架">1.5 今天的脚手架（动手前先搭骨架）</h2>
+<p><strong>为什么需要脚手架</strong>：Day 31 要新增 4 个子模块（tenant/version/capability/audit），如果一上来就写完整代码，很容易"写到一半发现类型定义缺了、表结构没建、测试框架没配"。先搭 10 分钟脚手架，后面 80 分钟写代码才顺。</p>
+<h3 id="151-prisma-schema新增-2-张表">1.5.1 Prisma Schema（新增 2 张表）</h3>
+<pre><code class="language-prisma">// prisma/schema.prisma
+
+// 【新增】租户工具表（按 tenantId 隔离）
+model TenantTool {
+  id            String   @id @default(cuid())
+  tenantId      String   @map("tenant_id")
+  toolName      String   @map("tool_name")
+  version       String
+  schema        Json
+  risk          String   // "low" | "medium" | "high"
+  deprecated    Boolean  @default(false)
+  deprecatedAt  DateTime? @map("deprecated_at")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  @@unique([tenantId, toolName, version])
+  @@index([tenantId, toolName])
+  @@map("tenant_tools")
+}
+
+// 【新增】工具调用审计表（不可抵赖日志）
+model ToolCallAudit {
+  id              String   @id @default(cuid())
+  callId          String   @unique @map("call_id")
+  tenantId        String   @map("tenant_id")
+  userId          String   @map("user_id")
+  toolName        String   @map("tool_name")
+  version         String
+  argumentsHash   String   @map("arguments_hash")
+  status          String   // "started" | "running" | "succeeded" | "failed" | "cancelled"
+  resultHash      String?  @map("result_hash")
+  decisionReason  String?  @map("decision_reason")
+  startedAt       DateTime @default(now()) @map("started_at")
+  endedAt         DateTime? @map("ended_at")
+  durationMs      Int?     @map("duration_ms")
+
+  @@index([tenantId, toolName])
+  @@index([callId])
+  @@map("tools_audit")
+}
+</code></pre>
+<h3 id="152-类型定义5-个新类型">1.5.2 类型定义（5 个新类型）</h3>
+<pre><code class="language-typescript">// tools/tenant/tenant.types.ts
+export interface TenantTool {
+  id: string
+  tenantId: string
+  toolName: string
+  version: string
+  schema: object
+  risk: RiskLevel
+  deprecated: boolean
+  deprecatedAt: Date | null
+  createdAt: Date
+}
+
+// tools/version/version.types.ts
+export type VersionPolicy = 'strict' | 'compatible' | 'latest'
+export interface VersionResolution {
+  requestedVersion: string
+  resolvedVersion: string
+  deprecated: boolean
+  deprecationWarning?: string
+}
+
+// tools/capability/capability.types.ts
+export type RiskLevel = 'low' | 'medium' | 'high'
+export type Capability = 'read' | 'write' | 'admin'
+export interface CapabilityDecision {
+  allowed: boolean
+  reason: string
+  required: Capability[]
+  actual: Capability[]
+}
+
+// tools/audit/audit.types.ts
+export type CallStatus = 'started' | 'running' | 'succeeded' | 'failed' | 'cancelled'
+export interface ToolCallAudit {
+  callId: string
+  tenantId: string
+  userId: string
+  toolName: string
+  version: string
+  argumentsHash: string
+  status: CallStatus
+  resultHash: string | null
+  decisionReason: string | null
+  startedAt: Date
+  endedAt: Date | null
+  durationMs: number | null
+}
+</code></pre>
+<h3 id="153-测试骨架4-个单测文件">1.5.3 测试骨架（4 个单测文件）</h3>
+<pre><code class="language-typescript">// tools/tenant/tenant-tools.repository.spec.ts
+describe('TenantToolsRepository', () =&gt; {
+  it('租户 A 不能查到租户 B 的工具', () =&gt; {})
+  it('同一工具的多个版本可以共存', () =&gt; {})
+})
+
+// tools/version/version-resolver.spec.ts
+describe('VersionResolverService', () =&gt; {
+  it('请求 v1，存在 v1 v2，返回 v1', () =&gt; {})
+  it('请求 v1，只存在 v2，30 天内允许降级', () =&gt; {})
+  it('请求 v1，只存在 v2，30 天后拒绝', () =&gt; {})
+})
+
+// tools/capability/capability-guard.spec.ts
+describe('CapabilityGuardService', () =&gt; {
+  it('只读租户调低风险工具，通过', () =&gt; {})
+  it('只读租户调高风险工具，拒绝', () =&gt; {})
+})
+
+// tools/audit/audit-lifecycle.spec.ts
+describe('AuditLifecycleService', () =&gt; {
+  it('记录开始和结束后，status 是 succeeded', () =&gt; {})
+  it('只记录开始未记录结束，status 是 started（异常）', () =&gt; {})
+})
+</code></pre>
+<hr>
+<h2 id="2-今天的学习节奏180-分钟">2. 今天的学习节奏（180 分钟）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>章节</th>
+<th>交付物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>读原理</td>
+<td>30 min</td>
+<td>§3 v1 回顾 + §4 v2 租户隔离/版本协商</td>
+<td>能口述 4 个问题的"为什么"</td>
+</tr>
+<tr>
+<td>读代码</td>
+<td>60 min</td>
+<td>§5 v3 完整代码（capability + audit）</td>
+<td>理解 4 层分工</td>
+</tr>
+<tr>
+<td>写代码</td>
+<td>60 min</td>
+<td>按 §5.3 节的代码动手实现</td>
+<td>4 层代码 + 单测全绿</td>
+</tr>
+<tr>
+<td>验收</td>
+<td>30 min</td>
+<td>§7 四件套 + E2E</td>
+<td>commit 含 <code>Refs: Day31</code></td>
+</tr>
+</tbody>
+</table></div><p><strong>总计</strong>：30 读原理 + 60 读代码 + 60 写代码 + 30 验收 = 180 min</p>
+<hr>
+<h2 id="3-v1-回顾day-11-原版">3. v1 回顾（Day 11 原版）</h2>
+<h3 id="31-v1-实现了什么">3.1 v1 实现了什么</h3>
+<p>Day 11 的 Tool Registry v1：</p>
+<ul>
+<li><strong>工具注册</strong>：<code>registry.register(name, schema, execute)</code></li>
+<li><strong>Schema 校验</strong>：调用前用 Zod 校验参数</li>
+<li><strong>超时裁剪</strong>：5 秒超时自动 abort</li>
+<li><strong>执行审计</strong>：记录工具被调用的时间戳</li>
+</ul>
+<h3 id="32-v1-的-4-个痛点">3.2 v1 的 4 个痛点</h3>
+<ol>
+<li><strong>痛点 1</strong>：全局单例（所有租户共享），租户 A 能调租户 B 的工具</li>
+<li><strong>痛点 2</strong>：无版本概念，工具升级后旧客户端调用失败</li>
+<li><strong>痛点 3</strong>：无风险分级，只读租户能调删除类工具</li>
+<li><strong>痛点 4</strong>：审计日志不完整（只记开始不记结果）</li>
+</ol>
+<hr>
+<h2 id="4-v2租户隔离-版本协商">4. v2：租户隔离 + 版本协商</h2>
+<h3 id="41-v2-要实现什么">4.1 v2 要实现什么</h3>
+<p>用户视角：</p>
+<ol>
+<li>租户 A 注册的工具，租户 B 调用时返回 403（租户隔离）</li>
+<li>工具从 v1 升级到 v2，旧客户端请求 v1 时自动降级（30 天窗口）</li>
+</ol>
+<h3 id="42-v2-核心代码片段">4.2 v2 核心代码片段</h3>
+<h4 id="421-租户隔离tenanttoolsrepository">4.2.1 租户隔离：TenantToolsRepository</h4>
+<pre><code class="language-typescript">@Injectable()
+export class TenantToolsRepository {
+  constructor(private readonly prisma: PrismaService) {}
+
+  async findByTenantAndName(
+    tenantId: string,
+    toolName: string,
+  ): Promise&lt;TenantTool[]&gt; {
+    return this.prisma.tenantTool.findMany({
+      where: { tenantId, toolName },
+      orderBy: { version: 'desc' },
+    })
+  }
+
+  async register(input: {
+    tenantId: string
+    toolName: string
+    version: string
+    schema: object
+    risk: RiskLevel
+  }): Promise&lt;TenantTool&gt; {
+    return this.prisma.tenantTool.create({ data: input })
+  }
+}
+</code></pre>
+<h4 id="422-版本协商versionresolverservice">4.2.2 版本协商：VersionResolverService</h4>
+<pre><code class="language-typescript">@Injectable()
+export class VersionResolverService {
+  resolve(
+    requestedVersion: string,
+    availableVersions: TenantTool[],
+  ): VersionResolution {
+    // 1. 精确匹配
+    const exact = availableVersions.find(t =&gt; t.version === requestedVersion)
+    if (exact) {
+      return {
+        requestedVersion,
+        resolvedVersion: exact.version,
+        deprecated: exact.deprecated,
+        deprecationWarning: exact.deprecated
+          ? `v${exact.version} will be removed on ${exact.deprecatedAt}`
+          : undefined,
+      }
+    }
+
+    // 2. 降级窗口（30 天）
+    const latest = availableVersions[0] // 已按 version desc 排序
+    const now = new Date()
+    const gracePeriod = 30 * 24 * 60 * 60 * 1000 // 30 天
+    const canFallback =
+      latest.deprecatedAt &amp;&amp;
+      now.getTime() - latest.deprecatedAt.getTime() &lt; gracePeriod
+
+    if (canFallback) {
+      return {
+        requestedVersion,
+        resolvedVersion: latest.version,
+        deprecated: false,
+        deprecationWarning: `Requested v${requestedVersion} not found, using v${latest.version}`,
+      }
+    }
+
+    throw new VersionNotFoundError(requestedVersion)
+  }
+}
+</code></pre>
+<hr>
+<h2 id="5-v3风险分级-不可抵赖调用日志终态">5. v3：风险分级 + 不可抵赖调用日志（终态）</h2>
+<h3 id="51-v3-要实现什么">5.1 v3 要实现什么</h3>
+<p>用户视角：</p>
+<ol>
+<li>继承 v2 的租户隔离 + 版本协商</li>
+<li>只读租户调高风险工具时返回 403（风险分级）</li>
+<li>每次调用有完整生命周期日志（started → succeeded/failed/cancelled，不可抵赖）</li>
+</ol>
+<h3 id="52-v3-目录结构">5.2 v3 目录结构</h3>
+<p>与 §1.4 完全一致：</p>
+<pre><code>apps/api/src/tools/
+├── tenant/               ← v2 已有
+├── version/              ← v2 已有
+├── capability/           ← 新增：风险分级
+└── audit/                ← 新增：不可抵赖日志
+</code></pre>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<h4 id="531-capability-层capability-matrixts风险等级映射">5.3.1 capability 层：capability-matrix.ts（风险等级映射）</h4>
+<pre><code class="language-typescript">import { RiskLevel, Capability } from './capability.types'
+
+/**
+ * 风险等级 → 所需 Capability 映射矩阵。
+ * 关键原则：高风险工具需要更高权限。
+ */
+export const CAPABILITY_MATRIX: Record&lt;RiskLevel, Capability[]&gt; = {
+  low: ['read'],        // 低风险：只读权限即可
+  medium: ['write'],    // 中风险：需要写权限
+  high: ['admin'],      // 高风险：需要管理员权限
+}
+
+/**
+ * 检查租户 capabilities 是否满足工具 risk 要求。
+ * 纯函数——不碰 DB，只做"集合包含"判定，可穷举单测。
+ */
+export function checkCapability(
+  tenantCapabilities: Capability[],
+  toolRisk: RiskLevel,
+): { allowed: boolean; required: Capability[]; actual: Capability[] } {
+  const required = CAPABILITY_MATRIX[toolRisk]
+  const allowed = required.every(cap =&gt; tenantCapabilities.includes(cap))
+  return { allowed, required, actual: tenantCapabilities }
+}
+</code></pre>
+<h4 id="532-capability-层capability-guardservicets">5.3.2 capability 层：capability-guard.service.ts</h4>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { checkCapability } from './capability-matrix'
+import { CapabilityMismatchError } from './capability.errors'
+import { RiskLevel, Capability } from './capability.types'
+
+@Injectable()
+export class CapabilityGuardService {
+  /**
+   * 检查租户是否有权限调用指定风险等级的工具。
+   * 抛 CapabilityMismatchError → 映射到 HTTP 403。
+   */
+  assertCanExecute(
+    tenantCapabilities: Capability[],
+    toolRisk: RiskLevel,
+    toolName: string,
+  ): void {
+    const { allowed, required, actual } = checkCapability(
+      tenantCapabilities,
+      toolRisk,
+    )
+
+    if (!allowed) {
+      throw new CapabilityMismatchError(toolName, required, actual)
+    }
+  }
+}
+</code></pre>
+<h4 id="533-capability-层capabilityerrorsts">5.3.3 capability 层：capability.errors.ts</h4>
+<pre><code class="language-typescript">import { ForbiddenException } from '@nestjs/common'
+import { Capability } from './capability.types'
+
+export class CapabilityMismatchError extends ForbiddenException {
+  constructor(
+    public readonly toolName: string,
+    public readonly required: Capability[],
+    public readonly actual: Capability[],
+  ) {
+    super({
+      code: 'CAPABILITY_MISMATCH',
+      message: `Tool ${toolName} requires [${required.join(',')}], but tenant only has [${actual.join(',')}]`,
+      required,
+      actual,
+    })
+  }
+}
+</code></pre>
+<h4 id="534-audit-层audit-lifecycleservicets完整生命周期">5.3.4 audit 层：audit-lifecycle.service.ts（完整生命周期）</h4>
+<pre><code class="language-typescript">import { Injectable, Logger } from '@nestjs/common'
+import { ToolsAuditRepository } from './tools-audit.repository'
+import { CallStatus } from './audit.types'
+import { createHash } from 'crypto'
+
+@Injectable()
+export class AuditLifecycleService {
+  private readonly logger = new Logger(AuditLifecycleService.name)
+
+  constructor(private readonly auditRepo: ToolsAuditRepository) {}
+
+  /**
+   * 记录调用开始（生命周期起点）。
+   * 返回 callId，调用方需要在结束时传回来。
+   */
+  async recordStart(input: {
+    callId: string
+    tenantId: string
+    userId: string
+    toolName: string
+    version: string
+    arguments: object
+  }): Promise&lt;void&gt; {
+    const argumentsHash = this.hash(JSON.stringify(input.arguments))
+
+    await this.auditRepo.create({
+      callId: input.callId,
+      tenantId: input.tenantId,
+      userId: input.userId,
+      toolName: input.toolName,
+      version: input.version,
+      argumentsHash,
+      status: 'started',
+      resultHash: null,
+      decisionReason: null,
+      startedAt: new Date(),
+      endedAt: null,
+      durationMs: null,
+    })
+
+    this.logger.log(`call started: ${input.callId}`)
+  }
+
+  /**
+   * 记录调用结束（生命周期终点）。
+   * 唯一终态：succeeded / failed / cancelled。
+   */
+  async recordEnd(input: {
+    callId: string
+    status: Extract&lt;CallStatus, 'succeeded' | 'failed' | 'cancelled'&gt;
+    result?: object
+    error?: Error
+  }): Promise&lt;void&gt; {
+    const startRecord = await this.auditRepo.findByCallId(input.callId)
+    if (!startRecord) {
+      this.logger.warn(`call ${input.callId} has no start record`)
+      return
+    }
+
+    const endedAt = new Date()
+    const durationMs = endedAt.getTime() - startRecord.startedAt.getTime()
+    const resultHash = input.result ? this.hash(JSON.stringify(input.result)) : null
+    const decisionReason = input.error ? input.error.message : null
+
+    await this.auditRepo.updateEnd({
+      callId: input.callId,
+      status: input.status,
+      resultHash,
+      decisionReason,
+      endedAt,
+      durationMs,
+    })
+
+    this.logger.log(`call ended: ${input.callId}, status: ${input.status}, duration: ${durationMs}ms`)
+  }
+
+  /**
+   * SHA-256 hash（GDPR 合规：不存明文敏感参数）。
+   */
+  private hash(data: string): string {
+    return createHash('sha256').update(data).digest('hex')
+  }
+}
+</code></pre>
+<h4 id="535-audit-层tools-auditrepositoryts">5.3.5 audit 层：tools-audit.repository.ts</h4>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { PrismaService } from '../../prisma/prisma.service'
+import { ToolCallAudit, CallStatus } from './audit.types'
+
+@Injectable()
+export class ToolsAuditRepository {
+  constructor(private readonly prisma: PrismaService) {}
+
+  async create(input: Omit&lt;ToolCallAudit, 'id'&gt;): Promise&lt;ToolCallAudit&gt; {
+    return this.prisma.toolCallAudit.create({ data: input })
+  }
+
+  async findByCallId(callId: string): Promise&lt;ToolCallAudit | null&gt; {
+    return this.prisma.toolCallAudit.findUnique({ where: { callId } })
+  }
+
+  async updateEnd(input: {
+    callId: string
+    status: CallStatus
+    resultHash: string | null
+    decisionReason: string | null
+    endedAt: Date
+    durationMs: number
+  }): Promise&lt;void&gt; {
+    await this.prisma.toolCallAudit.update({
+      where: { callId: input.callId },
+      data: {
+        status: input.status,
+        resultHash: input.resultHash,
+        decisionReason: input.decisionReason,
+        endedAt: input.endedAt,
+        durationMs: input.durationMs,
+      },
+    })
+  }
+
+  /**
+   * 运营查询：找出"有 started 无终态"的异常调用。
+   */
+  async findOrphanedCalls(): Promise&lt;ToolCallAudit[]&gt; {
+    return this.prisma.toolCallAudit.findMany({
+      where: {
+        status: 'started',
+        startedAt: { lt: new Date(Date.now() - 5 * 60 * 1000) }, // 5 分钟前开始的
+      },
+    })
+  }
+}
+</code></pre>
+<h4 id="536-toolsservicets编排层串联-4-层">5.3.6 tools.service.ts（编排层，串联 4 层）</h4>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { TenantToolsRepository } from './tenant/tenant-tools.repository'
+import { VersionResolverService } from './version/version-resolver.service'
+import { CapabilityGuardService } from './capability/capability-guard.service'
+import { AuditLifecycleService } from './audit/audit-lifecycle.service'
+import { ToolRegistry } from './registry/tool-registry.service' // Day 11 原有
+import { Capability } from './capability/capability.types'
+import { randomUUID } from 'crypto'
+
+@Injectable()
+export class ToolsService {
+  constructor(
+    private readonly tenantTools: TenantToolsRepository,
+    private readonly versionResolver: VersionResolverService,
+    private readonly capabilityGuard: CapabilityGuardService,
+    private readonly audit: AuditLifecycleService,
+    private readonly registry: ToolRegistry,
+  ) {}
+
+  /**
+   * v3 完整流程：租户隔离 → 版本协商 → 风险检查 → 审计开始 → 执行 → 审计结束。
+   */
+  async execute(input: {
+    tenantId: string
+    userId: string
+    tenantCapabilities: Capability[]
+    toolName: string
+    version: string
+    arguments: object
+  }): Promise&lt;{ result: any; executedVersion: string; deprecationWarning?: string }&gt; {
+    const callId = randomUUID()
+
+    try {
+      // 1. 租户隔离
+      const availableTools = await this.tenantTools.findByTenantAndName(
+        input.tenantId,
+        input.toolName,
+      )
+      if (availableTools.length === 0) {
+        throw new Error(`Tool ${input.toolName} not available for tenant ${input.tenantId}`)
+      }
+
+      // 2. 版本协商
+      const resolution = this.versionResolver.resolve(input.version, availableTools)
+      const selectedTool = availableTools.find(t =&gt; t.version === resolution.resolvedVersion)!
+
+      // 3. 风险检查
+      this.capabilityGuard.assertCanExecute(
+        input.tenantCapabilities,
+        selectedTool.risk,
+        input.toolName,
+      )
+
+      // 4. 审计开始
+      await this.audit.recordStart({
+        callId,
+        tenantId: input.tenantId,
+        userId: input.userId,
+        toolName: input.toolName,
+        version: resolution.resolvedVersion,
+        arguments: input.arguments,
+      })
+
+      // 5. 执行（Day 11 原有逻辑）
+      const result = await this.registry.execute(input.toolName, input.arguments)
+
+      // 6. 审计结束（成功）
+      await this.audit.recordEnd({ callId, status: 'succeeded', result })
+
+      return {
+        result,
+        executedVersion: resolution.resolvedVersion,
+        deprecationWarning: resolution.deprecationWarning,
+      }
+    } catch (error) {
+      // 6. 审计结束（失败）
+      await this.audit.recordEnd({ callId, status: 'failed', error: error as Error })
+      throw error
+    }
+  }
+}
+</code></pre>
+<h3 id="54-v3-用到的知识点">5.4 v3 用到的知识点</h3>
+<p><strong>知识点 1：租户隔离（Tenant Isolation）</strong></p>
+<ul>
+<li>解决的问题：多租户 SaaS 环境下，租户 A 不能看到/调用租户 B 的资源</li>
+<li>运行机制：所有表加 <code>tenant_id</code> 列，查询时强制 <code>WHERE tenant_id = ?</code></li>
+<li>项目落点：<code>tenant_tools</code> 表按 tenantId 分区，Repository 查询自动注入 tenantId</li>
+<li>生产误区：只在 Controller 层检查（Agent Loop 绕过）；忘记在 DB 层加唯一约束（两个租户注册同名工具冲突）</li>
+<li>验证方法：租户 A 注册工具，租户 B 调用返回 403</li>
+</ul>
+<p><strong>知识点 2：版本治理（Version Governance）</strong></p>
+<ul>
+<li>解决的问题：工具升级后旧客户端调用失败；强制所有客户端同步升级不现实</li>
+<li>运行机制：工具带 version 字段，支持"精确匹配 + 降级窗口"策略</li>
+<li>项目落点：<code>VersionResolverService</code> 30 天降级窗口</li>
+<li>生产误区：无降级窗口（旧客户端立刻挂）；降级窗口无限长（技术债累积）</li>
+<li>验证方法：旧客户端请求 v1，v1 已 deprecated 30 天内返回 v1 + warning，30 天后返回 404</li>
+</ul>
+<p><strong>知识点 3：风险分级授权（Risk-based Authorization）</strong></p>
+<ul>
+<li>解决的问题：RBAC 粒度太粗（admin 能干所有事），需要按"操作风险"分级</li>
+<li>运行机制：工具标 risk（low/medium/high），租户标 capabilities（read/write/admin），矩阵匹配</li>
+<li>项目落点：<code>CAPABILITY_MATRIX</code> 映射 + <code>CapabilityGuardService.assertCanExecute</code></li>
+<li>生产误区：把风险等级写死在代码里（新工具要改代码）；用"黑名单"而非"白名单"（默认允许很危险）</li>
+<li>验证方法：只读租户调低风险工具通过，调高风险工具返回 403</li>
+</ul>
+<p><strong>知识点 4：不可抵赖审计（Non-repudiation Audit）</strong></p>
+<ul>
+<li>解决的问题：调用方事后否认"我没调过这个工具"；运营无法定位责任</li>
+<li>运行机制：每次调用记 started + ended 两条日志，带 callId/userId/argumentsHash/resultHash/durationMs</li>
+<li>项目落点：<code>AuditLifecycleService</code> 记完整生命周期（started → succeeded/failed/cancelled）</li>
+<li>生产误区：只记开始不记结束（无法判断是否真正执行）；明文存敏感参数（GDPR 违规）</li>
+<li>验证方法：调用工具后查 <code>tools_audit</code> 表，断言有 started + succeeded 两条记录</li>
+</ul>
+<p><strong>知识点 5：调用生命周期终态（Call Lifecycle Terminal State）</strong></p>
+<ul>
+<li>解决的问题：分布式系统下调用可能"开始了但不知道结束了没"（网络超时/进程崩溃）</li>
+<li>运行机制：5 种状态（started/running/succeeded/failed/cancelled），后 3 种是唯一终态</li>
+<li>项目落点：<code>findOrphanedCalls</code> 找出 5 分钟前 started 但无终态的调用</li>
+<li>生产误区：用"进行中"做默认状态（崩溃后永远"进行中"）；没有"取消"状态（用户点取消后日志说成功）</li>
+<li>验证方法：调用中 kill 进程，重启后查 <code>tools_audit</code>，断言 status 是 started（孤儿调用）</li>
+</ul>
+<p><strong>知识点 6：参数 Hash 与 GDPR 合规</strong></p>
+<ul>
+<li>解决的问题：调用参数可能含用户手机号/身份证，明文存违反 GDPR</li>
+<li>运行机制：存 SHA-256(JSON.stringify(arguments))，用于"调用唯一性"判定，无法反推原文</li>
+<li>项目落点：<code>AuditLifecycleService.hash</code> 方法</li>
+<li>生产误区：用 MD5（已被碰撞攻击）；用可逆加密（密钥泄露=明文泄露）</li>
+<li>验证方法：两次传相同参数，argumentsHash 一致；改一个字符，hash 完全不同</li>
+</ul>
+<h3 id="55-边写边问自己">5.5 边写边问自己</h3>
+<ul>
+<li>租户隔离为什么不能只在 Controller 层检查？（Agent Loop 直接调 ToolRegistry.execute，绕过 Controller）</li>
+<li>版本协商的"降级窗口 30 天"为什么是必要的？（旧客户端不可能在工具升级当天全部更新）</li>
+<li>为什么审计日志要记 <code>arguments_hash</code> 而不是明文参数？（GDPR 合规，参数可能含敏感信息）</li>
+<li>为什么需要 <code>findOrphanedCalls</code> 查孤儿调用？（网络超时/进程崩溃会导致"有开始无结束"，需要人工介入）</li>
+</ul>
+<hr>
+<h2 id="6-三版对比v1-vs-v2-vs-v3">6. 三版对比（v1 vs v2 vs v3）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1（Day 11）</th>
+<th>v2（租户+版本）</th>
+<th>v3（风险+审计，终态）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>租户隔离</strong></td>
+<td>无（全局共享）</td>
+<td>✅ 按 tenantId 隔离</td>
+<td>✅ 继承 v2</td>
+</tr>
+<tr>
+<td><strong>版本治理</strong></td>
+<td>无版本概念</td>
+<td>✅ 版本协商 + 30 天降级窗口</td>
+<td>✅ 继承 v2</td>
+</tr>
+<tr>
+<td><strong>风险分级</strong></td>
+<td>无权限检查</td>
+<td>❌ 只读租户仍能调高风险工具</td>
+<td>✅ Capability 矩阵授权</td>
+</tr>
+<tr>
+<td><strong>审计完整性</strong></td>
+<td>只记开始日志</td>
+<td>❌ 仍不记结束</td>
+<td>✅ 完整生命周期（started → terminal）</td>
+</tr>
+<tr>
+<td><strong>数据库表</strong></td>
+<td>无持久化</td>
+<td><code>tenant_tools</code></td>
+<td><code>tenant_tools</code> + <code>tools_audit</code></td>
+</tr>
+<tr>
+<td><strong>调用流程</strong></td>
+<td><code>execute(name, args)</code></td>
+<td><code>execute(tenantId, name, version, args)</code></td>
+<td><code>execute(tenantId, userId, capabilities, name, version, args)</code></td>
+</tr>
+<tr>
+<td><strong>安全保障</strong></td>
+<td>无</td>
+<td>租户隔离 + 版本兼容</td>
+<td>租户隔离 + 版本兼容 + 风险控制 + 不可抵赖</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="65-前端底子补弱多租户-saas-架构的-4-个关键概念">6.5 前端底子补弱：多租户 SaaS 架构的 4 个关键概念</h2>
+<p><strong>为什么前端需要懂多租户</strong>：Day 32-40 要做 LangGraph 多 Agent 协同，每个 Agent 有独立的工具权限范围。如果不理解"租户隔离 vs 用户隔离"、"版本协商 vs 强制升级"、"风险分级 vs RBAC"，前端会把"403 Capability Mismatch"当成 bug、把"deprecation warning"忽略掉。</p>
+<h3 id="651-租户隔离-vs-用户隔离">6.5.1 租户隔离 vs 用户隔离</h3>
+<p><strong>场景对比</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>隔离级别</th>
+<th>数据分区</th>
+<th>适用场景</th>
+<th>前端表现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>用户隔离</strong></td>
+<td>同一张表，WHERE user_id=?</td>
+<td>B2C 应用（微信/淘宝）</td>
+<td>用户 A 看不到用户 B 的订单</td>
+</tr>
+<tr>
+<td><strong>租户隔离</strong></td>
+<td>按 tenant_id 分区（逻辑/物理）</td>
+<td>B2B SaaS（钉钉/飞书）</td>
+<td>公司 A 看不到公司 B 的员工</td>
+</tr>
+</tbody>
+</table></div><p><strong>前端判定</strong>：登录后拿到 <code>tenantId</code>（公司 ID）和 <code>userId</code>（员工 ID）两个字段。所有 API 请求都要带 <code>tenantId</code>，服务端自动过滤数据。</p>
+<p><strong>HTML 演示</strong>（租户选择器）：</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;租户隔离演示&lt;/title&gt;
+  &lt;style&gt;
+    body { font-family: sans-serif; padding: 20px; }
+    .tenant-selector { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; }
+    .tool-list { padding: 10px; background: #f5f5f5; }
+    .tool-item { padding: 8px; margin: 5px 0; background: white; border-left: 3px solid #4CAF50; }
+    .forbidden { border-left-color: #f44336; opacity: 0.5; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Tool Registry v2 - 租户隔离演示&lt;/h2&gt;
+  
+  &lt;div class="tenant-selector"&gt;
+    &lt;label&gt;当前租户：&lt;/label&gt;
+    &lt;select id="tenantSelect"&gt;
+      &lt;option value="tenant-A"&gt;租户 A（拥有 deleteDisk）&lt;/option&gt;
+      &lt;option value="tenant-B"&gt;租户 B（拥有 queryMetrics）&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+
+  &lt;div class="tool-list"&gt;
+    &lt;h3&gt;可用工具列表&lt;/h3&gt;
+    &lt;div id="toolsContainer"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    const tools = {
+      'tenant-A': [
+        { name: 'deleteDisk', version: 'v1', risk: 'high' },
+        { name: 'queryMetrics', version: 'v1', risk: 'low' },
+      ],
+      'tenant-B': [
+        { name: 'queryMetrics', version: 'v1', risk: 'low' },
+        { name: 'exportReport', version: 'v2', risk: 'medium' },
+      ],
+    }
+
+    const tenantSelect = document.getElementById('tenantSelect')
+    const toolsContainer = document.getElementById('toolsContainer')
+
+    tenantSelect.addEventListener('change', renderTools)
+    renderTools()
+
+    function renderTools() {
+      const tenantId = tenantSelect.value
+      const availableTools = tools[tenantId]
+      
+      toolsContainer.innerHTML = availableTools.map(tool =&gt; `
+        &lt;div class="tool-item"&gt;
+          &lt;strong&gt;${tool.name}@${tool.version}&lt;/strong&gt; 
+          &lt;span style="color: ${tool.risk === 'high' ? 'red' : tool.risk === 'medium' ? 'orange' : 'green'}"&gt;
+            [${tool.risk} risk]
+          &lt;/span&gt;
+        &lt;/div&gt;
+      `).join('')
+      
+      // 模拟跨租户调用被拒绝
+      const otherTenantId = tenantId === 'tenant-A' ? 'tenant-B' : 'tenant-A'
+      const forbiddenTools = tools[otherTenantId]
+      toolsContainer.innerHTML += `&lt;h4&gt;其他租户的工具（不可见）&lt;/h4&gt;`
+      toolsContainer.innerHTML += forbiddenTools.map(tool =&gt; `
+        &lt;div class="tool-item forbidden"&gt;
+          &lt;strong&gt;${tool.name}@${tool.version}&lt;/strong&gt; 
+          &lt;span&gt;[403 Forbidden]&lt;/span&gt;
+        &lt;/div&gt;
+      `).join('')
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>深挖原理</strong>：为什么租户隔离不能只在前端过滤？</p>
+<ul>
+<li><strong>前端过滤</strong>：用户改 JS 代码就能绕过（F12 控制台）</li>
+<li><strong>后端过滤</strong>：所有 DB 查询强制 <code>WHERE tenant_id = ?</code>，在 Prisma Client 扩展里注入（类似 Day 27 的软删除 scope）</li>
+</ul>
+<h3 id="652-版本协商-vs-强制升级">6.5.2 版本协商 vs 强制升级</h3>
+<p><strong>场景对比</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>策略</th>
+<th>旧客户端行为</th>
+<th>适用场景</th>
+<th>用户体验</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>强制升级</strong></td>
+<td>立刻返回 426 Upgrade Required</td>
+<td>安全漏洞修复</td>
+<td>弹窗"请更新 App"</td>
+</tr>
+<tr>
+<td><strong>版本协商</strong></td>
+<td>30 天内降级到旧版本</td>
+<td>功能迭代</td>
+<td>静默兼容 + 警告</td>
+</tr>
+</tbody>
+</table></div><p><strong>前端判定</strong>：API 响应带 <code>executedVersion</code> 和 <code>deprecationWarning</code>，前端显示"您正在使用旧版本工具，将于 X 月 X 日下线"。</p>
+<p><strong>HTML 演示</strong>（版本协商警告）：</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;版本协商演示&lt;/title&gt;
+  &lt;style&gt;
+    body { font-family: sans-serif; padding: 20px; }
+    .warning { padding: 10px; margin: 10px 0; background: #fff3cd; border-left: 4px solid #ffc107; }
+    .error { background: #f8d7da; border-left-color: #dc3545; }
+    button { padding: 8px 16px; margin: 5px; cursor: pointer; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Tool Registry v2 - 版本协商演示&lt;/h2&gt;
+  
+  &lt;button onclick="callTool('v1')"&gt;调用 v1（已 deprecated）&lt;/button&gt;
+  &lt;button onclick="callTool('v2')"&gt;调用 v2（最新）&lt;/button&gt;
+  &lt;button onclick="callTool('v3')"&gt;调用 v3（不存在）&lt;/button&gt;
+  
+  &lt;div id="result"&gt;&lt;/div&gt;
+
+  &lt;script&gt;
+    const toolVersions = {
+      v1: { deprecated: true, deprecatedAt: '2026-09-12', available: true },
+      v2: { deprecated: false, available: true },
+    }
+
+    function callTool(requestedVersion) {
+      const resultDiv = document.getElementById('result')
+      
+      if (toolVersions[requestedVersion]?.available) {
+        const tool = toolVersions[requestedVersion]
+        if (tool.deprecated) {
+          resultDiv.innerHTML = `
+            &lt;div class="warning"&gt;
+              ⚠️ 执行成功，但您使用的 ${requestedVersion} 将于 ${tool.deprecatedAt} 下线，请升级到 v2
+            &lt;/div&gt;
+          `
+        } else {
+          resultDiv.innerHTML = `&lt;div style="color: green;"&gt;✅ 执行成功（${requestedVersion}）&lt;/div&gt;`
+        }
+      } else {
+        resultDiv.innerHTML = `
+          &lt;div class="error"&gt;
+            ❌ 版本 ${requestedVersion} 不存在，且已过降级窗口期
+          &lt;/div&gt;
+        `
+      }
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>深挖原理</strong>：降级窗口为什么是 30 天？</p>
+<ul>
+<li><strong>技术原因</strong>：客户端发版周期通常 2-4 周，30 天覆盖 1-2 个发版周期</li>
+<li><strong>业务原因</strong>：给客户时间测试新版本（避免"升级即炸"）</li>
+<li><strong>成本原因</strong>：维护多版本有成本，不能无限兼容（技术债累积）</li>
+</ul>
+<h3 id="653-风险分级-vs-rbac">6.5.3 风险分级 vs RBAC</h3>
+<p><strong>场景对比</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>授权模型</th>
+<th>粒度</th>
+<th>判定逻辑</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RBAC</strong></td>
+<td>角色（admin/editor/viewer）</td>
+<td>角色 → 权限列表</td>
+<td>后台管理系统</td>
+</tr>
+<tr>
+<td><strong>风险分级</strong></td>
+<td>操作风险（low/medium/high）</td>
+<td>租户 capabilities × 工具 risk</td>
+<td>Agent 工具调用</td>
+</tr>
+</tbody>
+</table></div><p><strong>前端判定</strong>：调用工具前先调 <code>/tools/:name/check</code>，返回 <code>{ allowed: true/false, reason }</code> 再决定是否显示按钮。</p>
+<p><strong>HTML 演示</strong>（风险分级按钮状态）：</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;风险分级演示&lt;/title&gt;
+  &lt;style&gt;
+    body { font-family: sans-serif; padding: 20px; }
+    .tenant-info { padding: 10px; margin-bottom: 20px; background: #e3f2fd; }
+    .tool-card { padding: 15px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; }
+    .tool-card.disabled { opacity: 0.5; background: #f5f5f5; }
+    button:disabled { cursor: not-allowed; }
+    .risk-badge { padding: 2px 8px; border-radius: 3px; font-size: 12px; }
+    .risk-low { background: #4CAF50; color: white; }
+    .risk-medium { background: #FF9800; color: white; }
+    .risk-high { background: #f44336; color: white; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Tool Registry v2 - 风险分级演示&lt;/h2&gt;
+  
+  &lt;div class="tenant-info"&gt;
+    &lt;strong&gt;当前租户 capabilities:&lt;/strong&gt;
+    &lt;select id="capabilitySelect"&gt;
+      &lt;option value="read"&gt;read（只读租户）&lt;/option&gt;
+      &lt;option value="write"&gt;write（普通租户）&lt;/option&gt;
+      &lt;option value="admin"&gt;admin（管理员租户）&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+
+  &lt;div id="toolsContainer"&gt;&lt;/div&gt;
+
+  &lt;script&gt;
+    const tools = [
+      { name: 'queryMetrics', risk: 'low', requiredCap: 'read' },
+      { name: 'updateConfig', risk: 'medium', requiredCap: 'write' },
+      { name: 'deleteDisk', risk: 'high', requiredCap: 'admin' },
+    ]
+
+    const capabilityLevels = { read: 1, write: 2, admin: 3 }
+    const capabilitySelect = document.getElementById('capabilitySelect')
+    const toolsContainer = document.getElementById('toolsContainer')
+
+    capabilitySelect.addEventListener('change', renderTools)
+    renderTools()
+
+    function renderTools() {
+      const currentCap = capabilitySelect.value
+      const currentLevel = capabilityLevels[currentCap]
+      
+      toolsContainer.innerHTML = tools.map(tool =&gt; {
+        const requiredLevel = capabilityLevels[tool.requiredCap]
+        const allowed = currentLevel &gt;= requiredLevel
+        
+        return `
+          &lt;div class="tool-card ${allowed ? '' : 'disabled'}"&gt;
+            &lt;div&gt;
+              &lt;strong&gt;${tool.name}&lt;/strong&gt;
+              &lt;span class="risk-badge risk-${tool.risk}"&gt;${tool.risk} risk&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div style="margin-top: 8px; font-size: 14px; color: #666;"&gt;
+              需要：${tool.requiredCap} capability
+            &lt;/div&gt;
+            &lt;button ${allowed ? '' : 'disabled'} onclick="alert('执行 ${tool.name}')"&gt;
+              ${allowed ? '执行' : `需要 ${tool.requiredCap} 权限`}
+            &lt;/button&gt;
+          &lt;/div&gt;
+        `
+      }).join('')
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>深挖原理</strong>：为什么不直接用 RBAC？</p>
+<ul>
+<li><strong>RBAC 问题</strong>：角色爆炸（需要 admin-delete / admin-write / editor-delete ...）</li>
+<li><strong>风险分级优势</strong>：按"操作危险程度"分级，租户只需声明 capabilities，新工具自动匹配</li>
+</ul>
+<h3 id="654-不可抵赖审计-vs-普通日志">6.5.4 不可抵赖审计 vs 普通日志</h3>
+<p><strong>场景对比</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>审计级别</th>
+<th>记录内容</th>
+<th>法律效力</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>普通日志</strong></td>
+<td>操作发生了</td>
+<td>无（可篡改）</td>
+<td>开发调试</td>
+</tr>
+<tr>
+<td><strong>不可抵赖审计</strong></td>
+<td>谁/何时/做什么/结果如何</td>
+<td>有（带签名/哈希）</td>
+<td>金融/医疗/政务</td>
+</tr>
+</tbody>
+</table></div><p><strong>前端判定</strong>：调用工具后返回 <code>callId</code>，用户可在"审计日志"页面查到完整证据链（类似银行转账凭证）。</p>
+<p><strong>HTML 演示</strong>（审计日志查询）：</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;审计日志演示&lt;/title&gt;
+  &lt;style&gt;
+    body { font-family: 'Courier New', monospace; padding: 20px; background: #1e1e1e; color: #d4d4d4; }
+    .log-entry { padding: 10px; margin: 5px 0; background: #2d2d30; border-left: 3px solid #007acc; }
+    .log-entry.failed { border-left-color: #f44336; }
+    .log-header { color: #4ec9b0; }
+    .log-data { margin-left: 20px; color: #ce9178; }
+    button { padding: 8px 16px; background: #007acc; color: white; border: none; cursor: pointer; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Tool Call Audit Log&lt;/h2&gt;
+  &lt;button onclick="simulateCall()"&gt;模拟工具调用&lt;/button&gt;
+  &lt;div id="auditLog"&gt;&lt;/div&gt;
+
+  &lt;script&gt;
+    let callCount = 0
+
+    function simulateCall() {
+      callCount++
+      const callId = `call-${Date.now()}`
+      const status = Math.random() &gt; 0.3 ? 'succeeded' : 'failed'
+      
+      const logDiv = document.getElementById('auditLog')
+      const timestamp = new Date().toISOString()
+      
+      logDiv.innerHTML = `
+        &lt;div class="log-entry ${status === 'failed' ? 'failed' : ''}"&gt;
+          &lt;div class="log-header"&gt;▶ ${timestamp} [${callId}]&lt;/div&gt;
+          &lt;div class="log-data"&gt;tenant_id: tenant-A&lt;/div&gt;
+          &lt;div class="log-data"&gt;user_id: user-001&lt;/div&gt;
+          &lt;div class="log-data"&gt;tool_name: deleteDisk@v1&lt;/div&gt;
+          &lt;div class="log-data"&gt;arguments_hash: sha256(e4d909c...)&lt;/div&gt;
+          &lt;div class="log-data"&gt;status: ${status}&lt;/div&gt;
+          &lt;div class="log-data"&gt;duration_ms: ${Math.floor(Math.random() * 5000)}&lt;/div&gt;
+          ${status === 'failed' ? '&lt;div class="log-data" style="color: #f44336;"&gt;decision_reason: CAPABILITY_MISMATCH&lt;/div&gt;' : ''}
+        &lt;/div&gt;
+      ` + logDiv.innerHTML
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><strong>深挖原理</strong>：如何保证审计日志不被篡改？</p>
+<ul>
+<li><strong>技术手段</strong>：每条日志计算哈希，串成 Merkle Tree（区块链原理）</li>
+<li><strong>组织手段</strong>：审计日志写入只读数据库（WORM，Write Once Read Many）</li>
+<li><strong>法律手段</strong>：审计日志带时间戳签名（CA 认证）</li>
+</ul>
+<hr>
+<h2 id="7-验收端到端-4-件套-commit">7. 验收：端到端 4 件套 + commit</h2>
+<h3 id="71-单元测试4-层独立验证">7.1 单元测试（4 层独立验证）</h3>
+<pre><code class="language-bash"># 租户隔离层
+pnpm test tenant-tools.repository.spec.ts
+# 预期：租户 A 查不到租户 B 的工具
+
+# 版本协商层
+pnpm test version-resolver.spec.ts
+# 预期：请求 v1，30 天内降级通过，30 天后拒绝
+
+# 风险分级层
+pnpm test capability-guard.spec.ts
+# 预期：只读租户调高风险工具返回 403
+
+# 审计层
+pnpm test audit-lifecycle.spec.ts
+# 预期：每次调用有 started + terminal 两条记录
+</code></pre>
+<h3 id="72-反证实验-1移除租户隔离观察越权调用">7.2 反证实验 1：移除租户隔离（观察越权调用）</h3>
+<p><strong>假设</strong>：如果把 <code>TenantToolsRepository.findByTenantAndName</code> 里的 <code>WHERE tenant_id=?</code> 删掉，会发生什么？</p>
+<p><strong>操作</strong>：</p>
+<pre><code class="language-typescript">// tenant-tools.repository.ts（故意制造漏洞）
+async findByTenantAndName(tenantId: string, toolName: string) {
+  return this.prisma.tenantTool.findMany({
+    // where: { tenantId, toolName },  ← 注释掉租户过滤
+    where: { toolName },  ← 只按工具名查询
+    orderBy: { version: 'desc' },
+  })
+}
+</code></pre>
+<p><strong>观察</strong>：</p>
+<pre><code class="language-bash"># 租户 A 注册工具
+curl -X POST /tools/register -d '{"tenantId":"tenant-A","toolName":"deleteDisk","version":"v1",...}'
+
+# 租户 B 尝试调用租户 A 的工具
+curl -X POST /tools/execute -d '{"tenantId":"tenant-B","toolName":"deleteDisk","version":"v1",...}'
+
+# 预期（漏洞版本）：返回 200 OK，租户 B 成功调用了租户 A 的工具
+# 实际（修复后）：返回 403 Forbidden
+</code></pre>
+<p><strong>定位</strong>：查 <code>tools_audit</code> 表，发现 <code>tenant_id=tenant-B</code> 成功执行了 <code>deleteDisk</code>（本该被拒绝）。</p>
+<p><strong>恢复</strong>：还原 <code>WHERE tenant_id=?</code> 条件。</p>
+<p><strong>防复发测试</strong>：</p>
+<pre><code class="language-typescript">it('租户 B 不能调用租户 A 的工具', async () =&gt; {
+  await tenantTools.register({ tenantId: 'tenant-A', toolName: 'deleteDisk', ... })
+  await expect(
+    toolsService.execute({ tenantId: 'tenant-B', toolName: 'deleteDisk', ... })
+  ).rejects.toThrow('not available for tenant-B')
+})
+</code></pre>
+<h3 id="73-反证实验-2移除审计结束观察孤儿调用">7.3 反证实验 2：移除审计结束（观察孤儿调用）</h3>
+<p><strong>假设</strong>：如果调用成功后不记 <code>recordEnd</code>，会发生什么？</p>
+<p><strong>操作</strong>：</p>
+<pre><code class="language-typescript">// tools.service.ts（故意不记结束）
+async execute(input) {
+  const callId = randomUUID()
+  await this.audit.recordStart({ callId, ... })
+  const result = await this.registry.execute(input.toolName, input.arguments)
+  // await this.audit.recordEnd({ callId, status: 'succeeded', result })  ← 注释掉
+  return { result }
+}
+</code></pre>
+<p><strong>观察</strong>：</p>
+<pre><code class="language-bash"># 调用工具
+curl -X POST /tools/execute -d '{"tenantId":"tenant-A","toolName":"queryMetrics",...}'
+
+# 查询审计日志
+SELECT * FROM tools_audit WHERE call_id = '...'
+
+# 预期（漏洞版本）：只有 started 记录，没有 terminal 状态
+# 实际（修复后）：有 started + succeeded 两条记录
+</code></pre>
+<p><strong>定位</strong>：运营查询 <code>findOrphanedCalls()</code>，发现大量 5 分钟前 started 但无终态的调用。</p>
+<p><strong>恢复</strong>：还原 <code>recordEnd</code> 调用（放在 try-finally 里保证一定执行）。</p>
+<p><strong>防复发测试</strong>：</p>
+<pre><code class="language-typescript">it('调用结束后必须有 terminal 状态', async () =&gt; {
+  await toolsService.execute({ tenantId: 'tenant-A', toolName: 'queryMetrics', ... })
+  const audit = await auditRepo.findByCallId(callId)
+  expect(['succeeded', 'failed', 'cancelled']).toContain(audit.status)
+})
+</code></pre>
+<h3 id="74-端到端测试4-个场景全覆盖">7.4 端到端测试（4 个场景全覆盖）</h3>
+<pre><code class="language-typescript">// tests/e2e/tools-v2.e2e-spec.ts
+describe('Tool Registry v2 E2E', () =&gt; {
+  it('场景 1：租户隔离', async () =&gt; {
+    // 租户 A 注册工具
+    await request(app.getHttpServer())
+      .post('/tools/register')
+      .send({ tenantId: 'tenant-A', toolName: 'deleteDisk', version: 'v1', ... })
+      .expect(201)
+    
+    // 租户 B 调用失败
+    await request(app.getHttpServer())
+      .post('/tools/execute')
+      .send({ tenantId: 'tenant-B', toolName: 'deleteDisk', version: 'v1', ... })
+      .expect(403)
+  })
+
+  it('场景 2：版本协商', async () =&gt; {
+    // 注册 v1（已 deprecated）和 v2
+    await registerTool({ tenantId: 'tenant-A', toolName: 'tool1', version: 'v1', deprecated: true })
+    await registerTool({ tenantId: 'tenant-A', toolName: 'tool1', version: 'v2' })
+    
+    // 旧客户端请求 v1
+    const res = await request(app.getHttpServer())
+      .post('/tools/execute')
+      .send({ tenantId: 'tenant-A', toolName: 'tool1', version: 'v1', ... })
+      .expect(200)
+    
+    expect(res.body.executedVersion).toBe('v1')
+    expect(res.body.deprecationWarning).toContain('will be removed')
+  })
+
+  it('场景 3：风险分级', async () =&gt; {
+    // 注册高风险工具
+    await registerTool({ tenantId: 'tenant-A', toolName: 'deleteDisk', risk: 'high' })
+    
+    // 只读租户调用失败
+    await request(app.getHttpServer())
+      .post('/tools/execute')
+      .send({ 
+        tenantId: 'tenant-A', 
+        capabilities: ['read'],  // 只读租户
+        toolName: 'deleteDisk', 
+        ... 
+      })
+      .expect(403)
+      .expect(res =&gt; {
+        expect(res.body.code).toBe('CAPABILITY_MISMATCH')
+        expect(res.body.required).toContain('admin')
+      })
+  })
+
+  it('场景 4：不可抵赖审计', async () =&gt; {
+    // 调用工具
+    const res = await request(app.getHttpServer())
+      .post('/tools/execute')
+      .send({ tenantId: 'tenant-A', userId: 'user-001', toolName: 'queryMetrics', ... })
+      .expect(200)
+    
+    // 查询审计日志
+    const audit = await prisma.toolCallAudit.findMany({
+      where: { tenantId: 'tenant-A', toolName: 'queryMetrics' },
+      orderBy: { startedAt: 'desc' },
+      take: 1,
+    })
+    
+    expect(audit[0].status).toBe('succeeded')
+    expect(audit[0].userId).toBe('user-001')
+    expect(audit[0].durationMs).toBeGreaterThan(0)
+  })
+})
+</code></pre>
+<h3 id="75-四件套验收清单">7.5 四件套验收清单</h3>
+<ul>
+<li>[ ] 单元测试全绿（4 层独立验证）</li>
+<li>[ ] 反证实验 1：移除租户隔离 → 观察到越权调用 → 恢复后通过防复发测试</li>
+<li>[ ] 反证实验 2：移除审计结束 → 观察到孤儿调用 → 恢复后通过防复发测试</li>
+<li>[ ] E2E 测试全绿（4 个场景：租户隔离/版本协商/风险分级/审计完整）</li>
+</ul>
+<h3 id="76-git-commit-格式">7.6 git commit 格式</h3>
+<pre><code class="language-bash">git add apps/api/src/tools/tenant apps/api/src/tools/version apps/api/src/tools/capability apps/api/src/tools/audit
+git add prisma/schema.prisma
+git add tests/e2e/tools-v2.e2e-spec.ts
+git commit -m "feat(tools): upgrade to Registry v2 (tenant isolation + version governance + risk-based auth + non-repudiation audit)
+
+- tenant layer: isolate tools by tenantId
+- version layer: 30-day fallback window for deprecated versions
+- capability layer: risk-based authorization (low/medium/high → read/write/admin)
+- audit layer: complete lifecycle (started → succeeded/failed/cancelled)
+
+Refs: Day31"
+</code></pre>
+<p><strong>硬红线</strong>：commit 后<strong>不执行</strong> <code>git push</code>（Day 30 M3 门禁要求本地验收通过后再推）。</p>
+<hr>
+<h2 id="8-提交物清单">8. 提交物清单</h2>
+<p>Day 31 完成后需要提交：</p>
+<ol>
+<li><strong>代码 commit</strong>：包含 tenant/version/capability/audit 四层 + Prisma Schema + E2E 测试</li>
+<li><strong>测试输出</strong>：<code>pnpm test</code> 截图（单元测试全绿）+ E2E 测试日志</li>
+<li><strong>学习日志</strong>：按 §5.4 六个知识点，每个知识点写"解决的问题/运行机制/项目落点/生产误区/验证方法"</li>
+<li><strong>反证记录</strong>：反证实验 1 和 2 的操作步骤、观察现象、恢复动作、防复发测试</li>
+<li><strong>架构证据</strong>：<code>tools_audit</code> 表查询截图（证明审计日志完整）</li>
+</ol>
+<hr>
+<h2 id="9-课末-3-个核心问题">9. 课末 3 个核心问题</h2>
+<ol>
+<li>
+<p><strong>数据流/控制流</strong>：请从今天项目的真实入口到最终输出，解释"Tool Registry v2"的数据流或控制流；当天知识链"租户隔离、版本治理、风险分级、调用审计"分别在哪一层起作用，为什么按这个顺序学习？</p>
+</li>
+<li>
+<p><strong>故障注入</strong>：如果故意移除今天最关键的保护机制（租户隔离的 WHERE tenant_id=? 条件），线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</p>
+</li>
+<li>
+<p><strong>架构证据</strong>：请引用今天的具体代码、测试和架构证据，证明项目目标（租户隔离/版本协商/风险分级/审计完整）已经达到；再说明当前实现距离企业生产标准还缺什么，下一步如何演进而不破坏已有合同。</p>
+</li>
+</ol>
+<hr>
+<h2 id="10-真实项目情境题联网更新-2026-07-13">10. 真实项目情境题（联网更新 2026-07-13）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>
+<p><strong>模拟情境</strong>：8 个租户共注册 120 个 Tool，Registry v2 上线后旧客户端仍发送 v1 Schema，工具失败率从 0.8% 升至 18%，且一个只读租户看到了删除类 Tool。请用 tenantId、toolVersion、schemaHash、decisionReason 和 Trace 定位，给出冻结高风险 Tool 的止损动作、版本协商与能力策略修复，并设计灰度、越权和 Schema 漂移回归。
+依据：<a href="https://jobs.bytedance.com/experienced/position/7309098238475831562/detail" target="_blank" rel="noopener noreferrer">S2 AgentOps</a></p>
+</li>
+<li>
+<p><strong>模拟情境</strong>：系统每天执行 5 万次 Tool Call，审计发现 37 次调用只有开始日志、没有结果或终态，运营无法判断是否真正执行。请还原一次调用的完整证据链，先阻断无法审计的写操作，再修复 Registry 生命周期和不可抵赖调用日志，并用故障注入证明成功、拒绝、超时、取消均有唯一终态。
+依据：<a href="https://jobs.bytedance.com/experienced/position/7651517511770818869/detail" target="_blank" rel="noopener noreferrer">S6 Agent Harness</a></p>
+</li>
+</ol>
+<p>知识映射：对应 Tool Registry v2、版本治理、风险分级、授权与调用追踪。</p>
+<hr>
+<h2 id="11-pdf-面试题">11. PDF 面试题</h2>
+<blockquote>
+<p>以下题目引用自公开面经 PDF 汇编，文件名不等于官方题库；用作练习触发点，不代表本项目对齐了任何一家公司的真实校招/社招题库。</p>
+</blockquote>
+<ol>
+<li>
+<p>什么是 Function Calling？前端处理 Agent 工具调用时要注意什么？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E9%25AB%2598%25E5%25BE%25B7%2520Al%2520agent%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026高德 Al agent 前端开发》</a>，第 7 页。</p>
+</li>
+<li>
+<p>TypeScript 装饰器在 AI 框架中可怎样标记 Tool、提取 Schema、记录日志与控制权限？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E4%25BA%25AC%25E4%25B8%259C%25E5%2589%258D%25E7%25AB%25AF%25E9%259D%25A2%25E8%25AF%2595-%25E5%25A4%25A7%25E6%25A8%25A1%25E5%259E%258B%25E6%2596%25B9%25E5%2590%2591.pdf" class="missing-link">《2026京东前端面试-大模型方向》</a>，第 9 页。</p>
+</li>
+</ol>
+<p>题目说明：直接匹配 Tool Registry、Schema、权限与调用日志；版本生命周期仍需当天项目补足。</p>
+<hr>
+<h2 id="12-完成后教师五连问">12. 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"现场提出 5 道问题。五连问不预先固定，也不由上面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<hr>
+<h2 id="13-本-day-在-90-天路线中的锚点">13. 本 Day 在 90 天路线中的锚点</h2>
+<p>Day 31 是阶段二（Day 31-60）第 1 天，完成 Tool Registry 从 v1（单租户/无版本/无权限）到 v2（多租户隔离 + 版本治理 + 风险分级 + 不可抵赖审计）的升级。</p>
+<p><strong>前置依赖</strong>：Day 11（Tool Registry v1）、Day 24（JWT + RBAC）、Day 27（Prisma 持久化）</p>
+<p><strong>后续衔接</strong>：</p>
+<ul>
+<li>Day 32-40：LangGraph 多 Agent 协同（每个 Agent 有独立的工具权限范围）</li>
+<li>Day 51-60：可观测性（调用链路追踪需要 tools_audit 表）</li>
+</ul>
+<p><strong>核心交付</strong>：<code>tenant_tools</code> 表 + <code>tools_audit</code> 表 + 4 层分工（tenant/version/capability/audit）+ E2E 四件套</p>
+<hr>
+<h2 id="14-下一步day-32">14. 下一步（Day 32）</h2>
+<p>Day 32 将进入 <strong>LangGraph 状态机编排</strong>，学习如何用 StateGraph 定义多 Agent 协同工作流（Task Planner → Code Writer → Code Reviewer）。今天的 Tool Registry v2 是 Agent 的"工具箱"，Day 32 会让多个 Agent <strong>共享这个工具箱、但有不同的权限范围</strong>（Code Writer 能调 <code>writeFile</code>，Code Reviewer 只能调 <code>readFile</code>）。</p>
+<p><strong>预习建议</strong>：</p>
+<ol>
+<li>阅读 LangGraph 官方文档 <a href="https://langchain-ai.github.io/langgraphjs/concepts/low_level/#state-management" target="_blank" rel="noopener noreferrer">State Management</a></li>
+<li>理解 StateGraph 的 3 个核心概念：Node（Agent 行为）、Edge（路由条件）、State（共享上下文）</li>
+<li>思考"多 Agent 如何避免互相干扰"（隔离 vs 共享的权衡）</li>
+</ol>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day31-old.html">查看 Day 31 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/30.html">← Day 30 · 月度门禁</a>
+            <a href="/ai-teacher-agent-devolop/day/32.html">Day 32 · Orchestrator →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#14-%E6%9C%AC%E6%97%A5%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8A%A8%E6%89%8B%E5%89%8D%E5%85%88%E7%9C%8B%E9%AA%A8%E6%9E%B6">1.4 本日项目目录结构（动手前先看骨架）</a></li><li><a href="#15-%E4%BB%8A%E5%A4%A9%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6%E5%8A%A8%E6%89%8B%E5%89%8D%E5%85%88%E6%90%AD%E9%AA%A8%E6%9E%B6">1.5 今天的脚手架（动手前先搭骨架）</a></li><li><a href="#2-%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F180-%E5%88%86%E9%92%9F">2. 今天的学习节奏（180 分钟）</a></li><li><a href="#3-v1-%E5%9B%9E%E9%A1%BEday-11-%E5%8E%9F%E7%89%88">3. v1 回顾（Day 11 原版）</a></li><li><a href="#4-v2%E7%A7%9F%E6%88%B7%E9%9A%94%E7%A6%BB-%E7%89%88%E6%9C%AC%E5%8D%8F%E5%95%86">4. v2：租户隔离 + 版本协商</a></li><li><a href="#5-v3%E9%A3%8E%E9%99%A9%E5%88%86%E7%BA%A7-%E4%B8%8D%E5%8F%AF%E6%8A%B5%E8%B5%96%E8%B0%83%E7%94%A8%E6%97%A5%E5%BF%97%E7%BB%88%E6%80%81">5. v3：风险分级 + 不可抵赖调用日志（终态）</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94v1-vs-v2-vs-v3">6. 三版对比（v1 vs v2 vs v3）</a></li><li><a href="#65-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1%E5%A4%9A%E7%A7%9F%E6%88%B7-saas-%E6%9E%B6%E6%9E%84%E7%9A%84-4-%E4%B8%AA%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5">6.5 前端底子补弱：多租户 SaaS 架构的 4 个关键概念</a></li><li><a href="#7-%E9%AA%8C%E6%94%B6%E7%AB%AF%E5%88%B0%E7%AB%AF-4-%E4%BB%B6%E5%A5%97-commit">7. 验收：端到端 4 件套 + commit</a></li><li><a href="#8-%E6%8F%90%E4%BA%A4%E7%89%A9%E6%B8%85%E5%8D%95">8. 提交物清单</a></li><li><a href="#9-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">9. 课末 3 个核心问题</a></li><li><a href="#10-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-13">10. 真实项目情境题（联网更新 2026-07-13）</a></li><li><a href="#11-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">11. PDF 面试题</a></li><li><a href="#12-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">12. 完成后教师五连问</a></li><li><a href="#13-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">13. 本 Day 在 90 天路线中的锚点</a></li><li><a href="#14-%E4%B8%8B%E4%B8%80%E6%AD%A5day-32">14. 下一步（Day 32）</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

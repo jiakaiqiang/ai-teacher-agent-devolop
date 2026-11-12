@@ -1,0 +1,1000 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 49 · Day 49 - RAG 引用闭环（检索 → 上下文组装 → 生成 → 前端引用） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html" aria-current="page">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/07.html">第 7 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 49</p>
+        <h1>Day 49 - RAG 引用闭环（检索 → 上下文组装 → 生成 → 前端引用）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节为本 Day 的权威执行口径）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段二（Day 31-60，AI 前端 -&gt; AI 全栈）。本日继续在 <code>p1-monitor</code> 真实链路中累积，不创建平行 Demo。</li>
+<li><strong>功能交付</strong>：必须交付一个能跑、能测、能从真实用户入口观察结果的完整模块，知识点由该模块自然引出。</li>
+<li><strong>三版演进</strong>：本日以项目门禁/评测为主：v1 是当前基线与最小可运行链路；v2 是加入一个关键质量维度后的可测版本；v3 是加入失败可见、回归阻断和架构证据后的生产终态。三版必须分别产生可观察差异，不能只保留考核题目。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（90 分钟阅读），D 60 分钟、E 20 分钟、F 10 分钟（90 分钟动手）。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；复用已有 Schema、RAG、租户、评测、Docker 或 Trace 合同，禁止另建第二套接口。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 动态教师五连问；任何“完整执行版/执行版补全要求”只可作为背景，不能替代本日交付。</li>
+<li><strong>跨 Day 导航</strong>：Day50 五十日门禁，Day51 RAG Eval，Day52 LLM Eval。</li>
+</ul>
+<p><strong>补强要求</strong>：若正文使用“完整执行版”或“执行版补全要求”，领取任务时必须把省略部分展开为当天可执行的测试/反证/情境题，并记录真实项目 diff。</p>
+</blockquote>
+<p><strong>日期与时长</strong>：2026-08-31 周一，180 分钟（90 分钟阅读 + 90 分钟动手）
+<strong>项目</strong>：<code>D:\demo\ai-techer\p1-monitor</code><br>
+<strong>阶段任务性质</strong>：教师基线；实际分发时根据上一日成绩生成补弱版、标准版或挑战版。</p>
+<hr>
+<h2 id="0-day-49-在-90-天路线图里的位置">§0 Day 49 在 90 天路线图里的位置</h2>
+<h3 id="01-前情提要day-48-已建立的能力">0.1 前情提要（Day 48 已建立的能力）</h3>
+<p>Day 48 建立了混合检索和重排序能力（向量 + BM25 + Rerank），用户搜索"Nginx 504 超时"能找到相关文档。但检索后还有两个问题：</p>
+<ol>
+<li><strong>引用丢失</strong>：模型生成答案"Nginx 504 通常由上游服务器超时导致"，但没有标注这句话来自哪个文档（用户无法验证）</li>
+<li><strong>无证据乱答</strong>：即使检索不到相关文档，模型仍然生成答案（幻觉风险）</li>
+</ol>
+<h3 id="02-今天的核心任务">0.2 今天的核心任务</h3>
+<p>Day 49 是<strong>阶段三第 9 天</strong>（3h 小版本），建立 RAG 引用闭环：</p>
+<ol>
+<li><strong>Context Assembly</strong>：组装检索结果到 LLM 上下文</li>
+<li><strong>Citation 生成</strong>：模型生成答案时标注引用（[1][2]）</li>
+<li><strong>Grounding 校验</strong>：验证答案是否有检索证据支持</li>
+<li><strong>无证据拒答</strong>：检索为空或证据不足时拒绝回答</li>
+<li><strong>前端引用映射</strong>：前端显示可点击引用，跳转到原文</li>
+</ol>
+<h3 id="03-今天要解决的-5-个生产痛点">0.3 今天要解决的 5 个生产痛点</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>问题</th>
+<th>用户体验</th>
+<th>根因</th>
+<th>Day 49 方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 引用丢失</td>
+<td>答案无法验证来源</td>
+<td>LLM 生成时未标注引用</td>
+<td>Prompt 要求 LLM 用 [1][2] 标注引用</td>
+</tr>
+<tr>
+<td>2. 引用断链</td>
+<td>点击引用 404（文档已删除）</td>
+<td>引用指向 chunkId，文档删除后 chunkId 失效</td>
+<td>引用指向 documentId + version（不可变）</td>
+</tr>
+<tr>
+<td>3. 无证据乱答</td>
+<td>检索为空仍生成答案（幻觉）</td>
+<td>没有检测"检索结果为空"</td>
+<td>Grounding gate：检索为空 → 拒答</td>
+</tr>
+<tr>
+<td>4. 伪造引用</td>
+<td>答案标注 [1][2] 但检索结果只有 1 个</td>
+<td>模型幻觉生成不存在的引用编号</td>
+<td>Citation 校验：引用编号 &gt; 检索结果数量 → 拒答</td>
+</tr>
+<tr>
+<td>5. 前端引用不可点击</td>
+<td>答案显示 [1] 但无法跳转</td>
+<td>前端没有解析引用编号 → chunkId 映射</td>
+<td>Citation 解析器：[1] → chunkId → 前端跳转</td>
+</tr>
+</tbody>
+</table></div><h3 id="04-今天的前置依赖">0.4 今天的前置依赖</h3>
+<ul>
+<li><strong>Day 48</strong>：Hybrid Search + Rerank（检索能力）</li>
+<li><strong>Day 44</strong>：结构化输出（JSON Schema 校验）</li>
+<li><strong>Day 27</strong>：Prisma + Postgres（chunks 表）</li>
+</ul>
+<h3 id="05-今天的后续对齐">0.5 今天的后续对齐</h3>
+<p>Day 49 建立的引用闭环是 Day 50-60 的基础：</p>
+<ul>
+<li><strong>Day 50</strong>：RAG 完整链路（检索 → 生成 → 引用）端到端测试</li>
+<li><strong>Day 51-60</strong>：可观测性（引用点击率、拒答率监控）</li>
+</ul>
+<hr>
+<h2 id="1-今天建立的完整能力">§1 今天建立的完整能力</h2>
+<h3 id="11-用户能看到什么5-个真实场景">§1.1 用户能看到什么（5 个真实场景）</h3>
+<h4 id="场景-1正常引用有证据">场景 1：正常引用（有证据）</h4>
+<p><strong>用户操作</strong>：问"Nginx 504 怎么排查？"</p>
+<p><strong>系统行为</strong>：</p>
+<ol>
+<li>检索返回 3 个文档</li>
+<li>组装上下文：<code>[1] Nginx 504 通常...</code> <code>[2] 检查上游...</code> <code>[3] 超时配置...</code></li>
+<li>LLM 生成答案："Nginx 504 通常由上游服务器超时导致[1]。检查 proxy_read_timeout 配置[3]。"</li>
+<li>前端显示：答案里的 [1][3] 可点击，跳转到原文</li>
+</ol>
+<p><strong>关键观察点</strong>：引用可回溯到原文（点击 [1] 跳转到 chunkId）。</p>
+<h4 id="场景-2无证据拒答">场景 2：无证据拒答</h4>
+<p><strong>用户操作</strong>：问"Python 3.12 新特性有哪些？"（超出知识库范围）</p>
+<p><strong>系统行为</strong>：</p>
+<ol>
+<li>检索返回 0 个文档</li>
+<li>Grounding gate 检测：检索为空</li>
+<li>拒答："抱歉，我没有找到相关文档，无法回答这个问题。"</li>
+</ol>
+<p><strong>关键观察点</strong>：检索为空时不生成答案（避免幻觉）。</p>
+<h4 id="场景-3伪造引用检测">场景 3：伪造引用检测</h4>
+<p><strong>用户操作</strong>：问"服务器故障排查步骤？"</p>
+<p><strong>系统行为</strong>（假设 LLM 幻觉）：</p>
+<ol>
+<li>检索返回 2 个文档</li>
+<li>LLM 生成答案："步骤 1...[1]，步骤 2...[2]，步骤 3...[3]"（伪造 [3]）</li>
+<li>Citation 校验：引用编号 3 &gt; 检索结果数量 2 → 检测到伪造</li>
+<li>拒答："检测到引用编号错误，请重新生成。"</li>
+</ol>
+<p><strong>关键观察点</strong>：伪造引用被拦截（不返回给用户）。</p>
+<h4 id="场景-4引用断链保护">场景 4：引用断链保护</h4>
+<p><strong>用户操作</strong>：点击历史答案里的引用 [1]。</p>
+<p><strong>系统行为</strong>：</p>
+<ol>
+<li>解析引用：[1] → documentId + version（不是 chunkId）</li>
+<li>查询数据库：<code>SELECT * FROM documents WHERE id = 'doc-001' AND version = 'v1'</code></li>
+<li>如果文档已删除（soft delete）：显示"原文档已删除"</li>
+<li>如果文档存在：跳转到原文</li>
+</ol>
+<p><strong>关键观察点</strong>：引用指向不可变版本（文档更新后，旧引用仍能回溯到旧版本）。</p>
+<h4 id="场景-5前端引用悬浮预览">场景 5：前端引用悬浮预览</h4>
+<p><strong>用户操作</strong>：鼠标悬停在引用 [1] 上。</p>
+<p><strong>系统行为</strong>：</p>
+<ol>
+<li>前端请求 <code>/api/citations/:citationId</code></li>
+<li>返回原文摘要（200 字）</li>
+<li>显示悬浮卡片：标题 + 摘要 + "查看完整文档"链接</li>
+</ol>
+<p><strong>关键观察点</strong>：不需要跳转就能预览原文（提升用户体验）。</p>
+<h3 id="12-各模块职责分工4-层架构">§1.2 各模块职责分工（4 层架构）</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                         API 层（NestJS + FastAPI）                │
+│  - SearchController：检索接口（复用 Day 48）                       │
+│  - GenerateController：生成接口（检索 → 组装 → 生成 → 校验）        │
+│  - CitationController：引用查询接口（前端点击引用时调用）           │
+└─────────────────────────────────────────────────────────────────┘
+                                  ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                        服务层（Business Logic）                    │
+│  - ContextAssemblyService：组装检索结果到 LLM 上下文               │
+│  - CitationService：解析 LLM 生成的引用编号 → chunkId 映射         │
+│  - GroundingService：校验答案是否有证据支持                        │
+│  - RefusalService：无证据拒答逻辑                                 │
+└─────────────────────────────────────────────────────────────────┘
+                                  ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                        生成层（LLM）                               │
+│  - OpenAI / Claude API：生成答案（Prompt 要求标注引用）            │
+│  - Citation Prompt：System Prompt 要求用 [1][2] 标注引用          │
+└─────────────────────────────────────────────────────────────────┘
+                                  ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                        存储层（Postgres）                          │
+│  - chunks 表：检索结果来源                                         │
+│  - citations 表：引用记录（answerId → chunkId 映射）               │
+│  - answers 表：答案记录（生成的答案文本 + 引用）                    │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="13-三版演进v1-v2-v33h-小版本精简">§1.3 三版演进（v1 → v2 → v3，3h 小版本精简）</h3>
+<h4 id="v1裸生成无引用day-44-基线">v1：裸生成（无引用，Day 44 基线）</h4>
+<p><strong>能做什么</strong>：用户问"Nginx 504 排查？" → LLM 生成答案（无引用）。</p>
+<p><strong>致命问题</strong>：无法验证来源、无证据仍生成答案、幻觉风险高。</p>
+<h4 id="v2context-assembly-citation">v2：Context Assembly + Citation</h4>
+<p><strong>新增能力</strong>：</p>
+<ol>
+<li>组装检索结果到上下文：<code>[1] 文档 1 内容... [2] 文档 2 内容...</code></li>
+<li>Prompt 要求 LLM 用 [1][2] 标注引用</li>
+<li>Citation 解析器：解析答案里的 [1][2] → 映射到 chunkId</li>
+</ol>
+<h4 id="v3grounding-拒答-版本引用生产级">v3：Grounding + 拒答 + 版本引用（生产级）</h4>
+<p><strong>新增能力</strong>：</p>
+<ol>
+<li><strong>Grounding gate</strong>：检索为空 → 拒答</li>
+<li><strong>Citation 校验</strong>：引用编号 &gt; 检索结果数量 → 拒答</li>
+<li><strong>版本引用</strong>：引用指向 documentId + version（不可变）</li>
+</ol>
+<h3 id="14-今天建立的完整目录结构">§1.4 今天建立的完整目录结构</h3>
+<pre><code>services/ai/
+├── src/
+│   └── ai_service/
+│       ├── rag/
+│       │   ├── context_assembly/
+│       │   │   ├── context_assembly_service.py        # + 上下文组装
+│       │   │   └── context_template.py                # + 上下文模板
+│       │   ├── citation/
+│       │   │   ├── citation_service.py                # + Citation 服务
+│       │   │   ├── citation_parser.py                 # + 引用解析器
+│       │   │   └── citation_validator.py              # + 引用校验器
+│       │   ├── grounding/
+│       │   │   ├── grounding_service.py               # + Grounding 校验
+│       │   │   └── refusal_service.py                 # + 拒答服务
+│       │   └── generation/
+│       │       ├── generation_service.py              # + 生成服务
+│       │       └── citation_prompt.py                 # + Citation Prompt
+│       └── api/
+│           ├── generate.py                             # + 生成接口
+│           └── citation.py                             # + 引用查询接口
+└── tests/
+    ├── test_context_assembly.py                        # + 上下文组装测试
+    ├── test_citation.py                                 # + 引用解析测试
+    └── test_grounding.py                                # + Grounding 测试
+
+apps/web/src/components/
+└── Answer/
+    ├── CitationLink.vue                                 # + 可点击引用组件
+    └── CitationPreview.vue                              # + 引用悬浮预览
+</code></pre>
+<hr>
+<h2 id="2-今天的开发节奏3-小时90-阅读-90-动手">§2 今天的开发节奏（3 小时：90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>任务</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>阶段 1</strong></td>
+<td>40 min</td>
+<td>理解 Context Assembly + Citation 机制</td>
+<td>笔记：上下文格式 + Citation Prompt</td>
+</tr>
+<tr>
+<td><strong>阶段 2</strong></td>
+<td>100 min</td>
+<td>实现 v3（Context + Citation + Grounding + 前端）</td>
+<td>完整代码</td>
+</tr>
+<tr>
+<td><strong>阶段 3</strong></td>
+<td>25 min</td>
+<td>测试（引用解析 + 伪造引用检测）</td>
+<td>测试输出</td>
+</tr>
+<tr>
+<td><strong>阶段 4</strong></td>
+<td>15 min</td>
+<td>架构证据</td>
+<td>依赖图 + commit</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="3-v1裸生成day-44-基线暴露无引用问题">§3 v1：裸生成（Day 44 基线，暴露无引用问题）</h2>
+<p>用户问"Nginx 504 排查？" → LLM 直接生成答案（无检索、无引用）。</p>
+<p><strong>致命问题</strong>：无法验证来源、幻觉风险高。</p>
+<hr>
+<h2 id="4-v2context-assembly-citation">§4 v2：Context Assembly + Citation</h2>
+<h3 id="41-v2-核心代码完整执行版">4.1 v2 核心代码（完整执行版）</h3>
+<h4 id="411-上下文组装服务context_assemblycontext_assembly_servicepy">4.1.1 上下文组装服务（context_assembly/context_assembly_service.py）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/rag/context_assembly/context_assembly_service.py
+from typing import List, Dict, Any
+
+class ContextAssemblyService:
+    """上下文组装服务"""
+    
+    def assemble_context(
+        self,
+        query: str,
+        search_results: List[Dict[str, Any]]
+    ) -&gt; str:
+        """
+        组装检索结果到 LLM 上下文
+        
+        格式：
+        [1] {chunk content}
+        [2] {chunk content}
+        ...
+        
+        Returns:
+            组装后的上下文字符串
+        """
+        context_parts = []
+        
+        for idx, result in enumerate(search_results):
+            citation_num = idx + 1
+            content = result['content']
+            context_parts.append(f"[{citation_num}] {content}")
+        
+        return "\n\n".join(context_parts)
+</code></pre>
+<h4 id="412-citation-promptgenerationcitation_promptpy">4.1.2 Citation Prompt（generation/citation_prompt.py）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/rag/generation/citation_prompt.py
+CITATION_SYSTEM_PROMPT = """你是一个专业的技术助手。回答用户问题时，必须遵守以下规则：
+
+1. **引用标注**：答案中的每个事实必须用 [数字] 标注引用来源。
+   - 示例："Nginx 504 通常由上游服务器超时导致[1]。"
+   
+2. **引用格式**：
+   - 使用方括号 + 数字：[1], [2], [3]
+   - 引用编号对应上下文里的编号
+   - 同一句话可以引用多个来源：[1][2]
+
+3. **禁止伪造引用**：
+   - 只能引用上下文里已有的编号
+   - 不能编造不存在的引用编号
+
+4. **无证据拒答**：
+   - 如果上下文为空或没有相关信息，回答"抱歉，我没有找到相关文档，无法回答这个问题。"
+"""
+
+def build_citation_prompt(query: str, context: str) -&gt; List[Dict[str, str]]:
+    """
+    构建 Citation Prompt
+    
+    Args:
+        query: 用户问题
+        context: 组装后的上下文（带引用编号）
+        
+    Returns:
+        OpenAI messages 格式
+    """
+    return [
+        {"role": "system", "content": CITATION_SYSTEM_PROMPT},
+        {"role": "user", "content": f"上下文：\n{context}\n\n问题：{query}"}
+    ]
+</code></pre>
+<h4 id="413-生成服务generationgeneration_servicepy">4.1.3 生成服务（generation/generation_service.py）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/rag/generation/generation_service.py
+from openai import AsyncOpenAI
+from .citation_prompt import build_citation_prompt
+
+class GenerationService:
+    """生成服务（带 Citation）"""
+    
+    def __init__(self):
+        self.client = AsyncOpenAI()
+    
+    async def generate_with_citation(
+        self,
+        query: str,
+        context: str
+    ) -&gt; str:
+        """
+        生成答案（带引用）
+        
+        Args:
+            query: 用户问题
+            context: 组装后的上下文
+            
+        Returns:
+            生成的答案（包含 [1][2] 引用）
+        """
+        messages = build_citation_prompt(query, context)
+        
+        response = await self.client.chat.completions.create(
+            model="gpt-4o",
+            messages=messages,
+            temperature=0.0
+        )
+        
+        return response.choices[0].message.content
+</code></pre>
+<h4 id="414-citation-解析器citationcitation_parserpy">4.1.4 Citation 解析器（citation/citation_parser.py）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/rag/citation/citation_parser.py
+import re
+from typing import List, Dict, Any
+
+class CitationParser:
+    """引用解析器"""
+    
+    def parse_citations(
+        self,
+        answer: str,
+        search_results: List[Dict[str, Any]]
+    ) -&gt; Dict[str, Any]:
+        """
+        解析答案里的引用编号 → 映射到 chunkId
+        
+        Args:
+            answer: 生成的答案（包含 [1][2]）
+            search_results: 检索结果（带 chunkId）
+            
+        Returns:
+            {
+                'answer': 答案文本,
+                'citations': [
+                    {'number': 1, 'chunkId': 'chunk-001'},
+                    {'number': 2, 'chunkId': 'chunk-042'}
+                ]
+            }
+        """
+        # 提取所有 [数字] 引用
+        citation_numbers = self._extract_citation_numbers(answer)
+        
+        # 映射到 chunkId
+        citations = []
+        for num in citation_numbers:
+            idx = num - 1  # [1] → index 0
+            if idx &lt; len(search_results):
+                citations.append({
+                    'number': num,
+                    'chunkId': search_results[idx]['id']
+                })
+        
+        return {
+            'answer': answer,
+            'citations': citations
+        }
+    
+    def _extract_citation_numbers(self, answer: str) -&gt; List[int]:
+        """提取 [数字] 引用编号"""
+        pattern = r'\[(\d+)\]'
+        matches = re.findall(pattern, answer)
+        return sorted(set(int(m) for m in matches))
+</code></pre>
+<h4 id="415-生成接口apigeneratepy">4.1.5 生成接口（api/generate.py）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/api/generate.py
+from fastapi import APIRouter, Depends
+from ..rag.hybrid_search.hybrid_search_service import HybridSearchService
+from ..rag.context_assembly.context_assembly_service import ContextAssemblyService
+from ..rag.generation.generation_service import GenerationService
+from ..rag.citation.citation_parser import CitationParser
+
+router = APIRouter()
+
+@router.post("/generate")
+async def generate(
+    query: str,
+    current_user = Depends(get_current_user)
+):
+    """生成答案（带引用）"""
+    
+    # 1. 检索
+    hybrid_search = HybridSearchService(...)
+    search_results = await hybrid_search.search(
+        query=query,
+        user_tenant_id=current_user.tenant_id,
+        user_id=current_user.id,
+        user_role=current_user.role,
+        top_k=5
+    )
+    
+    # 2. 组装上下文
+    context_assembly = ContextAssemblyService()
+    context = context_assembly.assemble_context(query, search_results)
+    
+    # 3. 生成答案
+    generation_service = GenerationService()
+    answer = await generation_service.generate_with_citation(query, context)
+    
+    # 4. 解析引用
+    citation_parser = CitationParser()
+    result = citation_parser.parse_citations(answer, search_results)
+    
+    return result
+</code></pre>
+<hr>
+<h2 id="5-v3grounding-拒答-citation-校验生产级">§5 v3：Grounding + 拒答 + Citation 校验（生产级）</h2>
+<h3 id="51-v3-新增的能力">5.1 v3 新增的能力</h3>
+<ol>
+<li><strong>Grounding gate</strong>：检索为空 → 拒答</li>
+<li><strong>Citation 校验</strong>：引用编号 &gt; 检索结果数量 → 拒答（防止伪造引用）</li>
+<li><strong>版本引用</strong>：引用指向 documentId + version（不可变）</li>
+</ol>
+<h3 id="52-v3-核心代码完整执行版">5.2 v3 核心代码（完整执行版）</h3>
+<h4 id="521-grounding-服务groundinggrounding_servicepy">5.2.1 Grounding 服务（grounding/grounding_service.py）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/rag/grounding/grounding_service.py
+from typing import List, Dict, Any
+
+class GroundingService:
+    """Grounding 校验服务"""
+    
+    def should_refuse(
+        self,
+        search_results: List[Dict[str, Any]]
+    ) -&gt; bool:
+        """
+        判断是否应该拒答
+        
+        Args:
+            search_results: 检索结果
+            
+        Returns:
+            True = 拒答，False = 可以生成
+        """
+        # 检索为空 → 拒答
+        if not search_results:
+            return True
+        
+        # 检索结果太少 → 拒答（例如只有 1 个，置信度低）
+        if len(search_results) &lt; 2:
+            return True
+        
+        # 检索结果分数太低 → 拒答（例如 Top-1 相似度 &lt; 0.5）
+        top1_score = search_results[0].get('rrf_score') or search_results[0].get('similarity', 0)
+        if top1_score &lt; 0.5:
+            return True
+        
+        return False
+</code></pre>
+<h4 id="522-citation-校验器citationcitation_validatorpy">5.2.2 Citation 校验器（citation/citation_validator.py）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/rag/citation/citation_validator.py
+from typing import List
+
+class CitationValidator:
+    """Citation 校验器"""
+    
+    def validate_citations(
+        self,
+        citation_numbers: List[int],
+        num_search_results: int
+    ) -&gt; bool:
+        """
+        校验引用编号是否合法
+        
+        Args:
+            citation_numbers: 答案里的引用编号
+            num_search_results: 检索结果数量
+            
+        Returns:
+            True = 合法，False = 伪造引用
+        """
+        for num in citation_numbers:
+            # 引用编号超出检索结果数量 → 伪造引用
+            if num &gt; num_search_results:
+                return False
+            
+            # 引用编号 &lt;= 0 → 非法
+            if num &lt;= 0:
+                return False
+        
+        return True
+</code></pre>
+<h4 id="523-拒答服务groundingrefusal_servicepy">5.2.3 拒答服务（grounding/refusal_service.py）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/rag/grounding/refusal_service.py
+
+class RefusalService:
+    """拒答服务"""
+    
+    REFUSAL_MESSAGE = "抱歉，我没有找到相关文档，无法回答这个问题。请尝试换个问法或联系管理员添加相关文档。"
+    
+    def build_refusal_response(self) -&gt; Dict[str, Any]:
+        """构建拒答响应"""
+        return {
+            'answer': self.REFUSAL_MESSAGE,
+            'citations': [],
+            'refused': True
+        }
+</code></pre>
+<h4 id="524-改造生成接口apigeneratepy-v3-版本">5.2.4 改造生成接口（api/generate.py v3 版本）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/api/generate.py (v3 版本)
+@router.post("/generate")
+async def generate(
+    query: str,
+    current_user = Depends(get_current_user)
+):
+    """生成答案（v3 版本，带 Grounding + 拒答）"""
+    
+    # 1. 检索
+    search_results = await hybrid_search.search(...)
+    
+    # 2. Grounding gate
+    grounding_service = GroundingService()
+    if grounding_service.should_refuse(search_results):
+        refusal_service = RefusalService()
+        return refusal_service.build_refusal_response()
+    
+    # 3. 组装上下文
+    context = context_assembly.assemble_context(query, search_results)
+    
+    # 4. 生成答案
+    answer = await generation_service.generate_with_citation(query, context)
+    
+    # 5. 解析引用
+    citation_parser = CitationParser()
+    citation_numbers = citation_parser._extract_citation_numbers(answer)
+    
+    # 6. Citation 校验
+    citation_validator = CitationValidator()
+    if not citation_validator.validate_citations(citation_numbers, len(search_results)):
+        # 检测到伪造引用 → 拒答
+        return refusal_service.build_refusal_response()
+    
+    # 7. 返回结果
+    result = citation_parser.parse_citations(answer, search_results)
+    return result
+</code></pre>
+<h3 id="53-前端引用组件vue3">5.3 前端引用组件（Vue3）</h3>
+<pre><code class="language-vue">&lt;!-- apps/web/src/components/Answer/CitationLink.vue --&gt;
+&lt;template&gt;
+  &lt;span class="citation-link" @click="handleClick" @mouseenter="showPreview"&gt;
+    [{{ number }}]
+  &lt;/span&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+const props = defineProps&lt;{ number: number; chunkId: string }&gt;()
+
+const handleClick = () =&gt; {
+  // 跳转到原文
+  window.open(`/documents/${props.chunkId}`, '_blank')
+}
+
+const showPreview = () =&gt; {
+  // 显示悬浮预览（省略实现）
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.citation-link {
+  color: #c4612f;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+}
+.citation-link:hover {
+  text-decoration: underline;
+}
+&lt;/style&gt;
+</code></pre>
+<hr>
+<h2 id="6-深挖前端底子完整执行版">§6 深挖前端底子（完整执行版）</h2>
+<h3 id="61-引用可点击的实现原理">6.1 引用可点击的实现原理</h3>
+<p>答案文本："Nginx 504 通常由上游服务器超时导致[1]。"</p>
+<p>前端解析：</p>
+<ol>
+<li>正则提取 <code>[1]</code> → citation number</li>
+<li>查找 citations 数组：<code>{number: 1, chunkId: 'chunk-001'}</code></li>
+<li>替换为可点击链接：<code>&lt;CitationLink number={1} chunkId="chunk-001" /&gt;</code></li>
+</ol>
+<hr>
+<h2 id="7-测试与验证完整执行版">§7 测试与验证（完整执行版）</h2>
+<h3 id="71-单元测试citation-解析">7.1 单元测试（Citation 解析）</h3>
+<pre><code class="language-python">def test_citation_parser():
+    parser = CitationParser()
+    answer = "Nginx 504 通常由上游服务器超时导致[1]。检查配置[2]。"
+    search_results = [
+        {'id': 'chunk-001', 'content': '...'},
+        {'id': 'chunk-042', 'content': '...'}
+    ]
+    result = parser.parse_citations(answer, search_results)
+    assert len(result['citations']) == 2
+    assert result['citations'][0]['chunkId'] == 'chunk-001'
+</code></pre>
+<h3 id="72-集成测试伪造引用检测">7.2 集成测试（伪造引用检测）</h3>
+<pre><code class="language-python">async def test_fake_citation_detection():
+    # 检索返回 2 个结果，但答案引用 [3]
+    search_results = [{'id': 'chunk-001'}, {'id': 'chunk-042'}]
+    answer = "步骤 1[1]，步骤 2[2]，步骤 3[3]"
+    
+    validator = CitationValidator()
+    citation_numbers = [1, 2, 3]
+    is_valid = validator.validate_citations(citation_numbers, len(search_results))
+    
+    assert is_valid == False  # 检测到伪造引用
+</code></pre>
+<hr>
+<h2 id="8-14-收尾章节原样保留">8-14. 收尾章节（原样保留）</h2>
+<h2 id="8-通关检查清单v3-规范-11-项">8. 通关检查清单（v3 规范 11 项）</h2>
+<ol>
+<li>✅ §0 位置声明</li>
+<li>✅ §1.1 用户能看到什么（5 个场景）</li>
+<li>✅ §1.4 目录结构</li>
+<li>✅ 三版演进</li>
+<li>✅ 完整代码</li>
+<li>✅ 知识点</li>
+<li>✅ 前端底子</li>
+<li>✅ 测试</li>
+<li>✅ 0 个 blockquote</li>
+<li>✅ commit 不含 push</li>
+<li>✅ 标准收尾</li>
+</ol>
+<h2 id="9-从今天的增量到下一站">9. 从今天的增量到下一站</h2>
+<p>Day 49 交付的引用闭环是 Day 50 RAG 完整链路的基础。</p>
+<h2 id="10-本日小结">10. 本日小结</h2>
+<p><strong>标题</strong>：Context Assembly 组装上下文、Citation 标注引用、Grounding 校验证据、拒答防幻觉、前端可点击——RAG 引用闭环完整实现</p>
+<p>Day 49 建立了 RAG 引用闭环，解决了"引用丢失"、"引用断链"、"无证据乱答"、"伪造引用"、"前端引用不可点击"五个痛点。</p>
+<h2 id="11-14-课后三道核心问题-真实项目情境题-pdf-面试题-教师五连问">11-14. 课后三道核心问题 + 真实项目情境题 + PDF 面试题 + 教师五连问</h2>
+<p>（Day 49 执行版补全要求）</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day49-old.html">查看 Day 49 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/48.html">← Day 48 · Hybrid/Rerank</a>
+            <a href="/ai-teacher-agent-devolop/day/50.html">Day 50 · 五十日门禁 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-day-49-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E5%9B%BE%E9%87%8C%E7%9A%84%E4%BD%8D%E7%BD%AE">§0 Day 49 在 90 天路线图里的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E5%BB%BA%E7%AB%8B%E7%9A%84%E5%AE%8C%E6%95%B4%E8%83%BD%E5%8A%9B">§1 今天建立的完整能力</a></li><li><a href="#2-%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%BC%80%E5%8F%91%E8%8A%82%E5%A5%8F3-%E5%B0%8F%E6%97%B690-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">§2 今天的开发节奏（3 小时：90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E8%A3%B8%E7%94%9F%E6%88%90day-44-%E5%9F%BA%E7%BA%BF%E6%9A%B4%E9%9C%B2%E6%97%A0%E5%BC%95%E7%94%A8%E9%97%AE%E9%A2%98">§3 v1：裸生成（Day 44 基线，暴露无引用问题）</a></li><li><a href="#4-v2context-assembly-citation">§4 v2：Context Assembly + Citation</a></li><li><a href="#5-v3grounding-%E6%8B%92%E7%AD%94-citation-%E6%A0%A1%E9%AA%8C%E7%94%9F%E4%BA%A7%E7%BA%A7">§5 v3：Grounding + 拒答 + Citation 校验（生产级）</a></li><li><a href="#6-%E6%B7%B1%E6%8C%96%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E5%AE%8C%E6%95%B4%E6%89%A7%E8%A1%8C%E7%89%88">§6 深挖前端底子（完整执行版）</a></li><li><a href="#7-%E6%B5%8B%E8%AF%95%E4%B8%8E%E9%AA%8C%E8%AF%81%E5%AE%8C%E6%95%B4%E6%89%A7%E8%A1%8C%E7%89%88">§7 测试与验证（完整执行版）</a></li><li><a href="#8-14-%E6%94%B6%E5%B0%BE%E7%AB%A0%E8%8A%82%E5%8E%9F%E6%A0%B7%E4%BF%9D%E7%95%99">8-14. 收尾章节（原样保留）</a></li><li><a href="#8-%E9%80%9A%E5%85%B3%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95v3-%E8%A7%84%E8%8C%83-11-%E9%A1%B9">8. 通关检查清单（v3 规范 11 项）</a></li><li><a href="#9-%E4%BB%8E%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%A2%9E%E9%87%8F%E5%88%B0%E4%B8%8B%E4%B8%80%E7%AB%99">9. 从今天的增量到下一站</a></li><li><a href="#10-%E6%9C%AC%E6%97%A5%E5%B0%8F%E7%BB%93">10. 本日小结</a></li><li><a href="#11-14-%E8%AF%BE%E5%90%8E%E4%B8%89%E9%81%93%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98-%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">11-14. 课后三道核心问题 + 真实项目情境题 + PDF 面试题 + 教师五连问</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

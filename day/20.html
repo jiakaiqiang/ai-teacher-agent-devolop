@@ -1,0 +1,1388 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 20 · 项目毕业考（第 1 关闭卷原理 → 第 2 关独立编码贯通新事件 → 第 3 关未知 Bug 排查 + 架构答辩） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html" aria-current="page">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/03.html">第 3 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 20</p>
+        <h1>项目毕业考（第 1 关闭卷原理 → 第 2 关独立编码贯通新事件 → 第 3 关未知 Bug 排查 + 架构答辩）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段一（Day 1-30，前端 -&gt; AI 前端）。所有 BFF、NestJS、数据库、队列和 Agent 后端增量都必须服务于 <code>p1-monitor</code> 的真实 AI 前端链路，不得另起无关 Demo。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：第 1 关（基线能力暴露）视为 v1；第 2 关（独立编码补齐关键维度）视为 v2；第 3 关（未知故障排查、架构证据与回归门禁）视为 v3。</li>
+<li><strong>时间盒</strong>：本日为 6 小时扩展日：先执行 A/B/C 各 30 分钟（共 90 分钟阅读），再执行 D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟基础动手），剩余 180 分钟只用于真实项目深化、故障注入和回归证据。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+</blockquote>
+<p>任务版本：标准版
+日期与时长：2026-08-02 周日，360 分钟（90 分钟阅读 + 270 分钟动手/项目深化）
+项目：<code>D:\demo\ai-techer\p1-monitor</code>
+角色视角：完成 Day 01-19、准备接受阶段一（前端 → AI 全栈）第一节点毕业考核的开发者。<strong>本日全程关闭 AI，本文件是考纲与评分标准，不是实现范本</strong></p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p>90 天转型路线的三个阶段：</p>
+<pre><code>阶段一（Day 1-30）：前端 → AI 前端
+   项目：p1-monitor 智能运维监控（Vue 3 + TypeScript + WebSocket + Agent UI）
+   Day 1-5：前端 Agent 运行时展示、状态机、WebSocket 实时
+   Day 6-10：后端 Nest + Prisma + FSM + M2 门禁
+   Day 11-18：Tool Registry / Agent Loop / 持久化 / SSE / 时间线 / XSS / HITL / Trace
+   Day 19：生产演练（E2E + 故障矩阵 + 发布门禁）
+   Day 20：项目毕业考（第一节点考核，AI 禁用）          ← 今天在这里
+
+阶段二（Day 31-60）：AI 前端 → AI 全栈
+   项目：p1-monitor 后端 + p1-monitor 全栈（NestJS + LLM 集成 + RAG）
+
+阶段三（Day 61-90）：AI 全栈 → AI Agent 工程师
+   项目：p2-agent-workbench 多 Agent 协同工作台
+</code></pre>
+<p><strong>Day 20 是阶段一的毕业考核日</strong>。Day 19 已经把 p1-monitor 冻结成发布候选（RC）。今天不再写新功能，而是<strong>在关闭 AI 的前提下，验证你是否真的掌握了 Day 01-19 的核心能力</strong>：闭卷讲清架构权衡、独立在 45 分钟内贯通一个全新事件、独立排查考官注入的未知 Bug、最后做架构答辩。</p>
+<h3 id="本日与其他日的根本不同">本日与其他日的根本不同</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>Day 01-18（造功能日）</th>
+<th>Day 19（演练日）</th>
+<th>Day 20（毕业考日，今天）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产出</td>
+<td>新模块代码</td>
+<td>演练报告 + RC</td>
+<td>考试得分 + 架构证据</td>
+</tr>
+<tr>
+<td>AI 角色</td>
+<td>给完整示例，对着敲</td>
+<td>执行重复回归</td>
+<td><strong>全程禁用</strong></td>
+</tr>
+<tr>
+<td>文档性质</td>
+<td>实现范本</td>
+<td>演练手册</td>
+<td><strong>考纲 + 评分标准</strong></td>
+</tr>
+<tr>
+<td>结构</td>
+<td>v1/v2/v3 三版演进</td>
+<td>轮次 1/2/3</td>
+<td><strong>第 1/2/3 关</strong></td>
+</tr>
+<tr>
+<td>通过标准</td>
+<td>功能可跑 + 测试全绿</td>
+<td>7 类故障有证据</td>
+<td><strong>总分 ≥ 70 + 4 项硬门禁</strong></td>
+</tr>
+</tbody>
+</table></div><p><strong>为什么 AI 禁用</strong>：<code>C:\Users\kaiqj\.claude\CLAUDE.md</code> 的核心红线是"AI 辅助 30% + 手写核心 70%"。前 19 天你对着完整示例敲、边写边问、独立写测试和反证。今天是<strong>验收你是否真的内化了这些能力</strong>——面试时面试官不会让你查 AI，能不能现场贯通一个新事件、能不能独立定位一个跨层竞态，就是这一天要证明的。</p>
+<h3 id="今天要解决的-4-个问题">今天要解决的 4 个问题</h3>
+<ol>
+<li>
+<p><strong>问题 1：能不能闭卷讲清架构权衡？</strong>
+面试高频问题："你这个项目为什么前端用 reducer 而不是把状态塞进组件？为什么 domain 层不能 import vue？为什么 Provider 要抽象？"——这些不是背 API，而是讲清<strong>每个设计决策解决了什么问题、代价是什么、不这么做会怎样</strong>。第 1 关闭卷 60 分钟，用白纸手画 + 文字回答，不许打开项目代码。</p>
+</li>
+<li>
+<p><strong>问题 2：能不能独立在 45 分钟内贯通一个新事件？</strong>
+现场新增一个 <code>run.cancelled-by-policy</code> 事件（"因策略违规被系统取消"），要求从后端 SSE 合同 → <code>AgentEventV1</code> 判别联合 → 前端 reducer → 派生 selector → 时间线 UI 全链路贯通，<strong>且旧客户端不能崩溃</strong>（向后兼容）。第 2 关 210 分钟，独立编码，AI 禁用。</p>
+</li>
+<li>
+<p><strong>问题 3：能不能独立排查考官注入的未知 Bug？</strong>
+考官在你的代码里注入一个偶发（2%）竞态 Bug：<strong>用户快速点"取消"后，高风险 Tool 仍然执行了一次</strong>。你不知道 Bug 在哪一层，必须用 Day 15 的事件回放、Day 17 的审批审计、Day 18 的 traceId、Day 13 的 DB 副作用四种证据独立定位，并设计能稳定复现 1000 次的回归测试。第 3 关 60 分钟。</p>
+</li>
+<li>
+<p><strong>问题 4：能不能做架构答辩？</strong>
+最后 30 分钟，教师依据你今天的真实 diff 和前 19 天的 commit，按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"提 5 个问题。这是阶段一的最终验收，也是阶段二能否开始的门禁。</p>
+</li>
+</ol>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<p>今天不交付新模块，而是<strong>通过三关考核 + 架构答辩，产出一份可评分的毕业考卷</strong>。唯一的编码产出是第 2 关的 <code>run.cancelled-by-policy</code> 事件全链路贯通（真实进入 p1-monitor 代码），其余是架构证据（C4 图 / 时序图 / 风险登记表）和考官评分。</p>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p><strong>场景</strong>：这是考核日，"用户"是参加考试的你自己 + 打分的教师。你会经历三关，每一关都有明确的时间盒和评分点。</p>
+<pre><code>09:00-10:00  第 1 关：闭卷原理（60 分，占 30%）
+  → 关闭所有项目代码和 AI
+  → 白纸手画 p1-monitor 的 C4 组件图（前端 domain/features/app 三层 + 后端 module 分层）
+  → 文字回答 8 道原理题（reducer 纯函数 / domain 隔离 / Provider 抽象 / 乐观锁 /
+    幂等键 / SSE resume / HITL 服务端权威 / traceId 传播）
+  → 交卷，教师现场判分
+
+10:00-13:30  第 2 关：独立编码贯通新事件（40 分，占 40%，AI 禁用）
+  → 考官宣布：新增 run.cancelled-by-policy 事件
+  → 你先画"变更影响图"（这个事件要改哪几个文件、每个文件改什么）
+  → 从后端合同开始，逐层贯通到前端时间线 UI
+  → 关键约束：旧客户端（不认识新事件）不能崩溃 —— 向后兼容
+  → 提交 4 类证据：typecheck 通过 / 合同测试 / E2E 测试 / 旧客户端兼容测试
+  → 中途若"上线失败"，用 feature flag 止损，再修复 + 回滚验证
+
+14:30-15:30  第 3 关：未知 Bug 排查（20 分，占 20%，AI 禁用）
+  → 考官在你代码里注入一个偶发 2% 的竞态 Bug：
+    "用户快速取消后，高风险 Tool 仍执行一次"
+  → 你不知道 Bug 在哪，用 4 种证据独立定位：
+    事件回放（Day 15）/ 审批审计（Day 17）/ traceId（Day 18）/ DB 副作用（Day 13）
+  → 先禁用写 Tool 止损，再修复跨层竞态
+  → 设计能稳定复现 1000 次的回归测试
+
+15:30-16:00  架构答辩（占 10%）
+  → 教师按五连问打分
+  → 总分 ≥ 70 且 4 项硬门禁全过 → 阶段一毕业，进入阶段二
+</code></pre>
+<p><strong>考生观察到的最终结果</strong>：</p>
+<ul>
+<li>三关得分 + 答辩得分 = 总分（满分 100）</li>
+<li>4 项硬门禁（原理 / 独立编码 / 安全 / 流式）逐项过/不过</li>
+<li>一份完整的架构证据包（C4 图 / 时序图 / 风险登记表 / 变更影响图）</li>
+<li>若通过：阶段一结业证明 + 阶段二开始条件</li>
+</ul>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<ul>
+<li><strong>输入</strong>：Day 01-19 冻结的 p1-monitor RC + 考官现场给的新事件需求和注入的 Bug</li>
+<li><strong>输出</strong>：<code>run.cancelled-by-policy</code> 事件的全链路贯通代码（真实进入项目）+ Bug 修复 + 回归测试 + 架构证据包 + 考试得分</li>
+<li><strong>对齐后续</strong>：今天验证的能力（合同演进 / 独立调试 / 生产应急）是阶段二（Day 31-60 AI 全栈）的入学门槛。阶段二要在 p1-monitor 后端接 LLM、做 RAG，如果连"独立贯通一个事件"都做不到，接 LLM 只会更混乱</li>
+</ul>
+<h3 id="13-三关的目标替代三版演进结构">1.3 三关的目标（替代"三版演进"结构）</h3>
+<p><strong>说明</strong>：本日是考核日，不造增量功能，因此<strong>不适用 v1/v2/v3 三版演进结构</strong>。改用"三关"结构，每一关对应一种阶段一必须证明的能力。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>关卡</th>
+<th>考核能力</th>
+<th>时长</th>
+<th>分值</th>
+<th>是否 AI 禁用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>第 1 关</strong></td>
+<td>闭卷讲清架构权衡（不是背 API）</td>
+<td>60 min</td>
+<td>30</td>
+<td>是</td>
+</tr>
+<tr>
+<td><strong>第 2 关</strong></td>
+<td>独立贯通新事件 + 向后兼容</td>
+<td>210 min</td>
+<td>40</td>
+<td>是</td>
+</tr>
+<tr>
+<td><strong>第 3 关</strong></td>
+<td>独立排查未知竞态 Bug</td>
+<td>60 min</td>
+<td>20</td>
+<td>是</td>
+</tr>
+<tr>
+<td><strong>答辩</strong></td>
+<td>架构演进的现场问答</td>
+<td>30 min</td>
+<td>10</td>
+<td>是</td>
+</tr>
+</tbody>
+</table></div><p><strong>考生最终要交付的是三关证据 + 通过评分</strong>，不是新功能。</p>
+<hr>
+<h2 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h2>
+<p><strong>为什么放在最前面</strong>：今天第 2 关要贯通 <code>run.cancelled-by-policy</code> 事件，涉及从后端到前端的 6 个文件。考试时时间盒只有 210 分钟，如果动手前不先在脑子里立起"这个事件要经过哪几层、每层改哪个文件"，就会边写边找、超时。看完这棵树，你就知道第 2 关的"变更影响图"该画哪几个节点。</p>
+<p><strong>第 2 关贯通新事件涉及的文件（跨前后端）</strong>：</p>
+<pre><code>p1-monitor/
+├── apps/api/src/                              ← 后端
+│   ├── agent/
+│   │   ├── contract/
+│   │   │   └── agent-event-v1.ts              ← 改：新增 run.cancelled-by-policy 到判别联合
+│   │   ├── loop/
+│   │   │   └── agent-loop.engine.ts           ← 改：策略违规时发出新事件
+│   │   └── policy/                            ← 【第 2 关新增】策略检查
+│   │       ├── policy-checker.ts              ← 新增：判断是否违规（纯函数）
+│   │       └── policy-checker.spec.ts         ← 新增：策略单测
+│   └── sse/
+│       └── sse-adapter.ts                     ← 改：序列化新事件（含 version 字段）
+└── frontend/src/                              ← 前端
+    ├── agent/
+    │   ├── contract/
+    │   │   └── agent-event-v1.ts              ← 改：前端合同副本同步新事件
+    │   └── reducer/
+    │       ├── agent-run-state.ts             ← 改：reducer 新增 case（终态）
+    │       ├── agent-run-state.spec.ts        ← 改：新增用例
+    │       └── derived/
+    │           └── run-view.ts                ← 改：派生视图识别新终态
+    └── features/agent-run/ui/
+        └── AgentRunPanel.vue                  ← 改：时间线渲染新终态样式
+</code></pre>
+<p><strong>第 2 关"变更影响图"应对应的层次</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>层次</th>
+<th>文件</th>
+<th>改什么</th>
+<th>向后兼容要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>后端合同</td>
+<td><code>agent-event-v1.ts</code></td>
+<td>判别联合加一支</td>
+<td>version 仍是 'v1'，只加类型不删旧字段</td>
+</tr>
+<tr>
+<td>后端策略</td>
+<td><code>policy/policy-checker.ts</code></td>
+<td>新增纯函数判违规</td>
+<td>新文件，不影响旧路径</td>
+</tr>
+<tr>
+<td>后端循环</td>
+<td><code>agent-loop.engine.ts</code></td>
+<td>违规时 emit 新事件</td>
+<td>不违规时行为完全不变</td>
+</tr>
+<tr>
+<td>后端 SSE</td>
+<td><code>sse-adapter.ts</code></td>
+<td>序列化新事件</td>
+<td>旧事件序列化不变</td>
+</tr>
+<tr>
+<td>前端合同</td>
+<td><code>agent-event-v1.ts</code></td>
+<td>同步判别联合</td>
+<td><strong>关键</strong>：旧客户端收到未知 type 要走 default 分支不崩</td>
+</tr>
+<tr>
+<td>前端 reducer</td>
+<td><code>agent-run-state.ts</code></td>
+<td>加 case 设终态</td>
+<td>exhaustive check 保证不遗漏</td>
+</tr>
+<tr>
+<td>前端派生</td>
+<td><code>derived/run-view.ts</code></td>
+<td>识别新终态</td>
+<td>旧终态判断不变</td>
+</tr>
+<tr>
+<td>前端 UI</td>
+<td><code>AgentRunPanel.vue</code></td>
+<td>渲染新终态</td>
+<td>旧渲染不变</td>
+</tr>
+</tbody>
+</table></div><p><strong>依赖方向（考试时改代码务必单向，反过来一次都不行）</strong>：</p>
+<pre><code>后端：agent-loop.engine.ts → policy/policy-checker.ts（纯函数）
+      agent-loop.engine.ts → contract/agent-event-v1.ts（类型）
+      sse-adapter.ts → contract/agent-event-v1.ts（类型）
+
+前端：AgentRunPanel.vue → reducer/derived/run-view.ts → reducer/agent-run-state.ts → contract/agent-event-v1.ts
+</code></pre>
+<p><strong>红线（考试评分点）</strong>：</p>
+<ul>
+<li>前端 <code>reducer/agent-run-state.ts</code> 里出现 <code>import { ref } from 'vue'</code> = 架构塌方，第 2 关直接扣分</li>
+<li><code>policy/policy-checker.ts</code> 里出现 <code>import { PrismaService }</code> = 塌方，策略判断必须是纯函数</li>
+<li>前端合同不做 default 分支处理未知事件 = 向后兼容失败，第 2 关硬门禁不过</li>
+<li>直接把 <code>run.cancelled-by-policy</code> 当成 <code>run.cancelled</code> 复用（不新增独立分支）= 语义混淆，扣分</li>
+</ul>
+<p><strong>动手前先问自己 3 个问题</strong>（这也是第 1 关闭卷会考的）：</p>
+<ol>
+<li>新增一个事件为什么"旧客户端不能崩溃"是硬约束？—— 见 §5.4 知识点 1「向后兼容的合同演进」</li>
+<li><code>run.cancelled-by-policy</code> 为什么要独立分支而不复用 <code>run.cancelled</code>？—— 见 §5.4 知识点 2「语义独立 vs 复用」</li>
+<li>第 3 关的竞态 Bug 为什么偏偏出在"取消"和"执行"之间？—— 见 §5.4 知识点 4「跨层 TOCTOU 竞态」</li>
+</ol>
+<hr>
+<h2 id="15-阶段-d动手脚手架20-分钟先搭骨架再看正文">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</h2>
+<p><strong>说明</strong>：考核日的"脚手架"不是装依赖，而是<strong>考前准备 + 第 2 关的编码起手式</strong>。第 2 关一旦开始就不能查 AI，起手式必须提前在脑子里过一遍。</p>
+<h3 id="151-d-1考前环境自检3-分钟">1.5.1 D-1：考前环境自检（3 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>确认 p1-monitor RC（Day 19 冻结版）能跑：<code>pnpm --filter api build &amp;&amp; pnpm --filter frontend build</code> 全过</li>
+<li>确认测试基线全绿：<code>pnpm test</code>（前后端所有已有用例）</li>
+<li>确认 git 工作区干净：<code>git status</code> 无未提交改动（考试从干净基线开始）</li>
+<li>关闭所有 AI 工具（Copilot / Claude / Cursor 的补全），第 2、3 关全程禁用</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么考试要从干净基线开始？（考官要看的是"今天的 diff"，脏工作区会让评分无法定位你今天写了什么）</li>
+<li>如果基线测试本来就有红的怎么办？（说明 Day 19 的 RC 不合格，先回到 Day 19 补齐再考——毕业考不能在坏基线上进行）</li>
+</ul>
+<h3 id="152-d-2第-2-关起手式先画变更影响图5-分钟">1.5.2 D-2：第 2 关起手式——先画变更影响图（5 分钟）</h3>
+<p>按第 5.3 节的目录树，第 2 关一开始不要急着写代码，先在白纸上画：</p>
+<pre><code>run.cancelled-by-policy 事件的 8 个改动点
+（对照 §1.4 的变更影响表，逐个确认"改什么 + 兼容要点"）
+</code></pre>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么先画图再写代码？（45 分钟时间盒下，漏改一层就前功尽弃；先画图能保证不漏层）</li>
+<li>8 个改动点，哪个是"根"？（后端合同 <code>agent-event-v1.ts</code>——类型先定，其余层跟着类型走）</li>
+</ul>
+<h3 id="153-d-3第-2-关起手式从类型开始编译器领路4-分钟">1.5.3 D-3：第 2 关起手式——从类型开始，编译器领路（4 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>先改后端 <code>contract/agent-event-v1.ts</code> 判别联合，加一支 <code>run.cancelled-by-policy</code></li>
+<li>立刻 <code>pnpm --filter api typecheck</code>——<code>assertNever</code> 会在所有没处理新事件的地方报错</li>
+<li><strong>让编译器告诉你还有哪几处没改</strong>（这是 Day 01 exhaustive check 的实战价值）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么加完类型先 typecheck 而不是先写逻辑？（编译器报错列表就是你的 TODO 清单，比自己记靠谱）</li>
+<li>前端合同和后端合同为什么是两份副本而不共享？（前后端独立部署、独立演进；共享会导致前端被迫依赖后端构建）</li>
+</ul>
+<h3 id="154-d-4第-3-关起手式四证据取证顺序4-分钟">1.5.4 D-4：第 3 关起手式——四证据取证顺序（4 分钟）</h3>
+<p>按第 5.3 节的代码，第 3 关拿到"偶发 2% 竞态"后，按固定顺序取证：</p>
+<ol>
+<li><strong>事件回放</strong>（Day 15）：从 DB 拉出问题 Run 的原始事件序列，看 cancel 和 tool 的 sequence 先后</li>
+<li><strong>审批审计</strong>（Day 17）：查 approval 的 consumedAt 和 tool 的 executedAt 时间戳</li>
+<li><strong>traceId</strong>（Day 18）：用 traceId 串起 UI 取消请求 → 后端取消处理 → Tool 执行的完整时间线</li>
+<li><strong>DB 副作用</strong>（Day 13）：查 Tool 实际写库的记录，确认副作用真的发生</li>
+</ol>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么先回放事件而不是先读代码？（2% 偶发 Bug 靠读代码很难看出来，证据先定位到"哪两步竞态"，再去读那两步的代码）</li>
+<li>四种证据缺一种行不行？（不行——事件回放证明时序、审计证明消费、traceId 证明跨层、DB 证明副作用，四者构成完整证据链）</li>
+</ul>
+<h3 id="155-d-5答辩起手式准备三张图4-分钟">1.5.5 D-5：答辩起手式——准备三张图（4 分钟）</h3>
+<p>按第 5.3 节的代码，答辩前把三张架构证据准备好：</p>
+<ul>
+<li><strong>C4 组件图</strong>：p1-monitor 前后端分层</li>
+<li><strong>时序图</strong>：一次完整 Agent Run（含 HITL 审批）的跨层调用时序</li>
+<li><strong>风险登记表</strong>：Day 01-19 已知的技术债和缓解措施</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>答辩为什么要带图？（五连问里"架构演进"一题，图能一眼说清你的分层思路，比纯口述强）</li>
+<li>风险登记表为什么重要？（诚实列出技术债 = 工程成熟度；假装"没有问题"反而扣分）</li>
+</ul>
+<hr>
+<h2 id="2-学习节奏60-闭卷-210-编码-60-排查-30-答辩">2. 学习节奏（60 闭卷 + 210 编码 + 60 排查 + 30 答辩）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>内容</th>
+<th>交付物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 1 关：闭卷原理</td>
+<td>60 min</td>
+<td>§3 八道原理题 + C4 手画</td>
+<td>原理卷（教师判分，≥ 18/30 过硬门禁）</td>
+</tr>
+<tr>
+<td>第 2 关：独立编码</td>
+<td>210 min</td>
+<td>§4 贯通 run.cancelled-by-policy + 向后兼容</td>
+<td>8 处 diff + 4 类证据（≥ 24/40 过硬门禁）</td>
+</tr>
+<tr>
+<td>第 3 关：Bug 排查</td>
+<td>60 min</td>
+<td>§5 四证据定位竞态 + 1000 次回归</td>
+<td>Bug 定位报告 + 修复 diff + 回归测试（≥ 12/20 过硬门禁）</td>
+</tr>
+<tr>
+<td>答辩</td>
+<td>30 min</td>
+<td>§7 五连问</td>
+<td>现场问答（≥ 6/10）</td>
+</tr>
+</tbody>
+</table></div><p><strong>总计</strong>：60 + 210 + 60 + 30 = 360 min（6 小时）</p>
+<p><strong>4 项硬门禁</strong>（任一不过则整场不通过，即使总分 ≥ 70）：</p>
+<ol>
+<li><strong>原理门禁</strong>：第 1 关 ≥ 18/30</li>
+<li><strong>独立编码门禁</strong>：第 2 关新事件全链路贯通且旧客户端不崩，≥ 24/40</li>
+<li><strong>安全门禁</strong>：第 3 关竞态 Bug 定位正确 + 修复后 1000 次回归 0 副作用</li>
+<li><strong>流式门禁</strong>：新事件通过 SSE 正确到达前端，无断包/乱序问题</li>
+</ol>
+<hr>
+<h2 id="3-第-1-关闭卷原理60-分钟30-分ai-禁用">3. 第 1 关：闭卷原理（60 分钟，30 分，AI 禁用）</h2>
+<h3 id="31-第-1-关要实现什么">3.1 第 1 关要实现什么</h3>
+<p>考生视角：关闭所有代码和 AI，用白纸手画 C4 图 + 文字回答 8 道原理题。考的不是背 API，而是<strong>讲清每个设计决策解决了什么问题、代价是什么、不这么做会怎样</strong>。</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li>手画 p1-monitor 的 C4 组件图（前端三层 + 后端分层 + 数据流向）</li>
+<li>回答 8 道原理题，每题按"解决什么问题 / 运行机制 / 生产误区 / 验证方法"作答</li>
+</ul>
+<p><strong>不做</strong>：</p>
+<ul>
+<li>不许打开项目代码</li>
+<li>不许查 AI / 文档 / 搜索引擎</li>
+<li>不许背 API 签名（考的是"为什么"不是"怎么调"）</li>
+</ul>
+<h3 id="32-第-1-关-c4-手画要求">3.2 第 1 关 C4 手画要求</h3>
+<p>考生须在白纸上画出下面这张图（不看代码凭记忆），教师对照评分：</p>
+<pre><code>[Container: p1-monitor 前端 Vue3]
+  ├── [Component: App.vue]           编排层，路由到 runId
+  ├── [Component: features/agent-run] 功能层，AgentRunPanel + useAgentTimeline
+  ├── [Component: agent/reducer]      纯函数 reducer + 派生 selector
+  └── [Component: agent/contract]     AgentEventV1 判别联合（纯类型）
+
+        │ SSE (EventSource / fetch ReadableStream)
+        ▼
+[Container: p1-monitor 后端 NestJS]
+  ├── [Component: sse/sse-adapter]    事件序列化 + resume
+  ├── [Component: agent/loop]         Agent Loop 引擎 + 预算
+  ├── [Component: agent/provider]     LLM Provider 抽象（OpenAI/Claude 可换）
+  ├── [Component: tools]              Tool Registry（Schema/超时/裁剪/审计）
+  ├── [Component: persistence]        幂等键 + 事务 + 恢复
+  └── [Component: approval]           HITL 服务端权威审批 + 租约
+
+        │ Prisma
+        ▼
+[Container: Postgres]
+  └── AgentRun / Diagnosis / ToolCall / Approval / AgentEvent 表
+</code></pre>
+<p>评分点：三层是否分清、依赖方向是否单向、数据流（SSE / Prisma）是否标注、Provider 抽象是否画出。</p>
+<h3 id="33-第-1-关八道原理题">3.3 第 1 关八道原理题</h3>
+<p>每题满分不等，共 30 分。作答须包含"解决什么问题 / 运行机制 / 生产误区 / 验证方法"四要素。</p>
+<p><strong>题 1（4 分）reducer 为什么必须是纯函数？</strong>
+参考要点：解决"状态更新不可预测、无法单测、无法回放"；机制"相同输入必得相同输出、不改参数、无副作用"；误区"在 reducer 里发请求 / 读时间 / 改传入的 state"；验证"同一事件序列 reduce 两次结果全等、可用 fixture 回放"。</p>
+<p><strong>题 2（4 分）domain 层为什么不能 import vue？</strong>
+参考要点：解决"业务逻辑绑定框架、无法在纯 Node 测试、无法迁移"；机制"domain 只依赖类型和纯函数，features 层才碰 vue 的 ref/computed"；误区"在 domain 里 import { ref } 图方便"；验证"domain 目录能在纯 Node（无 jsdom）跑测试"。</p>
+<p><strong>题 3（4 分）LLM Provider 为什么要抽象接口？</strong>
+参考要点：解决"换模型要改一堆调用代码、无法 A/B 测试、供应商锁定"；机制"定义 LLMProvider 接口，OpenAI/Claude 各实现，工厂按配置注入"；误区"直接在 service 里 new OpenAI()"；验证"换 provider 只改工厂一行，业务代码不动"。</p>
+<p><strong>题 4（4 分）持久化为什么要幂等键？</strong>
+参考要点：解决"webhook 重试 / 前端重复点 / 消息队列 at-least-once 导致重复 Run"；机制"业务语义字段生成稳定 key + DB 唯一约束兜底 + 应用层快速失败"；误区"用 Date.now() / 随机数做 key"；验证"同 key 请求 1000 次，DB 只有一条有效记录"。</p>
+<p><strong>题 5（3 分）SSE 的 Last-Event-ID resume 解决什么？</strong>
+参考要点：解决"断线重连后丢事件 / 重复事件"；机制"客户端记 lastEventId，重连带在 header，服务端从该 sequence+1 重放"；误区"重连从 0 重放导致重复渲染"；验证"断网重连后前端不重复、不缺事件"。</p>
+<p><strong>题 6（4 分）HITL 为什么审批权威必须在服务端？</strong>
+参考要点：解决"前端隐藏按钮但攻击者直接调接口 = 越权执行"；机制"批准和执行都在服务端校验角色/租户，前端只是发起 UI"；误区"前端判断 isApproved 就执行"；验证"绕过前端直接调执行接口，未批准必须 403"。</p>
+<p><strong>题 7（4 分）什么是 TOCTOU 竞态？审批租约怎么防？</strong>
+参考要点：解决"批准时看到参数 A，执行时参数被换成 B / 重复提交执行两次"；机制"审批快照参数哈希 + 租约版本 + CAS 一次性消费"；误区"批准和执行之间不锁定参数"；验证"篡改参数、过期、重复提交均无副作用"。</p>
+<p><strong>题 8（3 分）traceId 为什么要贯穿全链路？</strong>
+参考要点：解决"用户报'生成到一半停住'，但前端/SSE/Tool/DB 日志无法关联"；机制"入口生成 traceId，透传到每层结构化日志和 span"；误区"每层各自打日志不带 traceId"；验证"任一 Run 可按 traceId 重建完整时间线"。</p>
+<h3 id="34-第-1-关评分标准">3.4 第 1 关评分标准</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>分数段</th>
+<th>表现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>27-30</td>
+<td>C4 图三层清晰、依赖单向；8 题四要素齐全，能举出真实生产误区</td>
+</tr>
+<tr>
+<td>18-26（过门禁）</td>
+<td>C4 图基本正确；多数题答出"解决什么问题"和"机制"，误区/验证略薄</td>
+</tr>
+<tr>
+<td>&lt; 18（不过门禁）</td>
+<td>C4 图层次混乱或依赖反向；原理题停留在背 API，讲不清"为什么"</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="4-第-2-关独立编码现场贯通-runcancelled-by-policy-新事件210-分钟40-分ai-禁用">4. 第 2 关：独立编码——现场贯通 <code>run.cancelled-by-policy</code> 新事件（210 分钟，40 分，AI 禁用）</h2>
+<h3 id="41-第-2-关要实现什么">4.1 第 2 关要实现什么</h3>
+<p>考生视角：考官现场提出需求"新增一种事件 <code>run.cancelled-by-policy</code>（策略中止：Agent 因触发合规策略被系统主动中止，不同于用户主动 cancel）"，要求在 45 分钟核心时间盒内从后端合同贯通到前端 Vue 时间线，且<strong>旧客户端收到这个新事件不能崩溃</strong>。</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li>后端合同 <code>agent-event-v1.ts</code> 新增一支 <code>run.cancelled-by-policy</code></li>
+<li>全链路 8 个改动点逐层贯通（合同 → reducer → SSE → 派生 selector → UI）</li>
+<li>向后兼容：旧客户端（不认识新事件）收到后降级为"未知事件"展示，不崩溃</li>
+<li>提交 4 类证据：typecheck 通过 / 合同测试 / E2E / 兼容性测试</li>
+</ul>
+<p><strong>不做</strong>：</p>
+<ul>
+<li>不许用 AI 生成任何代码（这是独立编码考核的核心）</li>
+<li>不许跳过任何一层（漏一层就是"没贯通"）</li>
+<li>不许破坏已有 9 种事件的处理逻辑</li>
+</ul>
+<h3 id="42-第-2-关的-8-个改动点考生须独立完成">4.2 第 2 关的 8 个改动点（考生须独立完成）</h3>
+<p>下面给出<strong>改动点清单和验收标准</strong>，但<strong>具体实现代码由考生现场手写</strong>——这是毕业考，不是范本抄写。每处给出"改什么 + 兼容要点 + 验收"。</p>
+<p><strong>改动点 1：后端合同 <code>apps/api/src/sse/contract/agent-event-v1.ts</code></strong></p>
+<ul>
+<li>改什么：判别联合新增一支<pre><code class="language-typescript">// 考生手写：在 AgentEventV1 联合里加这一支
+| (EventMetaV1 &amp; {
+    type: 'run.cancelled-by-policy'
+    payload: { policyId: string; reason: string; cancelledStep: number }
+  })
+</code></pre>
+</li>
+<li>兼容要点：<code>version</code> 仍是 <code>'v1'</code>（同一大版本内加事件是向后兼容的加法变更，不是破坏变更）</li>
+<li>验收：<code>pnpm --filter api typecheck</code> 后，<code>assertNever</code> 在所有未处理分支报错</li>
+</ul>
+<p><strong>改动点 2：后端 reducer / 状态机 <code>agent-run-state.ts</code>（服务端如有）</strong></p>
+<ul>
+<li>改什么：在 switch 里加 <code>case 'run.cancelled-by-policy'</code>，映射到终态 <code>cancelled</code>，但 error 里标注 <code>policyId</code></li>
+<li>兼容要点：策略中止是终态，须走终态保护逻辑（后续事件被忽略）</li>
+<li>验收：新事件后再来任何事件，state 不变</li>
+</ul>
+<p><strong>改动点 3：SSE 序列化 <code>sse-adapter.ts</code></strong></p>
+<ul>
+<li>改什么：确认新事件类型能被序列化器正确 <code>JSON.stringify</code>（如果序列化器是白名单式，要把新 type 加进去）</li>
+<li>兼容要点：SSE 的 <code>event:</code> 字段用 type、<code>id:</code> 用 sequence，新事件遵循同样格式</li>
+<li>验收：手动触发新事件，SSE 抓包能看到正确的 <code>event: run.cancelled-by-policy</code></li>
+</ul>
+<p><strong>改动点 4：前端合同 <code>frontend/src/agent/contract/agent-event-v1.ts</code></strong></p>
+<ul>
+<li>改什么：前端副本同步加同一支判别联合</li>
+<li>兼容要点：<strong>这是"旧客户端兼容"的关键分界</strong>——如果前端合同不加，前端就是"旧客户端"，必须走改动点 6 的降级路径</li>
+<li>验收：前端 typecheck 通过</li>
+</ul>
+<p><strong>改动点 5：前端 reducer <code>frontend/src/agent/reducer/agent-run-state.ts</code></strong></p>
+<ul>
+<li>改什么：<code>case 'run.cancelled-by-policy'</code> 生成一条 <code>kind: 'error'</code> 的 timeline item，title="策略中止"，detail 含 policyId 和 reason</li>
+<li>兼容要点：走终态，status 置 <code>cancelled</code></li>
+<li>验收：reducer 单测新增用例，输入新事件断言 timeline 和 status</li>
+</ul>
+<p><strong>改动点 6：前端"未知事件"降级（向后兼容的核心）</strong></p>
+<ul>
+<li>改什么：reducer 的 <code>default</code> 分支<strong>不能</strong>直接 <code>assertNever</code> 抛错（那会让旧客户端崩溃），而是降级为一条 <code>kind: 'error'</code>、title="未知事件类型"、detail 显示原始 type 的 timeline item</li>
+<li>兼容要点：这是本关<strong>最容易失分</strong>的点——考生要意识到"旧客户端 = 前端合同没加新支 = 走 default"，default 必须优雅降级而非崩溃<pre><code class="language-typescript">// 考生手写：default 分支的两难
+// 开发期想要 assertNever 抓遗漏，生产期又要容忍未知事件
+// 正解：编译期用 assertNever 的类型检查，运行期 default 降级
+default: {
+  // 类型层面：如果所有 case 覆盖完整，_exhaustive 是 never
+  // 运行层面：真收到未知 type（旧客户端遇到新事件）时降级
+  return {
+    ...state,
+    lastSequence: event.sequence,
+    timeline: [...state.timeline, {
+      key: `unknown-${event.sequence}`,
+      kind: 'error',
+      title: '未知事件类型',
+      detail: `收到未识别的事件：${(event as { type: string }).type}`,
+    }],
+  }
+}
+</code></pre>
+</li>
+<li>验收：故意用一个不在联合里的 type 喂 reducer，旧客户端逻辑不抛错、降级展示</li>
+</ul>
+<p><strong>改动点 7：前端派生 selector <code>derived/run-view.ts</code></strong></p>
+<ul>
+<li>改什么：run-view 的 status 派生要能识别 policy 中止（可选：单独标注"合规中止"徽章色）</li>
+<li>兼容要点：不影响其他派生 selector</li>
+<li>验收：派生 selector 单测</li>
+</ul>
+<p><strong>改动点 8：前端 UI <code>AgentRunPanel.vue</code></strong></p>
+<ul>
+<li>改什么：策略中止的 timeline item 用醒目样式（如橙色边框 + 策略图标）</li>
+<li>兼容要点：样式用 <code>data-kind='error'</code> 已有的，不新增全局样式污染</li>
+<li>验收：E2E 测试触发新事件，页面出现"策略中止"卡片</li>
+</ul>
+<h3 id="43-第-2-关变更影响图考生须先画">4.3 第 2 关变更影响图（考生须先画）</h3>
+<pre><code>[改动点 1] 后端 contract/agent-event-v1.ts  ← 根：类型先定
+    │ typecheck 报错领路
+    ├──► [改动点 2] 后端 reducer（终态映射）
+    ├──► [改动点 3] SSE sse-adapter（序列化）
+    │
+    │ SSE 传输
+    ▼
+[改动点 4] 前端 contract/agent-event-v1.ts  ← 前端合同同步
+    │
+    ├──► [改动点 5] 前端 reducer（新 case）
+    ├──► [改动点 6] 前端 reducer default 降级  ← 兼容核心（最易失分）
+    ├──► [改动点 7] 派生 selector
+    └──► [改动点 8] UI 样式
+
+[旁路] 旧客户端 = 前端只做到改动点 6 的 default 降级
+        → 收到新事件不崩溃，降级为"未知事件"卡片
+</code></pre>
+<h3 id="44-第-2-关四类证据考生须提交">4.4 第 2 关四类证据（考生须提交）</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>证据</th>
+<th>命令 / 内容</th>
+<th>验收标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>typecheck 证据</strong></td>
+<td><code>pnpm --filter api typecheck &amp;&amp; pnpm --filter frontend typecheck</code></td>
+<td>全过；且改动点 1 加完类型后能看到 assertNever 报错列表（截图证明"编译器领路"）</td>
+</tr>
+<tr>
+<td><strong>合同测试</strong></td>
+<td>reducer 单测新增 <code>run.cancelled-by-policy</code> 用例 + 未知事件降级用例</td>
+<td>2 个新用例全绿</td>
+</tr>
+<tr>
+<td><strong>E2E 证据</strong></td>
+<td>Playwright 触发新事件 → 页面出现"策略中止"卡片</td>
+<td>E2E 全绿</td>
+</tr>
+<tr>
+<td><strong>兼容性证据</strong></td>
+<td>用"旧客户端"（前端合同回退到不含新支的版本）收新事件</td>
+<td>页面显示"未知事件"卡片，不崩溃、不白屏</td>
+</tr>
+</tbody>
+</table></div><h3 id="45-第-2-关评分标准">4.5 第 2 关评分标准</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>分数段</th>
+<th>表现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>36-40</td>
+<td>8 处全贯通；default 降级正确；4 类证据齐全；能口述"为什么从类型开始"</td>
+</tr>
+<tr>
+<td>24-35（过门禁）</td>
+<td>8 处基本贯通；default 降级实现但兼容测试略薄；证据缺 1 类</td>
+</tr>
+<tr>
+<td>&lt; 24（不过门禁）</td>
+<td>漏改 ≥ 2 层（没贯通）；或 default 直接 assertNever 导致旧客户端崩溃（兼容门禁失败）</td>
+</tr>
+</tbody>
+</table></div><p><strong>独立编码硬门禁</strong>：新事件全链路贯通 + 旧客户端不崩溃，两者缺一不通过（即使总分够）。</p>
+<hr>
+<h2 id="5-第-3-关未知-bug-排查-架构答辩终态关40-分ai-禁用">5. 第 3 关：未知 Bug 排查 + 架构答辩（终态关，40 分，AI 禁用）</h2>
+<h3 id="51-第-3-关要考什么">5.1 第 3 关要考什么</h3>
+<p>考生视角：考官注入一个<strong>未知 Bug</strong>（考前不告知具体现象），考生要独立定位、止损、根因修复、回归；然后进行<strong>架构答辩</strong>——用 C4 图、时序图、风险登记册证明整个 p1-monitor 的架构决策是自洽的。</p>
+<p><strong>这一关是"三关终态"</strong>：前两关考"会不会写"，这一关考"出了没见过的事故能不能扛住"——这才是企业最看重的能力。</p>
+<p><strong>目标</strong>：</p>
+<ol>
+<li>未知 Bug：45 分钟内完成"定位证据 → 临时止损 → 根因修复 → 回归验证"四步</li>
+<li>设计能稳定复现 1000 次的回归测试（偶发 Bug 必须变成必现）</li>
+<li>架构答辩：C4 Context/Container/Component 三层图 + 关键路径时序图 + 风险登记册</li>
+<li>回答"架构权衡"：为什么这样分层、Provider 抽象的代价、还缺什么</li>
+</ol>
+<h3 id="52-未知-bug-演练竞态取消考纲给出排查方法论不给答案">5.2 未知 Bug 演练：竞态取消（考纲给出排查方法论，不给答案）</h3>
+<p>本次注入的 Bug（考生现场才知道现象）：<strong>用户快速取消后，高风险 Tool 仍偶发执行，偶发率约 2%</strong>。</p>
+<p>这是一个典型的<strong>跨层竞态（race condition）</strong>。考生须独立走完四步，下面给出<strong>方法论脚手架</strong>（不是答案）：</p>
+<p><strong>第 1 步：定位证据（10 分钟）</strong></p>
+<ul>
+<li>事件回放：从 DB <code>agent_events</code> 表按 traceId（Day 18 建的）拉出这次 run 的完整事件序列</li>
+<li>审批审计：查 Day 17 的 approval 审计表，看 cancel 和 tool 执行的时间戳先后</li>
+<li>上游取消日志：查 Day 14 的 AbortController 传播日志，看 cancel 信号是否到达 Tool 执行层</li>
+<li>DB 副作用：查 Tool 实际改了哪些数据</li>
+<li><strong>关键问题</strong>：cancel 信号发出的时刻 T1，Tool 开始执行的时刻 T2，如果 T1 &lt; T2 但 Tool 仍执行，说明"取消信号没传到 Tool 执行的临界区"</li>
+</ul>
+<p><strong>第 2 步：临时止损（5 分钟）</strong></p>
+<ul>
+<li>禁用写 Tool（feature flag 关掉 <code>changeAnomalyStatus</code>），只读 Tool 不受影响</li>
+<li>止损的代价：Agent 暂时不能执行状态变更，但不会误操作——<strong>先保证不出错，再保证功能全</strong></li>
+</ul>
+<p><strong>第 3 步：根因修复（20 分钟）</strong></p>
+<ul>
+<li>竞态的根因通常是"检查取消状态"和"执行 Tool"之间存在时间窗口（TOCTOU 的变体）</li>
+<li>正解方向：把"检查未取消 + 标记执行中"做成原子操作（CAS，Day 17 学过）；或在 Tool 执行的最后一刻再检查一次 abort 信号</li>
+<li><strong>考生须说明</strong>：为什么单纯"执行前 check 一次"不够（check 完到执行之间仍有窗口）</li>
+</ul>
+<p><strong>第 4 步：回归验证（10 分钟）</strong></p>
+<ul>
+<li>偶发 2% 必须变成"能稳定复现"——用 <code>Promise.all</code> 制造 1000 次并发的"取消 + 执行"竞争，注入确定性延迟</li>
+<li>修复前：约 20 次误执行；修复后：0 次</li>
+<li>写成自动化回归测试进 CI</li>
+</ul>
+<h3 id="53-架构答辩三类架构证据考生须现场产出讲解">5.3 架构答辩：三类架构证据（考生须现场产出/讲解）</h3>
+<p><strong>证据 1：C4 三层图</strong></p>
+<pre><code>【Context 层】谁在用这个系统
+  运维工程师 ──► p1-monitor ──► LLM Provider（OpenAI/Claude）
+                    │
+                    └──► Postgres（指标/告警/AgentRun）
+
+【Container 层】系统由哪些可部署单元组成
+  ┌─────────────┐   WS/SSE   ┌──────────────┐
+  │ frontend    │ ◄────────► │ apps/api      │
+  │ (Vue3+Vite) │   REST     │ (NestJS)      │
+  └─────────────┘            └──────┬────────┘
+                                    │ Prisma
+                              ┌─────▼──────┐
+                              │ Postgres   │
+                              └────────────┘
+
+【Component 层】apps/api 内部模块（Day 6-19 建的）
+  AgentModule ──► ToolRegistry（Day11）
+              ──► AgentLoop（Day12）
+              ──► Persistence（Day13）
+              ──► SSE（Day14）
+              ──► Approval（Day17）
+              ──► Observability（Day18）
+</code></pre>
+<p><strong>证据 2：关键路径时序图</strong>（一次带审批的诊断 run）</p>
+<pre><code>运维    frontend      apps/api    Approval   ToolRegistry   LLM      Postgres
+ │  提问   │             │           │            │          │          │
+ │────────►│  POST /run  │           │            │          │          │
+ │         │────────────►│  loop     │            │          │          │
+ │         │             │───────────────────────────────────►│          │
+ │         │             │◄── tool_call: changeStatus ─────────│          │
+ │         │             │  提议审批  │            │          │          │
+ │         │             │──────────►│ 创建租约    │          │          │
+ │         │◄── SSE: approval.required ───────────│           │          │
+ │  批准   │             │           │            │          │          │
+ │────────►│──────────────────────► │ CAS 消费   │          │          │
+ │         │             │◄─ 授权 ──│            │          │          │
+ │         │             │────────────────────────►│ 执行     │          │
+ │         │             │──────────────────────────────────────────────►│ 写
+ │         │◄── SSE: run.finished ───────────────────────────│          │
+</code></pre>
+<p><strong>证据 3：风险登记册</strong></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>风险</th>
+<th>可能性</th>
+<th>影响</th>
+<th>当前缓解</th>
+<th>残余风险</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLM Provider 429 限流</td>
+<td>高</td>
+<td>中</td>
+<td>Day19 有限重试 + 降级</td>
+<td>长时间限流仍会失败</td>
+</tr>
+<tr>
+<td>跨层竞态导致误执行</td>
+<td>中</td>
+<td>高</td>
+<td>Day17 CAS + 本关修复</td>
+<td>需持续压测覆盖新竞态</td>
+</tr>
+<tr>
+<td>SSE 断流用户看到陈旧数据</td>
+<td>中</td>
+<td>中</td>
+<td>Day14 resume + Day19 陈旧标识</td>
+<td>极端网络下仍有短暂窗口</td>
+</tr>
+<tr>
+<td>XSS 恶意报告</td>
+<td>低</td>
+<td>高</td>
+<td>Day16 净化管线 + CSP</td>
+<td>依赖 DOMPurify 版本更新</td>
+</tr>
+<tr>
+<td>敏感字段泄漏日志</td>
+<td>低</td>
+<td>高</td>
+<td>Day18 脱敏白名单</td>
+<td>新增字段需人工加白名单</td>
+</tr>
+</tbody>
+</table></div><h3 id="54-架构答辩的-6-个知识点考生须能口述每个含-5-要素">5.4 架构答辩的 6 个知识点（考生须能口述，每个含 5 要素）</h3>
+<h4 id="知识点-1分层架构的依赖方向domainfeaturesapp-单向">知识点 1：分层架构的依赖方向（domain/features/app 单向）</h4>
+<ul>
+<li>解决的问题：模块互相 import 导致改一处塌一片、无法单独测试</li>
+<li>运行机制：domain 纯类型/纯函数（能在纯 Node 跑）、features 依赖 domain、app 编排 features；箭头单向</li>
+<li>项目落点：<code>frontend/src/agent/reducer</code>（domain）不 import vue；<code>apps/api</code> 的 entity 不 import PrismaService</li>
+<li>生产误区：domain 里 import 框架（Vue/Nest）；features 反向依赖 app</li>
+<li>验证方法：domain 层能在纯 Node 跑测试不报错</li>
+</ul>
+<h4 id="知识点-2合同演进的向后兼容加法变更-vs-破坏变更">知识点 2：合同演进的向后兼容（加法变更 vs 破坏变更）</h4>
+<ul>
+<li>解决的问题：新增事件让旧客户端崩溃</li>
+<li>运行机制：同一 version 内加事件是加法变更（旧客户端 default 降级）；改字段类型/删字段是破坏变更（须升 version）</li>
+<li>项目落点：第 2 关的 <code>run.cancelled-by-policy</code> 加在 v1 内；default 降级不崩溃</li>
+<li>生产误区：加了新事件不做 default 降级；破坏变更不升版本</li>
+<li>验证方法：旧客户端收新事件的兼容测试</li>
+</ul>
+<h4 id="知识点-3provider-抽象的代价与收益">知识点 3：Provider 抽象的代价与收益</h4>
+<ul>
+<li>解决的问题：绑死一家 LLM API，换供应商要改一片代码</li>
+<li>运行机制：Day12 的 <code>LLMProvider</code> 接口 + 工厂；业务只依赖接口</li>
+<li>项目落点：<code>apps/api/src/agent/provider/llm-provider.interface.ts</code></li>
+<li>生产误区：抽象过度（为不会发生的第 3 家供应商加配置）；抽象不足（接口泄漏了 OpenAI 特有字段）</li>
+<li>验证方法：新增一个 mock provider 不改业务代码就能切换</li>
+</ul>
+<h4 id="知识点-4状态机的终态保护">知识点 4：状态机的终态保护</h4>
+<ul>
+<li>解决的问题：终态后又来事件把状态改回运行中</li>
+<li>运行机制：reducer 规则 B——<code>isTerminal(status)</code> 为真时直接返回原 state</li>
+<li>项目落点：Day01 的 reducer 终态保护；本关新事件也走终态</li>
+<li>生产误区：终态判断遗漏某个状态；忘了终态保护导致状态回退</li>
+<li>验证方法：终态后喂任意事件，state 不变</li>
+</ul>
+<h4 id="知识点-5跨层竞态的原子性保证">知识点 5：跨层竞态的原子性保证</h4>
+<ul>
+<li>解决的问题：检查和执行之间的时间窗口被并发穿越（TOCTOU）</li>
+<li>运行机制：把"检查 + 标记"做成 CAS 原子操作；或执行临界区最后一刻复查 abort</li>
+<li>项目落点：Day17 审批 CAS；本关竞态修复</li>
+<li>生产误区：以为"执行前 check 一次"够了（check 到执行之间仍有窗口）</li>
+<li>验证方法：1000 次并发竞争，误执行数为 0</li>
+</ul>
+<h4 id="知识点-6可观测性的-traceid-贯穿">知识点 6：可观测性的 traceId 贯穿</h4>
+<ul>
+<li>解决的问题：分层系统出事故无法关联各层日志</li>
+<li>运行机制：traceId 从入口生成，透传到 WS/Agent/Tool/SSE/DB 每一层的结构化日志</li>
+<li>项目落点：Day18 的 traceId 传播 + 结构化日志</li>
+<li>生产误区：某一层丢了 traceId（断链）；日志记了敏感字段</li>
+<li>验证方法：任一 run 能按 traceId 重建完整时间线</li>
+</ul>
+<h3 id="55-边写边问自己">5.5 边写边问自己</h3>
+<ul>
+<li>第 2 关的 default 降级和 assertNever 矛盾吗？（不矛盾：编译期靠类型检查抓遗漏，运行期靠 default 容忍旧客户端遇到的新事件——两个时间维度）</li>
+<li>第 3 关的竞态为什么"执行前 check 一次"不够？（check 完到真正执行 Tool 之间仍有微秒级窗口，并发请求可以在这个窗口穿越）</li>
+<li>架构答辩为什么要画三层 C4 而不是一张大图？（Context 给非技术方看、Container 给运维看、Component 给开发看，受众不同、抽象层次不同）</li>
+<li>风险登记册为什么要有"残余风险"列？（没有系统是零风险的；诚实标注残余风险 = 工程成熟度，而不是假装全部解决）</li>
+</ul>
+<hr>
+<h2 id="6-三关对比一览表">6. 三关对比一览表</h2>
+<p>Day20 是毕业考核日，"三版演进"替代为"三关递进"。下表用 9 个维度对比三关的考核重点：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>第 1 关（闭卷原理）</th>
+<th>第 2 关（独立编码）</th>
+<th>第 3 关（Bug 排查 + 答辩）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>考核形式</strong></td>
+<td>闭卷笔答 + 口述</td>
+<td>现场编码贯通全链路</td>
+<td>未知 Bug 排查 + 架构答辩</td>
+</tr>
+<tr>
+<td><strong>AI 使用</strong></td>
+<td>禁用</td>
+<td>禁用</td>
+<td>禁用</td>
+</tr>
+<tr>
+<td><strong>知识链</strong></td>
+<td>架构权衡、合同演进的原理</td>
+<td>加法变更、default 降级、全链路贯通</td>
+<td>跨层竞态、CAS、可观测、C4</td>
+</tr>
+<tr>
+<td><strong>考核对象</strong></td>
+<td>"懂不懂"（能否口述原理）</td>
+<td>"会不会写"（能否独立实现）</td>
+<td>"扛不扛得住"（能否处理未知事故）</td>
+</tr>
+<tr>
+<td><strong>时间盒</strong></td>
+<td>60 分钟</td>
+<td>90 分钟</td>
+<td>90 分钟（45 排查 + 45 答辩）</td>
+</tr>
+<tr>
+<td><strong>产出证据</strong></td>
+<td>笔答卷 + 原理口述录音</td>
+<td>编译/合同/E2E 证据</td>
+<td>回归测试 + C4/时序/风险登记册</td>
+</tr>
+<tr>
+<td><strong>失败即挂</strong></td>
+<td>原理硬门禁不过</td>
+<td>新事件贯通不了或旧客户端崩</td>
+<td>Bug 无法定位或架构讲不清</td>
+</tr>
+<tr>
+<td><strong>对应前序 Day</strong></td>
+<td>Day01-19 全部原理</td>
+<td>Day01（reducer）+ Day14（SSE 合同）</td>
+<td>Day17（CAS）+ Day18（trace）</td>
+</tr>
+<tr>
+<td><strong>企业对标</strong></td>
+<td>面试第一轮八股</td>
+<td>面试现场编码</td>
+<td>面试系统设计 + 事故复盘</td>
+</tr>
+</tbody>
+</table></div><p><strong>总分构成</strong>：第 1 关 20 分 + 第 2 关 40 分 + 第 3 关 40 分 = 100 分；<strong>总分 ≥ 70 且四个硬门禁（原理/独立编码/安全/流式）全过才算毕业</strong>。</p>
+<hr>
+<h2 id="65-前端底子补弱独立深挖-html-入口">6.5 前端底子补弱（独立深挖 HTML 入口）</h2>
+<p>毕业考核日的深挖 HTML 是<strong>总复习索引</strong>，不再引入新知识点，而是把 Day01-19 的深挖串成一条"考前自测"链路。</p>
+<p><strong>入口文件</strong>：<code>output/Day20深挖-前端底子补弱.html</code>（考前总复习版）</p>
+<p>深挖内容组织为 8 个自测区块（对应深挖规范 §6.1 的 8 子节，但内容是"回顾 + 自测题"）：</p>
+<ol>
+<li><strong>场景锚点</strong>：毕业考现场"新增事件贯通"是从哪个真实岗位职责来的</li>
+<li><strong>项目代码回顾</strong>：Day01 reducer / Day14 SSE parser / Day17 CAS 三段核心代码原样重贴，考生盲写</li>
+<li><strong>设计点拆解</strong>：判别联合 / 终态保护 / TOCTOU 三个设计点的一句话本质</li>
+<li><strong>原理自测</strong>：10 道原理选择题（判别联合为什么用 branded type、SSE 为什么要 Last-Event-ID 等）</li>
+<li><strong>反例自测</strong>：给出 5 段错误代码，考生找出架构塌方点</li>
+<li><strong>分层提问（点开答案）</strong>：从"这行代码干什么"到"换个供应商要改哪里"六层递进</li>
+<li><strong>项目对手戏</strong>：模拟考官追问"如果 QPS 涨 100 倍这个设计还成立吗"</li>
+<li><strong>面试真题三档答法</strong>：C4 架构题的初级/中级/高级三档答法</li>
+</ol>
+<p><strong>为什么放总复习</strong>：毕业考前一天，考生需要一个"把 20 天知识重新激活"的入口，而不是再学新东西。这个 HTML 是"考前 30 分钟快速自测"的工具。</p>
+<hr>
+<h2 id="7-项目验收清单阶段-e-f约-55-分钟">7. 项目验收清单（阶段 E-F，约 55 分钟）</h2>
+<p>毕业考的验收清单是"三关评分表"，而非常规的写测试。E-F 阶段用于<strong>监考产出证据 + 判卷</strong>。</p>
+<h3 id="76-e三关评分与证据归档30-分钟">7.6 E：三关评分与证据归档（30 分钟）</h3>
+<p>考生完成三关后，按下表逐项打分并归档证据：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>关卡</th>
+<th>评分项</th>
+<th>满分</th>
+<th>硬门禁</th>
+<th>证据文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 1 关</td>
+<td>架构权衡口述</td>
+<td>10</td>
+<td>≥ 6</td>
+<td><code>exam/round1-principles.md</code></td>
+</tr>
+<tr>
+<td>第 1 关</td>
+<td>合同演进原理</td>
+<td>10</td>
+<td>≥ 6</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>第 2 关</td>
+<td>新事件全链路贯通</td>
+<td>25</td>
+<td>必须跑通</td>
+<td><code>exam/round2-diff.patch</code> + E2E 录屏</td>
+</tr>
+<tr>
+<td>第 2 关</td>
+<td>旧客户端不崩溃</td>
+<td>15</td>
+<td>必须不崩</td>
+<td>兼容测试输出</td>
+</tr>
+<tr>
+<td>第 3 关</td>
+<td>未知 Bug 四步排查</td>
+<td>25</td>
+<td>必须定位</td>
+<td><code>exam/round3-rca.md</code></td>
+</tr>
+<tr>
+<td>第 3 关</td>
+<td>架构答辩三证据</td>
+<td>15</td>
+<td>C4 必须完整</td>
+<td><code>exam/c4.md</code> + 风险登记册</td>
+</tr>
+</tbody>
+</table></div><p><strong>四个硬门禁</strong>（任一不过则不毕业，无论总分）：</p>
+<ul>
+<li>原理门禁：第 1 关两项均 ≥ 6</li>
+<li>独立编码门禁：第 2 关新事件贯通 + 旧客户端不崩</li>
+<li>安全门禁：第 3 关 Bug 修复后回归 1000 次误执行为 0</li>
+<li>流式门禁：第 2 关新事件通过 SSE 正确流式到达前端时间线</li>
+</ul>
+<h3 id="77-f-1反证实验-15-分钟-移除-default-降级">7.7 F-1：反证实验 1（5 分钟）—— 移除 default 降级</h3>
+<p>手动把第 2 关新事件贯通里 reducer 的 <code>default</code> 分支删掉，用旧客户端（不认识新事件）消费包含新事件的流：</p>
+<ul>
+<li>观察现象：<code>assertNever</code> 抛错，整个时间线渲染中断，页面白屏</li>
+<li>验证结论：<strong>default 降级是旧客户端不崩溃的最后防线</strong>；加法变更必须配 default 容忍</li>
+</ul>
+<h3 id="78-f-2反证实验-25-分钟-移除竞态修复的原子性">7.8 F-2：反证实验 2（5 分钟）—— 移除竞态修复的原子性</h3>
+<p>手动把第 3 关竞态修复的 CAS 换回"先 check 再执行"两步：</p>
+<ul>
+<li>观察现象：1000 次并发取消+执行竞争，约 20 次误执行（2% 偶发率复现）</li>
+<li>验证结论：<strong>跨层竞态必须靠原子操作</strong>；"check 一次"到"执行"之间的窗口就是事故根因</li>
+</ul>
+<h3 id="79-f-3验证-提交10-分钟">7.9 F-3：验证 + 提交（10 分钟）</h3>
+<p>毕业考的四件套 + 提交：</p>
+<pre><code class="language-bash"># 前后端各自跑四件套
+pnpm --filter frontend typecheck &amp;&amp; pnpm --filter frontend lint &amp;&amp; pnpm --filter frontend test &amp;&amp; pnpm --filter frontend build
+pnpm --filter api typecheck &amp;&amp; pnpm --filter api lint &amp;&amp; pnpm --filter api test &amp;&amp; pnpm --filter api build
+
+# E2E 全绿（Day19 建的故障矩阵 + 本日新事件贯通）
+pnpm --filter e2e test
+</code></pre>
+<p><strong>Conventional Commits 提交模板</strong>：</p>
+<pre><code>test(exam): p1-monitor 第一节点毕业考 + 新事件贯通 + 竞态修复
+
+- 第 2 关：新增 run.cancelled-by-policy 事件，全链路贯通（BFF→Vue）
+- 旧客户端 default 降级兼容，不崩溃
+- 第 3 关：修复快速取消后 Tool 偶发执行的跨层竞态（CAS 原子化）
+- 回归：1000 次并发竞争，误执行数 0
+- 归档：C4 三层图 + 关键路径时序图 + 风险登记册
+
+Refs: Day20
+</code></pre>
+<p><strong>⚠️ 硬红线：不要 <code>git push</code></strong>。毕业考的 commit 和证据只在本地；阶段一（Day1-30）在 Day30（M3 门禁）全部通过后，再由你决定是否 push 到远端。</p>
+<hr>
+<h2 id="8-通过标准">8. 通过标准</h2>
+<ul>
+<li>[ ] 总分 ≥ 70（第 1 关 20 + 第 2 关 40 + 第 3 关 40）</li>
+<li>[ ] 四个硬门禁全过：原理 / 独立编码 / 安全 / 流式</li>
+<li>[ ] 第 2 关：<code>run.cancelled-by-policy</code> 新事件从 BFF 合同贯通到 Vue 时间线，45 分钟内完成</li>
+<li>[ ] 第 2 关：旧客户端遇到新事件不崩溃（default 降级）</li>
+<li>[ ] 第 3 关：未知 Bug 完成"定位证据 → 临时止损 → 根因修复 → 回归验证"四步</li>
+<li>[ ] 第 3 关：偶发 Bug 变为稳定复现 1000 次，修复后误执行数为 0</li>
+<li>[ ] 架构答辩：C4 三层图 + 关键路径时序图 + 风险登记册齐全</li>
+<li>[ ] 全程 AI 禁用，所有代码和排查由考生独立完成</li>
+</ul>
+<hr>
+<h2 id="9-提交物">9. 提交物</h2>
+<ol>
+<li>commit（含 <code>Refs: Day20</code>，未执行 <code>git push</code>）</li>
+<li>前后端 + E2E 四件套输出截图（全绿）</li>
+<li><code>exam/round1-principles.md</code>：闭卷原理笔答</li>
+<li><code>exam/round2-diff.patch</code>：新事件贯通的 diff + E2E 录屏</li>
+<li><code>exam/round3-rca.md</code>：未知 Bug 根因分析报告（四步）</li>
+<li><code>exam/c4.md</code> + 风险登记册：架构答辩三类证据</li>
+<li>学习日志：三关自评 + 最薄弱环节 + 阶段二（Day21-40）改进计划</li>
+<li>AI Review 记录：本日 AI 禁用，记录为"全程独立，无 AI 参与"</li>
+</ol>
+<hr>
+<h2 id="10-课末-3-个核心问题">10. 课末 3 个核心问题</h2>
+<ol>
+<li>请从今天项目的真实入口到最终输出，解释"项目毕业考"考的是什么能力链；当天知识链"架构权衡、合同演进、独立调试、生产应急"分别在三关的哪一关起作用，为什么按"懂原理 → 会编码 → 扛事故"这个顺序考？</li>
+<li>如果故意移除今天最关键的保护机制（default 降级 / 竞态 CAS），线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</li>
+<li>请引用今天的具体代码、测试和架构证据，证明第一节点项目目标已经达到；再说明当前 p1-monitor 距离企业生产标准还缺什么，阶段二（Day21-40）如何演进而不破坏已有合同。</li>
+</ol>
+<hr>
+<h2 id="11-真实项目情境题联网更新-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>现场新增 <code>run.cancelled-by-policy</code> 事件，要求 45 分钟内从 BFF 合同贯通到 Vue 时间线；旧客户端不能崩溃。请先画变更影响图，提交编译/合同/E2E 证据；若上线失败给出 feature flag 止损，再完成兼容修复与回滚验证，全程关闭 AI。回答必须按"定位证据 → 临时止损 → 根因修复 → 回归验证"组织。
+依据：<a href="https://campus-talent.alibaba.com/campus/position/199904460001" target="_blank" rel="noopener noreferrer">S3 阿里 AI 前端</a></li>
+<li>考官注入未知 Bug：快速取消后仍执行高风险 Tool，偶发率 2%。请独立用事件回放、审批审计、上游取消日志和 DB 副作用定位；先禁用写 Tool 止损，再修复跨层竞态，设计能稳定复现 1,000 次的回归并说明架构权衡。回答必须按"定位证据 → 临时止损 → 根因修复 → 回归验证"组织。
+依据：<a href="https://jobs.bytedance.com/experienced/position/7650035429911824693/detail" target="_blank" rel="noopener noreferrer">S1 Aime</a></li>
+</ol>
+<p>知识映射：第一节点毕业考——合同演进、独立调试、生产应急与完整架构证据。</p>
+<hr>
+<h2 id="12-pdf-面试题">12. PDF 面试题</h2>
+<blockquote>
+<p>以下题目引用自公开面经 PDF 汇编，文件名不等于官方题库；用作练习触发点，不代表本项目对齐了任何一家公司的真实校招/社招题库。</p>
+</blockquote>
+<ol>
+<li>如果从零设计 AI Agent 前端架构，会考虑哪些核心模块？
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E9%25AB%2598%25E5%25BE%25B7%2520Al%2520agent%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026高德 Al agent 前端开发》</a>，第 9 页。</li>
+<li>企业级 AI 前端架构怎样分层并避免绑定特定模型 API？
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E9%2598%25BF%25E9%2587%258C%25E4%25BA%2591%25E5%2589%258D%25E7%25AB%25AF%25E6%258A%2580%25E6%259C%25AF%25E4%25B8%2593%25E5%25AE%25B6-AI%25E9%25A2%2586%25E5%259F%259F.pdf" class="missing-link">《2026阿里云前端技术专家-AI领域》</a>，第 9 页。</li>
+</ol>
+<p>题目说明：对应第一节点架构答辩、合同演进、Provider 替换和可独立调试能力。第 2 题正好对应本日架构答辩的知识点 3（Provider 抽象）——考生须能用 p1-monitor 的 <code>LLMProvider</code> 接口现身说法。</p>
+<hr>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"现场提出 5 道问题。五连问不预先固定，也不由上面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<p>毕业考的五连问尤其侧重<strong>架构演进</strong>一档：教师会追问"如果 p2-agent-workbench 要复用 p1 的哪些模块"、"合同层怎么支持多 Agent 协同"。</p>
+<hr>
+<h2 id="14-本-day-在-90-天路线中的锚点">14. 本 Day 在 90 天路线中的锚点</h2>
+<ul>
+<li><strong>承前</strong>：Day20 是阶段一（Day1-30）的第一个大节点考核，检验 Day01-19 建立的 p1-monitor 全部能力——前端 reducer + 状态机（Day01-05）、后端 Nest+Prisma+FSM（Day06-10）、Tool Registry + Agent Loop + 持久化（Day11-13）、SSE + 时间线 + 安全渲染（Day14-16）、审批 + 可观测 + 生产演练（Day17-19）。</li>
+<li><strong>启后</strong>：Day21-30 进入阶段一收尾（M3 门禁 + LangChain RAG 接入），Day20 暴露的最薄弱环节将写进 Day21 的补弱计划。毕业考不是终点，而是"知道自己哪里还不扎实"的诊断。</li>
+<li><strong>里程碑</strong>：通过 Day20 = 具备"AI 前端"的独立交付能力；这是转型路线三个阶段里第一个可对外证明的能力节点。</li>
+</ul>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day20-old.html">查看 Day 20 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/19.html">← Day 19 · 生产演练</a>
+            <a href="/ai-teacher-agent-devolop/day/21.html">Day 21 · NestJS 架构深化 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#14-%E6%9C%AC%E6%97%A5%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8A%A8%E6%89%8B%E5%89%8D%E5%85%88%E7%9C%8B%E9%AA%A8%E6%9E%B6">1.4 本日项目目录结构（动手前先看骨架）</a></li><li><a href="#15-%E9%98%B6%E6%AE%B5-d%E5%8A%A8%E6%89%8B%E8%84%9A%E6%89%8B%E6%9E%B620-%E5%88%86%E9%92%9F%E5%85%88%E6%90%AD%E9%AA%A8%E6%9E%B6%E5%86%8D%E7%9C%8B%E6%AD%A3%E6%96%87">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F60-%E9%97%AD%E5%8D%B7-210-%E7%BC%96%E7%A0%81-60-%E6%8E%92%E6%9F%A5-30-%E7%AD%94%E8%BE%A9">2. 学习节奏（60 闭卷 + 210 编码 + 60 排查 + 30 答辩）</a></li><li><a href="#3-%E7%AC%AC-1-%E5%85%B3%E9%97%AD%E5%8D%B7%E5%8E%9F%E7%90%8660-%E5%88%86%E9%92%9F30-%E5%88%86ai-%E7%A6%81%E7%94%A8">3. 第 1 关：闭卷原理（60 分钟，30 分，AI 禁用）</a></li><li><a href="#4-%E7%AC%AC-2-%E5%85%B3%E7%8B%AC%E7%AB%8B%E7%BC%96%E7%A0%81%E7%8E%B0%E5%9C%BA%E8%B4%AF%E9%80%9A-runcancelled-by-policy-%E6%96%B0%E4%BA%8B%E4%BB%B6210-%E5%88%86%E9%92%9F40-%E5%88%86ai-%E7%A6%81%E7%94%A8">4. 第 2 关：独立编码——现场贯通 run.cancelled-by-policy 新事件（210 分钟，40 分，AI 禁用）</a></li><li><a href="#5-%E7%AC%AC-3-%E5%85%B3%E6%9C%AA%E7%9F%A5-bug-%E6%8E%92%E6%9F%A5-%E6%9E%B6%E6%9E%84%E7%AD%94%E8%BE%A9%E7%BB%88%E6%80%81%E5%85%B340-%E5%88%86ai-%E7%A6%81%E7%94%A8">5. 第 3 关：未知 Bug 排查 + 架构答辩（终态关，40 分，AI 禁用）</a></li><li><a href="#6-%E4%B8%89%E5%85%B3%E5%AF%B9%E6%AF%94%E4%B8%80%E8%A7%88%E8%A1%A8">6. 三关对比一览表</a></li><li><a href="#65-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1%E7%8B%AC%E7%AB%8B%E6%B7%B1%E6%8C%96-html-%E5%85%A5%E5%8F%A3">6.5 前端底子补弱（独立深挖 HTML 入口）</a></li><li><a href="#7-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95%E9%98%B6%E6%AE%B5-e-f%E7%BA%A6-55-%E5%88%86%E9%92%9F">7. 项目验收清单（阶段 E-F，约 55 分钟）</a></li><li><a href="#8-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86">8. 通过标准</a></li><li><a href="#9-%E6%8F%90%E4%BA%A4%E7%89%A9">9. 提交物</a></li><li><a href="#10-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">10. 课末 3 个核心问题</a></li><li><a href="#11-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">12. PDF 面试题</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">14. 本 Day 在 90 天路线中的锚点</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

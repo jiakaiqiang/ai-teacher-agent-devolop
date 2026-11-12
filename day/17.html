@@ -1,0 +1,1738 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 17 · Human-in-the-loop（v1 前端确认 → v2 服务端权威审批 → v3 审批租约 + TOCTOU 防护 + 幂等消费） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html" aria-current="page">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/03.html">第 3 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 17</p>
+        <h1>Human-in-the-loop（v1 前端确认 → v2 服务端权威审批 → v3 审批租约 + TOCTOU 防护 + 幂等消费）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段一（Day 1-30，前端 -&gt; AI 前端）。所有 BFF、NestJS、数据库、队列和 Agent 后端增量都必须服务于 <code>p1-monitor</code> 的真实 AI 前端链路，不得另起无关 Demo。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+</blockquote>
+<p>任务版本：标准版
+日期与时长：2026-07-30 周四，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor</code>
+角色视角：完成 Day 11 Tool Registry（只读工具）、Day 12 Agent Loop、Day 13 持久化 + 幂等，第一次要让 Agent 执行「写操作」（修改 anomaly 状态），并且必须先经过人工批准的开发者</p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p>90 天转型路线的三个阶段：</p>
+<pre><code>阶段一（Day 1-30）：前端 → AI 前端
+   项目：p1-monitor 智能运维监控（Vue 3 + TypeScript + WebSocket + Agent UI）
+   Day 1-5：前端 Agent 运行时展示、状态机、WebSocket 实时
+   Day 6-10：后端 Nest + Prisma + FSM + M2 门禁
+
+阶段二（Day 31-60）：AI 前端 → AI 全栈
+   项目：p1-monitor 后端 + p1-monitor 全栈（NestJS + LLM 集成 + RAG）
+   Day 11：Tool Registry（只读工具 Schema/超时/裁剪/审计）
+   Day 12：Agent Loop（循环调用+预算+终止）
+   Day 13：持久化 / 幂等（事务+幂等键+执行状态+恢复）
+   Day 14：SSE 合同演进（AgentEventV1 + resume + 取消）
+   Day 15：Agent 时间线（reducer + 派生状态 + 审计 UI）
+   Day 16：证据与 XSS（Markdown 净化 + 证据链）
+   Day 17：Human-in-the-loop（服务端权威审批 + 审批租约 + TOCTOU）  ← 今天在这里
+   Day 18-20：LangChain RAG + 向量检索
+
+阶段三（Day 61-90）：AI 全栈 → AI Agent 工程师
+   项目：p2-agent-workbench 多 Agent 协同工作台
+</code></pre>
+<p><strong>Day 17 在阶段一第 7 天</strong>。Day 11 的三个 Tool（<code>listServers</code> / <code>getMetrics</code> / <code>getAlertDetail</code>）全是<strong>只读</strong>的——调错了最多返回错数据，不会改坏系统。今天要引入第一个<strong>写操作 Tool</strong>：<code>changeAnomalyStatus</code>（把某条异常从 <code>firing</code> 改成 <code>resolved</code>）。写操作意味着<strong>不可逆的副作用</strong>，一旦 Agent 判断失误就会误关真实告警。所以今天的核心不是"怎么写库"（Day 13 已经会了），而是**"怎么保证写操作在执行前必须经过人工批准，且批准这件事本身不能被伪造、篡改、重放"**。</p>
+<h3 id="到-day-16-结束时项目已具备的能力">到 Day 16 结束时项目已具备的能力</h3>
+<ul>
+<li><strong>后端</strong>（Day 6-13）：Nest + Prisma + Postgres，服务器/指标/告警 CRUD，Z-Score 异常检测，服务端 FSM，Tool Registry，Agent Loop，持久化 + 幂等 + 执行状态 + 崩溃恢复</li>
+<li><strong>前端</strong>（Day 1-16）：Vue3 + Vite + ECharts，WebSocket + SSE 实时，Agent 时间线 + 派生状态 + 审计面板，诊断报告安全渲染 + 证据链</li>
+<li><strong>缺失的一块</strong>：所有 Tool 都是只读的。Agent 能"看"（查指标、查告警），但不能"动"（改状态、发命令）。真实运维场景里，Agent 分析完"srv-042 的 CPU 异常已经自动恢复"后，应该能提议"把这条 anomaly 标记为 resolved"——但这个动作绝对不能让 Agent 自己直接执行，必须有个人点一下"批准"</li>
+</ul>
+<h3 id="今天要解决的-4-个问题">今天要解决的 4 个问题</h3>
+<ol>
+<li>
+<p><strong>问题 1：写操作不能让 Agent 自主执行</strong>
+Agent Loop（Day 12）里，Tool 一旦被 LLM 选中就直接 <code>execute()</code>。只读工具这样没问题，但 <code>changeAnomalyStatus</code> 如果也这样，Agent 判断失误（把还在 firing 的告警误判为已恢复）就会直接改坏生产数据。必须引入<strong>审批闸门</strong>：写操作的 Tool 被选中时，不执行，而是生成一个"待批准提议"（approval proposal），暂停循环，等人点批准后才继续。</p>
+</li>
+<li>
+<p><strong>问题 2：前端隐藏按钮 ≠ 安全</strong>
+最幼稚的做法：前端根据角色隐藏"批准"按钮，非管理员看不到。但攻击者可以绕过前端，直接 <code>curl -X POST /agent/approvals/xxx/execute</code>。<strong>授权判断必须在服务端</strong>：执行接口自己校验 actor 的角色/租户，而不是相信"前端已经隐藏了按钮所以调用者一定有权限"。</p>
+</li>
+<li>
+<p><strong>问题 3：TOCTOU——批准时看到的和执行时做的不是一回事</strong>
+用户在 UI 上看到"把 <code>anomaly-a123</code> 改为 resolved"，点了批准。但从"点批准"到"服务端执行"之间有个时间窗（Time Of Check To Time Of Use）。如果这期间参数被篡改（<code>serverId</code> 从 A 换成 B），或者模型重新生成了不同的提议，执行的就不是用户批准的那件事。必须给审批<strong>快照</strong>参数并做<strong>哈希绑定</strong>：执行时校验"现在要执行的参数哈希 == 用户当时批准的参数哈希"。</p>
+</li>
+<li>
+<p><strong>问题 4：审批可以被重放</strong>
+同一个 <code>approvalId</code> 被两个浏览器标签同时提交执行，或者网络重试导致执行接口被调两次。如果不做<strong>一次性消费</strong>（审批租约 lease 只能被消费一次），就会执行两次写操作。必须用状态机 + 幂等键保证"同一 approval 最多成功执行一次"。</p>
+</li>
+</ol>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<p>在 <code>p1-monitor/apps/api</code> 里交付一个模块 <strong><code>ApprovalModule</code></strong>：给 Agent Loop 引入写操作审批闸门。当 LLM 选中一个"写操作 Tool"时，不直接执行，而是创建一个带<strong>参数快照 + 参数哈希 + 过期租约</strong>的审批提议，暂停 Agent Loop；人工通过 <code>POST /agent/approvals/:id/decision</code> 批准或拒绝；批准后 <code>POST /agent/approvals/:id/execute</code> 在服务端校验授权、校验参数哈希、校验租约未过期、保证一次性消费后才真正执行写操作。</p>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p><strong>场景</strong>：Agent 分析完 srv-042 的 CPU 异常后，提议把 <code>anomaly-a123</code> 标记为 <code>resolved</code>。</p>
+<pre><code>时间轴：
+
+14:35:00.000  Agent Loop step 4：LLM 生成 tool_call
+  → changeAnomalyStatus(anomalyId="a-123", newStatus="resolved", reason="CPU 已恢复至 40%")
+  → Tool Registry 识别这是「写操作 Tool」（requiresApproval=true）
+  → 不执行！创建审批提议：
+     approvalId = "apr-01"
+     action = "changeAnomalyStatus"
+     argsSnapshot = { anomalyId: "a-123", newStatus: "resolved", reason: "CPU 已恢复至 40%" }
+     argsHash = sha256(canonicalJson(argsSnapshot)) = "3f9a2b..."
+     status = "pending"
+     leaseExpiresAt = now + 5min
+  → Agent Loop 暂停（status: awaiting-approval）
+  → SSE 推 approval.required 事件给前端
+
+14:35:00.200  前端渲染审批卡片
+  → 显示：Agent 提议把 anomaly-a123 改为 resolved
+  → 显示参数：anomalyId=a-123, newStatus=resolved
+  → 显示理由：CPU 已恢复至 40%
+  → 两个按钮：[批准] [拒绝]
+  → 显示租约倒计时：4:58 后过期
+
+14:35:30.000  运维点击「批准」
+  → POST /agent/approvals/apr-01/decision
+  → body: { decision: "approved", actor: "ops-zhang" }
+  → 服务端校验：
+     (1) actor "ops-zhang" 是否有 approve 权限？（角色/租户校验）→ 是
+     (2) approval apr-01 当前是 pending？→ 是
+     (3) 租约是否过期？now &lt; leaseExpiresAt → 未过期
+  → 更新 approval.status = "approved", approvedBy = "ops-zhang", decidedAt = now
+  → 响应：200 { status: "approved" }
+
+14:35:30.500  前端自动发起执行
+  → POST /agent/approvals/apr-01/execute
+  → body: { actor: "ops-zhang", argsHash: "3f9a2b..." }
+  → 服务端校验（TOCTOU 防护）：
+     (1) actor 有 execute 权限？→ 是
+     (2) approval.status == "approved"？→ 是
+     (3) 租约未过期？→ 是
+     (4) 请求的 argsHash == approval.argsHash？→ 一致（参数没被篡改）
+     (5) approval 未被消费过？（status 从 approved → executing 的原子 CAS）→ 抢到
+  → 事务内执行写操作：
+     UPDATE anomalies SET status='resolved' WHERE id='a-123'
+     approval.status = "executed", executedAt = now
+  → 恢复 Agent Loop（把执行结果作为 tool result 喂回 LLM）
+  → 响应：200 { status: "executed", result: {...} }
+
+如果 14:35:30.501 第二个标签也发 execute（重放）：
+  → 校验 (5)：approval.status 已经是 "executing" / "executed"
+  → 拒绝：409 Conflict { error: "approval_already_consumed" }
+  → 写操作只执行一次
+
+如果 14:41:00.000 才点批准（超过 5min 租约）：
+  → 校验 (3)：now &gt; leaseExpiresAt
+  → 拒绝：410 Gone { error: "approval_lease_expired" }
+  → 需要 Agent 重新生成提议
+</code></pre>
+<p><strong>前端观察到的最终结果</strong>：</p>
+<ul>
+<li>未批准的写操作永远不执行（执行数 = 0）</li>
+<li>同一 approval 无论被点几次执行，写操作只成功一次</li>
+<li>参数被篡改（argsHash 不匹配）时执行被拒绝</li>
+<li>租约过期后审批自动失效，需要重新提议</li>
+<li>每一次 decision / execute 都有审计日志（谁、什么时候、对什么资源、结果）</li>
+</ul>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<ul>
+<li><strong>输入</strong>：Day 12 Agent Loop 在选中「写操作 Tool」时生成的审批提议（action + argsSnapshot）；人工通过 HTTP 接口提交的 decision 和 execute 请求</li>
+<li><strong>输出</strong>：一个服务端权威的审批状态机（<code>pending → approved/rejected → executing → executed/failed</code>），保证未批准不执行、参数不可篡改、租约过期失效、一次性消费；执行结果回喂给暂停的 Agent Loop</li>
+<li><strong>对齐后续</strong>：今天定义的 <strong>审批合同</strong>（<code>ApprovalProposal</code> / <code>ApprovalDecision</code> / <code>ExecuteGuard</code>）是 Day 61-90 p2-agent-workbench 多 Agent 协同的权限地基。多 Agent 场景里，一个 Agent 提议、另一个 Agent（或人）审批的模式完全复用今天的租约 + 哈希绑定机制</li>
+</ul>
+<h3 id="13-三版演进的目标">1.3 三版演进的目标</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>实现的功能</th>
+<th>代码结构</th>
+<th>引入的知识</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td>前端确认对话框，用户点"确定"后前端直接调执行接口</td>
+<td><code>ConfirmDialog.vue</code> + 执行接口无授权校验</td>
+<td>HITL 基本概念、前端确认 UX、Tool <code>requiresApproval</code> 标记</td>
+</tr>
+<tr>
+<td><strong>v1 痛点</strong></td>
+<td>前端隐藏按钮可绕过；执行接口无授权；参数可篡改；可重放</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>v1 + <strong>服务端权威审批</strong>（decision/execute 分离 + 服务端授权校验 + 审批状态机）</td>
+<td>拆出 <code>approval.service.ts</code> + <code>approval-status.enum.ts</code> + 授权 Guard</td>
+<td>服务端授权、审批状态机、actor 角色校验、decision vs execute 分离</td>
+</tr>
+<tr>
+<td><strong>v2 痛点</strong></td>
+<td>批准到执行有时间窗（TOCTOU）；参数快照未哈希绑定；无租约过期；重放靠状态判断不够原子</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>v2 + <strong>参数哈希绑定</strong>（canonical JSON + sha256）+ <strong>审批租约</strong>（过期失效）+ <strong>原子一次性消费</strong>（CAS）+ <strong>审计日志</strong></td>
+<td>完整分层（contract/hash/lease/guard/service/audit）</td>
+<td>canonical JSON、参数哈希、TOCTOU 防护、租约机制、CAS 原子消费、审计链</td>
+</tr>
+</tbody>
+</table></div><p><strong>用户最终在项目里交付的是 v3</strong>。v1 和 v2 是教学用的过渡版本。</p>
+<hr>
+<h2 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h2>
+<p><strong>为什么放在最前面</strong>：Human-in-the-loop 审批涉及多个关注点（审批状态机、参数哈希、租约过期、授权校验、原子消费、审计日志），如果不先在脑子里立起骨架，写到一半就会把"授权校验"糊在 controller 上、把"参数哈希"和"执行逻辑"混在一个方法里、把"租约过期"当成 cron 任务、把"一次性消费"用普通的 <code>if (status === 'approved')</code> 判断（并发下会双执行）。看完这棵树，下面章节再出现 <code>src/approval/lease/approval-lease.service.ts</code> 时，你就能立刻定位它在架构中的位置。</p>
+<p><strong>今天在 <code>p1-monitor/apps/api/src/</code> 下要建立的完整目录树（v3 完整版）</strong>：</p>
+<pre><code>apps/api/src/
+├── approval/                                    ← 【新增】Human-in-the-loop 审批模块
+│   ├── contract/
+│   │   ├── approval-proposal.types.ts           ← 审批提议合同（action + argsSnapshot + hash）
+│   │   ├── approval-decision.types.ts           ← 决策合同（approved/rejected + actor）
+│   │   └── approval-status.enum.ts              ← 审批状态枚举（6 个状态 + 转移规则）
+│   ├── hash/
+│   │   ├── canonical-json.ts                    ← 参数规范化（纯函数，key 排序）
+│   │   ├── args-hash.ts                         ← 参数哈希（sha256，纯函数）
+│   │   └── args-hash.spec.ts                    ← 哈希单元测试
+│   ├── lease/
+│   │   ├── approval-lease.ts                    ← 租约过期判断（纯函数）
+│   │   ├── approval-lease.spec.ts               ← 租约单元测试
+│   │   └── lease-scanner.ts                     ← 过期租约扫描器（标记 expired）
+│   ├── guard/
+│   │   ├── authorization.guard.ts               ← 服务端授权校验（actor 角色/租户）
+│   │   └── execute.guard.ts                     ← 执行前 5 项校验（TOCTOU 防护）
+│   ├── audit/
+│   │   └── approval-audit.service.ts            ← 审批审计日志
+│   ├── index.ts                                 ← 桶文件
+│   ├── approval.module.ts                       ← NestJS 模块
+│   ├── approval.service.ts                      ← 业务编排层
+│   └── approval.controller.ts                   ← HTTP 入口（decision / execute）
+├── agent/                                       ← 【Day 12 已有】Agent Loop
+│   ├── loop/agent-loop.engine.ts                ← 需要改：写操作 Tool 生成审批提议并暂停
+│   └── ...
+├── tools/                                       ← 【Day 11 已有】Tool Registry
+│   ├── registry/tool-registry.service.ts        ← 需要改：Tool 增加 requiresApproval 标记
+│   └── implementations/
+│       └── change-anomaly-status.tool.ts        ← 【新增】第一个写操作 Tool
+├── prisma/
+│   ├── schema.prisma                            ← 【已有】需要新增 Approval 表
+│   └── prisma.service.ts                        ← 【Day 07 已有】
+└── main.ts                                      ← 【已有】需要挂 lease-scanner
+</code></pre>
+<p><strong>三版演进对应的文件差异</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>文件</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>approval.service.ts</code></td>
+<td>✗（前端直接调执行）</td>
+<td>✓ decision + execute 分离</td>
+<td>✓ 委托给 guard + lease + hash</td>
+</tr>
+<tr>
+<td><code>contract/approval-status.enum.ts</code></td>
+<td>✗</td>
+<td>✓ 4 个状态</td>
+<td>✓ 6 个状态（+ <code>executing</code> <code>expired</code>）</td>
+</tr>
+<tr>
+<td><code>guard/authorization.guard.ts</code></td>
+<td>✗（前端隐藏按钮）</td>
+<td>✓ actor 角色校验</td>
+<td>✓ 同 v2</td>
+</tr>
+<tr>
+<td><code>guard/execute.guard.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 5 项校验（状态/授权/租约/哈希/消费）</td>
+</tr>
+<tr>
+<td><code>hash/canonical-json.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ key 排序规范化</td>
+</tr>
+<tr>
+<td><code>hash/args-hash.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ sha256 参数哈希</td>
+</tr>
+<tr>
+<td><code>lease/approval-lease.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 过期判断纯函数</td>
+</tr>
+<tr>
+<td><code>lease/lease-scanner.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 启动扫描 + 标记 expired</td>
+</tr>
+<tr>
+<td><code>prisma/schema.prisma</code> (Approval)</td>
+<td>✗</td>
+<td>基础表</td>
+<td>+ <code>argsHash</code> + <code>leaseExpiresAt</code> + <code>consumedAt</code></td>
+</tr>
+</tbody>
+</table></div><p><strong>依赖方向（务必单向，反过来一次都不行）</strong>：</p>
+<pre><code>agent/loop/agent-loop.engine.ts
+        │ （写操作 Tool → 生成提议 → 暂停）
+        ▼
+approval.service.ts
+        │
+        ├─► guard/authorization.guard.ts ──► （actor 角色/租户）
+        │
+        ├─► guard/execute.guard.ts
+        │           │
+        │           ├─► hash/args-hash.ts ──► hash/canonical-json.ts（纯函数）
+        │           │
+        │           └─► lease/approval-lease.ts（纯函数）
+        │
+        ├─► audit/approval-audit.service.ts ──► prisma
+        │
+        └─► prisma（Approval 表 CAS 更新）
+
+contract/*.ts        ← 纯类型 + enum，不 import prisma
+hash/*.ts            ← 纯函数，不 import prisma、不 import nest
+lease/approval-lease.ts  ← 纯函数（输入 approval + now，输出 boolean）
+</code></pre>
+<p><strong>红线</strong>：</p>
+<ul>
+<li><code>hash/canonical-json.ts</code> 和 <code>hash/args-hash.ts</code> 里出现 <code>import { PrismaService }</code> 就是架构塌方——哈希是纯计算，必须能在纯 Node 里测试</li>
+<li><code>lease/approval-lease.ts</code> 里出现 <code>new Date()</code>（内部读当前时间）是塌方——当前时间必须作为参数传入，否则无法单测过期边界</li>
+<li><code>approval.controller.ts</code> 里直接 <code>if (actor.role === 'admin')</code> 做授权是塌方——授权判断必须走 <code>AuthorizationGuard</code>，散在 controller 里无法统一测试和审计</li>
+<li><code>agent-loop.engine.ts</code> 里直接执行写操作 Tool（不走审批）是塌方——写操作必须经过 <code>ApprovalService</code></li>
+</ul>
+<p><strong>动手前先问自己 3 个问题</strong>：</p>
+<ol>
+<li>参数哈希为什么要先做 canonical JSON？—— 见 §5.4 知识点 2「canonical JSON 与哈希稳定性」</li>
+<li><code>execute.guard.ts</code> 的 5 项校验为什么顺序不能乱？—— 见 §5.4 知识点 4「执行闸门的校验顺序」</li>
+<li>一次性消费为什么必须用 CAS 而不是 <code>if (status === 'approved')</code>？—— 见 §5.4 知识点 5「原子消费与并发重放」</li>
+</ol>
+<hr>
+<h2 id="15-阶段-d动手脚手架20-分钟先搭骨架再看正文">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</h2>
+<h3 id="151-d-1确认依赖-node-crypto3-分钟">1.5.1 D-1：确认依赖 + Node crypto（3 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li><code>sha256</code> 用 Node 内置 <code>node:crypto</code>，不需要装第三方库</li>
+<li>确认 <code>@nestjs/common</code> 已有（Day 06 装的）</li>
+<li>确认 Prisma ≥ 5（Day 13 已确认）；<code>consumedAt</code> 的原子 CAS 用 <code>updateMany</code> + <code>where</code> 条件</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么用 sha256 而不是 md5？（md5 有碰撞风险，虽然这里不是安全场景，但用 sha256 是好习惯，成本几乎一样）</li>
+<li>为什么参数哈希不加盐？（这里哈希的目的是"检测参数是否被改"，不是防彩虹表；加盐反而破坏"相同参数得相同哈希"的可校验性）</li>
+</ul>
+<h3 id="152-d-2创建目录2-分钟">1.5.2 D-2：创建目录（2 分钟）</h3>
+<p>按第 5.3 节的目录树，在 <code>apps/api/src/approval/</code> 下建 5 个子目录：</p>
+<pre><code>approval/
+├── contract/
+├── hash/
+├── lease/
+├── guard/
+└── audit/
+</code></pre>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么 <code>hash/</code> 和 <code>lease/</code> 分开？（哈希解决"参数篡改"，租约解决"过期失效"，两个独立的安全维度，各自单测）</li>
+<li>为什么 <code>guard/</code> 里有两个 guard？（<code>authorization.guard</code> 管"你是谁、有没有权限"，<code>execute.guard</code> 管"这次执行是否满足所有前置条件"，职责不同）</li>
+</ul>
+<h3 id="153-d-3改-prisma-schema-migration4-分钟">1.5.3 D-3：改 Prisma Schema + migration（4 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>新增 <code>Approval</code> model + <code>ApprovalStatus</code> enum</li>
+<li>运行 <code>pnpm --filter api prisma migrate dev --name add_approval</code></li>
+<li>检查 migration.sql 是否包含 <code>argsHash</code> 和 <code>leaseExpiresAt</code> 字段</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>consumedAt</code> 为什么用 <code>DateTime?</code> 而不是 <code>Boolean consumed</code>？（时间戳既表达"是否消费"又记录"何时消费"，审计更有用；而且 <code>updateMany where: { consumedAt: null }</code> 天然是 CAS 条件）</li>
+<li><code>argsHash</code> 为什么存 DB 而不是每次重算？（用户批准的那一刻的参数快照必须固化下来；如果每次重算，模型改了参数后哈希也会变，TOCTOU 检测就失效了）</li>
+</ul>
+<h3 id="154-d-4实现-hash-lease-层5-分钟">1.5.4 D-4：实现 hash + lease 层（5 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>hash/canonical-json.ts</code>（<code>canonicalize(obj)</code> 递归排序 key）</li>
+<li>写 <code>hash/args-hash.ts</code>（<code>hashArgs(obj)</code> = sha256(canonicalize)）</li>
+<li>写 <code>hash/args-hash.spec.ts</code>（key 顺序不同哈希相同、值不同哈希不同）</li>
+<li>写 <code>lease/approval-lease.ts</code>（<code>isLeaseExpired(approval, now)</code> 纯函数）</li>
+<li>写 <code>lease/approval-lease.spec.ts</code>（过期边界）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>canonicalize</code> 为什么要递归？（嵌套对象 <code>{ a: { c: 1, b: 2 } }</code> 的内层 key 也要排序，否则 <code>{c,b}</code> 和 <code>{b,c}</code> 哈希不同）</li>
+<li><code>isLeaseExpired</code> 为什么把 <code>now</code> 作为参数？（单测里要能构造"刚好过期"、"差 1ms 过期"的边界，读系统时间无法精确控制）</li>
+</ul>
+<h3 id="155-d-5实现-guard-service-集成6-分钟">1.5.5 D-5：实现 guard + service + 集成（6 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>guard/authorization.guard.ts</code>（actor 角色/租户校验）</li>
+<li>写 <code>guard/execute.guard.ts</code>（5 项校验，返回 <code>{ ok: true } | { ok: false, code, httpStatus }</code>）</li>
+<li>写 <code>audit/approval-audit.service.ts</code>（记录 decision / execute）</li>
+<li>写 <code>approval.service.ts</code>（propose / decide / execute 编排 + CAS 消费）</li>
+<li>写 <code>approval.controller.ts</code>（<code>POST /approvals/:id/decision</code> / <code>POST /approvals/:id/execute</code>）</li>
+<li>写 <code>approval.module.ts</code></li>
+<li>改 <code>tools/implementations/change-anomaly-status.tool.ts</code>（<code>requiresApproval = true</code>）</li>
+<li>改 <code>agent/loop/agent-loop.engine.ts</code>（写操作 Tool → 生成提议 → 暂停）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>execute</code> 里的 CAS（<code>updateMany where: { status: 'approved', consumedAt: null }</code>）返回 <code>count === 0</code> 意味着什么？（意味着别的请求已经抢先消费了，当前请求应该返回 409）</li>
+<li>授权校验为什么在 <code>decide</code> 和 <code>execute</code> 都要做一遍？（decide 时校验"能否批准"，execute 时校验"能否执行"——可能是不同角色；而且 execute 是独立接口，不能假设一定是 decide 的人调用）</li>
+</ul>
+<hr>
+<h2 id="2-学习节奏90-阅读-90-动手">2. 学习节奏（90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>内容</th>
+<th>交付物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A：读原理</td>
+<td>25 min</td>
+<td>§3-§5 三版演进 + §5.4 知识点 6 项</td>
+<td>心里能画出"前端确认 → 服务端权威 → 租约+哈希+CAS"的演进路径</td>
+</tr>
+<tr>
+<td>B：读代码</td>
+<td>30 min</td>
+<td>§5.3 逐文件通读，特别是 <code>execute.guard.ts</code> 和 <code>approval.service.ts</code> 的 CAS</td>
+<td>能口述"5 项校验的顺序"、"CAS 如何防重放"</td>
+</tr>
+<tr>
+<td>C：读深挖</td>
+<td>35 min</td>
+<td>§6.5 前端底子补弱（<code>Day17深挖-前端底子补弱.html</code>）</td>
+<td>能回答"审批租约倒计时前端怎么和服务端时间对齐"</td>
+</tr>
+<tr>
+<td>D：动手脚手架</td>
+<td>20 min</td>
+<td>§1.5 D-1 到 D-5</td>
+<td>骨架文件全部创建，<code>pnpm --filter api build</code> 通过</td>
+</tr>
+<tr>
+<td>E：写核心测试</td>
+<td>20 min</td>
+<td>§7.6 三个 spec 文件</td>
+<td><code>pnpm --filter api test approval</code> 全绿</td>
+</tr>
+<tr>
+<td>F-1：反证 1</td>
+<td>5 min</td>
+<td>§7.7 去掉 execute.guard 的哈希校验，篡改参数执行</td>
+<td>观察参数篡改成功，验证"没有哈希绑定是什么样子"</td>
+</tr>
+<tr>
+<td>F-2：反证 2</td>
+<td>5 min</td>
+<td>§7.8 把 CAS 换成 <code>if (status === 'approved')</code>，并发执行</td>
+<td>观察双执行，验证"没有 CAS 是什么样子"</td>
+</tr>
+<tr>
+<td>F-3：验证 + 提交</td>
+<td>10 min</td>
+<td>§7.9 四件套 + commit</td>
+<td>commit 含 <code>Refs: Day17</code></td>
+</tr>
+</tbody>
+</table></div><p><strong>总计</strong>：90 阅读（A+B+C）+ 90 动手（D+E+F）= 180 min</p>
+<hr>
+<h2 id="3-v1最小闭环前端确认对话框">3. v1：最小闭环（前端确认对话框）</h2>
+<h3 id="31-v1-要实现什么">3.1 v1 要实现什么</h3>
+<p>Agent Loop 选中写操作 Tool 时，前端弹一个确认对话框，用户点"确定"后前端直接调执行接口。这是最直觉、也最不安全的 HITL 实现。</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li><code>changeAnomalyStatus</code> Tool 标记 <code>requiresApproval = true</code></li>
+<li>Agent Loop 遇到这个 Tool 时，通过 SSE 推 <code>approval.required</code>，暂停循环</li>
+<li>前端弹 <code>ConfirmDialog.vue</code>，显示 action + 参数</li>
+<li>用户点"确定" → 前端 <code>POST /agent/execute</code> 直接执行</li>
+</ul>
+<p><strong>不做</strong>：</p>
+<ul>
+<li>服务端不校验授权（相信前端已经隐藏了按钮）</li>
+<li>不做参数哈希（相信前端传来的参数就是用户看到的）</li>
+<li>不做租约（审批永不过期）</li>
+<li>不做一次性消费（重复调用就重复执行）</li>
+</ul>
+<h3 id="32-v1-目录结构">3.2 v1 目录结构</h3>
+<pre><code>apps/api/src/
+├── agent/
+│   ├── loop/agent-loop.engine.ts       ← 改：写操作 Tool 暂停并推 approval.required
+│   └── agent.controller.ts             ← 加：POST /agent/execute（裸执行，无校验）
+├── tools/implementations/
+│   └── change-anomaly-status.tool.ts   ← 新增：写操作 Tool
+frontend/src/agent/
+└── approval/ConfirmDialog.vue          ← 新增：前端确认对话框
+</code></pre>
+<h3 id="33-v1-完整代码">3.3 v1 完整代码</h3>
+<p><strong>apps/api/src/tools/implementations/change-anomaly-status.tool.ts（v1 全文）</strong></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+import { PrismaService } from '../../prisma/prisma.service'
+
+export const changeAnomalyStatusSchema = z.object({
+  anomalyId: z.string().min(1),
+  newStatus: z.enum(['firing', 'acknowledged', 'resolved']),
+  reason: z.string().min(1).max(500),
+})
+
+export type ChangeAnomalyStatusArgs = z.infer&lt;typeof changeAnomalyStatusSchema&gt;
+
+export function createChangeAnomalyStatusTool(prisma: PrismaService) {
+  return {
+    name: 'changeAnomalyStatus',
+    description: '修改异常告警的状态（写操作，需要人工批准）',
+    schema: changeAnomalyStatusSchema,
+    requiresApproval: true, // v1 引入的标记：写操作 Tool
+    async execute(args: ChangeAnomalyStatusArgs) {
+      const updated = await prisma.anomaly.update({
+        where: { id: args.anomalyId },
+        data: { status: args.newStatus },
+      })
+      return {
+        anomalyId: updated.id,
+        newStatus: updated.status,
+        reason: args.reason,
+      }
+    },
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/agent/agent.controller.ts（v1 增量：裸执行接口）</strong></p>
+<pre><code class="language-typescript">import { Controller, Post, Body } from '@nestjs/common'
+import { ToolRegistryService } from '../tools/registry/tool-registry.service'
+
+@Controller('agent')
+export class AgentController {
+  constructor(private readonly toolRegistry: ToolRegistryService) {}
+
+  // v1：裸执行接口，没有任何授权/校验（危险，仅教学演示）
+  @Post('execute')
+  async execute(@Body() body: { toolName: string; args: unknown }) {
+    const tool = this.toolRegistry.get(body.toolName)
+    const parsed = tool.schema.parse(body.args)
+    const result = await tool.execute(parsed)
+    return { ok: true, result }
+  }
+}
+</code></pre>
+<p><strong>frontend/src/agent/approval/ConfirmDialog.vue（v1 全文）</strong></p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+defineProps&lt;{
+  action: string
+  args: Record&lt;string, unknown&gt;
+}&gt;()
+
+const emit = defineEmits&lt;{
+  confirm: []
+  cancel: []
+}&gt;()
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div role="dialog" aria-modal="true" aria-labelledby="confirm-title"&gt;
+    &lt;h3 id="confirm-title"&gt;确认执行高风险操作&lt;/h3&gt;
+    &lt;p&gt;Agent 提议执行：&lt;strong&gt;{{ action }}&lt;/strong&gt;&lt;/p&gt;
+    &lt;dl&gt;
+      &lt;template v-for="(value, key) in args" :key="key"&gt;
+        &lt;dt&gt;{{ key }}&lt;/dt&gt;
+        &lt;dd&gt;{{ value }}&lt;/dd&gt;
+      &lt;/template&gt;
+    &lt;/dl&gt;
+    &lt;div class="actions"&gt;
+      &lt;button type="button" @click="emit('confirm')"&gt;确定&lt;/button&gt;
+      &lt;button type="button" @click="emit('cancel')"&gt;取消&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="34-v1-暴露的痛点">3.4 v1 暴露的痛点</h3>
+<p><strong>痛点 1：前端隐藏按钮可被绕过</strong></p>
+<p><code>POST /agent/execute</code> 没有任何授权校验。攻击者（或任何拿到接口地址的人）可以直接：</p>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/agent/execute \
+  -d '{"toolName":"changeAnomalyStatus","args":{"anomalyId":"a-123","newStatus":"resolved","reason":"x"}}'
+</code></pre>
+<p>不需要任何"批准"，写操作直接执行。前端的 ConfirmDialog 形同虚设——它只是"礼貌地问一下"，服务端根本不 care 用户点没点确定。</p>
+<p><strong>痛点 2：没有"批准"这个持久记录</strong></p>
+<p>v1 里"批准"只是前端点了一下"确定"就调执行接口，服务端不知道"这次执行是被谁批准的"。出了事故（误关了真实告警），没有任何审计记录能回答"谁批准的、什么时候、基于什么参数"。</p>
+<p><strong>痛点 3：参数可被篡改（TOCTOU）</strong></p>
+<p>用户在 ConfirmDialog 看到的是 <code>anomalyId=a-123</code>。但从"点确定"到"前端发 execute 请求"之间，如果前端状态被篡改（比如 XSS 注入改了 args），或者模型在 SSE 里推了新的提议覆盖了旧的，实际执行的参数可能是 <code>anomalyId=a-999</code>。用户批准的和执行的不是一回事。</p>
+<p><strong>痛点 4：可无限重放</strong></p>
+<p>前端网络重试、用户手抖双击"确定"、两个标签同时打开，都会导致 <code>POST /agent/execute</code> 被调多次，每次都真实执行一次写操作。同一个"批准"被消费了 N 次。</p>
+<hr>
+<h2 id="4-v2服务端权威审批-授权校验">4. v2：服务端权威审批 + 授权校验</h2>
+<h3 id="41-v2-要实现什么">4.1 v2 要实现什么</h3>
+<p>用户视角：批准这个动作变成服务端的一等公民——Agent 生成提议时在服务端创建一条 <code>Approval</code> 记录（status=<code>pending</code>），用户批准调 <code>POST /approvals/:id/decision</code>，服务端校验 actor 授权后把 status 改成 <code>approved</code>，执行时调 <code>POST /approvals/:id/execute</code> 校验 status 后才真正执行。前端隐藏按钮不再是唯一防线。</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li>新增 <code>Approval</code> 表（id / runId / action / argsJson / status / actorId）</li>
+<li>Agent Loop 遇到写操作 Tool → 服务端创建 <code>Approval(status=pending)</code> → 推 <code>approval.required</code> 带 approvalId</li>
+<li><code>POST /approvals/:id/decision</code>（body: <code>{ decision: 'approve' | 'reject', actorId }</code>）：<code>AuthorizationGuard</code> 校验 actor 角色/租户 → 改 status</li>
+<li><code>POST /approvals/:id/execute</code>：校验 <code>status === 'approved'</code> → 执行 Tool → 改 status=<code>executed</code></li>
+</ul>
+<p><strong>依然不做</strong>：</p>
+<ul>
+<li>不做参数哈希（execute 用的是 DB 里存的 argsJson，但没检测"批准时和执行时是否一致"）</li>
+<li>不做租约过期（approved 的审批永不过期）</li>
+<li>不做一次性消费（execute 只 <code>if (status === 'approved')</code>，并发下可双执行）</li>
+</ul>
+<h3 id="42-v2-目录结构">4.2 v2 目录结构</h3>
+<pre><code>apps/api/src/approval/
+├── contract/
+│   └── approval-status.enum.ts       ← 新增：审批状态枚举
+├── guard/
+│   └── authorization.guard.ts        ← 新增：actor 授权校验
+├── approval.service.ts               ← 新增：propose / decide / execute
+├── approval.controller.ts            ← 新增：decision / execute 接口
+└── approval.module.ts                ← 新增
+</code></pre>
+<h3 id="43-v2-完整代码">4.3 v2 完整代码</h3>
+<p><strong>apps/api/prisma/schema.prisma（v2 增量）</strong></p>
+<pre><code class="language-prisma">enum ApprovalStatus {
+  pending
+  approved
+  rejected
+  executed
+}
+
+model Approval {
+  id          String         @id @default(cuid())
+  runId       String
+  action      String         // Tool 名，如 "changeAnomalyStatus"
+  argsJson    String         @db.Text
+  status      ApprovalStatus @default(pending)
+  actorId     String?        // 批准人（decision 时写入）
+  createdAt   DateTime       @default(now())
+  decidedAt   DateTime?
+  executedAt  DateTime?
+
+  @@index([runId])
+  @@index([status])
+}
+</code></pre>
+<p><strong>apps/api/src/approval/contract/approval-status.enum.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">export enum ApprovalStatus {
+  pending = 'pending',
+  approved = 'approved',
+  rejected = 'rejected',
+  executed = 'executed',
+}
+
+// 状态转移矩阵：只允许这些方向
+const TRANSITIONS: Record&lt;ApprovalStatus, ApprovalStatus[]&gt; = {
+  [ApprovalStatus.pending]: [ApprovalStatus.approved, ApprovalStatus.rejected],
+  [ApprovalStatus.approved]: [ApprovalStatus.executed],
+  [ApprovalStatus.rejected]: [],
+  [ApprovalStatus.executed]: [],
+}
+
+export function canTransition(from: ApprovalStatus, to: ApprovalStatus): boolean {
+  return TRANSITIONS[from].includes(to)
+}
+</code></pre>
+<p><strong>apps/api/src/approval/guard/authorization.guard.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+
+export type Actor = {
+  id: string
+  role: 'viewer' | 'operator' | 'admin'
+  tenantId: string
+}
+
+export type AuthzResult =
+  | { ok: true }
+  | { ok: false; code: string; message: string }
+
+@Injectable()
+export class AuthorizationGuard {
+  /**
+   * 校验 actor 是否有权批准/执行指定 action。
+   * 纯逻辑，不查 DB（actor 由上游中间件从 token 解析后传入）。
+   */
+  canDecide(actor: Actor, action: string, resourceTenantId: string): AuthzResult {
+    // 规则 1：viewer 不能批准任何写操作
+    if (actor.role === 'viewer') {
+      return { ok: false, code: 'role_forbidden', message: 'viewer 无权批准写操作' }
+    }
+    // 规则 2：跨租户禁止
+    if (actor.tenantId !== resourceTenantId) {
+      return { ok: false, code: 'tenant_mismatch', message: '跨租户操作被拒绝' }
+    }
+    // 规则 3：高危 action 仅 admin
+    const highRisk = ['deleteServer', 'changeAnomalyStatus']
+    if (highRisk.includes(action) &amp;&amp; actor.role !== 'admin' &amp;&amp; actor.role !== 'operator') {
+      return { ok: false, code: 'insufficient_role', message: `${action} 需要 operator 及以上` }
+    }
+    return { ok: true }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/approval/approval.service.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import { Injectable, NotFoundException, ConflictException, ForbiddenException } from '@nestjs/common'
+import { PrismaService } from '../prisma/prisma.service'
+import { ToolRegistryService } from '../tools/registry/tool-registry.service'
+import { AuthorizationGuard, Actor } from './guard/authorization.guard'
+import { ApprovalStatus, canTransition } from './contract/approval-status.enum'
+
+@Injectable()
+export class ApprovalService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly toolRegistry: ToolRegistryService,
+    private readonly authz: AuthorizationGuard,
+  ) {}
+
+  // Agent Loop 调用：创建待批准提议
+  async propose(runId: string, action: string, args: unknown): Promise&lt;string&gt; {
+    const approval = await this.prisma.approval.create({
+      data: {
+        runId,
+        action,
+        argsJson: JSON.stringify(args),
+        status: ApprovalStatus.pending,
+      },
+    })
+    return approval.id
+  }
+
+  // 用户批准/拒绝
+  async decide(
+    approvalId: string,
+    decision: 'approve' | 'reject',
+    actor: Actor,
+    resourceTenantId: string,
+  ) {
+    const approval = await this.prisma.approval.findUnique({ where: { id: approvalId } })
+    if (!approval) throw new NotFoundException('approval not found')
+
+    const authz = this.authz.canDecide(actor, approval.action, resourceTenantId)
+    if (!authz.ok) throw new ForbiddenException(authz.message)
+
+    const next = decision === 'approve' ? ApprovalStatus.approved : ApprovalStatus.rejected
+    if (!canTransition(approval.status as ApprovalStatus, next)) {
+      throw new ConflictException(`cannot transition ${approval.status} -&gt; ${next}`)
+    }
+
+    return this.prisma.approval.update({
+      where: { id: approvalId },
+      data: { status: next, actorId: actor.id, decidedAt: new Date() },
+    })
+  }
+
+  // 执行已批准的操作
+  async execute(approvalId: string, actor: Actor, resourceTenantId: string) {
+    const approval = await this.prisma.approval.findUnique({ where: { id: approvalId } })
+    if (!approval) throw new NotFoundException('approval not found')
+
+    const authz = this.authz.canDecide(actor, approval.action, resourceTenantId)
+    if (!authz.ok) throw new ForbiddenException(authz.message)
+
+    // v2 的检查：只看 status（并发下有漏洞，v3 修）
+    if (approval.status !== ApprovalStatus.approved) {
+      throw new ConflictException(`approval status is ${approval.status}, not approved`)
+    }
+
+    const tool = this.toolRegistry.get(approval.action)
+    const args = tool.schema.parse(JSON.parse(approval.argsJson))
+    const result = await tool.execute(args)
+
+    await this.prisma.approval.update({
+      where: { id: approvalId },
+      data: { status: ApprovalStatus.executed, executedAt: new Date() },
+    })
+
+    return { ok: true, result }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/approval/approval.controller.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import { Controller, Post, Param, Body, Req } from '@nestjs/common'
+import { ApprovalService } from './approval.service'
+import { Actor } from './guard/authorization.guard'
+
+@Controller('approvals')
+export class ApprovalController {
+  constructor(private readonly approvalService: ApprovalService) {}
+
+  @Post(':id/decision')
+  async decision(
+    @Param('id') id: string,
+    @Body() body: { decision: 'approve' | 'reject' },
+    @Req() req: { actor: Actor; tenantId: string }, // 上游中间件注入
+  ) {
+    return this.approvalService.decide(id, body.decision, req.actor, req.tenantId)
+  }
+
+  @Post(':id/execute')
+  async execute(
+    @Param('id') id: string,
+    @Req() req: { actor: Actor; tenantId: string },
+  ) {
+    return this.approvalService.execute(id, req.actor, req.tenantId)
+  }
+}
+</code></pre>
+<h3 id="44-v2-暴露的痛点">4.4 v2 暴露的痛点</h3>
+<p><strong>痛点 1：参数篡改无法检测（TOCTOU）</strong></p>
+<p><code>execute</code> 用的是 DB 里存的 <code>argsJson</code>——这看起来安全，但漏洞在于：如果 <code>propose</code> 之后、<code>decide</code> 之前，模型又推了一次新提议，或者有并发请求 <code>update</code> 了这条 Approval 的 <code>argsJson</code>，用户批准时看到的参数和执行时用的参数就不一致。v2 没有"把用户批准那一刻的参数快照固化下来并校验"的机制。用户批准 <code>resolve a-123</code>，实际执行 <code>resolve a-999</code>。</p>
+<p><strong>痛点 2：审批永不过期</strong></p>
+<p>用户上午 10:00 批准了"重启 srv-042"，但一直没点执行。下午 3:00 这台服务器已经恢复正常了，运维忘了这条审批还挂着，手一滑点了执行——把一台正常的服务器重启了。审批需要<strong>租约（lease）</strong>：批准后 N 分钟内不执行就自动失效。</p>
+<p><strong>痛点 3：并发双执行（CAS 缺失）</strong></p>
+<p><code>execute</code> 里 <code>if (approval.status !== 'approved') throw</code> 之后再 <code>update status = 'executed'</code>——这是典型的"检查后执行"竞态。两个并发请求同时通过 <code>if</code> 检查（都看到 approved），然后都执行 Tool、都 update。写操作被执行了两次。需要用<strong>原子 CAS</strong>（<code>updateMany where: { status: 'approved' }</code> 返回 count 判断是否抢到）。</p>
+<p><strong>痛点 4：没有独立审计服务</strong></p>
+<p>decision 和 execute 都散在 service 里 update，没有专门记录"谁在何时基于什么参数做了什么决策"的审计流水。事故复盘时无法快速回答"这次误操作的完整决策链"。</p>
+<hr>
+<h2 id="5-v3参数快照哈希-审批租约-cas-一次性消费-审计终态">5. v3：参数快照哈希 + 审批租约 + CAS 一次性消费 + 审计（终态）</h2>
+<h3 id="51-v3-要实现什么">5.1 v3 要实现什么</h3>
+<p>用户视角：</p>
+<ol>
+<li>用户批准时，服务端把"批准那一刻的参数"哈希固化成 <code>argsHash</code>；执行时重新哈希 DB 里的参数并比对，不一致直接 409（防 TOCTOU 参数篡改）</li>
+<li>批准生成一个带过期时间的租约（<code>leaseExpiresAt</code>）；执行时校验未过期，过期返回 410 Gone</li>
+<li>执行用原子 CAS（<code>updateMany where status=approved</code>）抢占，count=0 说明已被别的请求消费，返回 409（防并发双执行）</li>
+<li>每一步（propose / decide / execute / 拒绝 / 过期）都写 <code>ApprovalAudit</code> 流水，含 actor、时间、参数哈希、结果</li>
+<li>越权测试全部 403；同一 approval 只成功执行一次；篡改/过期/重复均无副作用</li>
+</ol>
+<h3 id="52-v3-目录结构">5.2 v3 目录结构</h3>
+<p>与 §1.4 完全一致：</p>
+<pre><code>apps/api/src/approval/
+├── contract/
+│   ├── approval-status.enum.ts          ← v2 已有，新增 expired 状态
+│   └── approval-lease.ts                ← 新增：租约计算（纯函数）
+├── guard/
+│   └── authorization.guard.ts           ← v2 已有
+├── hash/
+│   ├── args-hash.ts                     ← 新增：参数规范化哈希（纯函数）
+│   └── args-hash.spec.ts                ← 新增：哈希单元测试
+├── audit/
+│   └── approval-audit.service.ts        ← 新增：决策流水
+├── approval.service.ts                  ← 改：加哈希/租约/CAS
+├── approval.service.spec.ts             ← 新增：TOCTOU/过期/并发单测
+├── approval.controller.ts               ← v2 已有
+└── approval.module.ts                   ← v2 已有
+</code></pre>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<h4 id="531-contract-层approval-statusenumtsv3-增量">5.3.1 contract 层：approval-status.enum.ts（v3 增量）</h4>
+<pre><code class="language-typescript">export enum ApprovalStatus {
+  pending = 'pending',
+  approved = 'approved',
+  rejected = 'rejected',
+  executed = 'executed',
+  expired = 'expired', // v3 新增：租约过期
+}
+
+const TRANSITIONS: Record&lt;ApprovalStatus, ApprovalStatus[]&gt; = {
+  [ApprovalStatus.pending]: [ApprovalStatus.approved, ApprovalStatus.rejected],
+  [ApprovalStatus.approved]: [ApprovalStatus.executed, ApprovalStatus.expired],
+  [ApprovalStatus.rejected]: [],
+  [ApprovalStatus.executed]: [],
+  [ApprovalStatus.expired]: [],
+}
+
+export function canTransition(from: ApprovalStatus, to: ApprovalStatus): boolean {
+  return TRANSITIONS[from].includes(to)
+}
+
+export function isTerminal(status: ApprovalStatus): boolean {
+  return (
+    status === ApprovalStatus.rejected ||
+    status === ApprovalStatus.executed ||
+    status === ApprovalStatus.expired
+  )
+}
+</code></pre>
+<h4 id="532-contract-层approval-leasetsv3-全文">5.3.2 contract 层：approval-lease.ts（v3 全文）</h4>
+<pre><code class="language-typescript">/**
+ * 审批租约计算：批准后 N 分钟内有效。
+ * 纯函数——只依赖传入的时间，不读系统时钟、不查 DB，可 100% 单测。
+ */
+export const APPROVAL_LEASE_MINUTES = 10
+
+export function computeLeaseExpiry(decidedAt: Date, minutes = APPROVAL_LEASE_MINUTES): Date {
+  return new Date(decidedAt.getTime() + minutes * 60_000)
+}
+
+export function isLeaseExpired(leaseExpiresAt: Date, now: Date): boolean {
+  return now.getTime() &gt; leaseExpiresAt.getTime()
+}
+</code></pre>
+<h4 id="533-hash-层args-hashtsv3-全文">5.3.3 hash 层：args-hash.ts（v3 全文）</h4>
+<pre><code class="language-typescript">import { createHash } from 'node:crypto'
+
+/**
+ * 参数规范化哈希——防 TOCTOU 参数篡改。
+ *
+ * 关键：先做 key 排序的稳定序列化，再哈希。
+ * 否则 { a: 1, b: 2 } 和 { b: 2, a: 1 } 语义相同但哈希不同。
+ *
+ * 纯函数：相同输入永远得到相同输出，不含时间/随机盐。
+ */
+export function stableStringify(value: unknown): string {
+  if (value === null || typeof value !== 'object') {
+    return JSON.stringify(value)
+  }
+  if (Array.isArray(value)) {
+    return `[${value.map(stableStringify).join(',')}]`
+  }
+  const keys = Object.keys(value as Record&lt;string, unknown&gt;).sort()
+  const entries = keys.map(
+    (k) =&gt; `${JSON.stringify(k)}:${stableStringify((value as Record&lt;string, unknown&gt;)[k])}`,
+  )
+  return `{${entries.join(',')}}`
+}
+
+export function hashArgs(args: unknown): string {
+  return createHash('sha256').update(stableStringify(args)).digest('hex')
+}
+</code></pre>
+<h4 id="534-hash-层args-hashspectsv3-全文">5.3.4 hash 层：args-hash.spec.ts（v3 全文）</h4>
+<pre><code class="language-typescript">import { describe, it, expect } from 'vitest'
+import { stableStringify, hashArgs } from './args-hash'
+
+describe('args-hash', () =&gt; {
+  it('key 顺序不同但哈希相同', () =&gt; {
+    expect(hashArgs({ a: 1, b: 2 })).toBe(hashArgs({ b: 2, a: 1 }))
+  })
+
+  it('嵌套对象 key 顺序不同也相同', () =&gt; {
+    expect(hashArgs({ x: { p: 1, q: 2 } })).toBe(hashArgs({ x: { q: 2, p: 1 } }))
+  })
+
+  it('值不同则哈希不同', () =&gt; {
+    expect(hashArgs({ serverId: 'a-123' })).not.toBe(hashArgs({ serverId: 'a-999' }))
+  })
+
+  it('数组顺序敏感（语义上顺序有意义）', () =&gt; {
+    expect(hashArgs([1, 2])).not.toBe(hashArgs([2, 1]))
+  })
+
+  it('相同输入调 1000 次结果一致（确定性）', () =&gt; {
+    const first = hashArgs({ action: 'resolve', id: 'a-1' })
+    for (let i = 0; i &lt; 1000; i++) {
+      expect(hashArgs({ action: 'resolve', id: 'a-1' })).toBe(first)
+    }
+  })
+})
+</code></pre>
+<h4 id="535-audit-层approval-auditservicetsv3-全文">5.3.5 audit 层：approval-audit.service.ts（v3 全文）</h4>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { PrismaService } from '../prisma/prisma.service'
+
+export type AuditEvent =
+  | 'proposed'
+  | 'approved'
+  | 'rejected'
+  | 'executed'
+  | 'execute_denied_tampered'
+  | 'execute_denied_expired'
+  | 'execute_denied_race'
+
+@Injectable()
+export class ApprovalAuditService {
+  constructor(private readonly prisma: PrismaService) {}
+
+  async record(params: {
+    approvalId: string
+    event: AuditEvent
+    actorId?: string
+    argsHash?: string
+    detail?: string
+  }): Promise&lt;void&gt; {
+    await this.prisma.approvalAudit.create({
+      data: {
+        approvalId: params.approvalId,
+        event: params.event,
+        actorId: params.actorId ?? null,
+        argsHash: params.argsHash ?? null,
+        detail: params.detail ?? null,
+      },
+    })
+  }
+}
+</code></pre>
+<h4 id="536-service-层approvalservicetsv3-全文">5.3.6 service 层：approval.service.ts（v3 全文）</h4>
+<pre><code class="language-typescript">import { Injectable, NotFoundException, ConflictException, ForbiddenException, GoneException } from '@nestjs/common'
+import { PrismaService } from '../prisma/prisma.service'
+import { ToolRegistryService } from '../tools/registry/tool-registry.service'
+import { AuthorizationGuard, Actor } from './guard/authorization.guard'
+import { ApprovalStatus, canTransition } from './contract/approval-status.enum'
+import { computeLeaseExpiry, isLeaseExpired } from './contract/approval-lease'
+import { hashArgs } from './hash/args-hash'
+import { ApprovalAuditService } from './audit/approval-audit.service'
+
+@Injectable()
+export class ApprovalService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly toolRegistry: ToolRegistryService,
+    private readonly authz: AuthorizationGuard,
+    private readonly audit: ApprovalAuditService,
+  ) {}
+
+  async propose(runId: string, action: string, args: unknown): Promise&lt;string&gt; {
+    const argsHash = hashArgs(args)
+    const approval = await this.prisma.approval.create({
+      data: {
+        runId,
+        action,
+        argsJson: JSON.stringify(args),
+        argsHash,
+        status: ApprovalStatus.pending,
+      },
+    })
+    await this.audit.record({ approvalId: approval.id, event: 'proposed', argsHash })
+    return approval.id
+  }
+
+  async decide(
+    approvalId: string,
+    decision: 'approve' | 'reject',
+    actor: Actor,
+    resourceTenantId: string,
+  ) {
+    const approval = await this.prisma.approval.findUnique({ where: { id: approvalId } })
+    if (!approval) throw new NotFoundException('approval not found')
+
+    const authz = this.authz.canDecide(actor, approval.action, resourceTenantId)
+    if (!authz.ok) throw new ForbiddenException(authz.message)
+
+    const next = decision === 'approve' ? ApprovalStatus.approved : ApprovalStatus.rejected
+    if (!canTransition(approval.status as ApprovalStatus, next)) {
+      throw new ConflictException(`cannot transition ${approval.status} -&gt; ${next}`)
+    }
+
+    const decidedAt = new Date()
+    const updated = await this.prisma.approval.update({
+      where: { id: approvalId },
+      data: {
+        status: next,
+        actorId: actor.id,
+        decidedAt,
+        leaseExpiresAt: next === ApprovalStatus.approved ? computeLeaseExpiry(decidedAt) : null,
+      },
+    })
+    await this.audit.record({
+      approvalId,
+      event: decision === 'approve' ? 'approved' : 'rejected',
+      actorId: actor.id,
+      argsHash: approval.argsHash,
+    })
+    return updated
+  }
+
+  async execute(approvalId: string, actor: Actor, resourceTenantId: string) {
+    const approval = await this.prisma.approval.findUnique({ where: { id: approvalId } })
+    if (!approval) throw new NotFoundException('approval not found')
+
+    const authz = this.authz.canDecide(actor, approval.action, resourceTenantId)
+    if (!authz.ok) throw new ForbiddenException(authz.message)
+
+    // 检查 1：状态必须是 approved
+    if (approval.status !== ApprovalStatus.approved) {
+      throw new ConflictException(`approval status is ${approval.status}, not approved`)
+    }
+
+    // 检查 2：租约未过期
+    const now = new Date()
+    if (approval.leaseExpiresAt &amp;&amp; isLeaseExpired(approval.leaseExpiresAt, now)) {
+      await this.prisma.approval.update({
+        where: { id: approvalId },
+        data: { status: ApprovalStatus.expired },
+      })
+      await this.audit.record({ approvalId, event: 'execute_denied_expired', actorId: actor.id })
+      throw new GoneException('approval lease expired')
+    }
+
+    // 检查 3：参数快照哈希——防 TOCTOU 篡改
+    const currentHash = hashArgs(JSON.parse(approval.argsJson))
+    if (currentHash !== approval.argsHash) {
+      await this.audit.record({
+        approvalId,
+        event: 'execute_denied_tampered',
+        actorId: actor.id,
+        detail: `expected ${approval.argsHash}, got ${currentHash}`,
+      })
+      throw new ConflictException('argument tampering detected')
+    }
+
+    // 检查 4：原子 CAS 抢占——防并发双执行
+    const claimed = await this.prisma.approval.updateMany({
+      where: { id: approvalId, status: ApprovalStatus.approved },
+      data: { status: ApprovalStatus.executed, executedAt: now },
+    })
+    if (claimed.count === 0) {
+      await this.audit.record({ approvalId, event: 'execute_denied_race', actorId: actor.id })
+      throw new ConflictException('approval already consumed by another request')
+    }
+
+    // 抢占成功，执行 Tool
+    const tool = this.toolRegistry.get(approval.action)
+    const args = tool.schema.parse(JSON.parse(approval.argsJson))
+    const result = await tool.execute(args)
+
+    await this.audit.record({
+      approvalId,
+      event: 'executed',
+      actorId: actor.id,
+      argsHash: approval.argsHash,
+    })
+    return { ok: true, result }
+  }
+}
+</code></pre>
+<h4 id="537-service-层approvalservicespectsv3-核心用例">5.3.7 service 层：approval.service.spec.ts（v3 核心用例）</h4>
+<pre><code class="language-typescript">import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { ApprovalService } from './approval.service'
+import { ApprovalStatus } from './contract/approval-status.enum'
+import { hashArgs } from './hash/args-hash'
+
+// 用内存 fake 替代 Prisma（只实现本测试用到的方法）
+function makeFakePrisma(initial: any) {
+  const row = { ...initial }
+  return {
+    row,
+    approval: {
+      findUnique: vi.fn(async () =&gt; ({ ...row })),
+      update: vi.fn(async ({ data }: any) =&gt; Object.assign(row, data)),
+      updateMany: vi.fn(async ({ where, data }: any) =&gt; {
+        if (row.status === where.status) {
+          Object.assign(row, data)
+          return { count: 1 }
+        }
+        return { count: 0 }
+      }),
+    },
+  }
+}
+
+const actor = { id: 'u-1', role: 'operator' as const, tenantId: 't-1' }
+const tool = { schema: { parse: (x: unknown) =&gt; x }, execute: vi.fn(async () =&gt; ({ done: true })) }
+
+describe('ApprovalService.execute（v3 防护）', () =&gt; {
+  let audit: any
+  beforeEach(() =&gt; {
+    audit = { record: vi.fn(async () =&gt; {}) }
+    tool.execute.mockClear()
+  })
+
+  it('参数篡改被拦截（TOCTOU）', async () =&gt; {
+    const args = { anomalyId: 'a-123' }
+    const prisma = makeFakePrisma({
+      id: 'ap-1', action: 'changeAnomalyStatus',
+      argsJson: JSON.stringify({ anomalyId: 'a-999' }), // 已被篡改
+      argsHash: hashArgs(args), // 但哈希还是原来的
+      status: ApprovalStatus.approved,
+      leaseExpiresAt: new Date(Date.now() + 60_000),
+    })
+    const svc = new ApprovalService(prisma as any, { get: () =&gt; tool } as any, { canDecide: () =&gt; ({ ok: true }) } as any, audit)
+    await expect(svc.execute('ap-1', actor, 't-1')).rejects.toThrow('tampering')
+    expect(tool.execute).not.toHaveBeenCalled()
+  })
+
+  it('租约过期被拦截', async () =&gt; {
+    const args = { anomalyId: 'a-123' }
+    const prisma = makeFakePrisma({
+      id: 'ap-1', action: 'changeAnomalyStatus',
+      argsJson: JSON.stringify(args), argsHash: hashArgs(args),
+      status: ApprovalStatus.approved,
+      leaseExpiresAt: new Date(Date.now() - 1000), // 已过期
+    })
+    const svc = new ApprovalService(prisma as any, { get: () =&gt; tool } as any, { canDecide: () =&gt; ({ ok: true }) } as any, audit)
+    await expect(svc.execute('ap-1', actor, 't-1')).rejects.toThrow('expired')
+    expect(tool.execute).not.toHaveBeenCalled()
+  })
+
+  it('并发双执行只成功一次（CAS）', async () =&gt; {
+    const args = { anomalyId: 'a-123' }
+    const prisma = makeFakePrisma({
+      id: 'ap-1', action: 'changeAnomalyStatus',
+      argsJson: JSON.stringify(args), argsHash: hashArgs(args),
+      status: ApprovalStatus.approved,
+      leaseExpiresAt: new Date(Date.now() + 60_000),
+    })
+    const svc = new ApprovalService(prisma as any, { get: () =&gt; tool } as any, { canDecide: () =&gt; ({ ok: true }) } as any, audit)
+    const [r1, r2] = await Promise.allSettled([
+      svc.execute('ap-1', actor, 't-1'),
+      svc.execute('ap-1', actor, 't-1'),
+    ])
+    const ok = [r1, r2].filter((r) =&gt; r.status === 'fulfilled').length
+    expect(ok).toBe(1)
+    expect(tool.execute).toHaveBeenCalledTimes(1)
+  })
+})
+</code></pre>
+<h3 id="54-v3-用到的知识点">5.4 v3 用到的知识点</h3>
+<h4 id="知识点-1hitlhuman-in-the-loop-高风险操作的人工闸门">知识点 1：HITL（Human-in-the-loop）—— 高风险操作的人工闸门</h4>
+<ul>
+<li><strong>解决的问题</strong>：Agent 自主循环会生成写操作（改状态、重启、删除），完全自动化一旦模型判断错误就是生产事故；HITL 在"提议"和"执行"之间插入人工批准闸门</li>
+<li><strong>运行机制</strong>：Agent Loop 遇到写 Tool 不直接执行，而是 <code>propose</code> 创建 pending 审批 + 推 <code>approval.required</code> 事件；用户批准后才 <code>execute</code></li>
+<li><strong>项目落点</strong>：<code>approval.service.ts</code> 的 <code>propose</code> / <code>decide</code> / <code>execute</code> 三段式</li>
+<li><strong>生产误区</strong>：把批准状态放前端（隐藏按钮不是授权）；把 propose 和 execute 合成一个接口（失去人工闸门）；审批粒度太粗（把 10 个操作打包成一次批准，用户无法逐条判断）</li>
+<li><strong>验证方法</strong>：不走 decide 直接调 execute，断言 409；越权 actor 调 decide 断言 403</li>
+</ul>
+<h4 id="知识点-2服务端权威server-authoritative-authorization">知识点 2：服务端权威（Server-authoritative Authorization）</h4>
+<ul>
+<li><strong>解决的问题</strong>：前端隐藏/禁用按钮只是 UX，攻击者可以直接构造 HTTP 请求绕过；授权判定必须在服务端</li>
+<li><strong>运行机制</strong>：<code>AuthorizationGuard.canDecide</code> 在服务端校验 actor 的 role/tenant；actor 从 token 解析（不信任 body 里的 actorId）</li>
+<li><strong>项目落点</strong>：<code>guard/authorization.guard.ts</code>；controller 从 <code>req.actor</code> 拿身份而不是 body</li>
+<li><strong>生产误区</strong>：从请求 body 读 actorId（攻击者随便填）；只在 controller 校验漏了 service 的其他入口；viewer 能调 execute</li>
+<li><strong>验证方法</strong>：12 类越权语料（跨租户、viewer 提权、伪造 actorId）全部 403</li>
+</ul>
+<h4 id="知识点-3toctoutime-of-check-to-time-of-use参数篡改">知识点 3：TOCTOU（Time-of-check to Time-of-use）参数篡改</h4>
+<ul>
+<li><strong>解决的问题</strong>：用户批准时看到参数 A，执行时参数变成 B——检查时刻和使用时刻之间参数被改</li>
+<li><strong>运行机制</strong>：<code>propose</code> 时把参数哈希 <code>argsHash</code> 固化；<code>execute</code> 时重新哈希当前参数比对，不一致拒绝</li>
+<li><strong>项目落点</strong>：<code>hash/args-hash.ts</code> 的 <code>stableStringify</code> + <code>hashArgs</code>；<code>execute</code> 检查 3</li>
+<li><strong>生产误区</strong>：直接 <code>JSON.stringify</code> 不排序（key 顺序不同误判篡改）；哈希里含时间戳/盐（每次都不同）；只比对参数不固化快照</li>
+<li><strong>验证方法</strong>：<code>args-hash.spec.ts</code> 断言 key 顺序无关；service spec 制造篡改断言 409 且 Tool 未执行</li>
+</ul>
+<h4 id="知识点-4审批租约approval-lease">知识点 4：审批租约（Approval Lease）</h4>
+<ul>
+<li><strong>解决的问题</strong>：批准后长时间不执行，环境已变（服务器已恢复），执行就是误操作</li>
+<li><strong>运行机制</strong>：<code>decide</code> 批准时算 <code>leaseExpiresAt = decidedAt + 10min</code>；<code>execute</code> 校验未过期，过期转 <code>expired</code> 状态并 410</li>
+<li><strong>项目落点</strong>：<code>contract/approval-lease.ts</code> 纯函数；<code>execute</code> 检查 2</li>
+<li><strong>生产误区</strong>：租约时间读系统时钟不可测；过期不改状态（下次还能试）；租约太长（等于没有）</li>
+<li><strong>验证方法</strong>：mock <code>now</code> 为过期后时间断言 410；<code>approval-lease.ts</code> 单测边界</li>
+</ul>
+<h4 id="知识点-5cas-一次性消费compare-and-swap">知识点 5：CAS 一次性消费（Compare-And-Swap）</h4>
+<ul>
+<li><strong>解决的问题</strong>：<code>if (status === approved) then update</code> 是"检查后执行"竞态，并发下两个请求都通过检查、都执行</li>
+<li><strong>运行机制</strong>：用 <code>updateMany where: { status: approved }</code> 原子地"抢占"，返回 <code>count</code>；count=1 说明抢到，count=0 说明已被别人消费</li>
+<li><strong>项目落点</strong>：<code>execute</code> 检查 4 的 <code>updateMany</code> + <code>claimed.count === 0</code> 判断</li>
+<li><strong>生产误区</strong>：先 <code>findUnique</code> 判断再 <code>update</code>（非原子）；用应用层锁（多实例失效）；不检查 count 直接执行</li>
+<li><strong>验证方法</strong>：<code>Promise.allSettled</code> 并发两个 execute 断言只成功一次、Tool 只执行一次</li>
+</ul>
+<h4 id="知识点-6审批审计流水approval-audit-trail">知识点 6：审批审计流水（Approval Audit Trail）</h4>
+<ul>
+<li><strong>解决的问题</strong>：误操作事故复盘需要完整决策链——谁在何时基于什么参数做了什么决定、被哪个防护拦截</li>
+<li><strong>运行机制</strong>：<code>ApprovalAuditService.record</code> 在 propose/approve/reject/execute/各类拒绝时写一条不可变流水</li>
+<li><strong>项目落点</strong>：<code>audit/approval-audit.service.ts</code>；service 每个关键分支都 <code>await audit.record</code></li>
+<li><strong>生产误区</strong>：只记成功不记拒绝（拦截了篡改却没留证据）；审计和业务同事务（审计失败回滚业务，本末倒置）；审计可被 update/delete</li>
+<li><strong>验证方法</strong>：执行一次篡改攻击后查 <code>approvalAudit</code> 表应有 <code>execute_denied_tampered</code> 一条</li>
+</ul>
+<h3 id="55-边写边问自己">5.5 边写边问自己</h3>
+<ul>
+<li><code>args-hash.ts</code> 为什么必须先 key 排序再哈希？（对象 key 顺序不保证，不排序会把语义相同的参数误判为篡改）</li>
+<li>租约计算为什么是纯函数、传入 <code>now</code>？（不读系统时钟才能单测过期边界；生产里由 service 传 <code>new Date()</code>）</li>
+<li>CAS 的 <code>updateMany</code> 为什么比 <code>update</code> 安全？（<code>updateMany</code> 带 where 条件是数据库层原子操作，两个并发请求只有一个能匹配到 status=approved）</li>
+<li>actor 为什么从 token 解析而不是 body？（body 可被攻击者任意构造，token 由服务端签发不可伪造）</li>
+</ul>
+<hr>
+<h2 id="6-三版对比一览表">6. 三版对比一览表</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>功能</strong></td>
+<td>前端确认弹窗后直接执行</td>
+<td>服务端 propose/decide/execute 三段式 + 授权</td>
+<td>+ 参数快照哈希 + 租约 + CAS + 审计</td>
+</tr>
+<tr>
+<td><strong>授权位置</strong></td>
+<td>前端（隐藏按钮）</td>
+<td>服务端 Guard（role/tenant）</td>
+<td>同 v2，全入口覆盖</td>
+</tr>
+<tr>
+<td><strong>执行入口</strong></td>
+<td>前端点击即调 Tool</td>
+<td>必须先 approved 才能 execute</td>
+<td>同 v2 + 4 道执行前检查</td>
+</tr>
+<tr>
+<td><strong>TOCTOU 防护</strong></td>
+<td>无</td>
+<td>无（参数可被改）</td>
+<td>argsHash 快照比对</td>
+</tr>
+<tr>
+<td><strong>过期控制</strong></td>
+<td>无</td>
+<td>无（批准永久有效）</td>
+<td>leaseExpiresAt + 410</td>
+</tr>
+<tr>
+<td><strong>并发双执行</strong></td>
+<td>可能多次</td>
+<td>可能（检查后执行竞态）</td>
+<td>CAS updateMany 一次性消费</td>
+</tr>
+<tr>
+<td><strong>审计</strong></td>
+<td>无</td>
+<td>仅状态字段</td>
+<td>完整决策流水（含拒绝）</td>
+</tr>
+<tr>
+<td><strong>越权测试</strong></td>
+<td>全部能绕过</td>
+<td>403 拦截</td>
+<td>403 + 篡改/过期/重复无副作用</td>
+</tr>
+<tr>
+<td><strong>对齐后续 Day</strong></td>
+<td>—</td>
+<td>Day 30 M3 门禁基础</td>
+<td>Day 61-90 多 Agent 协同审批地基</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="65-前端底子补弱独立深挖-html-入口">6.5 前端底子补弱（独立深挖 HTML 入口）</h2>
+<p>今天的核心逻辑在后端（审批权威、TOCTOU、CAS），但前端确认 UI 也有必须补的底子。配套深挖文档 <code>Day17深挖-前端底子补弱.html</code> 展开以下主题：</p>
+<ul>
+<li><strong>深挖 1：确认弹窗的 <code>&lt;dialog&gt;</code> 元素与焦点陷阱</strong> —— 从 <code>ApprovalDialog.vue</code> 讲起。原生 <code>&lt;dialog&gt;</code> 的 <code>showModal()</code> 如何自动做焦点陷阱、<code>Esc</code> 关闭、<code>::backdrop</code> 遮罩，为什么手写 <code>div + position:fixed</code> 弹窗会漏掉键盘可访问性。</li>
+<li><strong>深挖 2：按钮的乐观 UI 与"执行中"防重复点击</strong> —— 从执行按钮的 <code>disabled</code> 状态机讲起。为什么"点击后立即 disabled"不够（网络往返期间用户可能已经通过其他 tab 提交），前端乐观锁和后端 CAS 是纵深防御的两层。</li>
+<li><strong>深挖 3：<code>aria-live</code> 审批结果播报</strong> —— 批准/拒绝/过期三种结果如何通过 <code>role="status"</code> / <code>role="alert"</code> 让屏幕阅读器用户感知。</li>
+</ul>
+<p>深挖文档只讲原理和反例，不含动手脚手架（脚手架在 §1.5）。</p>
+<hr>
+<h2 id="7-项目验收清单阶段-e-f约-55-分钟">7. 项目验收清单（阶段 E-F，约 55 分钟）</h2>
+<h3 id="76-e写核心逻辑单元测试20-分钟">7.6 E：写核心逻辑单元测试（20 分钟）</h3>
+<p>按第 5.3 节的代码，完成三个测试文件：</p>
+<ul>
+<li><code>hash/args-hash.spec.ts</code>（5 个用例：key 顺序无关、嵌套无关、值敏感、数组敏感、确定性）</li>
+<li><code>contract/approval-lease.spec.ts</code>（3 个用例：未过期、刚好过期、已过期边界）</li>
+<li><code>approval.service.spec.ts</code>（核心 3 个用例：TOCTOU 篡改拦截、租约过期拦截、并发 CAS 只成功一次）</li>
+</ul>
+<p>运行：</p>
+<pre><code class="language-bash">pnpm --filter api test approval
+</code></pre>
+<p>预期：11 个用例全绿，特别是并发用例 <code>tool.execute</code> 只被调用一次。</p>
+<h3 id="77-f-1反证实验-15-分钟-去掉参数快照哈希">7.7 F-1：反证实验 1（5 分钟）—— 去掉参数快照哈希</h3>
+<p>临时注释掉 <code>execute</code> 里的检查 3（参数哈希比对），然后：</p>
+<ol>
+<li>propose 一个 <code>changeAnomalyStatus(anomalyId=a-123)</code></li>
+<li>批准</li>
+<li>执行前手动 <code>UPDATE approvals SET args_json='{"anomalyId":"a-999"}' WHERE id='ap-1'</code></li>
+<li>执行</li>
+</ol>
+<p>观察：Tool 会对 <code>a-999</code>（用户从未批准的资源）执行成功。这就是 TOCTOU 漏洞的真实样子。恢复检查 3 后同样操作应返回 409。</p>
+<h3 id="78-f-2反证实验-25-分钟-去掉-cas-改用检查后执行">7.8 F-2：反证实验 2（5 分钟）—— 去掉 CAS 改用检查后执行</h3>
+<p>临时把 <code>execute</code> 检查 4 的 <code>updateMany</code> 换成 <code>if (status===approved) { ...update... }</code> 非原子写法，然后用两个并发请求同时 execute 同一个 approval：</p>
+<pre><code class="language-bash"># 两个请求几乎同时打
+curl -X POST /approval/ap-1/execute &amp; curl -X POST /approval/ap-1/execute &amp;
+</code></pre>
+<p>观察：Tool 被执行两次（例如告警被 resolve 两次、审计出现两条 executed）。恢复 CAS 后同样并发只成功一次。</p>
+<h3 id="79-f-3验证-提交10-分钟">7.9 F-3：验证 + 提交（10 分钟）</h3>
+<p>四件套：</p>
+<pre><code class="language-bash">pnpm --filter api typecheck &amp;&amp; pnpm --filter api lint &amp;&amp; pnpm --filter api test &amp;&amp; pnpm --filter api build
+</code></pre>
+<p>全绿后提交（Conventional Commits）：</p>
+<pre><code>feat(approval): server-authoritative HITL with TOCTOU/lease/CAS guards
+
+- propose/decide/execute 三段式，授权在服务端 Guard
+- argsHash 参数快照防 TOCTOU 篡改
+- leaseExpiresAt 审批租约，过期 410
+- CAS updateMany 一次性消费防并发双执行
+- ApprovalAudit 完整决策流水
+
+Refs: Day17
+</code></pre>
+<p><strong>⚠️ 硬红线：不要 <code>git push</code></strong>。今天的改动只在本地 commit，Day18 结束时集中 push。</p>
+<hr>
+<h2 id="8-通过标准">8. 通过标准</h2>
+<ul>
+<li>[ ] 未批准直接 execute 返回 409，未批准执行数为 0</li>
+<li>[ ] 越权 actor（跨租户 / viewer / 伪造 actorId）调 decide/execute 全部 403</li>
+<li>[ ] 参数篡改（DB 里 args 与 argsHash 不符）execute 返回 409，Tool 未执行</li>
+<li>[ ] 租约过期 execute 返回 410，状态转 expired</li>
+<li>[ ] 并发两个 execute 同一 approval 只成功一次，Tool 只执行一次</li>
+<li>[ ] <code>approvalAudit</code> 表对每一步（含各类拒绝）都有流水</li>
+<li>[ ] 四件套全绿，commit 含 <code>Refs: Day17</code>，未执行 <code>git push</code></li>
+</ul>
+<hr>
+<h2 id="9-提交物">9. 提交物</h2>
+<ul>
+<li>commit（含上述 message 模板）</li>
+<li>测试输出（<code>pnpm --filter api test approval</code> 全绿截图或日志）</li>
+<li>学习日志（记录 propose/decide/execute 三段式的设计取舍）</li>
+<li>架构证据：审批状态图（pending→approved→executed/expired，rejected 终态）+ 威胁模型表（越权/篡改/过期/重复四类攻击 → 对应防护）</li>
+<li>AI Review 记录（哪些 UI/样板接受了 AI 生成、哪些授权逻辑拒绝了 AI 生成并说明理由）</li>
+</ul>
+<hr>
+<h2 id="10-课末-3-个核心问题">10. 课末 3 个核心问题</h2>
+<ol>
+<li>请从今天项目的真实入口到最终输出，解释"Human-in-the-loop"的数据流或控制流；当天知识链"HITL、服务端授权、TOCTOU、审批租约、幂等"分别在哪一层起作用，为什么按这个顺序学习？</li>
+<li>如果故意移除今天最关键的保护机制（参数快照哈希 / CAS），线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</li>
+<li>请引用今天的具体代码、测试和架构证据，证明"未批准执行数为 0、同 approval 只成功一次"已经达到；再说明当前实现距离企业生产标准还缺什么（例如多级审批、审批委托、审计防篡改签名），下一步如何演进而不破坏已有合同。</li>
+</ol>
+<hr>
+<h2 id="11-真实项目情境题联网更新-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>Agent 提议把 anomaly 改为 <code>resolved</code>，前端按钮隐藏但攻击者直接调用执行接口，未批准操作成功。请用 actor、approvalId、授权日志和 DB 变更定位；先关闭写 Tool 止损，再把批准与执行放到服务端并验证租户/角色，越权测试必须全部 403。回答必须按"定位证据 -&gt; 临时止损 -&gt; 根因修复 -&gt; 回归验证"组织。
+依据：<a href="https://genai.owasp.org/" target="_blank" rel="noopener noreferrer">S30 OWASP GenAI</a></li>
+<li>用户批准时看到参数 A，审批后模型把 serverId 换成 B；两个浏览器标签又同时提交，导致跨资源执行两次。请用审批快照、租约版本和幂等键证明 TOCTOU；先撤销未执行租约止损，再做参数哈希、过期检查和一次性消费，验证篡改、过期、重复均无副作用。回答必须按"定位证据 -&gt; 临时止损 -&gt; 根因修复 -&gt; 回归验证"组织。
+依据：<a href="https://jobs.bytedance.com/experienced/position/7650035429911824693/detail" target="_blank" rel="noopener noreferrer">S1 Aime</a></li>
+</ol>
+<p>知识映射：HITL、服务端授权、TOCTOU、审批租约与幂等。</p>
+<hr>
+<h2 id="12-pdf-面试题">12. PDF 面试题</h2>
+<blockquote>
+<p>以下题目引用自公开面经 PDF 汇编，文件名不等于官方题库；用作练习触发点，不代表本项目对齐了任何一家公司的真实校招/社招题库。</p>
+</blockquote>
+<ol>
+<li>Agent 工具调用展示组件如何支持人工确认（Human-in-the-loop）并处理工具失败？
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E5%25BE%25AE%25E4%25BF%25A1%25E8%25AF%25BB%25E4%25B9%25A6%25E5%2589%258D%25E7%25AB%25AF%25E9%259D%25A2%25E8%25AF%2595-agent%25E6%2596%25B9%25E5%2590%2591.pdf" class="missing-link">《2026微信读书前端面试-agent方向》</a>，第 7 页。</li>
+<li>AI 产品中如何处理幻觉或错误信息对用户体验的影响？
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E9%2598%25BF%25E9%2587%258C%25E5%25A6%2588%25E5%25A6%2588%25E9%25AB%2598%25E7%25BA%25A7%25E5%2589%258D%25E7%25AB%25AF%25E5%25B7%25A5%25E7%25A8%258B%25E5%25B8%2588-AI%25E4%25BA%25A7%25E5%2593%2581%25E6%2596%25B9%25E5%2590%2591.pdf" class="missing-link">《2026阿里妈妈高级前端工程师-AI产品方向》</a>，第 9 页。</li>
+</ol>
+<p>题目说明：对应 HITL、敏感操作确认和错误兜底；第二题原文答案明确要求高风险操作增加人工确认。</p>
+<hr>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 -&gt; 边界一致性 -&gt; 线上事故 -&gt; 工程权衡 -&gt; 架构演进"现场提出 5 道问题。五连问不预先固定，也不由上面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<hr>
+<h2 id="14-本-day-在-90-天路线中的锚点">14. 本 Day 在 90 天路线中的锚点</h2>
+<ul>
+<li><strong>承接</strong>：Day 11 Tool Registry（写 Tool 的 Schema/审计）、Day 12 Agent Loop（循环遇到写 Tool 时暂停）、Day 13 持久化幂等（审批记录落库）</li>
+<li><strong>本日</strong>：把"高风险写操作"从 Agent 自动执行改造为服务端权威的人工审批闸门，抵御越权/TOCTOU/过期/并发四类攻击</li>
+<li><strong>对齐后续</strong>：
+<ul>
+<li>Day 30 M3 门禁会要求"任何写操作都必须有服务端审批 + 审计链路"</li>
+<li>Day 61-90 p2-agent-workbench 多 Agent 协同时，审批租约和 CAS 一次性消费是多 Agent 抢占同一资源的基础</li>
+</ul>
+</li>
+<li><strong>能力跃迁</strong>：从"前端弹窗确认"（UX 级）跃迁到"服务端权威审批 + 纵深防御"（安全工程级）</li>
+</ul>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day17-old.html">查看 Day 17 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/16.html">← Day 16 · 证据与 XSS</a>
+            <a href="/ai-teacher-agent-devolop/day/18.html">Day 18 · Trace/性能 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#14-%E6%9C%AC%E6%97%A5%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8A%A8%E6%89%8B%E5%89%8D%E5%85%88%E7%9C%8B%E9%AA%A8%E6%9E%B6">1.4 本日项目目录结构（动手前先看骨架）</a></li><li><a href="#15-%E9%98%B6%E6%AE%B5-d%E5%8A%A8%E6%89%8B%E8%84%9A%E6%89%8B%E6%9E%B620-%E5%88%86%E9%92%9F%E5%85%88%E6%90%AD%E9%AA%A8%E6%9E%B6%E5%86%8D%E7%9C%8B%E6%AD%A3%E6%96%87">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F90-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">2. 学习节奏（90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E6%9C%80%E5%B0%8F%E9%97%AD%E7%8E%AF%E5%89%8D%E7%AB%AF%E7%A1%AE%E8%AE%A4%E5%AF%B9%E8%AF%9D%E6%A1%86">3. v1：最小闭环（前端确认对话框）</a></li><li><a href="#4-v2%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9D%83%E5%A8%81%E5%AE%A1%E6%89%B9-%E6%8E%88%E6%9D%83%E6%A0%A1%E9%AA%8C">4. v2：服务端权威审批 + 授权校验</a></li><li><a href="#5-v3%E5%8F%82%E6%95%B0%E5%BF%AB%E7%85%A7%E5%93%88%E5%B8%8C-%E5%AE%A1%E6%89%B9%E7%A7%9F%E7%BA%A6-cas-%E4%B8%80%E6%AC%A1%E6%80%A7%E6%B6%88%E8%B4%B9-%E5%AE%A1%E8%AE%A1%E7%BB%88%E6%80%81">5. v3：参数快照哈希 + 审批租约 + CAS 一次性消费 + 审计（终态）</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94%E4%B8%80%E8%A7%88%E8%A1%A8">6. 三版对比一览表</a></li><li><a href="#65-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1%E7%8B%AC%E7%AB%8B%E6%B7%B1%E6%8C%96-html-%E5%85%A5%E5%8F%A3">6.5 前端底子补弱（独立深挖 HTML 入口）</a></li><li><a href="#7-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95%E9%98%B6%E6%AE%B5-e-f%E7%BA%A6-55-%E5%88%86%E9%92%9F">7. 项目验收清单（阶段 E-F，约 55 分钟）</a></li><li><a href="#8-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86">8. 通过标准</a></li><li><a href="#9-%E6%8F%90%E4%BA%A4%E7%89%A9">9. 提交物</a></li><li><a href="#10-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">10. 课末 3 个核心问题</a></li><li><a href="#11-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">12. PDF 面试题</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">14. 本 Day 在 90 天路线中的锚点</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

@@ -1,0 +1,1168 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 09 · Day 09 - 状态机（服务端权威 FSM + 乐观更新 + 版本冲突回滚） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html" aria-current="page">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/02.html">第 2 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 09</p>
+        <h1>Day 09 - 状态机（服务端权威 FSM + 乐观更新 + 版本冲突回滚）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段一（Day 1-30，前端 -&gt; AI 前端）。所有 BFF、NestJS、数据库、队列和 Agent 后端增量都必须服务于 <code>p1-monitor</code> 的真实 AI 前端链路，不得另起无关 Demo。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+<p><strong>补充真实项目情境题</strong>：</p>
+<ol>
+<li>两个审批请求携带同一个 <code>expectedVersion</code> 并发到达时，如何证明只有一个状态转换成功，另一个得到可解释的冲突？</li>
+<li>终态 Run 收到延迟的 <code>approval.required</code> 时，前后端如何保持终态并留下可追踪证据？</li>
+</ol>
+</blockquote>
+<p>日期与时长：2026-07-22 周三，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor</code>
+阶段任务性质：教师基线；实际分发时根据 Day08 成绩生成补弱版、标准版或挑战版。</p>
+<hr>
+<h2 id="0-项目当前状态进入-day09-前">§0 项目当前状态（进入 Day09 前）</h2>
+<p>到 Day08 结束时，<code>p1-monitor</code> 已经具备：</p>
+<ul>
+<li>后端 <code>apps/api</code>：Nest + Prisma + Postgres，Cursor 分页 + 稳定排序 + Query DTO + ViewModel。</li>
+<li>前端 <code>apps/web</code>：Vue3 + Vite + ECharts + WebSocket 实时更新，已有异常列表页与详情页。</li>
+<li>领域 <code>packages/domain</code>：<code>AlertRow</code>、<code>AlertDetail</code> 值对象，<code>AlertQuery</code> 查询 DTO，<code>toAlertVM</code> 序列化函数。</li>
+<li>事件 <code>packages/features/alert-detect</code>：Z-Score 异常检测，命中即写 <code>Alert</code> 表。</li>
+</ul>
+<p>Day09 之前 <code>Alert.status</code> 只是一个 <code>boolean resolved</code>，前端点击"确认异常"直接 <code>PATCH /alerts/:id</code> 把它翻转为 true。</p>
+<p>存在的问题（今天要解决的）：</p>
+<ol>
+<li>状态语义扁平：不能区分"新告警 / 处理中 / 已解决 / 误报"，产品要新增"忽略"和"回炉"两个操作时无法扩展。</li>
+<li>无合法转换约束：客户端可以把 <code>resolved: true</code> 直接改回 <code>false</code>，后端只校验字段类型，不校验业务合法性。</li>
+<li>无并发保护：两个人同时点确认，两次 PATCH 都成功，最后一次覆盖前一次，看不到冲突。</li>
+<li>UI 乐观更新失败后不回滚：点了确认后先本地染色，若后端返回 500 用户看不到状态回退。</li>
+</ol>
+<p>今天完成后，Alert 会变成一个受服务端权威 FSM 保护的领域实体，客户端只允许发起合法转换、附带 <code>expectedVersion</code>，冲突时 409 + 前端回滚。</p>
+<hr>
+<h2 id="1-今日目标">§1 今日目标</h2>
+<h3 id="11-概述">§1.1 概述</h3>
+<p>把 <code>Alert.status</code> 从布尔字段演进为一个 5 态状态机（NEW / ACK / RESOLVED / IGNORED / REOPENED），合法转换集中在领域层，服务端拥有最终解释权；前端做乐观更新，冲突 409 回滚到服务端状态。</p>
+<h3 id="12-三层演进">§1.2 三层演进</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>代码位置</th>
+<th>特征</th>
+<th>遗留问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1</td>
+<td><code>alerts.controller.ts</code></td>
+<td>直接 <code>PATCH { resolved: true }</code>，字段级校验</td>
+<td>状态语义扁平；无合法转换约束</td>
+</tr>
+<tr>
+<td>v2</td>
+<td><code>packages/domain/alert-status.ts</code></td>
+<td>客户端 + 后端共用 FSM 表；后端 <code>assertCanTransition(from,to)</code></td>
+<td>双击/并发时后写覆盖先写；UI 失败不回滚</td>
+</tr>
+<tr>
+<td>v3</td>
+<td><code>packages/domain/alert-fsm.ts</code> + <code>alerts.service.ts</code> + <code>apps/web/features/alert-detail</code></td>
+<td>服务端权威 FSM + <code>expectedVersion</code> 乐观锁 + 409 → 前端 <code>revert(prev)</code></td>
+<td>（明日 Day10 引入审计日志）</td>
+</tr>
+</tbody>
+</table></div><h3 id="13-交付物">§1.3 交付物</h3>
+<ol>
+<li><code>packages/domain/alert-fsm.ts</code>：状态枚举 + 合法转换表 + <code>canTransition/assertCanTransition</code> 纯函数。</li>
+<li><code>apps/api/src/alerts/alerts.service.ts</code>：<code>transition(id, action, expectedVersion, actorId)</code>，事务内读 → 校验 → 写。</li>
+<li>Prisma migration：<code>Alert.status String @default("NEW")</code>、<code>Alert.version Int @default(0)</code>。</li>
+<li><code>apps/web/features/alert-detail/state.ts</code>：<code>optimisticApply / commit / revert</code> 三段式。</li>
+<li>测试：单元测试遍历 25 种状态组合确认非法边为 0；集成测试制造 409 冲突并验证回滚。</li>
+<li>反证实验：删除服务端 FSM 校验后手工制造非法跳转，记录审计断层。</li>
+</ol>
+<h3 id="14-目录结构本日项目视角">§1.4 目录结构（本日项目视角）</h3>
+<p><strong>§1.4.1 rationale（先讲为什么这样组织）</strong></p>
+<ul>
+<li>状态机放在 <code>packages/domain/alert-fsm.ts</code>：这是领域概念，前后端共用同一张转换表，避免客户端伪造非法转换而后端只做字段校验。</li>
+<li>前端 <code>state.ts</code> 只做"乐观更新 + 回滚"，不重复实现 FSM 校验：客户端校验只用于按钮 disabled，最终仲裁权在服务端。</li>
+<li>Service 层的 <code>transition()</code> 与 <code>update()</code> 分离：状态转换是有约束的写路径，不能和普通字段更新混在一起。</li>
+<li>版本号 <code>version</code> 挂在 <code>Alert</code> 表而非独立表：只有一个热点实体，不需要额外 join；后续 Day10 审计日志会引用 <code>(alertId, version)</code> 复合键。</li>
+</ul>
+<p><strong>§1.4.2 tree（本日结束的目录快照，只展示与状态机相关的路径）</strong></p>
+<pre><code>p1-monitor/
+├─ packages/
+│  ├─ domain/
+│  │  ├─ src/
+│  │  │  ├─ alert-fsm.ts               # 【新增】状态枚举 + 转换表 + 纯函数
+│  │  │  ├─ alert.ts                   # 【修改】加 status/version 字段
+│  │  │  └─ index.ts                   # 【修改】导出 fsm
+│  │  └─ package.json
+│  └─ features/
+│     └─ alert-detect/                  # 【不改】Day07 已完成
+├─ apps/
+│  ├─ api/
+│  │  ├─ prisma/
+│  │  │  ├─ schema.prisma              # 【修改】status + version
+│  │  │  └─ migrations/
+│  │  │     └─ 20260722_alert_fsm/     # 【新增】
+│  │  └─ src/alerts/
+│  │     ├─ alerts.service.ts          # 【修改】新增 transition()
+│  │     ├─ alerts.controller.ts       # 【修改】POST /alerts/:id/transition
+│  │     ├─ dto/transition.dto.ts      # 【新增】action + expectedVersion
+│  │     └─ alerts.service.spec.ts     # 【新增】25 组转换用例
+│  └─ web/
+│     └─ src/features/alert-detail/
+│        ├─ state.ts                   # 【新增】optimistic/commit/revert
+│        ├─ AlertActions.vue           # 【修改】按钮 disabled 与 revert
+│        └─ __tests__/state.spec.ts    # 【新增】409 回滚用例
+</code></pre>
+<p><strong>§1.4.3 与 Day08 的目录 diff 表</strong></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>变更</th>
+<th>路径</th>
+<th>新/改/删</th>
+<th>为什么在这里</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新增</td>
+<td><code>packages/domain/src/alert-fsm.ts</code></td>
+<td>新</td>
+<td>领域规则，前后端共用</td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>packages/domain/src/alert.ts</code></td>
+<td>改</td>
+<td>加 <code>status: AlertStatus</code> + <code>version: number</code></td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>apps/api/prisma/schema.prisma</code></td>
+<td>改</td>
+<td>加两列 + 索引 <code>@@index([status])</code></td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>apps/api/prisma/migrations/20260722_alert_fsm/</code></td>
+<td>新</td>
+<td>迁移脚本</td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>apps/api/src/alerts/alerts.service.ts</code></td>
+<td>改</td>
+<td>新增 <code>transition()</code> 事务方法</td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>apps/api/src/alerts/alerts.controller.ts</code></td>
+<td>改</td>
+<td>新增 <code>POST /alerts/:id/transition</code> 路由</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>apps/api/src/alerts/dto/transition.dto.ts</code></td>
+<td>新</td>
+<td>Action + expectedVersion</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>apps/api/src/alerts/alerts.service.spec.ts</code></td>
+<td>新</td>
+<td>25 组 × 4 用户的组合表</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>apps/web/src/features/alert-detail/state.ts</code></td>
+<td>新</td>
+<td>前端三段式</td>
+</tr>
+<tr>
+<td>修改</td>
+<td><code>apps/web/src/features/alert-detail/AlertActions.vue</code></td>
+<td>改</td>
+<td>用 fsm 计算 disabled + 接 revert</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>apps/web/src/features/alert-detail/__tests__/state.spec.ts</code></td>
+<td>新</td>
+<td>409 → revert 用例</td>
+</tr>
+</tbody>
+</table></div><p><strong>§1.4.4 依赖箭头（谁调用谁）</strong></p>
+<pre><code>apps/web/AlertActions.vue
+        ↓ 只做 UI 判定
+apps/web/state.ts (optimistic/commit/revert)
+        ↓ HTTP POST /alerts/:id/transition
+apps/api/alerts.controller.ts
+        ↓ 调用
+apps/api/alerts.service.ts (transition 方法)
+        ↓ 读转换表 &amp; 纯函数
+packages/domain/alert-fsm.ts (assertCanTransition)
+        ↓ 通过后
+Prisma updateMany({ where: { id, version: expected }, data: { status: to, version: version + 1 } })
+</code></pre>
+<p>关键点：前端 <code>state.ts</code> 也 import <code>alert-fsm.ts</code> 里的 <code>canTransition</code>，但只用于按钮 disabled，绝不用于最终判定。</p>
+<p><strong>§1.4.5 3 个理解问题（写代码前先在心里回答）</strong></p>
+<ol>
+<li>为什么 <code>alert-fsm.ts</code> 放在 <code>packages/domain</code> 而不是 <code>apps/api</code> 里？
+参考答：领域规则前后端共用一份定义，前端按钮 disabled、后端权威校验、测试遍历都指向同一张表；放 <code>apps/api</code> 前端就要复制一份，两份最终一定漂移。</li>
+<li>为什么 <code>transition()</code> 用 <code>updateMany</code> 而不是 <code>update</code>？
+参考答：Prisma 的 <code>update({ where: { id } })</code> 找不到会抛 <code>P2025</code>；<code>updateMany</code> 会返回 <code>{ count: 0 or 1 }</code>，用它拿 <code>count === 0</code> 精确识别"id 存在但 version 不匹配"这种冲突场景。</li>
+<li>为什么前端 <code>state.ts</code> 要保存 <code>prev</code> 快照而不是重新拉一次接口？
+参考答：乐观更新回滚必须"瞬间恢复到用户点击前的样子"，网络往返 300ms 用户会看到闪回；重新拉接口是 fallback，不是主路径。</li>
+</ol>
+<h3 id="15-按第-53-节的代码-边写边问自己">§1.5 按第 5.3 节的代码 + 边写边问自己</h3>
+<p>第 5.3 节给出完整代码，请按顺序：读 → 抄 → 停下来问下面 5 个问题 → 若能回答再往下写。</p>
+<ul>
+<li>为什么 <code>AlertStatus</code> 用 <code>as const</code> 数组而不是 TS enum？
+→ enum 有运行时对象但不能做 union 收敛；<code>as const</code> 拿到 <code>readonly ['NEW', ...]</code> 后可以 <code>typeof arr[number]</code> 得到精确 union，同时 <code>Array.includes</code> 校验也用同一张表。</li>
+<li>为什么 <code>TRANSITIONS</code> 表用 <code>Record&lt;AlertStatus, AlertStatus[]&gt;</code>？
+→ 结构与"图的邻接表"一一对应；<code>canTransition(from, to) = TRANSITIONS[from].includes(to)</code> 一行搞定，改动只加数据、不改逻辑。</li>
+<li>为什么 <code>transition()</code> 里必须 <code>updateMany</code>，不能先 <code>findUnique</code> 再 <code>update</code>？
+→ find + update 之间存在 read-modify-write 竞态；两个并发请求都读到 version=3，各自把 version 更新到 4，后写覆盖先写。<code>updateMany({ where: { id, version: expected } })</code> 把校验和写入合并成一条 SQL，Postgres 保证串行。</li>
+<li>为什么前端 <code>optimisticApply</code> 要立刻 setter，而不是等 200 响应？
+→ 用户体验：确认按钮 → 状态染色 → 服务端异步确认；等 200 响应意味着 300ms 的空白，产品体感差。</li>
+<li>为什么 <code>revert(prev)</code> 要在 <code>catch</code> 里而不是 <code>finally</code> 里？
+→ <code>finally</code> 会覆盖成功路径；只有失败才需要回滚。</li>
+</ul>
+<hr>
+<h2 id="2-环境准备">§2 环境准备</h2>
+<ul>
+<li>Node ≥ 20.11、pnpm ≥ 9、Postgres ≥ 15、Nest CLI ≥ 10、Vue ≥ 3.4、Prisma ≥ 5.10。</li>
+<li>上一日 Day08 的分支 <code>feat/day08-cursor-pagination</code> 已合入 <code>main</code>。</li>
+<li>本日新分支：<code>git switch -c feat/day09-alert-fsm</code>。</li>
+<li>数据库需要能执行 <code>pnpm --filter api prisma migrate dev</code>；如果本地库有生产数据，先 <code>pg_dump</code> 备份再迁移。</li>
+</ul>
+<hr>
+<h2 id="3-数据模型变更prisma">§3 数据模型变更（Prisma）</h2>
+<p><code>apps/api/prisma/schema.prisma</code>：</p>
+<pre><code class="language-prisma">model Alert {
+  id           String       @id @default(cuid())
+  serverId     String
+  metric       String
+  value        Float
+  zScore       Float
+  status       String       @default("NEW")   // NEW/ACK/RESOLVED/IGNORED/REOPENED
+  version      Int          @default(0)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  server       Server       @relation(fields: [serverId], references: [id])
+
+  @@index([status])
+  @@index([serverId, createdAt])
+}
+</code></pre>
+<p>执行：</p>
+<pre><code class="language-bash">pnpm --filter api prisma migrate dev --name alert_fsm
+</code></pre>
+<p>迁移会写一次 <code>UPDATE alerts SET status='RESOLVED' WHERE resolved=true; UPDATE alerts SET status='NEW' WHERE resolved=false;</code> 完成历史数据回填；<code>resolved</code> 字段保留 1 天后由 Day10 删除。</p>
+<hr>
+<h2 id="4-引入依赖">§4 引入依赖</h2>
+<p>本日不新增运行时依赖，仅补测试工具：</p>
+<pre><code class="language-bash">pnpm --filter api add -D @nestjs/testing
+pnpm --filter web add -D @vitest/coverage-v8
+</code></pre>
+<hr>
+<h2 id="5-核心代码">§5 核心代码</h2>
+<h3 id="51-v1-布尔字段今日进场时的样子">§5.1 v1 —— 布尔字段（今日进场时的样子）</h3>
+<p><code>apps/api/src/alerts/alerts.controller.ts</code>（截取）：</p>
+<pre><code class="language-ts">@Patch(':id')
+async update(@Param('id') id: string, @Body() body: { resolved: boolean }) {
+  return this.prisma.alert.update({
+    where: { id },
+    data: { resolved: body.resolved },
+  });
+}
+</code></pre>
+<p>前端 <code>AlertActions.vue</code>（截取）：</p>
+<pre><code class="language-vue">&lt;button @click="ack"&gt;确认异常&lt;/button&gt;
+&lt;script setup&gt;
+async function ack() {
+  await fetch(`/api/alerts/${id}`, { method: 'PATCH', body: JSON.stringify({ resolved: true }) });
+  alert.resolved = true;
+}
+&lt;/script&gt;
+</code></pre>
+<p>v1 的问题：</p>
+<ul>
+<li><code>resolved: false → true</code> 之外任何语义都无法表达；产品要"忽略"就得再加字段。</li>
+<li>客户端可以 <code>PATCH { resolved: false }</code> 把已解决的告警"未解决"回去，无校验。</li>
+<li>双击两次都返回 200，没有冲突提示。</li>
+</ul>
+<h3 id="52-v2-客户端-后端共用-fsm-表有转换约束但无并发保护">§5.2 v2 —— 客户端 + 后端共用 FSM 表（有转换约束，但无并发保护）</h3>
+<p><code>packages/domain/src/alert-status.ts</code>（v2 版本，仅保留一日就演进到 v3）：</p>
+<pre><code class="language-ts">export const ALERT_STATUS = ['NEW', 'ACK', 'RESOLVED', 'IGNORED', 'REOPENED'] as const;
+export type AlertStatus = typeof ALERT_STATUS[number];
+
+export const TRANSITIONS: Record&lt;AlertStatus, AlertStatus[]&gt; = {
+  NEW:       ['ACK', 'IGNORED'],
+  ACK:       ['RESOLVED', 'IGNORED'],
+  RESOLVED:  ['REOPENED'],
+  IGNORED:   ['REOPENED'],
+  REOPENED:  ['ACK', 'IGNORED'],
+};
+
+export function canTransition(from: AlertStatus, to: AlertStatus): boolean {
+  return TRANSITIONS[from].includes(to);
+}
+</code></pre>
+<p>Service 层（v2）：</p>
+<pre><code class="language-ts">async setStatus(id: string, next: AlertStatus) {
+  const cur = await this.prisma.alert.findUnique({ where: { id } });
+  if (!cur) throw new NotFoundException();
+  if (!canTransition(cur.status as AlertStatus, next)) {
+    throw new BadRequestException(`invalid transition ${cur.status} -&gt; ${next}`);
+  }
+  return this.prisma.alert.update({ where: { id }, data: { status: next } });
+}
+</code></pre>
+<p>v2 的问题：</p>
+<ul>
+<li><code>findUnique</code> 与 <code>update</code> 之间存在 read-modify-write 竞态；两个用户同时把 NEW→ACK，两次都成功，事件被"确认"了两次。</li>
+<li>前端仍然是"点了就染色"，失败不回滚。</li>
+</ul>
+<h3 id="53-v3-服务端权威-fsm-乐观锁-前端回滚今日最终态">§5.3 v3 —— 服务端权威 FSM + 乐观锁 + 前端回滚（今日最终态）</h3>
+<h4 id="531-packagesdomainsrcalert-fsmts">§5.3.1 <code>packages/domain/src/alert-fsm.ts</code></h4>
+<pre><code class="language-ts">export const ALERT_STATUS = ['NEW', 'ACK', 'RESOLVED', 'IGNORED', 'REOPENED'] as const;
+export type AlertStatus = typeof ALERT_STATUS[number];
+
+export const ALERT_ACTIONS = ['ack', 'resolve', 'ignore', 'reopen'] as const;
+export type AlertAction = typeof ALERT_ACTIONS[number];
+
+const TABLE: Record&lt;AlertStatus, Partial&lt;Record&lt;AlertAction, AlertStatus&gt;&gt;&gt; = {
+  NEW:       { ack: 'ACK', ignore: 'IGNORED' },
+  ACK:       { resolve: 'RESOLVED', ignore: 'IGNORED' },
+  RESOLVED:  { reopen: 'REOPENED' },
+  IGNORED:   { reopen: 'REOPENED' },
+  REOPENED:  { ack: 'ACK', ignore: 'IGNORED' },
+};
+
+export function nextStatus(from: AlertStatus, action: AlertAction): AlertStatus | null {
+  return TABLE[from][action] ?? null;
+}
+
+export function canTransition(from: AlertStatus, action: AlertAction): boolean {
+  return nextStatus(from, action) !== null;
+}
+
+export class InvalidTransitionError extends Error {
+  constructor(public from: AlertStatus, public action: AlertAction) {
+    super(`invalid transition: ${from} --${action}--&gt;`);
+    this.name = 'InvalidTransitionError';
+  }
+}
+
+export function assertCanTransition(from: AlertStatus, action: AlertAction): AlertStatus {
+  const to = nextStatus(from, action);
+  if (!to) throw new InvalidTransitionError(from, action);
+  return to;
+}
+</code></pre>
+<h4 id="532-appsapisrcalertsdtotransitiondtots">§5.3.2 <code>apps/api/src/alerts/dto/transition.dto.ts</code></h4>
+<pre><code class="language-ts">import { IsIn, IsInt, Min } from 'class-validator';
+import { ALERT_ACTIONS, AlertAction } from '@p1/domain';
+
+export class TransitionDto {
+  @IsIn([...ALERT_ACTIONS])
+  action!: AlertAction;
+
+  @IsInt()
+  @Min(0)
+  expectedVersion!: number;
+}
+</code></pre>
+<h4 id="533-appsapisrcalertsalertsservicets-新增-transition">§5.3.3 <code>apps/api/src/alerts/alerts.service.ts</code> 新增 <code>transition()</code></h4>
+<pre><code class="language-ts">import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
+import {
+  AlertAction,
+  AlertStatus,
+  assertCanTransition,
+  InvalidTransitionError,
+} from '@p1/domain';
+
+@Injectable()
+export class AlertsService {
+  constructor(private readonly prisma: PrismaService) {}
+
+  async transition(
+    id: string,
+    action: AlertAction,
+    expectedVersion: number,
+    actorId: string,
+  ) {
+    return this.prisma.$transaction(async (tx) =&gt; {
+      const cur = await tx.alert.findUnique({ where: { id } });
+      if (!cur) throw new NotFoundException(`alert ${id} not found`);
+
+      let to: AlertStatus;
+      try {
+        to = assertCanTransition(cur.status as AlertStatus, action);
+      } catch (e) {
+        if (e instanceof InvalidTransitionError) {
+          throw new ConflictException({
+            code: 'INVALID_TRANSITION',
+            from: e.from,
+            action: e.action,
+            currentVersion: cur.version,
+          });
+        }
+        throw e;
+      }
+
+      const updated = await tx.alert.updateMany({
+        where: { id, version: expectedVersion },
+        data: { status: to, version: { increment: 1 } },
+      });
+
+      if (updated.count === 0) {
+        throw new ConflictException({
+          code: 'VERSION_CONFLICT',
+          currentVersion: cur.version,
+          expectedVersion,
+        });
+      }
+
+      return tx.alert.findUnique({ where: { id } });
+    });
+  }
+}
+</code></pre>
+<h4 id="534-appsapisrcalertsalertscontrollerts-新增路由">§5.3.4 <code>apps/api/src/alerts/alerts.controller.ts</code> 新增路由</h4>
+<pre><code class="language-ts">@Post(':id/transition')
+async transition(
+  @Param('id') id: string,
+  @Body() dto: TransitionDto,
+  @Req() req: RequestWithUser,
+) {
+  return this.alertsService.transition(id, dto.action, dto.expectedVersion, req.user.id);
+}
+</code></pre>
+<p>注意：<code>update</code> 路由本身还保留用于普通字段编辑（比如备注），但对 <code>status/version</code> 加了写保护——见下方 <code>alerts.service.ts.update</code>：</p>
+<pre><code class="language-ts">async update(id: string, patch: UpdateAlertDto) {
+  const { status, version, ...safe } = patch as any;
+  if (status !== undefined || version !== undefined) {
+    throw new BadRequestException('use POST /transition for status change');
+  }
+  return this.prisma.alert.update({ where: { id }, data: safe });
+}
+</code></pre>
+<h4 id="535-appswebsrcfeaturesalert-detailstatets">§5.3.5 <code>apps/web/src/features/alert-detail/state.ts</code></h4>
+<pre><code class="language-ts">import { reactive } from 'vue';
+import type { AlertAction, AlertStatus } from '@p1/domain';
+import { canTransition } from '@p1/domain';
+
+interface AlertVM {
+  id: string;
+  status: AlertStatus;
+  version: number;
+}
+
+export function useAlertActions(alert: AlertVM) {
+  const state = reactive({
+    alert,
+    pending: false as false | AlertAction,
+    lastError: null as null | { code: string; message: string },
+  });
+
+  async function fire(action: AlertAction) {
+    if (state.pending) return;
+    if (!canTransition(state.alert.status, action)) {
+      state.lastError = { code: 'CLIENT_INVALID', message: `${state.alert.status} 无法 ${action}` };
+      return;
+    }
+    const prev = { status: state.alert.status, version: state.alert.version };
+    state.pending = action;
+    state.lastError = null;
+
+    // 1. 乐观染色（不写 version，version 只在服务端权威）
+    state.alert.status = predictNext(prev.status, action);
+
+    try {
+      const res = await fetch(`/api/alerts/${state.alert.id}/transition`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ action, expectedVersion: prev.version }),
+      });
+
+      if (res.status === 409) {
+        const body = await res.json();
+        // 2. 版本冲突或非法转换：回滚到 prev
+        state.alert.status = prev.status;
+        state.alert.version = body.currentVersion ?? prev.version;
+        state.lastError = { code: body.code, message: '状态已被他人修改，请刷新查看最新状态' };
+        return;
+      }
+      if (!res.ok) throw new Error(`http ${res.status}`);
+
+      // 3. 服务端确认，用权威结果覆盖乐观值
+      const authoritative = await res.json();
+      state.alert.status = authoritative.status;
+      state.alert.version = authoritative.version;
+    } catch (err) {
+      state.alert.status = prev.status;
+      state.alert.version = prev.version;
+      state.lastError = { code: 'NETWORK', message: (err as Error).message };
+    } finally {
+      state.pending = false;
+    }
+  }
+
+  return { state, fire };
+}
+
+function predictNext(from: AlertStatus, action: AlertAction): AlertStatus {
+  // 前端仅用于染色，与领域层保持同一张 TABLE
+  const MAP: Record&lt;AlertStatus, Partial&lt;Record&lt;AlertAction, AlertStatus&gt;&gt;&gt; = {
+    NEW: { ack: 'ACK', ignore: 'IGNORED' },
+    ACK: { resolve: 'RESOLVED', ignore: 'IGNORED' },
+    RESOLVED: { reopen: 'REOPENED' },
+    IGNORED: { reopen: 'REOPENED' },
+    REOPENED: { ack: 'ACK', ignore: 'IGNORED' },
+  };
+  return MAP[from][action]!;
+}
+</code></pre>
+<h4 id="536-appswebsrcfeaturesalert-detailalertactionsvue">§5.3.6 <code>apps/web/src/features/alert-detail/AlertActions.vue</code></h4>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div class="actions"&gt;
+    &lt;button v-for="a in visible" :key="a" :disabled="!!state.pending" @click="fire(a)"&gt;
+      {{ label(a) }}
+      &lt;span v-if="state.pending === a"&gt;…&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;p v-if="state.lastError" class="err"&gt;{{ state.lastError.message }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { computed } from 'vue';
+import { ALERT_ACTIONS, canTransition, type AlertAction } from '@p1/domain';
+import { useAlertActions } from './state';
+
+const props = defineProps&lt;{ alert: { id: string; status: any; version: number } }&gt;();
+const { state, fire } = useAlertActions(props.alert);
+
+const visible = computed(() =&gt;
+  ALERT_ACTIONS.filter((a) =&gt; canTransition(state.alert.status, a as AlertAction)),
+);
+
+function label(a: AlertAction) {
+  return { ack: '确认', resolve: '解决', ignore: '忽略', reopen: '回炉' }[a];
+}
+&lt;/script&gt;
+</code></pre>
+<h3 id="54-六个必掌握的知识点每点五要素">§5.4 六个必掌握的知识点（每点五要素）</h3>
+<h4 id="知识点-1有限状态机fsm">知识点 1：有限状态机（FSM）</h4>
+<ul>
+<li>解决的问题：把"业务实体现在能做什么、不能做什么"从散落在各处的 if-else 收敛到一张转换表。</li>
+<li>运行机制：定义 <code>Status</code> 集合 + <code>Action</code> 集合 + <code>TABLE: Status → Action → Status</code> 的部分函数；查表命中即合法，未命中即非法。</li>
+<li>项目落点：<code>packages/domain/alert-fsm.ts</code> 的 <code>TABLE</code> 常量；<code>assertCanTransition</code> 是唯一入口。</li>
+<li>生产误区：把 FSM 写在 Service 层里当业务代码维护；下次新增状态就要改 5 个 if 分支，永远漏掉一个。</li>
+<li>验证方法：写一个测试遍历所有 <code>(Status × Action)</code> 组合共 5×4=20 对，断言只有 TABLE 定义过的返回非 null，其余全部抛 <code>InvalidTransitionError</code>。</li>
+</ul>
+<h4 id="知识点-2服务端权威server-authoritative">知识点 2：服务端权威（Server Authoritative）</h4>
+<ul>
+<li>解决的问题：客户端可以被篡改、可以旧、可以恶意；不能把业务规则的最终仲裁权交给客户端。</li>
+<li>运行机制：所有状态修改必须过服务端接口；客户端可复用同一张 FSM 表做 UI 判定，但服务端拿到请求后再重新校验一次，任何差异以服务端为准。</li>
+<li>项目落点：前端 <code>state.ts</code> 用 <code>canTransition</code> 决定按钮 disabled，服务端 <code>transition()</code> 独立调用 <code>assertCanTransition</code>；两者共用同一份 <code>alert-fsm.ts</code> 保证不漂移。</li>
+<li>生产误区：只在前端 disable 按钮不在后端校验；用户用 Postman 一发直接绕过。</li>
+<li>验证方法：写测试模拟"绕过前端"——直接 POST 一个非法 action，断言返回 409 <code>INVALID_TRANSITION</code> 且数据库 status/version 均未变化。</li>
+</ul>
+<h4 id="知识点-3乐观更新optimistic-ui">知识点 3：乐观更新（Optimistic UI）</h4>
+<ul>
+<li>解决的问题：网络延迟下用户点击后 300ms 的空白，产品体感差。</li>
+<li>运行机制：客户端先按预测结果更新本地状态，再异步请求服务端；成功则用服务端权威值覆盖，失败则回滚到 <code>prev</code> 快照。</li>
+<li>项目落点：<code>state.ts</code> 的 <code>fire()</code> 函数的三步——<code>state.alert.status = predictNext(...)</code> → <code>fetch</code> → 成功 <code>覆盖</code> / 失败 <code>revert(prev)</code>。</li>
+<li>生产误区：乐观更新时把 <code>version</code> 也预测 +1；服务端权威值到来时 version 已经错乱，下一次请求带上错的 expectedVersion。<strong>只预测 status，不预测 version</strong>。</li>
+<li>验证方法：单元测试用 <code>msw</code> mock 一个 409 响应，断言 <code>state.alert.status</code> 从预测值回到 <code>prev.status</code>；再断言 <code>lastError.code === 'VERSION_CONFLICT'</code>。</li>
+</ul>
+<h4 id="知识点-4并发控制optimistic-locking-expectedversion">知识点 4：并发控制（Optimistic Locking / expectedVersion）</h4>
+<ul>
+<li>解决的问题：多客户端同时改同一实体，最后写入者悄悄覆盖前一次修改，用户以为自己的操作生效了，其实被吞了。</li>
+<li>运行机制：每次写入都带上 <code>expectedVersion</code>；SQL <code>UPDATE ... WHERE id=? AND version=?</code>，命中 0 行即冲突，用 <code>RETURNING</code> 或再读一次拿到最新 version 返回给客户端。</li>
+<li>项目落点：<code>alerts.service.ts</code> 的 <code>updateMany({ where: { id, version: expectedVersion } })</code> + <code>count === 0 → ConflictException</code>。</li>
+<li>生产误区：用 <code>findUnique</code> + 内存 <code>if (cur.version !== expected)</code> + <code>update</code>——read-modify-write 之间仍有窗口；两个请求可以都通过 if 检查。<strong>必须让数据库在同一条 SQL 里判断 version</strong>。</li>
+<li>验证方法：起两个并发 <code>Promise.all([transition(id,'ack',0), transition(id,'ack',0)])</code>，断言恰好一个成功、一个 409；最终 version === 1。</li>
+</ul>
+<h4 id="知识点-5失败回滚rollback">知识点 5：失败回滚（Rollback）</h4>
+<ul>
+<li>解决的问题：乐观更新 UI 已经染色，如果服务端拒绝，界面必须立刻恢复到操作前的样子，不能让用户带着错误的状态感继续点。</li>
+<li>运行机制：<code>fire()</code> 里保存 <code>prev = { status, version }</code> 快照；<code>catch</code> 分支或 <code>res.status === 409</code> 分支里 <code>state.alert.status = prev.status; state.alert.version = body.currentVersion ?? prev.version</code>。</li>
+<li>项目落点：<code>state.ts</code> 里的 <code>prev</code> 快照 + 两处赋值。</li>
+<li>生产误区：把 <code>revert</code> 放到 <code>finally</code>——成功路径也被回滚了；或者只回滚 <code>status</code> 不回滚 <code>version</code>——下一次请求带的 <code>expectedVersion</code> 是错的。</li>
+<li>验证方法：在 vitest 里 mock 409，断言 fire 结束后 <code>state.alert.status === prev.status</code>；再 mock 200，断言状态不回滚。</li>
+</ul>
+<h4 id="知识点-6非法转换的可观察性">知识点 6：非法转换的可观察性</h4>
+<ul>
+<li>解决的问题：非法转换如果只返回 400/500 用户看不懂；同时也需要给运维一个可查询的证据链。</li>
+<li>运行机制：定义 <code>InvalidTransitionError</code>，服务端 catch 后转成 <code>ConflictException({ code, from, action })</code>；前端根据 <code>code</code> 决定 UI 文案；后端在 Day10 会把这些冲突写入 <code>alert_audit</code> 表。</li>
+<li>项目落点：<code>alert-fsm.ts</code> 的 <code>InvalidTransitionError</code> + <code>alerts.service.ts</code> 的 catch 转换。</li>
+<li>生产误区：直接抛 500 或者用 400 但错误体是字符串；前端只能显示"操作失败"，运维只能看 500 曲线飙升。</li>
+<li>验证方法：集成测试 POST 一个 <code>RESOLVED → ack</code> 的非法转换，断言 HTTP 409、body.code === <code>INVALID_TRANSITION</code>、body.from === <code>RESOLVED</code>、body.action === <code>ack</code>。</li>
+</ul>
+<hr>
+<h2 id="6-前端底子补弱">§6 前端底子补弱</h2>
+<h3 id="61---64本日不涉及跳过">§6.1 - §6.4（本日不涉及，跳过）</h3>
+<h3 id="65-html表单底子补弱本日必做">§6.5 HTML/表单底子补弱（本日必做）</h3>
+<p><strong>主题：<code>&lt;button&gt;</code> 的 <code>disabled</code> 属性、<code>aria-busy</code>、按钮防抖与状态可访问性</strong></p>
+<p>Day09 前端有一组"确认 / 解决 / 忽略 / 回炉"按钮，需要根据当前状态决定 disabled，并在请求 pending 时给出无障碍可读的忙碌反馈。</p>
+<p><strong>背景知识</strong>：</p>
+<ol>
+<li><code>&lt;button disabled&gt;</code> 会同时禁用鼠标点击和键盘触发；不需要额外拦 <code>@click</code>。但仅仅 disabled 不能反馈"正在处理中"这一子状态。</li>
+<li><code>aria-busy="true"</code> 表示元素及其后代内容正在更新中；屏幕阅读器会通知"正在忙"。它不阻止点击，只做可访问性宣告。</li>
+<li>防抖不是 <code>setTimeout(300)</code>：真正的防抖是"请求未回来前，同一按钮不允许再点"，本质是 <code>pending</code> 状态门。</li>
+</ol>
+<p><strong>本日代码里的应用</strong>：</p>
+<pre><code class="language-vue">&lt;button
+  :disabled="!!state.pending"
+  :aria-busy="state.pending === a"
+  @click="fire(a)"
+&gt;
+  {{ label(a) }}
+&lt;/button&gt;
+</code></pre>
+<ul>
+<li><code>state.pending</code> 是 <code>false | AlertAction</code>；只要有正在进行的请求，所有按钮 disabled。</li>
+<li>只有当前正在被点击的那个按钮 <code>aria-busy=true</code>；其余按钮 disabled 但不 busy。</li>
+<li>请求成功或失败后 <code>state.pending = false</code>，disabled 自动解除。</li>
+</ul>
+<p><strong>思考</strong>：</p>
+<ul>
+<li>为什么不用 <code>&lt;div @click&gt;</code> 加自定义 <code>.disabled</code> 样式？→ div 没有语义、键盘 Tab 走不到、屏幕阅读器不会宣告"按钮"；无障碍失败。</li>
+<li><code>aria-busy</code> 和 <code>aria-live</code> 的差别？→ busy 是"忙"，live 是"内容会自动更新，念给我听"；两者常配合但概念不同。</li>
+</ul>
+<hr>
+<h2 id="7-验证">§7 验证</h2>
+<h3 id="71---75本日不涉及">§7.1 - §7.5（本日不涉及）</h3>
+<h3 id="76-单元-集成测试">§7.6 单元 + 集成测试</h3>
+<p><strong>§7.6.1 FSM 表遍历测试</strong>（<code>packages/domain/src/__tests__/alert-fsm.spec.ts</code>）</p>
+<pre><code class="language-ts">import { describe, expect, it } from 'vitest';
+import {
+  ALERT_STATUS,
+  ALERT_ACTIONS,
+  canTransition,
+  assertCanTransition,
+  InvalidTransitionError,
+  nextStatus,
+} from '../alert-fsm';
+
+describe('alert-fsm', () =&gt; {
+  it('所有 (status, action) 组合的合法性与转换表一致', () =&gt; {
+    const legal = new Set&lt;string&gt;();
+    // 手工枚举合法边（与 TABLE 定义一一对应）
+    legal.add('NEW|ack'); legal.add('NEW|ignore');
+    legal.add('ACK|resolve'); legal.add('ACK|ignore');
+    legal.add('RESOLVED|reopen');
+    legal.add('IGNORED|reopen');
+    legal.add('REOPENED|ack'); legal.add('REOPENED|ignore');
+
+    for (const from of ALERT_STATUS) {
+      for (const action of ALERT_ACTIONS) {
+        const key = `${from}|${action}`;
+        if (legal.has(key)) {
+          expect(canTransition(from, action)).toBe(true);
+          expect(nextStatus(from, action)).not.toBeNull();
+        } else {
+          expect(canTransition(from, action)).toBe(false);
+          expect(() =&gt; assertCanTransition(from, action)).toThrow(InvalidTransitionError);
+        }
+      }
+    }
+  });
+});
+</code></pre>
+<p><strong>§7.6.2 Service 并发冲突集成测试</strong>（<code>apps/api/src/alerts/alerts.service.spec.ts</code>）</p>
+<pre><code class="language-ts">it('两个并发 ack 恰好一个成功一个 409', async () =&gt; {
+  const created = await prisma.alert.create({
+    data: { serverId: 's1', metric: 'cpu', value: 99, zScore: 4, status: 'NEW', version: 0 },
+  });
+
+  const results = await Promise.allSettled([
+    service.transition(created.id, 'ack', 0, 'user-a'),
+    service.transition(created.id, 'ack', 0, 'user-b'),
+  ]);
+
+  const oks = results.filter((r) =&gt; r.status === 'fulfilled');
+  const conflicts = results.filter(
+    (r) =&gt; r.status === 'rejected' &amp;&amp; (r.reason?.getStatus?.() === 409),
+  );
+  expect(oks).toHaveLength(1);
+  expect(conflicts).toHaveLength(1);
+
+  const final = await prisma.alert.findUnique({ where: { id: created.id } });
+  expect(final?.status).toBe('ACK');
+  expect(final?.version).toBe(1);
+});
+</code></pre>
+<p><strong>§7.6.3 前端回滚测试</strong>（<code>apps/web/src/features/alert-detail/__tests__/state.spec.ts</code>）</p>
+<pre><code class="language-ts">import { describe, expect, it, vi } from 'vitest';
+import { useAlertActions } from '../state';
+
+function mockFetch(status: number, body: any) {
+  return vi.fn().mockResolvedValue({
+    ok: status &lt; 400,
+    status,
+    json: async () =&gt; body,
+  });
+}
+
+describe('useAlertActions', () =&gt; {
+  it('409 时回滚 status 与 version', async () =&gt; {
+    global.fetch = mockFetch(409, { code: 'VERSION_CONFLICT', currentVersion: 5 }) as any;
+    const { state, fire } = useAlertActions({ id: 'a1', status: 'NEW', version: 0 });
+    await fire('ack');
+    expect(state.alert.status).toBe('NEW');
+    expect(state.alert.version).toBe(5);
+    expect(state.lastError?.code).toBe('VERSION_CONFLICT');
+  });
+
+  it('200 时用服务端权威值覆盖', async () =&gt; {
+    global.fetch = mockFetch(200, { id: 'a1', status: 'ACK', version: 1 }) as any;
+    const { state, fire } = useAlertActions({ id: 'a1', status: 'NEW', version: 0 });
+    await fire('ack');
+    expect(state.alert.status).toBe('ACK');
+    expect(state.alert.version).toBe(1);
+    expect(state.lastError).toBeNull();
+  });
+});
+</code></pre>
+<p>三组测试全部通过后才算 §7.6 结束。</p>
+<h3 id="77-反证实验-1-移除服务端-fsm-校验">§7.7 反证实验 1 —— 移除服务端 FSM 校验</h3>
+<p><strong>假设</strong>：只有前端 disable 按钮，后端不校验也没关系。</p>
+<p><strong>动作</strong>：把 <code>alerts.service.ts</code> 的 <code>assertCanTransition</code> 那一行注释掉，直接 <code>updateMany({ ..., data: { status: computedFromAction, ... } })</code>。</p>
+<p><strong>造假验证</strong>：用 curl 直接发 POST <code>/alerts/:id/transition</code>，body 里传 <code>{ action: 'reopen', expectedVersion: 0 }</code>，此时 alert 状态是 <code>NEW</code>：</p>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/alerts/xxx/transition \
+  -H 'content-type: application/json' \
+  -d '{"action":"reopen","expectedVersion":0}'
+</code></pre>
+<p><strong>期待现象</strong>：</p>
+<ul>
+<li>请求返回 200，<code>status: REOPENED</code>，version: 1。</li>
+<li>数据库里出现了一条"从未 RESOLVED 过就直接 REOPENED"的告警，这在业务上是非法的。</li>
+<li>后续再 GET 列表，看到这条告警但没有前置状态记录，运维无法解释为什么它是 REOPENED。</li>
+</ul>
+<p><strong>恢复</strong>：撤销注释，重新跑 <code>§7.6.2</code> 的集成测试，确认再次 curl 时返回 409 <code>INVALID_TRANSITION</code>。</p>
+<p><strong>结论证据</strong>：单靠前端 disable 无法防御任何有工具的用户，服务端权威 FSM 是必要防线。</p>
+<h3 id="78-反证实验-2-移除-expectedversion-校验">§7.8 反证实验 2 —— 移除 <code>expectedVersion</code> 校验</h3>
+<p><strong>假设</strong>：只用 FSM 检查合法转换，不用 version 也能防并发。</p>
+<p><strong>动作</strong>：把 <code>updateMany({ where: { id, version: expectedVersion } })</code> 改成 <code>update({ where: { id } })</code>；DTO 里删掉 <code>expectedVersion</code>。</p>
+<p><strong>造假验证</strong>：写一段脚本模拟两个用户几乎同时点"确认"：</p>
+<pre><code class="language-ts">const alert = await prisma.alert.create({ data: { ..., status: 'NEW', version: 0 } });
+const [a, b] = await Promise.all([
+  fetch(`/api/alerts/${alert.id}/transition`, { method:'POST', body: JSON.stringify({ action:'ack' })}),
+  fetch(`/api/alerts/${alert.id}/transition`, { method:'POST', body: JSON.stringify({ action:'ack' })}),
+]);
+</code></pre>
+<p><strong>期待现象</strong>：</p>
+<ul>
+<li>两个请求都返回 200。</li>
+<li>数据库最终 status=ACK，但版本号只有一次递增（因为没在 SQL 里比较 version），审计视角看不出发生过两次操作。</li>
+<li>若两个用户分别选择"确认"和"忽略"，那么后一个悄悄覆盖前一个，用户 A 看到的是"确认"但实际最终是"忽略"。</li>
+</ul>
+<p><strong>恢复</strong>：还原 <code>updateMany</code> 与 <code>expectedVersion</code> 校验，运行 §7.6.2 集成测试确认恰好一个 200、一个 409。</p>
+<p><strong>结论证据</strong>：FSM 只解决"能不能"的问题，<code>expectedVersion</code> 才解决"谁先谁后、要不要告知冲突"的问题。两者缺一不可。</p>
+<h3 id="79-四件套-commit不推送">§7.9 四件套 + commit（不推送）</h3>
+<p>四件套（都必须落盘）：</p>
+<ol>
+<li>commit：本地一次提交，见下方 message。</li>
+<li>测试输出：<code>pnpm --filter domain test</code>、<code>pnpm --filter api test</code>、<code>pnpm --filter web test</code> 三段贴入 <code>学习日志/2026-07-22.md</code>。</li>
+<li>学习日志：《Day09 学习日志》里回答课末 3 个核心问题 + 五要素表格 + 两次反证实验的动作/期待/结论/恢复。</li>
+<li>架构证据：把 <code>alert-fsm.ts</code> 的转换表和 <code>alerts.service.ts</code> 的 <code>transition()</code> 截图或代码块贴入《架构证据/Day09-状态机与乐观锁.md》，并画一张时序图展示两个并发请求分别走成功/409 两条路径。</li>
+</ol>
+<p>commit：</p>
+<pre><code class="language-bash">git add packages/domain apps/api apps/web
+git commit -m "feat(alert): server-authoritative FSM with optimistic locking (Day09)
+
+- add AlertStatus/AlertAction and TABLE in packages/domain/alert-fsm.ts
+- add POST /alerts/:id/transition with expectedVersion
+- add updateMany-based optimistic lock, 409 on version mismatch
+- add web optimistic UI with revert on 409
+
+Refs: Day9"
+</code></pre>
+<p><strong>禁止 <code>git push</code></strong>，禁止部署，禁止执行 Prisma 生产环境迁移。</p>
+<hr>
+<h2 id="8-v3-自检清单对齐规范-8">§8 v3 自检清单（对齐规范 §8）</h2>
+<p>按顺序逐项打勾，一个不过要回去补。</p>
+<ol>
+<li><code>§0 项目当前状态</code> 明确列出 Day08 已完成的能力与今天要解决的 4 个问题。</li>
+<li><code>§1.4</code> 有 5 个子块：rationale / tree / diff-table / 依赖箭头 / 3 个理解问题。</li>
+<li><code>§1.5</code> 出现"按第 5.3 节的代码"和"边写边问自己"两条指令。</li>
+<li><code>§5</code> 覆盖 v1 → v2 → v3 三层演进，每层给出代码与遗留问题。</li>
+<li><code>§5.3</code> 完整代码零省略号、零"…此处略"。</li>
+<li><code>§5.4</code> 六个知识点，每点五要素俱全（解决的问题 / 运行机制 / 项目落点 / 生产误区 / 验证方法）。</li>
+<li><code>§6.5</code> 存在，主题聚焦 HTML/表单原生能力（本日：button disabled + aria-busy）。</li>
+<li><code>§7.6/§7.7/§7.8</code> 分别给出单元/集成测试代码与两个反证实验。</li>
+<li><code>§7.9</code> 明确禁止 <code>git push</code>，commit message 含 <code>Refs: Day9</code>。</li>
+<li>全文 0 处 <code>&gt; ✅</code> 或 <code>&gt; ❌</code> 块引用格式。</li>
+<li><code>§12</code> 保留 PDF 面试题原文与"不能替代教师五连问"的免责声明。</li>
+</ol>
+<hr>
+<h2 id="9-ai-与人分工">§9 AI 与人分工</h2>
+<ul>
+<li>人写：<code>alert-fsm.ts</code> 的 TABLE、<code>transition()</code> 事务体、前端 <code>state.ts</code> 三段式回滚、两次反证实验的操作与结论。</li>
+<li>AI 辅助：枚举 5×4=20 组转换用例、生成 Prisma migration SQL 骨架、生成按钮 label 映射、生成 vitest mock fetch 的样板。</li>
+<li>记录：AI Review 里必须写清每段 AI 建议的接受/修改/拒绝理由；核心 FSM 表、乐观锁 SQL、reducer 一律不得由 AI 代写。</li>
+</ul>
+<hr>
+<h2 id="10-时间盒">§10 时间盒</h2>
+<ul>
+<li>原理与源码理解 90 分钟：读完本文 §1、§3-§5、§5.4、§7.7、§7.8；不写代码。</li>
+<li>真实项目增量 60 分钟：写 <code>alert-fsm.ts</code> → Prisma migration → <code>transition()</code> service → controller → 前端 state.ts → AlertActions.vue。</li>
+<li>测试与故障注入 20 分钟：跑 §7.6 三组测试；执行 §7.7、§7.8 两次反证实验。</li>
+<li>架构证据 + AI Review + 复盘 10 分钟：更新架构证据文档，回答课末三题。</li>
+</ul>
+<p>超时提醒：若"真实项目增量"块超过 130 分钟，停下来评估是否卡在了乐观锁的 Prisma 语法上，先做 §5.4 知识点 4 的验证方法（两个 Promise.all）再回来。</p>
+<hr>
+<h2 id="11-通过标准">§11 通过标准</h2>
+<ul>
+<li>所有 5×4 组状态-动作组合中，非法边为 0（<code>§7.6.1</code> 测试通过）。</li>
+<li>两并发 ack 恰好一成功一 409，最终 version=1（<code>§7.6.2</code> 通过）。</li>
+<li>UI 收到 409 后 status 立即回到 prev，version 采用服务端返回值（<code>§7.6.3</code> 通过）。</li>
+<li><code>§7.7</code> <code>§7.8</code> 两次反证实验都记录了"动作 / 期待现象 / 恢复动作 / 结论证据"四项。</li>
+<li>commit 存在且 message 以 <code>Refs: Day9</code> 结尾；本地无 <code>git push</code>。</li>
+</ul>
+<hr>
+<h2 id="12-pdf-面试题">§12 PDF 面试题</h2>
+<p>以下两道来源于公开 PDF 面试题，作为知识对照点保留，<strong>不能替代</strong>教师依据真实 diff 现场提出的五连问。教师验收权在教师，本节仅供自查。</p>
+<ol>
+<li>手写状态机模拟 AI Agent 的状态切换，并说明非法转换如何处理。
+来源：《2026高德 AI agent 前端开发》，第 8 页。</li>
+<li>如何实现支持多轮对话中断和重新生成的状态机？
+来源：《2026MiNiMax前端AI开发》，第 6 页。</li>
+</ol>
+<p>对应知识：服务端权威 FSM、并发操作、幂等、UI 回滚。</p>
+<hr>
+<h2 id="13-课末-3-个核心问题写完后先答这三题再进入教师五连问">§13 课末 3 个核心问题（写完后先答这三题，再进入教师五连问）</h2>
+<ol>
+<li>请从今天项目的真实入口（AlertActions.vue 的 click）到最终输出（数据库里 version 递增的那一行）解释"状态机"的数据流；FSM 表、<code>assertCanTransition</code>、<code>updateMany</code> 乐观锁、前端 <code>revert(prev)</code> 分别在哪一层、按什么顺序生效？为什么必须是这个顺序，颠倒会出什么问题？</li>
+<li>如果故意移除本日最关键的保护机制（选一个：服务端 FSM 校验 / expectedVersion / 前端 revert），线上会看到什么可观察现象？请给出最小复现步骤、定位证据（哪张表、哪条日志）、临时止损与根因修复、以及一条防复发测试。</li>
+<li>引用今天 <code>alert-fsm.ts</code>、<code>alerts.service.ts</code> 与 <code>state.ts</code> 的具体代码段，证明"非法转换不可能被写入数据库、并发写恰好一次成功、UI 失败可恢复"三项目标已经达成；再说明本实现距离企业生产标准还缺什么（比如：审计日志、幂等 key、事务隔离级别、跨服务事件通知），并给出下一步演进路径。</li>
+</ol>
+<hr>
+<h2 id="14-教师五连问教师在真实-diff-前现场发问不预设题目">§14 教师五连问（教师在真实 diff 前现场发问，不预设题目）</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录、架构证据后，教师依据真实 diff 按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"发问 5 道。评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day09-old.html">查看 Day 09 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/08.html">← Day 08 · API/分页</a>
+            <a href="/ai-teacher-agent-devolop/day/10.html">Day 10 · M2 门禁 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E9%A1%B9%E7%9B%AE%E5%BD%93%E5%89%8D%E7%8A%B6%E6%80%81%E8%BF%9B%E5%85%A5-day09-%E5%89%8D">§0 项目当前状态（进入 Day09 前）</a></li><li><a href="#1-%E4%BB%8A%E6%97%A5%E7%9B%AE%E6%A0%87">§1 今日目标</a></li><li><a href="#2-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87">§2 环境准备</a></li><li><a href="#3-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E5%8F%98%E6%9B%B4prisma">§3 数据模型变更（Prisma）</a></li><li><a href="#4-%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96">§4 引入依赖</a></li><li><a href="#5-%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81">§5 核心代码</a></li><li><a href="#6-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1">§6 前端底子补弱</a></li><li><a href="#7-%E9%AA%8C%E8%AF%81">§7 验证</a></li><li><a href="#8-v3-%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95%E5%AF%B9%E9%BD%90%E8%A7%84%E8%8C%83-8">§8 v3 自检清单（对齐规范 §8）</a></li><li><a href="#9-ai-%E4%B8%8E%E4%BA%BA%E5%88%86%E5%B7%A5">§9 AI 与人分工</a></li><li><a href="#10-%E6%97%B6%E9%97%B4%E7%9B%92">§10 时间盒</a></li><li><a href="#11-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86">§11 通过标准</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">§12 PDF 面试题</a></li><li><a href="#13-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E5%86%99%E5%AE%8C%E5%90%8E%E5%85%88%E7%AD%94%E8%BF%99%E4%B8%89%E9%A2%98%E5%86%8D%E8%BF%9B%E5%85%A5%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">§13 课末 3 个核心问题（写完后先答这三题，再进入教师五连问）</a></li><li><a href="#14-%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E6%95%99%E5%B8%88%E5%9C%A8%E7%9C%9F%E5%AE%9E-diff-%E5%89%8D%E7%8E%B0%E5%9C%BA%E5%8F%91%E9%97%AE%E4%B8%8D%E9%A2%84%E8%AE%BE%E9%A2%98%E7%9B%AE">§14 教师五连问（教师在真实 diff 前现场发问，不预设题目）</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

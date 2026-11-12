@@ -1,0 +1,783 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 1 / Day 01：AI 前端架构与 Agent 事件模型 | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        
+        <span aria-current="page">课程资料</span>
+      </nav>
+      <header class="article-header">
+        
+        <h1>Week 1 / Day 01：AI 前端架构与 Agent 事件模型</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <p>任务版本：标准版<br>
+日期与学习时间：2026-07-14 周二，180 分钟<br>
+项目：<code>D:\demo\ai-techer\p1-monitor\frontend</code><br>
+角色视角：高级前端工程师设计可演进的 AI 诊断界面</p>
+<h2 id="1-为什么这是-ai-前端">1. 为什么这是 AI 前端</h2>
+<p>AI 前端不是普通表单加一个模型接口，也不等于聊天框。它需要把模型和 Agent 的非确定执行过程，转换成用户可理解、可取消、可恢复、可审计的状态。</p>
+<p>Day 1 直接建立四个后续能力的基础：</p>
+<pre><code class="language-text">Agent/模型产生事件
+  -&gt; 前端验证事件合同
+  -&gt; 状态机归约事件
+  -&gt; UI 展示文本、工具、批准、错误和完成状态
+  -&gt; 用户可以观察、干预和恢复
+</code></pre>
+<p>今天产出的事件合同和状态机，后续会接入真实 SSE、WebSocket、Tool Calling 和 Agent Runtime，不是一次性 Demo。</p>
+<h2 id="2-与-12pdf-的连接">2. 与 12.pdf 的连接</h2>
+<p><code>12.pdf</code> 已证明你有 Vue、运维平台、机器人控制台、ECharts、性能优化和大模型助手接入经历。需要补强的是：</p>
+<ul>
+<li>从“调用模型并展示结果”升级到“管理 Agent 执行生命周期”；</li>
+<li>从页面组件思维升级到事件合同和状态机架构；</li>
+<li>从成功路径升级到取消、工具失败、人工批准和恢复；</li>
+<li>把 AI Coding 速度转化为可验证的工程质量。</li>
+</ul>
+<h2 id="3-今日知识地图">3. 今日知识地图</h2>
+<pre><code class="language-text">AI 系统边界
+  -&gt; Agent 事件合同
+  -&gt; TypeScript 判别联合
+  -&gt; Agent Run 状态机
+  -&gt; 事件归约器 reducer
+  -&gt; Tool/Approval/Result UI
+  -&gt; 测试与可审计证据
+</code></pre>
+<h2 id="4-知识点一ai-前端的系统边界">4. 知识点一：AI 前端的系统边界</h2>
+<h3 id="四层责任">四层责任</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>层</th>
+<th>责任</th>
+<th>不应该负责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model Provider</td>
+<td>生成文本、结构化输出或工具调用意图</td>
+<td>直接控制浏览器权限和业务数据</td>
+</tr>
+<tr>
+<td>Agent/BFF</td>
+<td>Prompt、Context、Tool 执行、权限、预算、密钥</td>
+<td>依赖具体 Vue 组件结构</td>
+</tr>
+<tr>
+<td>Transport</td>
+<td>SSE/WS/HTTP 传递类型化事件、取消和错误</td>
+<td>决定页面展示样式</td>
+</tr>
+<tr>
+<td>Vue UI</td>
+<td>事件归约、状态展示、用户确认、恢复体验</td>
+<td>保存模型 API key、直接执行高风险工具</td>
+</tr>
+</tbody>
+</table></div><p>浏览器是不可信边界。模型密钥、系统 Prompt、服务端权限和高风险工具执行不能放到前端。前端按钮隐藏只影响可见性，不构成授权。</p>
+<h3 id="项目落点">项目落点</h3>
+<ul>
+<li>当前后端模型尚未完成，因此今天先定义 UI 所依赖的稳定事件合同。</li>
+<li>后续更换 DeepSeek、OpenAI、Claude 或自建 Agent 时，UI 不应跟着 Provider API 大改。</li>
+</ul>
+<h3 id="常见误区">常见误区</h3>
+<ul>
+<li>Vue 组件直接调用模型供应商并暴露 API key。</li>
+<li>UI 直接理解 Provider 的原始 chunk 格式。</li>
+<li>认为模型返回的工具名和参数天然可信。</li>
+<li>把模型“思考过程”原样展示给用户。</li>
+</ul>
+<h2 id="5-知识点二agent-事件合同">5. 知识点二：Agent 事件合同</h2>
+<p>普通聊天可能只有文本片段，但 Agent 还会启动运行、调用工具、等待确认、失败和结束。前端应依赖自己的领域事件，而不是依赖某个 SDK 的内部事件名。</p>
+<p>Day 1 至少定义：</p>
+<pre><code class="language-typescript">type AgentEvent =
+  | RunStartedEvent
+  | TextDeltaEvent
+  | ToolStartedEvent
+  | ToolSucceededEvent
+  | ToolFailedEvent
+  | ApprovalRequiredEvent
+  | RunFailedEvent
+  | RunFinishedEvent;
+</code></pre>
+<p>每个事件至少包含：</p>
+<ul>
+<li><code>runId</code>：属于哪次 Agent 执行；</li>
+<li><code>sequence</code>：事件顺序和去重依据；</li>
+<li><code>timestamp</code>：发生时间；</li>
+<li><code>type</code>：判别联合的区分字段；</li>
+<li>与该事件相关的最小 payload。</li>
+</ul>
+<h3 id="为什么使用判别联合">为什么使用判别联合</h3>
+<p><code>type</code> 确定后，TypeScript 可以收窄 payload。配合 exhaustive switch，新增事件但没有处理时可以在编译阶段暴露遗漏。</p>
+<h3 id="重要边界">重要边界</h3>
+<p>TypeScript 只能检查编译期。网络事件在运行时仍然是 <code>unknown</code>，后续必须通过 Schema 校验后才能进入 reducer。Day 1 先建立类型合同，Day 2 完成运行时合同。</p>
+<h3 id="常见误区-1">常见误区</h3>
+<ul>
+<li>使用 <code>{ type: string; data: any }</code>，导致所有错误推迟到运行时。</li>
+<li>每个事件复制完整会话和消息，导致流量和状态不一致。</li>
+<li>用数组下标代替 sequence，无法处理重复和断线恢复。</li>
+<li>把完整工具参数、密钥和私有推理放入 UI 事件。</li>
+</ul>
+<h2 id="6-知识点三agent-run-状态机">6. 知识点三：Agent Run 状态机</h2>
+<p>Agent UI 不能由 <code>isLoading/isError/isToolRunning</code> 等多个布尔量随意组合，否则会产生“不可能状态”，例如同时完成又加载。</p>
+<p>建议状态：</p>
+<pre><code class="language-text">idle
+  -&gt; running
+  -&gt; awaiting-approval
+  -&gt; running
+  -&gt; completed
+
+running -&gt; failed
+running -&gt; cancelled
+awaiting-approval -&gt; cancelled
+</code></pre>
+<p>状态机由三部分组成：</p>
+<ul>
+<li><strong>State</strong>：当前权威状态；</li>
+<li><strong>Event</strong>：发生了什么；</li>
+<li><strong>Transition</strong>：当前状态收到事件后允许进入哪里。</li>
+</ul>
+<p>Reducer 必须是纯函数：同样的旧状态和事件得到同样的新状态，不直接请求网络、操作 DOM 或读取时间。</p>
+<h3 id="必须处理的边界">必须处理的边界</h3>
+<ul>
+<li>terminal 状态收到晚到事件；</li>
+<li>sequence 重复或倒退；</li>
+<li>Tool 失败后 Run 是继续还是失败；</li>
+<li>awaiting-approval 时收到取消；</li>
+<li><code>run-finished</code> 到达但仍存在 running tool。</li>
+</ul>
+<h2 id="7-知识点四tool-calling-ui-与可审计体验">7. 知识点四：Tool Calling UI 与可审计体验</h2>
+<p>高级 AI 前端不展示私有 Chain of Thought，而展示可审计执行事实：</p>
+<ul>
+<li>当前阶段；</li>
+<li>工具名称和安全参数摘要；</li>
+<li>pending/running/success/error；</li>
+<li>开始时间和耗时；</li>
+<li>是否需要人工批准；</li>
+<li>用户可以采取的下一步。</li>
+</ul>
+<p>模型提出工具调用不等于工具已执行。UI 必须区分：</p>
+<pre><code class="language-text">模型提出 -&gt; 服务端校验 -&gt; 等待批准 -&gt; 服务端执行 -&gt; 返回结果
+</code></pre>
+<p>今天只实现状态展示，不执行真实高风险工具。</p>
+<h2 id="8-知识点五人和-ai-的高效分工">8. 知识点五：人和 AI 的高效分工</h2>
+<h3 id="人必须负责">人必须负责</h3>
+<ul>
+<li>定义系统边界、事件语义和状态转换；</li>
+<li>判断哪些数据可展示，哪些属于安全边界；</li>
+<li>编写至少一个核心 reducer 测试；</li>
+<li>审查 AI diff，并运行最终验证；</li>
+<li>脱离 AI 解释代码。</li>
+</ul>
+<h3 id="ai-适合负责">AI 适合负责</h3>
+<ul>
+<li>创建 Vite/Vue/Vitest/ESLint 工程骨架；</li>
+<li>根据人定义的合同生成重复类型和测试候选；</li>
+<li>枚举遗漏的状态转换和失败场景；</li>
+<li>进行只读代码审查和文档整理。</li>
+</ul>
+<h3 id="builderreviewer-模式">Builder/Reviewer 模式</h3>
+<ul>
+<li>Codex 或 Claude Code 选择一个作为 Builder 生成机械代码。</li>
+<li>另一个只在高风险改动后作为 Reviewer，不与 Builder 同时编辑同一文件。</li>
+<li>人决定接受、修改或拒绝，AI 之间不自动互相批准。</li>
+</ul>
+<p>效率指标不是生成行数，而是首次全绿时间、返工次数、遗漏问题数和独立讲解通过率。</p>
+<h2 id="9-三小时项目任务">9. 三小时项目任务</h2>
+<h3 id="0-30-分钟学习并确定边界">0-30 分钟：学习并确定边界</h3>
+<ul>
+<li>阅读本任务单五个知识点。</li>
+<li>阅读后端 Prisma 中 <code>Diagnosis</code>、<code>ToolCall</code>、<code>Anomaly</code> 的字段，只理解领域，不研究 NestJS DI。</li>
+<li>创建 <code>docs/architecture/ai-frontend-boundary-day-01.md</code>，画 Model/BFF/Transport/Vue 四层边界。</li>
+</ul>
+<h3 id="30-55-分钟人工定义事件合同">30-55 分钟：人工定义事件合同</h3>
+<p>独立完成：</p>
+<ul>
+<li><code>src/domain/agent/agent-event.ts</code></li>
+<li><code>src/domain/agent/agent-run-state.ts</code></li>
+</ul>
+<p>写出九类事件、状态集合、sequence 规则和敏感字段限制。此阶段禁止 AI 直接替你决定事件语义。</p>
+<h3 id="55-95-分钟ai-辅助创建工程骨架">55-95 分钟：AI 辅助创建工程骨架</h3>
+<p>使用一个 AI Builder 辅助完成：</p>
+<ul>
+<li>Vue 3 + TypeScript + Vite；</li>
+<li>Vue Router、Pinia；</li>
+<li>Vitest、Vue Test Utils；</li>
+<li>ESLint、Prettier；</li>
+<li><code>lint/typecheck/test/build</code> scripts；</li>
+<li><code>app/domain/features/shared</code> 目录。</li>
+</ul>
+<p>人工逐项检查依赖用途和脚本，不接受无法解释的配置。</p>
+<h3 id="95-140-分钟人工实现状态机">95-140 分钟：人工实现状态机</h3>
+<p>实现：</p>
+<ul>
+<li><code>src/features/agent-run/model/createAgentRunState.ts</code></li>
+<li><code>src/features/agent-run/model/reduceAgentEvent.ts</code></li>
+<li>对应单元测试。</li>
+</ul>
+<p>至少覆盖：正常完成、工具成功、工具失败、等待批准、取消、重复 sequence、terminal 状态晚到事件、非法状态转换。</p>
+<h3 id="140-165-分钟实现项目内-agent-run-ui">140-165 分钟：实现项目内 Agent Run UI</h3>
+<p>实现 <code>AgentRunPanel.vue</code>，展示：</p>
+<ul>
+<li>Run 状态；</li>
+<li>增量文本；</li>
+<li>Tool 调用状态、参数摘要和耗时；</li>
+<li>Approval waiting；</li>
+<li>error/finished/cancelled。</li>
+</ul>
+<p>使用测试 fixture 驱动 UI。Fixture 只能放在测试或开发适配层，不能混入生产 Store；它是未来真实 Transport 的合同替身，不是独立 Demo。</p>
+<h3 id="165-180-分钟ai-review验证与提交">165-180 分钟：AI Review、验证与提交</h3>
+<ul>
+<li>让 Reviewer 只读检查状态遗漏、类型不安全和安全泄漏。</li>
+<li>人工决定接受/拒绝建议，记录到 <code>docs/evidence/day-01/ai-review.md</code>。</li>
+<li>运行 lint、typecheck、test、build。</li>
+<li>提交 commit。</li>
+</ul>
+<h2 id="10-学生先实现的-starter-code">10. 学生先实现的 starter code</h2>
+<p>先检查工作区，不能覆盖已有改动：</p>
+<pre><code class="language-powershell">git -C D:\demo\ai-techer status --short
+Test-Path D:\demo\ai-techer\p1-monitor\frontend
+</code></pre>
+<p>如果 <code>frontend</code> 不存在，在 <code>D:\demo\ai-techer\p1-monitor</code> 执行：</p>
+<pre><code class="language-powershell">pnpm create vite frontend --template vue-ts
+Set-Location frontend
+pnpm install
+pnpm add -D vitest @vue/test-utils jsdom
+</code></pre>
+<h3 id="101-事件合同">10.1 事件合同</h3>
+<p>创建 <code>src/domain/agent/agent-event.ts</code>。下面只有合同，没有 reducer 最终答案：</p>
+<pre><code class="language-typescript">export type RunId = string &amp; { readonly __brand: 'RunId' };
+
+type EventMeta = {
+  runId: RunId;
+  sequence: number;
+  occurredAt: string;
+};
+
+export type AgentEvent =
+  | (EventMeta &amp; { type: 'run.started'; payload: Record&lt;string, never&gt; })
+  | (EventMeta &amp; { type: 'text.delta'; payload: { text: string } })
+  | (EventMeta &amp; {
+      type: 'tool.started';
+      payload: { callId: string; toolName: string; argumentSummary: string };
+    })
+  | (EventMeta &amp; {
+      type: 'tool.succeeded';
+      payload: { callId: string; resultSummary: string; durationMs: number };
+    })
+  | (EventMeta &amp; {
+      type: 'tool.failed';
+      payload: { callId: string; code: string; message: string };
+    })
+  | (EventMeta &amp; {
+      type: 'approval.required';
+      payload: { approvalId: string; action: string; risk: 'low' | 'medium' | 'high' };
+    })
+  | (EventMeta &amp; { type: 'run.cancelled'; payload: { reason: string } })
+  | (EventMeta &amp; { type: 'run.failed'; payload: { code: string; message: string } })
+  | (EventMeta &amp; { type: 'run.finished'; payload: { summary: string } });
+
+export function assertNever(value: never): never {
+  throw new Error(`Unhandled AgentEvent: ${JSON.stringify(value)}`);
+}
+</code></pre>
+<p>学生先解释：为什么事件中没有 <code>apiKey</code>、完整 Prompt、完整工具参数和 Chain of Thought？解释不清，不进入 reducer。</p>
+<h3 id="102-唯一状态来源">10.2 唯一状态来源</h3>
+<p>创建 <code>src/domain/agent/agent-run-state.ts</code>：</p>
+<pre><code class="language-typescript">import type { AgentEvent, RunId } from './agent-event';
+
+export type RunStatus =
+  | 'idle'
+  | 'running'
+  | 'awaiting-approval'
+  | 'completed'
+  | 'failed'
+  | 'cancelled';
+
+export type TimelineItem = {
+  key: string;
+  kind: 'text' | 'tool' | 'approval' | 'error' | 'result';
+  title: string;
+  detail?: string;
+};
+
+export type AgentRunState = {
+  runId?: RunId;
+  status: RunStatus;
+  lastSequence: number;
+  timeline: TimelineItem[];
+  error?: { code: string; message: string };
+};
+
+export const initialAgentRunState: AgentRunState = {
+  status: 'idle',
+  lastSequence: -1,
+  timeline: [],
+};
+
+export function reduceAgentEvent(
+  state: AgentRunState,
+  event: AgentEvent,
+): AgentRunState {
+  // TODO: 定义重复/乱序 sequence 策略。
+  // TODO: 定义 completed/failed/cancelled 终态后的事件策略。
+  // TODO: 穷尽处理九类事件；不允许宽泛 default 静默返回 state。
+  throw new Error('Student implementation required');
+}
+</code></pre>
+<h3 id="103-失败测试先行">10.3 失败测试先行</h3>
+<p>创建 <code>src/domain/agent/agent-run-state.spec.ts</code>：</p>
+<pre><code class="language-typescript">import { describe, expect, it } from 'vitest';
+import type { AgentEvent, RunId } from './agent-event';
+import { initialAgentRunState, reduceAgentEvent } from './agent-run-state';
+
+const runId = 'run-1' as RunId;
+type EventInput = AgentEvent extends infer T
+  ? T extends AgentEvent
+    ? Omit&lt;T, 'runId' | 'sequence' | 'occurredAt'&gt;
+    : never
+  : never;
+
+function event(value: EventInput, sequence: number): AgentEvent {
+  return {
+    ...value,
+    runId,
+    sequence,
+    occurredAt: '2026-07-14T00:00:00.000Z',
+  } as AgentEvent;
+}
+
+describe('reduceAgentEvent', () =&gt; {
+  it('replays the same events deterministically', () =&gt; {
+    const events: AgentEvent[] = [
+      event({ type: 'run.started', payload: {} }, 0),
+      event({ type: 'run.finished', payload: { summary: 'done' } }, 1),
+    ];
+    const replay = () =&gt; events.reduce(reduceAgentEvent, initialAgentRunState);
+    expect(replay()).toEqual(replay());
+  });
+
+  it.todo('ignores an already applied sequence');
+  it.todo('defines an observable policy for an out-of-order sequence');
+  it.todo('enters awaiting-approval after approval.required');
+  it.todo('correlates tool completion by callId');
+  it.todo('records a safe tool failure');
+  it.todo('enters cancelled from a non-terminal state');
+  it.todo('enters a terminal run failure');
+  it.todo('does not mutate a terminal state after a late event');
+});
+</code></pre>
+<p>把 8 个 <code>todo</code> 实现为真实测试，再补至少 1 个状态边界测试。<code>as AgentEvent</code> 只允许出现在测试 fixture；Day 2 用运行时 Schema 消除网络边界的强制断言。</p>
+<h3 id="104-最小-ui">10.4 最小 UI</h3>
+<p><code>AgentRunPanel.vue</code> 只接收 <code>AgentRunState</code>，不接收 Provider 原始事件：</p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import type { AgentRunState } from '@/domain/agent/agent-run-state';
+
+defineProps&lt;{ state: AgentRunState }&gt;();
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;section aria-labelledby="agent-run-title"&gt;
+    &lt;header&gt;
+      &lt;h2 id="agent-run-title"&gt;诊断执行&lt;/h2&gt;
+      &lt;output :data-status="state.status"&gt;{{ state.status }}&lt;/output&gt;
+    &lt;/header&gt;
+    &lt;ol aria-live="polite"&gt;
+      &lt;li v-for="item in state.timeline" :key="item.key"&gt;
+        &lt;strong&gt;{{ item.title }}&lt;/strong&gt;
+        &lt;p v-if="item.detail"&gt;{{ item.detail }}&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+</code></pre>
+<p>最终运行：</p>
+<pre><code class="language-powershell">pnpm lint
+pnpm typecheck
+pnpm test
+pnpm build
+</code></pre>
+<p>四条命令必须使用真实输出；不能在日志中预写“全绿”。</p>
+<h2 id="11-原理反证实验">11. 原理反证实验</h2>
+<p>先把 reducer 中的 exhaustive check 临时替换为宽泛 default，再增加一个新事件，观察编译器为什么无法提醒遗漏；随后恢复 exhaustive check，并保留能够证明新增事件必须处理的类型测试或编译证据。</p>
+<p>再构造一个重复 sequence 事件，证明不去重时 Tool 卡片或文本会重复追加。</p>
+<h2 id="12-架构证据">12. 架构证据</h2>
+<p><code>ai-frontend-boundary-day-01.md</code> 必须包含：</p>
+<ul>
+<li>Model/BFF/Transport/Vue 责任矩阵；</li>
+<li>Agent Event 时序图；</li>
+<li>Agent Run 状态图；</li>
+<li>浏览器信任边界；</li>
+<li>SDK/Provider 替换时哪些层应该变化；</li>
+<li>当前使用 fixture、未来接入真实 transport 的演进条件。</li>
+</ul>
+<h2 id="13-通过标准">13. 通过标准</h2>
+<ul>
+<li>九类事件为判别联合，不存在 <code>data: any</code>。</li>
+<li>reducer 为纯函数，非法转换有明确策略。</li>
+<li>至少 8 个状态转换测试全部通过。</li>
+<li>UI 可以展示 text/tool/approval/error/finish，而不展示 Chain of Thought。</li>
+<li>模型 API key、系统 Prompt 和完整敏感参数不进入前端。</li>
+<li>lint、typecheck、test、build 全部通过。</li>
+<li>AI Review 有接受和拒绝理由，不是复制 AI 结论。</li>
+</ul>
+<p>项目证据达到 49/70 后进入教师五连问，执行规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<h2 id="14-掌握标准">14. 掌握标准</h2>
+<p>脱离 AI 后能够：</p>
+<ol>
+<li>解释 AI 前端四层边界。</li>
+<li>说明判别联合为什么优于 <code>type + any</code>。</li>
+<li>手写至少五个 Agent 状态转换。</li>
+<li>解释重复 sequence 和晚到事件如何处理。</li>
+<li>区分模型提出工具、服务端执行工具和前端展示工具。</li>
+<li>说明哪些工作交给 AI 可以提效，哪些必须由人决策。</li>
+</ol>
+<h2 id="15-提交物">15. 提交物</h2>
+<ul>
+<li><code>frontend</code> 工程和 Agent Run 功能代码；</li>
+<li><code>docs/architecture/ai-frontend-boundary-day-01.md</code>；</li>
+<li><code>docs/learning/day-01.md</code>；</li>
+<li><code>docs/evidence/day-01/commands.md</code>；</li>
+<li><code>docs/evidence/day-01/ai-review.md</code>；</li>
+<li>commit：<code>day-01: define agent event model and run state UI</code>。</li>
+</ul>
+<p>完成时提交：</p>
+<pre><code class="language-text">Day 1 已完成
+commit: &lt;hash&gt;
+测试输出: &lt;路径或关键结果&gt;
+学习日志: &lt;路径&gt;
+架构证据: &lt;路径&gt;
+AI Review: &lt;路径&gt;
+</code></pre>
+<h2 id="16-课末-3-个核心问题">16. 课末 3 个核心问题</h2>
+<ol>
+<li>从 <code>AgentEvent</code> 进入 <code>reduceAgentEvent</code> 再到 <code>AgentRunPanel</code>，数据所有权如何变化？为什么 Vue 组件不能直接消费 Provider 原始 chunk？</li>
+<li>如果网络把 <code>tool.started</code> 至少投递一次且发生乱序，当前 sequence 策略能保证什么、不能保证什么？未来执行有副作用工具时还缺哪一层幂等？</li>
+<li>请引用一个测试和一个反证实验，证明状态机比多个布尔量更可靠；当前 fixture 实现距离线上 SSE 断线续传还缺什么？</li>
+</ol>
+<h2 id="真实项目情境题联网更新-2026-07-13">真实项目情境题（联网更新 2026-07-13）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li><code>AgentRunPanel</code> 在 1 秒内收到 <code>tool-started</code>、<code>approval-required</code>、<code>run-finished</code> 三个事件，其中最后两个乱序，UI 同时显示“已完成”和“等待批准”。请用事件日志、sequence 与 reducer 输入输出定位不可能状态；先禁止终态继续归约止损，再修复判别联合和转换表，并用乱序、重复、晚到事件测试验证。回答必须按“定位证据 -&gt; 临时止损 -&gt; 根因修复 -&gt; 回归验证”组织。
+依据：<a href="https://jobs.bytedance.com/experienced/position/7650035429911824693/detail" target="_blank" rel="noopener noreferrer">S1 Aime</a></li>
+<li>200 个并发 Agent Run 通过同一 Transport 进入页面，某个 Provider 新增事件类型后旧 UI 静默忽略，5% 的运行永远停在 <code>running</code>。请给出合同版本、exhaustive switch 编译证据和 runId 时间线；先降级为“未知事件/可重试”，再设计 Provider-BFF-Transport-Vue 边界及兼容策略，并以回放 10 万事件验证无悬挂 Run。回答必须按“定位证据 -&gt; 临时止损 -&gt; 根因修复 -&gt; 回归验证”组织。
+依据：<a href="https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html" target="_blank" rel="noopener noreferrer">S20 TypeScript unions</a>
+知识映射：事件合同、判别联合、FSM、Tool/Approval UI；从单次归约错误扩展到 Provider 演进。</li>
+</ol>
+<h2 id="17-pdf-面试题">17. PDF 面试题</h2>
+<ol>
+<li>手写一个简单状态机，模拟 AI Agent 的 Idle、Thinking、Calling_Tool、Responding、Error 状态切换。<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E9%25AB%2598%25E5%25BE%25B7%2520Al%2520agent%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026高德 Al agent 前端开发》</a>，第 8 页。</li>
+<li>如果从零设计 AI Agent 前端架构，会考虑哪些核心模块？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E9%25AB%2598%25E5%25BE%25B7%2520Al%2520agent%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026高德 Al agent 前端开发》</a>，第 9 页。</li>
+</ol>
+<p>题目边界：文件名不等于官方题库；答案必须引用今天的事件合同、状态机、测试和边界图。</p>
+<h2 id="18-完成后教师五连问">18. 完成后教师五连问</h2>
+<p>教师核验真实 commit、测试、学习日志、反证记录和架构证据后，再按“局部机制 -&gt; 边界一致性 -&gt; 线上事故 -&gt; 工程权衡 -&gt; 架构演进”提出 5 道问题。五连问不提前固定，执行规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+
+          
+          
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E6%98%AF-ai-%E5%89%8D%E7%AB%AF">1. 为什么这是 AI 前端</a></li><li><a href="#2-%E4%B8%8E-12pdf-%E7%9A%84%E8%BF%9E%E6%8E%A5">2. 与 12.pdf 的连接</a></li><li><a href="#3-%E4%BB%8A%E6%97%A5%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE">3. 今日知识地图</a></li><li><a href="#4-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B8%80ai-%E5%89%8D%E7%AB%AF%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%BE%B9%E7%95%8C">4. 知识点一：AI 前端的系统边界</a></li><li><a href="#5-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%BA%8Cagent-%E4%BA%8B%E4%BB%B6%E5%90%88%E5%90%8C">5. 知识点二：Agent 事件合同</a></li><li><a href="#6-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B8%89agent-run-%E7%8A%B6%E6%80%81%E6%9C%BA">6. 知识点三：Agent Run 状态机</a></li><li><a href="#7-%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9Btool-calling-ui-%E4%B8%8E%E5%8F%AF%E5%AE%A1%E8%AE%A1%E4%BD%93%E9%AA%8C">7. 知识点四：Tool Calling UI 与可审计体验</a></li><li><a href="#8-%E7%9F%A5%E8%AF%86%E7%82%B9%E4%BA%94%E4%BA%BA%E5%92%8C-ai-%E7%9A%84%E9%AB%98%E6%95%88%E5%88%86%E5%B7%A5">8. 知识点五：人和 AI 的高效分工</a></li><li><a href="#9-%E4%B8%89%E5%B0%8F%E6%97%B6%E9%A1%B9%E7%9B%AE%E4%BB%BB%E5%8A%A1">9. 三小时项目任务</a></li><li><a href="#10-%E5%AD%A6%E7%94%9F%E5%85%88%E5%AE%9E%E7%8E%B0%E7%9A%84-starter-code">10. 学生先实现的 starter code</a></li><li><a href="#11-%E5%8E%9F%E7%90%86%E5%8F%8D%E8%AF%81%E5%AE%9E%E9%AA%8C">11. 原理反证实验</a></li><li><a href="#12-%E6%9E%B6%E6%9E%84%E8%AF%81%E6%8D%AE">12. 架构证据</a></li><li><a href="#13-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86">13. 通过标准</a></li><li><a href="#14-%E6%8E%8C%E6%8F%A1%E6%A0%87%E5%87%86">14. 掌握标准</a></li><li><a href="#15-%E6%8F%90%E4%BA%A4%E7%89%A9">15. 提交物</a></li><li><a href="#16-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">16. 课末 3 个核心问题</a></li><li><a href="#%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-13">真实项目情境题（联网更新 2026-07-13）</a></li><li><a href="#17-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">17. PDF 面试题</a></li><li><a href="#18-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">18. 完成后教师五连问</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

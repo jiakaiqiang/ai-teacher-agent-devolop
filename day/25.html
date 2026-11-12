@@ -1,0 +1,1466 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 25 · 后端测试（v1 高覆盖单测 → v2 分层 + Repository fake → v3 隔离集成 + E2E 门禁 + mutation 验证） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html" aria-current="page">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/04.html">第 4 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 25</p>
+        <h1>后端测试（v1 高覆盖单测 → v2 分层 + Repository fake → v3 隔离集成 + E2E 门禁 + mutation 验证）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段一（Day 1-30，前端 -&gt; AI 前端）。所有 BFF、NestJS、数据库、队列和 Agent 后端增量都必须服务于 <code>p1-monitor</code> 的真实 AI 前端链路，不得另起无关 Demo。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+</blockquote>
+<p>任务版本：标准版
+日期与时长：2026-08-07 周五，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor\apps\api</code>
+角色视角：完成 Day 21-24 后端架构深化（模块边界 / API 合同 / 数据建模 / 鉴权授权）、第一次要给核心后端模块建立"能真正抓住 bug"的分层测试体系的开发者</p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p>90 天转型路线的三个阶段：</p>
+<pre><code>阶段一（Day 1-30）：前端 → AI 前端
+   项目：p1-monitor 智能运维监控（Vue 3 + TypeScript + WebSocket + Agent UI）
+   Day 1-20：前端 Agent UI + 后端 Nest + Agent Loop + 持久化 + 毕业考
+
+阶段二（Day 31-60）：AI 前端 → AI 全栈
+   项目：p1-monitor 后端深化 + 全栈（NestJS + LLM 集成 + RAG）
+   Day 21：NestJS 架构深化（模块边界 + DI scope）
+   Day 22：API 合同（DTO + OpenAPI + 版本兼容）
+   Day 23：数据建模（聚合 + 索引 + 迁移）
+   Day 24：鉴权/权限（JWT + RBAC/ABAC + 资源授权）
+   Day 25：后端测试（测试金字塔 + fake + 集成 + mutation）  ← 今天在这里
+   Day 26-30：缓存 / 限流 / 部署 / M3 门禁
+
+阶段三（Day 61-90）：AI 全栈 → AI Agent 工程师
+   项目：p2-agent-workbench 多 Agent 协同工作台
+</code></pre>
+<p><strong>Day 25 在阶段一第 5 天</strong>。Day 21-24 已经把后端重构成清晰的模块边界、统一合同、聚合建模、资源级授权。今天要给这些模块建立<strong>分层测试</strong>，并且证明一个反直觉的事实：<strong>覆盖率高不等于测试有效</strong>——删掉一个关键授权断言后测试仍然全绿，才是最危险的假安全。</p>
+<h3 id="到-day-24-结束时项目已具备的能力">到 Day 24 结束时项目已具备的能力</h3>
+<ul>
+<li><strong>后端架构</strong>（Day 21）：Ports/Adapters 解耦、DI scope、共享域模块，<code>madge --circular</code> 零循环</li>
+<li><strong>API 合同</strong>（Day 22）：统一 Error DTO + Envelope、OpenAPI、版本兼容、消费者合同测试</li>
+<li><strong>数据模型</strong>（Day 23）：Conversation/Message/Citation/User 聚合、复合索引、游标分页、可回滚迁移</li>
+<li><strong>鉴权授权</strong>（Day 24）：JWT 认证、RBAC 角色守卫、资源级 ABAC 策略引擎、CSRF、actor 审计</li>
+<li><strong>测试现状</strong>：只有零散的单元测试（Day 01 的 reducer spec、Day 11 的 registry spec 等），没有系统的分层测试，没有集成 DB 测试，没有 E2E 门禁，更没有验证"测试到底能不能抓住 bug"</li>
+</ul>
+<h3 id="今天要解决的-4-个问题">今天要解决的 4 个问题</h3>
+<ol>
+<li>
+<p><strong>问题 1：高覆盖率是假安全</strong>
+<code>AnomalyService</code> 单元测试覆盖率 92%，看起来很安全。但当有人误删了 <code>authorizeResourceAccess(actor, anomaly)</code> 这一行授权断言，所有单测依然全绿——因为测试用例里根本没断言"未授权 actor 会被拒绝"。覆盖率统计的是"代码行被执行了"，不是"行为被验证了"。这种假安全直到线上跨租户读取事故才暴露。</p>
+</li>
+<li>
+<p><strong>问题 2：Service 层测试依赖真实 DB 又慢又脆</strong>
+如果 <code>AnomalyService</code> 的单测直接 <code>new PrismaService()</code> 连真库，每个用例都要建表、插数据、清理。100 个用例跑 3 分钟，还会因为并发跑测试互相污染。需要 <strong>Repository fake</strong>：用内存实现替换 Prisma，让 Service 层单测既快又确定。</p>
+</li>
+<li>
+<p><strong>问题 3：集成测试共享数据库互相污染</strong>
+集成测试必须连真实 Postgres（验证 SQL、索引、事务真的能跑），但如果 8 个 CI job 共享同一个库、又不清理，测试顺序稍微变一下就随机失败 15%。需要 <strong>隔离 schema / 事务回滚 / 确定性 fixture</strong> 保证每个测试跑在干净环境里。</p>
+</li>
+<li>
+<p><strong>问题 4：无法证明测试有效</strong>
+怎么证明"我的测试真的能抓 bug"？答案是 <strong>mutation testing</strong>：故意往源码里注入一个变异（比如把 <code>&gt;</code> 改成 <code>&gt;=</code>、删掉一个 <code>if</code> 分支、把 <code>throw</code> 改成 <code>return</code>），如果测试还全绿，说明这个变异"存活"了——测试有盲区。今天要至少捕获一个 mutation，证明关键行为测试真的有牙齿。</p>
+</li>
+</ol>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<p>在 <code>p1-monitor/apps/api</code> 里交付一套<strong>分层测试体系</strong> <code>test/</code>：给 Day 23 的 <code>ConversationService</code>（聚合根）和 Day 24 的 <code>AnomalyService</code>（资源授权）建立单元测试（Repository fake）、集成测试（隔离 schema + 事务回滚）、E2E 测试（真实 HTTP + 授权门禁），并用一次 mutation testing 证明关键授权断言的测试真的能抓住变异。</p>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p><strong>场景</strong>：这里的"用户"是<strong>跑 CI 的开发者</strong>和<strong>未来接手项目的工程师</strong>。他们看到的是测试报告和一次 mutation 演练的结果。</p>
+<pre><code>$ pnpm --filter api test:unit
+ ✓ conversation.aggregate.spec.ts (12)
+ ✓ anomaly.service.spec.ts (18)     ← Repository fake，无 DB，跑 800ms
+   ✓ 未授权 actor 读取他人 anomaly → 抛 ForbiddenError
+   ✓ owner 读取自己的 anomaly → 成功
+   ...
+ Test Files  2 passed (2)
+      Tests  30 passed (30)
+   Duration  1.2s
+
+$ pnpm --filter api test:integration
+ ✓ conversation.repository.int-spec.ts (8)   ← 隔离 schema，真实 Postgres
+   ✓ 游标分页在 5 万条 message 下 P95 &lt; 50ms
+   ✓ 外键级联删除不留孤儿 Citation
+ 每个用例前 BEGIN，用例后 ROLLBACK ← 零污染
+ Test Files  1 passed (1)
+   Duration  4.8s
+
+$ pnpm --filter api test:e2e
+ ✓ auth-matrix.e2e-spec.ts (16)     ← 真实 HTTP + JWT
+   ✓ 跨用户 GET /anomalies/:id → 403（授权门禁）
+   ✓ 伪造 JWT → 401
+ Test Files  1 passed (1)
+
+$ pnpm --filter api test:mutation -- --mutate src/anomaly/anomaly.service.ts
+ Mutation testing report:
+   变异 #7: 删除 `authorizeResourceAccess(actor, anomaly)` 调用
+     状态: KILLED ✔ (被 anomaly.service.spec.ts:42 "未授权 actor 读取" 捕获)
+   变异 #12: `&gt;` → `&gt;=` in Z-Score 阈值
+     状态: KILLED ✔
+   变异 #19: `throw` → `return null` in 授权失败分支
+     状态: KILLED ✔
+ Mutation score: 84% (关键授权变异 100% 捕获)
+</code></pre>
+<p>关键是最后一步：如果谁误删了授权断言，mutation testing 会告诉你"这个变异存活了"，逼你补测试。</p>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<ul>
+<li><strong>输入</strong>：Day 21-24 已有的 Service / Repository / Controller / Guard</li>
+<li><strong>输出</strong>：<code>test/</code> 下三层测试（unit / integration / e2e）+ 一份 mutation 报告 + CI 三档测试脚本</li>
+<li><strong>对齐后续</strong>：今天建立的<strong>分层测试规范</strong>（fake 在哪层、集成测试怎么隔离、E2E 覆盖什么、mutation 验证什么）是 Day 30（M3 门禁）"关键模块覆盖 ≥ 75% 且 mutation 有效"这条硬门禁的达标依据，也是 Day 61-90 p2 多 Agent 工作台测试策略的模板</li>
+</ul>
+<h3 id="13-三版演进的目标">1.3 三版演进的目标</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>实现的功能</th>
+<th>代码结构</th>
+<th>引入的知识</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td>只给 Service 写覆盖率高的单测</td>
+<td>单个 <code>*.spec.ts</code>，直连或简单 mock</td>
+<td>Vitest 基础、覆盖率统计、<code>describe/it/expect</code></td>
+</tr>
+<tr>
+<td><strong>v1 痛点</strong></td>
+<td>覆盖率 92% 但删授权断言仍全绿；假安全</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>v1 + <strong>Repository fake</strong> + <strong>关键行为测试</strong></td>
+<td>拆出 <code>test/fakes/</code> + 按行为组织测试</td>
+<td>依赖倒置在测试中的应用、fake vs mock vs stub、行为覆盖 vs 行覆盖</td>
+</tr>
+<tr>
+<td><strong>v2 痛点</strong></td>
+<td>fake 测不到真实 SQL / 索引 / 事务；集成测试共享 DB 污染</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>v2 + <strong>隔离集成测试</strong>（事务回滚）+ <strong>E2E 授权矩阵</strong> + <strong>mutation 验证</strong></td>
+<td>完整分层（<code>test/unit</code> <code>test/integration</code> <code>test/e2e</code> + <code>stryker.conf</code>）</td>
+<td>测试隔离（schema/事务）、确定性 fixture、E2E 门禁、mutation testing、覆盖率盲区</td>
+</tr>
+</tbody>
+</table></div><p><strong>用户最终在项目里交付的是 v3</strong>。v1 和 v2 是教学用的过渡版本。</p>
+<hr>
+<h2 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h2>
+<p><strong>为什么放在最前面</strong>：测试体系涉及多个关注点（单元测试的 fake、集成测试的 DB 隔离、E2E 的 HTTP 装配、mutation 配置），如果不先立起骨架，就会把 fake 散在各个 spec 文件里重复定义、把集成测试和单元测试混在一个目录导致 CI 无法分档跑、把 E2E 的应用装配逻辑复制粘贴。看完这棵树，下面章节再出现 <code>test/fakes/fake-anomaly.repository.ts</code> 时，你就能立刻定位它是"单元测试用的内存实现"。</p>
+<p><strong>今天在 <code>p1-monitor/apps/api/</code> 下要建立的完整测试目录树（v3 完整版）</strong>：</p>
+<pre><code>apps/api/
+├── src/
+│   ├── anomaly/
+│   │   ├── anomaly.service.ts              ← 【Day 24 已有】被测：资源授权
+│   │   ├── anomaly.repository.ts           ← 【Day 23 已有】被测：数据访问
+│   │   └── ports/anomaly-repository.port.ts ← 【Day 21 已有】Repository 接口（fake 的契约）
+│   └── conversation/
+│       ├── conversation.service.ts         ← 【Day 23 已有】被测：聚合根
+│       └── conversation.aggregate.ts       ← 【Day 23 已有】被测：业务不变量
+├── test/                                   ← 【本日大改】分层测试根
+│   ├── unit/                               ← 【新增】单元测试（无 DB，用 fake）
+│   │   ├── anomaly.service.spec.ts         ← Service + Repository fake
+│   │   └── conversation.aggregate.spec.ts  ← 纯聚合逻辑
+│   ├── integration/                        ← 【新增】集成测试（真实 Postgres）
+│   │   ├── conversation.repository.int-spec.ts ← SQL/索引/事务
+│   │   └── setup-integration.ts            ← 隔离 schema + 事务回滚 helper
+│   ├── e2e/                                ← 【新增】端到端测试（真实 HTTP）
+│   │   ├── auth-matrix.e2e-spec.ts         ← 授权矩阵门禁
+│   │   └── setup-e2e.ts                    ← Nest app 装配 + JWT 签发 helper
+│   ├── fakes/                              ← 【新增】测试替身（跨用例复用）
+│   │   ├── fake-anomaly.repository.ts      ← 内存 Repository（实现 port 接口）
+│   │   └── fixtures.ts                     ← 确定性测试数据工厂
+│   └── helpers/
+│       └── mutation-guard.spec.ts          ← 【新增】关键行为测试（mutation 靶子）
+├── stryker.conf.json                       ← 【新增】mutation testing 配置
+├── vitest.config.ts                        ← 【改】拆分 unit/integration/e2e project
+└── package.json                            ← 【改】test:unit / test:integration / test:e2e / test:mutation 脚本
+</code></pre>
+<p><strong>三版演进对应的文件差异</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>文件</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>test/unit/anomaly.service.spec.ts</code></td>
+<td>✓ 简单 mock，覆盖率导向</td>
+<td>✓ Repository fake + 行为导向</td>
+<td>✓ 同 v2</td>
+</tr>
+<tr>
+<td><code>test/fakes/fake-anomaly.repository.ts</code></td>
+<td>✗</td>
+<td>✓ 实现 port 接口</td>
+<td>✓ 同 v2</td>
+</tr>
+<tr>
+<td><code>test/fakes/fixtures.ts</code></td>
+<td>✗</td>
+<td>✓ 确定性工厂</td>
+<td>✓ 同 v2</td>
+</tr>
+<tr>
+<td><code>test/integration/*.int-spec.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 真实 DB + 事务回滚</td>
+</tr>
+<tr>
+<td><code>test/integration/setup-integration.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 隔离 schema helper</td>
+</tr>
+<tr>
+<td><code>test/e2e/auth-matrix.e2e-spec.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 授权矩阵门禁</td>
+</tr>
+<tr>
+<td><code>stryker.conf.json</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ mutation 配置</td>
+</tr>
+<tr>
+<td><code>vitest.config.ts</code></td>
+<td>单 project</td>
+<td>单 project</td>
+<td>三 project 分档</td>
+</tr>
+</tbody>
+</table></div><p><strong>依赖方向（务必单向，反过来一次都不行）</strong>：</p>
+<pre><code>test/unit/*.spec.ts
+        │
+        ├─► src/*.service.ts          ← 被测单元
+        └─► test/fakes/*.ts           ← 内存替身（实现 src/ports/*.port.ts 接口）
+
+test/integration/*.int-spec.ts
+        │
+        ├─► src/*.repository.ts       ← 被测（真实 Prisma）
+        └─► test/integration/setup-integration.ts  ← 事务回滚 helper
+
+test/e2e/*.e2e-spec.ts
+        │
+        └─► test/e2e/setup-e2e.ts     ← 装配整个 Nest app + supertest
+
+test/fakes/*.ts        ← 只 import src/ports/*.port.ts（接口），不 import 具体 Service
+</code></pre>
+<p><strong>红线</strong>：</p>
+<ul>
+<li><code>test/fakes/fake-anomaly.repository.ts</code> 里出现 <code>import { PrismaService }</code> 就是塌方——fake 是内存实现，绝不碰真实 DB，否则单元测试就退化成慢集成测试</li>
+<li><code>test/unit/*.spec.ts</code> 里出现 <code>new PrismaClient()</code> 或连真库是塌方——单元测试必须秒级、确定、无外部依赖</li>
+<li>集成测试用例之间<strong>不清理数据</strong>（不用事务回滚或 truncate）就是塌方——测试顺序一变就随机失败</li>
+<li>用覆盖率数字作为唯一质量标准是塌方——必须有 mutation 或关键行为断言证明测试有效</li>
+</ul>
+<p><strong>动手前先问自己 3 个问题</strong>：</p>
+<ol>
+<li>Repository fake 为什么实现 port 接口而不是继承真实 Repository？—— 见 §5.4 知识点 2「依赖倒置在测试中的应用」</li>
+<li>集成测试为什么用事务回滚而不是每次 truncate 表？—— 见 §5.4 知识点 4「集成测试隔离的三种策略」</li>
+<li>mutation testing 为什么能证明覆盖率证明不了的东西？—— 见 §5.4 知识点 6「mutation testing 与覆盖率盲区」</li>
+</ol>
+<hr>
+<h2 id="15-阶段-d动手脚手架20-分钟先搭骨架再看正文">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</h2>
+<h3 id="151-d-1装测试依赖3-分钟">1.5.1 D-1：装测试依赖（3 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>项目已有 <code>vitest</code>（Day 01 装的）</li>
+<li>集成/E2E 需要：<code>pnpm --filter api add -D supertest @types/supertest</code></li>
+<li>mutation 需要：<code>pnpm --filter api add -D @stryker-mutator/core @stryker-mutator/vitest-runner</code></li>
+<li>确认本地有可连的 Postgres（集成测试用），或用 <code>docker run -e POSTGRES_PASSWORD=test -p 5433:5432 postgres:16</code></li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么 supertest 只在 E2E 用，单元测试不用？（单元测试不启 HTTP server，直接调 Service 方法；supertest 是发真实 HTTP 请求，属于 E2E）</li>
+<li>Stryker 为什么慢？（它要为每个变异重跑一遍相关测试，N 个变异 = N 次测试运行；所以只对关键文件跑 mutation，不全量跑）</li>
+</ul>
+<h3 id="152-d-2拆分-vitest-project2-分钟">1.5.2 D-2：拆分 vitest project（2 分钟）</h3>
+<p>按第 5.3 节的目录树，在 <code>test/</code> 下建 5 个子目录：<code>unit/</code> <code>integration/</code> <code>e2e/</code> <code>fakes/</code> <code>helpers/</code>。</p>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么 unit/integration/e2e 要分目录而不是靠文件名后缀？（CI 要能分档跑：PR 时只跑快的 unit，merge 时才跑慢的 integration/e2e；分目录最清晰）</li>
+<li>为什么 <code>fakes/</code> 单独一层？（fake 要跨多个 spec 复用；如果每个 spec 各自定义 fake，改一次 port 接口要改 N 处）</li>
+</ul>
+<h3 id="153-d-3写-fakes-层4-分钟">1.5.3 D-3：写 fakes 层（4 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>test/fakes/fake-anomaly.repository.ts</code>（实现 <code>AnomalyRepositoryPort</code> 接口的内存版）</li>
+<li>写 <code>test/fakes/fixtures.ts</code>（<code>makeAnomaly</code> / <code>makeUser</code> 确定性工厂）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>fake 的 <code>findById</code> 为什么用 <code>Map</code> 而不是数组？（O(1) 查找；更重要的是语义清晰——按 id 存取）</li>
+<li>fixtures 工厂为什么要接受 <code>overrides</code> 参数？（每个用例只关心自己要改的字段，其他字段用默认值，测试意图才清晰）</li>
+<li>fake 要不要实现 port 的<strong>全部</strong>方法？（要——否则 TypeScript 编译不过；这正是"实现接口"的好处，接口变了 fake 立刻报错）</li>
+</ul>
+<h3 id="154-d-4写-unit-integration-e2e-setup7-分钟">1.5.4 D-4：写 unit + integration + e2e setup（7 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>test/unit/anomaly.service.spec.ts</code>（注入 fake，测授权行为）</li>
+<li>写 <code>test/unit/conversation.aggregate.spec.ts</code>（纯聚合逻辑）</li>
+<li>写 <code>test/integration/setup-integration.ts</code>（BEGIN/ROLLBACK helper）</li>
+<li>写 <code>test/integration/conversation.repository.int-spec.ts</code>（真实 SQL）</li>
+<li>写 <code>test/e2e/setup-e2e.ts</code>（Nest app 装配 + JWT helper）</li>
+<li>写 <code>test/e2e/auth-matrix.e2e-spec.ts</code>（授权矩阵）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>集成测试的 <code>beforeEach</code> 里 BEGIN 事务、<code>afterEach</code> 里 ROLLBACK，为什么这样零污染？（事务未提交，所有写入在 ROLLBACK 后消失，下一个用例看到的是干净库）</li>
+<li>E2E 的 JWT 为什么在测试里自己签而不走登录接口？（走登录接口会让每个 E2E 用例都依赖登录逻辑正确；直接签 token 隔离关注点，登录本身另有专门用例测）</li>
+</ul>
+<h3 id="155-d-5配-mutation-ci-脚本4-分钟">1.5.5 D-5：配 mutation + CI 脚本（4 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>stryker.conf.json</code>（只 mutate <code>anomaly.service.ts</code>）</li>
+<li>写 <code>test/helpers/mutation-guard.spec.ts</code>（专门盯授权断言的行为测试）</li>
+<li>在 <code>package.json</code> 加 <code>test:unit</code> / <code>test:integration</code> / <code>test:e2e</code> / <code>test:mutation</code> 脚本</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么 mutation 只 mutate 一个文件而不是全项目？（Stryker 很慢，全量跑几十分钟；日常只对"最关键、最怕出错"的授权逻辑跑，其他文件靠行为测试）</li>
+<li>mutation score 多少算够？（没有绝对标准；关键是"授权/安全相关的变异必须 100% KILLED"，非关键逻辑允许存活）</li>
+</ul>
+<hr>
+<h2 id="2-学习节奏90-阅读-90-动手">2. 学习节奏（90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>内容</th>
+<th>交付物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A：读原理</td>
+<td>30 min</td>
+<td>§3-§5 三版演进 + §5.4 知识点 6 项</td>
+<td>心里能画出"高覆盖单测→fake 分层→隔离集成+mutation"的演进路径</td>
+</tr>
+<tr>
+<td>B：读代码</td>
+<td>30 min</td>
+<td>§5.3 逐文件通读，特别是 <code>setup-integration.ts</code> 和 <code>mutation-guard.spec.ts</code></td>
+<td>能口述"事务回滚如何隔离"、"mutation 如何证明测试有效"</td>
+</tr>
+<tr>
+<td>C：读深挖</td>
+<td>30 min</td>
+<td>§6.5 前端底子补弱（<code>Day25深挖-前端底子补弱.html</code>）</td>
+<td>能回答"前端组件测试的 fake 和后端 Repository fake 有什么共性"</td>
+</tr>
+<tr>
+<td>D：动手脚手架</td>
+<td>20 min</td>
+<td>§1.5 D-1 到 D-5</td>
+<td>骨架文件全部创建，三档测试脚本可跑</td>
+</tr>
+<tr>
+<td>E：写核心测试</td>
+<td>20 min</td>
+<td>§7.6 补齐关键行为测试</td>
+<td><code>pnpm --filter api test:unit</code> 全绿</td>
+</tr>
+<tr>
+<td>F-1：反证 1</td>
+<td>5 min</td>
+<td>§7.7 删掉授权断言，看单测是否变红</td>
+<td>观察"删断言后 mutation-guard 测试变红"，验证测试有牙齿</td>
+</tr>
+<tr>
+<td>F-2：反证 2</td>
+<td>5 min</td>
+<td>§7.8 打乱集成测试顺序 / 去掉事务回滚</td>
+<td>观察"共享 DB 不清理导致随机失败"</td>
+</tr>
+<tr>
+<td>F-3：验证 + 提交</td>
+<td>10 min</td>
+<td>§7.9 四件套 + commit</td>
+<td>commit 含 <code>Refs: Day25</code></td>
+</tr>
+</tbody>
+</table></div><p><strong>总计</strong>：90 阅读（A+B+C）+ 90 动手（D+E+F）= 180 min</p>
+<hr>
+<h2 id="3-v1最小闭环只写覆盖率高的单测">3. v1：最小闭环（只写覆盖率高的单测）</h2>
+<h3 id="31-v1-要实现什么">3.1 v1 要实现什么</h3>
+<p>给 <code>AnomalyService.getById(actor, id)</code> 写单元测试。v1 只追求一件事：<strong>覆盖率数字好看</strong>。用简单的 mock 让每个方法都被执行到，覆盖率跑到 90%+。</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li><code>anomaly.service.spec.ts</code> 覆盖 <code>getById</code> 的成功路径</li>
+<li>覆盖率报告显示 <code>anomaly.service.ts</code> &gt; 90%</li>
+</ul>
+<p><strong>不做</strong>：</p>
+<ul>
+<li>不用 Repository fake（直接 mock 返回值）</li>
+<li>不测授权失败路径（只测 happy path）</li>
+<li>无集成测试、无 E2E、无 mutation</li>
+</ul>
+<h3 id="32-v1-目录结构">3.2 v1 目录结构</h3>
+<pre><code>apps/api/test/
+└── anomaly.service.spec.ts     ← 唯一测试文件，覆盖率导向
+</code></pre>
+<h3 id="33-v1-完整代码">3.3 v1 完整代码</h3>
+<p><strong>被测代码回顾（Day 24 已有）：apps/api/src/anomaly/anomaly.service.ts（片段）</strong></p>
+<pre><code class="language-typescript">import { Injectable, ForbiddenException, NotFoundException } from '@nestjs/common'
+import type { AnomalyRepositoryPort } from './ports/anomaly-repository.port'
+import type { Actor } from '../auth/actor'
+
+@Injectable()
+export class AnomalyService {
+  constructor(private readonly repo: AnomalyRepositoryPort) {}
+
+  async getById(actor: Actor, id: string) {
+    const anomaly = await this.repo.findById(id)
+    if (!anomaly) {
+      throw new NotFoundException(`anomaly ${id} not found`)
+    }
+    // ★ 关键授权断言：只有 owner 或 admin 能读
+    this.authorizeResourceAccess(actor, anomaly)
+    return anomaly
+  }
+
+  private authorizeResourceAccess(actor: Actor, anomaly: { ownerId: string }) {
+    if (actor.role === 'admin') return
+    if (actor.userId === anomaly.ownerId) return
+    throw new ForbiddenException('not allowed to access this anomaly')
+  }
+}
+</code></pre>
+<p><strong>apps/api/test/anomaly.service.spec.ts（v1 全文——覆盖率导向的反面教材）</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect, vi } from 'vitest'
+import { AnomalyService } from '../src/anomaly/anomaly.service'
+
+describe('AnomalyService (v1 覆盖率导向)', () =&gt; {
+  it('getById 返回 anomaly', async () =&gt; {
+    // 简单 mock：直接返回一个对象
+    const repo = {
+      findById: vi.fn().mockResolvedValue({ id: 'a-1', ownerId: 'u-1' }),
+    }
+    const service = new AnomalyService(repo as any)
+
+    // 用 admin 调用，一定能过授权
+    const actor = { userId: 'admin-x', role: 'admin' as const }
+    const result = await service.getById(actor, 'a-1')
+
+    expect(result.id).toBe('a-1')
+    expect(repo.findById).toHaveBeenCalledWith('a-1')
+  })
+})
+</code></pre>
+<p>跑覆盖率：</p>
+<pre><code>$ pnpm --filter api test -- --coverage
+ ✓ anomaly.service.spec.ts (1)
+ File               | % Stmts | % Branch | % Funcs |
+ anomaly.service.ts |   92.3  |   75.0   |  100.0  |
+</code></pre>
+<p>92% 语句覆盖，看起来很安全。</p>
+<h3 id="34-v1-暴露的痛点">3.4 v1 暴露的痛点</h3>
+<p><strong>痛点 1：删掉授权断言，测试依然全绿（假安全）</strong></p>
+<p>有人重构时手滑删掉了 <code>this.authorizeResourceAccess(actor, anomaly)</code> 这一行。重新跑 v1 测试：</p>
+<pre><code>$ pnpm --filter api test
+ ✓ anomaly.service.spec.ts (1)   ← 依然全绿！
+</code></pre>
+<p>因为 v1 唯一的用例用的是 <code>role: 'admin'</code>——admin 走的是 <code>if (actor.role === 'admin') return</code> 早返回，删不删授权断言它都能过。<strong>测试根本没验证"未授权 actor 被拒绝"这个行为</strong>。覆盖率 92% 是假象：授权失败分支从来没被断言过。直到线上普通用户改 URL 读到别人的 anomaly 才暴露。</p>
+<p><strong>痛点 2：mock 返回值与真实 Repository 行为脱节</strong></p>
+<p><code>repo.findById</code> 被 mock 成永远返回 <code>{ id: 'a-1', ownerId: 'u-1' }</code>。但真实 Repository 的 <code>findById</code> 在找不到时返回 <code>null</code>、在 DB 报错时抛异常。v1 的 mock 掩盖了这些真实行为，<code>NotFoundException</code> 分支也没测到（虽然覆盖率把它算作"部分覆盖"）。</p>
+<p><strong>痛点 3：每个用例重复写 mock 样板</strong></p>
+<p><code>const repo = { findById: vi.fn().mockResolvedValue(...) }</code> 这段样板，每加一个用例就要复制一遍，还要记得 mock 所有被调到的方法。用例一多就变成"mock 地狱"，改一次接口要改十几处。</p>
+<p><strong>痛点 4：没有集成/E2E，SQL 和 HTTP 层完全没验证</strong></p>
+<p>Service 的授权逻辑即使测对了，Repository 的 SQL（游标分页、外键级联）、Controller 的 Guard 装配、真实 HTTP 的 401/403，v1 一概没测。线上真正的攻击是"改 URL 发真实请求"，而 v1 连一个真实请求都没发过。</p>
+<hr>
+<h2 id="4-v2加-repository-fake-关键行为测试">4. v2：加 Repository fake + 关键行为测试</h2>
+<h3 id="41-v2-要实现什么">4.1 v2 要实现什么</h3>
+<p>用户视角：测试不再追覆盖率数字，而是<strong>验证行为</strong>。引入 Repository fake（实现 port 接口的内存版）消除 mock 样板；补齐"未授权 actor 被拒绝""not found 抛 404"等关键行为用例；删掉授权断言时，至少有一个用例会变红。</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li>建立 <code>FakeAnomalyRepository implements AnomalyRepositoryPort</code></li>
+<li>建立 <code>makeAnomaly</code> / <code>makeActor</code> 确定性 fixtures</li>
+<li>补齐授权失败、not found、owner 可读、admin 可读四类行为用例</li>
+</ul>
+<p><strong>依然不做</strong>：</p>
+<ul>
+<li>无真实 DB 集成测试（fake 仍是内存）</li>
+<li>无 E2E（不发真实 HTTP）</li>
+<li>无 mutation 验证（靠人工判断"测试有没有牙齿"）</li>
+</ul>
+<h3 id="42-v2-目录结构">4.2 v2 目录结构</h3>
+<pre><code>apps/api/test/
+├── fakes/
+│   ├── fake-anomaly.repository.ts   ← 新增：实现 port 的内存版
+│   └── fixtures.ts                  ← 新增：makeAnomaly / makeActor
+└── unit/
+    └── anomaly.service.spec.ts      ← 改：注入 fake，测 4 类行为
+</code></pre>
+<h3 id="43-v2-完整代码">4.3 v2 完整代码</h3>
+<p><strong>apps/api/test/fakes/fake-anomaly.repository.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import type { AnomalyRepositoryPort } from '../../src/anomaly/ports/anomaly-repository.port'
+
+export interface FakeAnomaly {
+  id: string
+  ownerId: string
+  status: string
+}
+
+/**
+ * 实现 AnomalyRepositoryPort 的内存版。
+ * 语义与真实 Repository 对齐：findById 找不到返回 null。
+ * 关键：它 implements 接口，接口一变这里就编译报错——fake 不会悄悄漂移。
+ */
+export class FakeAnomalyRepository implements AnomalyRepositoryPort {
+  private store = new Map&lt;string, FakeAnomaly&gt;()
+
+  seed(anomalies: FakeAnomaly[]): void {
+    for (const a of anomalies) {
+      this.store.set(a.id, a)
+    }
+  }
+
+  async findById(id: string): Promise&lt;FakeAnomaly | null&gt; {
+    return this.store.get(id) ?? null
+  }
+
+  async updateStatus(id: string, status: string): Promise&lt;void&gt; {
+    const existing = this.store.get(id)
+    if (!existing) throw new Error(`fake: anomaly ${id} not found for update`)
+    this.store.set(id, { ...existing, status })
+  }
+}
+</code></pre>
+<p><strong>apps/api/test/fakes/fixtures.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import type { FakeAnomaly } from './fake-anomaly.repository'
+import type { Actor } from '../../src/auth/actor'
+
+// 确定性工厂：默认值固定，只覆盖调用者关心的字段
+export function makeAnomaly(overrides: Partial&lt;FakeAnomaly&gt; = {}): FakeAnomaly {
+  return {
+    id: 'a-default',
+    ownerId: 'u-owner',
+    status: 'open',
+    ...overrides,
+  }
+}
+
+export function makeActor(overrides: Partial&lt;Actor&gt; = {}): Actor {
+  return {
+    userId: 'u-owner',
+    role: 'user',
+    ...overrides,
+  }
+}
+</code></pre>
+<p><strong>apps/api/test/unit/anomaly.service.spec.ts（v2 全文——行为导向）</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect, beforeEach } from 'vitest'
+import { ForbiddenException, NotFoundException } from '@nestjs/common'
+import { AnomalyService } from '../../src/anomaly/anomaly.service'
+import { FakeAnomalyRepository } from '../fakes/fake-anomaly.repository'
+import { makeAnomaly, makeActor } from '../fakes/fixtures'
+
+describe('AnomalyService.getById（行为导向）', () =&gt; {
+  let repo: FakeAnomalyRepository
+  let service: AnomalyService
+
+  beforeEach(() =&gt; {
+    repo = new FakeAnomalyRepository()
+    service = new AnomalyService(repo)
+  })
+
+  it('owner 能读自己的 anomaly', async () =&gt; {
+    repo.seed([makeAnomaly({ id: 'a-1', ownerId: 'u-owner' })])
+    const actor = makeActor({ userId: 'u-owner', role: 'user' })
+
+    const result = await service.getById(actor, 'a-1')
+    expect(result.id).toBe('a-1')
+  })
+
+  it('admin 能读任意 anomaly', async () =&gt; {
+    repo.seed([makeAnomaly({ id: 'a-1', ownerId: 'u-other' })])
+    const actor = makeActor({ userId: 'admin-x', role: 'admin' })
+
+    const result = await service.getById(actor, 'a-1')
+    expect(result.id).toBe('a-1')
+  })
+
+  // ★ 这个用例是删授权断言时会变红的"牙齿"
+  it('非 owner 的普通用户被拒绝（ForbiddenException）', async () =&gt; {
+    repo.seed([makeAnomaly({ id: 'a-1', ownerId: 'u-owner' })])
+    const actor = makeActor({ userId: 'u-attacker', role: 'user' })
+
+    await expect(service.getById(actor, 'a-1')).rejects.toBeInstanceOf(
+      ForbiddenException,
+    )
+  })
+
+  it('anomaly 不存在时抛 NotFoundException', async () =&gt; {
+    const actor = makeActor()
+    await expect(service.getById(actor, 'missing')).rejects.toBeInstanceOf(
+      NotFoundException,
+    )
+  })
+})
+</code></pre>
+<h3 id="44-v2-暴露的痛点">4.4 v2 暴露的痛点</h3>
+<p><strong>痛点 1：fake 是内存的，真实 SQL 从未被执行</strong></p>
+<p><code>FakeAnomalyRepository</code> 用 <code>Map</code> 模拟存取。它验证了 Service 的授权逻辑，但真实 Repository 的 SQL——复合索引是否命中、游标分页边界、外键级联删除、事务隔离——一行都没跑过。fake 说"findById 返回 null"，但真实 SQL 可能因为 <code>WHERE tenant_id = ?</code> 条件漏写而返回了别人的数据。<strong>授权逻辑对，不代表数据查询对</strong>。</p>
+<p><strong>痛点 2：没有真实 HTTP，Guard 装配与 401/403 未验证</strong></p>
+<p>Day 24 的 <code>ResourceGuard</code>、<code>JwtAuthGuard</code> 是通过装饰器挂在 Controller 上的。v2 直接 <code>new AnomalyService()</code> 调方法，完全绕过了 Nest 的 DI 容器和 Guard 管线。真实请求里 Guard 有没有正确拦截过期 token、伪造 Origin、跨用户 URL，v2 测不到。</p>
+<p><strong>痛点 3："测试有没有牙齿"靠人工判断，不可靠</strong></p>
+<p>v2 靠人肉 review "这个用例删断言会不会变红"。但项目大了、测试多了，没人能保证每个关键断言都有对应的"牙齿用例"。需要一个机器化手段：<strong>故意改坏代码（mutation），看测试能不能抓住</strong>。</p>
+<p><strong>痛点 4：集成测试一旦引入，共享 DB 会污染</strong></p>
+<p>一旦要写真实 DB 集成测试，多个用例、CI 并发 job 共享同一个 Postgres，前一个用例写的数据没清理，后一个用例就会读到脏数据，导致随机失败。v2 还没碰这个问题，但 v3 引入集成测试后必须先解决隔离。</p>
+<hr>
+<h2 id="5-v3隔离集成测试-e2e-门禁-mutation-验证终态">5. v3：隔离集成测试 + E2E 门禁 + mutation 验证（终态）</h2>
+<h3 id="51-v3-要实现什么">5.1 v3 要实现什么</h3>
+<p>用户视角：</p>
+<ol>
+<li>真实 DB 集成测试跑真实 SQL，每个用例在独立事务里执行、结束回滚，100 轮并发无抖动</li>
+<li>E2E 测试发真实 HTTP，验证 Guard 管线（过期 token → 401、跨用户 URL → 403）</li>
+<li>mutation 测试证明"关键断言有牙齿"：删授权断言、改比较符，至少一个 mutation 被测试捕获</li>
+<li>覆盖率不再是目标而是副产品；行为覆盖 ≥ 75% 且关键路径 mutation score 达标</li>
+</ol>
+<h3 id="52-v3-目录结构">5.2 v3 目录结构</h3>
+<p>与 §1.4 完全一致：</p>
+<pre><code>apps/api/test/
+├── fakes/
+│   ├── fake-anomaly.repository.ts       ← v2 已有
+│   └── fixtures.ts                      ← v2 已有
+├── unit/
+│   └── anomaly.service.spec.ts          ← v2 已有
+├── integration/
+│   ├── db-test-context.ts               ← 新增：隔离事务上下文
+│   ├── anomaly.repository.int-spec.ts   ← 新增：真实 SQL 集成测试
+│   └── setup-integration.ts             ← 新增：集成测试全局钩子
+├── e2e/
+│   ├── anomaly-authz.e2e-spec.ts        ← 新增：授权矩阵 E2E
+│   └── setup-e2e.ts                     ← 新增：Nest app 启动/销毁
+└── mutation/
+    └── mutation-plan.md                 ← 新增：手工 mutation 清单
+</code></pre>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<h4 id="531-集成层db-test-contextts">5.3.1 集成层：db-test-context.ts</h4>
+<pre><code class="language-typescript">import { PrismaClient } from '@prisma/client'
+
+/**
+ * 隔离集成测试的核心：每个测试在一个"会被回滚的事务"里跑。
+ *
+ * Prisma 的 $transaction 回调结束会自动 commit，
+ * 所以这里用"抛一个哨兵错误强制回滚"的技巧：
+ *   - 测试逻辑在事务内执行
+ *   - 结束时抛 ROLLBACK_SENTINEL
+ *   - 外层捕获哨兵，静默吞掉 → 事务回滚 → DB 恢复原状
+ *
+ * 效果：用例之间零污染，不需要手动 TRUNCATE，CI 并发也安全
+ * （每个 job 连自己的 schema，见 setup-integration.ts）
+ */
+const ROLLBACK_SENTINEL = Symbol('rollback')
+
+export async function withRolledBackTx&lt;T&gt;(
+  prisma: PrismaClient,
+  fn: (tx: PrismaClient) =&gt; Promise&lt;T&gt;,
+): Promise&lt;T&gt; {
+  let captured: T
+  try {
+    await prisma.$transaction(async (tx) =&gt; {
+      captured = await fn(tx as unknown as PrismaClient)
+      // 强制回滚：抛哨兵
+      throw { sentinel: ROLLBACK_SENTINEL, value: captured }
+    })
+  } catch (err: unknown) {
+    if (
+      typeof err === 'object' &amp;&amp;
+      err !== null &amp;&amp;
+      'sentinel' in err &amp;&amp;
+      (err as { sentinel: symbol }).sentinel === ROLLBACK_SENTINEL
+    ) {
+      return (err as { value: T }).value
+    }
+    // 真实错误：向上抛
+    throw err
+  }
+  // 理论不可达
+  return captured!
+}
+</code></pre>
+<p><strong>apps/api/test/integration/setup-integration.ts</strong></p>
+<pre><code class="language-typescript">import { PrismaClient } from '@prisma/client'
+import { execSync } from 'node:child_process'
+
+/**
+ * CI 并发隔离：每个 worker 用独立 schema。
+ * VITEST_WORKER_ID 由 vitest 注入，保证同一机器上并发 worker 不撞库。
+ */
+export function makeWorkerScopedPrisma(): PrismaClient {
+  const workerId = process.env.VITEST_WORKER_ID ?? '0'
+  const schema = `test_w${workerId}`
+  const baseUrl = process.env.DATABASE_URL!
+  const url = `${baseUrl}?schema=${schema}`
+
+  // 把 migration 应用到这个 worker 专属 schema
+  execSync(`pnpm prisma migrate deploy`, {
+    env: { ...process.env, DATABASE_URL: url },
+    stdio: 'ignore',
+  })
+
+  return new PrismaClient({ datasources: { db: { url } } })
+}
+</code></pre>
+<p><strong>apps/api/test/integration/anomaly.repository.int-spec.ts</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect, beforeAll, afterAll } from 'vitest'
+import { PrismaClient } from '@prisma/client'
+import { makeWorkerScopedPrisma } from './setup-integration'
+import { withRolledBackTx } from './db-test-context'
+import { PrismaAnomalyRepository } from '../../src/anomaly/adapters/prisma-anomaly.repository'
+
+describe('PrismaAnomalyRepository（真实 SQL 集成）', () =&gt; {
+  let prisma: PrismaClient
+
+  beforeAll(() =&gt; {
+    prisma = makeWorkerScopedPrisma()
+  })
+
+  afterAll(async () =&gt; {
+    await prisma.$disconnect()
+  })
+
+  it('findById 命中真实复合索引且只返回本租户数据', async () =&gt; {
+    await withRolledBackTx(prisma, async (tx) =&gt; {
+      // 造两个租户的同名 anomaly
+      await tx.anomaly.create({
+        data: { id: 'a-1', ownerId: 'u-owner', tenantId: 't-1', status: 'open' },
+      })
+      await tx.anomaly.create({
+        data: { id: 'a-2', ownerId: 'u-other', tenantId: 't-2', status: 'open' },
+      })
+
+      const repo = new PrismaAnomalyRepository(tx)
+      const found = await repo.findByIdForTenant('a-1', 't-1')
+      const crossTenant = await repo.findByIdForTenant('a-2', 't-1') // 跨租户
+
+      expect(found?.id).toBe('a-1')
+      // ★ 真实 SQL 的 WHERE tenant_id 条件生效：跨租户查不到
+      expect(crossTenant).toBeNull()
+    })
+    // 事务已回滚：DB 里没有 a-1 / a-2 残留
+  })
+
+  it('updateStatus 后 findById 能读到新状态（同事务内可见）', async () =&gt; {
+    await withRolledBackTx(prisma, async (tx) =&gt; {
+      await tx.anomaly.create({
+        data: { id: 'a-9', ownerId: 'u-owner', tenantId: 't-1', status: 'open' },
+      })
+      const repo = new PrismaAnomalyRepository(tx)
+      await repo.updateStatus('a-9', 't-1', 'resolved')
+      const after = await repo.findByIdForTenant('a-9', 't-1')
+      expect(after?.status).toBe('resolved')
+    })
+  })
+})
+</code></pre>
+<h4 id="532-e2e-层setup-e2ets">5.3.2 E2E 层：setup-e2e.ts</h4>
+<pre><code class="language-typescript">import { Test } from '@nestjs/testing'
+import type { INestApplication } from '@nestjs/common'
+import { AppModule } from '../../src/app.module'
+
+export async function bootstrapE2E(): Promise&lt;INestApplication&gt; {
+  const moduleRef = await Test.createTestingModule({
+    imports: [AppModule],
+  }).compile()
+
+  const app = moduleRef.createNestApplication()
+  await app.init()
+  return app
+}
+</code></pre>
+<p><strong>apps/api/test/e2e/anomaly-authz.e2e-spec.ts</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect, beforeAll, afterAll } from 'vitest'
+import request from 'supertest'
+import type { INestApplication } from '@nestjs/common'
+import { bootstrapE2E } from './setup-e2e'
+import { signTestJwt } from './jwt-helper'
+
+describe('Anomaly 授权矩阵（E2E，真实 Guard 管线）', () =&gt; {
+  let app: INestApplication
+  let httpServer: unknown
+
+  beforeAll(async () =&gt; {
+    app = await bootstrapE2E()
+    httpServer = app.getHttpServer()
+  })
+
+  afterAll(async () =&gt; {
+    await app.close()
+  })
+
+  it('无 token → 401', async () =&gt; {
+    await request(httpServer).get('/anomalies/a-1').expect(401)
+  })
+
+  it('过期 token → 401', async () =&gt; {
+    const expired = signTestJwt({ userId: 'u-owner', exp: 1 }) // 1970 年过期
+    await request(httpServer)
+      .get('/anomalies/a-1')
+      .set('Authorization', `Bearer ${expired}`)
+      .expect(401)
+  })
+
+  it('合法 token 但访问他人资源 → 403（IDOR 防护）', async () =&gt; {
+    const token = signTestJwt({ userId: 'u-attacker', role: 'user' })
+    await request(httpServer)
+      .get('/anomalies/a-owned-by-someone-else')
+      .set('Authorization', `Bearer ${token}`)
+      .expect(403)
+  })
+
+  it('owner 访问自己资源 → 200', async () =&gt; {
+    const token = signTestJwt({ userId: 'u-owner', role: 'user' })
+    await request(httpServer)
+      .get('/anomalies/a-owned-by-u-owner')
+      .set('Authorization', `Bearer ${token}`)
+      .expect(200)
+  })
+})
+</code></pre>
+<h4 id="533-mutation-层mutation-planmd">5.3.3 mutation 层：<a href="http://mutation-plan.md" target="_blank" rel="noopener noreferrer">mutation-plan.md</a></h4>
+<pre><code class="language-markdown"># Mutation 测试清单（手工版，验证测试"有牙齿"）
+
+mutation 测试的核心命题：**故意把代码改坏，如果测试还全绿，说明测试没覆盖这个行为**。
+存活的 mutation（survived）= 覆盖盲区；被杀死的 mutation（killed）= 测试有效。
+
+## 关键路径 mutation 清单
+
+| # | 变异位置 | 变异操作 | 预期：被哪个测试杀死 |
+|---|---|---|---|
+| M1 | `AnomalyService.getById` 授权分支 | 删掉 `if (!canRead) throw Forbidden` | unit: 非 owner 被拒绝用例 → 变红 |
+| M2 | `AnomalyService.getById` 授权比较 | `actor.userId === anomaly.ownerId` 改 `!==` | unit: owner 能读 + admin 能读 → 变红 |
+| M3 | `PrismaAnomalyRepository.findByIdForTenant` | 删掉 `WHERE tenant_id` 条件 | integration: 跨租户查不到 → 变红 |
+| M4 | `ResourceGuard` | `return canActivate` 改 `return true` | e2e: 访问他人资源 403 → 变红 |
+| M5 | `JwtAuthGuard` exp 校验 | 删掉过期检查 | e2e: 过期 token 401 → 变红 |
+
+## 手工执行步骤
+
+1. 逐条应用 mutation（git stash 保存原状）
+2. 跑对应测试层：`pnpm test:unit` / `pnpm test:int` / `pnpm test:e2e`
+3. 记录 killed / survived
+4. survived 的 mutation → 补测试用例
+5. `git checkout .` 还原代码
+
+## 通过标准
+
+- M1-M5 全部 killed（关键路径 mutation score = 100%）
+- 至少证明"删授权断言测试会红"（否则高覆盖率是假象）
+
+&gt; 后续可接入 StrykerJS 自动化；今天先用手工清单建立"mutation 思维"。
+</code></pre>
+<h3 id="54-v3-用到的知识点">5.4 v3 用到的知识点</h3>
+<p><strong>知识点 1：测试金字塔（Test Pyramid）—— 数量与成本的平衡</strong></p>
+<ul>
+<li>解决的问题：全写 E2E 慢且脆（一个 UI 改动挂一片）；全写单测又测不到集成缝隙</li>
+<li>运行机制：底层大量快速单测（纯逻辑）、中层适量集成测试（真实 DB/依赖）、顶层少量 E2E（真实 HTTP 全链路）；越往上越慢越贵越少</li>
+<li>项目落点：<code>unit/</code>（Service 授权逻辑）、<code>integration/</code>（真实 SQL）、<code>e2e/</code>（Guard 管线）三层目录</li>
+<li>生产误区：金字塔倒挂（E2E 比单测还多，CI 跑 40 分钟）；只有单测没有集成（SQL 缝隙裸奔）</li>
+<li>验证方法：统计三层用例数量比例，应大致呈金字塔（单测 : 集成 : E2E ≈ 70 : 20 : 10）</li>
+</ul>
+<p><strong>知识点 2：Repository Fake vs Mock —— fake 有真实语义</strong></p>
+<ul>
+<li>解决的问题：mock 每次都要 <code>mockResolvedValue</code>，接口一变 mock 不报错继续返回旧结构（silent drift）</li>
+<li>运行机制：fake <code>implements</code> port 接口，用内存 Map 提供真实语义（findById 找不到返回 null）；接口变更 fake 编译报错，逼着同步</li>
+<li>项目落点：<code>FakeAnomalyRepository implements AnomalyRepositoryPort</code></li>
+<li>生产误区：fake 语义和真实实现不一致（fake 的 findById 找不到抛错，真实的返回 null，测试全绿但线上炸）；用 jest.mock 整个模块（类型丢失）</li>
+<li>验证方法：fake 和真实 Repository 都实现同一个 port，接口方法签名改动时 fake 必须编译报错</li>
+</ul>
+<p><strong>知识点 3：集成测试的事务回滚隔离</strong></p>
+<ul>
+<li>解决的问题：多个集成用例共享 DB，前一个写的数据污染后一个；手动 TRUNCATE 慢且易漏</li>
+<li>运行机制：每个用例在 <code>$transaction</code> 里跑，结束抛哨兵错误强制回滚，DB 自动恢复原状；用例间零污染</li>
+<li>项目落点：<code>withRolledBackTx</code> helper</li>
+<li>生产误区：忘记回滚导致数据累积；在事务里测"事务提交后才可见"的行为（回滚事务测不了跨事务可见性，这类要单独处理）</li>
+<li>验证方法：连续跑同一个"造 a-1"的用例 100 次都通过（不会因为 a-1 已存在而唯一约束冲突）</li>
+</ul>
+<p><strong>知识点 4：CI 并发的 schema 隔离</strong></p>
+<ul>
+<li>解决的问题：CI 8 个 job 并发，共享一个 DB 的默认 schema，事务回滚也挡不住"两个 job 同时建同 id"</li>
+<li>运行机制：每个 vitest worker 用 <code>VITEST_WORKER_ID</code> 拼出独立 schema（<code>test_w0</code> / <code>test_w1</code>），各自 migrate deploy</li>
+<li>项目落点：<code>makeWorkerScopedPrisma</code></li>
+<li>生产误区：所有 worker 连默认 schema（并发抖动）；schema 不清理累积上百个测试 schema</li>
+<li>验证方法：本地 <code>--threads</code> 开 8 个 worker 跑集成测试，连续 100 轮无抖动</li>
+</ul>
+<p><strong>知识点 5：E2E 走真实 Guard 管线</strong></p>
+<ul>
+<li>解决的问题：单测直接 new Service 绕过 Nest DI 和 Guard，认证/授权中间件从未被执行</li>
+<li>运行机制：<code>Test.createTestingModule({ imports: [AppModule] })</code> 启动完整应用，<code>supertest</code> 发真实 HTTP，Guard/Filter/Pipe 全部经过</li>
+<li>项目落点：<code>bootstrapE2E</code> + <code>anomaly-authz.e2e-spec.ts</code></li>
+<li>生产误区：E2E 里 mock 掉 Guard（等于没测 Guard）；E2E 连生产库（危险）</li>
+<li>验证方法：过期 token → 401、跨用户 URL → 403 两个用例必须真实经过 Guard 才能通过</li>
+</ul>
+<p><strong>知识点 6：Mutation 测试 —— 覆盖率的照妖镜</strong></p>
+<ul>
+<li>解决的问题：92% 覆盖率删掉授权断言仍全绿——覆盖率只统计"行有没有被执行"，不统计"断言有没有验证行为"</li>
+<li>运行机制：故意把代码改坏（删断言、翻比较符、return true），跑测试；测试变红 = mutation killed（有效），测试仍绿 = survived（盲区）</li>
+<li>项目落点：<code>mutation-plan.md</code> 的 M1-M5 手工清单</li>
+<li>生产误区：只看覆盖率数字不看有效性；mutation 全靠工具不理解原理（StrykerJS 报 survived 却不知道补什么用例）</li>
+<li>验证方法：手工应用 M1（删授权断言），跑 unit 测试必须变红；如果仍绿，说明缺"非 owner 被拒绝"用例</li>
+</ul>
+<h3 id="55-边写边问自己">5.5 边写边问自己</h3>
+<ul>
+<li><code>withRolledBackTx</code> 为什么用抛哨兵错误来回滚，而不是 <code>tx.$rollback()</code>？（Prisma 的 interactive transaction 没有显式 rollback API，回调抛错是唯一触发回滚的方式）</li>
+<li>集成测试和单测能共用同一个 fixtures 吗？（可以共用 <code>makeAnomaly</code> 的字段默认值，但集成测试要写真实 DB，需要额外的 tenantId 等字段）</li>
+<li>mutation 清单为什么先手工而不是直接上 StrykerJS？（先理解"哪些 mutation 该被杀死"的思维，再用工具放大；直接上工具会淹没在几百个 survived 里不知所措）</li>
+</ul>
+<hr>
+<h2 id="6-三版对比一览表">6. 三版对比一览表</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>功能</strong></td>
+<td>高覆盖率单测</td>
+<td>分层单测 + Repository fake</td>
+<td>隔离集成 + E2E 门禁 + mutation</td>
+</tr>
+<tr>
+<td><strong>测试类型 / 数据模型</strong></td>
+<td>只有 unit，mock 一切</td>
+<td>unit + fake（内存 Map 真实语义）</td>
+<td>unit + integration（真实 SQL）+ e2e（真实 HTTP）</td>
+</tr>
+<tr>
+<td><strong>依赖隔离</strong></td>
+<td>jest.mock 整模块</td>
+<td>fake implements port</td>
+<td>真实 DB + 事务回滚 + worker schema</td>
+</tr>
+<tr>
+<td><strong>验证逻辑</strong></td>
+<td>覆盖行是否执行</td>
+<td>验证关键行为断言</td>
+<td>mutation 证明断言有牙齿</td>
+</tr>
+<tr>
+<td><strong>可测试</strong></td>
+<td>覆盖率 92% 但删断言仍绿</td>
+<td>授权行为被断言</td>
+<td>M1-M5 mutation 全 killed</td>
+</tr>
+<tr>
+<td><strong>架构层次</strong></td>
+<td>无分层，测试贴着实现</td>
+<td>fake 层 + unit 层</td>
+<td>fakes/unit/integration/e2e/mutation</td>
+</tr>
+<tr>
+<td><strong>换实现代价</strong></td>
+<td>mock 全部重写</td>
+<td>fake 不变，换 adapter 集成测试兜底</td>
+<td>集成测试锁真实 SQL 行为</td>
+</tr>
+<tr>
+<td><strong>CI 稳定性</strong></td>
+<td>单测快但测不到集成</td>
+<td>同 v1</td>
+<td>worker schema 隔离，100 轮无抖动</td>
+</tr>
+<tr>
+<td><strong>对齐后续 Day</strong></td>
+<td>—</td>
+<td>Day 26 前端测试同款分层</td>
+<td>Day 30 M3 门禁要求覆盖 + mutation</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="65-前端底子补弱独立深挖-html-入口">6.5 前端底子补弱（独立深挖 HTML 入口）</h2>
+<p>后端测试日的深挖 HTML 聚焦"测试相关的 JS/TS 底层机制"，这些概念前端后端通用，是补弱重点。</p>
+<p><strong>入口</strong>：<code>output/Day25深挖-前端底子补弱.html</code></p>
+<p><strong>本日深挖主题</strong>（对着 §5.3 的测试代码展开）：</p>
+<ol>
+<li><strong>深挖 1：<code>Symbol</code> 作为哨兵值 —— 从 <code>withRolledBackTx</code> 的 ROLLBACK_SENTINEL 讲起</strong>
+<ul>
+<li>为什么用 Symbol 而不是字符串 <code>'rollback'</code>？（Symbol 全局唯一，不可能和业务错误的字符串撞）</li>
+</ul>
+</li>
+<li><strong>深挖 2：<code>async/await</code> 里的错误传播 —— 从事务回滚的 try/catch 讲起</strong>
+<ul>
+<li>抛出的对象如何穿透 <code>$transaction</code> 的 Promise 链？</li>
+</ul>
+</li>
+<li><strong>深挖 3：类型守卫（Type Guard）—— 从 <code>'sentinel' in err</code> 讲起</strong>
+<ul>
+<li><code>typeof err === 'object' &amp;&amp; err !== null &amp;&amp; 'sentinel' in err</code> 三段式为什么缺一不可？</li>
+</ul>
+</li>
+<li><strong>深挖 4：<code>implements</code> 与结构类型 —— 从 fake implements port 讲起</strong>
+<ul>
+<li>TypeScript 的结构类型系统下，<code>implements</code> 到底约束了什么？</li>
+</ul>
+</li>
+<li><strong>深挖 5：测试替身谱系（Dummy/Stub/Spy/Mock/Fake）—— 从 Repository fake 讲起</strong>
+<ul>
+<li>五种测试替身的精确定义与适用场景。</li>
+</ul>
+</li>
+</ol>
+<p>每个深挖含 8 子节：场景锚点 / 项目代码 / 设计点拆解 / 原理 / 反例 / 分层提问 / 项目对手戏 / 面试真题三档答法。</p>
+<hr>
+<h2 id="7-项目验收清单阶段-e-f约-55-分钟">7. 项目验收清单（阶段 E-F，约 55 分钟）</h2>
+<h3 id="76-e写核心逻辑单元测试20-分钟">7.6 E：写核心逻辑单元测试（20 分钟）</h3>
+<p>对着 §5.3，在 <code>apps/api/test/</code> 下补齐三层测试：</p>
+<p><strong>目标测试清单</strong>：</p>
+<ul>
+<li><code>unit/anomaly.service.spec.ts</code>：owner 能读 / 非 owner 被拒 / admin 能读（3 个授权行为）</li>
+<li><code>integration/anomaly.repository.int-spec.ts</code>：跨租户查不到 / 更新后可见（2 个真实 SQL 行为）</li>
+<li><code>e2e/anomaly-authz.e2e-spec.ts</code>：401 / 401 过期 / 403 IDOR / 200 owner（4 个 Guard 管线行为）</li>
+</ul>
+<p><strong>运行</strong>：</p>
+<pre><code class="language-bash">pnpm --filter api test:unit
+pnpm --filter api test:int
+pnpm --filter api test:e2e
+</code></pre>
+<p>三层全绿，共 9 个用例。</p>
+<h3 id="77-f-1反证实验-15-分钟-应用-m1-mutation">7.7 F-1：反证实验 1（5 分钟）—— 应用 M1 mutation</h3>
+<p>手动删掉 <code>AnomalyService.getById</code> 里的授权断言：</p>
+<pre><code class="language-typescript">async getById(id: string, actor: Actor) {
+  const anomaly = await this.repo.findByIdForTenant(id, actor.tenantId)
+  if (!anomaly) throw new NotFoundException()
+  // ★ 反证：注释掉下面这行授权检查
+  // if (!this.canRead(actor, anomaly)) throw new ForbiddenException()
+  return anomaly
+}
+</code></pre>
+<p>跑 <code>pnpm test:unit</code>：</p>
+<ul>
+<li><strong>预期</strong>：<code>非 owner 被拒绝</code> 用例变红（mutation killed）</li>
+<li><strong>如果全绿</strong>：说明测试没覆盖"非 owner"路径，是覆盖盲区——立刻补用例</li>
+</ul>
+<p>恢复代码：<code>git checkout src/anomaly/anomaly.service.ts</code></p>
+<h3 id="78-f-2反证实验-25-分钟-去掉集成测试的事务回滚">7.8 F-2：反证实验 2（5 分钟）—— 去掉集成测试的事务回滚</h3>
+<p>把 <code>withRolledBackTx</code> 换成直接执行（不回滚）：</p>
+<pre><code class="language-typescript">// 反证：不用回滚包裹，直接写库
+it('findById...', async () =&gt; {
+  await prisma.anomaly.create({ data: { id: 'a-1', ... } })
+  // ... 测试逻辑
+})
+</code></pre>
+<p>连续跑两次 <code>pnpm test:int</code>：</p>
+<ul>
+<li><strong>预期</strong>：第二次跑 <code>a-1</code> 已存在，唯一约束冲突，测试变红</li>
+<li><strong>说明</strong>：这就是"没有隔离"的样子——用例间互相污染，跑第二次就挂</li>
+</ul>
+<p>恢复代码。</p>
+<h3 id="79-f-3验证-提交10-分钟">7.9 F-3：验证 + 提交（10 分钟）</h3>
+<p><strong>四件套</strong>：</p>
+<pre><code class="language-bash">pnpm --filter api typecheck
+pnpm --filter api lint
+pnpm --filter api test        # unit + int + e2e 全绿
+pnpm --filter api build
+</code></pre>
+<p><strong>覆盖率检查</strong>：</p>
+<pre><code class="language-bash">pnpm --filter api test:cov
+# 关键模块（anomaly/agent/auth）行为覆盖 ≥ 75%
+</code></pre>
+<p><strong>提交</strong>（Conventional Commits）：</p>
+<pre><code>test(api): add layered tests + mutation plan for core modules
+
+- unit: anomaly authz behavior (owner/non-owner/admin)
+- integration: real SQL with tx-rollback isolation + worker schema
+- e2e: authz matrix through real Guard pipeline (401/403/200)
+- mutation: manual M1-M5 checklist, all killed
+
+Refs: Day25
+</code></pre>
+<p><strong>⚠️ 硬红线：不要 <code>git push</code></strong>。今天的改动只在本地 commit，Day26 结束时集中 push。</p>
+<hr>
+<h2 id="8-通过标准">8. 通过标准</h2>
+<ul>
+<li>[ ] 三层测试全绿：unit（3）+ integration（2）+ e2e（4）= 9 个用例</li>
+<li>[ ] 关键模块（anomaly / agent / auth）行为覆盖 ≥ 75%</li>
+<li>[ ] mutation 清单 M1-M5 至少验证 M1 被捕获（删授权断言测试变红）</li>
+<li>[ ] 集成测试事务回滚隔离生效：连续跑 100 轮无抖动</li>
+<li>[ ] CI worker schema 隔离：8 并发无唯一约束冲突</li>
+<li>[ ] 四件套全绿，commit 含 <code>Refs: Day25</code>，未执行 <code>git push</code></li>
+</ul>
+<hr>
+<h2 id="9-提交物">9. 提交物</h2>
+<ol>
+<li>commit（含 <code>Refs: Day25</code>，未执行 <code>git push</code>）</li>
+<li>四件套输出截图 + 覆盖率报告（<code>coverage/</code> 关键模块 ≥ 75%）</li>
+<li>mutation 执行记录（M1-M5 的 killed/survived 表格）</li>
+<li>学习日志（三层测试各自解决什么问题、mutation 暴露了哪个盲区）</li>
+<li>架构证据：测试金字塔图 + "高覆盖无效"的反证记录</li>
+</ol>
+<hr>
+<h2 id="10-课末-3-个核心问题">10. 课末 3 个核心问题</h2>
+<ol>
+<li>请从今天项目的真实入口到最终输出，解释"后端测试"的数据流或控制流；当天知识链"Test pyramid、Repository fake、集成 DB、E2E、覆盖盲区"分别在哪一层起作用，为什么按这个顺序学习？</li>
+<li>如果故意移除今天最关键的保护机制（比如集成测试的事务回滚、或授权断言），线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</li>
+<li>请引用今天的具体代码、测试和架构证据，证明项目目标已经达到；再说明当前实现距离企业生产标准还缺什么（例如自动化 mutation、契约测试、性能测试基线），下一步如何演进而不破坏已有合同。</li>
+</ol>
+<hr>
+<h2 id="11-真实项目情境题联网更新-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>Service 单测覆盖 92%，但删除一个关键授权断言后仍全绿，跨租户读取线上才暴露。请用 mutation、覆盖报告和测试行为映射证明"高覆盖无效"；先补 E2E 授权门禁止损，再重写关键行为测试与 Repository fake，验证 mutation 被捕获。回答必须按"定位证据 -&gt; 临时止损 -&gt; 根因修复 -&gt; 回归验证"组织。
+依据：<a href="https://docs.nestjs.com/fundamentals/testing" target="_blank" rel="noopener noreferrer">S27 NestJS testing</a></li>
+<li>集成测试共享同一数据库且未清理，CI 并发 8 个 job 时随机失败 15%。请用测试顺序、事务和数据快照定位污染；先串行关键套件止损，再实现隔离 schema/事务回滚和确定性 fixture，连续运行 100 轮验证无抖动。回答必须按"定位证据 -&gt; 临时止损 -&gt; 根因修复 -&gt; 回归验证"组织。
+依据：<a href="https://jobs.bytedance.com/experienced/position/7309098238475831562/detail" target="_blank" rel="noopener noreferrer">S2 AgentOps</a></li>
+</ol>
+<p>知识映射：Test pyramid、fake/真实 DB、E2E、mutation 与覆盖率盲区。</p>
+<hr>
+<h2 id="12-pdf-面试题">12. PDF 面试题</h2>
+<blockquote>
+<p>以下题目引用自公开面经 PDF 汇编，文件名不等于官方题库；用作练习触发点，不代表本项目对齐了任何一家公司的真实校招/社招题库。</p>
+</blockquote>
+<ol>
+<li>什么是单元测试？通常使用哪些工具进行前端测试？
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2024%25E5%25AD%2597%25E8%258A%2582%25E5%2589%258D%25E7%25AB%25AF%25E9%259D%25A2%25E8%25AF%2595%25E9%25A2%2598%25EF%25BC%258845%25E9%25A2%2598%25EF%25BC%2589.pdf" class="missing-link">《2024字节前端面试题（45题）》</a>，第 2 页。</li>
+<li>如何保证大型全栈项目的代码质量和稳定性？
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E7%25BE%258E%25E5%259B%25A2%25E5%2589%258D%25E7%25AB%25AF%25E5%2585%25A8%25E6%25A0%2588%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026美团前端全栈开发》</a>，第 2 页。</li>
+</ol>
+<p>题目说明：对应测试金字塔、单元/集成/E2E、CI 门禁；答题不能只报覆盖率，需说明测试有效性（mutation）。</p>
+<hr>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 -&gt; 边界一致性 -&gt; 线上事故 -&gt; 工程权衡 -&gt; 架构演进"现场提出 5 道问题。五连问不预先固定，也不由上面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<hr>
+<h2 id="14-本-day-在-90-天路线中的锚点">14. 本 Day 在 90 天路线中的锚点</h2>
+<ul>
+<li><strong>承前</strong>：Day 21-24 建立了模块边界、API 合同、数据模型、鉴权授权，今天为这些核心模块建立测试防护网</li>
+<li><strong>启后</strong>：Day 26 前端测试复用今天的测试金字塔思维；Day 30 M3 门禁会把"覆盖 ≥ 75% + mutation 有效"作为发布硬门禁</li>
+<li><strong>阶段坐标</strong>：阶段二（Day 31-60，AI 全栈）第 5 天——测试是全栈工程师的地基，没有可信测试就没有可信重构</li>
+</ul>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day25-old.html">查看 Day 25 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/24.html">← Day 24 · 鉴权/权限</a>
+            <a href="/ai-teacher-agent-devolop/day/26.html">Day 26 · 流式 BFF →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#14-%E6%9C%AC%E6%97%A5%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8A%A8%E6%89%8B%E5%89%8D%E5%85%88%E7%9C%8B%E9%AA%A8%E6%9E%B6">1.4 本日项目目录结构（动手前先看骨架）</a></li><li><a href="#15-%E9%98%B6%E6%AE%B5-d%E5%8A%A8%E6%89%8B%E8%84%9A%E6%89%8B%E6%9E%B620-%E5%88%86%E9%92%9F%E5%85%88%E6%90%AD%E9%AA%A8%E6%9E%B6%E5%86%8D%E7%9C%8B%E6%AD%A3%E6%96%87">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F90-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">2. 学习节奏（90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E6%9C%80%E5%B0%8F%E9%97%AD%E7%8E%AF%E5%8F%AA%E5%86%99%E8%A6%86%E7%9B%96%E7%8E%87%E9%AB%98%E7%9A%84%E5%8D%95%E6%B5%8B">3. v1：最小闭环（只写覆盖率高的单测）</a></li><li><a href="#4-v2%E5%8A%A0-repository-fake-%E5%85%B3%E9%94%AE%E8%A1%8C%E4%B8%BA%E6%B5%8B%E8%AF%95">4. v2：加 Repository fake + 关键行为测试</a></li><li><a href="#5-v3%E9%9A%94%E7%A6%BB%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95-e2e-%E9%97%A8%E7%A6%81-mutation-%E9%AA%8C%E8%AF%81%E7%BB%88%E6%80%81">5. v3：隔离集成测试 + E2E 门禁 + mutation 验证（终态）</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94%E4%B8%80%E8%A7%88%E8%A1%A8">6. 三版对比一览表</a></li><li><a href="#65-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1%E7%8B%AC%E7%AB%8B%E6%B7%B1%E6%8C%96-html-%E5%85%A5%E5%8F%A3">6.5 前端底子补弱（独立深挖 HTML 入口）</a></li><li><a href="#7-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95%E9%98%B6%E6%AE%B5-e-f%E7%BA%A6-55-%E5%88%86%E9%92%9F">7. 项目验收清单（阶段 E-F，约 55 分钟）</a></li><li><a href="#8-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86">8. 通过标准</a></li><li><a href="#9-%E6%8F%90%E4%BA%A4%E7%89%A9">9. 提交物</a></li><li><a href="#10-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">10. 课末 3 个核心问题</a></li><li><a href="#11-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">12. PDF 面试题</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">14. 本 Day 在 90 天路线中的锚点</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

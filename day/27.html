@@ -1,0 +1,1718 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 27 · Postgres 持久化（v1 业务写与事件发布分离 → v2 Outbox 同事务 → v3 乐观锁 + 软删除 + 崩溃恢复） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html" aria-current="page">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/04.html">第 4 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 27</p>
+        <h1>Postgres 持久化（v1 业务写与事件发布分离 → v2 Outbox 同事务 → v3 乐观锁 + 软删除 + 崩溃恢复）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段一（Day 1-30，前端 -&gt; AI 前端）。所有 BFF、NestJS、数据库、队列和 Agent 后端增量都必须服务于 <code>p1-monitor</code> 的真实 AI 前端链路，不得另起无关 Demo。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日为 6 小时扩展日：先执行 A/B/C 各 30 分钟（共 90 分钟阅读），再执行 D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟基础动手），剩余 180 分钟只用于真实项目深化、故障注入和回归证据。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+</blockquote>
+<p>任务版本：标准版
+日期与时长：2026-08-09 周日，360 分钟（90 分钟阅读 + 270 分钟动手/项目深化）
+项目：<code>D:\demo\ai-techer\p1-monitor\apps\api</code>
+角色视角：完成 Day 23 数据建模、Day 25 后端测试、Day 26 流式 BFF，第一次要保证"UI 已展示的内容一定进了库、库里的写一定发出了事件"的开发者</p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p>90 天转型路线的三个阶段：</p>
+<pre><code>阶段一（Day 1-30）：前端 → AI 前端
+   项目：p1-monitor 智能运维监控（Vue 3 + TypeScript + WebSocket + Agent UI）
+
+阶段二（Day 31-60）：AI 前端 → AI 全栈
+   项目：p1-monitor 后端 + p1-monitor 全栈（NestJS + LLM 集成 + RAG）
+   Day 21：NestJS 架构深化（模块边界 + DI scope）
+   Day 22：API 合同（DTO + OpenAPI + 版本兼容）
+   Day 23：数据建模（Conversation/Message/Citation 聚合 + 索引）
+   Day 24：鉴权/权限（JWT + RBAC/ABAC + 资源授权）
+   Day 25：后端测试（测试金字塔 + mutation）
+   Day 26：流式 BFF（流透传 + 背压 + 取消）
+   Day 27：Postgres 持久化（ACID + Outbox + 乐观锁 + 软删除）  ← 今天在这里
+   Day 28-30：M3 门禁 + 全栈端到端
+
+阶段三（Day 61-90）：AI 全栈 → AI Agent 工程师
+   项目：p2-agent-workbench 多 Agent 协同工作台
+</code></pre>
+<p><strong>Day 27 在阶段一第 7 天</strong>。Day 23 建了 Conversation/Message/Citation/Diagnosis 的表结构、Day 26 让模型流能透传到前端。今天要解决一个更隐蔽但更致命的问题：<strong>前端已经把模型回答渲染出来了，但这条 Message 到底进库没有？进库了又有没有触发"生成诊断""更新告警状态"这些下游事件？</strong> 这就是分布式系统里最经典的 <strong>双写一致性（dual-write）</strong> 问题。</p>
+<h3 id="到-day-26-结束时项目已具备的能力">到 Day 26 结束时项目已具备的能力</h3>
+<ul>
+<li><strong>数据模型</strong>（Day 23）：Conversation / Message / Citation / Diagnosis 聚合，复合索引 + 游标分页 + 可回滚迁移</li>
+<li><strong>鉴权</strong>（Day 24）：JWT + RBAC/ABAC + 资源级授权 + actor 审计</li>
+<li><strong>测试</strong>（Day 25）：单元 / 集成（隔离 schema）/ E2E 三层 + mutation 验证</li>
+<li><strong>流式 BFF</strong>（Day 26）：模型流透传、背压、取消上游、requestId 结构化日志</li>
+<li><strong>缺失的一块</strong>：Day 26 的 BFF 把模型回答流式吐给前端，前端渲染出来了——但"写 Message 到库"和"发布 <code>message.created</code> 事件让下游生成诊断"是两个独立的动作，中间没有事务保护。库写成功、事件发布失败，就出现"UI 显示了回答，但永远不生成诊断"的幽灵状态；两个并发请求改同一 Diagnosis，后写的静默覆盖先写的（丢失更新）；删掉的会话还能被普通查询翻出来（软删除泄漏）</li>
+</ul>
+<h3 id="今天要解决的-4-个问题">今天要解决的 4 个问题</h3>
+<ol>
+<li>
+<p><strong>问题 1：双写裂缝——已展示但未发布</strong>
+BFF 收到模型完整回答后要做两件事：<code>INSERT INTO messages</code>（业务写）+ 通知下游"有新消息了，去生成诊断"（事件发布）。如果这两件事不在同一个事务里：库写成功后进程崩溃 / 消息队列超时，事件就永远发不出去。前端已经把回答渲染了（Day 26 流式吐字），但下游诊断永远不触发。用户看到"回答完成"，却永远等不到诊断结论。<strong>这就是 dual-write 问题，标准解是 Outbox 模式：把"要发的事件"和"业务数据"写进同一个事务的同一个库，再由独立的 relay 进程把 Outbox 里的事件搬到消息总线。</strong></p>
+</li>
+<li>
+<p><strong>问题 2：丢失更新（Lost Update）</strong>
+两个运维同时打开同一条 Diagnosis 编辑（比如补充处理备注）。A 基于 version=3 改，B 也基于 version=3 改。A 先提交（version→4），B 后提交时如果直接 <code>UPDATE ... WHERE id=x</code>，会把 A 的修改<strong>静默覆盖</strong>，version 也乱了。A 的备注凭空消失，没有任何报错。<strong>标准解是乐观锁：<code>UPDATE ... WHERE id=x AND version=3</code>，影响行数=0 就说明有人先改了，抛冲突让 B 重试。</strong></p>
+</li>
+<li>
+<p><strong>问题 3：软删除泄漏</strong>
+用户删除一个会话，业务上要求"删除后不可见，但保留 30 天可恢复 + 审计留痕"。如果用物理删除（<code>DELETE</code>），数据没了无法恢复、审计断链。如果用软删除（<code>deletedAt</code> 时间戳标记）但忘了在查询里加 <code>WHERE deletedAt IS NULL</code>，删掉的会话照样被列表查询、被诊断引用翻出来。<strong>标准解是软删除 + 默认查询 scope（Prisma 中间件自动注入 <code>deletedAt: null</code> 过滤）。</strong></p>
+</li>
+<li>
+<p><strong>问题 4：重复消费产生重复副作用</strong>
+Outbox relay 把事件搬到消息总线时，为了不丢事件必须"至少投递一次"（at-least-once）。这意味着同一个 <code>message.created</code> 事件可能被下游消费两次。如果下游"生成诊断"没有幂等保护，就会生成两条诊断。<strong>标准解是消费端幂等：用事件的唯一 ID 做去重键，<code>INSERT ... ON CONFLICT DO NOTHING</code>。</strong></p>
+</li>
+</ol>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<p>在 <code>p1-monitor/apps/api</code> 里交付一个模块 <strong><code>PersistenceOutboxModule</code></strong>：把"写 Message/Diagnosis"和"发布下游事件"绑进同一个 Postgres 事务（Outbox 模式），由独立 relay 进程可靠地把 Outbox 事件搬到内存事件总线；给 Diagnosis 加乐观锁（version 字段 + CAS 更新）防丢失更新；给 Conversation/Message 加软删除 + Prisma 中间件默认 scope；消费端用事件 ID 幂等去重。</p>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p><strong>场景</strong>：运维工程师在诊断会话里发一条消息"帮我分析 srv-042 的 CPU"，BFF 收到模型回答后要落库并触发下游诊断生成。</p>
+<pre><code>时间轴（正常路径）：
+
+14:40:00.000  BFF 收齐模型回答，调用 persistenceService.saveMessageWithOutbox()
+  → BEGIN TRANSACTION
+  →   INSERT INTO messages (id=m-01, conversationId=c-01, role='assistant', content='...')
+  →   INSERT INTO outbox (id=o-01, eventType='message.created', payload={messageId:'m-01'}, status='pending')
+  → COMMIT
+  → 返回 200，前端确认"已保存"
+
+14:40:00.050  OutboxRelay（每 200ms 轮询一次）扫到 o-01 status='pending'
+  → 发布到事件总线：emit('message.created', {messageId:'m-01'})
+  → UPDATE outbox SET status='published', publishedAt=now() WHERE id='o-01'
+
+14:40:00.100  DiagnosisConsumer 收到 message.created
+  → 幂等检查：SELECT 1 FROM processed_events WHERE eventId='o-01'  → 空
+  → 生成诊断 + INSERT INTO processed_events (eventId='o-01')  （同事务）
+  → Diagnosis d-01 创建成功
+
+如果 14:40:00.020 COMMIT 后进程崩溃（事件还没发）：
+  → 重启后 OutboxRelay 扫到 o-01 仍是 'pending'
+  → 重新发布，下游正常收到（没有"已展示未发布"）
+
+如果 message.created 被投递两次（relay 重试）：
+  → DiagnosisConsumer 第二次收到，幂等检查命中 processed_events
+  → 跳过，不生成第二条诊断（无重复副作用）
+</code></pre>
+<p><strong>运维观察到的最终结果</strong>：</p>
+<ul>
+<li>前端显示"回答已保存"时，库里一定有这条 Message，且一定会触发下游诊断（不会有"已展示未发布"）</li>
+<li>两个人同时改一条 Diagnosis，后提交的会收到 409 冲突提示"内容已被他人修改，请刷新"，而不是静默覆盖</li>
+<li>删除的会话从列表、搜索、诊断引用里全部消失，但 30 天内可在"回收站"恢复</li>
+<li>同一事件即使被投递多次，诊断也只生成一条</li>
+</ul>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<ul>
+<li><strong>输入</strong>：Day 26 BFF 收齐的模型回答（Message 内容）；运维对 Diagnosis 的编辑请求；用户的删除会话请求</li>
+<li><strong>输出</strong>：Message/Diagnosis 落库 + Outbox 事件可靠发布；乐观锁保护的更新；软删除 + 默认 scope 过滤；幂等消费</li>
+<li><strong>对齐后续</strong>：今天的 <strong>Outbox 模式</strong>、<strong>乐观锁 version 合同</strong>、<strong>软删除 scope</strong> 是 Day 28-30 M3 门禁"数据一致性"验收项的核心，也是阶段三 p2-agent-workbench 多 Agent 并发写共享状态的地基</li>
+</ul>
+<h3 id="13-三版演进的目标">1.3 三版演进的目标</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>实现的功能</th>
+<th>代码结构</th>
+<th>引入的知识</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td>业务写成功后单独发事件（两步分离）</td>
+<td><code>persistence.service.ts</code> 先 create 再 emit</td>
+<td>事务基础、ACID、为什么"先写后发"有裂缝</td>
+</tr>
+<tr>
+<td><strong>v1 痛点</strong></td>
+<td>COMMIT 后崩溃 → 事件丢失（已展示未发布）；并发更新静默覆盖；删除数据物理消失</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>v1 + <strong>Outbox 同事务写</strong> + <strong>relay 轮询发布</strong></td>
+<td>拆出 <code>outbox/outbox.repository.ts</code> + <code>outbox-relay.service.ts</code></td>
+<td>Outbox 模式、事务边界、at-least-once、轮询 relay</td>
+</tr>
+<tr>
+<td><strong>v2 痛点</strong></td>
+<td>事件可能被投递两次（重复诊断）；Diagnosis 并发更新仍丢失；软删除还没做</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>v2 + <strong>乐观锁 CAS</strong> + <strong>软删除 + Prisma 中间件 scope</strong> + <strong>消费端幂等</strong> + <strong>崩溃恢复</strong></td>
+<td>完整分层（outbox/optimistic-lock/soft-delete/idempotency）</td>
+<td>乐观锁 version、隔离级别、Prisma $extends 中间件、processed_events 幂等表</td>
+</tr>
+</tbody>
+</table></div><p><strong>用户最终在项目里交付的是 v3</strong>。v1 和 v2 是教学用的过渡版本。</p>
+<hr>
+<h2 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h2>
+<p><strong>为什么放在最前面</strong>：Postgres 持久化涉及 4 个独立关注点（Outbox 事务写 / relay 发布 / 乐观锁 / 软删除 scope），如果不先立起骨架，写到一半就会把"发事件"糊进 service、把 relay 写成 controller 里的 setInterval、把乐观锁的 version 检查散落在各个 update 方法里、把软删除过滤忘在某个查询。看完这棵树，下面章节再出现 <code>persistence/outbox/outbox-relay.service.ts</code> 时，你就能立刻定位它是"独立轮询进程"而不是业务编排。</p>
+<p><strong>今天在 <code>p1-monitor/apps/api/src/</code> 下要建立的完整目录树（v3 完整版）</strong>：</p>
+<pre><code>apps/api/src/
+├── persistence/                                ← 【本日新增/扩展】持久化一致性模块
+│   ├── outbox/
+│   │   ├── outbox.repository.ts                ← Outbox 表读写（同事务写入 / relay 拉取）
+│   │   ├── outbox-relay.service.ts             ← 独立轮询进程（pending → 发布 → published）
+│   │   ├── outbox-event.types.ts               ← Outbox 事件类型（纯类型）
+│   │   └── outbox-relay.service.spec.ts        ← relay 单元测试（含崩溃恢复）
+│   ├── optimistic-lock/
+│   │   ├── optimistic-lock.ts                  ← CAS 更新封装（纯逻辑 + 冲突错误）
+│   │   └── optimistic-lock.spec.ts             ← 乐观锁单元测试
+│   ├── soft-delete/
+│   │   ├── soft-delete.middleware.ts           ← Prisma $extends 中间件（默认注入 deletedAt:null）
+│   │   └── soft-delete.middleware.spec.ts      ← 中间件单元测试
+│   ├── idempotency/
+│   │   ├── processed-events.repository.ts      ← 幂等去重表（消费端）
+│   │   └── idempotent-consumer.ts              ← 幂等消费封装
+│   ├── persistence.service.ts                  ← 业务编排（saveMessageWithOutbox）
+│   ├── persistence.module.ts                   ← NestJS 模块
+│   └── index.ts                                ← 桶文件
+├── conversation/                               ← 【Day 23 已有】需接入软删除
+│   └── conversation.service.ts                 ← 改：删除走软删除
+├── diagnosis/                                  ← 【Day 23 已有】需接入乐观锁
+│   └── diagnosis.service.ts                    ← 改：update 走 CAS
+├── prisma/
+│   ├── schema.prisma                           ← 【已有】+ Outbox/ProcessedEvent 表 + version/deletedAt 字段
+│   ├── prisma.service.ts                       ← 【已有】+ 挂载 soft-delete 中间件
+│   └── migrations/
+│       └── 20260809_add_outbox_optlock_softdelete/
+│           └── migration.sql                   ← 【新增】
+└── main.ts                                     ← 【已有】+ bootstrap 启动 OutboxRelay
+</code></pre>
+<p><strong>三版演进对应的文件差异</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>文件</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>persistence.service.ts</code></td>
+<td>✓ 先 create 再 emit</td>
+<td>✓ Outbox 同事务写</td>
+<td>✓ 同 v2</td>
+</tr>
+<tr>
+<td><code>outbox/outbox.repository.ts</code></td>
+<td>✗</td>
+<td>✓ 同事务写 + relay 拉取</td>
+<td>✓ 同 v2</td>
+</tr>
+<tr>
+<td><code>outbox/outbox-relay.service.ts</code></td>
+<td>✗</td>
+<td>✓ 轮询发布</td>
+<td>✓ + 崩溃恢复（重扫 pending）</td>
+</tr>
+<tr>
+<td><code>optimistic-lock/optimistic-lock.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ CAS 更新 + 冲突错误</td>
+</tr>
+<tr>
+<td><code>soft-delete/soft-delete.middleware.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ Prisma $extends 中间件</td>
+</tr>
+<tr>
+<td><code>idempotency/processed-events.repository.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 幂等去重表</td>
+</tr>
+<tr>
+<td><code>prisma/schema.prisma</code></td>
+<td>基础表</td>
+<td>+ Outbox 表</td>
+<td>+ ProcessedEvent + version + deletedAt</td>
+</tr>
+</tbody>
+</table></div><p><strong>依赖方向（务必单向，反过来一次都不行）</strong>：</p>
+<pre><code>conversation.service.ts / diagnosis.service.ts
+        │
+        ▼
+persistence.service.ts                          ← 编排：事务内写业务 + 写 Outbox
+        │
+        ├─► outbox/outbox.repository.ts ──► prisma（同一个 tx）
+        │
+        ├─► optimistic-lock/optimistic-lock.ts（纯逻辑）
+        │
+        └─► idempotency/idempotent-consumer.ts ──► processed-events.repository.ts
+
+outbox/outbox-relay.service.ts                  ← 独立进程，不被业务调用
+        │
+        └─► outbox.repository.ts + 事件总线
+
+soft-delete.middleware.ts                        ← 挂在 PrismaService 上，全局生效
+optimistic-lock.ts                               ← 纯逻辑，不 import prisma 具体实例
+outbox-event.types.ts                            ← 纯类型
+</code></pre>
+<p><strong>红线</strong>：</p>
+<ul>
+<li><code>persistence.service.ts</code> 里"写业务"和"写 Outbox"如果不在同一个 <code>prisma.$transaction</code> 回调里，就是双写裂缝——Outbox 模式的全部意义就是这两个写必须原子</li>
+<li><code>outbox-relay.service.ts</code> 里出现业务逻辑（例如"如果是 message.created 就生成诊断"）就是塌方——relay 只负责搬运，不解释事件</li>
+<li><code>optimistic-lock.ts</code> 里出现 <code>new PrismaService()</code> 是塌方——它是纯逻辑封装，接收 tx client 作为参数</li>
+<li>任何 Conversation/Message 查询绕过软删除中间件直接 <code>prisma.$queryRaw</code> 是塌方——会把已删除数据翻出来</li>
+</ul>
+<p><strong>动手前先问自己 3 个问题</strong>：</p>
+<ol>
+<li>Outbox 事件为什么必须和业务写在同一个事务？—— 见 §5.4 知识点 1「Outbox 模式与双写一致性」</li>
+<li>乐观锁的 version 检查为什么放在 <code>WHERE</code> 而不是先 SELECT 再比较？—— 见 §5.4 知识点 3「CAS 与 check-then-act 竞态」</li>
+<li>软删除为什么用 Prisma 中间件而不是每个查询手动加 <code>WHERE deletedAt IS NULL</code>？—— 见 §5.4 知识点 5「默认安全 vs 手动过滤」</li>
+</ol>
+<hr>
+<h2 id="15-阶段-d动手脚手架30-分钟先搭骨架再看正文">1.5 阶段 D：动手脚手架（30 分钟，先搭骨架再看正文）</h2>
+<h3 id="151-d-1确认-prisma-版本-装依赖3-分钟">1.5.1 D-1：确认 Prisma 版本 + 装依赖（3 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>确认 <code>@prisma/client</code> ≥ 5.0（Day 13 已装，<code>$extends</code> 客户端扩展需要 5.0+）</li>
+<li>本日不需要新增运行时依赖；事件总线用 NestJS 内置的 <code>EventEmitter2</code>（<code>@nestjs/event-emitter</code>，若未装：<code>pnpm --filter api add @nestjs/event-emitter</code>）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么用 <code>EventEmitter2</code> 而不是真的 Kafka/RabbitMQ？（今天教的是 Outbox 模式本身；总线用内存版足够演示"relay 搬运"，生产换成 Kafka 时 relay 逻辑不变）</li>
+<li>Prisma <code>$extends</code> 和旧的 <code>$use</code> 中间件有什么区别？（<code>$use</code> 已废弃；<code>$extends</code> 是类型安全的新 API，query 扩展能拦截所有模型操作）</li>
+</ul>
+<h3 id="152-d-2创建目录3-分钟">1.5.2 D-2：创建目录（3 分钟）</h3>
+<p>按第 5.3 节的目录树，在 <code>apps/api/src/persistence/</code> 下建 4 个子目录：<code>outbox/</code> <code>optimistic-lock/</code> <code>soft-delete/</code> <code>idempotency/</code>。</p>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么 <code>outbox/</code> 和 <code>idempotency/</code> 分开？（Outbox 是<strong>生产端</strong>保证"事件一定发出"；幂等是<strong>消费端</strong>保证"事件重复也不重复处理"——一个防丢一个防重，是两个独立机制）</li>
+<li>为什么 <code>soft-delete/</code> 只有一个中间件文件？（软删除的全部逻辑就是"查询时注入过滤 + 删除时改写成 update"，集中在一个中间件里，不散落）</li>
+</ul>
+<h3 id="153-d-3改-prisma-schema-migration7-分钟">1.5.3 D-3：改 Prisma Schema + migration（7 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li><code>schema.prisma</code>：新增 <code>Outbox</code> model（id/eventType/payload/status/createdAt/publishedAt）和 <code>ProcessedEvent</code> model（eventId/processedAt）</li>
+<li>给 <code>Diagnosis</code> 加 <code>version Int @default(0)</code></li>
+<li>给 <code>Conversation</code> / <code>Message</code> 加 <code>deletedAt DateTime?</code></li>
+<li>运行 <code>pnpm --filter api prisma migrate dev --name add_outbox_optlock_softdelete</code></li>
+<li>检查 migration.sql 是否有 Outbox 表的 <code>status</code> 索引（relay 要频繁 <code>WHERE status='pending'</code>）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>Outbox 的 <code>payload</code> 用 <code>Json</code> 还是 <code>String</code>？（用 <code>Json</code>——Postgres 原生 JSONB 可索引可查询，排查时能 <code>WHERE payload-&gt;&gt;'messageId' = 'm-01'</code>）</li>
+<li><code>version</code> 为什么默认 0 而不是 1？（无所谓，只要单调递增；默认 0 让"从未更新过"和"更新过一次"能区分）</li>
+<li>软删除的 <code>deletedAt</code> 为什么可空？（NULL = 未删除，是默认安全值；有时间戳 = 已删除。用可空时间戳而不是 boolean，是为了同时记录"删除时间"用于 30 天保留策略）</li>
+</ul>
+<h3 id="154-d-4写-outbox-optimistic-lock纯逻辑10-分钟">1.5.4 D-4：写 outbox + optimistic-lock（纯逻辑，10 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>outbox/outbox-event.types.ts</code>（事件类型）</li>
+<li>写 <code>outbox/outbox.repository.ts</code>（<code>writeInTx</code> / <code>fetchPending</code> / <code>markPublished</code>）</li>
+<li>写 <code>outbox/outbox-relay.service.ts</code>（<code>OnApplicationBootstrap</code> 启动轮询）</li>
+<li>写 <code>optimistic-lock/optimistic-lock.ts</code>（<code>updateWithVersion</code> + <code>OptimisticLockError</code>）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>writeInTx</code> 为什么接收 <code>tx</code> 参数而不是自己开事务？（它必须复用调用方的事务，才能和业务写原子——这是 Outbox 的命门）</li>
+<li>relay 轮询间隔设多少？（200ms 是延迟和 DB 压力的折中；生产可用 <code>LISTEN/NOTIFY</code> 做到近实时，今天先轮询）</li>
+<li><code>updateWithVersion</code> 影响行数=0 时为什么抛错而不是返回 false？（强制调用方处理冲突；返回 false 容易被忽略，抛错逼着上层要么重试要么报 409）</li>
+</ul>
+<h3 id="155-d-5写-soft-delete-idempotency-编排7-分钟">1.5.5 D-5：写 soft-delete + idempotency + 编排（7 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>soft-delete/soft-delete.middleware.ts</code>（<code>$extends</code> query 拦截）</li>
+<li>写 <code>idempotency/processed-events.repository.ts</code> + <code>idempotent-consumer.ts</code></li>
+<li>写 <code>persistence.service.ts</code>（<code>saveMessageWithOutbox</code> 事务编排）</li>
+<li>在 <code>prisma.service.ts</code> 挂中间件、<code>main.ts</code> 启动 relay</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>软删除中间件拦截 <code>delete</code> 改写成 <code>update{deletedAt}</code>，那真的要物理删除时怎么办？（保留一个 <code>hardDelete</code> 逃生通道，只有回收站清理任务能调）</li>
+<li>幂等表 <code>processed_events</code> 会无限增长吗？（会——需要定期清理 N 天前的记录；今天先不做清理，M3 门禁时补）</li>
+<li><code>saveMessageWithOutbox</code> 事务里能不能调用外部 HTTP？（绝对不能——事务持有行锁，外部 HTTP 慢会让锁长期不释放，阻塞其他连接）</li>
+</ul>
+<hr>
+<h2 id="2-学习节奏90-阅读-270-动手深化">2. 学习节奏（90 阅读 / 270 动手深化）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>内容</th>
+<th>交付物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A：读原理</td>
+<td>40 min</td>
+<td>§3-§5 三版演进 + §5.4 知识点 6 项</td>
+<td>心里能画出"先写后发→Outbox 同事务→乐观锁+软删除+幂等"的演进路径</td>
+</tr>
+<tr>
+<td>B：读代码</td>
+<td>40 min</td>
+<td>§5.3 逐文件通读，特别是 <code>persistence.service.ts</code> 事务边界和 <code>outbox-relay.service.ts</code></td>
+<td>能口述"Outbox 写在事务哪一步"、"relay 崩溃后怎么恢复"</td>
+</tr>
+<tr>
+<td>C：读深挖</td>
+<td>40 min</td>
+<td>§6.5 前端底子补弱（<code>Day27深挖-前端底子补弱.html</code>）</td>
+<td>能回答"前端乐观更新 vs 后端乐观锁的异同"</td>
+</tr>
+<tr>
+<td>D：动手脚手架</td>
+<td>30 min</td>
+<td>§1.5 D-1 到 D-5</td>
+<td>骨架文件全部创建，<code>pnpm --filter api build</code> 通过</td>
+</tr>
+<tr>
+<td>E：写核心测试</td>
+<td>60 min</td>
+<td>§7.6 三个 spec（outbox relay / 乐观锁 / 软删除中间件）</td>
+<td><code>pnpm --filter api test persistence</code> 全绿</td>
+</tr>
+<tr>
+<td>F-1：反证 1</td>
+<td>30 min</td>
+<td>§7.7 COMMIT 后注入崩溃，验证 relay 补发</td>
+<td>观察"已展示未发布"在 v1 出现、v3 不出现</td>
+</tr>
+<tr>
+<td>F-2：反证 2</td>
+<td>30 min</td>
+<td>§7.8 去掉乐观锁 WHERE version，100 并发更新</td>
+<td>观察丢失更新，验证乐观锁的价值</td>
+</tr>
+<tr>
+<td>F-3：验证 + 提交</td>
+<td>30 min</td>
+<td>§7.9 四件套 + commit</td>
+<td>commit 含 <code>Refs: Day27</code></td>
+</tr>
+</tbody>
+</table></div><p><strong>总计</strong>：90 阅读（A+B+C）+ 270 动手/项目深化 = 360 min</p>
+<hr>
+<h2 id="3-v1最小闭环业务写与事件发布分离">3. v1：最小闭环（业务写与事件发布分离）</h2>
+<h3 id="31-v1-要实现什么">3.1 v1 要实现什么</h3>
+<p>Day 26 的 BFF 收齐模型回答后，v1 做最直觉的两步：先 <code>INSERT</code> Message，成功后 <code>emit</code> 一个事件让下游生成诊断。</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li><code>persistenceService.saveMessage(msg)</code> 写库</li>
+<li>写成功后 <code>eventEmitter.emit('message.created', {messageId})</code></li>
+<li>下游 <code>DiagnosisConsumer</code> 收到后生成诊断</li>
+</ul>
+<p><strong>不做</strong>：</p>
+<ul>
+<li>不用 Outbox（写库和发事件是分离的两步）</li>
+<li>不做乐观锁（update 直接覆盖）</li>
+<li>不做软删除（delete 物理删）</li>
+<li>不做幂等（事件来几次处理几次）</li>
+</ul>
+<h3 id="32-v1-目录结构">3.2 v1 目录结构</h3>
+<pre><code>apps/api/src/persistence/
+├── persistence.service.ts       ← 先 create 再 emit
+└── persistence.module.ts
+</code></pre>
+<h3 id="33-v1-完整代码">3.3 v1 完整代码</h3>
+<p><strong>apps/api/src/persistence/persistence.service.ts（v1 全文）</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { EventEmitter2 } from '@nestjs/event-emitter'
+import { PrismaService } from '../prisma/prisma.service'
+
+@Injectable()
+export class PersistenceService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly eventEmitter: EventEmitter2,
+  ) {}
+
+  async saveMessage(input: {
+    conversationId: string
+    role: string
+    content: string
+  }): Promise&lt;string&gt; {
+    // 第 1 步：写业务数据
+    const message = await this.prisma.message.create({
+      data: {
+        conversationId: input.conversationId,
+        role: input.role,
+        content: input.content,
+      },
+    })
+
+    // 第 2 步：发布事件（← 这一步和上一步不在同一个事务里）
+    this.eventEmitter.emit('message.created', { messageId: message.id })
+
+    return message.id
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/persistence/persistence.module.ts（v1）</strong></p>
+<pre><code class="language-typescript">import { Module } from '@nestjs/common'
+import { EventEmitterModule } from '@nestjs/event-emitter'
+import { PrismaModule } from '../prisma/prisma.module'
+import { PersistenceService } from './persistence.service'
+
+@Module({
+  imports: [PrismaModule, EventEmitterModule.forRoot()],
+  providers: [PersistenceService],
+  exports: [PersistenceService],
+})
+export class PersistenceModule {}
+</code></pre>
+<h3 id="34-v1-暴露的痛点">3.4 v1 暴露的痛点</h3>
+<p><strong>痛点 1：COMMIT 后崩溃 → 事件永远丢失（核心裂缝）</strong></p>
+<p><code>saveMessage</code> 里第 1 步 <code>create</code> 提交后、第 2 步 <code>emit</code> 执行前，如果进程崩溃（OOM / 部署重启 / 断电），事件就永远发不出去。库里有 Message，前端也早就（Day 26 流式）把回答渲染了，但下游诊断永远不触发。用户看到"回答完成"，等一整天也等不到诊断。<strong>这是 dual-write 最经典的失败模式。</strong></p>
+<p>即使不崩溃：<code>emit</code> 是内存事件，如果下游 handler 抛错，事件也没有重试机制——同样丢失。</p>
+<p><strong>痛点 2：并发更新静默覆盖（丢失更新）</strong></p>
+<p>两个请求同时 <code>prisma.diagnosis.update({where:{id}, data:{note}})</code>，后写的直接覆盖先写的，没有任何冲突检测。先写入的人的修改凭空消失。</p>
+<p><strong>痛点 3：物理删除不可恢复、审计断链</strong></p>
+<p><code>prisma.conversation.delete()</code> 物理删除，数据没了。用户误删想恢复？没有。审计要查"这个会话什么时候被谁删的"？记录都没了。</p>
+<p><strong>痛点 4：事件重复消费产生重复诊断</strong></p>
+<p>即使 v1 之后加了事件重试（防痛点1），一旦重试就可能投递两次，下游没有幂等保护会生成两条诊断。</p>
+<hr>
+<h2 id="4-v2outbox-同事务写-relay-轮询发布">4. v2：Outbox 同事务写 + relay 轮询发布</h2>
+<h3 id="41-v2-要实现什么">4.1 v2 要实现什么</h3>
+<p>用户视角：无论进程在哪一刻崩溃，只要 Message 进了库，事件最终一定会发出去（至少一次）。核心手段是 <strong>Transactional Outbox 模式</strong>：把"写业务数据"和"写待发事件"放进同一个数据库事务，原子提交；再用一个独立的 relay 进程轮询 Outbox 表，把 pending 事件真正发到总线，发成功后标记 published。</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li><code>saveMessageWithOutbox</code> 在一个 <code>$transaction</code> 里同时写 Message 和 Outbox 记录</li>
+<li><code>OutboxRelayService</code> 每 200ms 拉 pending 事件、发布、标记 published</li>
+<li>进程崩溃重启后，relay 重扫仍是 pending 的记录继续发</li>
+</ul>
+<p><strong>依然不做</strong>：</p>
+<ul>
+<li>乐观锁（留给 v3）</li>
+<li>软删除（留给 v3）</li>
+<li>消费端幂等（留给 v3——注意 Outbox 是"至少一次"，必须配幂等才安全）</li>
+</ul>
+<h3 id="42-v2-目录结构">4.2 v2 目录结构</h3>
+<pre><code>apps/api/src/persistence/
+├── outbox/
+│   ├── outbox-event.types.ts        ← 新增
+│   ├── outbox.repository.ts         ← 新增：同事务写 + relay 拉取
+│   └── outbox-relay.service.ts      ← 新增：轮询发布
+├── persistence.service.ts           ← 改：saveMessageWithOutbox
+└── persistence.module.ts            ← 改：注册 relay
+</code></pre>
+<h3 id="43-v2-完整代码">4.3 v2 完整代码</h3>
+<p><strong>apps/api/src/persistence/outbox/outbox-event.types.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">// Outbox 记录的状态
+export type OutboxStatus = 'pending' | 'published'
+
+// 待发布事件的领域形状（存进 Outbox.payload 的结构）
+export type OutboxEventType = 'message.created' | 'diagnosis.updated'
+
+export interface OutboxEventInput {
+  eventType: OutboxEventType
+  payload: Record&lt;string, unknown&gt;
+}
+
+export interface OutboxRecord {
+  id: string
+  eventType: OutboxEventType
+  payload: Record&lt;string, unknown&gt;
+  status: OutboxStatus
+  createdAt: Date
+  publishedAt: Date | null
+}
+</code></pre>
+<p><strong>apps/api/src/persistence/outbox/outbox.repository.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import type { Prisma } from '@prisma/client'
+import { PrismaService } from '../../prisma/prisma.service'
+import type { OutboxEventInput, OutboxRecord } from './outbox-event.types'
+
+@Injectable()
+export class OutboxRepository {
+  constructor(private readonly prisma: PrismaService) {}
+
+  /**
+   * 在【调用方的事务】里写入 Outbox 记录。
+   * 关键：接收 tx（TransactionClient），不自己开事务——
+   * 这样才能和业务写共享同一个事务，一起提交或一起回滚。
+   */
+  async writeInTx(
+    tx: Prisma.TransactionClient,
+    event: OutboxEventInput,
+  ): Promise&lt;void&gt; {
+    await tx.outbox.create({
+      data: {
+        eventType: event.eventType,
+        payload: event.payload as Prisma.InputJsonValue,
+        status: 'pending',
+      },
+    })
+  }
+
+  /** relay 拉取一批待发布事件（按创建顺序，保证大致有序） */
+  async fetchPending(limit = 50): Promise&lt;OutboxRecord[]&gt; {
+    const rows = await this.prisma.outbox.findMany({
+      where: { status: 'pending' },
+      orderBy: { createdAt: 'asc' },
+      take: limit,
+    })
+    return rows as unknown as OutboxRecord[]
+  }
+
+  /** 标记为已发布 */
+  async markPublished(id: string): Promise&lt;void&gt; {
+    await this.prisma.outbox.update({
+      where: { id },
+      data: { status: 'published', publishedAt: new Date() },
+    })
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/persistence/outbox/outbox-relay.service.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import { Injectable, Logger, OnApplicationBootstrap, OnModuleDestroy } from '@nestjs/common'
+import { EventEmitter2 } from '@nestjs/event-emitter'
+import { OutboxRepository } from './outbox.repository'
+
+@Injectable()
+export class OutboxRelayService implements OnApplicationBootstrap, OnModuleDestroy {
+  private readonly logger = new Logger(OutboxRelayService.name)
+  private timer: NodeJS.Timeout | null = null
+  private running = false
+  private readonly intervalMs = 200
+
+  constructor(
+    private readonly outbox: OutboxRepository,
+    private readonly eventEmitter: EventEmitter2,
+  ) {}
+
+  // 应用启动后开始轮询。崩溃重启也会走这里，
+  // 自动重扫仍是 pending 的记录 —— 这就是"崩溃恢复"。
+  onApplicationBootstrap(): void {
+    this.timer = setInterval(() =&gt; void this.tick(), this.intervalMs)
+    this.logger.log('OutboxRelay started')
+  }
+
+  onModuleDestroy(): void {
+    if (this.timer) clearInterval(this.timer)
+  }
+
+  private async tick(): Promise&lt;void&gt; {
+    if (this.running) return // 防止上一轮未结束就重入
+    this.running = true
+    try {
+      const pending = await this.outbox.fetchPending(50)
+      for (const record of pending) {
+        try {
+          // 真正发到总线（生产环境这里换成 Kafka producer.send）
+          this.eventEmitter.emit(record.eventType, {
+            ...record.payload,
+            __outboxId: record.id,
+          })
+          await this.outbox.markPublished(record.id)
+        } catch (err) {
+          // 单条失败不影响其他；下一轮会重试（至少一次投递）
+          this.logger.error(`publish failed for ${record.id}`, err as Error)
+        }
+      }
+    } catch (err) {
+      this.logger.error('outbox tick failed', err as Error)
+    } finally {
+      this.running = false
+    }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/persistence/persistence.service.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { PrismaService } from '../prisma/prisma.service'
+import { OutboxRepository } from './outbox/outbox.repository'
+
+@Injectable()
+export class PersistenceService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly outbox: OutboxRepository,
+  ) {}
+
+  /**
+   * 写 Message 和写 Outbox 事件在同一个事务里。
+   * 要么都成功（Message 有了、事件待发），
+   * 要么都失败（回滚，什么都没发生）。
+   * 绝不会出现"Message 有了但事件丢了"。
+   */
+  async saveMessageWithOutbox(input: {
+    conversationId: string
+    role: string
+    content: string
+  }): Promise&lt;string&gt; {
+    return this.prisma.$transaction(async (tx) =&gt; {
+      const message = await tx.message.create({
+        data: {
+          conversationId: input.conversationId,
+          role: input.role,
+          content: input.content,
+        },
+      })
+
+      // 同一个 tx —— 和 message.create 原子提交
+      await this.outbox.writeInTx(tx, {
+        eventType: 'message.created',
+        payload: { messageId: message.id, conversationId: input.conversationId },
+      })
+
+      return message.id
+    })
+    // 注意：事务提交后事件仍是 pending，由 relay 异步发布。
+    // 这就是用"最终一致"换"绝不丢事件"。
+  }
+}
+</code></pre>
+<h3 id="44-v2-暴露的痛点">4.4 v2 暴露的痛点</h3>
+<p><strong>痛点 1：至少一次投递 → 必然出现重复消费</strong></p>
+<p>Outbox 保证"事件不丢"，代价是"可能发多次"：relay 发到总线成功、但 <code>markPublished</code> 前崩溃，重启后这条还是 pending，会再发一次。下游 <code>DiagnosisConsumer</code> 收到两次 <code>message.created</code>，生成两条诊断。<strong>Outbox 必须配消费端幂等，否则只是把"丢事件"换成了"重复副作用"。</strong></p>
+<p><strong>痛点 2：并发更新仍然静默覆盖</strong></p>
+<p>v2 只解决了"写+发"一致性，没碰更新。两个请求同时改同一条 Diagnosis 仍然丢失更新。</p>
+<p><strong>痛点 3：删除仍是物理删除</strong></p>
+<p>软删除还没做，误删不可恢复、审计断链的问题依旧。</p>
+<p><strong>痛点 4：relay 有序性和吞吐的取舍</strong></p>
+<p><code>fetchPending</code> 按 <code>createdAt asc</code> 拉，单 relay 串行发能大致保序，但吞吐受限；多 relay 并发发会乱序且可能重复拉同一条（需要 <code>SELECT FOR UPDATE SKIP LOCKED</code>）。v2 先用单 relay，把这个取舍留到深挖里讲。</p>
+<hr>
+<h2 id="5-v3乐观锁-软删除默认-scope-消费端幂等终态">5. v3：乐观锁 + 软删除默认 scope + 消费端幂等（终态）</h2>
+<h3 id="51-v3-要实现什么">5.1 v3 要实现什么</h3>
+<p>用户视角：</p>
+<ol>
+<li>并发更新同一条 Diagnosis 时，后提交者收到 409 冲突而不是静默覆盖（乐观锁）</li>
+<li>删除会话只是标记 <code>deletedAt</code>，普通查询自动过滤，30 天内可恢复、审计链不断（软删除默认 scope）</li>
+<li>下游消费者对重复投递幂等——同一 Outbox 事件消费两次只产生一次副作用（消费端幂等）</li>
+<li>继承 v2 的 Outbox 一致性 + relay 崩溃恢复</li>
+</ol>
+<h3 id="52-v3-目录结构">5.2 v3 目录结构</h3>
+<p>与 §1.4 完全一致：</p>
+<pre><code>apps/api/src/persistence/
+├── outbox/
+│   ├── outbox-event.types.ts        ← v2 已有
+│   ├── outbox.repository.ts         ← v2 已有
+│   └── outbox-relay.service.ts      ← v2 已有
+├── concurrency/
+│   ├── optimistic-lock.ts           ← 新增：版本校验纯函数
+│   ├── optimistic-lock.spec.ts      ← 新增
+│   └── version-conflict.error.ts    ← 新增：409 语义
+├── soft-delete/
+│   ├── soft-delete.extension.ts     ← 新增：Prisma 扩展，默认过滤 deletedAt
+│   └── soft-delete.spec.ts          ← 新增
+├── idempotency/
+│   ├── consumed-events.repository.ts ← 新增：已消费事件表
+│   └── idempotent-consumer.ts        ← 新增：幂等消费包装
+├── persistence.service.ts           ← 改：updateDiagnosis 带版本
+└── persistence.module.ts
+</code></pre>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<h4 id="531-concurrency-层optimistic-lockts纯函数">5.3.1 concurrency 层：optimistic-lock.ts（纯函数）</h4>
+<pre><code class="language-typescript">import { VersionConflictError } from './version-conflict.error'
+
+/**
+ * 乐观锁核心：更新前对比版本号。
+ * 这是纯函数——不碰 DB，只做"期望版本 vs 当前版本"的判定，
+ * 因此能穷举单测所有分支。真正的原子性由 DB 的 WHERE version=? 保证。
+ */
+export function assertVersionMatch(
+  expectedVersion: number,
+  currentVersion: number,
+): void {
+  if (expectedVersion !== currentVersion) {
+    throw new VersionConflictError(expectedVersion, currentVersion)
+  }
+}
+
+/** 计算更新后的新版本号（永远 +1，单调递增） */
+export function nextVersion(currentVersion: number): number {
+  return currentVersion + 1
+}
+</code></pre>
+<h4 id="532-concurrency-层version-conflicterrorts">5.3.2 concurrency 层：version-conflict.error.ts</h4>
+<pre><code class="language-typescript">import { ConflictException } from '@nestjs/common'
+
+/** 映射到 HTTP 409。前端据此提示"数据已被他人修改，请刷新后重试" */
+export class VersionConflictError extends ConflictException {
+  constructor(
+    public readonly expectedVersion: number,
+    public readonly actualVersion: number,
+  ) {
+    super({
+      code: 'VERSION_CONFLICT',
+      message: `expected version ${expectedVersion}, but current is ${actualVersion}`,
+      expectedVersion,
+      actualVersion,
+    })
+  }
+}
+</code></pre>
+<h4 id="533-concurrency-层optimistic-lockspects">5.3.3 concurrency 层：optimistic-lock.spec.ts</h4>
+<pre><code class="language-typescript">import { describe, it, expect } from 'vitest'
+import { assertVersionMatch, nextVersion } from './optimistic-lock'
+import { VersionConflictError } from './version-conflict.error'
+
+describe('optimistic-lock', () =&gt; {
+  it('版本一致时不抛错', () =&gt; {
+    expect(() =&gt; assertVersionMatch(3, 3)).not.toThrow()
+  })
+
+  it('版本不一致时抛 VersionConflictError', () =&gt; {
+    expect(() =&gt; assertVersionMatch(3, 5)).toThrow(VersionConflictError)
+  })
+
+  it('冲突错误携带期望和实际版本', () =&gt; {
+    try {
+      assertVersionMatch(3, 5)
+    } catch (err) {
+      expect(err).toBeInstanceOf(VersionConflictError)
+      expect((err as VersionConflictError).expectedVersion).toBe(3)
+      expect((err as VersionConflictError).actualVersion).toBe(5)
+    }
+  })
+
+  it('nextVersion 单调 +1', () =&gt; {
+    expect(nextVersion(0)).toBe(1)
+    expect(nextVersion(41)).toBe(42)
+  })
+})
+</code></pre>
+<h4 id="534-persistenceservicets带版本的更新db-层原子性">5.3.4 persistence.service.ts：带版本的更新（DB 层原子性）</h4>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { PrismaService } from '../prisma/prisma.service'
+import { VersionConflictError } from './concurrency/version-conflict.error'
+
+@Injectable()
+export class PersistenceService {
+  constructor(private readonly prisma: PrismaService) {}
+
+  /**
+   * 乐观锁更新：WHERE 同时匹配 id 和 version。
+   * 关键：判定和更新是【同一条 SQL 原子完成】的——
+   * 不能"先 SELECT 版本，再对比，再 UPDATE"（那之间会有竞态）。
+   * updateMany 返回 count=0 说明版本已被别人改过。
+   */
+  async updateDiagnosis(input: {
+    id: string
+    expectedVersion: number
+    summary: string
+  }): Promise&lt;void&gt; {
+    const result = await this.prisma.diagnosis.updateMany({
+      where: { id: input.id, version: input.expectedVersion },
+      data: {
+        summary: input.summary,
+        version: { increment: 1 },
+        updatedAt: new Date(),
+      },
+    })
+
+    if (result.count === 0) {
+      // 没更到任何行 = 版本已变。读出当前版本给前端更友好的提示
+      const current = await this.prisma.diagnosis.findUnique({
+        where: { id: input.id },
+        select: { version: true },
+      })
+      throw new VersionConflictError(input.expectedVersion, current?.version ?? -1)
+    }
+  }
+}
+</code></pre>
+<h4 id="535-soft-delete-层soft-deleteextensiontsprisma-client-扩展">5.3.5 soft-delete 层：soft-delete.extension.ts（Prisma Client 扩展）</h4>
+<pre><code class="language-typescript">import { Prisma } from '@prisma/client'
+
+/**
+ * Prisma Client 扩展：让软删除模型的普通查询默认过滤 deletedAt。
+ * 关键价值：业务代码不用每次手写 `where: { deletedAt: null }`——
+ * 漏一次就会把已删数据泄漏出去。默认 scope 把"安全"变成默认行为。
+ */
+export const softDeleteExtension = Prisma.defineExtension({
+  name: 'soft-delete',
+  query: {
+    conversation: {
+      // 拦截读操作，自动注入 deletedAt: null
+      async findMany({ args, query }) {
+        args.where = { ...args.where, deletedAt: null }
+        return query(args)
+      },
+      async findFirst({ args, query }) {
+        args.where = { ...args.where, deletedAt: null }
+        return query(args)
+      },
+      // 拦截 delete，改写为 update deletedAt（软删除）
+      async delete({ args, query: _query }) {
+        // 交给 update 执行软删除，而不是物理删除
+        return (this as any).conversation.update({
+          where: args.where,
+          data: { deletedAt: new Date() },
+        })
+      },
+    },
+  },
+})
+</code></pre>
+<h4 id="536-idempotency-层consumed-eventsrepositoryts">5.3.6 idempotency 层：consumed-events.repository.ts</h4>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { PrismaService } from '../../prisma/prisma.service'
+
+@Injectable()
+export class ConsumedEventsRepository {
+  constructor(private readonly prisma: PrismaService) {}
+
+  /**
+   * 尝试登记一个已消费的 outboxId。
+   * 依赖 consumed_events.outbox_id 的唯一约束：
+   * 重复登记会抛唯一冲突 → 返回 false（说明已消费过，应跳过）。
+   */
+  async tryMarkConsumed(outboxId: string, consumer: string): Promise&lt;boolean&gt; {
+    try {
+      await this.prisma.consumedEvent.create({
+        data: { outboxId, consumer },
+      })
+      return true // 第一次消费
+    } catch (err: any) {
+      if (err?.code === 'P2002') return false // 唯一约束冲突 = 已消费
+      throw err
+    }
+  }
+}
+</code></pre>
+<h4 id="537-idempotency-层idempotent-consumerts">5.3.7 idempotency 层：idempotent-consumer.ts</h4>
+<pre><code class="language-typescript">import { Injectable, Logger } from '@nestjs/common'
+import { OnEvent } from '@nestjs/event-emitter'
+import { ConsumedEventsRepository } from './consumed-events.repository'
+import { PrismaService } from '../../prisma/prisma.service'
+
+@Injectable()
+export class DiagnosisConsumer {
+  private readonly logger = new Logger(DiagnosisConsumer.name)
+
+  constructor(
+    private readonly consumed: ConsumedEventsRepository,
+    private readonly prisma: PrismaService,
+  ) {}
+
+  /**
+   * 消费 message.created 事件。
+   * relay 是"至少一次"投递，同一 __outboxId 可能来两次。
+   * 幂等闸门：先 tryMarkConsumed，false 就直接跳过——
+   * 保证副作用（生成诊断）只发生一次。
+   */
+  @OnEvent('message.created')
+  async handle(payload: { messageId: string; __outboxId: string }): Promise&lt;void&gt; {
+    const isFirst = await this.consumed.tryMarkConsumed(payload.__outboxId, 'diagnosis')
+    if (!isFirst) {
+      this.logger.debug(`skip duplicate outbox ${payload.__outboxId}`)
+      return
+    }
+
+    // 真正的副作用：为这条 message 生成诊断（只执行一次）
+    await this.prisma.diagnosis.create({
+      data: { messageId: payload.messageId, summary: '（诊断生成中）', version: 0 },
+    })
+  }
+}
+</code></pre>
+<h3 id="54-v3-用到的知识点">5.4 v3 用到的知识点</h3>
+<p><strong>知识点 1：ACID 与事务边界</strong></p>
+<ul>
+<li>解决的问题：多步写入中途失败会留下半成品（Message 有了、Diagnosis 没了）</li>
+<li>运行机制：<code>$transaction</code> 把多个写包成原子单元，全成功才提交，任一失败全回滚</li>
+<li>项目落点：<code>saveMessageWithOutbox</code> 把 message.create 和 outbox.writeInTx 包在一个 tx</li>
+<li>生产误区：事务里塞 HTTP 调用（锁持有过久，连接池耗尽）；事务粒度过大（本该独立的写被绑死）</li>
+<li>验证方法：在事务中间注入异常，断言 Message 和 Outbox 都没写入</li>
+</ul>
+<p><strong>知识点 2：隔离级别（Isolation Level）</strong></p>
+<ul>
+<li>解决的问题：默认 ReadCommitted 下"先读后写"模式在并发时读到旧值、写覆盖</li>
+<li>运行机制：ReadCommitted（读已提交）/ RepeatableRead / Serializable（串行化）逐级更严；Postgres 默认 ReadCommitted</li>
+<li>项目落点：乐观锁用 <code>updateMany WHERE version=?</code> 在 ReadCommitted 下也安全，不需要升级隔离级别</li>
+<li>生产误区：无脑上 Serializable（性能损失 + serialization failure 需重试）；以为默认隔离级别能防丢失更新（不能）</li>
+<li>验证方法：两个并发事务基于同版本更新，断言一个成功一个 409</li>
+</ul>
+<p><strong>知识点 3：乐观锁（Optimistic Locking）</strong></p>
+<ul>
+<li>解决的问题：悲观锁（SELECT FOR UPDATE）持锁久、并发低；乐观锁假设冲突罕见，冲突时才失败重试</li>
+<li>运行机制：每行带 version 字段，UPDATE 时 <code>WHERE id=? AND version=?</code>，count=0 即冲突</li>
+<li>项目落点：<code>updateDiagnosis</code> 的 updateMany + <code>version: { increment: 1 }</code></li>
+<li>生产误区：先 SELECT 版本再 UPDATE（中间有竞态窗口）；version 用时间戳（时钟回拨会撞）</li>
+<li>验证方法：<code>optimistic-lock.spec.ts</code> 穷举版本匹配/不匹配；集成测试 100 并发验证无丢失更新</li>
+</ul>
+<p><strong>知识点 4：Transactional Outbox 模式</strong></p>
+<ul>
+<li>解决的问题：双写（写库 + 发消息）无法原子——写库成功发消息失败就"已展示未发布"</li>
+<li>运行机制：把待发事件作为一行写进同库的 Outbox 表（同事务原子），relay 进程异步轮询发布</li>
+<li>项目落点：<code>outbox.writeInTx</code> 接收调用方 tx；<code>OutboxRelayService</code> 轮询 + 崩溃重扫</li>
+<li>生产误区：relay 发布后忘记 markPublished（无限重发）；Outbox 不清理（表无限膨胀，需归档）</li>
+<li>验证方法：在 message.create 后、事务提交前 kill 进程，重启后断言事件仍被发出</li>
+</ul>
+<p><strong>知识点 5：至少一次投递 + 消费端幂等</strong></p>
+<ul>
+<li>解决的问题：Outbox 是"至少一次"，重复投递会导致重复副作用（两条诊断）</li>
+<li>运行机制：消费端用 consumed_events 表 + outboxId 唯一约束做幂等闸门，重复的直接跳过</li>
+<li>项目落点：<code>tryMarkConsumed</code> 靠 P2002 唯一冲突判定已消费；<code>DiagnosisConsumer</code> 先闸门后副作用</li>
+<li>生产误区：先执行副作用再登记（崩溃点之间会重复）；用内存 Set 做幂等（重启即失效）</li>
+<li>验证方法：对同一 __outboxId 调 handle 两次，断言 diagnosis 只创建一条</li>
+</ul>
+<p><strong>知识点 6：软删除（Soft Delete）与默认 scope</strong></p>
+<ul>
+<li>解决的问题：物理删除不可恢复、审计断链；但每个查询手写 <code>deletedAt: null</code> 会漏</li>
+<li>运行机制：删除只写 <code>deletedAt</code> 时间戳；Prisma Client 扩展拦截读查询自动注入过滤条件</li>
+<li>项目落点：<code>soft-delete.extension.ts</code> 拦截 findMany/findFirst/delete</li>
+<li>生产误区：软删除但唯一约束没带 deletedAt（删了同名的建不回来）；只在 service 层过滤（raw query 绕过）</li>
+<li>验证方法：删除后普通查询查不到、加 <code>deletedAt: { not: null }</code> 能查到；30 天恢复用例</li>
+</ul>
+<h3 id="55-边写边问自己">5.5 边写边问自己</h3>
+<ul>
+<li><code>writeInTx</code> 为什么接收 <code>tx</code> 而不是自己开事务？（只有共享调用方的事务，Outbox 写才能和业务写原子提交）</li>
+<li>乐观锁为什么用 <code>updateMany</code> 而不是 <code>findUnique</code> + <code>update</code>？（updateMany 的 WHERE version 判定和写是同一条 SQL，原子；分两步有竞态）</li>
+<li>消费端幂等为什么"先登记后执行副作用"错了？（登记成功、执行副作用前崩溃，重启后已登记会跳过 → 副作用永远不发生。正确顺序要么副作用幂等要么放同事务）</li>
+<li>软删除默认 scope 为什么用 Prisma 扩展而不是 service 包装？（service 包装只护得住走 service 的路径，raw query / 其他 service 会绕过；扩展在 client 层兜底）</li>
+</ul>
+<hr>
+<h2 id="6-三版对比一览表">6. 三版对比一览表</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1 业务写与事件分离</th>
+<th>v2 Outbox 同事务 + relay</th>
+<th>v3 + 乐观锁 + 软删除 + 幂等（终态）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>核心目标</strong></td>
+<td>最小闭环：写库后发事件</td>
+<td>保证"写了库就一定发事件"</td>
+<td>保证"无丢失更新、无软删除泄漏、无重复副作用"</td>
+</tr>
+<tr>
+<td><strong>事务边界</strong></td>
+<td>单步 create</td>
+<td>message + outbox 同事务</td>
+<td>同 v2</td>
+</tr>
+<tr>
+<td><strong>崩溃后事件</strong></td>
+<td>永久丢失（已展示未发布）</td>
+<td>relay 重扫 pending 补发</td>
+<td>同 v2</td>
+</tr>
+<tr>
+<td><strong>并发更新</strong></td>
+<td>静默覆盖（丢失更新）</td>
+<td>同 v1</td>
+<td>WHERE version 乐观锁，冲突 409</td>
+</tr>
+<tr>
+<td><strong>删除策略</strong></td>
+<td>物理删除（不可恢复）</td>
+<td>同 v1</td>
+<td>软删除 + Prisma 扩展默认 scope</td>
+</tr>
+<tr>
+<td><strong>重复消费</strong></td>
+<td>生成重复诊断</td>
+<td>同 v1</td>
+<td>consumed_events 幂等闸门，跳过</td>
+</tr>
+<tr>
+<td><strong>新增文件</strong></td>
+<td>persistence.service.ts</td>
+<td>+ outbox/ (repository + relay)</td>
+<td>+ concurrency/ + soft-delete/ + idempotency/</td>
+</tr>
+<tr>
+<td><strong>测试重点</strong></td>
+<td>create 成功 + emit 收到</td>
+<td>relay 轮询 + 崩溃恢复</td>
+<td>乐观锁单测 + 100 并发集成 + 软删除 scope + 幂等重复投递</td>
+</tr>
+<tr>
+<td><strong>最大风险</strong></td>
+<td>COMMIT 后崩溃 → 事件丢</td>
+<td>relay 重试 → 重复投递</td>
+<td>version 字段忘迁移 / 软删除忘加默认 scope / 幂等登记放副作用后</td>
+</tr>
+<tr>
+<td><strong>代码行数</strong></td>
+<td>~60</td>
+<td>~200</td>
+<td>~450（含测试）</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="65-前端底子补弱独立深挖-html-入口">6.5 前端底子补弱（独立深挖 HTML 入口）</h2>
+<p><strong>为什么在这里插入 HTML 深挖</strong>：今天主题是 Postgres 持久化，但前端工程师常觉得"这些是后端的事"。实际上乐观锁的 <strong>冲突提示 UI</strong>、软删除的 <strong>回收站交互</strong>、Outbox 的 <strong>提交确认反馈</strong> 都需要前端深度理解才能接得住。HTML 入口用一个完整的"诊断编辑表单"示范三个真实场景：</p>
+<ol>
+<li>乐观锁冲突时前端收到 409，如何显示"数据已被他人修改，请刷新后重试"的模态框并<strong>重新拉取最新 version</strong></li>
+<li>软删除的会话如何在回收站列表显示、恢复按钮如何调 PATCH /conversations/:id/restore</li>
+<li>提交表单后前端显示"保存中..."，后端 Outbox 提交成功后才显示"已保存"——<strong>但前端并不知道事件是否发出去了</strong>（最终一致）</li>
+</ol>
+<p><strong>深挖 HTML 路径</strong>：<code>output/90天逐日任务/Day27深挖-前端底子补弱.html</code>，内含：</p>
+<ul>
+<li>诊断编辑表单（带 version 字段的 PATCH 请求）</li>
+<li>409 冲突模态框 + 重新拉取</li>
+<li>回收站列表 + 恢复按钮</li>
+<li>保存确认的"已保存"vs"保存中"状态</li>
+<li>代码注释解释"前端乐观更新 vs 后端乐观锁"的区别</li>
+</ul>
+<p>打开 HTML 文件后，先自己读代码回答 3 个问题（答案在 HTML 底部注释）：</p>
+<ol>
+<li>前端发 PATCH 时为什么要带上当前 version？如果不带会怎样？</li>
+<li>收到 409 后为什么要重新 GET 最新数据？如果直接让用户手动刷新页面会怎样？</li>
+<li>"已保存"的绿勾只代表"Message 进库了"，为什么不能保证"诊断已生成"？</li>
+</ol>
+<p><strong>预期时长</strong>：20 分钟通读 HTML + 20 分钟自己改一版（增加"冲突次数"显示、给回收站加过期倒计时）</p>
+<hr>
+<h2 id="7-项目验收清单阶段-e-f约-120-分钟">7. 项目验收清单（阶段 E-F，约 120 分钟）</h2>
+<h3 id="71-e-1工程环境确认5-分钟">7.1 E-1：工程环境确认（5 分钟）</h3>
+<ul>
+<li>[ ] <code>pnpm --filter api prisma generate</code> 成功（Outbox / ProcessedEvent / Diagnosis.version / Conversation.deletedAt 已进 schema）</li>
+<li>[ ] <code>pnpm --filter api build</code> 通过（import 路径正确、无类型错误）</li>
+<li>[ ] <code>pnpm --filter api prisma migrate dev --name add_outbox_optlock_softdelete</code> 创建 migration（不自动应用，留到 7.2 才 apply）</li>
+</ul>
+<h3 id="72-e-2核心单元测试40-分钟">7.2 E-2：核心单元测试（40 分钟）</h3>
+<p>按第 5.3 节的代码写 3 个 spec：</p>
+<p><strong>7.2.1 optimistic-lock.spec.ts</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect } from 'vitest'
+import { assertVersionMatch, nextVersion } from './optimistic-lock'
+import { VersionConflictError } from './version-conflict.error'
+
+describe('optimistic-lock', () =&gt; {
+  it('版本一致时不抛错', () =&gt; {
+    expect(() =&gt; assertVersionMatch(3, 3)).not.toThrow()
+  })
+
+  it('版本不一致时抛 VersionConflictError', () =&gt; {
+    expect(() =&gt; assertVersionMatch(3, 5)).toThrow(VersionConflictError)
+  })
+
+  it('冲突错误携带期望和实际版本', () =&gt; {
+    try {
+      assertVersionMatch(3, 5)
+    } catch (err) {
+      expect(err).toBeInstanceOf(VersionConflictError)
+      expect((err as VersionConflictError).expectedVersion).toBe(3)
+      expect((err as VersionConflictError).actualVersion).toBe(5)
+    }
+  })
+
+  it('nextVersion 单调 +1', () =&gt; {
+    expect(nextVersion(0)).toBe(1)
+    expect(nextVersion(41)).toBe(42)
+  })
+})
+</code></pre>
+<p><strong>7.2.2 soft-delete.spec.ts（集成 Prisma 测试，隔离 schema）</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect, beforeEach } from 'vitest'
+import { PrismaClient } from '@prisma/client'
+import { softDeleteExtension } from './soft-delete.extension'
+
+const prisma = new PrismaClient().$extends(softDeleteExtension)
+
+describe('soft-delete extension', () =&gt; {
+  beforeEach(async () =&gt; {
+    await prisma.conversation.deleteMany() // 清空隔离 schema
+  })
+
+  it('普通查询不返回已删除记录', async () =&gt; {
+    const c = await prisma.conversation.create({ data: { userId: 'u1' } })
+    await prisma.conversation.delete({ where: { id: c.id } })
+    
+    const found = await prisma.conversation.findMany()
+    expect(found).toHaveLength(0)
+  })
+
+  it('手动过滤 deletedAt 能查到已删除记录', async () =&gt; {
+    const c = await prisma.conversation.create({ data: { userId: 'u1' } })
+    await prisma.conversation.delete({ where: { id: c.id } })
+    
+    const deleted = await prisma.conversation.findMany({
+      where: { deletedAt: { not: null } },
+    })
+    expect(deleted).toHaveLength(1)
+  })
+})
+</code></pre>
+<p><strong>7.2.3 outbox-relay.spec.ts（mock EventEmitter 验证轮询发布）</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { OutboxRelayService } from './outbox-relay.service'
+import { OutboxRepository } from './outbox.repository'
+import { EventEmitter2 } from '@nestjs/event-emitter'
+
+describe('OutboxRelayService', () =&gt; {
+  let relay: OutboxRelayService
+  let outbox: OutboxRepository
+  let emitter: EventEmitter2
+
+  beforeEach(() =&gt; {
+    outbox = {
+      fetchPending: vi.fn().mockResolvedValue([]),
+      markPublished: vi.fn(),
+    } as any
+    emitter = { emit: vi.fn() } as any
+    relay = new OutboxRelayService(outbox, emitter)
+  })
+
+  it('tick 拉取 pending 并发布', async () =&gt; {
+    vi.mocked(outbox.fetchPending).mockResolvedValue([
+      { id: 'o1', eventType: 'message.created', payload: { messageId: 'm1' } },
+    ] as any)
+
+    await (relay as any).tick()
+
+    expect(emitter.emit).toHaveBeenCalledWith('message.created', {
+      messageId: 'm1',
+      __outboxId: 'o1',
+    })
+    expect(outbox.markPublished).toHaveBeenCalledWith('o1')
+  })
+})
+</code></pre>
+<p>运行：<code>pnpm --filter api test persistence</code>，断言全绿。</p>
+<h3 id="73-e-3集成测试100-并发验证乐观锁15-分钟">7.3 E-3：集成测试：100 并发验证乐观锁（15 分钟）</h3>
+<pre><code class="language-typescript">import { describe, it, expect } from 'vitest'
+import { PrismaClient } from '@prisma/client'
+
+describe('optimistic lock concurrency', () =&gt; {
+  it('100 并发更新同一条 Diagnosis，只有 1 个成功其余全 409', async () =&gt; {
+    const prisma = new PrismaClient()
+    const d = await prisma.diagnosis.create({ data: { messageId: 'm1', summary: 'init', version: 0 } })
+
+    const results = await Promise.allSettled(
+      Array.from({ length: 100 }, (_, i) =&gt;
+        prisma.diagnosis.updateMany({
+          where: { id: d.id, version: 0 },
+          data: { summary: `update-${i}`, version: { increment: 1 } },
+        })
+      )
+    )
+
+    const succeeded = results.filter(r =&gt; r.status === 'fulfilled' &amp;&amp; (r.value as any).count &gt; 0)
+    expect(succeeded).toHaveLength(1) // 只有 1 个成功
+  })
+})
+</code></pre>
+<h3 id="74-f-1反证实验-1commit-后注入崩溃验证-relay-补发30-分钟">7.4 F-1：反证实验 1——COMMIT 后注入崩溃，验证 relay 补发（30 分钟）</h3>
+<p><strong>目标</strong>：证明"没有 Outbox 时，COMMIT 后崩溃会丢事件；有 Outbox 时崩溃后 relay 重扫会补发"。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>v1 版本：<code>saveMessage</code> 里 create 成功后、<code>emit</code> 前插入 <code>process.exit(1)</code></li>
+<li>启动后发一条消息，观察：Message 进库、事件未发、诊断永远不生成（"已展示未发布"）</li>
+<li>v3 版本：<code>saveMessageWithOutbox</code> 事务 COMMIT 后、relay 扫到前 kill 进程</li>
+<li>重启，观察：relay 重扫到 pending 记录，补发事件，诊断生成（无"已展示未发布"）</li>
+</ol>
+<p><strong>记录</strong>：截图"v1 Message 有、诊断无"和"v3 重启后诊断生成"，写进 <code>docs/反证实验/Day27-反证1-outbox崩溃恢复.md</code>。</p>
+<h3 id="75-f-2反证实验-2移除乐观锁-where-version100-并发验证丢失更新30-分钟">7.5 F-2：反证实验 2——移除乐观锁 WHERE version，100 并发验证丢失更新（30 分钟）</h3>
+<p><strong>目标</strong>：证明"不带 WHERE version 的 update 在并发时会丢失更新；带了就 409"。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>改 <code>updateDiagnosis</code> 去掉 <code>WHERE version</code>，改成普通 <code>update({ where: { id } })</code></li>
+<li>100 并发更新同一条（<code>summary: 'A'</code> / 'B' / 'C' ... ）</li>
+<li>观察：最终 summary 只保留最后写入的，前 99 个更新静默丢失、version 也乱了</li>
+<li>恢复 <code>WHERE version</code> 重跑，观察：只有 1 个成功（version 0→1），其余 99 个抛 VersionConflictError</li>
+</ol>
+<p><strong>记录</strong>：对比"无乐观锁丢失更新"和"有乐观锁冲突可见"，写进 <code>docs/反证实验/Day27-反证2-乐观锁防丢失更新.md</code>。</p>
+<h3 id="76-f-3验证-提交30-分钟">7.6 F-3：验证 + 提交（30 分钟）</h3>
+<h4 id="761-四件套15-分钟">7.6.1 四件套（15 分钟）</h4>
+<pre><code class="language-bash">cd apps/api
+pnpm run lint     # ESLint 全绿
+pnpm run test     # 单元 + 集成全绿
+pnpm run build    # TypeScript 编译通过
+pnpm run typecheck # tsc --noEmit 通过
+</code></pre>
+<h4 id="762-commit5-分钟">7.6.2 commit（5 分钟）</h4>
+<pre><code class="language-bash">git add apps/api/src/persistence apps/api/prisma/schema.prisma
+git commit -m "feat(persistence): Outbox + 乐观锁 + 软删除 + 幂等
+
+- Transactional Outbox 模式保证业务写和事件发布原子
+- OutboxRelay 轮询发布，崩溃重启自动补发 pending 事件
+- 乐观锁 version 防并发丢失更新，冲突 409
+- 软删除 Prisma 扩展默认 scope，删除可恢复
+- consumed_events 幂等闸门防重复副作用
+
+Refs: Day27"
+</code></pre>
+<p><strong>⚠️ 硬红线：不要 <code>git push</code></strong>。今天的改动只在本地 commit，Day 28 结束时集中 push。</p>
+<h4 id="763-架构证据10-分钟">7.6.3 架构证据（10 分钟）</h4>
+<p>在 <code>docs/architecture-evidence/</code> 下创建 <code>Day27-persistence-outbox-evidence.md</code>：</p>
+<pre><code class="language-markdown"># Day 27 Postgres 持久化架构证据
+
+## 1. Outbox 事务边界证据
+
+**时序图**：saveMessageWithOutbox 的 $transaction 边界
+\`\`\`
+[BFF] --(req)--&gt; [PersistenceService.saveMessageWithOutbox]
+         |
+         BEGIN TX
+         |
+      message.create  ← 步骤 1
+         |
+      outbox.writeInTx ← 步骤 2（同一个 tx）
+         |
+         COMMIT (原子)
+         |
+      [OutboxRelay 轮询] --(200ms)--&gt; fetchPending -&gt; emit -&gt; markPublished
+\`\`\`
+
+**证据文件**：
+- `persistence.service.ts:15-30`（事务包裹）
+- `outbox.repository.ts:12-20`（writeInTx 接收 tx 参数）
+- 反证实验 1 截图：v1 COMMIT 后崩溃 → 事件丢；v3 重启后 relay 补发
+
+## 2. 乐观锁原子性证据
+
+**SQL 日志**：
+\`\`\`sql
+UPDATE diagnosis SET summary='new', version=version+1, updated_at=now()
+WHERE id='d-01' AND version=3;
+-- 返回 count=0 说明 version 已变（被别人先改了）
+\`\`\`
+
+**证据文件**：
+- `persistence.service.ts:40-55`（updateMany WHERE version）
+- `optimistic-lock.spec.ts`（单元穷举）
+- 反证实验 2：100 并发验证"无锁 → 丢失更新，有锁 → 99 个 409"
+
+## 3. 软删除默认 scope 证据
+
+**Prisma 扩展拦截日志**：
+\`\`\`typescript
+// 业务代码写：
+prisma.conversation.findMany({ where: { userId: 'u1' } })
+// 扩展改写为：
+prisma.conversation.findMany({ where: { userId: 'u1', deletedAt: null } })
+\`\`\`
+
+**证据文件**：
+- `soft-delete.extension.ts:8-15`（query 拦截注入）
+- `soft-delete.spec.ts`（普通查询查不到、手动过滤能查到）
+\`\`\`
+</code></pre>
+<p>记录每个证据对应的文件 + 行号 + 反证实验截图路径。</p>
+<hr>
+<h2 id="8-通过标准">8. 通过标准</h2>
+<p>Day 27 通过门槛：</p>
+<ul>
+<li>[ ] 四件套全绿，commit 含 <code>Refs: Day27</code>，未执行 <code>git push</code></li>
+<li>[ ] <code>persistence.service.ts</code> 的 saveMessageWithOutbox 事务边界正确（message + outbox 同 tx）</li>
+<li>[ ] OutboxRelay 启动后能轮询发布，崩溃重启后能重扫 pending 补发</li>
+<li>[ ] updateDiagnosis 带 WHERE version，100 并发验证只有 1 个成功其余 409</li>
+<li>[ ] 软删除后普通查询查不到，手动过滤 <code>deletedAt: { not: null }</code> 能查到</li>
+<li>[ ] DiagnosisConsumer 对重复 __outboxId 幂等，同一事件消费两次只生成一条诊断</li>
+<li>[ ] 反证实验 1（COMMIT 后崩溃）和反证实验 2（去掉 WHERE version）完成并记录</li>
+<li>[ ] 架构证据文档包含事务边界时序图 + SQL 日志 + 反证截图路径</li>
+</ul>
+<p><strong>如果任一项未通过</strong>，Day 27 视为未完成，Day 28 不得开始。</p>
+<hr>
+<h2 id="9-提交物">9. 提交物</h2>
+<ol>
+<li>commit（含 <code>Refs: Day27</code>，未执行 <code>git push</code>）</li>
+<li>测试输出（<code>pnpm --filter api test persistence</code> 截图）</li>
+<li>反证实验记录（<code>docs/反证实验/Day27-反证1-outbox崩溃恢复.md</code> + <code>Day27-反证2-乐观锁防丢失更新.md</code>）</li>
+<li>架构证据（<code>docs/architecture-evidence/Day27-persistence-outbox-evidence.md</code>）</li>
+<li>学习日志（回答 §10 三道核心问题）</li>
+</ol>
+<hr>
+<h2 id="10-课末-3-个核心问题">10. 课末 3 个核心问题</h2>
+<p>完成 Day 27 后，先回答这 3 个问题，再提交给教师进入五连问：</p>
+<ol>
+<li>
+<p><strong>数据流与知识链对应</strong>
+请从今天项目的真实入口（BFF 收齐模型回答）到最终输出（Diagnosis 生成），解释"Postgres 持久化"的数据流或控制流；当天知识链"ACID、隔离级别、乐观锁、Outbox、软删除"分别在哪一层起作用，为什么按这个顺序学习？</p>
+<p><strong>参考答案骨架</strong>（自己填血肉）：</p>
+<ul>
+<li>ACID：<code>$transaction</code> 包 message + outbox 写，保证原子</li>
+<li>Outbox：解决 ACID 后下一个问题——"事务外的消息发送"怎么可靠？答案是把事件也写进事务</li>
+<li>隔离级别：理解为什么"先读后写"模式会丢失更新，引出乐观锁</li>
+<li>乐观锁：解决并发更新，WHERE version 在 ReadCommitted 下也安全</li>
+<li>软删除：业务需要"删除可恢复"，技术上要防查询泄漏</li>
+</ul>
+</li>
+<li>
+<p><strong>移除关键保护的可观察现象</strong>
+如果故意移除今天最关键的保护机制（Outbox 同事务 / 乐观锁 WHERE version / 软删除默认 scope），线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</p>
+<p><strong>参考答案骨架</strong>（选一个机制展开）：</p>
+<ul>
+<li>移除 Outbox 同事务 → 现象：前端显示"回答已保存"，但诊断永远不生成</li>
+<li>最小复现：COMMIT 后 kill 进程</li>
+<li>定位证据：Message 表有记录、Outbox 表空、消费者日志无 message.created</li>
+<li>恢复动作：手动补发事件 / 重跑 Outbox</li>
+<li>防复发测试：集成测试注入崩溃点，断言 relay 重启后能补发</li>
+</ul>
+</li>
+<li>
+<p><strong>项目目标达成与演进方向</strong>
+请引用今天的具体代码、测试和架构证据，证明项目目标（"前端显示的一定进库、库里的一定发事件、并发不丢更新、删除可恢复"）已经达到；再说明当前实现距离企业生产标准还缺什么，下一步如何演进而不破坏已有合同。</p>
+<p><strong>参考答案骨架</strong>：</p>
+<ul>
+<li>已达到：persistence.service.ts:15-30 事务边界 + outbox-relay.spec.ts 补发测试 + optimistic-lock 100 并发验证 + 反证实验截图</li>
+<li>还缺：Outbox 无归档（表无限膨胀）；relay 单进程（吞吐受限）；消费端无重试（失败就丢）；软删除 30 天清理未实现</li>
+<li>演进方向：Day 28 M3 门禁补归档策略；阶段三上 Kafka 后 relay 换 producer.send、消费端加重试队列；合同不变（Outbox 记录结构 + version 语义稳定）</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="11-真实项目情境题联网更新-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>
+<p><strong>Message 已提交，但 Outbox 插入失败；UI 已展示内容，事件消费者永远收不到。</strong>
+请用事务日志、Outbox 表和消费位点定位双写裂缝；先扫描并补发缺失事件止损，再把业务写与 Outbox 放入同一事务，崩溃点注入验证无"已展示未发布"。回答必须按"定位证据 → 临时止损 → 根因修复 → 回归验证"组织。
+依据：<a href="https://www.postgresql.org/docs/current/transaction-iso.html" target="_blank" rel="noopener noreferrer">PostgreSQL isolation</a></p>
+</li>
+<li>
+<p><strong>两个请求基于同一 version 更新 Diagnosis，一个静默覆盖另一个；软删除记录又被普通查询返回。</strong>
+请用隔离级别、版本号、SQL 和审计定位；先启用冲突告警/过滤止损，再实现乐观锁与默认 scope，100 并发更新验证冲突可见且无丢失更新。回答必须按"定位证据 → 临时止损 → 根因修复 → 回归验证"组织。
+依据：<a href="https://www.postgresql.org/docs/current/transaction-iso.html" target="_blank" rel="noopener noreferrer">PostgreSQL isolation</a></p>
+</li>
+</ol>
+<p>知识映射：ACID、隔离级别、乐观锁、Outbox 和软删除。</p>
+<hr>
+<h2 id="12-pdf-面试题">12. PDF 面试题</h2>
+<blockquote>
+<p>以下题目引用自公开面经 PDF 汇编，文件名不等于官方题库；用作练习触发点，不代表本项目对齐了任何一家公司的真实校招/社招题库。</p>
+</blockquote>
+<ol>
+<li>
+<p><strong>数据库事务的 ACID 特性是什么？</strong>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E7%25BE%258E%25E5%259B%25A2%25E5%2589%258D%25E7%25AB%25AF%25E5%2585%25A8%25E6%25A0%2588%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026美团前端全栈开发》</a>，第 9 页。</p>
+</li>
+<li>
+<p><strong>如何保证 Redis 与 MySQL 的数据一致性？</strong>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E7%25BE%258E%25E5%259B%25A2%25E5%2589%258D%25E7%25AB%25AF%25E5%2585%25A8%25E6%25A0%2588%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026美团前端全栈开发》</a>，第 10 页。</p>
+</li>
+</ol>
+<p>题目说明：对应事务、一致性、并发更新和双写风险；资料中无 Outbox 直接原题，答题时需补充 Outbox 与重复消费幂等。</p>
+<hr>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"现场提出 5 道问题。五连问不预先固定，也不由上面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<hr>
+<h2 id="14-本-day-在-90-天路线中的锚点">14. 本 Day 在 90 天路线中的锚点</h2>
+<p>Day 27 交付的 <strong>Outbox 一致性合同</strong>、<strong>乐观锁 version 语义</strong>、<strong>软删除 deletedAt 合同</strong> 是后续 Day 的地基：</p>
+<ul>
+<li><strong>Day 28-30 M3 门禁</strong>：数据一致性验收项要求"任一写入失败必须全回滚"（事务边界）、"并发更新冲突可见"（乐观锁）、"删除数据可恢复"（软删除）</li>
+<li><strong>阶段三 p2-agent-workbench</strong>：多 Agent 并发写共享状态（计划、决策、执行记录）时，乐观锁防丢失更新是刚需；Outbox 保证"Agent A 的决策已落库、下游 Agent B 一定能收到通知"</li>
+<li><strong>Day 61+ Eval 自动评分</strong>：Eval 结果写入后必须发 <code>eval.completed</code> 事件触发排行榜更新——Outbox 保证"结果进库就一定上榜"，不会有"考完了分数不见"</li>
+</ul>
+<p>今天建立的"事务内写 Outbox + relay 异步发布 + 消费端幂等"三段式模式，会在后续每个需要可靠事件发布的场景复用；version 字段和 WHERE version 的 CAS 更新会成为所有可并发编辑实体的标配；软删除 + 默认 scope 会推广到所有需要"删除可恢复"的模型。这三块是 AI 全栈工程师在生产环境"保证数据不丢、不乱、可恢复"的核心武器。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day27-old.html">查看 Day 27 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/26.html">← Day 26 · 流式 BFF</a>
+            <a href="/ai-teacher-agent-devolop/day/28.html">Day 28 · Redis →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#14-%E6%9C%AC%E6%97%A5%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8A%A8%E6%89%8B%E5%89%8D%E5%85%88%E7%9C%8B%E9%AA%A8%E6%9E%B6">1.4 本日项目目录结构（动手前先看骨架）</a></li><li><a href="#15-%E9%98%B6%E6%AE%B5-d%E5%8A%A8%E6%89%8B%E8%84%9A%E6%89%8B%E6%9E%B630-%E5%88%86%E9%92%9F%E5%85%88%E6%90%AD%E9%AA%A8%E6%9E%B6%E5%86%8D%E7%9C%8B%E6%AD%A3%E6%96%87">1.5 阶段 D：动手脚手架（30 分钟，先搭骨架再看正文）</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F90-%E9%98%85%E8%AF%BB-270-%E5%8A%A8%E6%89%8B%E6%B7%B1%E5%8C%96">2. 学习节奏（90 阅读 / 270 动手深化）</a></li><li><a href="#3-v1%E6%9C%80%E5%B0%8F%E9%97%AD%E7%8E%AF%E4%B8%9A%E5%8A%A1%E5%86%99%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%8F%91%E5%B8%83%E5%88%86%E7%A6%BB">3. v1：最小闭环（业务写与事件发布分离）</a></li><li><a href="#4-v2outbox-%E5%90%8C%E4%BA%8B%E5%8A%A1%E5%86%99-relay-%E8%BD%AE%E8%AF%A2%E5%8F%91%E5%B8%83">4. v2：Outbox 同事务写 + relay 轮询发布</a></li><li><a href="#5-v3%E4%B9%90%E8%A7%82%E9%94%81-%E8%BD%AF%E5%88%A0%E9%99%A4%E9%BB%98%E8%AE%A4-scope-%E6%B6%88%E8%B4%B9%E7%AB%AF%E5%B9%82%E7%AD%89%E7%BB%88%E6%80%81">5. v3：乐观锁 + 软删除默认 scope + 消费端幂等（终态）</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94%E4%B8%80%E8%A7%88%E8%A1%A8">6. 三版对比一览表</a></li><li><a href="#65-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1%E7%8B%AC%E7%AB%8B%E6%B7%B1%E6%8C%96-html-%E5%85%A5%E5%8F%A3">6.5 前端底子补弱（独立深挖 HTML 入口）</a></li><li><a href="#7-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95%E9%98%B6%E6%AE%B5-e-f%E7%BA%A6-120-%E5%88%86%E9%92%9F">7. 项目验收清单（阶段 E-F，约 120 分钟）</a></li><li><a href="#8-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86">8. 通过标准</a></li><li><a href="#9-%E6%8F%90%E4%BA%A4%E7%89%A9">9. 提交物</a></li><li><a href="#10-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">10. 课末 3 个核心问题</a></li><li><a href="#11-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">12. PDF 面试题</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">14. 本 Day 在 90 天路线中的锚点</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

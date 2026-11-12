@@ -1,0 +1,1952 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 08 · API/分页（Offset → Cursor → 稳定复合游标 + Query DTO + ViewModel） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html" aria-current="page">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/02.html">第 2 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 08</p>
+        <h1>API/分页（Offset → Cursor → 稳定复合游标 + Query DTO + ViewModel）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段一（Day 1-30，前端 -&gt; AI 前端）。所有 BFF、NestJS、数据库、队列和 Agent 后端增量都必须服务于 <code>p1-monitor</code> 的真实 AI 前端链路，不得另起无关 Demo。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+</blockquote>
+<p>任务版本：标准版
+日期与时长：2026-07-21 周二，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：D:\demo\ai-techer\p1-monitor
+角色视角：掌握 Day 1-7 事件流、合同、异步竞态、图表、实时可靠性、异常检测的全栈开发者，现在要给异常列表加分页</p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p><strong>承上</strong>：</p>
+<ul>
+<li>Day 1-2 建立了 DTO/Domain 分层和 zod schema 校验</li>
+<li>Day 3 实现了并发读取 + 竞态保护</li>
+<li>Day 4-5 建立了图表 + WebSocket 实时推送</li>
+<li>Day 6 加了心跳/重连/去重</li>
+<li>Day 7 实现了异常检测算法 + 领域事件</li>
+</ul>
+<p><strong>启下</strong>：</p>
+<ul>
+<li>Day 9 会在今天的列表基础上加详情页 + 状态流转（确认/忽略/处理中）</li>
+<li>Day 10 会给列表加实时更新（WebSocket 推送 + 列表合并）</li>
+<li>Day 15 会加历史数据恢复（分页查询大量历史异常）</li>
+</ul>
+<p><strong>今天的核心</strong>：
+Day 7 的异常检测每分钟产生 100+ 条异常，前端需要<strong>分页展示</strong>。核心解决：<strong>Offset 分页在并发插入时重复/漏项</strong> → <strong>Cursor 分页</strong> → <strong>相同时间戳时仍然重复</strong> → <strong>复合游标 (createdAt, id)</strong> + <strong>Query DTO 校验 limit</strong> + <strong>ViewModel 投影安全字段</strong>。</p>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p>在 p1-monitor 运维监控系统的异常列表页：</p>
+<ol>
+<li><strong>默认视图</strong>：显示最近 20 条异常，按时间倒序</li>
+<li><strong>加载更多</strong>：点击底部按钮或滚动到底部，追加下一页 20 条</li>
+<li><strong>过滤</strong>：按服务器 ID、严重程度、类型过滤</li>
+<li><strong>无重复/漏项</strong>：即使后端持续插入新异常，翻页也不会重复或漏项</li>
+<li><strong>安全</strong>：<code>limit=100000</code> 或未授权字段会被拒绝</li>
+</ol>
+<p><strong>关键</strong>：用户翻页 100 次，看到的是稳定、连续、无重复的列表。</p>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<p><strong>在 p1-monitor 项目中的定位</strong>：</p>
+<ul>
+<li><strong>架构层</strong>：查询层，负责将 domain 层的大量数据分页交给前端</li>
+<li><strong>依赖方</strong>：Day 9 详情页、Day 10 实时列表、Day 15 历史恢复</li>
+<li><strong>被依赖方</strong>：Day 7 的 <code>Anomaly</code> 领域模型、Day 2 的 zod schema</li>
+</ul>
+<p><strong>为什么是 Day 8</strong>：</p>
+<ul>
+<li>Day 7 产生了海量异常数据，不能一次性全返回</li>
+<li>分页在<strong>并发写入</strong>场景下有陷阱（重复、漏项）</li>
+<li>今天必须建立<strong>稳定游标 + 输入校验 + 输出投影</strong>三道防线</li>
+</ul>
+<h3 id="13-三版演进的目标v1-v2-v3">1.3 三版演进的目标（v1 / v2 / v3）</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>核心目标</th>
+<th>用户体验</th>
+<th>技术关键点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td>Offset 分页能用</td>
+<td>翻页正常，但并发插入时看到重复</td>
+<td><code>LIMIT/OFFSET</code></td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>Cursor 分页解决并发</td>
+<td>并发插入不重复，但相同时间戳时失败</td>
+<td><code>WHERE createdAt &lt; cursor</code></td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>复合游标 + Query DTO + ViewModel</td>
+<td>稳定分页 + 输入校验 + 字段白名单</td>
+<td><code>(createdAt, id)</code> + zod + DTO 投影</td>
+</tr>
+</tbody>
+</table></div><p><strong>痛点演进</strong>：</p>
+<ul>
+<li>v1 痛点：<code>OFFSET 20 LIMIT 20</code> 在并发插入 10 条后，第 2 页会重复看到 10 条</li>
+<li>v2 痛点：<code>createdAt &lt; '2026-07-21T10:00:00Z'</code> 时如果有 3 条相同时间戳，会漏掉</li>
+<li>v3 终态：<code>(createdAt, id) &lt; (cursor.createdAt, cursor.id)</code> 保证严格顺序 + 加 zod DTO 拒绝 <code>limit=100000</code> + ViewModel 隐藏内部字段</li>
+</ul>
+<h3 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h3>
+<p><strong>为什么放在最前面</strong>：每天动手前必须先在脑子里立起骨架。骨架不清晰直接动手 = 返工。</p>
+<p><strong>今天在 <code>p1-monitor/backend/</code> 和 <code>frontend/</code> 下要建立的完整源码树（v3 完整版）</strong>：</p>
+<pre><code>backend/
+├── src/
+│   ├── anomalies/
+│   │   ├── anomalies.controller.ts        ← 今天新建（GET /anomalies）
+│   │   ├── anomalies.controller.spec.ts   ← 今天新建（Controller 测试）
+│   │   ├── anomalies.service.ts           ← Day 7 已建立，今天加 findMany
+│   │   ├── anomalies.service.spec.ts      ← 加分页测试
+│   │   └── dto/
+│   │       ├── list-anomalies.query.dto.ts  ← 今天新建（Query DTO）
+│   │       └── anomaly.view-model.ts        ← 今天新建（ViewModel 投影）
+│   └── app.module.ts
+frontend/
+├── src/
+│   ├── domain/
+│   │   └── anomalies/
+│   │       ├── anomaly.types.ts             ← Day 7 已建立
+│   │       └── anomaly.schema.ts            ← Day 7 已建立
+│   ├── features/
+│   │   └── anomalies/
+│   │       ├── api/
+│   │       │   └── anomalies-client.ts      ← 今天新建（分页请求封装）
+│   │       ├── composables/
+│   │       │   ├── useAnomalyList.ts        ← 今天新建（列表 composable）
+│   │       │   └── useAnomalyList.spec.ts   ← 今天新建（测试）
+│   │       └── components/
+│   │           ├── AnomalyListItem.vue      ← 今天新建（单条列表项）
+│   │           └── AnomalyList.vue          ← 今天新建（列表容器）
+│   └── app/
+│       └── pages/
+│           └── AnomalyListPage.vue          ← 今天新建（页面）
+</code></pre>
+<p><strong>三版演进对应的文件差异</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>文件</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>anomalies.controller.ts</code></td>
+<td><code>@Query('page') page</code></td>
+<td><code>@Query('cursor') cursor</code></td>
+<td>加 <code>@Query() dto: ListAnomaliesQueryDto</code></td>
+</tr>
+<tr>
+<td><code>anomalies.service.ts</code></td>
+<td><code>skip/take</code></td>
+<td><code>where: { createdAt: { lt: cursor } }</code></td>
+<td>复合 where <code>(createdAt, id) &lt; (c1, c2)</code></td>
+</tr>
+<tr>
+<td><code>list-anomalies.query.dto.ts</code></td>
+<td>无</td>
+<td>无</td>
+<td>zod 校验 limit ≤ 100、cursor 格式</td>
+</tr>
+<tr>
+<td><code>anomaly.view-model.ts</code></td>
+<td>无</td>
+<td>无</td>
+<td>投影：只暴露 id/type/severity/serverId/createdAt</td>
+</tr>
+<tr>
+<td><code>useAnomalyList.ts</code></td>
+<td><code>page/setPage</code></td>
+<td><code>cursor/loadMore</code></td>
+<td>同 v2 + AbortController</td>
+</tr>
+</tbody>
+</table></div><p><strong>依赖方向（务必单向）</strong>：</p>
+<pre><code>前端：AnomalyListPage.vue → AnomalyList.vue → useAnomalyList.ts → anomalies-client.ts → HTTP API
+后端：anomalies.controller.ts → anomalies.service.ts → PrismaService
+                              ↓
+                       ListAnomaliesQueryDto (zod validation)
+                              ↓
+                       AnomalyViewModel (output projection)
+</code></pre>
+<p><strong>红线</strong>：</p>
+<ul>
+<li>Controller 直接返回 Prisma 实体 = 架构塌方（必须走 ViewModel 投影）</li>
+<li>Controller 不校验 <code>limit</code> = 架构塌方（必须走 Query DTO）</li>
+<li>Composable 里出现 <code>fetch</code> 而非 client 层 = 架构塌方</li>
+</ul>
+<p><strong>动手前先问自己 3 个问题</strong>：</p>
+<ol>
+<li>为什么 Cursor 分页要用 <code>(createdAt, id)</code> 复合键，不能只用 <code>createdAt</code>？—— 见 §5.4 知识点「稳定排序」</li>
+<li>为什么要有 Query DTO 和 ViewModel 两层，不能直接用 Prisma 类型？—— 见 §5.4 知识点「DTO/ViewModel 分层」</li>
+<li>前端 <code>loadMore</code> 时如何避免重复请求？—— 见 §5.3 v3 代码</li>
+</ol>
+<h3 id="15-阶段-d动手脚手架20-分钟先搭骨架再看正文">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</h3>
+<p><strong>时间盒</strong>：阶段 D 总共 20 分钟。遇到问题先标记 <code>// TODO</code>，读完 v3 代码后回来改。</p>
+<h4 id="151-d-1装依赖3-分钟">1.5.1 D-1：装依赖（3 分钟）</h4>
+<pre><code class="language-bash">cd p1-monitor/backend
+pnpm add zod @nestjs/config
+pnpm add -D @types/node
+
+cd ../frontend
+# 已有 vue/vite/axios
+</code></pre>
+<h4 id="152-d-2创建目录2-分钟">1.5.2 D-2：创建目录（2 分钟）</h4>
+<pre><code class="language-bash"># 后端
+cd backend/src
+mkdir -p anomalies/dto
+touch anomalies/anomalies.controller.ts anomalies/anomalies.controller.spec.ts
+touch anomalies/dto/list-anomalies.query.dto.ts anomalies/dto/anomaly.view-model.ts
+
+# 前端
+cd ../../frontend/src
+mkdir -p features/anomalies/api features/anomalies/composables features/anomalies/components
+touch features/anomalies/api/anomalies-client.ts
+touch features/anomalies/composables/useAnomalyList.ts features/anomalies/composables/useAnomalyList.spec.ts
+touch features/anomalies/components/AnomalyListItem.vue features/anomalies/components/AnomalyList.vue
+touch app/pages/AnomalyListPage.vue
+</code></pre>
+<h4 id="153-d-3实现后端-dto-层30-分钟">1.5.3 D-3：实现后端 DTO 层（30 分钟）</h4>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>backend/src/anomalies/dto/list-anomalies.query.dto.ts</code>（zod 校验 limit/cursor/filters）</li>
+<li>写 <code>backend/src/anomalies/dto/anomaly.view-model.ts</code>（ViewModel 投影 + toViewModel 函数）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>Query DTO 的 <code>limit</code> 为什么要用 <code>z.coerce.number().max(100)</code>？（HTTP 传来的是 string）</li>
+<li>Cursor 为什么要 base64 编码，而不是直接传 <code>createdAt</code>？（防止用户猜测/篡改）</li>
+<li>ViewModel 为什么要一个 <code>toViewModel</code> 转换函数？（隔离 Prisma 类型和响应类型）</li>
+</ul>
+<h4 id="154-d-4实现后端-service-controller40-分钟">1.5.4 D-4：实现后端 Service + Controller（40 分钟）</h4>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>升级 <code>backend/src/anomalies/anomalies.service.ts</code>（加 <code>findManyWithCursor</code>）</li>
+<li>写 <code>backend/src/anomalies/anomalies.controller.ts</code>（GET /anomalies）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么 <code>orderBy</code> 必须是 <code>[{ createdAt: 'desc' }, { id: 'desc' }]</code> 两个键？（相同时间戳的排序稳定性）</li>
+<li>复合游标的 WHERE 子句怎么写？（<code>OR</code> 分支模拟词典序）</li>
+<li><code>nextCursor</code> 什么时候返回 null？（<code>items.length &lt; limit</code> 表示到底了）</li>
+</ul>
+<h4 id="155-d-5实现前端-composable-组件30-分钟">1.5.5 D-5：实现前端 composable + 组件（30 分钟）</h4>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>frontend/src/features/anomalies/api/anomalies-client.ts</code>（HTTP 封装）</li>
+<li>写 <code>frontend/src/features/anomalies/composables/useAnomalyList.ts</code>（状态管理）</li>
+<li>写 <code>frontend/src/features/anomalies/components/AnomalyList.vue</code>（列表容器）</li>
+<li>写 <code>frontend/src/app/pages/AnomalyListPage.vue</code>（页面）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>loadMore</code> 时 <code>loading</code> 状态如何避免重复触发？（<code>if (loading || !hasMore) return</code>）</li>
+<li>切换过滤器时旧请求要不要取消？（AbortController 复用 Day 3 的模式）</li>
+<li>列表项的 <code>key</code> 用什么？（不能用 index，用 <code>anomaly.id</code>）</li>
+</ul>
+<hr>
+<h2 id="2-学习节奏90-阅读-90-动手">2. 学习节奏（90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>内容</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>30 分钟</td>
+<td>阅读第 3 节（v1 Offset 分页）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>30 分钟</td>
+<td>阅读第 4 节（v2 单键 Cursor）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>30 分钟</td>
+<td>阅读第 5 节（v3 复合游标 + DTO + ViewModel）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td><strong>D</strong></td>
+<td>60 分钟</td>
+<td>在自己项目里实现 v3 完整功能（见 §1.5）</td>
+<td>动手</td>
+</tr>
+<tr>
+<td><strong>E</strong></td>
+<td>20 分钟</td>
+<td>写核心逻辑测试 + 两个反证实验（见 §7.6-7.8）</td>
+<td>动手</td>
+</tr>
+<tr>
+<td><strong>F</strong></td>
+<td>10 分钟</td>
+<td>运行 lint/typecheck/test/build，提交 commit（见 §7.9）</td>
+<td>动手</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="3-v1最小闭环offset-分页">3. v1：最小闭环（Offset 分页）</h2>
+<h3 id="31-v1-要实现什么">3.1 v1 要实现什么</h3>
+<p><strong>用户视角</strong>：</p>
+<ul>
+<li>异常列表按页显示，每页 20 条</li>
+<li>点击"下一页"按钮翻页</li>
+</ul>
+<p><strong>技术视角</strong>：</p>
+<ul>
+<li>后端用 <code>skip/take</code> (Prisma) 或 <code>LIMIT/OFFSET</code> (SQL)</li>
+<li>前端记录当前 <code>page</code>，请求时传参</li>
+</ul>
+<h3 id="32-v1-完整代码">3.2 v1 完整代码</h3>
+<p><strong>backend/src/anomalies/anomalies.controller.ts</strong>（v1 版本）</p>
+<pre><code class="language-typescript">import { Controller, Get, Query } from '@nestjs/common'
+import { AnomaliesService } from './anomalies.service'
+
+@Controller('anomalies')
+export class AnomaliesController {
+  constructor(private readonly anomaliesService: AnomaliesService) {}
+
+  @Get()
+  async list(
+    @Query('page') page = '1',
+    @Query('pageSize') pageSize = '20',
+  ) {
+    return this.anomaliesService.findMany({
+      page: parseInt(page, 10),
+      pageSize: parseInt(pageSize, 10),
+    })
+  }
+}
+</code></pre>
+<p><strong>backend/src/anomalies/anomalies.service.ts</strong>（v1 版本）</p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { PrismaService } from '@/prisma/prisma.service'
+
+@Injectable()
+export class AnomaliesService {
+  constructor(private readonly prisma: PrismaService) {}
+
+  async findMany(params: { page: number; pageSize: number }) {
+    const { page, pageSize } = params
+    const skip = (page - 1) * pageSize
+    
+    const items = await this.prisma.anomaly.findMany({
+      skip,
+      take: pageSize,
+      orderBy: { createdAt: 'desc' },
+    })
+    
+    const total = await this.prisma.anomaly.count()
+    
+    return { items, total, page, pageSize }
+  }
+}
+</code></pre>
+<p><strong>frontend/src/features/anomalies/composables/useAnomalyList.ts</strong>（v1 版本）</p>
+<pre><code class="language-typescript">import { ref } from 'vue'
+
+export function useAnomalyList() {
+  const items = ref&lt;any[]&gt;([])
+  const page = ref(1)
+  const pageSize = 20
+  const total = ref(0)
+  const loading = ref(false)
+
+  async function loadPage(newPage: number) {
+    loading.value = true
+    try {
+      const res = await fetch(`/api/anomalies?page=${newPage}&amp;pageSize=${pageSize}`)
+      const data = await res.json()
+      items.value = data.items
+      total.value = data.total
+      page.value = newPage
+    } finally {
+      loading.value = false
+    }
+  }
+
+  return { items, page, total, loading, loadPage }
+}
+</code></pre>
+<h3 id="33-v1-用到的知识点">3.3 v1 用到的知识点</h3>
+<ol>
+<li>
+<p><strong>Prisma skip/take</strong>：</p>
+<ul>
+<li>解决的问题：从数据库取指定范围的记录</li>
+<li>运行机制：编译为 SQL <code>LIMIT ? OFFSET ?</code></li>
+<li>项目落点：<code>findMany({ skip, take })</code></li>
+<li>生产误区：<code>OFFSET</code> 大值时性能极差（要扫描前 N 条丢弃）</li>
+<li>验证方法：<code>EXPLAIN</code> 查看是否用了索引</li>
+</ul>
+</li>
+<li>
+<p><strong>总数查询</strong>：</p>
+<ul>
+<li>解决的问题：告诉前端总共有多少条</li>
+<li>运行机制：<code>SELECT COUNT(*)</code></li>
+<li>项目落点：<code>prisma.anomaly.count()</code></li>
+<li>生产误区：大表 count 极慢，且和 findMany 不在同一事务里数据可能变</li>
+<li>验证方法：并发插入时观察 total 是否稳定</li>
+</ul>
+</li>
+</ol>
+<h3 id="34-v1-暴露的痛点">3.4 v1 暴露的痛点</h3>
+<p><strong>痛点 1</strong>：并发插入导致翻页重复</p>
+<pre><code>时序：
+T0: 用户看到第 1 页 (skip=0, take=20)，得到 anomaly[100..81]
+T1: 后端插入 10 条新异常（anomaly[110..101]）
+T2: 用户点"下一页" (skip=20, take=20)，得到 anomaly[90..71]
+问题：anomaly[90..81] 在第 1 页和第 2 页各出现一次
+</code></pre>
+<p><strong>痛点 2</strong>：大 OFFSET 性能极差</p>
+<p><code>OFFSET 10000 LIMIT 20</code> 数据库仍要扫描前 10020 条丢弃前 10000。</p>
+<p><strong>痛点 3</strong>：无输入校验</p>
+<p>用户传 <code>pageSize=100000</code> 直接把数据库拖垮。</p>
+<p><strong>痛点 4</strong>：直接返回 Prisma 实体</p>
+<p>Prisma 类型包含 <code>internalNotes</code>、<code>sourceIp</code> 等敏感字段，直接暴露给前端。</p>
+<hr>
+<h2 id="4-v2加游标单键-cursor-分页">4. v2：加游标（单键 Cursor 分页）</h2>
+<h3 id="41-v2-要实现什么">4.1 v2 要实现什么</h3>
+<p><strong>用户视角</strong>：</p>
+<ul>
+<li>不再显示"第 N 页"，改为"加载更多"按钮</li>
+<li>并发插入不会导致重复</li>
+</ul>
+<p><strong>技术视角</strong>：</p>
+<ul>
+<li>用 <code>WHERE createdAt &lt; cursor</code> 代替 <code>OFFSET</code></li>
+<li>前端持有 <code>nextCursor</code>，下次请求带上</li>
+</ul>
+<h3 id="42-v2-完整代码">4.2 v2 完整代码</h3>
+<p><strong>backend/src/anomalies/anomalies.controller.ts</strong>（v2）</p>
+<pre><code class="language-typescript">import { Controller, Get, Query } from '@nestjs/common'
+import { AnomaliesService } from './anomalies.service'
+
+@Controller('anomalies')
+export class AnomaliesController {
+  constructor(private readonly anomaliesService: AnomaliesService) {}
+
+  @Get()
+  async list(
+    @Query('cursor') cursor?: string,
+    @Query('limit') limit = '20',
+  ) {
+    return this.anomaliesService.findManyWithCursor({
+      cursor: cursor ? new Date(cursor) : undefined,
+      limit: parseInt(limit, 10),
+    })
+  }
+}
+</code></pre>
+<p><strong>backend/src/anomalies/anomalies.service.ts</strong>（v2 加 findManyWithCursor）</p>
+<pre><code class="language-typescript">async findManyWithCursor(params: { cursor?: Date; limit: number }) {
+  const { cursor, limit } = params
+  
+  const items = await this.prisma.anomaly.findMany({
+    where: cursor ? { createdAt: { lt: cursor } } : undefined,
+    take: limit + 1, // 多取 1 条判断是否还有更多
+    orderBy: { createdAt: 'desc' },
+  })
+  
+  const hasMore = items.length &gt; limit
+  const returned = hasMore ? items.slice(0, limit) : items
+  const nextCursor = hasMore ? returned[returned.length - 1].createdAt : null
+  
+  return { items: returned, nextCursor }
+}
+</code></pre>
+<p><strong>frontend/src/features/anomalies/composables/useAnomalyList.ts</strong>（v2）</p>
+<pre><code class="language-typescript">import { ref } from 'vue'
+
+export function useAnomalyList() {
+  const items = ref&lt;any[]&gt;([])
+  const cursor = ref&lt;string | null&gt;(null)
+  const hasMore = ref(true)
+  const loading = ref(false)
+
+  async function loadMore() {
+    if (loading.value || !hasMore.value) return
+    loading.value = true
+    
+    try {
+      const url = cursor.value
+        ? `/api/anomalies?cursor=${cursor.value}&amp;limit=20`
+        : `/api/anomalies?limit=20`
+      const res = await fetch(url)
+      const data = await res.json()
+      
+      items.value = [...items.value, ...data.items]
+      cursor.value = data.nextCursor
+      hasMore.value = data.nextCursor !== null
+    } finally {
+      loading.value = false
+    }
+  }
+
+  return { items, hasMore, loading, loadMore }
+}
+</code></pre>
+<h3 id="43-v2-用到的知识点">4.3 v2 用到的知识点</h3>
+<ol>
+<li>
+<p><strong>Cursor 分页</strong>：</p>
+<ul>
+<li>解决的问题：并发插入时保持稳定分页</li>
+<li>运行机制：<code>WHERE createdAt &lt; cursor</code> 从游标位置继续</li>
+<li>项目落点：<code>findManyWithCursor</code></li>
+<li>生产误区：cursor 直接传 <code>Date</code> 客户端可能篡改</li>
+<li>验证方法：并发插入 100 条时对比 offset 分页</li>
+</ul>
+</li>
+<li>
+<p><strong>take + 1 判断 hasMore</strong>：</p>
+<ul>
+<li>解决的问题：知道是否还有下一页</li>
+<li>运行机制：多取 1 条，如果实际返回 = limit + 1 说明有更多</li>
+<li>项目落点：<code>take: limit + 1</code></li>
+<li>生产误区：忘记 <code>slice(0, limit)</code> 会多返回 1 条</li>
+<li>验证方法：last page 时验证 hasMore = false</li>
+</ul>
+</li>
+</ol>
+<h3 id="44-v2-暴露的痛点">4.4 v2 暴露的痛点</h3>
+<p><strong>痛点 1</strong>：相同时间戳时会漏项</p>
+<pre><code>数据：
+anomaly-100 createdAt = 2026-07-21T10:00:00.000Z
+anomaly-101 createdAt = 2026-07-21T10:00:00.000Z  ← 同一时刻
+anomaly-102 createdAt = 2026-07-21T10:00:00.000Z  ← 同一时刻
+第 1 页 limit=1 取到 anomaly-100，nextCursor = 2026-07-21T10:00:00.000Z
+第 2 页 WHERE createdAt &lt; 2026-07-21T10:00:00.000Z 直接跳过 anomaly-101 和 102
+</code></pre>
+<p><strong>痛点 2</strong>：仍然没有输入校验</p>
+<p><code>limit=100000</code> 一样可以打死数据库。</p>
+<p><strong>痛点 3</strong>：仍然返回 Prisma 全字段</p>
+<p><strong>痛点 4</strong>：cursor 明文，用户可篡改任意时间</p>
+<p><strong>痛点 5</strong>：切换过滤器时旧请求不取消（复用 Day 3 的竞态问题）</p>
+<hr>
+<h2 id="5-v3生产就绪复合游标-query-dto-viewmodel">5. v3：生产就绪（复合游标 + Query DTO + ViewModel）</h2>
+<h3 id="51-v3-要实现什么">5.1 v3 要实现什么</h3>
+<p><strong>用户视角</strong>：</p>
+<ul>
+<li>翻页无论并发插入或相同时间戳都稳定</li>
+<li>非法参数会被拒绝并返回清晰错误</li>
+<li>响应字段固定，不会突然多出敏感字段</li>
+</ul>
+<p><strong>技术视角</strong>：</p>
+<ul>
+<li>复合游标 <code>(createdAt, id)</code> 保证严格顺序</li>
+<li>zod Query DTO 校验 limit/filters</li>
+<li>ViewModel 投影，只暴露白名单字段</li>
+<li>Base64 编码 cursor 防篡改</li>
+</ul>
+<h3 id="52-v3-目录结构">5.2 v3 目录结构</h3>
+<p>与 §1.4 完全一致，此处不再重复。核心新增文件：</p>
+<pre><code>backend/src/anomalies/dto/
+├── list-anomalies.query.dto.ts    ← zod schema + Nest pipe
+└── anomaly.view-model.ts          ← 投影函数 + 响应类型
+</code></pre>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<p><strong>backend/src/anomalies/dto/list-anomalies.query.dto.ts</strong></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common'
+
+// Cursor 结构：base64 编码 { createdAt, id }
+export const CursorSchema = z.object({
+  createdAt: z.string().datetime(),
+  id: z.string(),
+})
+export type Cursor = z.infer&lt;typeof CursorSchema&gt;
+
+export const SeverityEnum = z.enum(['low', 'medium', 'high', 'critical'])
+export const AnomalyTypeEnum = z.enum(['spike', 'drop', 'flatline'])
+
+export const ListAnomaliesQuerySchema = z.object({
+  limit: z.coerce.number().int().min(1).max(100).default(20),
+  cursor: z.string().optional(),
+  serverId: z.string().optional(),
+  severity: SeverityEnum.optional(),
+  type: AnomalyTypeEnum.optional(),
+})
+
+export type ListAnomaliesQuery = z.infer&lt;typeof ListAnomaliesQuerySchema&gt;
+
+export function decodeCursor(encoded: string): Cursor {
+  try {
+    const decoded = Buffer.from(encoded, 'base64').toString('utf-8')
+    const parsed = JSON.parse(decoded)
+    return CursorSchema.parse(parsed)
+  } catch (err) {
+    throw new BadRequestException('Invalid cursor')
+  }
+}
+
+export function encodeCursor(cursor: Cursor): string {
+  return Buffer.from(JSON.stringify(cursor)).toString('base64')
+}
+
+@Injectable()
+export class ZodValidationPipe implements PipeTransform {
+  constructor(private schema: z.ZodSchema) {}
+
+  transform(value: unknown) {
+    try {
+      return this.schema.parse(value)
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        throw new BadRequestException({
+          message: 'Validation failed',
+          errors: err.errors.map((e) =&gt; ({
+            path: e.path.join('.'),
+            message: e.message,
+          })),
+        })
+      }
+      throw err
+    }
+  }
+}
+</code></pre>
+<p><strong>backend/src/anomalies/dto/anomaly.view-model.ts</strong></p>
+<pre><code class="language-typescript">import type { Anomaly } from '@prisma/client'
+
+// 前端可见的字段白名单
+export interface AnomalyViewModel {
+  id: string
+  type: 'spike' | 'drop' | 'flatline'
+  severity: 'low' | 'medium' | 'high' | 'critical'
+  serverId: string
+  metricType: 'cpu' | 'memory' | 'network' | 'disk'
+  value: number
+  threshold: number
+  createdAt: string  // ISO string
+}
+
+/**
+ * 从 Prisma 实体投影到 ViewModel
+ * 不暴露：internalNotes、sourceIp、rawPayload 等内部字段
+ */
+export function toAnomalyViewModel(anomaly: Anomaly): AnomalyViewModel {
+  return {
+    id: anomaly.id,
+    type: anomaly.type as AnomalyViewModel['type'],
+    severity: anomaly.severity as AnomalyViewModel['severity'],
+    serverId: anomaly.serverId,
+    metricType: anomaly.metricType as AnomalyViewModel['metricType'],
+    value: anomaly.value,
+    threshold: anomaly.threshold,
+    createdAt: anomaly.createdAt.toISOString(),
+  }
+}
+
+export interface AnomalyListResponse {
+  items: AnomalyViewModel[]
+  nextCursor: string | null
+}
+</code></pre>
+<p><strong>backend/src/anomalies/anomalies.service.ts</strong>（v3 加 findManyWithCompositeCursor）</p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { PrismaService } from '@/prisma/prisma.service'
+import type { Cursor } from './dto/list-anomalies.query.dto'
+import type { ListAnomaliesQuery } from './dto/list-anomalies.query.dto'
+import { encodeCursor, decodeCursor } from './dto/list-anomalies.query.dto'
+import { toAnomalyViewModel, AnomalyListResponse } from './dto/anomaly.view-model'
+
+@Injectable()
+export class AnomaliesService {
+  constructor(private readonly prisma: PrismaService) {}
+
+  async findManyWithCompositeCursor(
+    query: ListAnomaliesQuery,
+  ): Promise&lt;AnomalyListResponse&gt; {
+    const { limit, cursor, serverId, severity, type } = query
+    
+    const decoded: Cursor | undefined = cursor ? decodeCursor(cursor) : undefined
+    
+    // 复合游标 WHERE：(createdAt, id) &lt; (cursor.createdAt, cursor.id)
+    // 用 OR 模拟词典序比较
+    const cursorFilter = decoded
+      ? {
+          OR: [
+            { createdAt: { lt: new Date(decoded.createdAt) } },
+            {
+              AND: [
+                { createdAt: new Date(decoded.createdAt) },
+                { id: { lt: decoded.id } },
+              ],
+            },
+          ],
+        }
+      : {}
+    
+    const filters = {
+      ...(serverId &amp;&amp; { serverId }),
+      ...(severity &amp;&amp; { severity }),
+      ...(type &amp;&amp; { type }),
+    }
+    
+    const items = await this.prisma.anomaly.findMany({
+      where: { ...cursorFilter, ...filters },
+      take: limit + 1,
+      orderBy: [
+        { createdAt: 'desc' },
+        { id: 'desc' },
+      ],
+    })
+    
+    const hasMore = items.length &gt; limit
+    const returned = hasMore ? items.slice(0, limit) : items
+    
+    const nextCursor = hasMore
+      ? encodeCursor({
+          createdAt: returned[returned.length - 1].createdAt.toISOString(),
+          id: returned[returned.length - 1].id,
+        })
+      : null
+    
+    return {
+      items: returned.map(toAnomalyViewModel),
+      nextCursor,
+    }
+  }
+}
+</code></pre>
+<p><strong>backend/src/anomalies/anomalies.controller.ts</strong>（v3）</p>
+<pre><code class="language-typescript">import { Controller, Get, Query, UsePipes } from '@nestjs/common'
+import { AnomaliesService } from './anomalies.service'
+import {
+  ListAnomaliesQuerySchema,
+  ListAnomaliesQuery,
+  ZodValidationPipe,
+} from './dto/list-anomalies.query.dto'
+import type { AnomalyListResponse } from './dto/anomaly.view-model'
+
+@Controller('anomalies')
+export class AnomaliesController {
+  constructor(private readonly anomaliesService: AnomaliesService) {}
+
+  @Get()
+  @UsePipes(new ZodValidationPipe(ListAnomaliesQuerySchema))
+  async list(@Query() query: ListAnomaliesQuery): Promise&lt;AnomalyListResponse&gt; {
+    return this.anomaliesService.findManyWithCompositeCursor(query)
+  }
+}
+</code></pre>
+<p><strong>frontend/src/features/anomalies/api/anomalies-client.ts</strong></p>
+<pre><code class="language-typescript">import type { AnomalyListResponse } from '@/domain/anomalies/anomaly.types'
+
+export interface ListAnomaliesParams {
+  cursor?: string
+  limit?: number
+  serverId?: string
+  severity?: 'low' | 'medium' | 'high' | 'critical'
+  type?: 'spike' | 'drop' | 'flatline'
+}
+
+export async function fetchAnomalies(
+  params: ListAnomaliesParams,
+  signal?: AbortSignal,
+): Promise&lt;AnomalyListResponse&gt; {
+  const qs = new URLSearchParams()
+  if (params.cursor) qs.set('cursor', params.cursor)
+  if (params.limit) qs.set('limit', String(params.limit))
+  if (params.serverId) qs.set('serverId', params.serverId)
+  if (params.severity) qs.set('severity', params.severity)
+  if (params.type) qs.set('type', params.type)
+
+  const res = await fetch(`/api/anomalies?${qs.toString()}`, { signal })
+  
+  if (!res.ok) {
+    const err = await res.json().catch(() =&gt; ({ message: 'Unknown error' }))
+    throw new Error(err.message || `HTTP ${res.status}`)
+  }
+  
+  return res.json()
+}
+</code></pre>
+<p><strong>frontend/src/features/anomalies/composables/useAnomalyList.ts</strong></p>
+<pre><code class="language-typescript">import { ref, watch } from 'vue'
+import { fetchAnomalies, ListAnomaliesParams } from '../api/anomalies-client'
+import type { AnomalyViewModel } from '@/domain/anomalies/anomaly.types'
+
+export function useAnomalyList(filters: () =&gt; Omit&lt;ListAnomaliesParams, 'cursor' | 'limit'&gt;) {
+  const items = ref&lt;AnomalyViewModel[]&gt;([])
+  const cursor = ref&lt;string | null&gt;(null)
+  const hasMore = ref(true)
+  const loading = ref(false)
+  const error = ref&lt;string | null&gt;(null)
+  
+  let currentController: AbortController | null = null
+
+  async function loadMore() {
+    if (loading.value || !hasMore.value) return
+    
+    // 取消旧请求（切换过滤器场景）
+    if (currentController) currentController.abort()
+    currentController = new AbortController()
+    const signal = currentController.signal
+    
+    loading.value = true
+    error.value = null
+    
+    try {
+      const data = await fetchAnomalies(
+        {
+          cursor: cursor.value ?? undefined,
+          limit: 20,
+          ...filters(),
+        },
+        signal,
+      )
+      
+      if (signal.aborted) return
+      
+      items.value = [...items.value, ...data.items]
+      cursor.value = data.nextCursor
+      hasMore.value = data.nextCursor !== null
+    } catch (err) {
+      if (err instanceof Error &amp;&amp; err.name === 'AbortError') return
+      error.value = err instanceof Error ? err.message : 'Unknown error'
+    } finally {
+      if (!signal.aborted) loading.value = false
+    }
+  }
+
+  function reset() {
+    if (currentController) currentController.abort()
+    items.value = []
+    cursor.value = null
+    hasMore.value = true
+    error.value = null
+  }
+
+  // 过滤器变化时重置
+  watch(filters, () =&gt; {
+    reset()
+    loadMore()
+  }, { deep: true })
+
+  return { items, hasMore, loading, error, loadMore, reset }
+}
+</code></pre>
+<p><strong>frontend/src/features/anomalies/components/AnomalyList.vue</strong></p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import { computed, ref } from 'vue'
+import { useAnomalyList } from '../composables/useAnomalyList'
+import AnomalyListItem from './AnomalyListItem.vue'
+
+const props = defineProps&lt;{
+  serverId?: string
+  severity?: 'low' | 'medium' | 'high' | 'critical'
+}&gt;()
+
+const filters = computed(() =&gt; ({
+  serverId: props.serverId,
+  severity: props.severity,
+}))
+
+const { items, hasMore, loading, error, loadMore } = useAnomalyList(() =&gt; filters.value)
+
+// 首次加载
+loadMore()
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div class="anomaly-list"&gt;
+    &lt;div v-if="error" class="error"&gt;{{ error }}&lt;/div&gt;
+    
+    &lt;AnomalyListItem
+      v-for="item in items"
+      :key="item.id"
+      :anomaly="item"
+    /&gt;
+    
+    &lt;div v-if="loading" class="loading"&gt;加载中...&lt;/div&gt;
+    
+    &lt;button
+      v-if="hasMore &amp;&amp; !loading"
+      class="load-more"
+      @click="loadMore"
+    &gt;
+      加载更多
+    &lt;/button&gt;
+    
+    &lt;div v-if="!hasMore &amp;&amp; items.length &gt; 0" class="end"&gt;已加载全部&lt;/div&gt;
+    &lt;div v-if="!loading &amp;&amp; items.length === 0 &amp;&amp; !error" class="empty"&gt;暂无异常&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.anomaly-list { padding: 16px; }
+.load-more { padding: 12px 24px; border: 1px solid #ddd; background: white; cursor: pointer; }
+.loading, .error, .end, .empty { padding: 12px; text-align: center; color: #666; }
+.error { color: #f5222d; }
+&lt;/style&gt;
+</code></pre>
+<p><strong>frontend/src/features/anomalies/components/AnomalyListItem.vue</strong></p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import type { AnomalyViewModel } from '@/domain/anomalies/anomaly.types'
+
+defineProps&lt;{ anomaly: AnomalyViewModel }&gt;()
+
+const severityColorMap = {
+  low: '#52c41a',
+  medium: '#faad14',
+  high: '#fa8c16',
+  critical: '#f5222d',
+}
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div class="anomaly-item"&gt;
+    &lt;div
+      class="severity-tag"
+      :style="{ background: severityColorMap[anomaly.severity] }"
+    &gt;
+      {{ anomaly.severity }}
+    &lt;/div&gt;
+    &lt;div class="content"&gt;
+      &lt;div class="title"&gt;{{ anomaly.type }} - {{ anomaly.metricType }}&lt;/div&gt;
+      &lt;div class="meta"&gt;
+        Server {{ anomaly.serverId }} | 值 {{ anomaly.value }} / 阈值 {{ anomaly.threshold }}
+      &lt;/div&gt;
+      &lt;div class="time"&gt;{{ new Date(anomaly.createdAt).toLocaleString() }}&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.anomaly-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+.severity-tag {
+  padding: 4px 8px;
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  height: fit-content;
+}
+.content { flex: 1; }
+.title { font-weight: bold; }
+.meta { color: #666; font-size: 13px; margin-top: 4px; }
+.time { color: #999; font-size: 12px; margin-top: 4px; }
+&lt;/style&gt;
+</code></pre>
+<h3 id="54-v3-用到的知识点">5.4 v3 用到的知识点</h3>
+<ol>
+<li>
+<p><strong>稳定复合排序</strong>：</p>
+<ul>
+<li>解决的问题：相同时间戳时排序稳定</li>
+<li>运行机制：<code>ORDER BY createdAt DESC, id DESC</code> 主键作为 tie-breaker</li>
+<li>项目落点：<code>orderBy: [{ createdAt: 'desc' }, { id: 'desc' }]</code></li>
+<li>生产误区：只用 <code>createdAt</code> 会漏项</li>
+<li>验证方法：造 3 条相同时间戳的数据，翻页看是否都出现</li>
+</ul>
+</li>
+<li>
+<p><strong>复合游标 WHERE</strong>：</p>
+<ul>
+<li>解决的问题：从复合键位置继续查询</li>
+<li>运行机制：<code>WHERE (createdAt, id) &lt; (c1, c2)</code> 用 OR 分支模拟</li>
+<li>项目落点：<code>cursorFilter</code> 的 OR 结构</li>
+<li>生产误区：写成 <code>AND</code> 会漏项（第一条件严格不等）</li>
+<li>验证方法：SQL EXPLAIN 看是否走 (createdAt, id) 复合索引</li>
+</ul>
+</li>
+<li>
+<p><strong>Base64 Cursor 编码</strong>：</p>
+<ul>
+<li>解决的问题：cursor 不可读、可携带复合结构</li>
+<li>运行机制：<code>Buffer.from(JSON.stringify(cursor)).toString('base64')</code></li>
+<li>项目落点：<code>encodeCursor / decodeCursor</code></li>
+<li>生产误区：直接暴露 timestamp 让用户可以查任意时间的数据</li>
+<li>验证方法：篡改 cursor 后应返回 400，不是 500</li>
+</ul>
+</li>
+<li>
+<p><strong>Query DTO + Zod Pipe</strong>：</p>
+<ul>
+<li>解决的问题：拒绝非法输入（超大 limit、未授权字段）</li>
+<li>运行机制：Nest Pipe 拦截 request，用 zod schema 校验和 coerce</li>
+<li>项目落点：<code>ZodValidationPipe</code> + <code>ListAnomaliesQuerySchema</code></li>
+<li>生产误区：只做类型检查不做上限（<code>z.number()</code> 而非 <code>z.number().max(100)</code>）</li>
+<li>验证方法：<code>?limit=100000</code> 返回 400 而非 200</li>
+</ul>
+</li>
+<li>
+<p><strong>ViewModel 投影</strong>：</p>
+<ul>
+<li>解决的问题：控制响应字段，不暴露内部字段</li>
+<li>运行机制：显式 <code>toViewModel</code> 转换函数</li>
+<li>项目落点：<code>toAnomalyViewModel</code></li>
+<li>生产误区：直接返回 Prisma 实体（会暴露 <code>internalNotes</code>、<code>rawPayload</code>）</li>
+<li>验证方法：<code>grep -r 'sourceIp' response</code> 应为空</li>
+</ul>
+</li>
+<li>
+<p><strong>hasMore 用 take + 1</strong>：</p>
+<ul>
+<li>解决的问题：告诉前端是否还有下一页，不依赖 total count</li>
+<li>运行机制：多取 1 条，<code>hasMore = items.length &gt; limit</code></li>
+<li>项目落点：<code>take: limit + 1</code></li>
+<li>生产误区：忘记 slice(0, limit) 导致响应多返回 1 条</li>
+<li>验证方法：last page 时 nextCursor 应为 null</li>
+</ul>
+</li>
+<li>
+<p><strong>AbortController 取消旧请求</strong>：</p>
+<ul>
+<li>解决的问题：切换过滤器时旧请求不覆盖新数据</li>
+<li>运行机制：每次 loadMore 前 abort 上一次 controller</li>
+<li>项目落点：<code>currentController.abort()</code></li>
+<li>生产误区：忘记检查 <code>signal.aborted</code> 就更新 state</li>
+<li>验证方法：快速切换过滤器 10 次，最终 items 是最后一次的过滤结果</li>
+</ul>
+</li>
+<li>
+<p><strong>filters 变化触发 reset</strong>：</p>
+<ul>
+<li>解决的问题：切换过滤器时应清空旧数据从头开始</li>
+<li>运行机制：<code>watch(filters, () =&gt; { reset(); loadMore() })</code></li>
+<li>项目落点：composable 内部 <code>watch</code></li>
+<li>生产误区：只清空 items 忘记重置 cursor 和 hasMore</li>
+<li>验证方法：切换 severity 后 items 应从 0 开始，不叠加</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="6-三版对比表">6. 三版对比表</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>分页策略</strong></td>
+<td>Offset (skip/take)</td>
+<td>Cursor (createdAt)</td>
+<td>复合 Cursor (createdAt, id)</td>
+</tr>
+<tr>
+<td><strong>并发插入稳定性</strong></td>
+<td>会重复/漏项</td>
+<td>部分稳定（相同时间戳漏）</td>
+<td>严格稳定</td>
+</tr>
+<tr>
+<td><strong>输入校验</strong></td>
+<td>无</td>
+<td>无</td>
+<td>Zod DTO + Pipe</td>
+</tr>
+<tr>
+<td><strong>输出投影</strong></td>
+<td>Prisma 实体直返</td>
+<td>Prisma 实体直返</td>
+<td>ViewModel</td>
+</tr>
+<tr>
+<td><strong>Cursor 安全性</strong></td>
+<td>N/A</td>
+<td>明文时间戳</td>
+<td>Base64 编码</td>
+</tr>
+<tr>
+<td><strong>前端取消</strong></td>
+<td>无</td>
+<td>无</td>
+<td>AbortController</td>
+</tr>
+<tr>
+<td><strong>过滤器切换</strong></td>
+<td>手动 reset</td>
+<td>手动 reset</td>
+<td>watch + 自动 reset</td>
+</tr>
+<tr>
+<td><strong>性能（大 skip）</strong></td>
+<td>慢（OFFSET 10000）</td>
+<td>稳定</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td><strong>可测性</strong></td>
+<td>弱</td>
+<td>中</td>
+<td>强（DTO/ViewModel 都可独立测试）</td>
+</tr>
+</tbody>
+</table></div><h3 id="65-前端底子补弱独立深挖-html-入口">6.5 前端底子补弱（独立深挖 HTML 入口）</h3>
+<p>完整的深挖内容见 <code>Day08深挖-API分页.html</code>，包含以下 8 个深挖主题：</p>
+<ol>
+<li><strong>深挖 1</strong>：Cursor 分页 vs Offset —— 从今天项目里的 <code>findManyWithCompositeCursor</code> 讲起</li>
+<li><strong>深挖 2</strong>：复合索引与词典序 —— 从今天项目里的 <code>(createdAt, id)</code> 讲起</li>
+<li><strong>深挖 3</strong>：Zod schema + Nest Pipe —— 从今天项目里的 <code>ZodValidationPipe</code> 讲起</li>
+<li><strong>深挖 4</strong>：DTO 与 ViewModel 分层 —— 从今天项目里的 <code>toAnomalyViewModel</code> 讲起</li>
+<li><strong>深挖 5</strong>：Base64 编码原理 —— 从今天项目里的 <code>encodeCursor</code> 讲起</li>
+<li><strong>深挖 6</strong>：HTTP 状态码语义 —— 从今天项目里的 400 vs 500 讲起</li>
+<li><strong>深挖 7</strong>：Vue watch + computed —— 从今天项目里的 filters watch 讲起</li>
+<li><strong>深挖 8</strong>：AbortController 传递 —— 从今天项目里的 <code>signal</code> 参数讲起</li>
+</ol>
+<hr>
+<h2 id="7-项目验收清单阶段-e-f约-40-分钟">7. 项目验收清单（阶段 E-F，约 40 分钟）</h2>
+<h3 id="76-e写核心逻辑单元测试25-分钟">7.6 E：写核心逻辑单元测试（25 分钟）</h3>
+<p><strong>backend/src/anomalies/anomalies.service.spec.ts</strong></p>
+<pre><code class="language-typescript">import { Test } from '@nestjs/testing'
+import { AnomaliesService } from './anomalies.service'
+import { PrismaService } from '@/prisma/prisma.service'
+import { encodeCursor } from './dto/list-anomalies.query.dto'
+
+describe('AnomaliesService.findManyWithCompositeCursor', () =&gt; {
+  let service: AnomaliesService
+  let prisma: PrismaService
+
+  beforeEach(async () =&gt; {
+    const module = await Test.createTestingModule({
+      providers: [
+        AnomaliesService,
+        {
+          provide: PrismaService,
+          useValue: {
+            anomaly: {
+              findMany: jest.fn(),
+              count: jest.fn(),
+            },
+          },
+        },
+      ],
+    }).compile()
+    
+    service = module.get(AnomaliesService)
+    prisma = module.get(PrismaService)
+  })
+
+  it('首次查询无 cursor 时返回前 N 条', async () =&gt; {
+    const mock = Array.from({ length: 21 }, (_, i) =&gt; ({
+      id: `a-${i}`,
+      createdAt: new Date(`2026-07-21T10:${String(i).padStart(2, '0')}:00Z`),
+      type: 'spike',
+      severity: 'high',
+      serverId: 'srv-1',
+      metricType: 'cpu',
+      value: 90,
+      threshold: 80,
+    }))
+    ;(prisma.anomaly.findMany as jest.Mock).mockResolvedValue(mock)
+    
+    const result = await service.findManyWithCompositeCursor({
+      limit: 20,
+    } as any)
+    
+    expect(result.items).toHaveLength(20)
+    expect(result.nextCursor).toBeTruthy()
+  })
+
+  it('cursor 到底时 nextCursor 应为 null', async () =&gt; {
+    const mock = Array.from({ length: 5 }, (_, i) =&gt; ({
+      id: `a-${i}`,
+      createdAt: new Date(),
+      type: 'spike',
+      severity: 'high',
+      serverId: 'srv-1',
+      metricType: 'cpu',
+      value: 90,
+      threshold: 80,
+    }))
+    ;(prisma.anomaly.findMany as jest.Mock).mockResolvedValue(mock)
+    
+    const result = await service.findManyWithCompositeCursor({
+      limit: 20,
+    } as any)
+    
+    expect(result.items).toHaveLength(5)
+    expect(result.nextCursor).toBeNull()
+  })
+
+  it('相同时间戳时用 id 作为 tie-breaker', async () =&gt; {
+    const sameTime = new Date('2026-07-21T10:00:00Z')
+    const mock = [
+      { id: 'a-3', createdAt: sameTime, type: 'spike', severity: 'high', serverId: 'srv-1', metricType: 'cpu', value: 90, threshold: 80 },
+      { id: 'a-2', createdAt: sameTime, type: 'spike', severity: 'high', serverId: 'srv-1', metricType: 'cpu', value: 90, threshold: 80 },
+      { id: 'a-1', createdAt: sameTime, type: 'spike', severity: 'high', serverId: 'srv-1', metricType: 'cpu', value: 90, threshold: 80 },
+    ]
+    ;(prisma.anomaly.findMany as jest.Mock).mockResolvedValue(mock)
+    
+    const result = await service.findManyWithCompositeCursor({ limit: 20 } as any)
+    
+    expect(prisma.anomaly.findMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
+      }),
+    )
+    expect(result.items.map((i) =&gt; i.id)).toEqual(['a-3', 'a-2', 'a-1'])
+  })
+
+  it('cursor 篡改后应抛 BadRequest', async () =&gt; {
+    await expect(
+      service.findManyWithCompositeCursor({
+        limit: 20,
+        cursor: 'not-a-valid-cursor',
+      } as any),
+    ).rejects.toThrow('Invalid cursor')
+  })
+})
+</code></pre>
+<p><strong>backend/src/anomalies/dto/list-anomalies.query.dto.spec.ts</strong></p>
+<pre><code class="language-typescript">import { ListAnomaliesQuerySchema, ZodValidationPipe } from './list-anomalies.query.dto'
+import { BadRequestException } from '@nestjs/common'
+
+describe('ListAnomaliesQuerySchema', () =&gt; {
+  it('limit 超过 100 应报错', () =&gt; {
+    const pipe = new ZodValidationPipe(ListAnomaliesQuerySchema)
+    expect(() =&gt; pipe.transform({ limit: '10000' })).toThrow(BadRequestException)
+  })
+
+  it('limit 为 string 会 coerce 为 number', () =&gt; {
+    const pipe = new ZodValidationPipe(ListAnomaliesQuerySchema)
+    const result = pipe.transform({ limit: '50' })
+    expect(result.limit).toBe(50)
+  })
+
+  it('severity 不在枚举里应报错', () =&gt; {
+    const pipe = new ZodValidationPipe(ListAnomaliesQuerySchema)
+    expect(() =&gt; pipe.transform({ severity: 'super-critical' })).toThrow(BadRequestException)
+  })
+
+  it('缺省 limit 时默认 20', () =&gt; {
+    const pipe = new ZodValidationPipe(ListAnomaliesQuerySchema)
+    const result = pipe.transform({})
+    expect(result.limit).toBe(20)
+  })
+})
+</code></pre>
+<p><strong>frontend/src/features/anomalies/composables/useAnomalyList.spec.ts</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { useAnomalyList } from './useAnomalyList'
+import * as client from '../api/anomalies-client'
+
+describe('useAnomalyList', () =&gt; {
+  beforeEach(() =&gt; {
+    vi.spyOn(client, 'fetchAnomalies').mockReset()
+  })
+
+  it('首次 loadMore 加载数据', async () =&gt; {
+    vi.spyOn(client, 'fetchAnomalies').mockResolvedValue({
+      items: [{ id: 'a-1' } as any],
+      nextCursor: 'cur-1',
+    })
+    
+    const { items, hasMore, loadMore } = useAnomalyList(() =&gt; ({}))
+    await loadMore()
+    
+    expect(items.value).toHaveLength(1)
+    expect(hasMore.value).toBe(true)
+  })
+
+  it('loadMore 重复调用（loading 时）不会重复请求', async () =&gt; {
+    const spy = vi.spyOn(client, 'fetchAnomalies').mockImplementation(
+      () =&gt; new Promise((resolve) =&gt; setTimeout(() =&gt; resolve({ items: [], nextCursor: null }), 50)),
+    )
+    
+    const { loadMore } = useAnomalyList(() =&gt; ({}))
+    loadMore()
+    loadMore()
+    loadMore()
+    
+    await new Promise((r) =&gt; setTimeout(r, 100))
+    expect(spy).toHaveBeenCalledTimes(1)
+  })
+
+  it('nextCursor 为 null 时 hasMore 应为 false', async () =&gt; {
+    vi.spyOn(client, 'fetchAnomalies').mockResolvedValue({
+      items: [],
+      nextCursor: null,
+    })
+    
+    const { hasMore, loadMore } = useAnomalyList(() =&gt; ({}))
+    await loadMore()
+    
+    expect(hasMore.value).toBe(false)
+  })
+})
+</code></pre>
+<h3 id="77-f-1反证实验-15-分钟">7.7 F-1：反证实验 1（5 分钟）</h3>
+<p><strong>目标</strong>：证明 Offset 分页在并发插入时会重复</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>数据库先造 100 条异常，创建时间递减</li>
+<li>前端用 v1 版本请求第 1 页 (page=1, size=20)，记录返回的 20 条 ID</li>
+<li>在数据库插入 10 条新异常</li>
+<li>前端请求第 2 页 (page=2, size=20)，记录返回的 20 条 ID</li>
+<li>对比两页 ID 有多少重复</li>
+</ol>
+<p><strong>预期结果</strong>：</p>
+<ul>
+<li>v1 版本：两页重复 10 条 ID</li>
+<li>v3 版本：两页 ID 完全不重复</li>
+</ul>
+<p><strong>结论</strong>：Offset 分页在并发写入下不稳定。</p>
+<h3 id="78-f-2反证实验-25-分钟">7.8 F-2：反证实验 2（5 分钟）</h3>
+<p><strong>目标</strong>：证明单键 Cursor 在相同时间戳时会漏项</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>数据库造 3 条 <code>createdAt = '2026-07-21T10:00:00.000Z'</code> 的异常，id 分别为 <code>a-1/a-2/a-3</code></li>
+<li>用 v2 版本请求 <code>?limit=1</code>，得到 <code>a-3</code>，<code>nextCursor = 2026-07-21T10:00:00Z</code></li>
+<li>请求下一页 <code>?cursor=2026-07-21T10:00:00Z&amp;limit=1</code></li>
+<li>观察是否能拿到 <code>a-2</code> 和 <code>a-1</code></li>
+</ol>
+<p><strong>预期结果</strong>：</p>
+<ul>
+<li>v2 版本：<code>WHERE createdAt &lt; 2026-07-21T10:00:00Z</code> 会跳过 <code>a-2</code> 和 <code>a-1</code>（漏项）</li>
+<li>v3 版本：复合游标 <code>(2026-07-21T10:00:00Z, a-3)</code> 能正确取到 <code>a-2</code></li>
+</ul>
+<p><strong>结论</strong>：单键 Cursor 在相同时间戳时不稳定，必须用复合键。</p>
+<h3 id="79-f-3验证-提交5-分钟">7.9 F-3：验证 + 提交（5 分钟）</h3>
+<pre><code class="language-bash">cd backend
+pnpm typecheck &amp;&amp; pnpm lint &amp;&amp; pnpm test &amp;&amp; pnpm build
+
+cd ../frontend
+pnpm typecheck &amp;&amp; pnpm lint &amp;&amp; pnpm test &amp;&amp; pnpm build
+
+git add backend/src/anomalies/
+git add frontend/src/features/anomalies/ frontend/src/app/pages/AnomalyListPage.vue
+git commit -m "feat(anomalies): add paginated list with composite cursor + Query DTO + ViewModel
+
+Refs: Day8"
+</code></pre>
+<p><strong>注意</strong>：不要执行 <code>git push</code>，等手动推。</p>
+<hr>
+<h2 id="8-通过标准v3-自检清单">8. 通过标准（v3 自检清单）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>编号</th>
+<th>检查项</th>
+<th>通过标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>复合游标</td>
+<td><code>orderBy: [{createdAt:'desc'},{id:'desc'}]</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Query DTO</td>
+<td>zod schema 校验 limit ≤ 100</td>
+</tr>
+<tr>
+<td>3</td>
+<td>ViewModel</td>
+<td>响应字段固定，不含 sourceIp/internalNotes</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Base64 Cursor</td>
+<td>cursor 篡改返回 400</td>
+</tr>
+<tr>
+<td>5</td>
+<td>AbortController</td>
+<td>切换过滤器时旧请求被取消</td>
+</tr>
+<tr>
+<td>6</td>
+<td>反证实验</td>
+<td>两个实验都能复现 v1/v2 痛点</td>
+</tr>
+<tr>
+<td>7</td>
+<td>单元测试</td>
+<td>后端 4+ / 前端 3+ 用例全绿</td>
+</tr>
+<tr>
+<td>8</td>
+<td>typecheck</td>
+<td>前后端都通过</td>
+</tr>
+<tr>
+<td>9</td>
+<td>lint</td>
+<td>前后端都通过</td>
+</tr>
+<tr>
+<td>10</td>
+<td>build</td>
+<td>前后端都通过</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="9-提交物">9. 提交物</h2>
+<ol>
+<li><strong>代码</strong>：<code>git diff HEAD~1</code> 输出（约 700 行）</li>
+<li><strong>测试截图</strong>：前后端 <code>pnpm test</code> 输出（至少 7 个测试全绿）</li>
+<li><strong>反证实验记录</strong>：两个反证实验的操作步骤 + 数据库截图</li>
+<li><strong>学习日志</strong>：回答 §10 的 3 个核心问题</li>
+<li><strong>架构证据</strong>：<code>grep -r 'Prisma' backend/src/anomalies/*.controller.ts</code> 应为空（Controller 不直接依赖 Prisma 类型，走 ViewModel）</li>
+</ol>
+<hr>
+<h2 id="10-课末-3-个核心问题">10. 课末 3 个核心问题</h2>
+<ol>
+<li>
+<p><strong>请从今天项目的真实入口到最终输出，解释"API/分页"的数据流或控制流；当天知识链"Cursor 分页、稳定排序、过滤、Query DTO、ViewModel"分别在哪一层起作用，为什么按这个顺序学习？</strong></p>
+<p>参考答案框架：</p>
+<ul>
+<li>入口：<code>AnomalyListPage.vue</code> 调用 <code>AnomalyList.vue</code></li>
+<li>流向：<code>useAnomalyList → anomalies-client → GET /anomalies → Controller → Pipe (Query DTO 校验) → Service → Prisma → toViewModel → 响应</code></li>
+<li>Cursor 分页：解决并发写入的重复/漏项</li>
+<li>稳定排序：<code>(createdAt, id)</code> 保证相同时间戳仍有序</li>
+<li>过滤：Query DTO 的可选字段</li>
+<li>Query DTO：拒绝非法输入</li>
+<li>ViewModel：控制输出字段</li>
+<li>学习顺序：先分页策略 → 再稳定性 → 再输入校验 → 最后输出投影（每一层解决前一层暴露的漏洞）</li>
+</ul>
+</li>
+<li>
+<p><strong>如果故意移除今天最关键的保护机制，线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</strong></p>
+<p>参考答案框架：</p>
+<ul>
+<li>移除机制：<code>orderBy</code> 只保留 <code>createdAt</code> 一个键</li>
+<li>可观察现象：用户翻页时看到相同的异常被跳过（漏项）</li>
+<li>最小复现：造 3 条相同 createdAt 的异常，<code>?limit=1</code> 翻页</li>
+<li>定位证据：SQL EXPLAIN + 抓包响应 items</li>
+<li>恢复动作：加回 <code>{ id: 'desc' }</code></li>
+<li>防复发测试：<code>anomalies.service.spec.ts</code> 的"相同时间戳"测试</li>
+</ul>
+</li>
+<li>
+<p><strong>请引用今天的具体代码、测试和架构证据，证明项目目标已经达到；再说明当前实现距离企业生产标准还缺什么，下一步如何演进而不破坏已有合同。</strong></p>
+<p>参考答案框架：</p>
+<ul>
+<li>代码证据：<code>anomalies.service.ts</code> 的 <code>findManyWithCompositeCursor</code>，<code>list-anomalies.query.dto.ts</code> 的 Zod schema，<code>anomaly.view-model.ts</code> 的 <code>toViewModel</code></li>
+<li>测试证据：4 个后端 + 3 个前端测试用例</li>
+<li>架构证据：<code>Controller</code> 不直接返回 Prisma 类型（走 ViewModel），<code>Service</code> 不直接接受 HTTP 参数（走 DTO）</li>
+<li>缺少功能：全文搜索、多字段排序、导出、总数统计（大表 count 极慢，需要 pg_class 估算）</li>
+<li>下一步演进：Day 9 加详情页 + 状态流转，Day 10 加实时更新（列表 + WebSocket 新事件合并）</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="11-真实项目情境题联网更新-2026-07-16">11. 真实项目情境题（联网更新 2026-07-16）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<h3 id="情境题-1cursor-分页在相同时间戳时漏项">情境题 1：Cursor 分页在相同时间戳时漏项</h3>
+<p><strong>背景</strong>：
+异常列表按 <code>createdAt</code> 做 Cursor 分页，两个记录时间相同；翻页同时插入新异常后出现重复和漏项。</p>
+<p><strong>任务</strong>：
+请保存 SQL、cursor、排序键和两次响应定位；先冻结自动刷新止损，再改为稳定复合排序与不透明游标，并在并发插入 1,000 次时验证集合无重漏。</p>
+<p><strong>回答框架（定位证据 → 临时止损 → 根因修复 → 回归验证）</strong>：</p>
+<ol>
+<li>
+<p><strong>定位证据</strong>：</p>
+<ul>
+<li>在 <code>AnomaliesService.findManyWithCursor</code> 里加 <code>console.log</code> 输出实际 SQL</li>
+<li>观察两次响应的 items，用 <code>Array.from(new Set(ids)).length</code> 对比 <code>ids.length</code></li>
+<li>如果不等，说明有重复；比较相邻两页第一条和上一页最后一条的 <code>createdAt</code>，如果相同就是漏项</li>
+</ul>
+</li>
+<li>
+<p><strong>临时止损</strong>：</p>
+<ul>
+<li>在前端加 debounce 500ms 到 loadMore，减少并发请求</li>
+<li>在 UI 层显示"数据可能有更新，请刷新"提示</li>
+</ul>
+</li>
+<li>
+<p><strong>根因修复</strong>：</p>
+<ul>
+<li>改为复合游标：<code>orderBy: [{ createdAt: 'desc' }, { id: 'desc' }]</code></li>
+<li>WHERE 用 OR 分支模拟词典序</li>
+<li>Cursor 结构改为 <code>{ createdAt, id }</code> 双字段</li>
+<li>见 §5.3 v3 代码</li>
+</ul>
+</li>
+<li>
+<p><strong>回归验证</strong>：</p>
+<ul>
+<li>写测试：<code>anomalies.service.spec.ts</code> 的"相同时间戳"用例</li>
+<li>手动验证：并发插入 1000 条，翻页 50 次，<code>Array.from(new Set(allIds)).length === allIds.length</code></li>
+</ul>
+</li>
+</ol>
+<p><strong>依据</strong>：<a href="https://use-the-index-luke.com/no-offset" target="_blank" rel="noopener noreferrer">PostgreSQL Cursor Pagination Best Practices</a></p>
+<h3 id="情境题-2非法输入导致连接池打满">情境题 2：非法输入导致连接池打满</h3>
+<p><strong>背景</strong>：
+攻击者传入 <code>limit=100000</code> 和未授权过滤字段，单次查询占满连接池并暴露内部列。</p>
+<p><strong>任务</strong>：
+请提供 Query DTO 校验、SQL explain、响应字段和连接池证据；先限制 limit 与关闭字段透传，再实现白名单过滤、ViewModel 投影和索引，验证非法输入拒绝且 P95 达标。</p>
+<p><strong>回答框架</strong>：</p>
+<ol>
+<li>
+<p><strong>定位证据</strong>：</p>
+<ul>
+<li>Nginx 日志显示 <code>?limit=100000</code></li>
+<li>Prisma 慢查询日志显示单次查询 30 秒</li>
+<li>PostgreSQL <code>pg_stat_activity</code> 显示连接池占满</li>
+<li>响应 JSON 包含 <code>sourceIp</code> 字段（不该暴露）</li>
+</ul>
+</li>
+<li>
+<p><strong>临时止损</strong>：</p>
+<ul>
+<li>Nginx 层加 <code>limit_req</code> 限制单 IP 请求速率</li>
+<li>应用层临时硬编码 <code>limit = Math.min(limit, 100)</code></li>
+<li>关闭响应字段透传（临时用 <code>pick(['id', 'type', 'severity'])</code>）</li>
+</ul>
+</li>
+<li>
+<p><strong>根因修复</strong>：</p>
+<ul>
+<li>Zod DTO：<code>z.coerce.number().int().min(1).max(100).default(20)</code></li>
+<li>ViewModel：显式 <code>toAnomalyViewModel</code> 白名单投影</li>
+<li>Nest Pipe：<code>ZodValidationPipe</code> 统一拦截</li>
+<li>加复合索引：<code>CREATE INDEX ON anomaly (createdAt DESC, id DESC)</code></li>
+</ul>
+</li>
+<li>
+<p><strong>回归验证</strong>：</p>
+<ul>
+<li>写测试：<code>list-anomalies.query.dto.spec.ts</code> 的"limit 超过 100 应报错"</li>
+<li>压测：<code>k6 run --vus 100 --duration 30s</code>，验证 P95 &lt; 200ms</li>
+<li>Security scan：<code>grep -r 'sourceIp' response.json</code> 应为空</li>
+</ul>
+</li>
+</ol>
+<p><strong>依据</strong>：<a href="https://owasp.org/API-Security/" target="_blank" rel="noopener noreferrer">OWASP API Security Top 10</a></p>
+<p><strong>知识映射</strong>：Cursor 分页、稳定排序、Query DTO、索引草图和 ViewModel。</p>
+<hr>
+<h2 id="12-pdf-面试题">12. PDF 面试题</h2>
+<blockquote>
+<p><strong>说明</strong>：以下题目来自 PDF 资源文件，文件名用于教学分类，不等于官方题库或真实面试题来源。题目构造用于教学练习。</p>
+</blockquote>
+<h3 id="题目-1如何实现支持-10-万条数据的虚拟列表">题目 1：如何实现支持 10 万条数据的虚拟列表？</h3>
+<p><strong>来源</strong>：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E7%25BE%258E%25E5%259B%25A2%25E5%2589%258D%25E7%25AB%25AF%25E5%2585%25A8%25E6%25A0%2588%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026美团前端全栈开发》</a>，第 10 页。</p>
+<p><strong>初级答法</strong>：</p>
+<ul>
+<li>只渲染可视区内的元素（例如屏幕能容纳 20 条就只挂载 20 条）</li>
+<li>用 <code>overflow: scroll</code> + 绝对定位模拟长列表</li>
+</ul>
+<p><strong>中级答法</strong>：</p>
+<ul>
+<li>用 <code>IntersectionObserver</code> 监听滚动位置</li>
+<li>用固定行高 × 索引计算 offset</li>
+<li>使用现成库 <code>vue-virtual-scroller</code> / <code>@tanstack/vue-virtual</code></li>
+</ul>
+<p><strong>高级答法（结合今天项目）</strong>：</p>
+<ul>
+<li>结合 Cursor 分页：滚动到底部触发 <code>loadMore</code>（无限滚动）</li>
+<li>数据源和视图分离：<code>items</code> 是完整数据源，<code>renderedItems</code> 是当前窗口内的</li>
+<li>高度差异处理：<code>ResizeObserver</code> 测量实际行高，用二分查找定位</li>
+</ul>
+<h3 id="题目-2graphql-是什么它与-restful-api-相比有什么差异">题目 2：GraphQL 是什么？它与 RESTful API 相比有什么差异？</h3>
+<p><strong>来源</strong>：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2024%25E5%25AD%2597%25E8%258A%2582%25E5%2589%258D%25E7%25AB%25AF%25E9%259D%25A2%25E8%25AF%2595%25E9%25A2%2598%25EF%25BC%258845%25E9%25A2%2598%25EF%25BC%2589.pdf" class="missing-link">《2024字节前端面试题（45题）》</a>，第 20 页。</p>
+<p><strong>初级答法</strong>：</p>
+<ul>
+<li>GraphQL 是 Facebook 出的查询语言，前端可以指定要哪些字段</li>
+<li>REST 每个 endpoint 返回固定字段</li>
+<li>GraphQL 只有一个 endpoint（通常是 <code>/graphql</code>）</li>
+</ul>
+<p><strong>中级答法（区分场景）</strong>：</p>
+<ul>
+<li>REST：适合资源明确的 CRUD，缓存友好（HTTP GET 可以直接 CDN 缓存）</li>
+<li>GraphQL：适合聚合多个数据源、前端字段需求多变</li>
+<li>REST：Over-fetching（返回太多）/ Under-fetching（要多次请求）</li>
+<li>GraphQL：单次请求可以拿到所有需要的字段</li>
+</ul>
+<p><strong>高级答法（结合今天项目）</strong>：</p>
+<ul>
+<li>今天的 <code>AnomalyListResponse</code> 是 REST 风格，字段固定</li>
+<li>如果改成 GraphQL：前端可以只查 <code>{ id, severity }</code>，节省带宽</li>
+<li>但 GraphQL 破坏 Cursor 分页的语义：前端如果查嵌套字段（例如 <code>anomaly.server.metrics</code>）会 N+1</li>
+<li>折中方案：REST 分页 + 每个资源支持 <code>?fields=id,severity</code> 选择字段（类似 GitHub API）</li>
+</ul>
+<hr>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"现场提出 5 道问题。五连问不预先固定，也不由下面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<p><strong>示例问题方向</strong>（实际问题会根据学生的 diff 调整）：</p>
+<ol>
+<li><strong>演示验收</strong>：请在浏览器里演示切换 severity 过滤器 10 次，展示 Network 面板显示旧请求被 abort。</li>
+<li><strong>核心挑战</strong>：Day 8 最难的部分是复合游标的 WHERE 子句写法，你卡在哪里最久？为什么 OR 分支不能改成 AND？</li>
+<li><strong>对比思考</strong>：为什么 Query DTO 用 Nest Pipe 而不是 middleware？两者的执行顺序有什么区别？</li>
+<li><strong>项目对手戏</strong>：假设 Day 10 加实时新异常推送，你的分页列表如何合并新事件？会不会破坏 Cursor 的稳定性？</li>
+<li><strong>知识盲区</strong>：如果异常数据规模到 1 亿条，<code>take: limit + 1</code> 判断 hasMore 还能用吗？有什么替代方案？（deep pagination 的 keyset scan 优化）</li>
+</ol>
+<hr>
+<h2 id="14-本-day-在-90-天路线中的锚点">14. 本 Day 在 90 天路线中的锚点</h2>
+<p><strong>向前承接</strong>：</p>
+<ul>
+<li>Day 1-2：DTO/Domain 分层和 zod schema</li>
+<li>Day 3：AbortController 竞态保护</li>
+<li>Day 7：Anomaly 领域模型和事件</li>
+</ul>
+<p><strong>向后传递</strong>：</p>
+<ul>
+<li>Day 9：异常详情页 + 状态流转</li>
+<li>Day 10：列表实时更新（WebSocket 推送 + 合并）</li>
+<li>Day 15：历史数据恢复（大量分页查询）</li>
+</ul>
+<p><strong>复用点</strong>：</p>
+<ul>
+<li>Query DTO 模式会在 Day 15/20 的所有查询接口复用</li>
+<li>ViewModel 投影会在 Day 12 的权限控制场景扩展（不同角色看到不同字段）</li>
+<li>AbortController 模式已在 Day 3-8 反复复用，形成稳定习惯</li>
+</ul>
+<p><strong>螺旋上升</strong>：</p>
+<ul>
+<li>Day 3 在单个请求场景练竞态</li>
+<li>Day 8 在分页场景练竞态（过滤器切换 + 分页请求）</li>
+<li>Day 15 在历史恢复场景练竞态（多个分页并发加载）</li>
+</ul>
+<hr>
+<p><strong>完成 Day 8 后，你已经掌握</strong>：</p>
+<ul>
+<li>Cursor 分页（复合键 + Base64 编码）</li>
+<li>Query DTO + Zod Pipe 输入校验</li>
+<li>ViewModel 投影输出白名单</li>
+<li>前端 loadMore + reset + AbortController</li>
+<li>反证实验证明 Offset/单键 Cursor 的漏洞</li>
+</ul>
+<p><strong>下一步 Day 9</strong>：给异常列表加详情页和状态流转（确认/忽略/处理中），学习状态机 + 乐观更新。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day08-old.html">查看 Day 08 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/07.html">← Day 07 · 事件与算法</a>
+            <a href="/ai-teacher-agent-devolop/day/09.html">Day 09 · 状态机 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F90-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">2. 学习节奏（90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E6%9C%80%E5%B0%8F%E9%97%AD%E7%8E%AFoffset-%E5%88%86%E9%A1%B5">3. v1：最小闭环（Offset 分页）</a></li><li><a href="#4-v2%E5%8A%A0%E6%B8%B8%E6%A0%87%E5%8D%95%E9%94%AE-cursor-%E5%88%86%E9%A1%B5">4. v2：加游标（单键 Cursor 分页）</a></li><li><a href="#5-v3%E7%94%9F%E4%BA%A7%E5%B0%B1%E7%BB%AA%E5%A4%8D%E5%90%88%E6%B8%B8%E6%A0%87-query-dto-viewmodel">5. v3：生产就绪（复合游标 + Query DTO + ViewModel）</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94%E8%A1%A8">6. 三版对比表</a></li><li><a href="#7-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95%E9%98%B6%E6%AE%B5-e-f%E7%BA%A6-40-%E5%88%86%E9%92%9F">7. 项目验收清单（阶段 E-F，约 40 分钟）</a></li><li><a href="#8-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86v3-%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95">8. 通过标准（v3 自检清单）</a></li><li><a href="#9-%E6%8F%90%E4%BA%A4%E7%89%A9">9. 提交物</a></li><li><a href="#10-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">10. 课末 3 个核心问题</a></li><li><a href="#11-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-16">11. 真实项目情境题（联网更新 2026-07-16）</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">12. PDF 面试题</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">14. 本 Day 在 90 天路线中的锚点</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

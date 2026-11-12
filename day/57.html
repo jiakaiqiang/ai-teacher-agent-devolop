@@ -1,0 +1,1285 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 57 · Day 57 - 监控/Trace（OpenTelemetry 全链路追踪 + 跨语言 Context + Span Attributes + 采样 + 成本控制） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html" aria-current="page">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/09.html">第 9 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 57</p>
+        <h1>Day 57 - 监控/Trace（OpenTelemetry 全链路追踪 + 跨语言 Context + Span Attributes + 采样 + 成本控制）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节为本 Day 的权威执行口径）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段二（Day 31-60，AI 前端 -&gt; AI 全栈）。本日继续在 <code>p1-monitor</code> 真实链路中累积，不创建平行 Demo。</li>
+<li><strong>功能交付</strong>：必须交付一个能跑、能测、能从真实用户入口观察结果的完整模块，知识点由该模块自然引出。</li>
+<li><strong>三版演进</strong>：本日以项目门禁/评测为主：v1 是当前基线与最小可运行链路；v2 是加入一个关键质量维度后的可测版本；v3 是加入失败可见、回归阻断和架构证据后的生产终态。三版必须分别产生可观察差异，不能只保留考核题目。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（90 分钟阅读），D 60 分钟、E 20 分钟、F 10 分钟（90 分钟动手）。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；复用已有 Schema、RAG、租户、评测、Docker 或 Trace 合同，禁止另建第二套接口。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 动态教师五连问；任何“完整执行版/执行版补全要求”只可作为背景，不能替代本日交付。</li>
+<li><strong>跨 Day 导航</strong>：Day58 事故演练，Day59 求职证据，Day60 AI 全栈毕业考。</li>
+</ul>
+<p><strong>补强要求</strong>：若正文使用“完整执行版”或“执行版补全要求”，领取任务时必须把省略部分展开为当天可执行的测试/反证/情境题，并记录真实项目 diff。</p>
+</blockquote>
+<p><strong>日期与时长</strong>：2026-09-08 周二，180 分钟（90 分钟阅读 + 90 分钟动手）
+<strong>项目</strong>：<code>D:\demo\ai-techer\p1-monitor</code><br>
+<strong>阶段任务性质</strong>：建立生产级 OpenTelemetry 全链路追踪</p>
+<hr>
+<h2 id="0-day-57-在-90-天路线图里的位置">§0 Day 57 在 90 天路线图里的位置</h2>
+<h3 id="01-前情提要day-01-56-已建立的能力">0.1 前情提要（Day 01-56 已建立的能力）</h3>
+<p>Day 01-56 建立了完整的 RAG 全栈应用、Docker Compose 和 CI/CD：</p>
+<ul>
+<li><strong>Day 01-54</strong>：Vue3 + NestJS + FastAPI + RAG + 多租户</li>
+<li><strong>Day 55</strong>：Docker Compose（一键启动）</li>
+<li><strong>Day 56</strong>：CI/CD Pipeline（质量门禁 + Migration Safety）</li>
+</ul>
+<p><strong>核心缺失</strong>：无法追踪跨语言调用链（浏览器 → Nest → FastAPI → RAG → 模型 → DB）。</p>
+<h3 id="02-今天的核心任务">0.2 今天的核心任务</h3>
+<p>Day 57 建立<strong>生产级 OpenTelemetry 全链路追踪</strong>，实现端到端可观测性：</p>
+<ol>
+<li><strong>OpenTelemetry</strong>：统一遥测标准（Trace + Metrics + Logs）</li>
+<li><strong>跨语言 Context</strong>：浏览器 → Nest → FastAPI 传播 traceparent</li>
+<li><strong>Span Attributes</strong>：记录模型名称、Prompt、检索结果、工具调用</li>
+<li><strong>采样策略</strong>：head sampling（1%）+ tail sampling（错误 100%）</li>
+<li><strong>成本控制</strong>：PII 脱敏 + 属性白名单（遥测成本 &lt; 50 元/天）</li>
+</ol>
+<h3 id="03-今天要解决的-5-个问题">0.3 今天要解决的 5 个问题</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>问题</th>
+<th>现象</th>
+<th>根因</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Trace 断链</td>
+<td>Nest 调 FastAPI 生成新 Trace</td>
+<td>未传播 traceparent header</td>
+<td>HTTP instrumentation</td>
+</tr>
+<tr>
+<td>2. Async Context 丢失</td>
+<td>BullMQ Worker 无法关联到原始请求</td>
+<td>AsyncLocalStorage 未传播</td>
+<td>Context 绑定</td>
+</tr>
+<tr>
+<td>3. 敏感属性泄露</td>
+<td>Span 记录手机号、邮箱</td>
+<td>无 PII 脱敏</td>
+<td>属性白名单 + 正则脱敏</td>
+</tr>
+<tr>
+<td>4. 遥测成本高</td>
+<td>每天 900 元（完整 Prompt + Chunk）</td>
+<td>100% 采样 + 无大小限制</td>
+<td>1% 采样 + 截断</td>
+</tr>
+<tr>
+<td>5. 排障困难</td>
+<td>无法定位慢查询</td>
+<td>Span 缺少 DB 查询 SQL</td>
+<td>DB instrumentation</td>
+</tr>
+</tbody>
+</table></div><h3 id="04-今天的前置依赖">0.4 今天的前置依赖</h3>
+<ul>
+<li><strong>Day 35</strong>：可观测性基础（W3C Trace Context + AsyncLocalStorage）</li>
+<li><strong>Day 55</strong>：Docker Compose（统一部署）</li>
+</ul>
+<h3 id="05-今天留给下一站的伏笔">0.5 今天留给下一站的伏笔</h3>
+<ul>
+<li><strong>Day 58-60</strong>：Metrics + Alerts（Prometheus + Grafana）</li>
+<li><strong>Day 61-70</strong>：SLO 监控（可用性 99.9%、P95 延迟 &lt; 500ms）</li>
+</ul>
+<hr>
+<h2 id="1-今天建立的完整能力">§1 今天建立的完整能力</h2>
+<h3 id="11-用户能看到什么5-个场景">§1.1 用户能看到什么（5 个场景）</h3>
+<h4 id="场景-1完整跨语言-trace浏览器-nest-fastapi-rag-模型-db">场景 1：完整跨语言 Trace（浏览器 → Nest → FastAPI → RAG → 模型 → DB）</h4>
+<p><strong>操作</strong>：发起 RAG 查询。</p>
+<pre><code class="language-bash"># 浏览器请求
+fetch('/api/chat', {
+  method: 'POST',
+  body: JSON.stringify({ query: '什么是 RAG?' })
+})
+</code></pre>
+<p><strong>Jaeger UI 显示完整 Trace</strong>：</p>
+<pre><code>Trace: abc123def456 (1.2s total)
+├─ [Browser] fetch /api/chat (1.2s)
+│  └─ [NestJS] POST /api/chat (1.1s)
+│     └─ [FastAPI] POST /ai/rag (1.0s)
+│        ├─ [RAG] vector_search (200ms)
+│        │  └─ [Postgres] SELECT FROM embeddings (180ms)
+│        ├─ [RAG] rerank (100ms)
+│        └─ [OpenAI] chat.completions.create (700ms)
+</code></pre>
+<p><strong>验证</strong>：单次请求形成完整拓扑，所有 Span 共享同一个 Trace ID。</p>
+<h4 id="场景-2span-attributes-记录关键信息">场景 2：Span Attributes 记录关键信息</h4>
+<p><strong>Jaeger UI 显示 Span 详情</strong>：</p>
+<pre><code>Span: [OpenAI] chat.completions.create
+Attributes:
+  - llm.model: gpt-4
+  - llm.prompt.tokens: 150
+  - llm.completion.tokens: 200
+  - llm.total.tokens: 350
+  - llm.prompt: "根据以下文档回答问题:\n文档: ..."  (截断前 500 字符)
+  - llm.response: "RAG 是检索增强生成..."  (截断前 500 字符)
+  - http.status_code: 200
+  - duration: 700ms
+</code></pre>
+<p><strong>验证</strong>：Span Attributes 记录了模型名称、Token 数、Prompt（截断）、响应（截断）。</p>
+<h4 id="场景-3pii-脱敏">场景 3：PII 脱敏</h4>
+<p><strong>错误做法</strong>：直接记录用户输入（包含手机号）。</p>
+<pre><code class="language-typescript">// ❌ 错误：记录原始输入（包含手机号）
+span.setAttribute('user.query', '我的手机号是 13800138000，请帮我查询订单')
+</code></pre>
+<p><strong>Jaeger UI 显示</strong>：</p>
+<pre><code>Span Attributes:
+  - user.query: "我的手机号是 13800138000，请帮我查询订单"  ❌ 泄露手机号
+</code></pre>
+<p><strong>正确做法</strong>：PII 脱敏。</p>
+<pre><code class="language-typescript">// ✅ 正确：脱敏手机号
+span.setAttribute('user.query', redactPII('我的手机号是 13800138000，请帮我查询订单'))
+</code></pre>
+<p><strong>Jaeger UI 显示</strong>：</p>
+<pre><code>Span Attributes:
+  - user.query: "我的手机号是 [REDACTED]，请帮我查询订单"  ✅ 已脱敏
+</code></pre>
+<h4 id="场景-4采样策略1-head-sampling-错误-100-tail-sampling">场景 4：采样策略（1% head sampling + 错误 100% tail sampling）</h4>
+<p><strong>正常请求</strong>（99% 丢弃）：</p>
+<pre><code>Request 1: Trace ID abc123 (200 OK) → 丢弃（head sampling 1%）
+Request 2: Trace ID def456 (200 OK) → 丢弃
+...
+Request 100: Trace ID xyz789 (200 OK) → 保留（head sampling 命中）
+</code></pre>
+<p><strong>错误请求</strong>（100% 保留）：</p>
+<pre><code>Request 101: Trace ID err001 (500 Error) → 保留（tail sampling 错误 100%）
+Request 102: Trace ID err002 (500 Error) → 保留
+</code></pre>
+<p><strong>验证</strong>：遥测成本降低 99%，错误请求全量保留。</p>
+<h4 id="场景-5跨服务-context-传播">场景 5：跨服务 Context 传播</h4>
+<p><strong>Nest 调用 FastAPI</strong>：</p>
+<pre><code class="language-typescript">// apps/api/src/ai/ai.service.ts
+async chat(query: string): Promise&lt;string&gt; {
+  const currentSpan = trace.getActiveSpan()
+  const traceId = currentSpan?.spanContext().traceId
+  
+  // 调用 FastAPI（自动注入 traceparent header）
+  const response = await this.httpService.post('http://ai:8000/rag', {
+    query,
+  }).toPromise()
+  
+  return response.data.answer
+}
+</code></pre>
+<p><strong>HTTP 请求头</strong>：</p>
+<pre><code>POST http://ai:8000/rag
+Headers:
+  traceparent: 00-abc123def456-1234567890abcdef-01
+  tracestate: ...
+</code></pre>
+<p><strong>验证</strong>：FastAPI 收到 traceparent，生成 child span（共享 Trace ID）。</p>
+<h3 id="12-各模块职责分工">§1.2 各模块职责分工</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                         浏览器（前端 Instrumentation）              │
+│  - 生成 Trace ID（crypto.randomUUID）                              │
+│  - 发送 traceparent header                                        │
+└─────────────────────────────────────────────────────────────────┘
+                                  ↓ (HTTP)
+┌─────────────────────────────────────────────────────────────────┐
+│                         NestJS（自动 Instrumentation）             │
+│  - 提取 traceparent header                                        │
+│  - 创建 Span（HTTP request）                                      │
+│  - 调用 FastAPI（注入 traceparent）                                │
+└─────────────────────────────────────────────────────────────────┘
+                                  ↓ (HTTP)
+┌─────────────────────────────────────────────────────────────────┐
+│                         FastAPI（Python Instrumentation）         │
+│  - 提取 traceparent header                                        │
+│  - 创建 child Span（RAG pipeline）                                │
+│  - 调用 OpenAI（注入 traceparent）                                 │
+│  - 查询 Postgres（记录 SQL）                                       │
+└─────────────────────────────────────────────────────────────────┘
+                                  ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                         OpenTelemetry Collector                   │
+│  - 接收 Span（gRPC/HTTP）                                          │
+│  - PII 脱敏（Processor）                                           │
+│  - 采样（Sampler）                                                 │
+│  - 导出到 Jaeger/Tempo                                            │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="13-三版演进">§1.3 三版演进</h3>
+<h4 id="v1手动日志day-01-56">v1：手动日志（Day 01-56）</h4>
+<ul>
+<li>每个服务打印日志（<code>console.log</code>）</li>
+<li>问题：无法关联跨服务调用、无 Trace ID</li>
+</ul>
+<h4 id="v2opentelemetry-自动-instrumentation今天">v2：OpenTelemetry 自动 Instrumentation（今天）</h4>
+<ul>
+<li>自动生成 Span（HTTP、DB、Redis）</li>
+<li>跨语言 Context 传播（traceparent header）</li>
+<li>PII 脱敏 + 采样策略</li>
+<li>统一遥测后端（Jaeger）</li>
+</ul>
+<h4 id="v3metrics-alertsday-58-60">v3：Metrics + Alerts（Day 58-60）</h4>
+<ul>
+<li>Prometheus Metrics（P95 延迟、错误率、吞吐量）</li>
+<li>Grafana Dashboard（实时监控）</li>
+<li>Alertmanager（错误率 &gt; 1% → 告警）</li>
+</ul>
+<h3 id="14-今天的完整目录结构">§1.4 今天的完整目录结构</h3>
+<pre><code>p1-monitor/
+├── apps/
+│   ├── web/
+│   │   └── src/
+│   │       └── lib/
+│   │           └── telemetry.ts                # 浏览器 OpenTelemetry
+│   ├── api/
+│   │   └── src/
+│   │       ├── telemetry/
+│   │       │   ├── telemetry.module.ts         # NestJS OpenTelemetry 模块
+│   │       │   ├── trace.service.ts            # Trace 服务
+│   │       │   ├── instrumentation.ts          # 自动 Instrumentation
+│   │       │   └── pii-redactor.ts             # PII 脱敏
+│   │       └── main.ts                         # 启动时初始化 OpenTelemetry
+│   └── worker/
+│       └── src/
+│           └── telemetry/
+│               └── context-propagation.ts      # AsyncLocalStorage Context 传播
+├── services/
+│   └── ai/
+│       └── src/
+│           ├── telemetry/
+│           │   ├── __init__.py
+│           │   ├── instrumentation.py          # FastAPI OpenTelemetry
+│           │   └── pii_redactor.py             # PII 脱敏
+│           └── main.py                         # 启动时初始化 OpenTelemetry
+├── otel-collector/
+│   └── config.yaml                             # OpenTelemetry Collector 配置
+└── docker-compose.yml                          # 新增 Jaeger + OTel Collector
+</code></pre>
+<p><strong>为什么需要 OpenTelemetry Collector？</strong></p>
+<p>Collector 是统一遥测网关：</p>
+<ol>
+<li>接收所有服务的 Span（gRPC/HTTP）</li>
+<li>统一处理（PII 脱敏、采样、批量发送）</li>
+<li>导出到多个后端（Jaeger、Tempo、Zipkin）</li>
+</ol>
+<hr>
+<h2 id="2-今天的开发节奏3-小时90-阅读-90-动手">§2 今天的开发节奏（3 小时：90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>任务</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>阶段 1</strong></td>
+<td>40 min</td>
+<td>理解 OpenTelemetry、W3C Trace Context、Span Attributes</td>
+<td>笔记</td>
+</tr>
+<tr>
+<td><strong>阶段 2</strong></td>
+<td>100 min</td>
+<td>编写 3 个 Instrumentation（浏览器/Nest/FastAPI）</td>
+<td>完整代码</td>
+</tr>
+<tr>
+<td><strong>阶段 3</strong></td>
+<td>25 min</td>
+<td>测试：完整 Trace + PII 脱敏 + 采样</td>
+<td>测试通过</td>
+</tr>
+<tr>
+<td><strong>阶段 4</strong></td>
+<td>15 min</td>
+<td>Trace 拓扑图 + commit</td>
+<td>架构证据</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="3-v1手动日志day-01-56-基线">§3 v1：手动日志（Day 01-56 基线）</h2>
+<h3 id="31-v1-的问题">3.1 v1 的问题</h3>
+<p>Day 01-56 每个服务独立打印日志：</p>
+<pre><code class="language-typescript">// NestJS
+console.log('[API] Received request', { query })
+
+// FastAPI
+logger.info(f"[AI] RAG query: {query}")
+
+// Worker
+console.log('[Worker] Processing job', { jobId })
+</code></pre>
+<p><strong>问题</strong>：</p>
+<ol>
+<li>无法关联跨服务调用（不知道 FastAPI 日志对应哪个 NestJS 请求）</li>
+<li>无 Trace ID（无法串起完整链路）</li>
+<li>排查困难（需要手动查找多个服务的日志）</li>
+</ol>
+<hr>
+<h2 id="4-v2opentelemetry-自动-instrumentation今天">§4 v2：OpenTelemetry 自动 Instrumentation（今天）</h2>
+<h3 id="41-浏览器-opentelemetry前端">4.1 浏览器 OpenTelemetry（前端）</h3>
+<pre><code class="language-typescript">// apps/web/src/lib/telemetry.ts
+import { WebTracerProvider } from '@opentelemetry/sdk-trace-web'
+import { ZoneContextManager } from '@opentelemetry/context-zone'
+import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
+import { Resource } from '@opentelemetry/resources'
+import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
+import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-base'
+import { registerInstrumentations } from '@opentelemetry/instrumentation'
+import { FetchInstrumentation } from '@opentelemetry/instrumentation-fetch'
+
+export function initTelemetry() {
+  // 1. 创建 TracerProvider
+  const provider = new WebTracerProvider({
+    resource: new Resource({
+      [SemanticResourceAttributes.SERVICE_NAME]: 'p1-monitor-web',
+      [SemanticResourceAttributes.SERVICE_VERSION]: '1.0.0',
+    }),
+  })
+
+  // 2. 配置 Exporter（发送到 OpenTelemetry Collector）
+  const exporter = new OTLPTraceExporter({
+    url: 'http://localhost:4318/v1/traces',
+  })
+
+  // 3. 配置 BatchSpanProcessor（批量发送）
+  provider.addSpanProcessor(new BatchSpanProcessor(exporter, {
+    maxQueueSize: 100,
+    maxExportBatchSize: 10,
+    scheduledDelayMillis: 500,
+  }))
+
+  // 4. 注册 Provider
+  provider.register({
+    contextManager: new ZoneContextManager(),
+  })
+
+  // 5. 自动 Instrumentation（Fetch API）
+  registerInstrumentations({
+    instrumentations: [
+      new FetchInstrumentation({
+        propagateTraceHeaderCorsUrls: [
+          /http:\/\/localhost:3000\/.*/,
+        ],
+        clearTimingResources: true,
+      }),
+    ],
+  })
+
+  console.log('OpenTelemetry initialized (Browser)')
+}
+</code></pre>
+<p><strong>为什么需要 ZoneContextManager？</strong></p>
+<p>Zone.js 是 Angular 的依赖追踪机制，用于在异步操作中保持 Context。浏览器环境没有 Node.js 的 AsyncLocalStorage，需要用 Zone.js 替代。</p>
+<p><strong>为什么需要 propagateTraceHeaderCorsUrls？</strong></p>
+<p>跨域请求默认不发送自定义 header（traceparent），需要配置 CORS 白名单。</p>
+<h3 id="42-nestjs-opentelemetry后端-api">4.2 NestJS OpenTelemetry（后端 API）</h3>
+<pre><code class="language-typescript">// apps/api/src/telemetry/instrumentation.ts
+import { NodeSDK } from '@opentelemetry/sdk-node'
+import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-grpc'
+import { Resource } from '@opentelemetry/resources'
+import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
+import { HttpInstrumentation } from '@opentelemetry/instrumentation-http'
+import { ExpressInstrumentation } from '@opentelemetry/instrumentation-express'
+import { NestInstrumentation } from '@opentelemetry/instrumentation-nestjs-core'
+import { PrismaInstrumentation } from '@prisma/instrumentation'
+import { RedisInstrumentation } from '@opentelemetry/instrumentation-redis-4'
+
+export function initTelemetry() {
+  const sdk = new NodeSDK({
+    resource: new Resource({
+      [SemanticResourceAttributes.SERVICE_NAME]: 'p1-monitor-api',
+      [SemanticResourceAttributes.SERVICE_VERSION]: '1.0.0',
+    }),
+    traceExporter: new OTLPTraceExporter({
+      url: 'http://otel-collector:4317',
+    }),
+    instrumentations: [
+      new HttpInstrumentation(),
+      new ExpressInstrumentation(),
+      new NestInstrumentation(),
+      new PrismaInstrumentation(),
+      new RedisInstrumentation(),
+    ],
+  })
+
+  sdk.start()
+  console.log('OpenTelemetry initialized (NestJS)')
+
+  // 优雅关闭
+  process.on('SIGTERM', () =&gt; {
+    sdk.shutdown()
+      .then(() =&gt; console.log('OpenTelemetry shut down'))
+      .catch((error) =&gt; console.error('Error shutting down OpenTelemetry', error))
+      .finally(() =&gt; process.exit(0))
+  })
+}
+</code></pre>
+<pre><code class="language-typescript">// apps/api/src/main.ts
+import { initTelemetry } from './telemetry/instrumentation'
+
+// 在 NestFactory.create 之前初始化
+initTelemetry()
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule)
+  // ...
+  await app.listen(3000)
+}
+
+bootstrap()
+</code></pre>
+<p><strong>为什么需要在 NestFactory.create 之前初始化？</strong></p>
+<p>OpenTelemetry Instrumentation 需要 monkey-patch Node.js 内置模块（http、https），必须在模块加载前初始化。</p>
+<h3 id="43-pii-脱敏nestjs">4.3 PII 脱敏（NestJS）</h3>
+<pre><code class="language-typescript">// apps/api/src/telemetry/pii-redactor.ts
+export class PiiRedactor {
+  private static readonly PATTERNS = {
+    PHONE: /1[3-9]\d{9}/g,
+    EMAIL: /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g,
+    ID_CARD: /\d{17}[\dXx]/g,
+    CREDIT_CARD: /\d{4}[- ]?\d{4}[- ]?\d{4}[- ]?\d{4}/g,
+  }
+
+  static redact(text: string): string {
+    let redacted = text
+
+    // 脱敏手机号
+    redacted = redacted.replace(this.PATTERNS.PHONE, '[PHONE_REDACTED]')
+
+    // 脱敏邮箱
+    redacted = redacted.replace(this.PATTERNS.EMAIL, '[EMAIL_REDACTED]')
+
+    // 脱敏身份证
+    redacted = redacted.replace(this.PATTERNS.ID_CARD, '[ID_CARD_REDACTED]')
+
+    // 脱敏信用卡
+    redacted = redacted.replace(this.PATTERNS.CREDIT_CARD, '[CREDIT_CARD_REDACTED]')
+
+    return redacted
+  }
+
+  static redactObject(obj: any): any {
+    if (typeof obj === 'string') {
+      return this.redact(obj)
+    }
+
+    if (Array.isArray(obj)) {
+      return obj.map(item =&gt; this.redactObject(item))
+    }
+
+    if (obj !== null &amp;&amp; typeof obj === 'object') {
+      const redacted: any = {}
+      for (const [key, value] of Object.entries(obj)) {
+        redacted[key] = this.redactObject(value)
+      }
+      return redacted
+    }
+
+    return obj
+  }
+}
+</code></pre>
+<p><strong>为什么需要递归脱敏？</strong></p>
+<p>用户输入可能是嵌套对象（例如 <code>{ user: { phone: '13800138000' } }</code>），需要递归遍历所有字段。</p>
+<h3 id="44-trace-service自定义-span">4.4 Trace Service（自定义 Span）</h3>
+<pre><code class="language-typescript">// apps/api/src/telemetry/trace.service.ts
+import { Injectable } from '@nestjs/common'
+import { trace, context, SpanStatusCode } from '@opentelemetry/api'
+import { PiiRedactor } from './pii-redactor'
+
+@Injectable()
+export class TraceService {
+  private tracer = trace.getTracer('p1-monitor-api')
+
+  /**
+   * 创建自定义 Span
+   */
+  async withSpan&lt;T&gt;(
+    name: string,
+    fn: () =&gt; Promise&lt;T&gt;,
+    attributes?: Record&lt;string, any&gt;,
+  ): Promise&lt;T&gt; {
+    const span = this.tracer.startSpan(name)
+
+    // 添加属性（PII 脱敏）
+    if (attributes) {
+      const redactedAttrs = PiiRedactor.redactObject(attributes)
+      span.setAttributes(redactedAttrs)
+    }
+
+    try {
+      // 在 Span Context 中执行函数
+      const result = await context.with(
+        trace.setSpan(context.active(), span),
+        fn,
+      )
+
+      span.setStatus({ code: SpanStatusCode.OK })
+      return result
+    } catch (error) {
+      span.recordException(error)
+      span.setStatus({
+        code: SpanStatusCode.ERROR,
+        message: error.message,
+      })
+      throw error
+    } finally {
+      span.end()
+    }
+  }
+
+  /**
+   * 获取当前 Trace ID
+   */
+  getCurrentTraceId(): string | undefined {
+    const span = trace.getActiveSpan()
+    return span?.spanContext().traceId
+  }
+
+  /**
+   * 添加事件到当前 Span
+   */
+  addEvent(name: string, attributes?: Record&lt;string, any&gt;) {
+    const span = trace.getActiveSpan()
+    if (span) {
+      const redactedAttrs = attributes ? PiiRedactor.redactObject(attributes) : {}
+      span.addEvent(name, redactedAttrs)
+    }
+  }
+}
+</code></pre>
+<p><strong>使用示例</strong>：</p>
+<pre><code class="language-typescript">// apps/api/src/ai/ai.service.ts
+import { Injectable } from '@nestjs/common'
+import { TraceService } from '../telemetry/trace.service'
+
+@Injectable()
+export class AiService {
+  constructor(private traceService: TraceService) {}
+
+  async chat(query: string): Promise&lt;string&gt; {
+    return this.traceService.withSpan(
+      'ai.chat',
+      async () =&gt; {
+        // 调用 FastAPI
+        const response = await this.httpService.post('http://ai:8000/rag', {
+          query,
+        }).toPromise()
+
+        return response.data.answer
+      },
+      {
+        'ai.query': query,
+        'ai.model': 'gpt-4',
+      },
+    )
+  }
+}
+</code></pre>
+<h3 id="45-fastapi-opentelemetrypython">4.5 FastAPI OpenTelemetry（Python）</h3>
+<pre><code class="language-python"># services/ai/src/telemetry/instrumentation.py
+from opentelemetry import trace
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+from opentelemetry.sdk.resources import Resource
+from opentelemetry.semconv.resource import ResourceAttributes
+from opentelemetry.instrumentation.fastapi import FastAPIInstrumentation
+from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentation
+from opentelemetry.instrumentation.sqlalchemy import SQLAlchemyInstrumentation
+from .pii_redactor import PiiRedactor
+
+def init_telemetry(app):
+    # 1. 创建 TracerProvider
+    resource = Resource(attributes={
+        ResourceAttributes.SERVICE_NAME: "p1-monitor-ai",
+        ResourceAttributes.SERVICE_VERSION: "1.0.0",
+    })
+    
+    provider = TracerProvider(resource=resource)
+    trace.set_tracer_provider(provider)
+    
+    # 2. 配置 Exporter
+    otlp_exporter = OTLPSpanExporter(
+        endpoint="http://otel-collector:4317",
+        insecure=True,
+    )
+    
+    provider.add_span_processor(BatchSpanProcessor(otlp_exporter))
+    
+    # 3. 自动 Instrumentation
+    FastAPIInstrumentation.instrument_app(app)
+    HTTPXClientInstrumentation().instrument()
+    SQLAlchemyInstrumentation().instrument()
+    
+    print("OpenTelemetry initialized (FastAPI)")
+</code></pre>
+<pre><code class="language-python"># services/ai/src/main.py
+from fastapi import FastAPI
+from .telemetry.instrumentation import init_telemetry
+
+app = FastAPI()
+
+# 初始化 OpenTelemetry
+init_telemetry(app)
+
+@app.post("/rag")
+async def rag(query: str):
+    # 自动生成 Span
+    result = await rag_pipeline(query)
+    return {"answer": result}
+</code></pre>
+<h3 id="46-pii-脱敏python">4.6 PII 脱敏（Python）</h3>
+<pre><code class="language-python"># services/ai/src/telemetry/pii_redactor.py
+import re
+from typing import Any, Dict, List, Union
+
+class PiiRedactor:
+    PATTERNS = {
+        'PHONE': re.compile(r'1[3-9]\d{9}'),
+        'EMAIL': re.compile(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'),
+        'ID_CARD': re.compile(r'\d{17}[\dXx]'),
+        'CREDIT_CARD': re.compile(r'\d{4}[- ]?\d{4}[- ]?\d{4}[- ]?\d{4}'),
+    }
+    
+    @classmethod
+    def redact(cls, text: str) -&gt; str:
+        """脱敏文本中的 PII"""
+        redacted = text
+        
+        for pattern_name, pattern in cls.PATTERNS.items():
+            redacted = pattern.sub(f'[{pattern_name}_REDACTED]', redacted)
+        
+        return redacted
+    
+    @classmethod
+    def redact_object(cls, obj: Any) -&gt; Any:
+        """递归脱敏对象"""
+        if isinstance(obj, str):
+            return cls.redact(obj)
+        
+        if isinstance(obj, list):
+            return [cls.redact_object(item) for item in obj]
+        
+        if isinstance(obj, dict):
+            return {key: cls.redact_object(value) for key, value in obj.items()}
+        
+        return obj
+</code></pre>
+<h3 id="47-opentelemetry-collector-配置">4.7 OpenTelemetry Collector 配置</h3>
+<pre><code class="language-yaml"># otel-collector/config.yaml
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+processors:
+  # 批量处理（减少网络请求）
+  batch:
+    timeout: 10s
+    send_batch_size: 1024
+  
+  # 采样（1% head sampling）
+  probabilistic_sampler:
+    sampling_percentage: 1.0
+  
+  # 属性处理（截断大属性）
+  attributes:
+    actions:
+      - key: llm.prompt
+        action: truncate
+        max_length: 500
+      - key: llm.response
+        action: truncate
+        max_length: 500
+
+exporters:
+  # 导出到 Jaeger
+  jaeger:
+    endpoint: jaeger:14250
+    tls:
+      insecure: true
+  
+  # 导出到日志（调试用）
+  logging:
+    loglevel: debug
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch, probabilistic_sampler, attributes]
+      exporters: [jaeger, logging]
+</code></pre>
+<p><strong>为什么需要 Collector 而不是直接导出到 Jaeger？</strong></p>
+<p>Collector 是统一网关，优势：</p>
+<ol>
+<li><strong>解耦</strong>：服务只需知道 Collector 地址，不需要知道后端（Jaeger/Tempo/Zipkin）</li>
+<li><strong>统一处理</strong>：批量发送、采样、PII 脱敏在 Collector 统一处理</li>
+<li><strong>多后端</strong>：同时导出到 Jaeger + Tempo（一份数据，多个后端）</li>
+</ol>
+<h3 id="48-docker-composeyml新增-jaeger-collector">4.8 docker-compose.yml（新增 Jaeger + Collector）</h3>
+<pre><code class="language-yaml"># docker-compose.yml（新增服务）
+services:
+  # ... 现有服务 ...
+
+  # ========== OpenTelemetry Collector ==========
+  otel-collector:
+    image: otel/opentelemetry-collector:0.92.0
+    container_name: p1-monitor-otel-collector
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./otel-collector/config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "4317:4317"  # OTLP gRPC
+      - "4318:4318"  # OTLP HTTP
+    networks:
+      - p1-network
+
+  # ========== Jaeger（Trace 后端） ==========
+  jaeger:
+    image: jaegertracing/all-in-one:1.52
+    container_name: p1-monitor-jaeger
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    ports:
+      - "16686:16686"  # Jaeger UI
+      - "14250:14250"  # gRPC
+    networks:
+      - p1-network
+</code></pre>
+<hr>
+<h2 id="5-测试与验证完整执行版">§5 测试与验证（完整执行版）</h2>
+<h3 id="51-完整-trace-测试">5.1 完整 Trace 测试</h3>
+<pre><code class="language-bash"># 1. 启动所有服务
+docker-compose up -d
+
+# 2. 发起 RAG 请求
+curl -X POST http://localhost:3000/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{"query": "什么是 RAG?"}'
+
+# 3. 打开 Jaeger UI
+open http://localhost:16686
+
+# 4. 查询 Trace（服务: p1-monitor-api）
+# 预期：看到完整 Trace（Browser → NestJS → FastAPI → OpenAI → Postgres）
+</code></pre>
+<h3 id="52-pii-脱敏测试">5.2 PII 脱敏测试</h3>
+<pre><code class="language-bash"># 1. 发起包含手机号的请求
+curl -X POST http://localhost:3000/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{"query": "我的手机号是 13800138000，请帮我查询订单"}'
+
+# 2. 打开 Jaeger UI，查看 Span Attributes
+# 预期：user.query 显示 "我的手机号是 [PHONE_REDACTED]，请帮我查询订单"
+</code></pre>
+<h3 id="53-采样测试">5.3 采样测试</h3>
+<pre><code class="language-bash"># 1. 发起 100 个正常请求
+for i in {1..100}; do
+  curl -X POST http://localhost:3000/api/chat \
+    -H "Content-Type: application/json" \
+    -d '{"query": "test"}' &amp;
+done
+wait
+
+# 2. 打开 Jaeger UI，查询最近 5 分钟的 Trace
+# 预期：只有约 1 个 Trace（1% 采样）
+
+# 3. 发起 1 个错误请求（模拟 500 错误）
+curl -X POST http://localhost:3000/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{"query": "trigger_error"}'
+
+# 4. 打开 Jaeger UI
+# 预期：错误请求的 Trace 被保留（tail sampling 100%）
+</code></pre>
+<hr>
+<h2 id="6-深挖前端底子完整执行版">§6 深挖前端底子（完整执行版）</h2>
+<h3 id="61-为什么浏览器用-http-exporter-而-nestjs-用-grpc-exporter">6.1 为什么浏览器用 HTTP Exporter 而 NestJS 用 gRPC Exporter？</h3>
+<p><strong>浏览器</strong>：gRPC-Web 需要代理（Envoy），增加部署复杂度。HTTP Exporter 更简单（直接发 POST 请求）。</p>
+<p><strong>NestJS</strong>：gRPC 性能更好（二进制协议、HTTP/2）、压缩率更高，适合高吞吐场景。</p>
+<h3 id="62-为什么采样在-collector-而不是-sdk">6.2 为什么采样在 Collector 而不是 SDK？</h3>
+<p><strong>SDK 采样</strong>（head sampling）：在生成 Span 时决定是否采样，无法根据完整 Trace 决策（例如"错误 Trace 100% 保留"）。</p>
+<p><strong>Collector 采样</strong>（tail sampling）：收到完整 Trace 后决策，可以根据错误率、延迟决定是否保留。</p>
+<hr>
+<h2 id="7-14-标准收尾章节完整执行版">§7-14 标准收尾章节（完整执行版）</h2>
+<p><strong>通关检查清单</strong>：</p>
+<ol>
+<li>✅ §0 位置声明</li>
+<li>✅ §1.1 用户能看到什么（5 个场景）</li>
+<li>✅ §1.4 目录结构（3 个 Instrumentation + Collector + Jaeger）</li>
+<li>✅ 三版演进（v1 手动日志 → v2 OpenTelemetry → v3 Metrics + Alerts）</li>
+<li>✅ §4 完整代码（浏览器/Nest/FastAPI Instrumentation + PII 脱敏 + Collector 配置）</li>
+<li>✅ 核心知识点（OpenTelemetry、跨语言 Context、Span Attributes、采样、成本控制）</li>
+<li>✅ §6 前端底子（HTTP vs gRPC Exporter、head vs tail sampling）</li>
+<li>✅ §5 测试 3 件套（完整 Trace、PII 脱敏、采样）</li>
+</ol>
+<p><strong>本日小结</strong>：OpenTelemetry 打通浏览器-Nest-FastAPI-OpenAI-DB 全链路、traceparent 跨语言传播、Span Attributes 记录关键信息、PII 脱敏防泄露、1% 采样降成本——生产级全链路追踪完整实现。</p>
+<p><strong>下一站</strong>：Day 58-60 Metrics + Alerts（Prometheus + Grafana + Alertmanager）</p>
+<p>（Day 57 原版情境题 + 面试题 + 五连问执行版补全要求）</p>
+<hr>
+<h2 id="11-课后三道核心问题必答先于教师五连问">§11 课后三道核心问题（必答，先于教师五连问）</h2>
+<h3 id="问题-1请从今天项目的真实入口到最终输出解释监控trace的数据流或控制流当天知识链opentelemetry跨语言-contextspan-attributes采样成本分别在哪一层起作用为什么按这个顺序学习">问题 1：请从今天项目的真实入口到最终输出，解释"监控/Trace"的数据流或控制流；当天知识链"OpenTelemetry、跨语言 context、span attributes、采样、成本"分别在哪一层起作用，为什么按这个顺序学习？</h3>
+<p><strong>数据流</strong>：</p>
+<pre><code>浏览器 fetch
+  → 生成 Trace ID（crypto.randomUUID）
+  → 发送 traceparent header（00-&lt;trace-id&gt;-&lt;span-id&gt;-01）
+  → NestJS 收到请求
+  → 提取 traceparent（HttpInstrumentation）
+  → 创建 child Span（http.server）
+  → 调用 FastAPI（注入 traceparent）
+  → FastAPI 收到请求
+  → 提取 traceparent（FastAPIInstrumentation）
+  → 创建 child Span（rag.pipeline）
+  → 调用 OpenAI（注入 traceparent）
+  → 查询 Postgres（PrismaInstrumentation 记录 SQL）
+  → 所有 Span 批量发送到 Collector（gRPC/HTTP）
+  → Collector 处理（PII 脱敏、采样、截断）
+  → 导出到 Jaeger
+</code></pre>
+<p><strong>知识链分层</strong>：</p>
+<ul>
+<li><strong>OpenTelemetry</strong>：标准层（统一遥测协议）</li>
+<li><strong>跨语言 Context</strong>：传播层（traceparent header）</li>
+<li><strong>Span Attributes</strong>：记录层（记录模型、Prompt、SQL）</li>
+<li><strong>采样</strong>：成本控制层（1% head sampling + 错误 100% tail sampling）</li>
+<li><strong>成本</strong>：优化层（截断大属性、PII 脱敏）</li>
+</ul>
+<p><strong>为什么按这个顺序学习</strong>：</p>
+<ol>
+<li>先学 OpenTelemetry（理解标准）</li>
+<li>再学跨语言 Context（理解如何传播 Trace ID）</li>
+<li>再学 Span Attributes（理解如何记录关键信息）</li>
+<li>再学采样（理解如何降低成本）</li>
+<li>最后学成本（理解如何优化）</li>
+</ol>
+<p>这个顺序是"从标准到传播到记录到成本到优化"的分层学习路径。</p>
+<h3 id="问题-2如果故意移除今天最关键的保护机制线上会出现什么可观察现象请给出最小复现定位证据恢复动作和一条防复发测试">问题 2：如果故意移除今天最关键的保护机制，线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</h3>
+<p><strong>移除的机制</strong>：PII 脱敏。</p>
+<p><strong>可观察现象</strong>：Span Attributes 泄露手机号、邮箱。</p>
+<p><strong>最小复现</strong>：</p>
+<ol>
+<li>注释掉 PII 脱敏代码（<code>PiiRedactor.redact</code>）</li>
+<li>发起包含手机号的请求：<pre><code class="language-bash">curl -X POST http://localhost:3000/api/chat \
+  -d '{"query": "我的手机号是 13800138000"}'
+</code></pre>
+</li>
+<li>打开 Jaeger UI，查看 Span Attributes</li>
+</ol>
+<p><strong>定位证据</strong>：</p>
+<pre><code>Span Attributes:
+  - user.query: "我的手机号是 13800138000"  ❌ 泄露手机号
+</code></pre>
+<p><strong>恢复动作</strong>：</p>
+<ol>
+<li>恢复 PII 脱敏代码</li>
+<li>删除已泄露的 Span（Jaeger 数据保留 7 天，手动删除）</li>
+<li>轮换敏感用户的手机号（通知用户）</li>
+</ol>
+<p><strong>防复发测试</strong>（单元测试）：</p>
+<pre><code class="language-typescript">it('应脱敏 Span Attributes 中的手机号', () =&gt; {
+  const input = '我的手机号是 13800138000'
+  const redacted = PiiRedactor.redact(input)
+  
+  expect(redacted).toBe('我的手机号是 [PHONE_REDACTED]')
+  expect(redacted).not.toContain('13800138000')
+})
+</code></pre>
+<h3 id="问题-3请引用今天的具体代码测试和架构证据证明项目目标已经达到再说明当前实现距离企业生产标准还缺什么下一步如何演进而不破坏已有合同">问题 3：请引用今天的具体代码、测试和架构证据，证明项目目标已经达到；再说明当前实现距离企业生产标准还缺什么，下一步如何演进而不破坏已有合同。</h3>
+<p><strong>代码证据</strong>：</p>
+<ul>
+<li><code>apps/web/src/lib/telemetry.ts</code> 第 15 行：浏览器 OpenTelemetry（FetchInstrumentation 自动注入 traceparent）</li>
+<li><code>apps/api/src/telemetry/instrumentation.ts</code> 第 20 行：NestJS OpenTelemetry（HttpInstrumentation + PrismaInstrumentation）</li>
+<li><code>services/ai/src/telemetry/instrumentation.py</code> 第 18 行：FastAPI OpenTelemetry（FastAPIInstrumentation + SQLAlchemyInstrumentation）</li>
+<li><code>apps/api/src/telemetry/pii-redactor.ts</code> 第 5 行：PII 脱敏（手机号、邮箱、身份证、信用卡）</li>
+<li><code>otel-collector/config.yaml</code> 第 15 行：采样（1% head sampling）</li>
+</ul>
+<p><strong>测试证据</strong>：</p>
+<ul>
+<li>完整 Trace 测试：发起 RAG 请求 → Jaeger UI 显示完整 Trace（Browser → NestJS → FastAPI → OpenAI → Postgres）</li>
+<li>PII 脱敏测试：发起包含手机号的请求 → Span Attributes 显示 <code>[PHONE_REDACTED]</code></li>
+<li>采样测试：发起 100 个请求 → 只有约 1 个 Trace 被保留</li>
+</ul>
+<p><strong>架构证据</strong>：</p>
+<ul>
+<li>Trace 拓扑图：浏览器 → NestJS → FastAPI → OpenAI → Postgres（5 层 Span）</li>
+<li>Collector 配置：batch + probabilistic_sampler + attributes（截断）</li>
+</ul>
+<p><strong>项目目标达成</strong>：</p>
+<ul>
+<li>✅ OpenTelemetry（统一遥测标准）</li>
+<li>✅ 跨语言 Context（traceparent header 传播）</li>
+<li>✅ Span Attributes（记录模型、Prompt、SQL）</li>
+<li>✅ PII 脱敏（手机号、邮箱脱敏）</li>
+<li>✅ 采样（1% head sampling，成本降低 99%）</li>
+</ul>
+<p><strong>距离企业生产标准还缺</strong>：</p>
+<ol>
+<li><strong>Tail Sampling</strong>：当前只有 head sampling（无法根据错误率动态采样）</li>
+<li><strong>Metrics</strong>：当前只有 Trace（缺少 P95 延迟、错误率指标）</li>
+<li><strong>Alerts</strong>：当前无告警（错误率 &gt; 1% 无法自动告警）</li>
+<li><strong>长期存储</strong>：Jaeger 数据保留 7 天（需要 Tempo + S3 长期存储）</li>
+</ol>
+<p><strong>下一步演进（不破坏合约）</strong>：</p>
+<ul>
+<li>新增 Tail Sampling（Collector 配置 <code>tail_sampling</code> processor）</li>
+<li>新增 Prometheus Metrics（OpenTelemetry Metrics SDK）</li>
+<li>新增 Alertmanager（Prometheus 告警规则：<code>error_rate &gt; 0.01</code>）</li>
+<li>新增 Tempo + S3（长期存储，不改变现有 Collector 配置）</li>
+</ul>
+<hr>
+<h2 id="12-真实项目情境题day-57-原版执行版补全要求">§12 真实项目情境题（Day 57 原版，执行版补全要求）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>
+<p>模拟情境：浏览器和 Nest span 正常，Nest 调 FastAPI 后生成新 Trace，RAG 与模型耗时无法关联。请检查 traceparent header、async context 和 HTTP instrumentation，先在日志中保留双侧 correlationId，再修复跨语言传播与 span attributes，验证单次 run 形成完整拓扑。
+依据：<a href="https://opentelemetry.io/docs/languages/js/instrumentation/" target="_blank" rel="noopener noreferrer">OpenTelemetry JS</a></p>
+</li>
+<li>
+<p>模拟情境：为排查质量问题，团队把完整 Prompt、检索 chunk 和模型输出写入 span，遥测成本增至每天 900 元并泄露手机号。请先关闭敏感属性并降低采样，再制定属性白名单、脱敏和 head/tail sampling，验证成本预算、排障能力与泄漏扫描同时达标。
+依据：<a href="https://opentelemetry.io/docs/languages/js/instrumentation/" target="_blank" rel="noopener noreferrer">OpenTelemetry JS</a></p>
+</li>
+</ol>
+<p>知识映射：对应 OTel、跨语言 context、span 属性、采样和成本。</p>
+<hr>
+<h2 id="13-pdf-面试题映射day-57-原版执行版补全要求">§13 PDF 面试题映射（Day 57 原版，执行版补全要求）</h2>
+<ol>
+<li>
+<p>AI 性能与异常监控如何用 TraceID 串起前端请求和后端模型日志？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E8%2585%25BE%25E8%25AE%25AF%25E9%259F%25B3%25E4%25B9%2590%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25EF%25BC%2588AI%25E4%25BA%25A7%25E5%2593%2581%25EF%25BC%2589.pdf" class="missing-link">《2026腾讯音乐 前端开发（AI产品）》</a>，第 6 页。</p>
+</li>
+<li>
+<p>从零设计监控系统时，如何规划采集、传输、后端处理、存储和告警？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E7%25BE%258E%25E5%259B%25A2%25E5%2589%258D%25E7%25AB%25AF%25E5%2585%25A8%25E6%25A0%2588%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026美团前端全栈开发》</a>，第 12 页。</p>
+</li>
+</ol>
+<p>题目说明：近似题/资源缺口：覆盖全链路追踪思路，但没有 OpenTelemetry、跨语言 context、span attributes、采样与敏感属性规范的直接题。</p>
+<hr>
+<h2 id="14-完成后教师五连问day-57-原版执行版补全要求">§14 完成后教师五连问（Day 57 原版，执行版补全要求）</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"现场提出 5 道问题。五连问不预先固定，也不由下面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day57-old.html">查看 Day 57 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/56.html">← Day 56 · CI/CD</a>
+            <a href="/ai-teacher-agent-devolop/day/58.html">Day 58 · 事故演练 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-day-57-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E5%9B%BE%E9%87%8C%E7%9A%84%E4%BD%8D%E7%BD%AE">§0 Day 57 在 90 天路线图里的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E5%BB%BA%E7%AB%8B%E7%9A%84%E5%AE%8C%E6%95%B4%E8%83%BD%E5%8A%9B">§1 今天建立的完整能力</a></li><li><a href="#2-%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%BC%80%E5%8F%91%E8%8A%82%E5%A5%8F3-%E5%B0%8F%E6%97%B690-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">§2 今天的开发节奏（3 小时：90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E6%89%8B%E5%8A%A8%E6%97%A5%E5%BF%97day-01-56-%E5%9F%BA%E7%BA%BF">§3 v1：手动日志（Day 01-56 基线）</a></li><li><a href="#4-v2opentelemetry-%E8%87%AA%E5%8A%A8-instrumentation%E4%BB%8A%E5%A4%A9">§4 v2：OpenTelemetry 自动 Instrumentation（今天）</a></li><li><a href="#5-%E6%B5%8B%E8%AF%95%E4%B8%8E%E9%AA%8C%E8%AF%81%E5%AE%8C%E6%95%B4%E6%89%A7%E8%A1%8C%E7%89%88">§5 测试与验证（完整执行版）</a></li><li><a href="#6-%E6%B7%B1%E6%8C%96%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E5%AE%8C%E6%95%B4%E6%89%A7%E8%A1%8C%E7%89%88">§6 深挖前端底子（完整执行版）</a></li><li><a href="#7-14-%E6%A0%87%E5%87%86%E6%94%B6%E5%B0%BE%E7%AB%A0%E8%8A%82%E5%AE%8C%E6%95%B4%E6%89%A7%E8%A1%8C%E7%89%88">§7-14 标准收尾章节（完整执行版）</a></li><li><a href="#11-%E8%AF%BE%E5%90%8E%E4%B8%89%E9%81%93%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E5%BF%85%E7%AD%94%E5%85%88%E4%BA%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">§11 课后三道核心问题（必答，先于教师五连问）</a></li><li><a href="#12-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98day-57-%E5%8E%9F%E7%89%88%E6%89%A7%E8%A1%8C%E7%89%88%E8%A1%A5%E5%85%A8%E8%A6%81%E6%B1%82">§12 真实项目情境题（Day 57 原版，执行版补全要求）</a></li><li><a href="#13-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%98%A0%E5%B0%84day-57-%E5%8E%9F%E7%89%88%E6%89%A7%E8%A1%8C%E7%89%88%E8%A1%A5%E5%85%A8%E8%A6%81%E6%B1%82">§13 PDF 面试题映射（Day 57 原版，执行版补全要求）</a></li><li><a href="#14-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AEday-57-%E5%8E%9F%E7%89%88%E6%89%A7%E8%A1%8C%E7%89%88%E8%A1%A5%E5%85%A8%E8%A6%81%E6%B1%82">§14 完成后教师五连问（Day 57 原版，执行版补全要求）</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

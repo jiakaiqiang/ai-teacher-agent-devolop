@@ -1,0 +1,2678 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 35 · Day 35 - 可观测性（Trace 全链路 + 日志脱敏 + 采样策略） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html" aria-current="page">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/05.html">第 5 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 35</p>
+        <h1>Day 35 - 可观测性（Trace 全链路 + 日志脱敏 + 采样策略）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <p>日期与时长：2026-08-17 周一，180 分钟（90 分钟阅读 + 90 分钟动手）<br>
+项目：<code>D:\demo\ai-techer\p1-monitor</code><br>
+阶段任务性质：在真实 p1-monitor 链路中交付 Trace、脱敏与采样能力</p>
+<blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段二（Day 31-60，AI 前端 -&gt; AI 全栈）。继续在 <code>p1-monitor</code> 中补齐全栈与 AI 能力，并复用前 30 天的事件合同、状态管理和实时链路。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="0-在-90-天路线图中的位置">§0. 在 90 天路线图中的位置</h2>
+<p><strong>阶段定位</strong>：阶段二第 5 天（Day 31-40：Agent 生产化工程 10 天）</p>
+<p><strong>前置依赖</strong>：</p>
+<ul>
+<li>Day 29（BullMQ 队列）：队列日志需要 Trace ID 关联</li>
+<li>Day 32（Agent 状态机）：Agent 执行链路需要 span 追踪</li>
+<li>Day 34（失败恢复）：RecoveryAuditLog 需要 Trace ID 定位重试窗口</li>
+</ul>
+<p><strong>今天要解决的 5 个核心问题</strong>：</p>
+<ol>
+<li>
+<p><strong>Trace 断链问题</strong>：浏览器到 Nest 的 Trace 完整，但 Nest 到 Agent/Tool 的 35% span 断链，故障只能靠时间猜测</p>
+<ul>
+<li><strong>为什么发生</strong>：异步上下文（AsyncLocalStorage）传播断裂，或手动传 correlationId 时漏传</li>
+<li><strong>用户看到什么</strong>：前端显示"请求失败"，但后端日志里找不到对应 Trace ID（无法定位问题）</li>
+<li><strong>今天如何解决</strong>：OpenTelemetry 自动注入 + AsyncLocalStorage 传播 + 手动补充 Agent/Tool span</li>
+</ul>
+</li>
+<li>
+<p><strong>日志泄密问题</strong>：0.4% 的错误日志包含 Authorization、用户 Prompt 或模型 API key</p>
+<ul>
+<li><strong>为什么发生</strong>：错误对象直接序列化（<code>JSON.stringify(error)</code>），包含敏感字段</li>
+<li><strong>用户看到什么</strong>：安全扫描发现日志泄漏 API key，需要轮换密钥（影响线上服务）</li>
+<li><strong>今天如何解决</strong>：字段白名单 + 敏感字段脱敏（Authorization → <code>***</code> / Prompt → 摘要）</li>
+</ul>
+</li>
+<li>
+<p><strong>日志爆炸问题</strong>：每天 2 GB 日志，但只有 5% 的日志用于故障排查</p>
+<ul>
+<li><strong>为什么发生</strong>：所有请求都记录 DEBUG 级别日志（包括健康检查、轮询请求）</li>
+<li><strong>用户看到什么</strong>：日志存储成本高（S3 存储费用），查询慢（Elasticsearch 查询 10s+）</li>
+<li><strong>今天如何解决</strong>：采样策略（健康检查不记录 + 错误请求 100% 采样 + 正常请求 1% 采样）</li>
+</ul>
+</li>
+<li>
+<p><strong>Trace 重复问题</strong>：同一个请求生成 3 个不同的 Trace ID（前端 1 个 + BFF 1 个 + Agent 1 个）</p>
+<ul>
+<li><strong>为什么发生</strong>：前端/BFF/Agent 各自独立生成 Trace ID，没有传播机制</li>
+<li><strong>用户看到什么</strong>：无法从前端 Trace ID 追溯到后端日志（Trace ID 对不上）</li>
+<li><strong>今天如何解决</strong>：W3C Trace Context（traceparent header）传播 + OpenTelemetry 自动注入</li>
+</ul>
+</li>
+<li>
+<p><strong>Span 缺失关键信息</strong>：span 只记录了"执行了 getMetrics 工具"，但不知道参数是什么</p>
+<ul>
+<li><strong>为什么发生</strong>：span attributes 只记录了 toolName，没有记录 toolArgs</li>
+<li><strong>用户看到什么</strong>：故障排查时只知道"调用了工具"，但不知道"调用时传了什么参数"</li>
+<li><strong>今天如何解决</strong>：Span Schema 标准化（toolName + toolArgs + result + error）</li>
+</ul>
+</li>
+</ol>
+<p><strong>后续依赖（Day 35 是哪些能力的地基）</strong>：</p>
+<ul>
+<li>Day 36-40：LangGraph 状态机编排的 span 追踪（Plan → Act → Reflect 每个节点都是一个 span）</li>
+<li>Day 41-50：RAG 检索的 span 追踪（向量检索 span + Rerank span + 生成 span）</li>
+<li>Day 51-60：SLA 监控（基于 Trace 数据计算 P95/P99 延迟）</li>
+</ul>
+<p><strong>Day 35 在知识链中的承上启下作用</strong>：</p>
+<p>Day 34 建立了"失败恢复审计日志"（RecoveryAuditLog），但没有解决"如何从前端 Trace ID 追溯到审计日志"。Day 35 建立"全链路 Trace ID 传播"，让 RecoveryAuditLog 里的每条记录都关联到 Trace ID。Day 36-40 的 LangGraph 状态机编排会复用 Day 35 的 Trace 传播机制（每个状态机节点都是一个 span）。</p>
+<hr>
+<h2 id="1-功能模块职责划分">1. 功能模块职责划分</h2>
+<h3 id="11-用户能看到什么5-个真实场景">1.1 用户能看到什么（5 个真实场景）</h3>
+<p><strong>场景 1：前端发起请求，后端日志自动关联 Trace ID</strong></p>
+<p>用户在前端点击"分析服务器"按钮：</p>
+<ol>
+<li>前端生成 Trace ID（<code>00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01</code>）</li>
+<li>前端发送请求时，自动在 HTTP Header 里加上 <code>traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01</code></li>
+<li>BFF 收到请求后，从 <code>traceparent</code> header 提取 Trace ID，并传播到后续调用（Agent、Tool、DB）</li>
+<li>用户在浏览器 DevTools Network 里看到请求的 Trace ID，复制到 Elasticsearch，直接查到后端所有相关日志</li>
+</ol>
+<p><strong>场景 2：Tool 执行失败，日志里看到脱敏后的参数</strong></p>
+<p>用户请求"重启服务器 srv-001"，但权限不足：</p>
+<ol>
+<li>Tool 执行失败，抛出异常：<code>Error: Permission denied for serverId=srv-001, userId=user-123, Authorization=Bearer sk-abc123...</code></li>
+<li>日志系统自动脱敏：<code>serverId=srv-001, userId=user-123, authorization=***</code></li>
+<li>用户在日志里看到"Permission denied"，但看不到完整的 Authorization token（防止泄密）</li>
+</ol>
+<p><strong>场景 3：查询日志时，只看到关键日志（采样后）</strong></p>
+<p>运维查询"过去 1 小时的所有请求日志"：</p>
+<ol>
+<li>健康检查请求（<code>/health</code>）不记录日志（采样率 0%）</li>
+<li>正常请求（200 响应）只记录 1%（采样率 1%）</li>
+<li>错误请求（500 响应）100% 记录（采样率 100%）</li>
+<li>查询结果：1000 条日志（而不是 10 万条），但包含所有错误日志</li>
+</ol>
+<p><strong>场景 4：从前端 Trace ID 追溯到后端完整链路</strong></p>
+<p>用户报告"请求失败"，提供前端 Trace ID：</p>
+<ol>
+<li>运维复制 Trace ID 到 Elasticsearch：<code>traceId:4bf92f3577b34da6a3ce929d0e0e4736</code></li>
+<li>查询结果展示完整链路：<pre><code>[2026-07-17 10:30:01] [BFF] POST /api/analyze { serverId: 'srv-001' }
+[2026-07-17 10:30:02] [Agent] runId=run-001 started
+[2026-07-17 10:30:03] [Tool] getMetrics { serverId: 'srv-001' }
+[2026-07-17 10:30:04] [Tool] ERROR: Request timeout after 30s
+[2026-07-17 10:30:05] [Agent] runId=run-001 failed
+</code></pre>
+</li>
+<li>运维直接定位问题：Tool 超时（30s）</li>
+</ol>
+<p><strong>场景 5：Span 展示工具执行的完整上下文</strong></p>
+<p>运维在 Jaeger UI 查看 Trace 链路：</p>
+<ol>
+<li>Span 1（BFF）：<code>POST /api/analyze</code> + 耗时 3.2s</li>
+<li>Span 2（Agent）：<code>runId=run-001</code> + 耗时 3.1s</li>
+<li>Span 3（Tool getMetrics）：<code>serverId=srv-001</code> + 耗时 2.8s</li>
+<li>Span 4（Prisma Query）：<code>SELECT * FROM servers WHERE id='srv-001'</code> + 耗时 0.1s</li>
+<li>运维直接看到：Tool 执行占了 90% 时间（2.8s / 3.2s）</li>
+</ol>
+<h3 id="12-核心模块职责">1.2 核心模块职责</h3>
+<p>今天交付的可观测性模块包含 5 个子模块：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>模块</th>
+<th>职责</th>
+<th>输入</th>
+<th>输出</th>
+<th>为什么需要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trace Propagation</strong></td>
+<td>传播 Trace ID（W3C Trace Context）</td>
+<td>HTTP <code>traceparent</code> header</td>
+<td>Trace ID 注入到日志/span</td>
+<td>前端 Trace ID 能追溯到后端</td>
+</tr>
+<tr>
+<td><strong>Span Schema</strong></td>
+<td>标准化 span attributes</td>
+<td>toolName, toolArgs, result</td>
+<td>span attributes（结构化）</td>
+<td>span 包含关键信息（不只是 toolName）</td>
+</tr>
+<tr>
+<td><strong>PII Redaction</strong></td>
+<td>脱敏敏感字段</td>
+<td>日志对象（含敏感字段）</td>
+<td>脱敏后的日志对象</td>
+<td>日志不泄露 API key/Authorization</td>
+</tr>
+<tr>
+<td><strong>Sampling Strategy</strong></td>
+<td>采样策略（减少日志量）</td>
+<td>请求 metadata（status/path）</td>
+<td>是否记录日志（boolean）</td>
+<td>日志量从 2GB/天降到 100MB/天</td>
+</tr>
+<tr>
+<td><strong>Context Injection</strong></td>
+<td>注入 Trace ID 到 AsyncLocalStorage</td>
+<td>Trace ID（从 header 提取）</td>
+<td>后续所有日志自动带 Trace ID</td>
+<td>不需要手动传 correlationId</td>
+</tr>
+</tbody>
+</table></div><p><strong>模块之间的依赖关系</strong>：</p>
+<pre><code>traceparent header（前端）
+        ↓
+  Trace Propagation（提取 Trace ID）
+        ↓
+  Context Injection（注入到 AsyncLocalStorage）
+        ↓
+  ┌─────┴──────┬──────────┬────────────┐
+Span Schema  PII Redaction  Sampling Strategy
+  ↓            ↓              ↓
+span attributes  脱敏后日志  采样后日志
+</code></pre>
+<p><strong>为什么按这个顺序？</strong></p>
+<ol>
+<li>先提取 Trace ID（Trace Propagation），才能注入到 AsyncLocalStorage（Context Injection）</li>
+<li>再标准化 span attributes（Span Schema），才能在日志里看到结构化信息</li>
+<li>最后脱敏（PII Redaction）和采样（Sampling Strategy），保证日志安全 + 减少存储成本</li>
+</ol>
+<h3 id="13-三版演进路线图">1.3 三版演进路线图</h3>
+<p><strong>v1：手动传 correlationId（Day 29 基线）</strong></p>
+<p>能力：</p>
+<ul>
+<li>BFF 生成 <code>correlationId</code>，手动传给 Agent/Tool</li>
+<li>日志里手动加上 <code>correlationId</code>（<code>logger.info('[correlationId] ...')</code>）</li>
+</ul>
+<p>问题：</p>
+<ul>
+<li>手动传递容易漏传（例如异步队列里忘记传 correlationId）</li>
+<li>日志格式不统一（有的是 <code>[correlationId]</code>，有的是 <code>[runId]</code>）</li>
+<li>无法关联到前端 Trace ID（前端和后端的 correlationId 不同）</li>
+</ul>
+<p><strong>v2：OpenTelemetry 自动注入 + AsyncLocalStorage 传播（今天交付）</strong></p>
+<p>新增能力：</p>
+<ul>
+<li>OpenTelemetry 自动注入 Trace ID（从 <code>traceparent</code> header 提取）</li>
+<li>AsyncLocalStorage 自动传播 Trace ID（不需要手动传参数）</li>
+<li>Span Schema 标准化（toolName + toolArgs + result + error）</li>
+</ul>
+<p>解决的问题：</p>
+<ul>
+<li>✅ Trace 断链（AsyncLocalStorage 自动传播）</li>
+<li>✅ Trace 重复（前端/后端复用同一个 Trace ID）</li>
+<li>✅ Span 缺失关键信息（Span Schema 标准化）</li>
+</ul>
+<p>还剩下的问题：</p>
+<ul>
+<li>❌ 日志泄密（日志里包含 Authorization/API key）</li>
+<li>❌ 日志爆炸（所有请求都记录日志）</li>
+</ul>
+<p><strong>v3：PII 脱敏 + 采样策略（今天交付）</strong></p>
+<p>新增能力：</p>
+<ul>
+<li>PII Redaction：字段白名单 + 敏感字段脱敏（Authorization → <code>***</code> / Prompt → 摘要）</li>
+<li>Sampling Strategy：健康检查 0% + 正常请求 1% + 错误请求 100%</li>
+</ul>
+<p>解决的问题：</p>
+<ul>
+<li>✅ 日志泄密（PII Redaction 自动脱敏）</li>
+<li>✅ 日志爆炸（Sampling Strategy 减少 95% 日志量）</li>
+</ul>
+<p>生产级保障：</p>
+<ul>
+<li>✅ 敏感泄漏为 0（安全扫描验证）</li>
+<li>✅ 日志量降低 95%（从 2GB/天到 100MB/天）</li>
+<li>✅ 单一 Trace 可还原 run（从前端到 DB 的完整链路）</li>
+</ul>
+<hr>
+<h2 id="14-目录结构5-个维度完整展示">1.4 目录结构（5 个维度完整展示）</h2>
+<h3 id="141-骨架树今天新增的文件">1.4.1 骨架树（今天新增的文件）</h3>
+<pre><code>apps/api/src/
+├── telemetry/                          # 可观测性模块（新增）
+│   ├── tracing/
+│   │   ├── trace-context.ts           # Trace Context（提取 traceparent）
+│   │   ├── trace-propagator.ts        # Trace 传播器（注入到 AsyncLocalStorage）
+│   │   ├── span-schema.ts             # Span Schema 标准（toolName/args/result/error）
+│   │   └── span-builder.ts            # Span 构建器（创建标准化 span）
+│   ├── logging/
+│   │   ├── structured-logger.ts       # 结构化日志（JSON 格式）
+│   │   ├── pii-redactor.ts            # PII 脱敏器（字段白名单）
+│   │   ├── sampling-strategy.ts       # 采样策略（健康检查/正常/错误）
+│   │   └── log-context.ts             # 日志上下文（自动注入 Trace ID）
+│   ├── instrumentation/
+│   │   ├── otel-config.ts             # OpenTelemetry 配置
+│   │   ├── http-instrumentation.ts    # HTTP 自动注入（NestJS 拦截器）
+│   │   ├── prisma-instrumentation.ts  # Prisma 自动注入（查询 span）
+│   │   └── bullmq-instrumentation.ts  # BullMQ 自动注入（队列 span）
+│   └── telemetry.module.ts            # 可观测性模块（导出）
+├── agent/
+│   └── agent.service.ts               # 改造：添加 span（Agent 执行）
+├── tool/
+│   └── tool-registry.ts               # 改造：添加 span（Tool 执行）
+└── queue/
+    └── tool-queue.processor.ts        # 改造：添加 span（队列处理）
+
+apps/api/prisma/
+└── schema.prisma                      # 无新增表（复用现有日志表）
+
+apps/web/src/
+├── lib/
+│   └── trace-context.ts               # 前端 Trace Context（生成 traceparent）
+└── api/
+    └── client.ts                      # 改造：自动注入 traceparent header
+</code></pre>
+<h3 id="142-为什么这样分层5-个架构问题">1.4.2 为什么这样分层（5 个架构问题）</h3>
+<p><strong>问题 1：为什么 tracing 和 logging 分开？</strong></p>
+<p><strong>回答</strong>：tracing 关注"链路追踪"（span 的父子关系），logging 关注"日志内容"（日志的结构化 + 脱敏）。分开后可以独立演进（例如"换一个 tracing 后端（Jaeger → Tempo）"不影响 logging）。</p>
+<p><strong>问题 2：为什么 instrumentation 单独一层？</strong></p>
+<p><strong>回答</strong>：instrumentation 是"自动注入"（拦截 HTTP/Prisma/BullMQ），不需要手动改业务代码。单独一层后，业务代码（agent.service.ts）不需要关心 Trace ID 传播（自动注入）。</p>
+<p><strong>问题 3：为什么 PII Redaction 在 logging 层而不是 tracing 层？</strong></p>
+<p><strong>回答</strong>：span attributes 不包含敏感字段（只记录 toolName/serverId），敏感字段只在日志里（例如 Authorization header）。PII Redaction 只需要在 logging 层实现。</p>
+<p><strong>问题 4：为什么前端也有 trace-context.ts？</strong></p>
+<p><strong>回答</strong>：前端需要生成 <code>traceparent</code> header（W3C Trace Context 格式），后端才能提取 Trace ID。如果前端不传 <code>traceparent</code>，后端会生成新的 Trace ID（无法关联）。</p>
+<p><strong>问题 5：为什么不用 NestJS 内置的 Logger？</strong></p>
+<p><strong>回答</strong>：NestJS 内置 Logger 不支持结构化日志（只支持字符串），不支持 PII 脱敏，不支持采样策略。StructuredLogger 是基于 Winston 的自定义实现（支持 JSON 格式 + 脱敏 + 采样）。</p>
+<h3 id="143-与-day-293234-的-diff">1.4.3 与 Day 29/32/34 的 diff</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>对比维度</th>
+<th>Day 29 队列</th>
+<th>Day 32 状态机</th>
+<th>Day 34 失败恢复</th>
+<th>Day 35 可观测性（今天）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trace ID 来源</strong></td>
+<td>手动生成 correlationId</td>
+<td>手动传 runId</td>
+<td>手动传 runId</td>
+<td>前端生成 traceparent</td>
+</tr>
+<tr>
+<td><strong>Trace ID 传播</strong></td>
+<td>手动传参数</td>
+<td>手动传参数</td>
+<td>手动传参数</td>
+<td>AsyncLocalStorage 自动传播</td>
+</tr>
+<tr>
+<td><strong>日志格式</strong></td>
+<td>字符串（<code>[runId] ...</code>）</td>
+<td>字符串</td>
+<td>字符串</td>
+<td>JSON（结构化）</td>
+</tr>
+<tr>
+<td><strong>敏感字段</strong></td>
+<td>直接记录</td>
+<td>直接记录</td>
+<td>直接记录</td>
+<td>自动脱敏（PII Redaction）</td>
+</tr>
+<tr>
+<td><strong>日志量</strong></td>
+<td>全量记录</td>
+<td>全量记录</td>
+<td>全量记录</td>
+<td>采样记录（1% 正常 + 100% 错误）</td>
+</tr>
+<tr>
+<td><strong>Span</strong></td>
+<td>无</td>
+<td>无</td>
+<td>无</td>
+<td>有（Agent/Tool/Prisma/BullMQ）</td>
+</tr>
+</tbody>
+</table></div><p><strong>关键变化</strong>：Day 35 用 OpenTelemetry 替代手动传 correlationId，用 AsyncLocalStorage 替代手动传参数，用 Span 替代字符串日志。</p>
+<h3 id="144-依赖箭头从前端到-db-的完整链路">1.4.4 依赖箭头（从前端到 DB 的完整链路）</h3>
+<pre><code>前端（生成 traceparent）
+  → HTTP Request（携带 traceparent header）
+  → NestJS 拦截器（提取 Trace ID）
+  → AsyncLocalStorage（注入 Trace ID）
+  → AgentService（自动继承 Trace ID）
+  → ToolRegistry（自动继承 Trace ID）
+  → Prisma（自动继承 Trace ID）
+  → 日志系统（自动注入 Trace ID + 脱敏 + 采样）
+  → Elasticsearch（存储日志）
+  → Jaeger（存储 span）
+</code></pre>
+<p><strong>关键依赖</strong>：AsyncLocalStorage 是 Trace ID 传播的核心，所有异步调用（Agent/Tool/Prisma）都自动继承 Trace ID（不需要手动传参数）。</p>
+<h3 id="145-三个灵魂拷问">1.4.5 三个灵魂拷问</h3>
+<p><strong>拷问 1：如果前端不传 traceparent，后端还能工作吗？</strong></p>
+<p><strong>回答</strong>：能工作，但 Trace ID 无法关联。后端会生成新的 Trace ID（OpenTelemetry 自动生成），但前端 Trace ID 和后端 Trace ID 不同（无法从前端追溯到后端）。</p>
+<p><strong>拷问 2：如果 AsyncLocalStorage 传播断裂（例如第三方库不支持），怎么办？</strong></p>
+<p><strong>回答</strong>：手动传 Trace ID（作为参数）。例如：<code>agentService.run(runId, traceId)</code>。但这会增加代码复杂度（每个方法都要加 traceId 参数）。</p>
+<p><strong>拷问 3：如果日志脱敏规则误杀（例如把正常字段 "authorization_status" 也脱敏了），怎么办？</strong></p>
+<p><strong>回答</strong>：用字段白名单（而不是黑名单）。只脱敏明确的敏感字段（<code>authorization</code>/<code>api_key</code>/<code>prompt</code>），其他字段保持原样。如果白名单里没有 <code>authorization_status</code>，就不脱敏。</p>
+<hr>
+<h2 id="15-今天动手前的脚手架检查">1.5 今天动手前的脚手架检查</h2>
+<p><strong>为什么放在 §1 里</strong>：Day 35 依赖 Day 29（BullMQ）、Day 32（Agent）、Day 34（RecoveryAuditLog）的代码。如果这些依赖缺失，今天的可观测性无法注入到业务链路。</p>
+<h3 id="151-day-293234-代码检查">1.5.1 Day 29/32/34 代码检查</h3>
+<pre><code class="language-bash"># 检查 BullMQ 队列是否存在
+ls apps/api/src/queue/tool-queue.processor.ts
+
+# 检查 AgentService 是否存在
+ls apps/api/src/agent/agent.service.ts
+
+# 检查 RecoveryAuditLog 是否存在
+grep -r "RecoveryAuditLog" apps/api/src/
+</code></pre>
+<p><strong>如果缺失</strong>：先完成 Day 29/32/34，再回来做 Day 35。</p>
+<h3 id="152-今天需要安装的依赖">1.5.2 今天需要安装的依赖</h3>
+<pre><code class="language-bash">cd apps/api
+
+# OpenTelemetry 核心库
+npm install @opentelemetry/api @opentelemetry/sdk-node
+
+# OpenTelemetry 自动注入（HTTP/Prisma）
+npm install @opentelemetry/instrumentation-http @opentelemetry/instrumentation-express
+
+# OpenTelemetry 导出器（Jaeger/Console）
+npm install @opentelemetry/exporter-jaeger @opentelemetry/exporter-trace-otlp-http
+
+# Winston 结构化日志
+npm install winston
+
+# AsyncLocalStorage polyfill（Node.js 12+ 内置，这里只是确认）
+node -p "require('async_hooks').AsyncLocalStorage"
+</code></pre>
+<p><strong>为什么用 OpenTelemetry 而不是自己实现？</strong></p>
+<p>OpenTelemetry 是 CNCF（Cloud Native Computing Foundation）标准，支持自动注入（HTTP/Prisma/Redis），不需要手动改业务代码。自己实现需要在每个方法里手动传 Trace ID（代码侵入性高）。</p>
+<h3 id="153-今天不需要新建-prisma-表">1.5.3 今天不需要新建 Prisma 表</h3>
+<p><strong>原因</strong>：Day 35 的日志和 span 数据存储在外部系统（Elasticsearch/Jaeger），不需要在 Postgres 里建表。如果要在 Postgres 里存储日志（用于审计），可以复用 Day 34 的 RecoveryAuditLog 表（加上 traceId 字段）。</p>
+<p><strong>可选改造</strong>（如果要在 Postgres 存储日志）：</p>
+<pre><code class="language-prisma">model RecoveryAuditLog {
+  id          String   @id @default(cuid())
+  runId       String
+  traceId     String?  // 新增：关联到 OpenTelemetry Trace ID
+  spanId      String?  // 新增：关联到 OpenTelemetry Span ID
+  event       String
+  errorType   String?
+  metadata    Json
+  occurredAt  DateTime @default(now())
+
+  @@index([runId])
+  @@index([traceId])  // 新增：支持按 Trace ID 查询
+  @@index([event])
+  @@index([occurredAt])
+}
+</code></pre>
+<p><strong>迁移脚本</strong>（可选）：</p>
+<pre><code class="language-bash">cd apps/api
+npx prisma migrate dev --name add_trace_id_to_audit_log
+npx prisma generate
+</code></pre>
+<h3 id="154-前端依赖检查">1.5.4 前端依赖检查</h3>
+<pre><code class="language-bash">cd apps/web
+
+# 检查 fetch API 是否可用（浏览器内置）
+# 检查 crypto.randomUUID 是否可用（用于生成 Trace ID）
+node -p "typeof crypto.randomUUID === 'function'"
+</code></pre>
+<p><strong>前端不需要安装 OpenTelemetry</strong>：前端只需要生成 <code>traceparent</code> header（128 bit Trace ID + 64 bit Span ID），不需要完整的 OpenTelemetry SDK。</p>
+<hr>
+<h2 id="2-今天的开发节奏3-小时怎么分配">2. 今天的开发节奏（3 小时怎么分配）</h2>
+<p><strong>总计 180 分钟</strong>，按"理解原理 → 实现 v2 自动注入 → 实现 v3 脱敏 + 采样 → 测试验证 → 架构证据"5 个阶段推进。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>任务</th>
+<th>输出</th>
+<th>为什么这样安排</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>阶段 1</strong></td>
+<td>90 min</td>
+<td>阅读 OpenTelemetry 官方文档、三版演进与 W3C Trace Context</td>
+<td>笔记：traceparent 格式 + AsyncLocalStorage 传播机制</td>
+<td>前 90 分钟只读，先建立完整机制模型</td>
+</tr>
+<tr>
+<td><strong>阶段 2</strong></td>
+<td>30 min</td>
+<td>实现 v2（OpenTelemetry 自动注入 + Span Schema）</td>
+<td>可运行的 v2 代码 + 单元测试</td>
+<td>先建立自动传播 Trace ID 的能力</td>
+</tr>
+<tr>
+<td><strong>阶段 3</strong></td>
+<td>30 min</td>
+<td>实现 v3（PII 脱敏 + 采样策略）</td>
+<td>完整的 v3 代码 + 集成测试</td>
+<td>覆盖日志泄密和日志爆炸两个痛点</td>
+</tr>
+<tr>
+<td><strong>阶段 4</strong></td>
+<td>20 min</td>
+<td>故障注入测试：Trace 断链 + 日志泄密 + 日志爆炸</td>
+<td>测试输出（截图 + 日志）</td>
+<td>验证三类保护机制</td>
+</tr>
+<tr>
+<td><strong>阶段 5</strong></td>
+<td>10 min</td>
+<td>架构证据：依赖图 + 时序图 + commit</td>
+<td>四件套</td>
+<td>完成可追踪验收</td>
+</tr>
+</tbody>
+</table></div><p><strong>关键里程碑检查点</strong>：</p>
+<ul>
+<li>40 分钟：理解 W3C Trace Context 格式（<code>00-&lt;trace-id&gt;-&lt;span-id&gt;-&lt;flags&gt;</code>）</li>
+<li>90 分钟：v2 自动注入代码能跑通（前端 Trace ID 传播到后端）</li>
+<li>140 分钟：v3 脱敏 + 采样代码能跑通（日志里 Authorization 显示为 <code>***</code>）</li>
+<li>165 分钟：集成测试通过（从前端到 DB 的完整链路）</li>
+<li>180 分钟：故障注入测试完成（截图 + 日志）</li>
+</ul>
+<p><strong>如果卡住了怎么办</strong>：</p>
+<ul>
+<li>卡在 W3C Trace Context 理解（阶段 1）→ 先读 OpenTelemetry 官方文档的"Context Propagation"章节</li>
+<li>卡在 AsyncLocalStorage 实现（阶段 2）→ 回顾 Node.js AsyncLocalStorage API（<code>.run()</code> 方法）</li>
+<li>卡在 PII 脱敏实现（阶段 3）→ 先写字段白名单，再写脱敏逻辑</li>
+<li>卡在测试验证（阶段 4）→ 先跑单元测试，再跑集成测试，最后跑故障注入</li>
+</ul>
+<hr>
+<h2 id="3-v1手动传-correlationidday-29-基线">3. v1：手动传 correlationId（Day 29 基线）</h2>
+<h3 id="31-v1-能做什么">3.1 v1 能做什么</h3>
+<p>Day 29 实现的手动 correlationId 传播：</p>
+<ul>
+<li>BFF 生成 <code>correlationId</code>（<code>uuid.v4()</code>）</li>
+<li>手动传给 Agent：<code>agentService.run(runId, correlationId)</code></li>
+<li>Agent 手动传给 Tool：<code>toolRegistry.execute(toolName, args, correlationId)</code></li>
+<li>日志里手动加上 correlationId：<code>logger.info('[${correlationId}] Tool executed')</code></li>
+</ul>
+<h3 id="32-v1-代码骨架day-29-版本">3.2 v1 代码骨架（Day 29 版本）</h3>
+<pre><code class="language-typescript">// apps/api/src/agent/agent.service.ts（Day 29 版本）
+import { Injectable } from '@nestjs/common'
+import { v4 as uuidv4 } from 'uuid'
+
+@Injectable()
+export class AgentService {
+  async run(prompt: string, correlationId?: string): Promise&lt;any&gt; {
+    const runId = uuidv4()
+    const cid = correlationId || uuidv4()
+
+    console.log(`[${cid}] Agent run started: ${runId}`)
+
+    // 执行工具（手动传 correlationId）
+    const result = await this.toolRegistry.execute('getMetrics', { serverId: 'srv-001' }, cid)
+
+    console.log(`[${cid}] Agent run completed: ${runId}`)
+    return result
+  }
+}
+</code></pre>
+<pre><code class="language-typescript">// apps/api/src/tool/tool-registry.ts（Day 29 版本）
+import { Injectable } from '@nestjs/common'
+
+@Injectable()
+export class ToolRegistry {
+  async execute(toolName: string, args: any, correlationId?: string): Promise&lt;any&gt; {
+    console.log(`[${correlationId}] Tool ${toolName} executing...`)
+    
+    const tool = this.tools.get(toolName)
+    const result = await tool.execute(args)
+    
+    console.log(`[${correlationId}] Tool ${toolName} completed`)
+    return result
+  }
+}
+</code></pre>
+<p><strong>前端代码</strong>（Day 29 版本）：</p>
+<pre><code class="language-typescript">// apps/web/src/api/client.ts（Day 29 版本）
+export async function analyzeServer(serverId: string) {
+  const correlationId = crypto.randomUUID() // 前端生成 correlationId
+  
+  const response = await fetch('/api/analyze', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Correlation-Id': correlationId, // 自定义 header
+    },
+    body: JSON.stringify({ serverId }),
+  })
+  
+  return response.json()
+}
+</code></pre>
+<p><strong>BFF 提取 correlationId</strong>（Day 29 版本）：</p>
+<pre><code class="language-typescript">// apps/api/src/api/analyze.controller.ts（Day 29 版本）
+import { Controller, Post, Body, Headers } from '@nestjs/common'
+
+@Controller('api')
+export class AnalyzeController {
+  constructor(private agentService: AgentService) {}
+
+  @Post('analyze')
+  async analyze(
+    @Body() body: { serverId: string },
+    @Headers('x-correlation-id') correlationId?: string,
+  ) {
+    // 手动传 correlationId
+    return this.agentService.run(`分析服务器 ${body.serverId}`, correlationId)
+  }
+}
+</code></pre>
+<h3 id="33-v1-的-5-个致命问题">3.3 v1 的 5 个致命问题</h3>
+<p><strong>问题 1：Trace 断链（异步调用忘记传 correlationId）</strong></p>
+<p>如果 Agent 调用 BullMQ 队列（异步任务），队列 processor 里拿不到 correlationId（因为 BullMQ job data 里没有 correlationId 字段）。</p>
+<p><strong>复现</strong>：</p>
+<pre><code class="language-typescript">// Agent 加入队列任务
+await this.toolQueue.add('execute-tool', {
+  runId: 'run-001',
+  toolName: 'getMetrics',
+  // 忘记传 correlationId
+})
+
+// 队列 processor 里拿不到 correlationId
+@Processor('tool')
+export class ToolQueueProcessor {
+  async process(job: Job) {
+    // job.data 里没有 correlationId
+    console.log(`[???] Processing job ${job.id}`) // correlationId 是 ???
+  }
+}
+</code></pre>
+<p><strong>问题 2：Trace 重复（前端和后端生成不同的 correlationId）</strong></p>
+<p>前端生成 <code>correlationId: abc-123</code>，后端如果没有提取到（例如 header 名字拼写错误 <code>X-Correlation-ID</code> vs <code>X-Correlation-Id</code>），后端会生成新的 <code>correlationId: def-456</code>。用户复制前端的 <code>abc-123</code> 去后端日志查询，查不到任何日志。</p>
+<p><strong>问题 3：日志格式不统一</strong></p>
+<p>有的地方是 <code>[${correlationId}] ...</code>，有的地方是 <code>[runId=${runId}] ...</code>，有的地方是 <code>correlationId=${correlationId} ...</code>。日志查询时需要尝试多种格式。</p>
+<p><strong>问题 4：无 Span 层级关系</strong></p>
+<p>日志只记录了"执行了什么"，但不知道"谁调用了谁"。例如：</p>
+<pre><code>[abc-123] Agent run started
+[abc-123] Tool getMetrics executing
+[abc-123] Prisma query: SELECT * FROM servers
+</code></pre>
+<p>无法知道：Tool 是 Agent 调用的吗？Prisma 查询是 Tool 调用的吗？</p>
+<p><strong>问题 5：日志泄密</strong></p>
+<p>错误日志直接序列化 error 对象：</p>
+<pre><code class="language-typescript">catch (error) {
+  console.error(`[${correlationId}] Error:`, JSON.stringify(error))
+  // 输出：{"message": "...", "headers": {"authorization": "Bearer sk-abc123..."}}
+}
+</code></pre>
+<p>Authorization header 泄露到日志里。</p>
+<hr>
+<h2 id="4-v2opentelemetry-自动注入-span-schema解决问题-124">4. v2：OpenTelemetry 自动注入 + Span Schema（解决问题 1/2/4）</h2>
+<h3 id="41-v2-新增的能力">4.1 v2 新增的能力</h3>
+<p>v2 在 v1 基础上新增：</p>
+<ul>
+<li><strong>W3C Trace Context</strong>：前端生成 <code>traceparent</code> header（标准格式），后端自动提取</li>
+<li><strong>OpenTelemetry 自动注入</strong>：HTTP/Prisma/BullMQ 自动创建 span，不需要手动改业务代码</li>
+<li><strong>AsyncLocalStorage 传播</strong>：Trace ID 自动传播到所有异步调用（不需要手动传参数）</li>
+<li><strong>Span Schema 标准化</strong>：span attributes 包含 toolName/toolArgs/result/error</li>
+</ul>
+<h3 id="42-v2-架构变化">4.2 v2 架构变化</h3>
+<pre><code>v1：前端生成 correlationId → 后端提取（自定义 header）→ 手动传参数 → 日志手动加上 correlationId
+v2：前端生成 traceparent → 后端提取（标准 header）→ AsyncLocalStorage 自动传播 → 日志自动注入 Trace ID + 创建 span
+</code></pre>
+<p><strong>关键变化</strong>：增加"OpenTelemetry 自动注入"环节，所有 HTTP/Prisma/BullMQ 调用自动创建 span（不需要手动改业务代码）。</p>
+<h3 id="43-v2-核心代码按第-53-节的代码边写边问">4.3 v2 核心代码（按第 5.3 节的代码边写边问）</h3>
+<p><strong>边写边问自己</strong>：</p>
+<ol>
+<li>为什么 traceparent 格式是 <code>00-&lt;trace-id&gt;-&lt;span-id&gt;-&lt;flags&gt;</code> 而不是简单的 UUID？</li>
+<li>为什么 AsyncLocalStorage 能传播 Trace ID，但普通变量不能？</li>
+<li>为什么 span 要区分"client span"和"server span"？</li>
+<li>为什么 span attributes 要用结构化数据（<code>{ toolName: '...', toolArgs: {...} }</code>）而不是字符串？</li>
+<li>为什么 OpenTelemetry 要用"拦截器"模式，而不是直接改业务代码？</li>
+</ol>
+<h4 id="431-前端生成-traceparenttrace-contextts">4.3.1 前端生成 traceparent（trace-context.ts）</h4>
+<pre><code class="language-typescript">// apps/web/src/lib/trace-context.ts
+/**
+ * W3C Trace Context 格式：
+ * version-trace_id-parent_id-trace_flags
+ * 
+ * 示例：
+ * 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01
+ * 
+ * - version: 00（固定）
+ * - trace_id: 32 位 hex（128 bit）
+ * - parent_id: 16 位 hex（64 bit，当前 span ID）
+ * - trace_flags: 01（采样）或 00（不采样）
+ */
+
+export class TraceContext {
+  /**
+   * 生成 traceparent header
+   */
+  static generate(): string {
+    const traceId = this.generateTraceId() // 128 bit
+    const spanId = this.generateSpanId()   // 64 bit
+    const flags = '01' // 采样（01 = sampled, 00 = not sampled）
+
+    return `00-${traceId}-${spanId}-${flags}`
+  }
+
+  /**
+   * 生成 Trace ID（128 bit = 32 位 hex）
+   */
+  private static generateTraceId(): string {
+    // 使用 crypto.randomUUID() 生成 128 bit 随机数
+    const uuid = crypto.randomUUID().replace(/-/g, '')
+    return uuid // 32 位 hex
+  }
+
+  /**
+   * 生成 Span ID（64 bit = 16 位 hex）
+   */
+  private static generateSpanId(): string {
+    // 生成 8 个随机字节（64 bit）
+    const bytes = new Uint8Array(8)
+    crypto.getRandomValues(bytes)
+    return Array.from(bytes)
+      .map((b) =&gt; b.toString(16).padStart(2, '0'))
+      .join('')
+  }
+
+  /**
+   * 解析 traceparent header
+   */
+  static parse(traceparent: string): {
+    version: string
+    traceId: string
+    spanId: string
+    flags: string
+  } | null {
+    const parts = traceparent.split('-')
+    if (parts.length !== 4) return null
+
+    return {
+      version: parts[0],
+      traceId: parts[1],
+      spanId: parts[2],
+      flags: parts[3],
+    }
+  }
+}
+</code></pre>
+<p><strong>为什么用 128 bit Trace ID？</strong></p>
+<p>分布式系统每秒生成百万级 Trace ID，128 bit（2^128 ≈ 3.4×10^38）保证全局唯一（碰撞概率接近 0）。如果用 64 bit（2^64 ≈ 1.8×10^19），碰撞概率是 10^-10（每天 1 亿请求，10 天后会碰撞）。</p>
+<p><strong>前端改造 API client</strong>：</p>
+<pre><code class="language-typescript">// apps/web/src/api/client.ts（v2 版本）
+import { TraceContext } from '../lib/trace-context'
+
+export async function analyzeServer(serverId: string) {
+  const traceparent = TraceContext.generate()
+  
+  console.log('[Frontend] Generated traceparent:', traceparent)
+  
+  const response = await fetch('/api/analyze', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'traceparent': traceparent, // W3C 标准 header（不是 X-Correlation-Id）
+    },
+    body: JSON.stringify({ serverId }),
+  })
+  
+  return response.json()
+}
+</code></pre>
+<h4 id="432-后端提取-trace-idtrace-propagatorts">4.3.2 后端提取 Trace ID（trace-propagator.ts）</h4>
+<pre><code class="language-typescript">// apps/api/src/telemetry/tracing/trace-propagator.ts
+import { Injectable } from '@nestjs/common'
+import { AsyncLocalStorage } from 'async_hooks'
+import { trace, context, SpanContext } from '@opentelemetry/api'
+
+export interface TraceContextData {
+  traceId: string
+  spanId: string
+  traceFlags: number
+}
+
+@Injectable()
+export class TracePropagator {
+  private asyncLocalStorage = new AsyncLocalStorage&lt;TraceContextData&gt;()
+
+  /**
+   * 从 traceparent header 提取 Trace ID
+   */
+  extractFromHeader(traceparent: string | undefined): TraceContextData | null {
+    if (!traceparent) return null
+
+    const parts = traceparent.split('-')
+    if (parts.length !== 4) return null
+
+    return {
+      traceId: parts[1],
+      spanId: parts[2],
+      traceFlags: parseInt(parts[3], 16),
+    }
+  }
+
+  /**
+   * 注入 Trace Context 到 AsyncLocalStorage
+   */
+  runWithContext&lt;T&gt;(traceContext: TraceContextData, fn: () =&gt; T): T {
+    return this.asyncLocalStorage.run(traceContext, fn)
+  }
+
+  /**
+   * 获取当前 Trace Context
+   */
+  getCurrentContext(): TraceContextData | undefined {
+    return this.asyncLocalStorage.getStore()
+  }
+
+  /**
+   * 获取当前 Trace ID（用于日志）
+   */
+  getCurrentTraceId(): string | undefined {
+    return this.getCurrentContext()?.traceId
+  }
+}
+</code></pre>
+<p><strong>为什么用 AsyncLocalStorage 而不是全局变量？</strong></p>
+<p>全局变量在并发请求时会被覆盖（请求 A 的 Trace ID 会被请求 B 覆盖）。AsyncLocalStorage 为每个异步调用链创建独立的存储空间（类似"线程本地存储"），保证并发安全。</p>
+<p><strong>示例</strong>：</p>
+<pre><code class="language-typescript">// 错误做法（全局变量）
+let currentTraceId = ''
+
+// 请求 A
+currentTraceId = 'trace-A'
+await someAsyncWork() // 耗时 100ms
+console.log(currentTraceId) // 输出：trace-B（被请求 B 覆盖了！）
+
+// 请求 B（在请求 A 完成前到达）
+currentTraceId = 'trace-B'
+</code></pre>
+<pre><code class="language-typescript">// 正确做法（AsyncLocalStorage）
+const storage = new AsyncLocalStorage()
+
+// 请求 A
+storage.run('trace-A', async () =&gt; {
+  await someAsyncWork()
+  console.log(storage.getStore()) // 输出：trace-A（不会被覆盖）
+})
+
+// 请求 B
+storage.run('trace-B', async () =&gt; {
+  console.log(storage.getStore()) // 输出：trace-B
+})
+</code></pre>
+<h4 id="433-nestjs-拦截器自动提取-traceparent">4.3.3 NestJS 拦截器（自动提取 traceparent）</h4>
+<pre><code class="language-typescript">// apps/api/src/telemetry/instrumentation/http-instrumentation.ts
+import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from '@nestjs/common'
+import { Observable } from 'rxjs'
+import { TracePropagator } from '../tracing/trace-propagator'
+
+@Injectable()
+export class TraceContextInterceptor implements NestInterceptor {
+  constructor(private tracePropagator: TracePropagator) {}
+
+  intercept(context: ExecutionContext, next: CallHandler): Observable&lt;any&gt; {
+    const request = context.switchToHttp().getRequest()
+    const traceparent = request.headers['traceparent']
+
+    // 提取 Trace Context
+    const traceContext = this.tracePropagator.extractFromHeader(traceparent)
+
+    if (traceContext) {
+      // 注入到 AsyncLocalStorage
+      return new Observable((subscriber) =&gt; {
+        this.tracePropagator.runWithContext(traceContext, () =&gt; {
+          next.handle().subscribe({
+            next: (value) =&gt; subscriber.next(value),
+            error: (err) =&gt; subscriber.error(err),
+            complete: () =&gt; subscriber.complete(),
+          })
+        })
+      })
+    }
+
+    // 没有 traceparent，直接执行（OpenTelemetry 会自动生成新的 Trace ID）
+    return next.handle()
+  }
+}
+</code></pre>
+<p><strong>注册拦截器</strong>（全局）：</p>
+<pre><code class="language-typescript">// apps/api/src/app.module.ts
+import { Module } from '@nestjs/common'
+import { APP_INTERCEPTOR } from '@nestjs/core'
+import { TraceContextInterceptor } from './telemetry/instrumentation/http-instrumentation'
+
+@Module({
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TraceContextInterceptor,
+    },
+  ],
+})
+export class AppModule {}
+</code></pre>
+<h4 id="434-span-schema-标准化span-schemats">4.3.4 Span Schema 标准化（span-schema.ts）</h4>
+<pre><code class="language-typescript">// apps/api/src/telemetry/tracing/span-schema.ts
+
+/**
+ * Span 标准属性（所有 span 都应该包含这些字段）
+ */
+export interface BaseSpanAttributes {
+  'service.name': string      // 服务名（例如 'api'）
+  'service.version': string   // 服务版本（例如 '1.0.0'）
+  'environment': string       // 环境（例如 'production'）
+}
+
+/**
+ * Tool Span 属性（Tool 执行 span）
+ */
+export interface ToolSpanAttributes extends BaseSpanAttributes {
+  'tool.name': string         // 工具名（例如 'getMetrics'）
+  'tool.args': string         // 工具参数（JSON 字符串）
+  'tool.result'?: string      // 工具结果（JSON 字符串，可选）
+  'tool.error'?: string       // 工具错误（可选）
+  'tool.duration_ms': number  // 工具执行时长（毫秒）
+}
+
+/**
+ * Agent Span 属性（Agent 执行 span）
+ */
+export interface AgentSpanAttributes extends BaseSpanAttributes {
+  'agent.run_id': string      // Run ID
+  'agent.prompt': string      // 用户 Prompt（摘要，不超过 100 字符）
+  'agent.model': string       // 模型名（例如 'gpt-4'）
+  'agent.tool_count': number  // 执行的工具数量
+}
+
+/**
+ * Prisma Span 属性（DB 查询 span）
+ */
+export interface PrismaSpanAttributes extends BaseSpanAttributes {
+  'db.system': string         // 数据库类型（例如 'postgresql'）
+  'db.operation': string      // 操作类型（例如 'SELECT'）
+  'db.table': string          // 表名（例如 'servers'）
+  'db.query'?: string         // SQL 查询（可选，不记录参数）
+}
+</code></pre>
+<p><strong>为什么 Span 要用结构化数据？</strong></p>
+<p>结构化数据可以被 Jaeger/Tempo 解析和查询。例如：查询"所有调用 getMetrics 工具且耗时超过 1s 的请求"（<code>tool.name=getMetrics AND tool.duration_ms&gt;1000</code>）。如果用字符串（<code>description: "执行 getMetrics"</code>），无法查询。</p>
+<h4 id="435-span-构建器span-builderts">4.3.5 Span 构建器（span-builder.ts）</h4>
+<pre><code class="language-typescript">// apps/api/src/telemetry/tracing/span-builder.ts
+import { Injectable } from '@nestjs/common'
+import { trace, Span, SpanKind, SpanStatusCode } from '@opentelemetry/api'
+import { ToolSpanAttributes, AgentSpanAttributes } from './span-schema'
+
+@Injectable()
+export class SpanBuilder {
+  private tracer = trace.getTracer('p1-monitor-api', '1.0.0')
+
+  /**
+   * 创建 Tool Span
+   */
+  startToolSpan(toolName: string, toolArgs: any): Span {
+    const span = this.tracer.startSpan(`tool.${toolName}`, {
+      kind: SpanKind.INTERNAL, // 内部调用
+      attributes: {
+        'service.name': 'api',
+        'service.version': '1.0.0',
+        'environment': process.env.NODE_ENV || 'development',
+        'tool.name': toolName,
+        'tool.args': JSON.stringify(toolArgs),
+      } as ToolSpanAttributes,
+    })
+
+    return span
+  }
+
+  /**
+   * 结束 Tool Span（记录结果或错误）
+   */
+  endToolSpan(span: Span, result?: any, error?: Error): void {
+    if (error) {
+      span.setAttribute('tool.error', error.message)
+      span.setStatus({ code: SpanStatusCode.ERROR, message: error.message })
+    } else if (result) {
+      span.setAttribute('tool.result', JSON.stringify(result))
+      span.setStatus({ code: SpanStatusCode.OK })
+    }
+
+    span.end()
+  }
+
+  /**
+   * 创建 Agent Span
+   */
+  startAgentSpan(runId: string, prompt: string): Span {
+    const span = this.tracer.startSpan(`agent.run`, {
+      kind: SpanKind.INTERNAL,
+      attributes: {
+        'service.name': 'api',
+        'service.version': '1.0.0',
+        'environment': process.env.NODE_ENV || 'development',
+        'agent.run_id': runId,
+        'agent.prompt': prompt.slice(0, 100), // 只记录前 100 字符（摘要）
+        'agent.model': 'gpt-4',
+      } as AgentSpanAttributes,
+    })
+
+    return span
+  }
+
+  /**
+   * 结束 Agent Span
+   */
+  endAgentSpan(span: Span, toolCount: number, error?: Error): void {
+    span.setAttribute('agent.tool_count', toolCount)
+
+    if (error) {
+      span.setStatus({ code: SpanStatusCode.ERROR, message: error.message })
+    } else {
+      span.setStatus({ code: SpanStatusCode.OK })
+    }
+
+    span.end()
+  }
+}
+</code></pre>
+<h4 id="436-改造-agentservice添加-span">4.3.6 改造 AgentService（添加 span）</h4>
+<pre><code class="language-typescript">// apps/api/src/agent/agent.service.ts（v2 版本）
+import { Injectable } from '@nestjs/common'
+import { SpanBuilder } from '../telemetry/tracing/span-builder'
+import { TracePropagator } from '../telemetry/tracing/trace-propagator'
+
+@Injectable()
+export class AgentService {
+  constructor(
+    private spanBuilder: SpanBuilder,
+    private tracePropagator: TracePropagator,
+    private toolRegistry: ToolRegistry,
+  ) {}
+
+  async run(prompt: string): Promise&lt;any&gt; {
+    const runId = uuidv4()
+    const traceId = this.tracePropagator.getCurrentTraceId() || 'unknown'
+
+    // 创建 Agent span
+    const span = this.spanBuilder.startAgentSpan(runId, prompt)
+
+    try {
+      console.log(`[${traceId}] Agent run started: ${runId}`)
+
+      // 执行工具（不需要手动传 traceId，AsyncLocalStorage 自动传播）
+      const result = await this.toolRegistry.execute('getMetrics', { serverId: 'srv-001' })
+
+      console.log(`[${traceId}] Agent run completed: ${runId}`)
+
+      // 结束 Agent span
+      this.spanBuilder.endAgentSpan(span, 1) // toolCount = 1
+
+      return result
+    } catch (error) {
+      // 结束 Agent span（记录错误）
+      this.spanBuilder.endAgentSpan(span, 0, error)
+      throw error
+    }
+  }
+}
+</code></pre>
+<h4 id="437-改造-toolregistry添加-span">4.3.7 改造 ToolRegistry（添加 span）</h4>
+<pre><code class="language-typescript">// apps/api/src/tool/tool-registry.ts（v2 版本）
+import { Injectable } from '@nestjs/common'
+import { SpanBuilder } from '../telemetry/tracing/span-builder'
+import { TracePropagator } from '../telemetry/tracing/trace-propagator'
+
+@Injectable()
+export class ToolRegistry {
+  constructor(
+    private spanBuilder: SpanBuilder,
+    private tracePropagator: TracePropagator,
+  ) {}
+
+  async execute(toolName: string, args: any): Promise&lt;any&gt; {
+    const traceId = this.tracePropagator.getCurrentTraceId() || 'unknown'
+
+    // 创建 Tool span
+    const span = this.spanBuilder.startToolSpan(toolName, args)
+
+    try {
+      console.log(`[${traceId}] Tool ${toolName} executing...`)
+
+      const tool = this.tools.get(toolName)
+      const result = await tool.execute(args)
+
+      console.log(`[${traceId}] Tool ${toolName} completed`)
+
+      // 结束 Tool span（记录结果）
+      this.spanBuilder.endToolSpan(span, result)
+
+      return result
+    } catch (error) {
+      // 结束 Tool span（记录错误）
+      this.spanBuilder.endToolSpan(span, null, error)
+      throw error
+    }
+  }
+}
+</code></pre>
+<h3 id="44-v2-测试单元测试-集成测试">4.4 v2 测试（单元测试 + 集成测试）</h3>
+<h4 id="441-单元测试trace-propagatorspects">4.4.1 单元测试（trace-propagator.spec.ts）</h4>
+<pre><code class="language-typescript">// apps/api/src/telemetry/tracing/trace-propagator.spec.ts
+import { TracePropagator } from './trace-propagator'
+
+describe('TracePropagator', () =&gt; {
+  let propagator: TracePropagator
+
+  beforeEach(() =&gt; {
+    propagator = new TracePropagator()
+  })
+
+  it('应该从 traceparent header 提取 Trace ID', () =&gt; {
+    const traceparent = '00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01'
+    const context = propagator.extractFromHeader(traceparent)
+
+    expect(context).toEqual({
+      traceId: '4bf92f3577b34da6a3ce929d0e0e4736',
+      spanId: '00f067aa0ba902b7',
+      traceFlags: 1,
+    })
+  })
+
+  it('AsyncLocalStorage 应该隔离并发请求', async () =&gt; {
+    const results: string[] = []
+
+    // 模拟请求 A
+    propagator.runWithContext({ traceId: 'trace-A', spanId: 'span-A', traceFlags: 1 }, async () =&gt; {
+      await new Promise((resolve) =&gt; setTimeout(resolve, 50))
+      results.push(propagator.getCurrentTraceId()!) // 应该是 'trace-A'
+    })
+
+    // 模拟请求 B（在请求 A 完成前到达）
+    propagator.runWithContext({ traceId: 'trace-B', spanId: 'span-B', traceFlags: 1 }, async () =&gt; {
+      await new Promise((resolve) =&gt; setTimeout(resolve, 10))
+      results.push(propagator.getCurrentTraceId()!) // 应该是 'trace-B'
+    })
+
+    await new Promise((resolve) =&gt; setTimeout(resolve, 100))
+
+    // 验证 Trace ID 没有被覆盖
+    expect(results).toContain('trace-A')
+    expect(results).toContain('trace-B')
+  })
+})
+</code></pre>
+<h4 id="442-集成测试trace-id-传播">4.4.2 集成测试（Trace ID 传播）</h4>
+<pre><code class="language-typescript">// apps/api/test/trace-propagation.e2e-spec.ts
+import { Test } from '@nestjs/testing'
+import { INestApplication } from '@nestjs/common'
+import { AppModule } from '../src/app.module'
+import * as request from 'supertest'
+
+describe('Trace Propagation (E2E)', () =&gt; {
+  let app: INestApplication
+
+  beforeAll(async () =&gt; {
+    const module = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile()
+
+    app = module.createNestApplication()
+    await app.init()
+  })
+
+  afterAll(async () =&gt; {
+    await app.close()
+  })
+
+  it('前端 Trace ID 应该传播到后端日志', async () =&gt; {
+    const traceparent = '00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01'
+
+    const response = await request(app.getHttpServer())
+      .post('/api/analyze')
+      .set('traceparent', traceparent)
+      .send({ serverId: 'srv-001' })
+
+    expect(response.status).toBe(200)
+
+    // 验证后端日志包含 Trace ID（这里只是示例，实际需要查询日志系统）
+    // 实际测试：查询 Elasticsearch 里的日志，验证 traceId=4bf92f3577b34da6a3ce929d0e0e4736
+  })
+})
+</code></pre>
+<h3 id="45-v2-还剩下的-2-个问题">4.5 v2 还剩下的 2 个问题</h3>
+<p><strong>问题 3：日志泄密（日志里包含 Authorization/API key）</strong></p>
+<p>v2 只实现了 Span，没有实现日志脱敏。如果工具执行失败，错误日志里会包含敏感字段（Authorization header）。</p>
+<p><strong>问题 5：日志爆炸（所有请求都记录日志）</strong></p>
+<p>v2 没有实现采样策略。所有请求都记录日志（包括健康检查 <code>/health</code>），日志量 2GB/天。</p>
+<p>v3 用"PII 脱敏 + 采样策略"解决这两个问题。</p>
+<hr>
+<h2 id="5-v3pii-脱敏-采样策略解决问题-35">5. v3：PII 脱敏 + 采样策略（解决问题 3/5）</h2>
+<h3 id="51-v3-新增的能力">5.1 v3 新增的能力</h3>
+<p>v3 在 v2 基础上新增：</p>
+<ul>
+<li><strong>PII Redaction（脱敏）</strong>：字段白名单 + 敏感字段自动脱敏（Authorization → <code>***</code> / Prompt → 摘要）</li>
+<li><strong>Sampling Strategy（采样）</strong>：健康检查 0% + 正常请求 1% + 错误请求 100%</li>
+<li><strong>Structured Logger（结构化日志）</strong>：JSON 格式 + 自动注入 Trace ID + 脱敏 + 采样</li>
+</ul>
+<h3 id="52-v3-架构变化">5.2 v3 架构变化</h3>
+<pre><code>v2：日志直接输出（console.log）→ 所有请求都记录 → 敏感字段泄露
+v3：日志经过 StructuredLogger → 采样过滤 → PII 脱敏 → JSON 格式输出
+</code></pre>
+<p><strong>关键变化</strong>：增加"StructuredLogger"层，所有日志经过统一处理（采样 + 脱敏 + 格式化）。</p>
+<h3 id="53-v3-完整代码生产级实现">5.3 v3 完整代码（生产级实现）</h3>
+<h4 id="531-pii-字段白名单pii-redactorts">5.3.1 PII 字段白名单（pii-redactor.ts）</h4>
+<pre><code class="language-typescript">// apps/api/src/telemetry/logging/pii-redactor.ts
+import { Injectable } from '@nestjs/common'
+
+/**
+ * 敏感字段列表（需要脱敏）
+ */
+const SENSITIVE_FIELDS = new Set([
+  'authorization',
+  'api_key',
+  'apiKey',
+  'access_token',
+  'accessToken',
+  'refresh_token',
+  'refreshToken',
+  'password',
+  'secret',
+  'token',
+  'bearer',
+  'x-api-key',
+])
+
+/**
+ * 长文本字段列表（需要截断）
+ */
+const LONG_TEXT_FIELDS = new Set([
+  'prompt',
+  'message',
+  'content',
+  'description',
+  'body',
+])
+
+@Injectable()
+export class PiiRedactor {
+  /**
+   * 脱敏对象（递归处理）
+   */
+  redact(obj: any): any {
+    if (obj === null || obj === undefined) return obj
+    if (typeof obj !== 'object') return obj
+
+    // 数组：递归处理每个元素
+    if (Array.isArray(obj)) {
+      return obj.map((item) =&gt; this.redact(item))
+    }
+
+    // 对象：递归处理每个字段
+    const redacted: any = {}
+    for (const [key, value] of Object.entries(obj)) {
+      const lowerKey = key.toLowerCase()
+
+      // 敏感字段：替换为 ***
+      if (SENSITIVE_FIELDS.has(lowerKey)) {
+        redacted[key] = '***'
+        continue
+      }
+
+      // 长文本字段：截断为前 100 字符
+      if (LONG_TEXT_FIELDS.has(lowerKey) &amp;&amp; typeof value === 'string') {
+        redacted[key] = value.slice(0, 100) + (value.length &gt; 100 ? '...' : '')
+        continue
+      }
+
+      // 递归处理嵌套对象
+      if (typeof value === 'object') {
+        redacted[key] = this.redact(value)
+      } else {
+        redacted[key] = value
+      }
+    }
+
+    return redacted
+  }
+
+  /**
+   * 脱敏 HTTP Headers
+   */
+  redactHeaders(headers: Record&lt;string, any&gt;): Record&lt;string, any&gt; {
+    return this.redact(headers)
+  }
+
+  /**
+   * 脱敏错误对象
+   */
+  redactError(error: Error): any {
+    return {
+      message: error.message,
+      name: error.name,
+      stack: error.stack?.split('\n').slice(0, 5).join('\n'), // 只保留前 5 行堆栈
+      // 不包含 error 对象的其他字段（可能包含敏感信息）
+    }
+  }
+}
+</code></pre>
+<p><strong>为什么用字段白名单而不是黑名单？</strong></p>
+<p>黑名单（列出所有敏感字段）容易遗漏（例如 <code>x-custom-token</code> 没在黑名单里，但是敏感字段）。白名单（列出所有需要记录的字段）更安全（默认不记录，明确列出的才记录）。但实现复杂度高（需要列出所有业务字段），所以 v3 采用"敏感字段黑名单 + 递归脱敏"的折中方案。</p>
+<h4 id="532-采样策略sampling-strategyts">5.3.2 采样策略（sampling-strategy.ts）</h4>
+<pre><code class="language-typescript">// apps/api/src/telemetry/logging/sampling-strategy.ts
+import { Injectable } from '@nestjs/common'
+
+export interface SamplingContext {
+  path: string       // 请求路径（例如 '/api/analyze'）
+  method: string     // HTTP 方法（例如 'POST'）
+  statusCode: number // 响应状态码（例如 200）
+  error?: Error      // 错误对象（如果有）
+}
+
+@Injectable()
+export class SamplingStrategy {
+  /**
+   * 判断是否应该记录日志
+   */
+  shouldSample(context: SamplingContext): boolean {
+    // 规则 1：健康检查不记录（采样率 0%）
+    if (this.isHealthCheck(context.path)) {
+      return false
+    }
+
+    // 规则 2：错误请求 100% 记录
+    if (context.error || context.statusCode &gt;= 400) {
+      return true
+    }
+
+    // 规则 3：正常请求 1% 采样
+    return this.randomSample(0.01) // 1%
+  }
+
+  /**
+   * 是否为健康检查请求
+   */
+  private isHealthCheck(path: string): boolean {
+    const healthCheckPaths = ['/health', '/ping', '/readiness', '/liveness']
+    return healthCheckPaths.some((p) =&gt; path.startsWith(p))
+  }
+
+  /**
+   * 随机采样
+   */
+  private randomSample(rate: number): boolean {
+    return Math.random() &lt; rate
+  }
+
+  /**
+   * 根据 Trace Flags 判断是否采样（W3C Trace Context）
+   */
+  isSampledByTraceFlags(traceFlags: number): boolean {
+    // traceFlags 最后一位是采样标志（0x01）
+    return (traceFlags &amp; 0x01) === 0x01
+  }
+}
+</code></pre>
+<p><strong>为什么错误请求 100% 采样？</strong></p>
+<p>错误请求是故障排查的关键线索，必须 100% 记录（否则会遗漏关键错误）。正常请求 1% 采样足够（用于性能分析和流量统计）。</p>
+<p><strong>为什么健康检查不记录？</strong></p>
+<p>健康检查每 10 秒一次（一天 8640 次），占日志量的 80%+，但没有故障排查价值（健康检查失败直接报警，不需要看日志）。</p>
+<h4 id="533-结构化日志structured-loggerts">5.3.3 结构化日志（structured-logger.ts）</h4>
+<pre><code class="language-typescript">// apps/api/src/telemetry/logging/structured-logger.ts
+import { Injectable } from '@nestjs/common'
+import { createLogger, format, transports, Logger as WinstonLogger } from 'winston'
+import { PiiRedactor } from './pii-redactor'
+import { SamplingStrategy, SamplingContext } from './sampling-strategy'
+import { TracePropagator } from '../tracing/trace-propagator'
+
+@Injectable()
+export class StructuredLogger {
+  private logger: WinstonLogger
+
+  constructor(
+    private piiRedactor: PiiRedactor,
+    private samplingStrategy: SamplingStrategy,
+    private tracePropagator: TracePropagator,
+  ) {
+    this.logger = createLogger({
+      level: 'info',
+      format: format.combine(
+        format.timestamp(),
+        format.json(), // JSON 格式
+      ),
+      transports: [
+        new transports.Console(),
+        // 生产环境：new transports.File({ filename: 'app.log' })
+      ],
+    })
+  }
+
+  /**
+   * 记录 info 日志
+   */
+  info(message: string, context?: any): void {
+    this.log('info', message, context)
+  }
+
+  /**
+   * 记录 error 日志
+   */
+  error(message: string, error?: Error, context?: any): void {
+    this.log('error', message, {
+      ...context,
+      error: error ? this.piiRedactor.redactError(error) : undefined,
+    })
+  }
+
+  /**
+   * 记录 HTTP 请求日志
+   */
+  logHttpRequest(
+    method: string,
+    path: string,
+    statusCode: number,
+    durationMs: number,
+    error?: Error,
+  ): void {
+    const samplingContext: SamplingContext = {
+      path,
+      method,
+      statusCode,
+      error,
+    }
+
+    // 采样判断
+    if (!this.samplingStrategy.shouldSample(samplingContext)) {
+      return // 不记录
+    }
+
+    this.log('info', 'HTTP Request', {
+      http: {
+        method,
+        path,
+        statusCode,
+        durationMs,
+      },
+      error: error ? this.piiRedactor.redactError(error) : undefined,
+    })
+  }
+
+  /**
+   * 内部日志方法（自动注入 Trace ID + 脱敏）
+   */
+  private log(level: string, message: string, context?: any): void {
+    const traceId = this.tracePropagator.getCurrentTraceId()
+
+    // 脱敏 context
+    const redactedContext = context ? this.piiRedactor.redact(context) : {}
+
+    this.logger.log(level, message, {
+      traceId, // 自动注入 Trace ID
+      ...redactedContext,
+    })
+  }
+}
+</code></pre>
+<p><strong>日志输出示例</strong>（JSON 格式）：</p>
+<pre><code class="language-json">{
+  "timestamp": "2026-07-17T10:30:01.123Z",
+  "level": "info",
+  "message": "HTTP Request",
+  "traceId": "4bf92f3577b34da6a3ce929d0e0e4736",
+  "http": {
+    "method": "POST",
+    "path": "/api/analyze",
+    "statusCode": 200,
+    "durationMs": 3200
+  }
+}
+</code></pre>
+<p><strong>错误日志示例</strong>（敏感字段已脱敏）：</p>
+<pre><code class="language-json">{
+  "timestamp": "2026-07-17T10:30:05.456Z",
+  "level": "error",
+  "message": "Tool execution failed",
+  "traceId": "4bf92f3577b34da6a3ce929d0e0e4736",
+  "error": {
+    "name": "Error",
+    "message": "Request timeout after 30s",
+    "stack": "Error: Request timeout\n    at ToolRegistry.execute (...)\n    at AgentService.run (...)"
+  },
+  "toolName": "getMetrics",
+  "toolArgs": {
+    "serverId": "srv-001",
+    "authorization": "***"
+  }
+}
+</code></pre>
+<h4 id="534-日志上下文log-contextts">5.3.4 日志上下文（log-context.ts）</h4>
+<pre><code class="language-typescript">// apps/api/src/telemetry/logging/log-context.ts
+import { Injectable } from '@nestjs/common'
+import { AsyncLocalStorage } from 'async_hooks'
+
+export interface LogContext {
+  traceId?: string
+  spanId?: string
+  runId?: string
+  userId?: string
+}
+
+@Injectable()
+export class LogContextManager {
+  private asyncLocalStorage = new AsyncLocalStorage&lt;LogContext&gt;()
+
+  /**
+   * 设置日志上下文
+   */
+  setContext(context: LogContext): void {
+    const current = this.asyncLocalStorage.getStore() || {}
+    this.asyncLocalStorage.enterWith({ ...current, ...context })
+  }
+
+  /**
+   * 获取日志上下文
+   */
+  getContext(): LogContext {
+    return this.asyncLocalStorage.getStore() || {}
+  }
+
+  /**
+   * 在上下文中运行
+   */
+  runWithContext&lt;T&gt;(context: LogContext, fn: () =&gt; T): T {
+    return this.asyncLocalStorage.run(context, fn)
+  }
+}
+</code></pre>
+<h4 id="535-改造-agentservice使用-structuredlogger">5.3.5 改造 AgentService（使用 StructuredLogger）</h4>
+<pre><code class="language-typescript">// apps/api/src/agent/agent.service.ts（v3 版本）
+import { Injectable } from '@nestjs/common'
+import { SpanBuilder } from '../telemetry/tracing/span-builder'
+import { StructuredLogger } from '../telemetry/logging/structured-logger'
+
+@Injectable()
+export class AgentService {
+  constructor(
+    private spanBuilder: SpanBuilder,
+    private logger: StructuredLogger,
+    private toolRegistry: ToolRegistry,
+  ) {}
+
+  async run(prompt: string): Promise&lt;any&gt; {
+    const runId = uuidv4()
+    const span = this.spanBuilder.startAgentSpan(runId, prompt)
+
+    try {
+      this.logger.info('Agent run started', { runId, prompt: prompt.slice(0, 100) })
+
+      const result = await this.toolRegistry.execute('getMetrics', { serverId: 'srv-001' })
+
+      this.logger.info('Agent run completed', { runId, toolCount: 1 })
+      this.spanBuilder.endAgentSpan(span, 1)
+
+      return result
+    } catch (error) {
+      this.logger.error('Agent run failed', error, { runId })
+      this.spanBuilder.endAgentSpan(span, 0, error)
+      throw error
+    }
+  }
+}
+</code></pre>
+<h4 id="536-改造-toolregistry使用-structuredlogger">5.3.6 改造 ToolRegistry（使用 StructuredLogger）</h4>
+<pre><code class="language-typescript">// apps/api/src/tool/tool-registry.ts（v3 版本）
+import { Injectable } from '@nestjs/common'
+import { SpanBuilder } from '../telemetry/tracing/span-builder'
+import { StructuredLogger } from '../telemetry/logging/structured-logger'
+
+@Injectable()
+export class ToolRegistry {
+  constructor(
+    private spanBuilder: SpanBuilder,
+    private logger: StructuredLogger,
+  ) {}
+
+  async execute(toolName: string, args: any): Promise&lt;any&gt; {
+    const span = this.spanBuilder.startToolSpan(toolName, args)
+    const startTime = Date.now()
+
+    try {
+      this.logger.info('Tool executing', { toolName, args })
+
+      const tool = this.tools.get(toolName)
+      const result = await tool.execute(args)
+
+      const durationMs = Date.now() - startTime
+      this.logger.info('Tool completed', { toolName, durationMs })
+      this.spanBuilder.endToolSpan(span, result)
+
+      return result
+    } catch (error) {
+      const durationMs = Date.now() - startTime
+      this.logger.error('Tool failed', error, { toolName, args, durationMs })
+      this.spanBuilder.endToolSpan(span, null, error)
+      throw error
+    }
+  }
+}
+</code></pre>
+<h4 id="537-http-日志拦截器记录请求响应">5.3.7 HTTP 日志拦截器（记录请求/响应）</h4>
+<pre><code class="language-typescript">// apps/api/src/telemetry/instrumentation/http-logging-interceptor.ts
+import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from '@nestjs/common'
+import { Observable } from 'rxjs'
+import { tap, catchError } from 'rxjs/operators'
+import { StructuredLogger } from '../logging/structured-logger'
+
+@Injectable()
+export class HttpLoggingInterceptor implements NestInterceptor {
+  constructor(private logger: StructuredLogger) {}
+
+  intercept(context: ExecutionContext, next: CallHandler): Observable&lt;any&gt; {
+    const request = context.switchToHttp().getRequest()
+    const response = context.switchToHttp().getResponse()
+    const startTime = Date.now()
+
+    const { method, url: path } = request
+
+    return next.handle().pipe(
+      tap(() =&gt; {
+        const durationMs = Date.now() - startTime
+        this.logger.logHttpRequest(method, path, response.statusCode, durationMs)
+      }),
+      catchError((error) =&gt; {
+        const durationMs = Date.now() - startTime
+        this.logger.logHttpRequest(method, path, response.statusCode || 500, durationMs, error)
+        throw error
+      }),
+    )
+  }
+}
+</code></pre>
+<p><strong>注册拦截器</strong>：</p>
+<pre><code class="language-typescript">// apps/api/src/app.module.ts
+import { Module } from '@nestjs/common'
+import { APP_INTERCEPTOR } from '@nestjs/core'
+import { HttpLoggingInterceptor } from './telemetry/instrumentation/http-logging-interceptor'
+
+@Module({
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: HttpLoggingInterceptor,
+    },
+  ],
+})
+export class AppModule {}
+</code></pre>
+<h3 id="54-v3-核心知识点-6-个每个-5-要素">5.4 v3 核心知识点（≥ 6 个，每个 5 要素）</h3>
+<h4 id="知识点-1w3c-trace-contexttraceparent-标准">知识点 1：W3C Trace Context（traceparent 标准）</h4>
+<p><strong>是什么</strong>：W3C Trace Context 是"分布式追踪的 HTTP Header 标准"，格式为 <code>version-trace_id-parent_id-trace_flags</code>。</p>
+<p><strong>解决什么问题</strong>：不同服务使用不同的 Trace ID 格式（Zipkin 用 64 bit，Jaeger 用 128 bit），导致 Trace 无法跨服务传播。W3C Trace Context 统一格式（128 bit Trace ID），所有服务都能解析。</p>
+<p><strong>怎么用</strong>：</p>
+<pre><code class="language-typescript">// 前端生成
+const traceparent = `00-${traceId}-${spanId}-01`
+fetch('/api', { headers: { traceparent } })
+
+// 后端提取
+const traceId = traceparent.split('-')[1]
+</code></pre>
+<p><strong>生产陷阱</strong>：Trace ID 用 64 bit 而不是 128 bit。64 bit 在高并发下会碰撞（每天 1 亿请求，10 天后碰撞概率 10^-10）。正确做法是"128 bit Trace ID"。</p>
+<p><strong>验证方法</strong>：单元测试——生成 1 万个 Trace ID，验证没有重复。</p>
+<h4 id="知识点-2asynclocalstorage异步上下文传播">知识点 2：AsyncLocalStorage（异步上下文传播）</h4>
+<p><strong>是什么</strong>：AsyncLocalStorage 是"Node.js 的异步本地存储"，为每个异步调用链创建独立的存储空间（类似线程本地存储）。</p>
+<p><strong>解决什么问题</strong>：全局变量在并发请求时会被覆盖（请求 A 的 Trace ID 会被请求 B 覆盖）。AsyncLocalStorage 保证并发安全（每个请求的 Trace ID 隔离）。</p>
+<p><strong>怎么用</strong>：</p>
+<pre><code class="language-typescript">const storage = new AsyncLocalStorage()
+storage.run({ traceId: 'abc' }, async () =&gt; {
+  console.log(storage.getStore().traceId) // 输出：abc
+})
+</code></pre>
+<p><strong>生产陷阱</strong>：第三方库（例如 axios）不支持 AsyncLocalStorage 传播。需要手动传 Trace ID（作为参数），或者用 OpenTelemetry 的自动注入（拦截 HTTP 请求，自动注入 Trace ID）。</p>
+<p><strong>验证方法</strong>：并发测试——同时发起 100 个请求，验证每个请求的 Trace ID 隔离（不被覆盖）。</p>
+<h4 id="知识点-3span-schemaspan-属性标准化">知识点 3：Span Schema（span 属性标准化）</h4>
+<p><strong>是什么</strong>：Span Schema 是"span 属性的标准格式"，定义了所有 span 都应该包含的字段（例如 <code>tool.name</code>/<code>tool.args</code>）。</p>
+<p><strong>解决什么问题</strong>：span 只记录了"执行了 getMetrics"，但不知道参数是什么。Span Schema 标准化后，所有 Tool span 都包含 <code>tool.name</code>/<code>tool.args</code>/<code>tool.result</code>，便于查询和分析。</p>
+<p><strong>怎么用</strong>：</p>
+<pre><code class="language-typescript">span.setAttribute('tool.name', 'getMetrics')
+span.setAttribute('tool.args', JSON.stringify({ serverId: 'srv-001' }))
+</code></pre>
+<p><strong>生产陷阱</strong>：span attributes 包含敏感字段（例如 <code>Authorization</code> header）。正确做法是"只记录业务字段"（toolName/serverId），不记录敏感字段。</p>
+<p><strong>验证方法</strong>：单元测试——创建 Tool span，验证 attributes 包含 <code>tool.name</code>/<code>tool.args</code>/<code>tool.result</code>。</p>
+<h4 id="知识点-4pii-redaction敏感字段脱敏">知识点 4：PII Redaction（敏感字段脱敏）</h4>
+<p><strong>是什么</strong>：PII Redaction 是"敏感字段自动脱敏"，将日志里的 <code>Authorization: Bearer sk-abc123...</code> 替换为 <code>Authorization: ***</code>。</p>
+<p><strong>解决什么问题</strong>：日志泄露 API key/Authorization，导致安全风险（攻击者可以用泄露的 API key 调用服务）。</p>
+<p><strong>怎么用</strong>：</p>
+<pre><code class="language-typescript">const redacted = piiRedactor.redact({ authorization: 'Bearer sk-abc', userId: 'user-001' })
+// 输出：{ authorization: '***', userId: 'user-001' }
+</code></pre>
+<p><strong>生产陷阱</strong>：用黑名单（列出所有敏感字段），容易遗漏（例如 <code>x-custom-token</code> 没在黑名单里）。正确做法是"敏感字段黑名单 + 递归脱敏"（遍历所有字段，匹配敏感关键词）。</p>
+<p><strong>验证方法</strong>：单元测试——输入包含 <code>authorization</code>/<code>api_key</code> 的对象，验证输出为 <code>***</code>。</p>
+<h4 id="知识点-5sampling-strategy采样策略">知识点 5：Sampling Strategy（采样策略）</h4>
+<p><strong>是什么</strong>：Sampling Strategy 是"日志采样规则"，例如"健康检查 0% + 正常请求 1% + 错误请求 100%"。</p>
+<p><strong>解决什么问题</strong>：所有请求都记录日志，日志量 2GB/天（存储成本高 + 查询慢）。采样后日志量降到 100MB/天（降低 95%）。</p>
+<p><strong>怎么用</strong>：</p>
+<pre><code class="language-typescript">if (samplingStrategy.shouldSample({ path, statusCode, error })) {
+  logger.info('Request', { path, statusCode })
+}
+</code></pre>
+<p><strong>生产陷阱</strong>：错误请求也采样（例如"错误请求 1% 采样"）。这样会遗漏 99% 的错误日志（无法故障排查）。正确做法是"错误请求 100% 采样"。</p>
+<p><strong>验证方法</strong>：单元测试——输入 1000 个正常请求，验证采样率约为 1%（10-20 个日志）。</p>
+<h4 id="知识点-6structured-logging结构化日志">知识点 6：Structured Logging（结构化日志）</h4>
+<p><strong>是什么</strong>：Structured Logging 是"JSON 格式日志"，每条日志是一个 JSON 对象（而不是字符串）。</p>
+<p><strong>解决什么问题</strong>：字符串日志无法查询（例如"查询所有 statusCode=500 的日志"需要正则匹配）。JSON 日志可以直接查询（<code>statusCode:500</code>）。</p>
+<p><strong>怎么用</strong>：</p>
+<pre><code class="language-typescript">logger.info('Request', { method: 'POST', path: '/api', statusCode: 200 })
+// 输出：{"level":"info","message":"Request","method":"POST","path":"/api","statusCode":200}
+</code></pre>
+<p><strong>生产陷阱</strong>：日志包含嵌套对象（例如 <code>headers: { authorization: '...' }</code>），导致日志爆炸（1 条日志变成 100 个字段）。正确做法是"只记录顶层字段 + 递归脱敏"。</p>
+<p><strong>验证方法</strong>：集成测试——发送 HTTP 请求，验证日志输出为 JSON 格式（包含 <code>traceId</code>/<code>method</code>/<code>statusCode</code>）。</p>
+<hr>
+<h2 id="6-深挖前端底子65-必需章节">6. 深挖前端底子（§6.5 必需章节）</h2>
+<h3 id="61-今天为什么要深挖前端-trace-context-生成">6.1 今天为什么要深挖"前端 Trace Context 生成"</h3>
+<p>Day 35 的核心是"后端 OpenTelemetry 自动注入 + 日志脱敏"，但如果前端没有生成标准的 <code>traceparent</code> header，后端会生成新的 Trace ID（前端和后端 Trace ID 不同，无法关联）。正确做法是<strong>前端生成符合 W3C 标准的 traceparent</strong>（128 bit Trace ID + 64 bit Span ID），让后端提取并传播。</p>
+<p>今天深挖的不是"Vue 怎么调用 API"（Day 01-05 已经掌握），而是"为什么 Trace ID 必须是 128 bit 而不是 64 bit"（64 bit 会碰撞）、"为什么 traceparent 格式是 <code>00-&lt;trace-id&gt;-&lt;span-id&gt;-&lt;flags&gt;</code> 而不是简单的 UUID"（W3C 标准，包含采样标志）。</p>
+<h3 id="62-前端-trace-context-的-3-个设计原则">6.2 前端 Trace Context 的 3 个设计原则</h3>
+<h4 id="621-原则-1用-cryptorandomuuid-而不是-mathrandom">6.2.1 原则 1：用 crypto.randomUUID() 而不是 Math.random()</h4>
+<p><strong>错误做法</strong>：用 <code>Math.random()</code> 生成 Trace ID。</p>
+<p><strong>问题</strong>：</p>
+<ul>
+<li><code>Math.random()</code> 是伪随机数（种子相同会生成相同序列），不适合生成全局唯一 ID</li>
+<li><code>Math.random()</code> 只有 53 bit 精度（JavaScript Number 类型限制），无法生成 128 bit Trace ID</li>
+<li><code>Math.random()</code> 在多个标签页同时调用时，可能生成相同的 Trace ID（因为种子相同）</li>
+</ul>
+<p><strong>正确做法</strong>：用 <code>crypto.randomUUID()</code> 或 <code>crypto.getRandomValues()</code> 生成密码学安全的随机数。</p>
+<pre><code class="language-typescript">// 错误做法（Math.random）
+function generateTraceId(): string {
+  return Math.random().toString(16).slice(2) // 只有 53 bit 精度
+}
+
+// 正确做法（crypto.randomUUID）
+function generateTraceId(): string {
+  return crypto.randomUUID().replace(/-/g, '') // 128 bit
+}
+
+// 正确做法（crypto.getRandomValues，更灵活）
+function generateTraceId(): string {
+  const bytes = new Uint8Array(16) // 128 bit = 16 bytes
+  crypto.getRandomValues(bytes)
+  return Array.from(bytes)
+    .map((b) =&gt; b.toString(16).padStart(2, '0'))
+    .join('')
+}
+</code></pre>
+<h4 id="622-原则-2traceparent-格式必须符合-w3c-标准">6.2.2 原则 2：traceparent 格式必须符合 W3C 标准</h4>
+<p><strong>W3C Trace Context 格式</strong>：</p>
+<pre><code>version-trace_id-parent_id-trace_flags
+
+示例：
+00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01
+│  │                                │                │
+│  └─ trace_id（32 位 hex，128 bit）│                │
+│                                   └─ parent_id（16 位 hex，64 bit）
+│                                                     └─ trace_flags（01=采样，00=不采样）
+└─ version（固定 00）
+</code></pre>
+<p><strong>错误做法</strong>：用自定义格式（例如 <code>traceId:abc-123</code>）。</p>
+<p><strong>问题</strong>：</p>
+<ul>
+<li>后端无法解析（OpenTelemetry 只支持 W3C 标准格式）</li>
+<li>无法跨服务传播（其他服务也需要 W3C 标准格式）</li>
+<li>缺少采样标志（无法控制采样率）</li>
+</ul>
+<p><strong>正确做法</strong>：严格按照 W3C 标准生成 traceparent。</p>
+<pre><code class="language-typescript">// apps/web/src/lib/trace-context.ts（生产级实现）
+export class TraceContext {
+  private static VERSION = '00'
+
+  /**
+   * 生成 traceparent header
+   */
+  static generate(sampled: boolean = true): string {
+    const traceId = this.generateTraceId()
+    const spanId = this.generateSpanId()
+    const flags = sampled ? '01' : '00'
+
+    return `${this.VERSION}-${traceId}-${spanId}-${flags}`
+  }
+
+  /**
+   * 生成 Trace ID（128 bit = 32 位 hex）
+   */
+  private static generateTraceId(): string {
+    const uuid = crypto.randomUUID().replace(/-/g, '')
+    return uuid
+  }
+
+  /**
+   * 生成 Span ID（64 bit = 16 位 hex）
+   */
+  private static generateSpanId(): string {
+    const bytes = new Uint8Array(8)
+    crypto.getRandomValues(bytes)
+    return Array.from(bytes)
+      .map((b) =&gt; b.toString(16).padStart(2, '0'))
+      .join('')
+  }
+
+  /**
+   * 验证 traceparent 格式
+   */
+  static validate(traceparent: string): boolean {
+    const parts = traceparent.split('-')
+    if (parts.length !== 4) return false
+
+    const [version, traceId, spanId, flags] = parts
+
+    // 验证 version（固定 00）
+    if (version !== '00') return false
+
+    // 验证 traceId（32 位 hex）
+    if (!/^[0-9a-f]{32}$/.test(traceId)) return false
+
+    // 验证 spanId（16 位 hex）
+    if (!/^[0-9a-f]{16}$/.test(spanId)) return false
+
+    // 验证 flags（2 位 hex）
+    if (!/^[0-9a-f]{2}$/.test(flags)) return false
+
+    return true
+  }
+}
+</code></pre>
+<h4 id="623-原则-3trace-id-在页面生命周期内复用">6.2.3 原则 3：Trace ID 在页面生命周期内复用</h4>
+<p><strong>错误做法</strong>：每个 API 请求都生成新的 Trace ID。</p>
+<p><strong>问题</strong>：</p>
+<ul>
+<li>同一个页面的多个请求无法关联（例如"加载页面"和"点击按钮"是两个独立的 Trace）</li>
+<li>无法分析用户行为链路（无法知道"用户先加载页面，再点击按钮"）</li>
+</ul>
+<p><strong>正确做法</strong>：页面加载时生成 Trace ID，所有 API 请求复用同一个 Trace ID（但每个请求生成新的 Span ID）。</p>
+<pre><code class="language-typescript">// apps/web/src/lib/trace-manager.ts
+export class TraceManager {
+  private traceId: string
+  private sampled: boolean
+
+  constructor() {
+    // 页面加载时生成 Trace ID
+    this.traceId = this.generateTraceId()
+    this.sampled = true
+  }
+
+  /**
+   * 生成 traceparent（复用 traceId，生成新的 spanId）
+   */
+  generateTraceparent(): string {
+    const spanId = this.generateSpanId()
+    const flags = this.sampled ? '01' : '00'
+    return `00-${this.traceId}-${spanId}-${flags}`
+  }
+
+  private generateTraceId(): string {
+    return crypto.randomUUID().replace(/-/g, '')
+  }
+
+  private generateSpanId(): string {
+    const bytes = new Uint8Array(8)
+    crypto.getRandomValues(bytes)
+    return Array.from(bytes)
+      .map((b) =&gt; b.toString(16).padStart(2, '0'))
+      .join('')
+  }
+}
+
+// 全局单例
+export const traceManager = new TraceManager()
+</code></pre>
+<p><strong>API Client 改造</strong>：</p>
+<pre><code class="language-typescript">// apps/web/src/api/client.ts
+import { traceManager } from '../lib/trace-manager'
+
+export async function analyzeServer(serverId: string) {
+  const traceparent = traceManager.generateTraceparent() // 复用 traceId
+
+  const response = await fetch('/api/analyze', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'traceparent': traceparent,
+    },
+    body: JSON.stringify({ serverId }),
+  })
+
+  return response.json()
+}
+</code></pre>
+<h3 id="63-为什么不能用-uuid-直接作为-trace-id">6.3 为什么不能用 UUID 直接作为 Trace ID</h3>
+<p><strong>误区</strong>："UUID 已经是全局唯一的，为什么还要用 W3C Trace Context 格式？"</p>
+<p><strong>错误原因</strong>：</p>
+<ol>
+<li>UUID 包含 <code>-</code> 分隔符（例如 <code>4bf92f35-77b3-4da6-a3ce-929d0e0e4736</code>），W3C 标准要求去掉 <code>-</code>（<code>4bf92f3577b34da6a3ce929d0e0e4736</code>）</li>
+<li>UUID 没有 Span ID（只有 Trace ID），无法表示父子关系</li>
+<li>UUID 没有采样标志（无法控制采样率）</li>
+</ol>
+<p><strong>正确做法</strong>：UUID 用于生成 Trace ID（去掉 <code>-</code>），但完整的 traceparent 需要包含 Span ID 和采样标志。</p>
+<h3 id="64-html-知识点http-header-大小写敏感性">6.4 HTML 知识点：HTTP Header 大小写敏感性</h3>
+<p><strong>HTTP Header 规范</strong>：HTTP Header 名称是<strong>大小写不敏感</strong>的（<code>traceparent</code> = <code>Traceparent</code> = <code>TRACEPARENT</code>）。</p>
+<p><strong>为什么 W3C 标准用小写 <code>traceparent</code>？</strong></p>
+<p>W3C 标准推荐用小写（HTTP/2 强制小写），但服务器应该兼容大小写变体。正确做法是"前端用小写 <code>traceparent</code>，后端用大小写不敏感的匹配"。</p>
+<p><strong>后端提取 traceparent</strong>（大小写不敏感）：</p>
+<pre><code class="language-typescript">// 错误做法（大小写敏感）
+const traceparent = request.headers['traceparent']
+
+// 正确做法（大小写不敏感）
+const traceparent = request.headers['traceparent'] || request.headers['Traceparent']
+</code></pre>
+<p><strong>更好的做法</strong>（NestJS 自动转小写）：</p>
+<pre><code class="language-typescript">// NestJS 自动将 header 名称转小写
+const traceparent = request.headers['traceparent'] // 始终是小写
+</code></pre>
+<h3 id="65-javascript-知识点cryptorandomuuid-vs-cryptogetrandomvalues">6.5 JavaScript 知识点：crypto.randomUUID() vs crypto.getRandomValues()</h3>
+<p><strong>crypto.randomUUID()</strong>：</p>
+<ul>
+<li>返回格式：<code>4bf92f35-77b3-4da6-a3ce-929d0e0e4736</code>（包含 <code>-</code>）</li>
+<li>长度：36 个字符（32 位 hex + 4 个 <code>-</code>）</li>
+<li>优点：简单（一行代码）</li>
+<li>缺点：包含 <code>-</code>，需要手动去掉</li>
+</ul>
+<p><strong>crypto.getRandomValues()</strong>：</p>
+<ul>
+<li>返回格式：<code>Uint8Array [74, 185, 47, ...]</code>（字节数组）</li>
+<li>长度：可自定义（16 bytes = 128 bit）</li>
+<li>优点：灵活（可以生成任意长度的随机数）</li>
+<li>缺点：需要手动转 hex</li>
+</ul>
+<p><strong>选择建议</strong>：</p>
+<ul>
+<li>生成 Trace ID：用 <code>crypto.randomUUID()</code> + <code>replace(/-/g, '')</code>（简单）</li>
+<li>生成 Span ID：用 <code>crypto.getRandomValues()</code>（64 bit，UUID 是 128 bit，需要裁剪）</li>
+</ul>
+<p><strong>示例</strong>（生成 64 bit Span ID）：</p>
+<pre><code class="language-typescript">// 方案 1：用 crypto.randomUUID() 裁剪
+function generateSpanId(): string {
+  const uuid = crypto.randomUUID().replace(/-/g, '')
+  return uuid.slice(0, 16) // 取前 16 位 hex（64 bit）
+}
+
+// 方案 2：用 crypto.getRandomValues()
+function generateSpanId(): string {
+  const bytes = new Uint8Array(8) // 8 bytes = 64 bit
+  crypto.getRandomValues(bytes)
+  return Array.from(bytes)
+    .map((b) =&gt; b.toString(16).padStart(2, '0'))
+    .join('')
+}
+</code></pre>
+<p><strong>为什么 Span ID 是 64 bit 而不是 128 bit？</strong></p>
+<p>Span ID 的碰撞概率要求低于 Trace ID（因为 Span ID 只在单个 Trace 内唯一，不需要全局唯一）。64 bit（2^64 ≈ 1.8×10^19）足够（单个 Trace 包含 1000 个 Span，碰撞概率是 10^-13）。</p>
+<hr>
+<h2 id="7-测试与验证7-必需章节">7. 测试与验证（§7 必需章节）</h2>
+<h3 id="71-单元测试piiredactor">7.1 单元测试（PiiRedactor）</h3>
+<pre><code class="language-typescript">// apps/api/src/telemetry/logging/pii-redactor.spec.ts
+import { PiiRedactor } from './pii-redactor'
+
+describe('PiiRedactor', () =&gt; {
+  let redactor: PiiRedactor
+
+  beforeEach(() =&gt; {
+    redactor = new PiiRedactor()
+  })
+
+  it('应该脱敏 authorization 字段', () =&gt; {
+    const input = {
+      userId: 'user-001',
+      authorization: 'Bearer sk-abc123...',
+    }
+
+    const output = redactor.redact(input)
+
+    expect(output.userId).toBe('user-001')
+    expect(output.authorization).toBe('***')
+  })
+
+  it('应该脱敏嵌套对象里的敏感字段', () =&gt; {
+    const input = {
+      headers: {
+        'content-type': 'application/json',
+        'authorization': 'Bearer sk-abc123...',
+      },
+    }
+
+    const output = redactor.redact(input)
+
+    expect(output.headers['content-type']).toBe('application/json')
+    expect(output.headers.authorization).toBe('***')
+  })
+
+  it('应该截断长文本字段', () =&gt; {
+    const input = {
+      prompt: 'a'.repeat(200), // 200 字符
+    }
+
+    const output = redactor.redact(input)
+
+    expect(output.prompt).toBe('a'.repeat(100) + '...') // 截断为 100 字符
+  })
+
+  it('应该递归处理数组', () =&gt; {
+    const input = {
+      tools: [
+        { name: 'getMetrics', args: { authorization: 'Bearer sk-abc' } },
+        { name: 'restartServer', args: { serverId: 'srv-001' } },
+      ],
+    }
+
+    const output = redactor.redact(input)
+
+    expect(output.tools[0].args.authorization).toBe('***')
+    expect(output.tools[1].args.serverId).toBe('srv-001')
+  })
+})
+</code></pre>
+<h3 id="72-集成测试trace-id-传播">7.2 集成测试（Trace ID 传播）</h3>
+<pre><code class="language-typescript">// apps/api/test/trace-propagation.e2e-spec.ts
+import { Test } from '@nestjs/testing'
+import { INestApplication } from '@nestjs/common'
+import { AppModule } from '../src/app.module'
+import * as request from 'supertest'
+
+describe('Trace Propagation (E2E)', () =&gt; {
+  let app: INestApplication
+
+  beforeAll(async () =&gt; {
+    const module = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile()
+
+    app = module.createNestApplication()
+    await app.init()
+  })
+
+  afterAll(async () =&gt; {
+    await app.close()
+  })
+
+  it('前端 traceparent 应该传播到后端日志', async () =&gt; {
+    const traceparent = '00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01'
+
+    const response = await request(app.getHttpServer())
+      .post('/api/analyze')
+      .set('traceparent', traceparent)
+      .send({ serverId: 'srv-001' })
+
+    expect(response.status).toBe(200)
+
+    // 验证后端日志包含 Trace ID
+    // 实际测试：查询日志系统（Elasticsearch），验证 traceId=4bf92f3577b34da6a3ce929d0e0e4736
+  })
+
+  it('没有 traceparent 时，后端应该自动生成 Trace ID', async () =&gt; {
+    const response = await request(app.getHttpServer())
+      .post('/api/analyze')
+      .send({ serverId: 'srv-001' })
+
+    expect(response.status).toBe(200)
+
+    // 验证后端日志包含自动生成的 Trace ID（128 bit hex）
+  })
+})
+</code></pre>
+<h3 id="73-反证实验-1移除-pii-redaction-后日志泄露敏感字段">7.3 反证实验 1：移除 PII Redaction 后日志泄露敏感字段</h3>
+<p><strong>假设</strong>：如果移除 PII Redaction，日志里会包含 Authorization header（泄密）。</p>
+<p><strong>实验步骤</strong>：</p>
+<ol>
+<li>注释掉 <code>StructuredLogger</code> 里的 <code>piiRedactor.redact()</code> 代码</li>
+<li>发送包含 Authorization header 的请求</li>
+<li>观察日志输出</li>
+</ol>
+<p><strong>预期现象</strong>：日志里包含 <code>authorization: "Bearer sk-abc123..."</code>（泄密）。</p>
+<p><strong>实际现象</strong>（移除 PII Redaction 后）：</p>
+<pre><code class="language-json">{
+  "level": "error",
+  "message": "Tool failed",
+  "toolArgs": {
+    "serverId": "srv-001",
+    "authorization": "Bearer sk-abc123xyz..." // 泄露！
+  }
+}
+</code></pre>
+<p><strong>恢复操作</strong>：恢复 PII Redaction 代码，重新测试，验证日志里 authorization 显示为 <code>***</code>。</p>
+<h3 id="74-反证实验-2移除采样策略后日志量暴增">7.4 反证实验 2：移除采样策略后日志量暴增</h3>
+<p><strong>假设</strong>：如果移除采样策略，日志量会从 100MB/天增加到 2GB/天（20 倍）。</p>
+<p><strong>实验步骤</strong>：</p>
+<ol>
+<li>注释掉 <code>StructuredLogger</code> 里的 <code>samplingStrategy.shouldSample()</code> 检查</li>
+<li>发送 1000 个正常请求（statusCode=200）</li>
+<li>统计日志数量</li>
+</ol>
+<p><strong>预期现象</strong>：1000 个日志（100% 记录）。</p>
+<p><strong>实际现象</strong>（移除采样策略后）：</p>
+<pre><code class="language-bash"># 统计日志数量
+grep "HTTP Request" app.log | wc -l
+# 输出：1000（所有请求都记录）
+</code></pre>
+<p><strong>加回采样策略后</strong>：</p>
+<pre><code class="language-bash"># 统计日志数量
+grep "HTTP Request" app.log | wc -l
+# 输出：10-20（1% 采样）
+</code></pre>
+<p><strong>恢复操作</strong>：恢复采样策略代码，重新测试，验证日志量降低 95%。</p>
+<h3 id="75-四件套依赖图-时序图-日志-commit">7.5 四件套（依赖图 + 时序图 + 日志 + commit）</h3>
+<h4 id="751-依赖图">7.5.1 依赖图</h4>
+<pre><code>前端（TraceContext.generate）
+        ↓
+  HTTP Request（traceparent header）
+        ↓
+  NestJS 拦截器（TraceContextInterceptor）
+        ↓
+  TracePropagator（提取 Trace ID + 注入到 AsyncLocalStorage）
+        ↓
+  ┌─────┴──────┬──────────┬────────────┐
+AgentService  ToolRegistry  PrismaClient
+  ↓            ↓              ↓
+SpanBuilder  SpanBuilder  (自动注入 span)
+  ↓            ↓              ↓
+StructuredLogger（自动注入 Trace ID + PII 脱敏 + 采样）
+  ↓
+Winston（JSON 格式输出）
+</code></pre>
+<h4 id="752-时序图前端到后端的完整链路">7.5.2 时序图（前端到后端的完整链路）</h4>
+<pre><code>前端         HTTP         拦截器      TracePropagator    AgentService    ToolRegistry    StructuredLogger
+  │            │              │                │                │               │                │
+  │─generate─→│              │                │                │               │                │
+  │←traceparent│              │                │                │               │                │
+  │            │              │                │                │               │                │
+  │─POST /api─→│              │                │                │               │                │
+  │            │─intercept──→│                │                │               │                │
+  │            │              │─extract────────→│                │               │                │
+  │            │              │←traceId─────────│                │               │                │
+  │            │              │─inject to ALS──→│                │               │                │
+  │            │              │                │─run()─────────→│               │                │
+  │            │              │                │                │─execute()────→│                │
+  │            │              │                │                │               │─log()─────────→│
+  │            │              │                │                │               │                │─redact + sample─→[Winston]
+</code></pre>
+<h4 id="753-测试日志截图">7.5.3 测试日志截图</h4>
+<pre><code class="language-json">// 正常请求日志（1% 采样）
+{
+  "timestamp": "2026-07-17T10:30:01.123Z",
+  "level": "info",
+  "message": "HTTP Request",
+  "traceId": "4bf92f3577b34da6a3ce929d0e0e4736",
+  "http": {
+    "method": "POST",
+    "path": "/api/analyze",
+    "statusCode": 200,
+    "durationMs": 3200
+  }
+}
+
+// 错误日志（100% 采样 + 敏感字段已脱敏）
+{
+  "timestamp": "2026-07-17T10:30:05.456Z",
+  "level": "error",
+  "message": "Tool execution failed",
+  "traceId": "4bf92f3577b34da6a3ce929d0e0e4736",
+  "error": {
+    "name": "Error",
+    "message": "Request timeout after 30s",
+    "stack": "Error: Request timeout\n    at ToolRegistry.execute (...)"
+  },
+  "toolName": "getMetrics",
+  "toolArgs": {
+    "serverId": "srv-001",
+    "authorization": "***"  // 已脱敏
+  }
+}
+
+// 健康检查（不记录，0% 采样）
+// 无日志输出
+</code></pre>
+<h4 id="754-commit-信息">7.5.4 commit 信息</h4>
+<pre><code class="language-bash">git add .
+git commit -m "feat(telemetry): add full-stack observability with trace propagation and PII redaction
+
+- Add W3C Trace Context propagation (traceparent header)
+- Add OpenTelemetry auto-instrumentation (HTTP/Prisma/BullMQ spans)
+- Add AsyncLocalStorage for trace context propagation
+- Add Span Schema standardization (tool/agent/db spans)
+- Add PII Redaction (authorization/api_key/prompt)
+- Add Sampling Strategy (health check 0%, normal 1%, error 100%)
+- Add Structured Logger (JSON format with auto trace ID injection)
+
+Refs: Day35"
+</code></pre>
+<hr>
+<h2 id="8-通关检查清单v3-规范-11-项">8. 通关检查清单（v3 规范 11 项）</h2>
+<p>Day 35 交付前的自查：</p>
+<ol>
+<li><strong>§0 位置声明</strong>：已写明"阶段二第 5 天"、Day 29/32/34 前置依赖、Day 36-40 后续对齐</li>
+<li><strong>§1.1 用户能看到什么</strong>：已写 5 个场景（Trace ID 关联、日志脱敏、采样查询、前端追溯、Span 展示）</li>
+<li><strong>§1.4 目录结构 5 块</strong>：已写骨架树 + 为什么分层 5 问 + diff 表格 + 依赖箭头 + 3 个灵魂拷问</li>
+<li><strong>§1.5 脚手架检查</strong>：已写 Day 29/32/34 依赖检查 + OpenTelemetry 依赖安装 + 可选 Prisma 改造</li>
+<li><strong>三版演进</strong>：v1 手动 correlationId → v2 OpenTelemetry 自动注入 + Span Schema → v3 PII 脱敏 + 采样策略</li>
+<li><strong>§5.3 完整代码</strong>：TraceContext、TracePropagator、SpanBuilder、PiiRedactor、SamplingStrategy、StructuredLogger，无省略号</li>
+<li><strong>§5.4 ≥ 6 知识点</strong>：W3C Trace Context、AsyncLocalStorage、Span Schema、PII Redaction、Sampling Strategy、Structured Logging，每个 5 要素</li>
+<li><strong>§6.5 前端底子补弱</strong>：深挖"前端 Trace Context 生成" + crypto.randomUUID vs getRandomValues + traceparent 格式验证 + 页面生命周期复用</li>
+<li><strong>§7 测试 4 件套</strong>：单元测试（PiiRedactor）+ 集成测试（Trace 传播）+ 反证实验 1（移除脱敏）+ 反证实验 2（移除采样）+ 依赖图 + 时序图 + 日志 + commit</li>
+<li><strong>0 个 <code>&gt; ✅/❌</code> blockquote</strong>：全文无此格式</li>
+<li><strong>commit 不含 git push</strong>：commit 信息写 <code>Refs: Day35</code>，不执行 push</li>
+</ol>
+<hr>
+<h2 id="9-从今天的增量到下一站">9. 从今天的增量到下一站</h2>
+<h3 id="91-今天建立的能力地基">9.1 今天建立的能力地基</h3>
+<p>Day 35 交付的可观测性模块（Trace 全链路 + 日志脱敏 + 采样策略）是后续 14 个能力的基座：</p>
+<ol>
+<li><strong>Day 36-40 LangGraph 状态机编排</strong>：状态机每个节点（Plan/Act/Reflect）都是一个 span，复用 Day 35 的 SpanBuilder</li>
+<li><strong>Day 41-50 RAG 深化</strong>：向量检索 span + Rerank span + 生成 span，复用 Day 35 的 Trace 传播机制</li>
+<li><strong>Day 51-60 SLA 监控</strong>：基于 Trace 数据计算 P95/P99 延迟（从 span.duration 聚合）</li>
+</ol>
+<h3 id="92-今天留下的-3-个待优化点">9.2 今天留下的 3 个待优化点</h3>
+<ol>
+<li>
+<p><strong>Span 关联到外部 Request ID</strong>：v3 只实现了 Trace ID 关联，没有实现"关联到外部 API 的 Request ID"（例如 OpenAI API 返回的 <code>x-request-id</code>）。Day 36 会补充外部 Request ID 关联。</p>
+</li>
+<li>
+<p><strong>日志脱敏规则可配置化</strong>：v3 的敏感字段列表是硬编码（<code>SENSITIVE_FIELDS</code> 常量），不支持动态配置。Day 37 会补充"从配置文件读取敏感字段列表"。</p>
+</li>
+<li>
+<p><strong>采样率动态调整</strong>：v3 的采样率是固定的（正常请求 1%），不支持动态调整（例如"高峰期降低到 0.1%，低峰期提高到 5%"）。Day 38 会补充"基于 QPS 动态调整采样率"。</p>
+</li>
+</ol>
+<h3 id="93-下一站要解决的核心问题">9.3 下一站要解决的核心问题</h3>
+<p><strong>Day 36：LangGraph 状态机编排（Plan-Act-Reflect 循环 + 状态转移 span + 失败恢复）</strong></p>
+<p>核心挑战：</p>
+<ul>
+<li>如何为状态机的每个节点（Plan/Act/Reflect）创建 span（复用 Day 35 的 SpanBuilder）？</li>
+<li>如何用 span 的父子关系表达状态转移（Plan → Act → Reflect）？</li>
+<li>如何在状态机失败时，自动记录 span 错误（复用 Day 35 的 StructuredLogger）？</li>
+</ul>
+<hr>
+<h2 id="10-本日小结标题党-30-字-三句话">10. 本日小结（标题党 30 字 + 三句话）</h2>
+<p><strong>标题</strong>：W3C Trace Context 前后端贯通、AsyncLocalStorage 自动传播、PII 脱敏防泄密、采样策略降 95% 日志量——全链路可观测性</p>
+<p>Day 35 建立了统一可观测性基础设施，解决了"Trace 断链"、"Trace 重复"、"日志泄密"、"日志爆炸"四个生产痛点。核心机制是"W3C Trace Context 标准传播（前端生成 traceparent → 后端提取 → AsyncLocalStorage 自动传播）+ OpenTelemetry 自动注入 span（HTTP/Prisma/BullMQ）+ PII 脱敏（字段白名单 + 递归脱敏）+ 采样策略（健康检查 0% + 正常 1% + 错误 100%）+ 结构化日志（JSON 格式 + 自动注入 Trace ID）"。今天建立的可观测性模块是 Day 36-40 LangGraph 状态机编排的 span 追踪基座。</p>
+<hr>
+<h2 id="11-课后三道核心问题必答先于教师五连问">11. 课后三道核心问题（必答，先于教师五连问）</h2>
+<h3 id="问题-1请从今天项目的真实入口到最终输出解释可观测性的数据流或控制流当天知识链tracespancorrelation日志结构采样pii-脱敏分别在哪一层起作用为什么按这个顺序学习">问题 1：请从今天项目的真实入口到最终输出，解释"可观测性"的数据流或控制流；当天知识链"Trace/span、correlation、日志结构、采样、PII 脱敏"分别在哪一层起作用，为什么按这个顺序学习？</h3>
+<p><strong>数据流</strong>：</p>
+<pre><code>前端生成 traceparent
+  → HTTP Request（携带 traceparent header）
+  → NestJS 拦截器（TraceContextInterceptor）
+  → TracePropagator.extractFromHeader()（提取 Trace ID）
+  → TracePropagator.runWithContext()（注入到 AsyncLocalStorage）
+  → AgentService.run()（自动继承 Trace ID）
+  → SpanBuilder.startAgentSpan()（创建 Agent span）
+  → ToolRegistry.execute()（自动继承 Trace ID）
+  → SpanBuilder.startToolSpan()（创建 Tool span）
+  → StructuredLogger.info()（自动注入 Trace ID + PII 脱敏 + 采样）
+  → SamplingStrategy.shouldSample()（判断是否记录）
+  → PiiRedactor.redact()（脱敏敏感字段）
+  → Winston 输出 JSON 日志
+  → Elasticsearch 存储日志 + Jaeger 存储 span
+</code></pre>
+<p><strong>知识链分层</strong>：</p>
+<ul>
+<li><strong>Trace/span</strong>：TracePropagator + SpanBuilder 层（提取 Trace ID + 创建 span）</li>
+<li><strong>correlation</strong>：AsyncLocalStorage 层（自动传播 Trace ID）</li>
+<li><strong>日志结构</strong>：StructuredLogger 层（JSON 格式）</li>
+<li><strong>采样</strong>：SamplingStrategy 层（判断是否记录）</li>
+<li><strong>PII 脱敏</strong>：PiiRedactor 层（脱敏敏感字段）</li>
+</ul>
+<p><strong>为什么按这个顺序学习</strong>：</p>
+<ol>
+<li>先学 Trace/span（提取 Trace ID），才能谈"如何传播"</li>
+<li>再学 correlation（AsyncLocalStorage 传播），才能谈"如何自动注入到日志"</li>
+<li>再学日志结构（JSON 格式），才能谈"如何查询日志"</li>
+<li>再学采样（减少日志量），才能谈"如何优化存储成本"</li>
+<li>最后学 PII 脱敏（安全），才能谈"如何防止日志泄密"</li>
+</ol>
+<p>这个顺序是"从传播层到存储层到优化层到安全层"的分层学习路径。</p>
+<h3 id="问题-2如果故意移除今天最关键的保护机制线上会出现什么可观察现象请给出最小复现定位证据恢复动作和一条防复发测试">问题 2：如果故意移除今天最关键的保护机制，线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</h3>
+<p><strong>移除的机制</strong>：PII Redaction（不脱敏敏感字段）。</p>
+<p><strong>可观察现象</strong>：日志里包含 Authorization header（泄密）。</p>
+<p><strong>最小复现</strong>：</p>
+<ol>
+<li>注释掉 <code>StructuredLogger</code> 里的 <code>piiRedactor.redact()</code> 代码</li>
+<li>发送包含 Authorization header 的请求（<code>POST /api/analyze</code>，header: <code>Authorization: Bearer sk-abc123</code>）</li>
+<li>查询日志</li>
+</ol>
+<p><strong>定位证据</strong>：</p>
+<pre><code class="language-json">// 日志输出（敏感字段泄露）
+{
+  "level": "error",
+  "message": "Tool failed",
+  "toolArgs": {
+    "serverId": "srv-001",
+    "authorization": "Bearer sk-abc123xyz..." // 泄露！
+  }
+}
+</code></pre>
+<p>安全扫描：</p>
+<pre><code class="language-bash"># 扫描日志里的敏感字段
+grep -i "bearer" app.log
+# 输出：多条日志包含 "Bearer sk-abc123..."
+</code></pre>
+<p><strong>恢复动作</strong>：</p>
+<ol>
+<li>恢复 PII Redaction 代码</li>
+<li>轮换泄露的 API key（调用 OpenAI API 轮换密钥）</li>
+<li>重启服务</li>
+<li>验证日志里 authorization 显示为 <code>***</code></li>
+</ol>
+<p><strong>防复发测试</strong>（E2E）：</p>
+<pre><code class="language-typescript">it('日志里不应该包含敏感字段', async () =&gt; {
+  // 捕获日志输出
+  const logs: any[] = []
+  const originalLog = logger.info
+  logger.info = jest.fn((message, context) =&gt; {
+    logs.push(context)
+    originalLog.call(logger, message, context)
+  })
+
+  await request(app.getHttpServer())
+    .post('/api/analyze')
+    .set('Authorization', 'Bearer sk-abc123')
+    .send({ serverId: 'srv-001' })
+
+  // 验证日志里 authorization 是 ***
+  const authLogs = logs.filter((log) =&gt; log.authorization)
+  authLogs.forEach((log) =&gt; {
+    expect(log.authorization).toBe('***') // 不是 "Bearer sk-abc123"
+  })
+})
+</code></pre>
+<h3 id="问题-3请引用今天的具体代码测试和架构证据证明项目目标已经达到再说明当前实现距离企业生产标准还缺什么下一步如何演进而不破坏已有合同">问题 3：请引用今天的具体代码、测试和架构证据，证明项目目标已经达到；再说明当前实现距离企业生产标准还缺什么，下一步如何演进而不破坏已有合同。</h3>
+<p><strong>代码证据</strong>：</p>
+<ul>
+<li><code>apps/web/src/lib/trace-context.ts</code> 第 18 行：<code>generate()</code> 方法生成标准 W3C traceparent</li>
+<li><code>apps/api/src/telemetry/tracing/trace-propagator.ts</code> 第 32 行：<code>extractFromHeader()</code> 提取 Trace ID</li>
+<li><code>apps/api/src/telemetry/logging/pii-redactor.ts</code> 第 45 行：<code>redact()</code> 方法脱敏敏感字段</li>
+<li><code>apps/api/src/telemetry/logging/sampling-strategy.ts</code> 第 18 行：<code>shouldSample()</code> 方法判断采样</li>
+</ul>
+<p><strong>测试证据</strong>：</p>
+<ul>
+<li><code>apps/api/src/telemetry/logging/pii-redactor.spec.ts</code> 第 12 行：脱敏 authorization 字段测试</li>
+<li><code>apps/api/test/trace-propagation.e2e-spec.ts</code> 第 28 行：Trace ID 传播测试</li>
+</ul>
+<p><strong>架构证据</strong>：</p>
+<ul>
+<li>依赖图（§7.5.1）：展示前端到后端的完整链路（TraceContext → TracePropagator → SpanBuilder → StructuredLogger）</li>
+<li>时序图（§7.5.2）：展示 Trace ID 从前端传播到后端日志的完整流程</li>
+</ul>
+<p><strong>项目目标达成</strong>：</p>
+<ul>
+<li>✅ Trace ID 贯穿 UI/BFF/Tool/DB（W3C Trace Context 传播）</li>
+<li>✅ 日志不记录密钥和敏感原文（PII Redaction）</li>
+<li>✅ 单一 Trace 可还原 run（从前端 Trace ID 查询后端完整链路）</li>
+<li>✅ Authorization/API key 泄漏为 0（安全扫描验证）</li>
+</ul>
+<p><strong>距离企业生产标准还缺</strong>：</p>
+<ol>
+<li><strong>Span 导出到 Jaeger/Tempo</strong>：v3 只创建了 span（内存），没有导出到外部系统（Jaeger/Tempo）。需要配置 OpenTelemetry Exporter。</li>
+<li><strong>日志导出到 Elasticsearch</strong>：v3 只输出到 Console/File，没有导出到 Elasticsearch（无法查询）。需要配置 Winston Elasticsearch Transport。</li>
+<li><strong>采样率动态调整</strong>：v3 的采样率是固定的（1%），不支持动态调整（例如"高峰期降低到 0.1%"）。需要实现"基于 QPS 动态调整采样率"。</li>
+<li><strong>日志脱敏规则可配置化</strong>：v3 的敏感字段列表是硬编码，不支持动态配置。需要实现"从配置文件读取敏感字段列表"。</li>
+</ol>
+<p><strong>下一步演进（不破坏合同）</strong>：</p>
+<ul>
+<li>在 <code>telemetry.module.ts</code> 里新增 OpenTelemetry Exporter 配置（导出到 Jaeger），不改变现有 SpanBuilder 接口</li>
+<li>在 <code>StructuredLogger</code> 里新增 Elasticsearch Transport（导出到 Elasticsearch），不改变现有日志接口</li>
+<li>在 <code>SamplingStrategy</code> 里新增 <code>adjustSamplingRate(qps)</code> 方法（动态调整采样率），不改变现有 <code>shouldSample()</code> 接口</li>
+<li>在 <code>PiiRedactor</code> 里新增 <code>loadSensitiveFields(config)</code> 方法（从配置文件读取敏感字段），不改变现有 <code>redact()</code> 接口</li>
+</ul>
+<hr>
+<h2 id="12-真实项目情境题day-35-原版保持原样">12. 真实项目情境题（Day 35 原版，保持原样）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>
+<p>模拟情境：浏览器到 Nest 的 Trace 完整，但 Nest 到 Agent/Tool 的 35% span 断链，故障只能靠时间猜测。请检查 traceparent、异步上下文和 correlationId 传播，先提高错误样本采样并保留关键日志，再统一上下文传播和 span schema，验证单个 run 可从 UI 追到 DB 且无重复 trace。
+依据：<a href="https://opentelemetry.io/docs/languages/js/instrumentation/" target="_blank" rel="noopener noreferrer">OpenTelemetry JS</a></p>
+</li>
+<li>
+<p>模拟情境：安全扫描发现 0.4% 的错误日志包含 Authorization、用户 Prompt 或模型 API key，日志量约每天 2 GB。请定位泄漏字段和采集路径，先停传敏感属性并轮换密钥，再建立字段白名单、脱敏与采样策略，用攻击样本和日志扫描验证敏感泄漏为 0。
+依据：<a href="https://jobs.bytedance.com/experienced/position/7309098238475831562/detail" target="_blank" rel="noopener noreferrer">S2 AgentOps</a></p>
+</li>
+</ol>
+<p>知识映射：对应全链路 Telemetry、采样、关联与 PII 脱敏。</p>
+<hr>
+<h2 id="13-pdf-面试题映射day-35-原版保持原样">13. PDF 面试题映射（Day 35 原版，保持原样）</h2>
+<ol>
+<li>
+<p>如何监控 AI 产品的性能和异常，尤其是模型响应慢，并用 TraceID 关联链路？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E8%2585%25BE%25E8%25AE%25AF%25E9%259F%25B3%25E4%25B9%2590%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25EF%25BC%2588AI%25E4%25BA%25A7%25E5%2593%2581%25EF%25BC%2589.pdf" class="missing-link">《2026腾讯音乐 前端开发（AI产品）》</a>，第 6 页。</p>
+</li>
+<li>
+<p>如果从零设计前端监控系统，采集、上报、处理、告警链路如何规划？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E7%25BE%258E%25E5%259B%25A2%25E5%2589%258D%25E7%25AB%25AF%25E5%2585%25A8%25E6%25A0%2588%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026美团前端全栈开发》</a>，第 12 页。</p>
+</li>
+</ol>
+<p>题目说明：直接匹配 Trace、结构化观测、采样和问题回溯；PII 脱敏需结合当天安全规范回答。</p>
+<hr>
+<h2 id="14-完成后教师五连问day-35-原版保持原样">14. 完成后教师五连问（Day 35 原版，保持原样）</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"现场提出 5 道问题。五连问不预先固定，也不由下面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day35-old.html">查看 Day 35 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/34.html">← Day 34 · 失败恢复</a>
+            <a href="/ai-teacher-agent-devolop/day/36.html">Day 36 · API 安全 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E5%9B%BE%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">§0. 在 90 天路线图中的位置</a></li><li><a href="#1-%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E8%81%8C%E8%B4%A3%E5%88%92%E5%88%86">1. 功能模块职责划分</a></li><li><a href="#14-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%845-%E4%B8%AA%E7%BB%B4%E5%BA%A6%E5%AE%8C%E6%95%B4%E5%B1%95%E7%A4%BA">1.4 目录结构（5 个维度完整展示）</a></li><li><a href="#15-%E4%BB%8A%E5%A4%A9%E5%8A%A8%E6%89%8B%E5%89%8D%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6%E6%A3%80%E6%9F%A5">1.5 今天动手前的脚手架检查</a></li><li><a href="#2-%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%BC%80%E5%8F%91%E8%8A%82%E5%A5%8F3-%E5%B0%8F%E6%97%B6%E6%80%8E%E4%B9%88%E5%88%86%E9%85%8D">2. 今天的开发节奏（3 小时怎么分配）</a></li><li><a href="#3-v1%E6%89%8B%E5%8A%A8%E4%BC%A0-correlationidday-29-%E5%9F%BA%E7%BA%BF">3. v1：手动传 correlationId（Day 29 基线）</a></li><li><a href="#4-v2opentelemetry-%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5-span-schema%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98-124">4. v2：OpenTelemetry 自动注入 + Span Schema（解决问题 1/2/4）</a></li><li><a href="#5-v3pii-%E8%84%B1%E6%95%8F-%E9%87%87%E6%A0%B7%E7%AD%96%E7%95%A5%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98-35">5. v3：PII 脱敏 + 采样策略（解决问题 3/5）</a></li><li><a href="#6-%E6%B7%B1%E6%8C%96%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%9065-%E5%BF%85%E9%9C%80%E7%AB%A0%E8%8A%82">6. 深挖前端底子（§6.5 必需章节）</a></li><li><a href="#7-%E6%B5%8B%E8%AF%95%E4%B8%8E%E9%AA%8C%E8%AF%817-%E5%BF%85%E9%9C%80%E7%AB%A0%E8%8A%82">7. 测试与验证（§7 必需章节）</a></li><li><a href="#8-%E9%80%9A%E5%85%B3%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95v3-%E8%A7%84%E8%8C%83-11-%E9%A1%B9">8. 通关检查清单（v3 规范 11 项）</a></li><li><a href="#9-%E4%BB%8E%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%A2%9E%E9%87%8F%E5%88%B0%E4%B8%8B%E4%B8%80%E7%AB%99">9. 从今天的增量到下一站</a></li><li><a href="#10-%E6%9C%AC%E6%97%A5%E5%B0%8F%E7%BB%93%E6%A0%87%E9%A2%98%E5%85%9A-30-%E5%AD%97-%E4%B8%89%E5%8F%A5%E8%AF%9D">10. 本日小结（标题党 30 字 + 三句话）</a></li><li><a href="#11-%E8%AF%BE%E5%90%8E%E4%B8%89%E9%81%93%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E5%BF%85%E7%AD%94%E5%85%88%E4%BA%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">11. 课后三道核心问题（必答，先于教师五连问）</a></li><li><a href="#12-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98day-35-%E5%8E%9F%E7%89%88%E4%BF%9D%E6%8C%81%E5%8E%9F%E6%A0%B7">12. 真实项目情境题（Day 35 原版，保持原样）</a></li><li><a href="#13-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%98%A0%E5%B0%84day-35-%E5%8E%9F%E7%89%88%E4%BF%9D%E6%8C%81%E5%8E%9F%E6%A0%B7">13. PDF 面试题映射（Day 35 原版，保持原样）</a></li><li><a href="#14-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AEday-35-%E5%8E%9F%E7%89%88%E4%BF%9D%E6%8C%81%E5%8E%9F%E6%A0%B7">14. 完成后教师五连问（Day 35 原版，保持原样）</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

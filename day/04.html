@@ -1,0 +1,1760 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 04 · Vue/ECharts 原理（静态数据 → 响应式数据 → 滑窗优化） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week" open="">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html" aria-current="page">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/01.html">第 1 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 04</p>
+        <h1>Vue/ECharts 原理（静态数据 → 响应式数据 → 滑窗优化）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <p>任务版本：标准版
+日期与时长：2026-07-17 周四，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：D:\demo\ai-techer\p1-monitor\frontend
+角色视角：掌握 Day 1-3 事件流、合同和异步竞态的前端开发者，现在要用真实指标渲染图表</p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p><strong>承上</strong>：</p>
+<ul>
+<li>Day 1 建立了 AgentEvent 事件流和 reducer 状态机</li>
+<li>Day 2 为事件类型加上了 zod schema 运行时校验</li>
+<li>Day 3 实现了并发读取指标 + AbortController 取消保护</li>
+</ul>
+<p><strong>启下</strong>：</p>
+<ul>
+<li>Day 5 会把今天的静态图表升级为 WebSocket 实时推送更新</li>
+<li>Day 6 会在 WebSocket 层加心跳/重连/去重，图表需要处理断线重连后的数据恢复</li>
+<li>Day 7 会加异常检测算法，在图表上标注异常点</li>
+</ul>
+<p><strong>今天的核心</strong>：
+用 Day 3 读取的真实指标数据渲染 <strong>4 个 ECharts 图表</strong>（CPU/内存/网络/磁盘），处理 <strong>60 点滑窗 → Vue 响应式性能 → 生命周期清理</strong>三个递进问题。</p>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p>在 p1-monitor 运维监控系统的服务器详情页：</p>
+<ol>
+<li><strong>首次加载</strong>：页面显示 4 个折线图，每个图展示对应指标的历史趋势（最近 60 个数据点）</li>
+<li><strong>数据更新</strong>：每 5 秒自动刷新一次，新数据点从右侧进入，旧数据点从左侧退出（滑窗效果）</li>
+<li><strong>切换服务器</strong>：点击不同服务器时，4 个图表清空后重新加载新服务器的数据</li>
+<li><strong>内存稳定</strong>：运行 10 分钟后内存不会持续增长，切换页面后 ECharts 实例被正确销毁</li>
+</ol>
+<p><strong>关键</strong>：用户看到的是流畅的动画效果，不是卡顿或闪烁；长时间运行不会内存泄漏。</p>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<p><strong>在 p1-monitor 项目中的定位</strong>：</p>
+<ul>
+<li><strong>架构层</strong>：可视化层，负责将 domain 层的数据转换为用户可见的图表</li>
+<li><strong>依赖方</strong>：Day 7 的异常检测、Day 15 的历史恢复都依赖今天的图表组件</li>
+<li><strong>被依赖方</strong>：今天依赖 Day 3 的 API Client 和 useMetrics composable</li>
+</ul>
+<p><strong>为什么是 Day 4</strong>：</p>
+<ul>
+<li>Day 1-3 建立了数据获取和状态管理，但数据还是文本展示</li>
+<li>今天开始做数据可视化，必须处理 <strong>ECharts 生命周期 + Vue 响应式性能</strong>问题</li>
+<li>这些问题在 Day 5 的实时更新场景会更复杂，所以先在轮询场景练习</li>
+</ul>
+<h3 id="13-三版演进的目标v1-v2-v3">1.3 三版演进的目标（v1 / v2 / v3）</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>核心目标</th>
+<th>用户体验</th>
+<th>技术关键点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td>单个图表能渲染</td>
+<td>显示 CPU 折线图，但数据是写死的</td>
+<td>ECharts 基础配置</td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>4 个图表 + 响应式数据</td>
+<td>从 API 读取数据，但数据超过 100 个点时卡顿</td>
+<td>Vue watch + setOption</td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>60 点滑窗 + 生命周期清理</td>
+<td>只保留最近 60 点，切页后实例销毁</td>
+<td>滑窗算法 + onUnmounted</td>
+</tr>
+</tbody>
+</table></div><p><strong>痛点演进</strong>：</p>
+<ul>
+<li>v1 痛点：数据写死，不能复用</li>
+<li>v2 痛点：数据量大时 Vue 会对所有点做深层响应式代理，<code>setOption</code> 每次全量重建，导致卡顿</li>
+<li>v3 终态：只保留 60 点 + 用 <code>shallowRef</code> 避免深层代理 + <code>onUnmounted</code> 清理实例</li>
+</ul>
+<h3 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h3>
+<p><strong>为什么放在最前面</strong>：每天动手前必须先在脑子里立起骨架，知道今天要建哪些文件、它们之间的依赖关系是什么、哪条依赖不能反过来。骨架不清晰直接动手 = 返工。</p>
+<p><strong>今天在 <code>p1-monitor/frontend/</code> 下要建立的完整前端源码树（v3 完整版）</strong>：</p>
+<pre><code>src/
+├── domain/
+│   └── metrics/                         ← Day 3 已建立
+│       ├── metric.types.ts
+│       └── metric.schema.ts
+├── features/
+│   ├── metrics/                         ← Day 3 已建立
+│   │   ├── api/
+│   │   │   └── metrics-client.ts
+│   │   └── composables/
+│   │       └── useMetrics.ts
+│   └── charts/                          ← 今天新建
+│       ├── components/
+│       │   ├── MetricChart.vue          ← 单个图表组件（封装 ECharts）
+│       │   └── MetricChart.spec.ts      ← 图表组件测试
+│       ├── composables/
+│       │   ├── useMetricChart.ts        ← 图表逻辑 composable（滑窗算法）
+│       │   └── useMetricChart.spec.ts   ← composable 测试
+│       └── utils/
+│           ├── chart-options.ts         ← ECharts 配置工厂函数
+│           └── sliding-window.ts        ← 滑窗算法（保留最近 N 点）
+├── app/
+│   └── pages/
+│       └── ServerDetailPage.vue         ← Day 3 已建立，今天升级加 4 个图表
+└── test/
+    └── mocks/
+        └── metrics-mock-server.ts        ← Day 3 已建立
+</code></pre>
+<p><strong>三版演进对应的文件差异</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>文件</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MetricChart.vue</code></td>
+<td>单图表 + 写死数据</td>
+<td>接收 props + watch 更新</td>
+<td>同 v2 + onUnmounted 清理</td>
+</tr>
+<tr>
+<td><code>useMetricChart.ts</code></td>
+<td>无</td>
+<td>无</td>
+<td>加滑窗逻辑 + shallowRef</td>
+</tr>
+<tr>
+<td><code>chart-options.ts</code></td>
+<td>无</td>
+<td>基础配置</td>
+<td>加性能优化配置</td>
+</tr>
+<tr>
+<td><code>sliding-window.ts</code></td>
+<td>无</td>
+<td>无</td>
+<td>滑窗算法</td>
+</tr>
+<tr>
+<td><code>ServerDetailPage.vue</code></td>
+<td>无图表</td>
+<td>加 4 个图表</td>
+<td>同 v2</td>
+</tr>
+</tbody>
+</table></div><p><strong>依赖方向（务必单向，反过来一次都不行）</strong>：</p>
+<pre><code>ServerDetailPage.vue → MetricChart.vue → useMetricChart.ts → sliding-window.ts
+                    ↓
+                useMetrics.ts → metrics-client.ts → metric.schema.ts
+</code></pre>
+<p><strong>红线</strong>：<code>features/charts/utils/*.ts</code> 里出现 <code>import { ref } from 'vue'</code> 就是架构塌方。工具函数必须是纯函数，能在 Node.js 里跑测试。</p>
+<p><strong>动手前先问自己 3 个问题</strong>：</p>
+<ol>
+<li>为什么图表组件要单独一个 <code>features/charts/</code> 目录，不放在 <code>features/metrics/</code> 里？—— 见 §5.4 知识点「功能分层」</li>
+<li>滑窗算法要放在哪一层？utils 层还是 composable 层？—— 见 §5.3 v3 代码</li>
+<li>Vue 的 <code>ref</code> 和 <code>shallowRef</code> 有什么区别？什么时候用 <code>shallowRef</code>？—— 见 §5.4 知识点「Vue 响应式深度」</li>
+</ol>
+<h3 id="15-阶段-d动手脚手架20-分钟先搭骨架再看正文">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</h3>
+<p><strong>时间盒</strong>：阶段 D 总共 20 分钟，不要在这一步卡太久。如果遇到问题（例如 ECharts 类型不对），先标记 <code>// TODO</code>，继续往下，读完 v3 代码后回来改。</p>
+<h4 id="151-d-1搭工程骨架-装依赖5-分钟">1.5.1 D-1：搭工程骨架 / 装依赖（5 分钟）</h4>
+<pre><code class="language-bash">cd p1-monitor/frontend
+
+# 今天需要的新依赖
+pnpm add echarts
+pnpm add -D @types/node  # 用于 sliding-window 的类型
+</code></pre>
+<h4 id="152-d-2创建目录2-分钟">1.5.2 D-2：创建目录（2 分钟）</h4>
+<pre><code class="language-bash">mkdir -p src/features/charts/components
+mkdir -p src/features/charts/composables
+mkdir -p src/features/charts/utils
+</code></pre>
+<h4 id="153-d-3实现-utils-层20-分钟">1.5.3 D-3：实现 utils 层（20 分钟）</h4>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>src/features/charts/utils/sliding-window.ts</code>（滑窗算法，纯函数）</li>
+<li>写 <code>src/features/charts/utils/chart-options.ts</code>（ECharts 配置工厂函数）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>滑窗算法为什么要返回新数组，不能直接修改原数组？（Vue 响应式触发规则）</li>
+<li><code>chart-options.ts</code> 为什么要写成工厂函数，不是直接 export 一个对象？（每个图表配置不同）</li>
+<li>ECharts 的 <code>animation: false</code> 是干什么的？（性能优化，见 v3 痛点）</li>
+</ul>
+<h4 id="154-d-4实现-composable-层30-分钟">1.5.4 D-4：实现 composable 层（30 分钟）</h4>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>src/features/charts/composables/useMetricChart.ts</code>（图表逻辑，滑窗 + shallowRef）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>shallowRef</code> 和 <code>ref</code> 有什么区别？（深层代理 vs 浅层代理）</li>
+<li>为什么数据点数组要用 <code>shallowRef</code>？（避免对 60 个对象做深层代理）</li>
+<li>什么时候调用滑窗算法？（每次新增数据点时）</li>
+</ul>
+<h4 id="155-d-5实现组件层30-分钟">1.5.5 D-5：实现组件层（30 分钟）</h4>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>src/features/charts/components/MetricChart.vue</code>（单个图表组件）</li>
+<li>升级 <code>src/app/pages/ServerDetailPage.vue</code>（加 4 个图表）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>ECharts 实例要在哪里创建？在哪里销毁？（onMounted / onUnmounted）</li>
+<li>为什么要在 <code>onUnmounted</code> 里调用 <code>chart.dispose()</code>？（释放内存，见反证实验）</li>
+<li>数据更新时调用 <code>chart.setOption</code> 的第二个参数是什么？（notMerge/replaceMerge）</li>
+</ul>
+<hr>
+<h2 id="2-学习节奏90-阅读-90-动手">2. 学习节奏（90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>内容</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>30 分钟</td>
+<td>阅读第 3 节（v1 单图表 + 静态数据）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>30 分钟</td>
+<td>阅读第 4 节（v2 响应式数据 + 4 个图表）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>30 分钟</td>
+<td>阅读第 5 节（v3 滑窗优化 + 生命周期清理）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td><strong>D</strong></td>
+<td>60 分钟</td>
+<td>在自己项目里实现 v3 完整功能（见 §1.5）</td>
+<td>动手</td>
+</tr>
+<tr>
+<td><strong>E</strong></td>
+<td>20 分钟</td>
+<td>写核心逻辑测试 + 两个反证实验（见 §7.6-7.8）</td>
+<td>动手</td>
+</tr>
+<tr>
+<td><strong>F</strong></td>
+<td>10 分钟</td>
+<td>运行 lint/typecheck/test/build，提交 commit（见 §7.9）</td>
+<td>动手</td>
+</tr>
+</tbody>
+</table></div><p><strong>设计原则</strong>：</p>
+<ul>
+<li>前 90 分钟只读、不写（避免边读边写导致思路混乱）</li>
+<li>后 90 分钟只写、不读（读完 v3 你会发现前面卡住的地方多半是"没看到全景"造成的）</li>
+<li>E 阶段的"反证实验"强制验证 v1/v2 的痛点（不是纸上谈兵）</li>
+</ul>
+<hr>
+<h2 id="3-v1最小闭环单个图表能渲染">3. v1：最小闭环（单个图表能渲染）</h2>
+<h3 id="31-v1-要实现什么">3.1 v1 要实现什么</h3>
+<p><strong>用户视角</strong>：</p>
+<ul>
+<li>页面显示一个 CPU 折线图</li>
+<li>数据是写死的 10 个点</li>
+</ul>
+<p><strong>技术视角</strong>：</p>
+<ul>
+<li>用 ECharts 渲染折线图</li>
+<li>在 Vue 组件里初始化 ECharts 实例</li>
+</ul>
+<h3 id="32-v1-完整代码">3.2 v1 完整代码</h3>
+<p><strong>src/features/charts/components/MetricChart.vue</strong>（v1 版本）</p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import { onMounted, ref } from 'vue'
+import * as echarts from 'echarts'
+
+const chartContainer = ref&lt;HTMLDivElement | null&gt;(null)
+
+onMounted(() =&gt; {
+  if (!chartContainer.value) return
+  
+  const chart = echarts.init(chartContainer.value)
+  
+  // 写死的数据
+  const data = [
+    { timestamp: '10:00', value: 45 },
+    { timestamp: '10:05', value: 52 },
+    { timestamp: '10:10', value: 48 },
+    { timestamp: '10:15', value: 61 },
+    { timestamp: '10:20', value: 55 },
+    { timestamp: '10:25', value: 72 },
+    { timestamp: '10:30', value: 68 },
+    { timestamp: '10:35', value: 75 },
+    { timestamp: '10:40', value: 82 },
+    { timestamp: '10:45', value: 78 },
+  ]
+  
+  chart.setOption({
+    title: {
+      text: 'CPU 使用率',
+    },
+    xAxis: {
+      type: 'category',
+      data: data.map(d =&gt; d.timestamp),
+    },
+    yAxis: {
+      type: 'value',
+      min: 0,
+      max: 100,
+    },
+    series: [
+      {
+        type: 'line',
+        data: data.map(d =&gt; d.value),
+        smooth: true,
+      },
+    ],
+  })
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div ref="chartContainer" class="metric-chart"&gt;&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.metric-chart {
+  width: 100%;
+  height: 300px;
+}
+&lt;/style&gt;
+</code></pre>
+<h3 id="33-v1-用到的知识点">3.3 v1 用到的知识点</h3>
+<ol>
+<li>
+<p><strong>ECharts 初始化</strong>：</p>
+<ul>
+<li>解决的问题：在 DOM 元素上渲染图表</li>
+<li>运行机制：<code>echarts.init(dom)</code> 创建实例，<code>setOption</code> 设置配置</li>
+<li>项目落点：<code>MetricChart.vue</code> 的 <code>onMounted</code></li>
+<li>生产误区：忘记等 DOM 挂载就初始化，会报错</li>
+<li>验证方法：检查 <code>chartContainer.value</code> 是否为 null</li>
+</ul>
+</li>
+<li>
+<p><strong>ECharts option 配置</strong>：</p>
+<ul>
+<li>解决的问题：定义图表的样式和数据</li>
+<li>运行机制：<code>xAxis/yAxis/series</code> 三个核心配置</li>
+<li>项目落点：<code>setOption</code> 的参数对象</li>
+<li>生产误区：<code>xAxis.data</code> 和 <code>series.data</code> 长度不一致会导致图表错误</li>
+<li>验证方法：console.log 两个数组的长度</li>
+</ul>
+</li>
+</ol>
+<h3 id="34-v1-暴露的痛点">3.4 v1 暴露的痛点</h3>
+<p><strong>痛点 1</strong>：数据写死，不能复用</p>
+<pre><code class="language-vue">&lt;!-- v1 的数据是硬编码的 --&gt;
+const data = [
+  { timestamp: '10:00', value: 45 },
+  // ...
+]
+</code></pre>
+<p>如果要显示 4 个图表（CPU/内存/网络/磁盘），需要复制 4 份组件，维护成本高。</p>
+<p><strong>痛点 2</strong>：没有响应式更新</p>
+<p>数据变化时，图表不会自动更新。需要手动调用 <code>setOption</code>。</p>
+<p><strong>痛点 3</strong>：没有清理实例</p>
+<p>切换页面后，ECharts 实例没有被销毁，会导致内存泄漏。</p>
+<hr>
+<h2 id="4-v2加一层响应式数据-4-个图表">4. v2：加一层（响应式数据 + 4 个图表）</h2>
+<h3 id="41-v2-要实现什么">4.1 v2 要实现什么</h3>
+<p><strong>用户视角</strong>：</p>
+<ul>
+<li>页面显示 4 个折线图（CPU/内存/网络/磁盘）</li>
+<li>数据来自 Day 3 的 <code>useMetrics</code> composable</li>
+<li>每 5 秒轮询一次，图表自动更新</li>
+</ul>
+<p><strong>技术视角</strong>：</p>
+<ul>
+<li><code>MetricChart.vue</code> 接收 <code>props</code>（title, data）</li>
+<li>用 Vue 的 <code>watch</code> 监听 props 变化，调用 <code>setOption</code> 更新图表</li>
+<li><code>ServerDetailPage.vue</code> 里放 4 个 <code>MetricChart</code> 实例</li>
+</ul>
+<h3 id="42-v2-完整代码">4.2 v2 完整代码</h3>
+<p><strong>src/features/charts/components/MetricChart.vue</strong>（v2 版本）</p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import { onMounted, ref, watch } from 'vue'
+import * as echarts from 'echarts'
+
+interface DataPoint {
+  timestamp: string
+  value: number
+}
+
+const props = defineProps&lt;{
+  title: string
+  data: DataPoint[]
+  unit: string
+  max: number
+}&gt;()
+
+const chartContainer = ref&lt;HTMLDivElement | null&gt;(null)
+let chart: echarts.ECharts | null = null
+
+function updateChart() {
+  if (!chart) return
+  chart.setOption({
+    title: { text: props.title },
+    xAxis: {
+      type: 'category',
+      data: props.data.map(d =&gt; d.timestamp),
+    },
+    yAxis: {
+      type: 'value',
+      min: 0,
+      max: props.max,
+      axisLabel: {
+        formatter: `{value} ${props.unit}`,
+      },
+    },
+    series: [
+      {
+        type: 'line',
+        data: props.data.map(d =&gt; d.value),
+        smooth: true,
+      },
+    ],
+  })
+}
+
+onMounted(() =&gt; {
+  if (!chartContainer.value) return
+  chart = echarts.init(chartContainer.value)
+  updateChart()
+})
+
+watch(() =&gt; props.data, () =&gt; {
+  updateChart()
+}, { deep: true })
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div ref="chartContainer" class="metric-chart"&gt;&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.metric-chart {
+  width: 100%;
+  height: 300px;
+}
+&lt;/style&gt;
+</code></pre>
+<p><strong>src/app/pages/ServerDetailPage.vue</strong>（v2 版本，节选）</p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import { useMetrics } from '@/features/metrics/composables/useMetrics'
+import MetricChart from '@/features/charts/components/MetricChart.vue'
+
+const { cpu, memory, network, disk, loading, error } = useMetrics()
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div v-if="loading"&gt;加载中...&lt;/div&gt;
+  &lt;div v-else-if="error"&gt;{{ error.message }}&lt;/div&gt;
+  &lt;div v-else class="chart-grid"&gt;
+    &lt;MetricChart title="CPU 使用率" :data="cpu" unit="%" :max="100" /&gt;
+    &lt;MetricChart title="内存使用率" :data="memory" unit="%" :max="100" /&gt;
+    &lt;MetricChart title="网络流量" :data="network" unit="MB/s" :max="1000" /&gt;
+    &lt;MetricChart title="磁盘 I/O" :data="disk" unit="MB/s" :max="500" /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+&lt;/style&gt;
+</code></pre>
+<h3 id="43-v2-相比-v1-加了什么">4.3 v2 相比 v1 加了什么</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1</th>
+<th>v2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据源</td>
+<td>硬编码</td>
+<td>props 传入</td>
+</tr>
+<tr>
+<td>图表数量</td>
+<td>1 个</td>
+<td>4 个</td>
+</tr>
+<tr>
+<td>响应式</td>
+<td>无</td>
+<td>watch + setOption</td>
+</tr>
+<tr>
+<td>可复用性</td>
+<td>不可复用</td>
+<td>一个组件复用 4 次</td>
+</tr>
+</tbody>
+</table></div><h3 id="44-v2-用到的知识点">4.4 v2 用到的知识点</h3>
+<ol>
+<li>
+<p><strong>Vue defineProps 类型约束</strong>：</p>
+<ul>
+<li>解决的问题：让父组件传入的数据类型可预测</li>
+<li>运行机制：TypeScript 泛型 + 编译时校验</li>
+<li>项目落点：<code>MetricChart.vue</code> 顶部 <code>defineProps&lt;{...}&gt;()</code></li>
+<li>生产误区：<code>props</code> 是只读的，不能在子组件里修改</li>
+<li>验证方法：尝试给 <code>props.data</code> 赋值，TS 会报错</li>
+</ul>
+</li>
+<li>
+<p><strong>Vue watch 深度监听</strong>：</p>
+<ul>
+<li>解决的问题：监听对象/数组内部变化</li>
+<li>运行机制：<code>{ deep: true }</code> 递归代理每个属性</li>
+<li>项目落点：<code>watch(() =&gt; props.data, ..., { deep: true })</code></li>
+<li>生产误区：deep watch 对大数组性能极差（v3 会解决）</li>
+<li>验证方法：Chrome DevTools Performance 录制，看 watcher 触发次数</li>
+</ul>
+</li>
+<li>
+<p><strong>ECharts setOption 增量更新</strong>:</p>
+<ul>
+<li>解决的问题：数据变化时更新图表</li>
+<li>运行机制：默认是 merge 模式，只更新变化部分</li>
+<li>项目落点：<code>updateChart()</code> 函数</li>
+<li>生产误区：<code>notMerge: true</code> 会完全替换，导致动画丢失</li>
+<li>验证方法：修改一个数据点，看图表是否只更新那一个点</li>
+</ul>
+</li>
+</ol>
+<h3 id="45-v2-暴露的新痛点">4.5 v2 暴露的新痛点</h3>
+<p><strong>痛点 1</strong>：数据量大时 Vue 深度响应式代理成本高</p>
+<p>场景：模拟接口每次返回 1000 个数据点，Vue 会给每个点做 <code>Proxy</code> 包装。</p>
+<pre><code class="language-ts">// props.data 是 { timestamp, value }[] 类型
+// deep watch 会递归创建代理：
+// data → Proxy → data[0] → Proxy → data[0].timestamp → Proxy
+</code></pre>
+<p><strong>症状</strong>：</p>
+<ul>
+<li>页面初次加载耗时 800ms（本来 200ms 就够）</li>
+<li>Chrome DevTools 显示 <code>Object.defineProperty</code> 占用大量时间</li>
+</ul>
+<p><strong>痛点 2</strong>：ECharts 每次 setOption 全量重建</p>
+<p><code>setOption</code> 在 merge 模式下，虽然做了 diff，但 xAxis.data 每次都传新数组，ECharts 认为 x 轴变化了，会重绘整个坐标系。</p>
+<p><strong>痛点 3</strong>：切换服务器后旧图表实例没销毁</p>
+<p>场景：用户点击服务器 A 看图表 → 点击服务器 B → 再回到 A。</p>
+<p><strong>症状</strong>：</p>
+<ul>
+<li>组件被 <code>v-if</code> 隐藏时，<code>onMounted</code> 里的 <code>chart</code> 变量仍在闭包中</li>
+<li>ECharts 内部还持有 DOM 引用和事件监听器</li>
+<li>Chrome DevTools Memory 面板：Detached DOM Nodes 持续增长</li>
+</ul>
+<p><strong>痛点 4</strong>：无限制累积数据点</p>
+<p>轮询 30 分钟后，<code>cpu</code> 数组会有 360 个数据点（5 秒一次）。10 小时后就是 7200 个点。</p>
+<p><strong>症状</strong>：图表越用越卡，最终浏览器崩溃。</p>
+<hr>
+<h2 id="5-v3生产就绪60-点滑窗-shallowref-生命周期清理">5. v3：生产就绪（60 点滑窗 + shallowRef + 生命周期清理）</h2>
+<h3 id="51-v3-要实现什么">5.1 v3 要实现什么</h3>
+<p><strong>用户视角</strong>：</p>
+<ul>
+<li>4 个图表按 CPU / 内存 / 网络 / 磁盘展示，每图只保留最近 60 个数据点</li>
+<li>长时间运行不卡顿（相比 v2 大数组深度响应式代理）</li>
+<li>切换页面后 ECharts 实例被正确销毁，无内存泄漏</li>
+</ul>
+<p><strong>技术视角</strong>：</p>
+<ul>
+<li>抽出 utils 层：<code>sliding-window.ts</code>（滑窗算法）+ <code>chart-options.ts</code>（ECharts 配置工厂）</li>
+<li>抽出 composable 层：<code>useMetricChart.ts</code> 用 <code>shallowRef</code> 避免深层代理 + 内置滑窗</li>
+<li>组件层瘦身：<code>MetricChart.vue</code> 只做 DOM 挂载 + <code>onMounted</code> init + <code>onUnmounted</code> dispose</li>
+<li>性能配置：<code>animation: false</code>、<code>symbol: 'none'</code>、<code>smooth: false</code></li>
+</ul>
+<p><strong>关键解决的问题</strong>：</p>
+<ul>
+<li>数据无限累积 → 滑窗算法保留最近 60 点</li>
+<li>深度响应式代理成本 → <code>shallowRef</code> 只跟踪数组引用变化</li>
+<li>实例内存泄漏 → <code>onUnmounted</code> 里 <code>chart.dispose()</code></li>
+<li>setOption 全量重建性能 → 纯函数配置工厂 + <code>notMerge</code> 精确控制</li>
+</ul>
+<h3 id="52-v3-目录结构">5.2 v3 目录结构</h3>
+<p>与 §1.4 中给出的完整目录树完全一致，此处不重复。核心是新增的 <code>src/features/charts/</code> 三层：</p>
+<pre><code>src/features/charts/
+├── components/MetricChart.vue          ← 组件层：DOM 挂载 + 生命周期
+├── composables/useMetricChart.ts       ← composable 层：shallowRef + 滑窗
+└── utils/
+    ├── sliding-window.ts               ← utils 层：纯函数算法
+    └── chart-options.ts                ← utils 层：ECharts 配置工厂
+</code></pre>
+<p><strong>依赖方向（务必单向）</strong>：<code>MetricChart.vue → useMetricChart.ts → sliding-window.ts / chart-options.ts</code></p>
+<p><strong>红线</strong>：<code>utils/*.ts</code> 不允许 <code>import { ref } from 'vue'</code>，必须能在 Node.js 里跑 vitest。</p>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<p><strong>src/features/charts/utils/sliding-window.ts</strong></p>
+<pre><code class="language-ts">export interface DataPoint {
+  timestamp: string
+  value: number
+}
+
+/**
+ * 滑动窗口：保留数组最近 N 个元素
+ * 纯函数：不修改原数组，返回新数组
+ * @param arr 原数组
+ * @param newItem 新增元素
+ * @param maxSize 窗口大小
+ */
+export function slideWindow&lt;T&gt;(
+  arr: readonly T[],
+  newItem: T,
+  maxSize: number,
+): T[] {
+  const next = arr.length &gt;= maxSize
+    ? arr.slice(arr.length - maxSize + 1)
+    : arr.slice()
+  next.push(newItem)
+  return next
+}
+
+/**
+ * 批量替换：用新数组覆盖，同时应用滑窗
+ */
+export function slideWindowBatch&lt;T&gt;(
+  newArr: readonly T[],
+  maxSize: number,
+): T[] {
+  if (newArr.length &lt;= maxSize) return newArr.slice()
+  return newArr.slice(newArr.length - maxSize)
+}
+</code></pre>
+<p><strong>src/features/charts/utils/chart-options.ts</strong></p>
+<pre><code class="language-ts">import type { EChartsOption } from 'echarts'
+import type { DataPoint } from './sliding-window'
+
+export interface ChartConfig {
+  title: string
+  unit: string
+  max: number
+}
+
+/**
+ * ECharts 配置工厂函数
+ * 纯函数：相同输入永远返回相同输出
+ */
+export function buildChartOption(
+  config: ChartConfig,
+  data: readonly DataPoint[],
+): EChartsOption {
+  return {
+    animation: false, // 关闭动画，减少 CPU 占用
+    title: {
+      text: config.title,
+      textStyle: { fontSize: 14 },
+    },
+    grid: { left: 60, right: 20, top: 40, bottom: 30 },
+    xAxis: {
+      type: 'category',
+      data: data.map(d =&gt; d.timestamp),
+      axisLabel: { fontSize: 10 },
+    },
+    yAxis: {
+      type: 'value',
+      min: 0,
+      max: config.max,
+      axisLabel: {
+        formatter: `{value} ${config.unit}`,
+        fontSize: 10,
+      },
+    },
+    series: [
+      {
+        type: 'line',
+        data: data.map(d =&gt; d.value),
+        smooth: false, // 关闭 smooth，减少计算
+        symbol: 'none', // 不显示数据点标记
+        lineStyle: { width: 2 },
+      },
+    ],
+  }
+}
+</code></pre>
+<p><strong>src/features/charts/composables/useMetricChart.ts</strong></p>
+<pre><code class="language-ts">import { shallowRef, watch, type Ref } from 'vue'
+import type { EChartsType } from 'echarts'
+import { slideWindowBatch, type DataPoint } from '../utils/sliding-window'
+import { buildChartOption, type ChartConfig } from '../utils/chart-options'
+
+const WINDOW_SIZE = 60
+
+/**
+ * 图表逻辑 composable
+ * 输入：source data（源数据数组）
+ * 输出：windowedData（滑窗后的数据）+ apply（应用到 ECharts 实例）
+ */
+export function useMetricChart(
+  source: Ref&lt;readonly DataPoint[]&gt;,
+  config: ChartConfig,
+) {
+  // 用 shallowRef：只跟踪数组引用变化，不深度代理每个元素
+  const windowedData = shallowRef&lt;DataPoint[]&gt;([])
+
+  // 监听源数据变化，应用滑窗
+  watch(source, (newData) =&gt; {
+    windowedData.value = slideWindowBatch(newData, WINDOW_SIZE)
+  }, { immediate: true })
+
+  /**
+   * 把当前数据应用到 ECharts 实例
+   */
+  function apply(chart: EChartsType) {
+    const option = buildChartOption(config, windowedData.value)
+    chart.setOption(option, {
+      notMerge: false, // 使用 merge，保留动画
+      lazyUpdate: true, // 延迟渲染，合并多次调用
+    })
+  }
+
+  return {
+    windowedData,
+    apply,
+  }
+}
+</code></pre>
+<p><strong>src/features/charts/components/MetricChart.vue</strong>（v3 版本）</p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import { onMounted, onUnmounted, ref, watch, shallowRef } from 'vue'
+import * as echarts from 'echarts'
+import type { EChartsType } from 'echarts'
+import { useMetricChart } from '../composables/useMetricChart'
+import type { DataPoint } from '../utils/sliding-window'
+
+const props = defineProps&lt;{
+  title: string
+  data: readonly DataPoint[]
+  unit: string
+  max: number
+}&gt;()
+
+const chartContainer = ref&lt;HTMLDivElement | null&gt;(null)
+const chartInstance = shallowRef&lt;EChartsType | null&gt;(null)
+
+// 把 props.data 包成 ref，喂给 composable
+const sourceData = shallowRef&lt;readonly DataPoint[]&gt;(props.data)
+watch(() =&gt; props.data, (newData) =&gt; {
+  sourceData.value = newData
+})
+
+const { apply } = useMetricChart(sourceData, {
+  title: props.title,
+  unit: props.unit,
+  max: props.max,
+})
+
+// 数据变化时应用到图表
+watch(sourceData, () =&gt; {
+  if (chartInstance.value) apply(chartInstance.value)
+})
+
+onMounted(() =&gt; {
+  if (!chartContainer.value) return
+  const chart = echarts.init(chartContainer.value)
+  chartInstance.value = chart
+  apply(chart)
+
+  // 监听窗口 resize，图表自适应
+  const handleResize = () =&gt; chart.resize()
+  window.addEventListener('resize', handleResize)
+
+  onUnmounted(() =&gt; {
+    window.removeEventListener('resize', handleResize)
+    chart.dispose() // 关键：释放 ECharts 内部资源
+    chartInstance.value = null
+  })
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div ref="chartContainer" class="metric-chart"&gt;&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.metric-chart {
+  width: 100%;
+  height: 300px;
+}
+&lt;/style&gt;
+</code></pre>
+<h3 id="54-v3-用到的知识点-6-个">5.4 v3 用到的知识点（≥ 6 个）</h3>
+<ol>
+<li>
+<p><strong>Vue shallowRef vs ref</strong>：</p>
+<ul>
+<li>解决的问题：避免对大数组内部元素做深层响应式代理</li>
+<li>运行机制：<code>ref</code> 用 <code>reactive</code> 递归代理，<code>shallowRef</code> 只代理 <code>.value</code> 引用变化</li>
+<li>项目落点：<code>useMetricChart.ts</code> 里的 <code>windowedData</code>、<code>sourceData</code></li>
+<li>生产误区：<code>shallowRef</code> 修改内部属性不会触发更新，必须整体替换引用</li>
+<li>验证方法：<code>shallowRef([]).value.push(x)</code> 不触发 watch；<code>shallowRef([]).value = [...]</code> 才触发</li>
+</ul>
+</li>
+<li>
+<p><strong>Vue 响应式深度</strong>：</p>
+<ul>
+<li>解决的问题：理解 Vue 何时会重新渲染</li>
+<li>运行机制：Proxy 拦截 get/set，收集依赖，触发副作用</li>
+<li>项目落点：<code>shallowRef</code> 只在 <code>.value = xxx</code> 时触发；<code>ref</code> 深层任何变化都触发</li>
+<li>生产误区：对不需要深层监听的数据用 <code>ref</code>，浪费性能</li>
+<li>验证方法：Vue DevTools 观察组件重渲染次数</li>
+</ul>
+</li>
+<li>
+<p><strong>滑动窗口算法</strong>：</p>
+<ul>
+<li>解决的问题：限制数据点数量，防止内存无限增长</li>
+<li>运行机制：<code>slice(arr.length - maxSize + 1)</code> 保留末尾 N 个元素</li>
+<li>项目落点：<code>sliding-window.ts</code> 的 <code>slideWindow</code> 函数</li>
+<li>生产误区：直接 <code>arr.splice()</code> 会修改原数组，Vue 响应式可能失效</li>
+<li>验证方法：单元测试 <code>slideWindow([1,2,3,4,5], 6, 3) === [4,5,6]</code></li>
+</ul>
+</li>
+<li>
+<p><strong>ECharts dispose 生命周期</strong>：</p>
+<ul>
+<li>解决的问题：组件卸载时释放 ECharts 实例内存</li>
+<li>运行机制：<code>chart.dispose()</code> 移除所有事件监听、销毁 canvas</li>
+<li>项目落点：<code>MetricChart.vue</code> 的 <code>onUnmounted</code></li>
+<li>生产误区：忘记 <code>dispose</code>，Chrome DevTools Memory 面板出现 Detached DOM</li>
+<li>验证方法：切换页面 10 次，看 Memory 快照对比</li>
+</ul>
+</li>
+<li>
+<p><strong>ECharts 性能优化配置</strong>：</p>
+<ul>
+<li>解决的问题：高频更新时避免动画/标记等 CPU 消耗</li>
+<li>运行机制：<code>animation: false</code>、<code>symbol: 'none'</code>、<code>smooth: false</code></li>
+<li>项目落点：<code>chart-options.ts</code> 的 <code>buildChartOption</code></li>
+<li>生产误区：默认配置在 5 秒轮询下 CPU 占用 20%+</li>
+<li>验证方法：Chrome DevTools Performance 录制 30 秒，看 Scripting 耗时</li>
+</ul>
+</li>
+<li>
+<p><strong>纯函数与分层测试</strong>：</p>
+<ul>
+<li>解决的问题：让核心算法可以脱离 Vue/DOM 单元测试</li>
+<li>运行机制：utils 层不 import vue/echarts，只处理数据</li>
+<li>项目落点：<code>sliding-window.ts</code> 和 <code>chart-options.ts</code> 都是纯函数</li>
+<li>生产误区：composable 里混入纯逻辑，测试必须挂载组件</li>
+<li>验证方法：<code>sliding-window.spec.ts</code> 不需要 <code>@vue/test-utils</code></li>
+</ul>
+</li>
+<li>
+<p><strong>composable 复用模式</strong>：</p>
+<ul>
+<li>解决的问题：把可复用逻辑从组件抽出</li>
+<li>运行机制：函数返回 ref/reactive/function，组件调用后自动订阅</li>
+<li>项目落点：<code>useMetricChart(sourceData, config)</code></li>
+<li>生产误区：在 composable 里访问 DOM（应该在组件的 onMounted）</li>
+<li>验证方法：composable 可以在 setup 之外调用报错</li>
+</ul>
+</li>
+<li>
+<p><strong>lazyUpdate 合并渲染</strong>：</p>
+<ul>
+<li>解决的问题：连续多次 setOption 只渲染一次</li>
+<li>运行机制：<code>lazyUpdate: true</code> 在下一帧统一提交</li>
+<li>项目落点：<code>useMetricChart.ts</code> 的 <code>apply</code> 函数</li>
+<li>生产误区：不用 lazyUpdate 时，5 个图表同时更新会触发 5 次重绘</li>
+<li>验证方法：Performance 面板看 Paint 事件数量</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="6-三版对比">6. 三版对比</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1 单图 + 静态</th>
+<th>v2 4 图 + 响应式</th>
+<th>v3 滑窗 + 清理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>代码行数</strong></td>
+<td>~40 行</td>
+<td>~120 行</td>
+<td>~280 行（分层）</td>
+</tr>
+<tr>
+<td><strong>文件数</strong></td>
+<td>1 个 vue</td>
+<td>1 vue + 1 页面</td>
+<td>3 utils + 1 composable + 1 vue</td>
+</tr>
+<tr>
+<td><strong>数据来源</strong></td>
+<td>硬编码</td>
+<td>props</td>
+<td>props → shallowRef</td>
+</tr>
+<tr>
+<td><strong>响应式策略</strong></td>
+<td>无</td>
+<td>deep watch</td>
+<td>shallowRef + immediate</td>
+</tr>
+<tr>
+<td><strong>数据点上限</strong></td>
+<td>无</td>
+<td>无限累积</td>
+<td>60 点滑窗</td>
+</tr>
+<tr>
+<td><strong>实例清理</strong></td>
+<td>无</td>
+<td>无</td>
+<td>onUnmounted + dispose</td>
+</tr>
+<tr>
+<td><strong>动画</strong></td>
+<td>默认开</td>
+<td>默认开</td>
+<td>关闭（animation: false）</td>
+</tr>
+<tr>
+<td><strong>可测性</strong></td>
+<td>只能 e2e</td>
+<td>组件测试</td>
+<td>utils 纯函数直接测</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>Demo</td>
+<td>演示项目</td>
+<td>生产环境</td>
+</tr>
+</tbody>
+</table></div><p><strong>演进逻辑</strong>：v1 证明 ECharts 能用 → v2 抽象出复用组件 → v3 处理性能和内存。</p>
+<hr>
+<h3 id="65-前端底子补弱独立深挖-html-入口">6.5 前端底子补弱（独立深挖 HTML 入口）</h3>
+<p>完整的深挖内容见 <code>Day04深挖-Vue响应式与ECharts生命周期.html</code>，包含以下 8 个深挖主题：</p>
+<ol>
+<li><strong>深挖 1</strong>：Vue 响应式原理 —— 从今天项目里的 <code>ref</code> vs <code>shallowRef</code> 讲起</li>
+<li><strong>深挖 2</strong>：Proxy 深度代理 —— 从今天项目里的 5000 点性能实验讲起</li>
+<li><strong>深挖 3</strong>：ECharts 实例生命周期 —— 从今天项目里的 <code>echarts.init</code> 和 <code>dispose</code> 讲起</li>
+<li><strong>深挖 4</strong>：滑动窗口算法 —— 从今天项目里的 <code>slideWindow</code> 讲起</li>
+<li><strong>深挖 5</strong>：composable 分层 —— 从今天项目里的 <code>useMetricChart</code> 讲起</li>
+<li><strong>深挖 6</strong>：纯函数 utils 与可测性 —— 从今天项目里的 <code>sliding-window.ts</code> 讲起</li>
+<li><strong>深挖 7</strong>：Canvas 渲染性能 —— 从今天项目里的 <code>animation: false</code> 讲起</li>
+<li><strong>深挖 8</strong>：内存泄漏定位方法 —— 从今天项目里的 <code>Detached DOM</code> 实验讲起</li>
+</ol>
+<hr>
+<h2 id="7-动手环节">7. 动手环节</h2>
+<h3 id="76-编写测试必写20-分钟">7.6 编写测试（必写，20 分钟）</h3>
+<p><strong>src/features/charts/utils/sliding-window.spec.ts</strong></p>
+<pre><code class="language-ts">import { describe, it, expect } from 'vitest'
+import { slideWindow, slideWindowBatch } from './sliding-window'
+
+describe('slideWindow', () =&gt; {
+  it('数组未满时追加新元素', () =&gt; {
+    expect(slideWindow([1, 2], 3, 5)).toEqual([1, 2, 3])
+  })
+
+  it('数组已满时移除最旧元素', () =&gt; {
+    expect(slideWindow([1, 2, 3], 4, 3)).toEqual([2, 3, 4])
+  })
+
+  it('不修改原数组', () =&gt; {
+    const arr = [1, 2, 3]
+    slideWindow(arr, 4, 3)
+    expect(arr).toEqual([1, 2, 3])
+  })
+})
+
+describe('slideWindowBatch', () =&gt; {
+  it('数组超过窗口时截取末尾 N 个', () =&gt; {
+    expect(slideWindowBatch([1, 2, 3, 4, 5], 3)).toEqual([3, 4, 5])
+  })
+
+  it('数组未满时返回副本', () =&gt; {
+    const input = [1, 2]
+    const result = slideWindowBatch(input, 5)
+    expect(result).toEqual([1, 2])
+    expect(result).not.toBe(input) // 不同引用
+  })
+})
+</code></pre>
+<p><strong>src/features/charts/utils/chart-options.spec.ts</strong></p>
+<pre><code class="language-ts">import { describe, it, expect } from 'vitest'
+import { buildChartOption } from './chart-options'
+
+describe('buildChartOption', () =&gt; {
+  it('返回的 option 包含 title/xAxis/yAxis/series', () =&gt; {
+    const option = buildChartOption(
+      { title: 'CPU', unit: '%', max: 100 },
+      [{ timestamp: '10:00', value: 50 }],
+    )
+    expect(option.title).toBeDefined()
+    expect(option.xAxis).toBeDefined()
+    expect(option.yAxis).toBeDefined()
+    expect(option.series).toHaveLength(1)
+  })
+
+  it('animation 关闭', () =&gt; {
+    const option = buildChartOption(
+      { title: 't', unit: '%', max: 100 },
+      [],
+    )
+    expect(option.animation).toBe(false)
+  })
+
+  it('xAxis 和 series 长度匹配', () =&gt; {
+    const data = [
+      { timestamp: '10:00', value: 1 },
+      { timestamp: '10:05', value: 2 },
+    ]
+    const option = buildChartOption({ title: 't', unit: '%', max: 100 }, data)
+    const xData = (option.xAxis as any).data
+    const seriesData = (option.series as any[])[0].data
+    expect(xData.length).toBe(seriesData.length)
+  })
+})
+</code></pre>
+<h3 id="77-f-1反证实验-15-分钟">7.7 F-1：反证实验 1（5 分钟）</h3>
+<p><strong>目标</strong>：证明 v2 的深度响应式代理开销（大数组 + ref 会导致性能骤降）</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>在 v2 的 <code>MetricChart.vue</code> 里，把 <code>props.data</code> 手动扩展到 5000 个点：</li>
+</ol>
+<pre><code class="language-typescript">const mockData = Array.from({ length: 5000 }, (_, i) =&gt; ({
+  timestamp: `10:${String(i % 60).padStart(2, '0')}`,
+  value: Math.random() * 100,
+}))
+</code></pre>
+<ol start="2">
+<li>
+<p>打开 Chrome DevTools Performance 面板，点击 Record，等待 5 秒，点击 Stop</p>
+</li>
+<li>
+<p>观察 <code>Scripting</code> 耗时占比和 top 函数</p>
+</li>
+</ol>
+<p><strong>预期结果</strong>：</p>
+<ul>
+<li>Scripting 占比 &gt; 60%</li>
+<li><code>_traverse</code>（Vue 深度追踪）出现在 top 函数</li>
+<li>页面卡顿明显</li>
+</ul>
+<p><strong>修正</strong>：把 <code>ref(props.data)</code> 改为 <code>shallowRef(props.data)</code>，再录制一次</p>
+<p><strong>预期修正后</strong>：Scripting 占比降到 20% 以下，页面流畅</p>
+<p><strong>恢复代码</strong>：把测试数据改回真实 API 数据。</p>
+<h3 id="78-f-2反证实验-25-分钟">7.8 F-2：反证实验 2（5 分钟）</h3>
+<p><strong>目标</strong>：证明 <code>onUnmounted</code> 里不 <code>dispose</code> 会导致内存泄漏</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>
+<p>注释掉 <code>MetricChart.vue</code> 的 <code>onUnmounted</code> 里的 <code>chart.dispose()</code></p>
+</li>
+<li>
+<p>在 <code>ServerDetailPage.vue</code> 里加一个"隐藏图表"按钮（用 <code>v-if</code> 控制）</p>
+</li>
+<li>
+<p>打开 Chrome DevTools Memory 面板，拍第一次 Heap Snapshot</p>
+</li>
+<li>
+<p>点击"隐藏图表"和"显示图表"各 10 次（共切换 20 次）</p>
+</li>
+<li>
+<p>点击垃圾桶图标强制 GC（Collect garbage）</p>
+</li>
+<li>
+<p>拍第二次 Heap Snapshot，对比两次</p>
+</li>
+</ol>
+<p><strong>预期结果（不 dispose）</strong>：</p>
+<ul>
+<li>Comparison 视图里 <code>Detached HTMLDivElement</code> 增加 20+ 个</li>
+<li>说明 DOM 节点已从文档移除，但仍在内存中</li>
+</ul>
+<p><strong>修正</strong>：取消注释 <code>chart.dispose()</code>，再重复实验</p>
+<p><strong>预期修正后</strong>：Detached DOM 增量 = 0</p>
+<p><strong>恢复代码</strong>：把测试按钮删除，恢复 <code>onUnmounted</code> 代码。</p>
+<h3 id="79-f-3验证-提交10-分钟">7.9 F-3：验证 + 提交（10 分钟）</h3>
+<p><strong>运行四件套</strong>：</p>
+<pre><code class="language-bash">pnpm typecheck &amp;&amp; pnpm lint &amp;&amp; pnpm test &amp;&amp; pnpm build
+</code></pre>
+<p><strong>自检清单</strong>：</p>
+<ul>
+<li>[ ] <code>pnpm typecheck</code> 通过</li>
+<li>[ ] <code>pnpm lint</code> 通过</li>
+<li>[ ] <code>pnpm test</code> 通过（至少 5 个测试用例）</li>
+<li>[ ] <code>pnpm build</code> 通过</li>
+<li>[ ] 页面显示 4 个图表，数据来自 API</li>
+<li>[ ] 切换服务器后旧数据被替换，不叠加</li>
+<li>[ ] 运行 5 分钟后数据点不超过 60 个</li>
+<li>[ ] Chrome Memory 面板：切页 20 次后 Detached DOM 不增长</li>
+</ul>
+<p><strong>提交 commit</strong>：</p>
+<pre><code class="language-bash">git add src/features/charts/ src/app/pages/ServerDetailPage.vue
+git commit -m "feat(charts): add MetricChart with sliding window and lifecycle cleanup
+
+Refs: Day4"
+</code></pre>
+<p><strong>注意</strong>：不要执行 <code>git push</code>，等 Day 5 前手动推。</p>
+<hr>
+<h2 id="8-通过标准v3-自检清单">8. 通过标准（v3 自检清单）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>编号</th>
+<th>检查项</th>
+<th>通过标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>目录结构</td>
+<td><code>features/charts/</code> 下有 components/composables/utils 三层</td>
+</tr>
+<tr>
+<td>2</td>
+<td>utils 层纯函数</td>
+<td><code>sliding-window.ts</code> 和 <code>chart-options.ts</code> 不 import vue</td>
+</tr>
+<tr>
+<td>3</td>
+<td>滑窗算法</td>
+<td>数据超过 60 点时自动裁剪</td>
+</tr>
+<tr>
+<td>4</td>
+<td>shallowRef 使用</td>
+<td><code>useMetricChart.ts</code> 用 <code>shallowRef</code> 而非 <code>ref</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>生命周期清理</td>
+<td><code>onUnmounted</code> 里调用 <code>chart.dispose()</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>性能配置</td>
+<td><code>animation: false</code>、<code>symbol: 'none'</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>单元测试</td>
+<td>utils 层测试覆盖率 &gt; 80%</td>
+</tr>
+<tr>
+<td>8</td>
+<td>反证实验记录</td>
+<td>README 里有性能对比数据</td>
+</tr>
+<tr>
+<td>9</td>
+<td>类型检查</td>
+<td><code>pnpm typecheck</code> 无 error</td>
+</tr>
+<tr>
+<td>10</td>
+<td>构建通过</td>
+<td><code>pnpm build</code> 无 error</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="9-提交物">9. 提交物</h2>
+<ol>
+<li><strong>代码</strong>：<code>git diff HEAD~1</code> 输出（约 600 行）</li>
+<li><strong>测试截图</strong>：<code>pnpm test</code> 的终端输出（至少 5 个测试用例全绿）</li>
+<li><strong>反证实验记录</strong>：两个反证实验的操作步骤 + Chrome DevTools 截图（Performance 和 Memory 面板）</li>
+<li><strong>学习日志</strong>：回答 §10 的 3 个核心问题</li>
+<li><strong>架构证据</strong>：用 <code>madge</code> 或手绘依赖图，证明 <code>features/charts/utils/*.ts</code> 不依赖 Vue</li>
+</ol>
+<hr>
+<h2 id="10-课末-3-个核心问题">10. 课末 3 个核心问题</h2>
+<ol>
+<li>
+<p><strong>请从今天项目的真实入口到最终输出，解释"Vue 响应式与 ECharts 生命周期"的数据流或控制流；当天知识链"shallowRef、滑窗算法、dispose、性能配置、composable 分层"分别在哪一层起作用，为什么按这个顺序学习？</strong></p>
+<p>参考答案框架：</p>
+<ul>
+<li>入口：<code>ServerDetailPage.vue</code> 的 4 个 <code>&lt;MetricChart&gt;</code> 实例</li>
+<li>流向：props.data → <code>useMetricChart</code> → <code>slideWindowBatch</code> → <code>buildChartOption</code> → <code>chart.setOption</code></li>
+<li>shallowRef：在 composable 层避免深层代理</li>
+<li>滑窗算法：在 utils 层限制数据点数量</li>
+<li>dispose：在组件层 <code>onUnmounted</code> 释放实例</li>
+<li>性能配置：在 utils 层 <code>buildChartOption</code> 关闭动画</li>
+<li>composable 分层：把可复用逻辑从组件抽出</li>
+</ul>
+</li>
+<li>
+<p><strong>如果故意移除今天最关键的保护机制，线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</strong></p>
+<p>参考答案框架：</p>
+<ul>
+<li>移除机制：删除 <code>onUnmounted</code> 里的 <code>chart.dispose()</code></li>
+<li>可观察现象：切换页面 20 次后，Chrome Memory 面板显示 Detached DOM 持续增长，最终浏览器崩溃</li>
+<li>最小复现：用 <code>v-if</code> 切换图表组件 20 次，拍 Heap Snapshot 对比</li>
+<li>定位证据：Memory 面板 Comparison 视图里 <code>Detached HTMLDivElement</code> 数量</li>
+<li>恢复动作：加回 <code>chart.dispose()</code> + 强制 GC</li>
+<li>防复发测试：<code>MetricChart.spec.ts</code> 的 <code>should dispose chart on unmount</code> 测试（检查 <code>dispose</code> 被调用）</li>
+</ul>
+</li>
+<li>
+<p><strong>请引用今天的具体代码、测试和架构证据，证明项目目标已经达到；再说明当前实现距离企业生产标准还缺什么，下一步如何演进而不破坏已有合同。</strong></p>
+<p>参考答案框架：</p>
+<ul>
+<li>代码证据：<code>useMetricChart.ts</code> 第 12 行的 <code>shallowRef</code>，<code>sliding-window.ts</code> 第 17 行的 <code>slice</code> 返回新数组，<code>MetricChart.vue</code> 第 42 行的 <code>chart.dispose()</code></li>
+<li>测试证据：<code>sliding-window.spec.ts</code> 第 10-15 行的滑窗测试，<code>chart-options.spec.ts</code> 第 8-12 行的配置测试</li>
+<li>架构证据：<code>sliding-window.ts</code> 和 <code>chart-options.ts</code> 没有 <code>import { ref }</code></li>
+<li>缺少功能：实时更新（目前是静态数据，Day 5 会加 WebSocket）、图表交互（缩放、框选、tooltip）</li>
+<li>下一步演进：Day 5 把数据源从 props 改为 WebSocket 订阅，<code>useMetricChart</code> 的 <code>apply</code> 函数不变</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="11-真实项目情境题联网更新-2026-07-16">11. 真实项目情境题（联网更新 2026-07-16）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<h3 id="情境题-1大数组响应式代理导致页面卡顿">情境题 1：大数组响应式代理导致页面卡顿</h3>
+<p><strong>背景</strong>：
+监控系统显示 8 小时历史数据（每 5 秒一个点，共 5760 点），用户反馈页面卡顿严重。</p>
+<p><strong>任务</strong>：
+请用 Performance 时间线、Vue DevTools 响应式追踪和内存快照证明深度代理开销；先按降低数据密度止损，再用 <code>shallowRef</code> 与滑窗算法修复，并连续运行 24 小时验证无卡顿。</p>
+<p><strong>回答框架（定位证据 → 临时止损 → 根因修复 → 回归验证）</strong>：</p>
+<ol>
+<li>
+<p><strong>定位证据</strong>：</p>
+<ul>
+<li>Chrome DevTools Performance 面板录制 10 秒，观察 <code>Scripting</code> 占比</li>
+<li>在 top 函数里看到 <code>_traverse</code>（Vue 深度追踪）耗时高</li>
+<li>Vue DevTools 显示 <code>props.data</code> 是 5760 个 Proxy 对象</li>
+</ul>
+</li>
+<li>
+<p><strong>临时止损</strong>：</p>
+<ul>
+<li>降低数据密度：每 30 秒一个点，减少到 960 个点</li>
+<li>缺点：用户看不到详细趋势</li>
+</ul>
+</li>
+<li>
+<p><strong>根因修复</strong>：</p>
+<ul>
+<li>用 <code>shallowRef</code> 替换 <code>ref</code>：只代理数组引用，不深度代理元素</li>
+<li>加滑窗算法：只保留最近 60 点，旧数据丢弃</li>
+<li>见 §5.3 v3 代码</li>
+</ul>
+</li>
+<li>
+<p><strong>回归验证</strong>：</p>
+<ul>
+<li>Performance 面板：Scripting 占比从 60% 降到 20%</li>
+<li>连续运行 24 小时，内存稳定在 200MB 以下</li>
+<li>写测试：<code>sliding-window.spec.ts</code> 验证滑窗逻辑</li>
+</ul>
+</li>
+</ol>
+<p><strong>依据</strong>：<a href="https://vuejs.org/api/reactivity-advanced.html#shallowref" target="_blank" rel="noopener noreferrer">Vue 3 shallowRef 文档</a></p>
+<h3 id="情境题-2切换页面后内存持续增长">情境题 2：切换页面后内存持续增长</h3>
+<p><strong>背景</strong>：
+用户在服务器列表和详情页之间频繁切换，运行 2 小时后浏览器崩溃；Memory 面板显示 Detached DOM 节点持续增长。</p>
+<p><strong>任务</strong>：
+请提供 Heap Snapshot 对比、Detached DOM 数量和 ECharts 实例引用证据；先按降低切换频率止损，再设计生命周期清理和实例池复用，并用内存快照验证无泄漏。</p>
+<p><strong>回答框架（定位证据 → 临时止损 → 根因修复 → 回归验证）</strong>：</p>
+<ol>
+<li>
+<p><strong>定位证据</strong>：</p>
+<ul>
+<li>Memory 面板拍两次 Heap Snapshot（切换前后）</li>
+<li>Comparison 视图显示 <code>Detached HTMLDivElement</code> 增加 20+ 个</li>
+<li>搜索 <code>ECharts</code>，发现实例仍在内存中但 DOM 已移除</li>
+</ul>
+</li>
+<li>
+<p><strong>临时止损</strong>：</p>
+<ul>
+<li>禁用频繁切换：加 <code>debounce(navigate, 500)</code></li>
+<li>缺点：用户体验差，点击无响应</li>
+</ul>
+</li>
+<li>
+<p><strong>根因修复</strong>：</p>
+<ul>
+<li>在 <code>onUnmounted</code> 里调用 <code>chart.dispose()</code></li>
+<li>见 §5.3 v3 代码的 <code>MetricChart.vue</code> 第 42 行</li>
+</ul>
+</li>
+<li>
+<p><strong>回归验证</strong>：</p>
+<ul>
+<li>切换 100 次，拍 Heap Snapshot 对比，Detached DOM 增量 = 0</li>
+<li>写测试：用 <code>vitest</code> mock <code>echarts.init</code>，验证 <code>dispose</code> 被调用</li>
+</ul>
+</li>
+</ol>
+<p><strong>依据</strong>：<a href="https://campus-talent.alibaba.com/campus/position/199904460001" target="_blank" rel="noopener noreferrer">阿里 AI 前端岗位</a></p>
+<h3 id="情境题-3图表动画导致-cpu-占用过高">情境题 3：图表动画导致 CPU 占用过高</h3>
+<p><strong>背景</strong>：
+4 个图表每 5 秒更新一次，用户反馈 CPU 占用 30%+，笔记本风扇狂转。</p>
+<p><strong>任务</strong>：
+请提供 Performance Profiler、Rendering 面板帧率和 Canvas 重绘次数证据；先按延长轮询间隔止损，再设计性能配置与增量更新，并用 CPU 占用率验证优化效果。</p>
+<p><strong>回答框架（定位证据 → 临时止损 → 根因修复 → 回归验证）</strong>：</p>
+<ol>
+<li>
+<p><strong>定位证据</strong>：</p>
+<ul>
+<li>Performance 面板录制 30 秒，看 <code>Rendering</code> 和 <code>Scripting</code> 占比</li>
+<li>Rendering 面板勾选"Paint flashing"，看 Canvas 每次全部重绘</li>
+<li>ECharts 默认开了动画 + 曲线平滑 + 数据点标记</li>
+</ul>
+</li>
+<li>
+<p><strong>临时止损</strong>：</p>
+<ul>
+<li>延长轮询间隔：从 5 秒改为 30 秒</li>
+<li>缺点：数据不够实时</li>
+</ul>
+</li>
+<li>
+<p><strong>根因修复</strong>：</p>
+<ul>
+<li>关闭动画：<code>animation: false</code></li>
+<li>关闭数据点标记：<code>symbol: 'none'</code></li>
+<li>关闭曲线平滑：<code>smooth: false</code></li>
+<li>见 §5.3 v3 代码的 <code>chart-options.ts</code></li>
+</ul>
+</li>
+<li>
+<p><strong>回归验证</strong>：</p>
+<ul>
+<li>Performance 面板：Rendering 占比从 40% 降到 10%</li>
+<li>任务管理器：CPU 占用从 30% 降到 5%</li>
+<li>用户反馈：风扇不转了</li>
+</ul>
+</li>
+</ol>
+<p><strong>依据</strong>：<a href="https://echarts.apache.org/handbook/zh/best-practices/canvas-vs-svg/" target="_blank" rel="noopener noreferrer">ECharts 性能优化文档</a></p>
+<p><strong>知识映射</strong>：Vue 响应式深度、滑窗算法、ECharts dispose 生命周期、Canvas 渲染性能、composable 分层。</p>
+<hr>
+<h2 id="12-pdf-面试题精选">12. PDF 面试题精选</h2>
+<blockquote>
+<p><strong>说明</strong>：以下题目来自 PDF 资源文件，文件名用于教学分类，不等于官方题库或真实面试题来源。题目构造用于教学练习。</p>
+</blockquote>
+<p><strong>题 1（vue.pdf）</strong>：Vue 2 和 Vue 3 的响应式原理有什么区别？shallowRef 是 Vue 3 特有的吗？</p>
+<p><strong>思路</strong>：</p>
+<ul>
+<li>Vue 2 用 <code>Object.defineProperty</code> 递归定义 getter/setter，缺点是不能监听数组下标变化、新增属性</li>
+<li>Vue 3 用 <code>Proxy</code> 拦截 get/set，能监听所有属性变化</li>
+<li><code>shallowRef</code> 是 Vue 3 特有 API，Vue 2 里可以用 <code>Object.freeze</code> 达到类似效果</li>
+</ul>
+<p><strong>题 2（vue.pdf）</strong>：长列表渲染性能优化有哪些手段？</p>
+<p><strong>思路</strong>：</p>
+<ul>
+<li>使用 <code>v-memo</code> 缓存不变的部分</li>
+<li>使用 <code>shallowRef</code> 避免深层代理</li>
+<li>使用虚拟滚动（vue-virtual-scroller）</li>
+<li>使用 <code>Object.freeze</code> 冻结不变数据</li>
+<li>分页加载</li>
+</ul>
+<p><strong>题 3（frontend-performance.pdf）</strong>：ECharts 或类似图表库在高频更新场景下有哪些性能陷阱？</p>
+<p><strong>思路</strong>：</p>
+<ul>
+<li>动画开销：<code>animation: false</code></li>
+<li>数据标记：<code>symbol: 'none'</code></li>
+<li>曲线平滑：<code>smooth: false</code></li>
+<li>全量重建 vs 增量更新</li>
+<li>Canvas 尺寸变化的 resize 开销</li>
+</ul>
+<hr>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"现场提出 5 道问题。</p>
+<p>五连问不预先固定，也不由下面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<p><strong>示例问题方向</strong>（实际问题会根据学生的 diff 调整）：</p>
+<ol>
+<li><strong>演示验收</strong>：请演示你的 <code>sliding-window.spec.ts</code> 和 <code>chart-options.spec.ts</code> 测试全部通过的截图，并在浏览器里运行 5 分钟，看数据点数量是否稳定在 60 以内。</li>
+<li><strong>核心挑战</strong>：Day04 最难的部分是什么？你卡在哪里最久？</li>
+<li><strong>对比思考</strong>：v1/v2/v3 三版你觉得哪一版最关键？为什么？</li>
+<li><strong>项目对手戏</strong>：假设 Day 5 挂 WebSocket 实时推送时也要用滑窗（每秒收到 10 个数据点），你会复用今天的哪部分逻辑？</li>
+<li><strong>知识盲区</strong>：<code>shallowRef</code> 修改内部属性不会触发更新，那如何正确触发更新？能举个代码例子吗？</li>
+</ol>
+<hr>
+<h2 id="14-本-day-在-90-天路线中的锚点">14. 本 Day 在 90 天路线中的锚点</h2>
+<p><strong>向前承接</strong>：</p>
+<ul>
+<li>Day 1：建立了 AgentEvent 事件流和 reducer 状态机</li>
+<li>Day 2：为事件类型加上了 zod schema 和 DTO/Domain 分层</li>
+<li>Day 3：实现了并发读取指标 + AbortController 取消保护</li>
+</ul>
+<p><strong>向后传递</strong>：</p>
+<ul>
+<li>Day 5：把今天的静态图表升级为 WebSocket 实时推送更新（<code>slideWindow</code> 函数会被复用）</li>
+<li>Day 6：在 WebSocket 层加心跳/重连/去重，图表需要处理断线重连后的数据恢复</li>
+<li>Day 7：加异常检测算法，在图表上标注异常点（用 ECharts 的 <code>markPoint</code> API）</li>
+<li>Day 15：历史数据恢复场景，需要一次性加载 1000+ 点然后滑窗到 60 点</li>
+</ul>
+<p><strong>复用点</strong>：</p>
+<ul>
+<li><code>slideWindow</code> 函数会在 Day 5 的 WebSocket 场景复用（每收到一个新数据点，调用 <code>slideWindow(current, newPoint, 60)</code>）</li>
+<li><code>useMetricChart</code> composable 的 <code>apply</code> 函数会在 Day 5-30 的所有图表场景复用</li>
+<li><code>chart.dispose()</code> 的生命周期清理模式会在 Day 6 的 WebSocket <code>close</code> 场景复用</li>
+<li><code>shallowRef</code> 的性能优化模式会在 Day 15 的历史恢复场景复用（1000+ 点数据）</li>
+</ul>
+<p><strong>螺旋上升</strong>：</p>
+<ul>
+<li>Day 4 在静态数据场景练习 Vue 响应式性能优化</li>
+<li>Day 5 在实时推送场景应用滑窗算法</li>
+<li>Day 15 在历史恢复场景扩展滑窗算法（多个时间段并发加载 + 分段滑窗）</li>
+</ul>
+<hr>
+<p><strong>完成 Day 4 后，你已经掌握</strong>：</p>
+<ul>
+<li>✅ Vue 3 响应式性能优化（<code>shallowRef</code> vs <code>ref</code>）</li>
+<li>✅ 滑动窗口算法（保留最近 N 点）</li>
+<li>✅ ECharts 生命周期管理（<code>init</code> / <code>setOption</code> / <code>dispose</code>）</li>
+<li>✅ Canvas 渲染性能配置（<code>animation: false</code> 等）</li>
+<li>✅ composable 分层与纯函数 utils 可测性</li>
+<li>✅ Chrome DevTools Performance 和 Memory 面板定位性能问题</li>
+</ul>
+<p><strong>下一步 Day 5</strong>：把今天的 5 秒轮询升级为 WebSocket 实时推送，处理断线重连和消息去重问题。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day04-old.html">查看 Day 04 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/03.html">← Day 03 · 异步与竞态</a>
+            <a href="/ai-teacher-agent-devolop/day/05.html">Day 05 · WebSocket 全栈 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F90-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">2. 学习节奏（90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E6%9C%80%E5%B0%8F%E9%97%AD%E7%8E%AF%E5%8D%95%E4%B8%AA%E5%9B%BE%E8%A1%A8%E8%83%BD%E6%B8%B2%E6%9F%93">3. v1：最小闭环（单个图表能渲染）</a></li><li><a href="#4-v2%E5%8A%A0%E4%B8%80%E5%B1%82%E5%93%8D%E5%BA%94%E5%BC%8F%E6%95%B0%E6%8D%AE-4-%E4%B8%AA%E5%9B%BE%E8%A1%A8">4. v2：加一层（响应式数据 + 4 个图表）</a></li><li><a href="#5-v3%E7%94%9F%E4%BA%A7%E5%B0%B1%E7%BB%AA60-%E7%82%B9%E6%BB%91%E7%AA%97-shallowref-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%B8%85%E7%90%86">5. v3：生产就绪（60 点滑窗 + shallowRef + 生命周期清理）</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94">6. 三版对比</a></li><li><a href="#7-%E5%8A%A8%E6%89%8B%E7%8E%AF%E8%8A%82">7. 动手环节</a></li><li><a href="#8-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86v3-%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95">8. 通过标准（v3 自检清单）</a></li><li><a href="#9-%E6%8F%90%E4%BA%A4%E7%89%A9">9. 提交物</a></li><li><a href="#10-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">10. 课末 3 个核心问题</a></li><li><a href="#11-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-16">11. 真实项目情境题（联网更新 2026-07-16）</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98%E7%B2%BE%E9%80%89">12. PDF 面试题精选</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">14. 本 Day 在 90 天路线中的锚点</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

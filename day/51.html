@@ -1,0 +1,1098 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 51 · Day 51 - RAG Eval（检索评测体系 + 自动化回归阻断） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html" aria-current="page">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/08.html">第 8 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 51</p>
+        <h1>Day 51 - RAG Eval（检索评测体系 + 自动化回归阻断）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节为本 Day 的权威执行口径）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段二（Day 31-60，AI 前端 -&gt; AI 全栈）。本日继续在 <code>p1-monitor</code> 真实链路中累积，不创建平行 Demo。</li>
+<li><strong>功能交付</strong>：必须交付一个能跑、能测、能从真实用户入口观察结果的完整模块，知识点由该模块自然引出。</li>
+<li><strong>三版演进</strong>：本日以项目门禁/评测为主：v1 是当前基线与最小可运行链路；v2 是加入一个关键质量维度后的可测版本；v3 是加入失败可见、回归阻断和架构证据后的生产终态。三版必须分别产生可观察差异，不能只保留考核题目。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（90 分钟阅读），D 60 分钟、E 20 分钟、F 10 分钟（90 分钟动手）。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；复用已有 Schema、RAG、租户、评测、Docker 或 Trace 合同，禁止另建第二套接口。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 动态教师五连问；任何“完整执行版/执行版补全要求”只可作为背景，不能替代本日交付。</li>
+<li><strong>跨 Day 导航</strong>：Day52 LLM Eval，Day53 LangChain 适用边界，Day54 多租户权限。</li>
+</ul>
+</blockquote>
+<p><strong>日期与时长</strong>：2026-09-02 周三，180 分钟（90 分钟阅读 + 90 分钟动手）
+<strong>项目</strong>：<code>D:\demo\ai-techer\p1-monitor</code><br>
+<strong>阶段任务性质</strong>：建立自动化 RAG 评测体系</p>
+<hr>
+<h2 id="0-day-51-在-90-天路线图里的位置">§0 Day 51 在 90 天路线图里的位置</h2>
+<h3 id="01-前情提要day-01-50-已建立的能力">0.1 前情提要（Day 01-50 已建立的能力）</h3>
+<p>Day 01-50 建立了完整的 RAG 全链路：</p>
+<ul>
+<li><strong>Day 41-45</strong>：文档摄取 + 分块 + 向量化</li>
+<li><strong>Day 46-48</strong>：检索策略（BM25 + 向量 + 混合检索）</li>
+<li><strong>Day 49</strong>：引用闭环（Citation）</li>
+<li><strong>Day 50</strong>：五十日门禁（现场 Bug 定位）</li>
+</ul>
+<h3 id="02-今天的核心任务">0.2 今天的核心任务</h3>
+<p>Day 51 建立<strong>自动化 RAG 评测体系</strong>，解决"检索质量如何量化"和"如何防止回归"两个核心问题：</p>
+<ol>
+<li><strong>检索评测指标</strong>：Precision@k、Recall@k、MRR</li>
+<li><strong>引用正确率</strong>：生成的答案是否引用了正确的 chunk</li>
+<li><strong>答案忠实度</strong>：生成的答案是否忠实于检索结果（无幻觉）</li>
+<li><strong>切片评测</strong>：按场景（精确错误码 vs 原理解释）分别评测</li>
+<li><strong>回归阻断</strong>：评测指标低于基线时阻断发布</li>
+</ol>
+<h3 id="03-今天要解决的-5-个问题">0.3 今天要解决的 5 个问题</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>问题</th>
+<th>现象</th>
+<th>根因</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 检索质量未量化</td>
+<td>不知道检索好坏</td>
+<td>没有评测指标</td>
+<td>Precision@k、Recall@k、MRR</td>
+</tr>
+<tr>
+<td>2. 改进无法验证</td>
+<td>chunk size 改为 1000 后不知道是否变好</td>
+<td>没有基线对比</td>
+<td>建立基线 + 对比报告</td>
+</tr>
+<tr>
+<td>3. 回归未阻断</td>
+<td>chunk size 改为 1000 后"精确错误码"Recall 从 78% 降至 31%</td>
+<td>没有 CI 检查</td>
+<td>评测低于基线时 exit 1</td>
+</tr>
+<tr>
+<td>4. 切片评测缺失</td>
+<td>总体 Recall 提升但某场景下降</td>
+<td>没有分场景评测</td>
+<td>按 query_type 分片</td>
+</tr>
+<tr>
+<td>5. 结果不可复现</td>
+<td>同一数据集三次 MRR 分别 0.62、0.74、0.65</td>
+<td>随机因素未固定</td>
+<td>固定数据版本 + 随机种子</td>
+</tr>
+</tbody>
+</table></div><h3 id="04-今天的前置依赖">0.4 今天的前置依赖</h3>
+<ul>
+<li><strong>Day 48</strong>：混合检索（Hybrid Search）</li>
+<li><strong>Day 49</strong>：引用闭环（Citation）</li>
+<li><strong>Day 50</strong>：检索评测基础（Recall 计算）</li>
+</ul>
+<h3 id="05-今天留给下一站的伏笔">0.5 今天留给下一站的伏笔</h3>
+<ul>
+<li><strong>Day 52-55</strong>：成本优化（Embedding 缓存、Rerank 选择性调用）</li>
+<li><strong>Day 56-60</strong>：在线评测（A/B Test、实时监控）</li>
+</ul>
+<hr>
+<h2 id="1-今天建立的完整能力">§1 今天建立的完整能力</h2>
+<h3 id="11-用户能看到什么5-个场景">§1.1 用户能看到什么（5 个场景）</h3>
+<h4 id="场景-1开发者运行评测命令">场景 1：开发者运行评测命令</h4>
+<p><strong>操作</strong>：</p>
+<pre><code class="language-bash">npm run eval:rag
+</code></pre>
+<p><strong>输出</strong>：</p>
+<pre><code>========== RAG Evaluation Report ==========
+Date: 2026-09-02 14:30:00
+Dataset: eval_set_v3.json (50 queries)
+
+Overall Metrics:
+  Precision@5: 0.82
+  Recall@5:    0.76
+  MRR:         0.68
+  Citation Accuracy: 0.91
+  Faithfulness:      0.88
+
+Slice Metrics:
+  [精确错误码] (20 queries)
+    Recall@5: 0.78
+  [原理解释] (30 queries)
+    Recall@5: 0.75
+
+Baseline Comparison:
+  Recall@5: 0.76 (baseline: 0.70) ✅ +0.06
+  MRR:      0.68 (baseline: 0.65) ✅ +0.03
+
+Result: PASS ✅
+</code></pre>
+<h4 id="场景-2ci-检测到回归">场景 2：CI 检测到回归</h4>
+<p><strong>操作</strong>：开发者修改 chunk size 从 500 改为 1000，提交 PR。</p>
+<p><strong>CI 输出</strong>：</p>
+<pre><code>❌ RAG Eval Failed
+
+[精确错误码] Recall@5 dropped from 0.78 to 0.31 (-47%)
+Threshold: -10% (max allowed drop)
+
+Blocking merge. Please investigate.
+</code></pre>
+<h4 id="场景-3开发者查看分片报告">场景 3：开发者查看分片报告</h4>
+<p><strong>操作</strong>：</p>
+<pre><code class="language-bash">npm run eval:rag -- --slice-by query_type
+</code></pre>
+<p><strong>输出</strong>：</p>
+<pre><code>Slice: 精确错误码 (20 queries)
+  Recall@5: 0.78
+  Top failed queries:
+    - "Nginx 502 error code" (Recall: 0.2)
+    - "MySQL 1064 syntax error" (Recall: 0.4)
+
+Slice: 原理解释 (30 queries)
+  Recall@5: 0.75
+</code></pre>
+<h4 id="场景-4开发者对比基线">场景 4：开发者对比基线</h4>
+<p><strong>操作</strong>：</p>
+<pre><code class="language-bash">npm run eval:rag -- --compare-baseline baseline_v2.json
+</code></pre>
+<p><strong>输出</strong>：</p>
+<pre><code>Comparison with baseline_v2.json:
+  Recall@5: 0.76 → 0.72 (-0.04) ❌
+  MRR:      0.68 → 0.71 (+0.03) ✅
+</code></pre>
+<h4 id="场景-5开发者冻结数据版本">场景 5：开发者冻结数据版本</h4>
+<p><strong>操作</strong>：</p>
+<pre><code class="language-bash">npm run eval:rag -- --freeze-dataset eval_set_v3.json
+</code></pre>
+<p><strong>输出</strong>：</p>
+<pre><code>Dataset frozen: eval_set_v3.json
+SHA256: a7f8d9e...
+Same dataset will be used in future runs.
+</code></pre>
+<h3 id="12-各模块职责分工">§1.2 各模块职责分工</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                         评测命令（CLI）                            │
+│  - npm run eval:rag                                              │
+│  - 读取标注数据集 + 执行评测 + 生成报告                            │
+└─────────────────────────────────────────────────────────────────┘
+                                  ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                         评测引擎（Evaluator）                      │
+│  - 计算 Precision@k、Recall@k、MRR                                │
+│  - 切片评测（按 query_type 分片）                                  │
+│  - 基线对比（与历史基线比较）                                       │
+└─────────────────────────────────────────────────────────────────┘
+                                  ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                         标注数据集（Annotations）                  │
+│  - eval_set_v3.json：50 条查询 + 相关 chunk                       │
+│  - 数据版本管理（SHA256 哈希）                                     │
+└─────────────────────────────────────────────────────────────────┘
+                                  ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                         RAG 服务（FastAPI）                        │
+│  - 执行检索（Day 48 混合检索）                                     │
+│  - 执行生成（Day 49 引用闭环）                                     │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="13-三版演进">§1.3 三版演进</h3>
+<h4 id="v1手动评测day-50-基线">v1：手动评测（Day 50 基线）</h4>
+<ul>
+<li>人工跑 20 条查询，手动计算 Recall</li>
+<li>问题：不可复现、无基线、无 CI 阻断</li>
+</ul>
+<h4 id="v2自动化评测今天">v2：自动化评测（今天）</h4>
+<ul>
+<li>自动计算 Precision@k、Recall@k、MRR</li>
+<li>切片评测（按 query_type）</li>
+<li>基线对比 + CI 阻断</li>
+</ul>
+<h4 id="v3在线评测day-56-60">v3：在线评测（Day 56-60）</h4>
+<ul>
+<li>A/B Test</li>
+<li>实时监控</li>
+<li>用户反馈闭环</li>
+</ul>
+<h3 id="14-今天的完整目录结构">§1.4 今天的完整目录结构</h3>
+<pre><code>services/ai/
+├── src/
+│   └── ai_service/
+│       └── evaluation/
+│           ├── evaluator.py                           # 评测引擎
+│           ├── metrics/
+│           │   ├── precision_recall.py                # Precision@k、Recall@k
+│           │   ├── mrr.py                             # MRR
+│           │   ├── citation_accuracy.py               # 引用正确率
+│           │   └── faithfulness.py                    # 答案忠实度
+│           ├── slice/
+│           │   └── slice_evaluator.py                 # 切片评测
+│           ├── baseline/
+│           │   ├── baseline_manager.py                # 基线管理
+│           │   └── baseline_comparator.py             # 基线对比
+│           └── dataset/
+│               ├── dataset_manager.py                 # 数据集版本管理
+│               └── dataset_freezer.py                 # 数据集冻结
+└── data/
+    ├── eval_sets/
+    │   ├── eval_set_v3.json                           # 标注数据集（50 条）
+    │   └── eval_set_v3.json.sha256                    # 数据集哈希
+    └── baselines/
+        └── baseline_v2.json                           # 历史基线
+
+scripts/
+└── eval-rag.sh                                        # 评测命令
+
+.github/
+└── workflows/
+    └── rag-eval.yml                                   # CI 评测
+
+</code></pre>
+<p><strong>为什么这样分层？</strong></p>
+<ol>
+<li><strong>metrics/</strong>：每个指标独立计算（单一职责）</li>
+<li><strong>slice/</strong>：切片评测独立模块（可扩展新切片维度）</li>
+<li><strong>baseline/</strong>：基线管理独立（历史基线版本控制）</li>
+<li><strong>dataset/</strong>：数据集版本管理（SHA256 哈希防篡改）</li>
+</ol>
+<h3 id="15-今天动手前的脚手架检查">§1.5 今天动手前的脚手架检查</h3>
+<p><strong>Day 48 混合检索检查</strong>：</p>
+<pre><code class="language-bash">ls services/ai/src/ai_service/rag/hybrid_search/
+# 预期：hybrid_search_service.py 存在
+</code></pre>
+<p><strong>Day 49 引用闭环检查</strong>：</p>
+<pre><code class="language-bash">ls services/ai/src/ai_service/rag/citation/
+# 预期：citation_parser.py 存在
+</code></pre>
+<p><strong>新建标注数据集</strong>：</p>
+<pre><code class="language-bash">mkdir -p services/ai/data/eval_sets
+touch services/ai/data/eval_sets/eval_set_v3.json
+</code></pre>
+<hr>
+<h2 id="2-今天的开发节奏3-小时90-阅读-90-动手">§2 今天的开发节奏（3 小时：90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>任务</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>阶段 1</strong></td>
+<td>40 min</td>
+<td>理解评测指标（Precision@k、Recall@k、MRR）</td>
+<td>笔记：公式 + 示例</td>
+</tr>
+<tr>
+<td><strong>阶段 2</strong></td>
+<td>100 min</td>
+<td>实现评测引擎 + 切片评测 + 基线对比</td>
+<td>可运行的评测命令</td>
+</tr>
+<tr>
+<td><strong>阶段 3</strong></td>
+<td>25 min</td>
+<td>CI 集成 + 回归阻断</td>
+<td>CI 通过/失败示例</td>
+</tr>
+<tr>
+<td><strong>阶段 4</strong></td>
+<td>15 min</td>
+<td>架构证据 + 复盘</td>
+<td>依赖图 + commit</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="3-v1手动评测day-50-基线">§3 v1：手动评测（Day 50 基线）</h2>
+<h3 id="31-v1-能做什么">3.1 v1 能做什么</h3>
+<p>Day 50 手动计算 Recall：</p>
+<pre><code class="language-python">recalls = []
+for ann in annotations:
+    results = await search(ann['query'], top_k=5)
+    retrieved_ids = [r['id'] for r in results]
+    recall = len(set(ann['relevant_chunks']) &amp; set(retrieved_ids)) / len(ann['relevant_chunks'])
+    recalls.append(recall)
+
+avg_recall = sum(recalls) / len(recalls)
+print(f"Recall@5: {avg_recall}")
+</code></pre>
+<h3 id="32-v1-的-5-个问题">3.2 v1 的 5 个问题</h3>
+<ol>
+<li><strong>不可复现</strong>：每次运行结果不同（随机因素未固定）</li>
+<li><strong>无基线</strong>：不知道 Recall 0.76 是好是坏</li>
+<li><strong>无 CI</strong>：改动后不知道是否回归</li>
+<li><strong>无切片</strong>：不知道哪个场景表现差</li>
+<li><strong>只有 Recall</strong>：缺少 Precision、MRR、引用正确率、答案忠实度</li>
+</ol>
+<hr>
+<h2 id="4-v2自动化评测今天">§4 v2：自动化评测（今天）</h2>
+<h3 id="41-v2-新增的能力">4.1 v2 新增的能力</h3>
+<ul>
+<li>自动计算 5 个指标（Precision@k、Recall@k、MRR、引用正确率、答案忠实度）</li>
+<li>切片评测（按 query_type）</li>
+<li>基线对比（与历史基线比较）</li>
+<li>CI 阻断（评测低于基线时 exit 1）</li>
+<li>数据集版本管理（SHA256 哈希）</li>
+</ul>
+<h3 id="42-核心代码">4.2 核心代码</h3>
+<h4 id="421-precisionk-和-recallk">4.2.1 Precision@k 和 Recall@k</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/evaluation/metrics/precision_recall.py
+from typing import List, Set
+
+def precision_at_k(retrieved: List[str], relevant: Set[str], k: int) -&gt; float:
+    """Precision@k = (检索到的相关文档数) / k"""
+    retrieved_k = retrieved[:k]
+    relevant_retrieved = set(retrieved_k) &amp; relevant
+    return len(relevant_retrieved) / k if k &gt; 0 else 0.0
+
+def recall_at_k(retrieved: List[str], relevant: Set[str], k: int) -&gt; float:
+    """Recall@k = (检索到的相关文档数) / (总相关文档数)"""
+    retrieved_k = retrieved[:k]
+    relevant_retrieved = set(retrieved_k) &amp; relevant
+    return len(relevant_retrieved) / len(relevant) if len(relevant) &gt; 0 else 0.0
+</code></pre>
+<p><strong>为什么 Precision@k 分母是 k 而不是检索到的文档数？</strong></p>
+<p>Precision@k 定义是"前 k 个结果中相关文档的比例"。如果检索返回 3 个结果，Precision@5 分母仍是 5（不足 k 的位置视为不相关）。</p>
+<h4 id="422-mrrmean-reciprocal-rank">4.2.2 MRR（Mean Reciprocal Rank）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/evaluation/metrics/mrr.py
+from typing import List, Set
+
+def reciprocal_rank(retrieved: List[str], relevant: Set[str]) -&gt; float:
+    """倒数排名：第一个相关文档的位置的倒数"""
+    for i, doc_id in enumerate(retrieved, start=1):
+        if doc_id in relevant:
+            return 1.0 / i
+    return 0.0
+
+def mean_reciprocal_rank(queries_results: List[tuple]) -&gt; float:
+    """MRR = 所有查询的倒数排名的平均值"""
+    rrs = [reciprocal_rank(retrieved, relevant) for retrieved, relevant in queries_results]
+    return sum(rrs) / len(rrs) if rrs else 0.0
+</code></pre>
+<p><strong>MRR 解决什么问题？</strong></p>
+<p>Recall@k 只看"检索到多少相关文档"，不看"相关文档排在第几位"。MRR 衡量"第一个相关文档的位置"，排名越靠前 MRR 越高。</p>
+<p><strong>示例</strong>：</p>
+<ul>
+<li>查询 1：相关文档排第 1 位 → RR = 1/1 = 1.0</li>
+<li>查询 2：相关文档排第 3 位 → RR = 1/3 = 0.33</li>
+<li>MRR = (1.0 + 0.33) / 2 = 0.67</li>
+</ul>
+<h4 id="423-引用正确率">4.2.3 引用正确率</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/evaluation/metrics/citation_accuracy.py
+from typing import List, Set
+
+def citation_accuracy(citations: List[str], relevant: Set[str]) -&gt; float:
+    """引用正确率 = (正确引用的文档数) / (总引用数)"""
+    if not citations:
+        return 0.0
+    correct = sum(1 for c in citations if c in relevant)
+    return correct / len(citations)
+</code></pre>
+<p><strong>为什么需要引用正确率？</strong></p>
+<p>Recall@k 衡量"检索质量"，但生成的答案可能只引用了检索结果的一部分。引用正确率衡量"生成的答案是否引用了正确的 chunk"。</p>
+<h4 id="424-答案忠实度llm-as-judge">4.2.4 答案忠实度（LLM-as-Judge）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/evaluation/metrics/faithfulness.py
+from openai import OpenAI
+
+client = OpenAI()
+
+def faithfulness(answer: str, retrieved_chunks: List[str]) -&gt; float:
+    """答案忠实度 = LLM 判断答案是否忠实于检索结果（无幻觉）"""
+    context = "\n".join(retrieved_chunks)
+    
+    prompt = f"""
+Context:
+{context}
+
+Answer:
+{answer}
+
+Question: Is the answer faithful to the context (no hallucination)?
+Answer with: yes or no
+"""
+    
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0
+    )
+    
+    judgment = response.choices[0].message.content.strip().lower()
+    return 1.0 if judgment == "yes" else 0.0
+</code></pre>
+<p><strong>为什么需要答案忠实度？</strong></p>
+<p>检索正确不代表生成正确。LLM 可能生成检索结果之外的内容（幻觉）。答案忠实度用 LLM-as-Judge 判断"答案是否只包含检索结果的信息"。</p>
+<p><strong>生产陷阱</strong>：LLM-as-Judge 本身也可能出错（误判）。Day 56-60 会用"多模型投票"提高准确性。</p>
+<hr>
+<h2 id="5-v2-完整实现评测引擎-切片-基线对比">§5 v2 完整实现（评测引擎 + 切片 + 基线对比）</h2>
+<h3 id="51-评测引擎">5.1 评测引擎</h3>
+<pre><code class="language-python"># services/ai/src/ai_service/evaluation/evaluator.py
+import json
+from typing import List, Dict
+from .metrics.precision_recall import precision_at_k, recall_at_k
+from .metrics.mrr import mean_reciprocal_rank
+from .metrics.citation_accuracy import citation_accuracy
+from .metrics.faithfulness import faithfulness
+
+class RAGEvaluator:
+    def __init__(self, search_service, generate_service):
+        self.search_service = search_service
+        self.generate_service = generate_service
+    
+    async def evaluate(self, dataset_path: str, k: int = 5) -&gt; Dict:
+        """评测完整 RAG 链路"""
+        with open(dataset_path, 'r', encoding='utf-8') as f:
+            annotations = json.load(f)
+        
+        precisions = []
+        recalls = []
+        rr_inputs = []
+        citation_accs = []
+        faithfulness_scores = []
+        
+        for ann in annotations:
+            query = ann['query']
+            relevant = set(ann['relevant_chunks'])
+            
+            # 1. 检索
+            search_results = await self.search_service.search(query, top_k=k)
+            retrieved_ids = [r['chunk_id'] for r in search_results]
+            
+            # 2. 计算 Precision@k 和 Recall@k
+            precisions.append(precision_at_k(retrieved_ids, relevant, k))
+            recalls.append(recall_at_k(retrieved_ids, relevant, k))
+            rr_inputs.append((retrieved_ids, relevant))
+            
+            # 3. 生成答案
+            answer_result = await self.generate_service.generate(query, search_results)
+            citations = [c['chunk_id'] for c in answer_result['citations']]
+            
+            # 4. 计算引用正确率
+            citation_accs.append(citation_accuracy(citations, relevant))
+            
+            # 5. 计算答案忠实度
+            retrieved_chunks = [r['content'] for r in search_results]
+            faithfulness_scores.append(
+                faithfulness(answer_result['answer'], retrieved_chunks)
+            )
+        
+        # 6. 汇总指标
+        return {
+            'precision_at_k': sum(precisions) / len(precisions),
+            'recall_at_k': sum(recalls) / len(recalls),
+            'mrr': mean_reciprocal_rank(rr_inputs),
+            'citation_accuracy': sum(citation_accs) / len(citation_accs),
+            'faithfulness': sum(faithfulness_scores) / len(faithfulness_scores),
+            'num_queries': len(annotations)
+        }
+</code></pre>
+<h3 id="52-切片评测">5.2 切片评测</h3>
+<pre><code class="language-python"># services/ai/src/ai_service/evaluation/slice/slice_evaluator.py
+from typing import Dict, List
+from ..evaluator import RAGEvaluator
+
+class SliceEvaluator:
+    def __init__(self, evaluator: RAGEvaluator):
+        self.evaluator = evaluator
+    
+    async def evaluate_by_slice(
+        self, 
+        dataset_path: str, 
+        slice_key: str,
+        k: int = 5
+    ) -&gt; Dict[str, Dict]:
+        """按切片维度评测"""
+        with open(dataset_path, 'r', encoding='utf-8') as f:
+            annotations = json.load(f)
+        
+        # 按 slice_key 分组
+        slices = {}
+        for ann in annotations:
+            slice_value = ann.get(slice_key, 'unknown')
+            if slice_value not in slices:
+                slices[slice_value] = []
+            slices[slice_value].append(ann)
+        
+        # 每个切片独立评测
+        results = {}
+        for slice_value, slice_anns in slices.items():
+            # 保存临时数据集
+            temp_path = f"/tmp/slice_{slice_value}.json"
+            with open(temp_path, 'w', encoding='utf-8') as f:
+                json.dump(slice_anns, f)
+            
+            # 评测
+            slice_result = await self.evaluator.evaluate(temp_path, k)
+            results[slice_value] = slice_result
+        
+        return results
+</code></pre>
+<h3 id="53-基线对比">5.3 基线对比</h3>
+<pre><code class="language-python"># services/ai/src/ai_service/evaluation/baseline/baseline_comparator.py
+from typing import Dict
+
+class BaselineComparator:
+    def compare(self, current: Dict, baseline: Dict, threshold: float = -0.1) -&gt; Dict:
+        """对比当前指标与基线
+        
+        Args:
+            threshold: 允许的最大下降幅度（例如 -0.1 = -10%）
+        
+        Returns:
+            {
+                'pass': bool,
+                'comparisons': {
+                    'recall_at_k': {'current': 0.76, 'baseline': 0.70, 'diff': +0.06, 'pass': True}
+                }
+            }
+        """
+        comparisons = {}
+        pass_all = True
+        
+        for metric in ['recall_at_k', 'mrr', 'precision_at_k']:
+            if metric not in baseline:
+                continue
+            
+            current_value = current[metric]
+            baseline_value = baseline[metric]
+            diff = current_value - baseline_value
+            
+            # 判断是否通过
+            metric_pass = diff &gt;= threshold
+            if not metric_pass:
+                pass_all = False
+            
+            comparisons[metric] = {
+                'current': current_value,
+                'baseline': baseline_value,
+                'diff': diff,
+                'pass': metric_pass
+            }
+        
+        return {
+            'pass': pass_all,
+            'comparisons': comparisons
+        }
+</code></pre>
+<h3 id="54-数据集版本管理">5.4 数据集版本管理</h3>
+<pre><code class="language-python"># services/ai/src/ai_service/evaluation/dataset/dataset_manager.py
+import hashlib
+import json
+
+class DatasetManager:
+    def freeze(self, dataset_path: str) -&gt; str:
+        """冻结数据集（计算 SHA256 哈希）"""
+        with open(dataset_path, 'rb') as f:
+            data = f.read()
+        
+        sha256 = hashlib.sha256(data).hexdigest()
+        
+        # 保存哈希
+        hash_path = f"{dataset_path}.sha256"
+        with open(hash_path, 'w') as f:
+            f.write(sha256)
+        
+        return sha256
+    
+    def verify(self, dataset_path: str) -&gt; bool:
+        """验证数据集是否被篡改"""
+        hash_path = f"{dataset_path}.sha256"
+        
+        # 读取保存的哈希
+        with open(hash_path, 'r') as f:
+            expected_hash = f.read().strip()
+        
+        # 计算当前哈希
+        with open(dataset_path, 'rb') as f:
+            data = f.read()
+        current_hash = hashlib.sha256(data).hexdigest()
+        
+        return current_hash == expected_hash
+</code></pre>
+<h3 id="55-评测命令cli">5.5 评测命令（CLI）</h3>
+<pre><code class="language-bash"># scripts/eval-rag.sh
+#!/bin/bash
+
+cd services/ai
+
+python -m ai_service.evaluation.cli \
+  --dataset data/eval_sets/eval_set_v3.json \
+  --baseline data/baselines/baseline_v2.json \
+  --k 5 \
+  --slice-by query_type \
+  --threshold -0.1
+</code></pre>
+<pre><code class="language-python"># services/ai/src/ai_service/evaluation/cli.py
+import argparse
+import asyncio
+import json
+from .evaluator import RAGEvaluator
+from .slice.slice_evaluator import SliceEvaluator
+from .baseline.baseline_comparator import BaselineComparator
+from .dataset.dataset_manager import DatasetManager
+
+async def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dataset', required=True)
+    parser.add_argument('--baseline', default=None)
+    parser.add_argument('--k', type=int, default=5)
+    parser.add_argument('--slice-by', default=None)
+    parser.add_argument('--threshold', type=float, default=-0.1)
+    args = parser.parse_args()
+    
+    # 1. 验证数据集版本
+    dataset_manager = DatasetManager()
+    if not dataset_manager.verify(args.dataset):
+        print("❌ Dataset has been modified")
+        exit(1)
+    
+    # 2. 执行评测
+    evaluator = RAGEvaluator(search_service, generate_service)
+    results = await evaluator.evaluate(args.dataset, args.k)
+    
+    print("========== RAG Evaluation Report ==========")
+    print(f"Precision@{args.k}: {results['precision_at_k']:.2f}")
+    print(f"Recall@{args.k}:    {results['recall_at_k']:.2f}")
+    print(f"MRR:         {results['mrr']:.2f}")
+    print(f"Citation Accuracy: {results['citation_accuracy']:.2f}")
+    print(f"Faithfulness:      {results['faithfulness']:.2f}")
+    
+    # 3. 切片评测
+    if args.slice_by:
+        slice_evaluator = SliceEvaluator(evaluator)
+        slice_results = await slice_evaluator.evaluate_by_slice(
+            args.dataset, args.slice_by, args.k
+        )
+        print("\nSlice Metrics:")
+        for slice_value, slice_result in slice_results.items():
+            print(f"  [{slice_value}] Recall@{args.k}: {slice_result['recall_at_k']:.2f}")
+    
+    # 4. 基线对比
+    if args.baseline:
+        with open(args.baseline, 'r') as f:
+            baseline = json.load(f)
+        
+        comparator = BaselineComparator()
+        comparison = comparator.compare(results, baseline, args.threshold)
+        
+        print("\nBaseline Comparison:")
+        for metric, comp in comparison['comparisons'].items():
+            symbol = "✅" if comp['pass'] else "❌"
+            print(f"  {metric}: {comp['current']:.2f} (baseline: {comp['baseline']:.2f}) {symbol}")
+        
+        if not comparison['pass']:
+            print("\n❌ Evaluation FAILED (below baseline)")
+            exit(1)
+    
+    print("\n✅ Evaluation PASSED")
+
+if __name__ == '__main__':
+    asyncio.run(main())
+</code></pre>
+<h3 id="56-ci-集成">5.6 CI 集成</h3>
+<pre><code class="language-yaml"># .github/workflows/rag-eval.yml
+name: RAG Evaluation
+
+on:
+  pull_request:
+    paths:
+      - 'services/ai/src/ai_service/rag/**'
+      - 'services/ai/data/**'
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          cd services/ai
+          pip install -r requirements.txt
+      
+      - name: Run RAG Evaluation
+        run: |
+          bash scripts/eval-rag.sh
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      
+      - name: Upload Report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: eval-report
+          path: services/ai/eval_report.json
+</code></pre>
+<hr>
+<h2 id="6-深挖前端底子完整执行版">§6 深挖前端底子（完整执行版）</h2>
+<h3 id="61-为什么-mrr-比-recallk-更关注排名">6.1 为什么 MRR 比 Recall@k 更关注排名？</h3>
+<p><strong>Recall@k</strong>：只看"检索到多少相关文档"，不看排名。</p>
+<p><strong>MRR</strong>：衡量"第一个相关文档的位置"，排名越靠前越好。</p>
+<p><strong>示例</strong>：</p>
+<ul>
+<li>查询 1：相关文档在 [1, 3, 5] → Recall@5 = 3/3 = 1.0, MRR = 1/1 = 1.0</li>
+<li>查询 2：相关文档在 [5] → Recall@5 = 1/1 = 1.0, MRR = 1/5 = 0.2</li>
+</ul>
+<p><strong>结论</strong>：Recall@k 相同，但 MRR 不同（查询 1 排名更好）。</p>
+<h3 id="62-为什么答案忠实度需要-llm-as-judge">6.2 为什么答案忠实度需要 LLM-as-Judge？</h3>
+<p>人工标注"答案是否忠实于检索结果"成本太高（每个答案需要 3-5 分钟）。LLM-as-Judge 自动判断，成本降低 100 倍。</p>
+<hr>
+<h2 id="7-测试与验证完整执行版">§7 测试与验证（完整执行版）</h2>
+<h3 id="71-单元测试precisionk">7.1 单元测试（Precision@k）</h3>
+<pre><code class="language-python"># services/ai/tests/test_precision_recall.py
+def test_precision_at_k():
+    retrieved = ['chunk-1', 'chunk-2', 'chunk-3']
+    relevant = {'chunk-1', 'chunk-3', 'chunk-5'}
+    
+    precision = precision_at_k(retrieved, relevant, k=3)
+    assert precision == 2/3  # chunk-1, chunk-3 相关
+</code></pre>
+<h3 id="72-集成测试评测命令">7.2 集成测试（评测命令）</h3>
+<pre><code class="language-bash"># 测试评测命令
+bash scripts/eval-rag.sh
+# 预期：输出报告 + exit 0（通过基线）
+</code></pre>
+<h3 id="73-反证实验移除基线对比">7.3 反证实验（移除基线对比）</h3>
+<p><strong>假设</strong>：移除基线对比后，chunk size 改为 1000 导致"精确错误码" Recall 从 0.78 降至 0.31，但 CI 不阻断。</p>
+<p><strong>验证</strong>：注释掉基线对比代码，重新运行 CI，观察是否 exit 1。</p>
+<hr>
+<h2 id="8-通关检查清单v3-规范-11-项">8. 通关检查清单（v3 规范 11 项）</h2>
+<ol>
+<li>✅ §0 位置声明</li>
+<li>✅ §1.1 用户能看到什么（5 个场景）</li>
+<li>✅ §1.4 目录结构 5 块</li>
+<li>✅ §1.5 脚手架检查</li>
+<li>✅ 三版演进（v1 手动 → v2 自动化 + 切片 + 基线 → v3 在线评测）</li>
+<li>✅ §5 完整代码（Evaluator、SliceEvaluator、BaselineComparator、DatasetManager、CLI）</li>
+<li>✅ 0 个 <code>&gt; ✅/❌</code> blockquote</li>
+<li>✅ commit 不含 git push</li>
+</ol>
+<hr>
+<h2 id="9-从今天的增量到下一站">9. 从今天的增量到下一站</h2>
+<p>Day 51 建立了自动化 RAG 评测体系，Day 52-60 进入成本优化和在线评测：</p>
+<ul>
+<li><strong>Day 52-55</strong>：成本优化（Embedding 缓存、Rerank 选择性调用）</li>
+<li><strong>Day 56-60</strong>：在线评测（A/B Test、实时监控、用户反馈闭环）</li>
+</ul>
+<hr>
+<h2 id="10-本日小结">10. 本日小结</h2>
+<p><strong>标题</strong>：Precision@k 衡量准确率、Recall@k 衡量召回率、MRR 衡量排名、切片评测防局部回归、基线对比阻断发布——RAG 自动化评测体系</p>
+<p>Day 51 建立了自动化 RAG 评测体系，解决"检索质量如何量化"和"如何防止回归"两个核心问题。核心机制是"5 个评测指标（Precision@k、Recall@k、MRR、引用正确率、答案忠实度）+ 切片评测（按 query_type）+ 基线对比（历史基线）+ CI 阻断（低于基线时 exit 1）+ 数据集版本管理（SHA256 哈希）"。</p>
+<hr>
+<h2 id="11-14-课后三道核心问题-真实项目情境题-pdf-面试题-教师五连问">11-14. 课后三道核心问题 + 真实项目情境题 + PDF 面试题 + 教师五连问</h2>
+<p>（Day 51 执行版补全要求）</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day51-old.html">查看 Day 51 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/50.html">← Day 50 · 五十日门禁</a>
+            <a href="/ai-teacher-agent-devolop/day/52.html">Day 52 · LLM Eval →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-day-51-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E5%9B%BE%E9%87%8C%E7%9A%84%E4%BD%8D%E7%BD%AE">§0 Day 51 在 90 天路线图里的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E5%BB%BA%E7%AB%8B%E7%9A%84%E5%AE%8C%E6%95%B4%E8%83%BD%E5%8A%9B">§1 今天建立的完整能力</a></li><li><a href="#2-%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%BC%80%E5%8F%91%E8%8A%82%E5%A5%8F3-%E5%B0%8F%E6%97%B690-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">§2 今天的开发节奏（3 小时：90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E6%89%8B%E5%8A%A8%E8%AF%84%E6%B5%8Bday-50-%E5%9F%BA%E7%BA%BF">§3 v1：手动评测（Day 50 基线）</a></li><li><a href="#4-v2%E8%87%AA%E5%8A%A8%E5%8C%96%E8%AF%84%E6%B5%8B%E4%BB%8A%E5%A4%A9">§4 v2：自动化评测（今天）</a></li><li><a href="#5-v2-%E5%AE%8C%E6%95%B4%E5%AE%9E%E7%8E%B0%E8%AF%84%E6%B5%8B%E5%BC%95%E6%93%8E-%E5%88%87%E7%89%87-%E5%9F%BA%E7%BA%BF%E5%AF%B9%E6%AF%94">§5 v2 完整实现（评测引擎 + 切片 + 基线对比）</a></li><li><a href="#6-%E6%B7%B1%E6%8C%96%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E5%AE%8C%E6%95%B4%E6%89%A7%E8%A1%8C%E7%89%88">§6 深挖前端底子（完整执行版）</a></li><li><a href="#7-%E6%B5%8B%E8%AF%95%E4%B8%8E%E9%AA%8C%E8%AF%81%E5%AE%8C%E6%95%B4%E6%89%A7%E8%A1%8C%E7%89%88">§7 测试与验证（完整执行版）</a></li><li><a href="#8-%E9%80%9A%E5%85%B3%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95v3-%E8%A7%84%E8%8C%83-11-%E9%A1%B9">8. 通关检查清单（v3 规范 11 项）</a></li><li><a href="#9-%E4%BB%8E%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%A2%9E%E9%87%8F%E5%88%B0%E4%B8%8B%E4%B8%80%E7%AB%99">9. 从今天的增量到下一站</a></li><li><a href="#10-%E6%9C%AC%E6%97%A5%E5%B0%8F%E7%BB%93">10. 本日小结</a></li><li><a href="#11-14-%E8%AF%BE%E5%90%8E%E4%B8%89%E9%81%93%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98-%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">11-14. 课后三道核心问题 + 真实项目情境题 + PDF 面试题 + 教师五连问</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

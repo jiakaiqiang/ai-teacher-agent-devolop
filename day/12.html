@@ -1,0 +1,2498 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 12 · Agent Loop（v1 单次调用 → v2 循环+预算 → v3 终止+审计） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html" aria-current="page">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/02.html">第 2 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 12</p>
+        <h1>Agent Loop（v1 单次调用 → v2 循环+预算 → v3 终止+审计）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段一（Day 1-30，前端 -&gt; AI 前端）。所有 BFF、NestJS、数据库、队列和 Agent 后端增量都必须服务于 <code>p1-monitor</code> 的真实 AI 前端链路，不得另起无关 Demo。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日为 6 小时扩展日：先执行 A/B/C 各 30 分钟（共 90 分钟阅读），再执行 D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟基础动手），剩余 180 分钟只用于真实项目深化、故障注入和回归证据。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+<p><strong>补充真实项目情境题</strong>：</p>
+<ol>
+<li>Tool 连续返回空数组导致模型重复调用时，step/time/token 三类预算如何协同终止并向用户解释原因？</li>
+<li>Provider 连续返回 429 时，如何区分有限重试、降级与终止，避免重试风暴并保留完整 trajectory？</li>
+</ol>
+</blockquote>
+<p>任务版本：标准版
+日期与时长：2026-07-25 周六，360 分钟（90 分钟阅读 + 270 分钟动手/项目深化）
+项目：<code>D:\demo\ai-techer\p1-monitor</code>
+角色视角：完成 Day 11 Tool Registry、第一次实现 Agent 自主循环调用的开发者</p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p>90 天转型路线的三个阶段：</p>
+<pre><code>阶段一（Day 1-30）：前端 → AI 前端
+   项目：p1-monitor 智能运维监控（Vue 3 + TypeScript + WebSocket + Agent UI）
+   Day 1-5：前端 Agent 运行时展示、状态机、WebSocket 实时
+   Day 6-10：后端 Nest + Prisma + FSM + M2 门禁
+
+阶段二（Day 31-60）：AI 前端 → AI 全栈
+   项目：p1-monitor 后端 + p1-monitor 全栈（NestJS + LLM 集成 + RAG）
+   Day 11：Tool Registry（Schema/超时/裁剪/审计）
+   Day 12：Agent Loop（循环调用+预算+终止）           ← 今天在这里
+   Day 13-20：LangChain RAG + 向量检索
+
+阶段三（Day 61-90）：AI 全栈 → AI Agent 工程师
+   项目：p2-agent-workbench 多 Agent 协同工作台
+</code></pre>
+<p><strong>Day 12 在阶段一第 2 天</strong>，Day 11 搭建完 Tool Registry 后，今天要让 LLM 能够<strong>自主循环调用工具</strong>，而不是"用户问一次、模型回一句"的单轮对话。</p>
+<h3 id="到-day-11-结束时项目已具备的能力">到 Day 11 结束时项目已具备的能力</h3>
+<ul>
+<li><strong>后端</strong>（Day 6-10）：Nest + Prisma + Postgres，服务器/指标/告警 CRUD，Z-Score 异常检测，服务端 FSM，乐观锁</li>
+<li><strong>前端</strong>（Day 1-5, Day 9）：Vue3 + Vite + ECharts，WebSocket 实时推送，状态机 UI</li>
+<li><strong>Tool Registry</strong>（Day 11）：三个只读运维 Tool（<code>listServers</code> / <code>getMetrics</code> / <code>getAlertDetail</code>），Schema 校验、超时保护、结果裁剪、审计日志</li>
+</ul>
+<h3 id="今天要解决的-4-个问题">今天要解决的 4 个问题</h3>
+<ol>
+<li>
+<p><strong>问题 1：单轮对话无法完成复杂诊断</strong><br>
+用户问"srv-042 为什么 CPU 异常？"，模型需要先调 <code>getMetrics</code> 看数据，发现峰值后再调 <code>getAlertDetail</code> 查告警，最后生成诊断。单轮 Function Calling 只能调一次工具就结束。</p>
+</li>
+<li>
+<p><strong>问题 2：循环可能无限</strong><br>
+如果 Tool 返回空数组，模型可能反复调用同一工具 40 次仍未终止，token 消耗失控。</p>
+</li>
+<li>
+<p><strong>问题 3：终止原因不明确</strong><br>
+循环结束后，用户不知道是"模型完成任务"还是"达到 step 上限被强制中断"，无法判断结果是否可信。</p>
+</li>
+<li>
+<p><strong>问题 4：多 LLM Provider 切换困难</strong><br>
+今天用 OpenAI，明天换 Anthropic Claude，后天测试 Gemini，每次都要改 <code>agent.service.ts</code> 里的调用代码。</p>
+</li>
+</ol>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<p>在 <code>p1-monitor/apps/api</code> 里交付一个模块 <strong><code>AgentModule</code></strong>：实现 Agent Loop 引擎，让 LLM 能够在 step/time/token 预算约束下自主循环调用 Day 11 的三个 Tool，并记录每次循环的轨迹（trajectory）和终止原因（finish reason）。</p>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p><strong>场景</strong>：运维工程师在 Agent 对话框问"srv-042 为什么在 14:30 触发 CPU 告警？"</p>
+<pre><code>用户输入：srv-042 为什么在 14:30 触发 CPU 告警？
+
+Agent 内部执行轨迹：
+
+Step 1 [model_turn]:
+  模型思考："需要先查看 srv-042 的 CPU 指标数据"
+  生成 tool_call: getMetrics(serverId="srv-042", metricType="cpu", minutes=30)
+
+Step 2 [tool_call]:
+  Tool Registry 执行 getMetrics
+  返回：[{timestamp: "14:28", value: 95.2}, {timestamp: "14:29", value: 96.8}, ...]
+
+Step 3 [model_turn]:
+  模型分析："14:30 前后 CPU 持续超过 95%，需要查看告警详情"
+  生成 tool_call: getAlertDetail(serverId="srv-042")
+
+Step 4 [tool_call]:
+  Tool Registry 执行 getAlertDetail
+  返回：{alertId: "a-123", threshold: 90, duration: "5min", status: "acknowledged"}
+
+Step 5 [model_turn]:
+  模型生成最终回复（无 tool_call）
+
+终止原因：completed（模型主动结束）
+总步数：5 / 20
+总 token：1250 / 10000
+总时长：3.2s / 30s
+
+最终回复：
+"srv-042 在 14:28-14:30 期间 CPU 使用率持续超过 95%（峰值 96.8%），
+超过告警阈值 90% 达 5 分钟，系统自动触发告警。告警状态为 acknowledged，
+建议检查该时间段的进程列表和网络流量。"
+</code></pre>
+<p>用户看到的是最终回复，但系统记录了完整的 5 步轨迹和 3 项预算消耗。</p>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<ul>
+<li><strong>输入</strong>：用户问题（string）+ 可用工具列表（从 Day 11 Tool Registry 获取）</li>
+<li><strong>输出</strong>：模型最终回复（string）+ 执行轨迹（trajectory）+ 终止原因（finish reason）+ 预算消耗</li>
+<li><strong>对齐后续</strong>：今天定义的 <strong>Agent Loop 合同</strong>（<code>AgentRunConfig</code> / <code>AgentTrajectory</code> / <code>FinishReason</code>）是 Day 13-20（LangChain / LangGraph）的基础接口</li>
+</ul>
+<h3 id="13-三版演进的目标">1.3 三版演进的目标</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>实现的功能</th>
+<th>代码结构</th>
+<th>引入的知识</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td>单轮 Function Calling</td>
+<td>单文件、调一次 LLM API、无循环</td>
+<td>Function Calling 基本概念、tool_calls 解析</td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>v1 + <strong>循环调用</strong> + <strong>step/time/token 预算</strong></td>
+<td>抽离 <code>agent-loop.ts</code> + 预算检查</td>
+<td>while 循环终止条件、预算设计、时间/token 计数</td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>v2 + <strong>终止原因分类</strong> + <strong>Provider 抽象</strong> + <strong>轨迹审计</strong></td>
+<td>完整分层（types/provider/loop/service/controller）</td>
+<td>Adapter 模式、终止原因枚举、trajectory 结构</td>
+</tr>
+</tbody>
+</table></div><p><strong>用户最终在项目里交付的是 v3</strong>。v1 和 v2 是教学用的过渡版本。</p>
+<hr>
+<h2 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h2>
+<p><strong>为什么放在最前面</strong>：Agent Loop 涉及多个关注点（LLM Provider 抽象、循环控制、预算管理、轨迹记录、HTTP 入口），如果不先在脑子里立起骨架，写到一半就会把 API 调用、循环逻辑、预算检查混在一起。看完这棵树，下面章节再出现 <code>src/agent/loop/agent-loop.engine.ts</code> 时，你就能立刻定位它在架构中的位置。</p>
+<p><strong>今天在 <code>p1-monitor/apps/api/src/</code> 下要建立的完整目录树（v3 完整版）</strong>：</p>
+<pre><code>apps/api/src/
+├── agent/                                    ← 【新增】Agent Loop 模块
+│   ├── types/
+│   │   ├── agent-config.types.ts             ← 运行配置（预算、超时）
+│   │   ├── agent-trajectory.types.ts         ← 轨迹记录（step/event）
+│   │   └── finish-reason.types.ts            ← 终止原因枚举
+│   ├── provider/
+│   │   ├── llm-provider.interface.ts         ← Provider 抽象接口
+│   │   ├── openai-provider.ts                ← OpenAI 实现
+│   │   └── provider.factory.ts               ← Provider 工厂
+│   ├── loop/
+│   │   ├── agent-loop.engine.ts              ← 循环引擎（核心逻辑）
+│   │   ├── budget-tracker.ts                 ← 预算追踪器（step/time/token）
+│   │   └── agent-loop.engine.spec.ts         ← 循环引擎单元测试
+│   ├── audit/
+│   │   └── trajectory-audit.service.ts       ← 轨迹审计服务
+│   ├── index.ts                              ← 桶文件
+│   ├── agent.module.ts                       ← NestJS 模块
+│   ├── agent.service.ts                      ← 业务编排层
+│   └── agent.controller.ts                   ← HTTP 入口（POST /agent/run）
+├── tools/                                    ← 【Day 11 已有】Tool Registry
+│   └── ...
+├── prisma/
+│   └── prisma.service.ts                     ← 【Day 07 已有】
+└── main.ts
+</code></pre>
+<p><strong>三版演进对应的文件差异</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>新增文件</th>
+<th>核心变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td><code>agent/agent.service.ts</code>（单次调用）&lt;br&gt;<code>agent/agent.controller.ts</code></td>
+<td>最小闭环：调一次 OpenAI API + 解析 tool_calls</td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td><code>agent/loop/agent-loop.engine.ts</code>&lt;br&gt;<code>agent/loop/budget-tracker.ts</code>&lt;br&gt;<code>agent/types/agent-config.types.ts</code></td>
+<td>加入 while 循环 + step/time/token 预算检查</td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td><code>agent/provider/llm-provider.interface.ts</code>&lt;br&gt;<code>agent/provider/openai-provider.ts</code>&lt;br&gt;<code>agent/provider/provider.factory.ts</code>&lt;br&gt;<code>agent/types/finish-reason.types.ts</code>&lt;br&gt;<code>agent/types/agent-trajectory.types.ts</code>&lt;br&gt;<code>agent/audit/trajectory-audit.service.ts</code></td>
+<td>完整分层：Provider 抽象/终止原因/轨迹审计分离</td>
+</tr>
+</tbody>
+</table></div><p><strong>依赖方向（务必单向，反过来一次都不行）</strong>：</p>
+<pre><code>agent.controller.ts
+    ↓ 调用
+agent.service.ts ──────────────→ trajectory-audit.service.ts
+    ↓ 调用                       ↓ 记录轨迹
+agent-loop.engine.ts
+    ↓ 持有                   ↓ 持有
+llm-provider.interface ← budget-tracker.ts
+    ↑ 实现                   ↓ 追踪预算
+openai-provider.ts ──→ ToolRegistry（Day 11）
+</code></pre>
+<p><strong>红线</strong>：</p>
+<ul>
+<li><code>agent-loop.engine.ts</code> 里出现 <code>import OpenAI from 'openai'</code> 就是抽象泄漏第一步。循环引擎只依赖 <code>LLMProvider</code> 接口，不依赖具体 Provider。</li>
+<li><code>openai-provider.ts</code> 里出现 <code>import { PrismaService }</code> 就是职责混乱。Provider 只负责调用 LLM API，不直接访问数据库。</li>
+</ul>
+<p><strong>动手前先问自己 3 个问题</strong>：</p>
+<ol>
+<li>
+<p>为什么 Provider 要抽象成接口而不是直接用 <code>OpenAI</code> SDK？<br>
+→ 见 §5.4 知识点 5「Provider 抽象」：今天用 OpenAI，明天可能换 Claude/Gemini/本地模型。如果循环引擎直接依赖 <code>OpenAI</code> 类，每次换 Provider 都要改循环逻辑。</p>
+</li>
+<li>
+<p>为什么预算追踪要单独抽成 <code>budget-tracker.ts</code> 而不是在循环引擎里直接 <code>if (steps &gt; maxSteps)</code>？<br>
+→ 见 §5.4 知识点 2「预算设计」：step/time/token 三种预算的检查逻辑各不相同（step 是计数，time 是时间戳差值，token 是累加），抽成独立类后可以单独测试和复用。</p>
+</li>
+<li>
+<p>轨迹审计为什么要单独抽成 <code>trajectory-audit.service.ts</code> 而不是在循环结束后直接 <code>console.log(trajectory)</code>？<br>
+→ 见 §5.4 知识点 6「轨迹审计」：审计是独立关注点，未来会接入 LangSmith/LangFuse/自建平台。如果写在循环引擎里，换审计方案就要改核心逻辑。</p>
+</li>
+</ol>
+<hr>
+<h2 id="15-阶段-d动手脚手架20-分钟先搭骨架再看正文">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</h2>
+<p>按第 5.3 节的代码写，边写边问自己下面的问题。</p>
+<h3 id="151-d-1搭工程骨架-装依赖5-分钟">1.5.1 D-1：搭工程骨架 / 装依赖（5 分钟）</h3>
+<pre><code class="language-bash">cd D:\demo\ai-techer\p1-monitor\apps\api
+
+# 安装 OpenAI SDK
+pnpm add openai
+
+# 创建目录
+mkdir -p src/agent/{types,provider,loop,audit}
+</code></pre>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么选 OpenAI SDK 而不是直接用 axios 调 API？（SDK 封装了流式响应、重试、类型定义，减少样板代码）</li>
+<li>为什么环境变量 <code>OPENAI_API_KEY</code> 要在 <code>.env</code> 里而不是硬编码？（安全+多环境切换）</li>
+</ul>
+<h3 id="152-d-2实现类型层5-分钟">1.5.2 D-2：实现类型层（5 分钟）</h3>
+<p>按第 5.3 节的代码依次写：</p>
+<ul>
+<li><code>src/agent/types/agent-config.types.ts</code></li>
+<li><code>src/agent/types/finish-reason.types.ts</code></li>
+<li><code>src/agent/types/agent-trajectory.types.ts</code></li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>AgentRunConfig</code> 的三种预算为什么都是可选的？（不同场景对预算要求不同，调试时可能只限制 step）</li>
+<li><code>FinishReason</code> 为什么要区分 <code>completed</code>/<code>max_steps</code>/<code>max_time</code>/<code>max_tokens</code>/<code>error</code> 五种？（用户需要知道是正常结束还是被强制中断）</li>
+</ul>
+<h3 id="153-d-3实现-provider-层5-分钟">1.5.3 D-3：实现 Provider 层（5 分钟）</h3>
+<p>按第 5.3 节的代码依次写：</p>
+<ul>
+<li><code>src/agent/provider/llm-provider.interface.ts</code></li>
+<li><code>src/agent/provider/openai-provider.ts</code></li>
+<li><code>src/agent/provider/provider.factory.ts</code></li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>LLMProvider</code> 接口为什么只有一个 <code>chat()</code> 方法？（Agent Loop 只需要"发送消息+工具定义、返回回复+tool_calls"这个合同）</li>
+<li><code>OpenAIProvider</code> 为什么要把 <code>tool_calls</code> 转换成统一格式而不是直接返回原始响应？（不同 Provider 的响应格式不同，统一格式后循环引擎不用关心 Provider 细节）</li>
+</ul>
+<h3 id="154-d-4实现循环引擎剩余时间">1.5.4 D-4：实现循环引擎（剩余时间）</h3>
+<p>按第 5.3 节的代码依次写：</p>
+<ul>
+<li><code>src/agent/loop/budget-tracker.ts</code></li>
+<li><code>src/agent/loop/agent-loop.engine.ts</code></li>
+<li><code>src/agent/audit/trajectory-audit.service.ts</code></li>
+<li><code>src/agent/agent.service.ts</code></li>
+<li><code>src/agent/agent.controller.ts</code></li>
+<li><code>src/agent/agent.module.ts</code></li>
+<li><code>src/agent/index.ts</code></li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>循环引擎的 <code>while</code> 循环为什么要先检查预算再调用 LLM？（如果先调用后检查，可能浪费一次昂贵的 API 调用）</li>
+<li>轨迹里为什么要记录每个 step 的 <code>timestamp</code>？（排查性能问题时需要知道哪一步耗时最长）</li>
+</ul>
+<hr>
+<h2 id="2-学习节奏90-阅读-90-动手">2. 学习节奏（90 阅读 / 90 动手）</h2>
+<p>Day 12 总时长 180 分钟，分为 6 个阶段（A-F）：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>活动</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A：读文档头</strong></td>
+<td>30 分钟</td>
+<td>阅读 §0-§1.4（位置/目标/目录结构）</td>
+<td>在脑子里建立 Agent Loop 的骨架图</td>
+</tr>
+<tr>
+<td><strong>B：读三版演进</strong></td>
+<td>30 分钟</td>
+<td>阅读 §3-§5（v1/v2/v3 完整代码）</td>
+<td>理解"为什么 v3 要抽象 Provider"</td>
+</tr>
+<tr>
+<td><strong>C：读知识点深挖</strong></td>
+<td>30 分钟</td>
+<td>阅读 §5.4（6 个知识点）+ §6.5（HTML 深挖）</td>
+<td>记录每个知识点的"解决的问题/验证方法"</td>
+</tr>
+<tr>
+<td><strong>D：搭骨架</strong></td>
+<td>60 分钟</td>
+<td>执行 §1.5（D-1 到 D-4）</td>
+<td>12 个文件骨架全部创建</td>
+</tr>
+<tr>
+<td><strong>E：写测试</strong></td>
+<td>20 分钟</td>
+<td>执行 §7.6（写循环引擎 + 预算追踪器单元测试）</td>
+<td>至少 12 个测试用例通过</td>
+</tr>
+<tr>
+<td><strong>F：验收</strong></td>
+<td>10 分钟</td>
+<td>执行 §7.7-§7.9（反证实验 + 提交）</td>
+<td>commit + 反证记录</td>
+</tr>
+</tbody>
+</table></div><p><strong>阶段切换规则</strong>：</p>
+<ul>
+<li>A → B：读完目录结构后，能闭眼说出"types/provider/loop/audit"四层各自的职责。</li>
+<li>B → C：读完 v3 代码后，能说出"v2 暴露的痛点是什么，v3 如何解决"。</li>
+<li>C → D：读完知识点后，能回答 §1.4.5 的 3 个问题。</li>
+<li>D → E：骨架搭完后，<code>pnpm typecheck</code> 通过（可能有逻辑未实现，但类型正确）。</li>
+<li>E → F：测试通过后，<code>pnpm test</code> 至少 12 个用例全绿。</li>
+</ul>
+<hr>
+<h2 id="3-v1最小闭环">3. v1：最小闭环</h2>
+<h3 id="31-v1-要实现什么">3.1 v1 要实现什么</h3>
+<p><strong>目标</strong>：用最少的代码让 LLM 能够调用一次 Tool Registry 的工具。</p>
+<p><strong>功能范围</strong>：</p>
+<ul>
+<li>单次调用 OpenAI API，携带 Day 11 的 3 个工具定义</li>
+<li>解析返回的 <code>tool_calls</code>，调用 Tool Registry 执行</li>
+<li>返回工具执行结果，但<strong>不继续循环</strong></li>
+</ul>
+<p><strong>用户视角</strong>：</p>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/agent/run \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "srv-042 最近 10 分钟的 CPU 是多少？"
+  }'
+
+# 返回：
+{
+  "success": true,
+  "reply": "（模型尚未看到工具结果，只返回 tool_call）",
+  "toolCalls": [
+    {
+      "id": "call_abc123",
+      "name": "getMetrics",
+      "arguments": "{\"serverId\":\"srv-042\",\"metricType\":\"cpu\",\"minutes\":10}"
+    }
+  ]
+}
+</code></pre>
+<p><strong>v1 的问题</strong>：只调用一次就结束，模型无法看到工具返回的数据，无法生成基于数据的诊断。</p>
+<h3 id="32-v1-完整代码">3.2 v1 完整代码</h3>
+<p><strong>apps/api/src/agent/agent.service.v1.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import OpenAI from 'openai'
+import { ToolRegistryService } from '../tools/registry/tool-registry.service'
+
+@Injectable()
+export class AgentServiceV1 {
+  private openai: OpenAI
+
+  constructor(private toolRegistry: ToolRegistryService) {
+    this.openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+  }
+
+  async run(message: string): Promise&lt;any&gt; {
+    // 1. 从 Tool Registry 获取所有工具定义
+    const tools = this.toolRegistry.listTools().map(tool =&gt; ({
+      type: 'function' as const,
+      function: {
+        name: tool.name,
+        description: tool.description,
+        parameters: tool.schema,
+      },
+    }))
+
+    // 2. 调用 OpenAI API
+    const response = await this.openai.chat.completions.create({
+      model: 'gpt-4',
+      messages: [
+        { role: 'system', content: '你是一个运维诊断助手。' },
+        { role: 'user', content: message },
+      ],
+      tools,
+    })
+
+    const message = response.choices[0].message
+
+    // 3. 解析 tool_calls
+    if (message.tool_calls &amp;&amp; message.tool_calls.length &gt; 0) {
+      const toolCalls = message.tool_calls.map(tc =&gt; ({
+        id: tc.id,
+        name: tc.function.name,
+        arguments: tc.function.arguments,
+      }))
+
+      return {
+        success: true,
+        reply: message.content || '（正在调用工具）',
+        toolCalls,
+      }
+    }
+
+    return {
+      success: true,
+      reply: message.content,
+      toolCalls: [],
+    }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/agent/agent.controller.v1.ts</strong></p>
+<pre><code class="language-typescript">import { Controller, Post, Body } from '@nestjs/common'
+import { AgentServiceV1 } from './agent.service.v1'
+
+@Controller('agent')
+export class AgentControllerV1 {
+  constructor(private agentService: AgentServiceV1) {}
+
+  @Post('run')
+  async run(@Body() body: { message: string }) {
+    return this.agentService.run(body.message)
+  }
+}
+</code></pre>
+<h3 id="33-v1-暴露的痛点">3.3 v1 暴露的痛点</h3>
+<ol>
+<li><strong>无法完成多步推理</strong>：模型说"我需要调用 getMetrics"，但调用后就结束了，没有机会看到数据并生成诊断。</li>
+<li><strong>用户体验差</strong>：返回的是 <code>tool_calls</code> JSON，不是自然语言回复，用户看不懂。</li>
+<li><strong>无预算控制</strong>：如果模型陷入死循环（虽然 v1 不会循环，但为 v2 埋雷），无法止损。</li>
+</ol>
+<hr>
+<h2 id="4-v2加循环和预算">4. v2：加循环和预算</h2>
+<h3 id="41-v2-要实现什么">4.1 v2 要实现什么</h3>
+<p><strong>目标</strong>：在 v1 基础上加入 while 循环，让模型能够"调用工具 → 看结果 → 再调用工具 → 看结果"，直到生成最终回复或达到预算上限。</p>
+<p><strong>新增功能</strong>：</p>
+<ul>
+<li>while 循环：只要模型返回 <code>tool_calls</code> 就继续循环</li>
+<li>step 预算：最多循环 20 次</li>
+<li>time 预算：最多运行 30 秒</li>
+<li>token 预算：最多消耗 10000 tokens</li>
+</ul>
+<p><strong>用户视角</strong>：</p>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/agent/run \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "srv-042 最近 10 分钟的 CPU 是多少？",
+    "config": {
+      "maxSteps": 20,
+      "maxTimeMs": 30000,
+      "maxTokens": 10000
+    }
+  }'
+
+# 返回（经过 3 步循环）：
+{
+  "success": true,
+  "reply": "srv-042 在最近 10 分钟内 CPU 平均使用率为 87%，峰值 95%...",
+  "steps": 3,
+  "tokensUsed": 1250,
+  "timeMs": 3200,
+  "finishReason": "completed"
+}
+</code></pre>
+<h3 id="42-v2-完整代码">4.2 v2 完整代码</h3>
+<p><strong>apps/api/src/agent/types/agent-config.types.ts</strong></p>
+<pre><code class="language-typescript">export interface AgentRunConfig {
+  maxSteps?: number      // 最大步数，默认 20
+  maxTimeMs?: number     // 最大运行时间（毫秒），默认 30000
+  maxTokens?: number     // 最大 token 消耗，默认 10000
+}
+
+export const DEFAULT_AGENT_CONFIG: Required&lt;AgentRunConfig&gt; = {
+  maxSteps: 20,
+  maxTimeMs: 30000,
+  maxTokens: 10000,
+}
+</code></pre>
+<p><strong>apps/api/src/agent/loop/budget-tracker.ts</strong></p>
+<pre><code class="language-typescript">import { AgentRunConfig, DEFAULT_AGENT_CONFIG } from '../types/agent-config.types'
+
+export class BudgetTracker {
+  private steps = 0
+  private tokensUsed = 0
+  private startTime: number
+
+  constructor(private config: Required&lt;AgentRunConfig&gt;) {
+    this.startTime = Date.now()
+  }
+
+  static create(config?: AgentRunConfig): BudgetTracker {
+    const fullConfig = { ...DEFAULT_AGENT_CONFIG, ...config }
+    return new BudgetTracker(fullConfig)
+  }
+
+  incrementStep(): void {
+    this.steps++
+  }
+
+  addTokens(count: number): void {
+    this.tokensUsed += count
+  }
+
+  getElapsedMs(): number {
+    return Date.now() - this.startTime
+  }
+
+  getSteps(): number {
+    return this.steps
+  }
+
+  getTokensUsed(): number {
+    return this.tokensUsed
+  }
+
+  // 检查是否超过任一预算
+  isExceeded(): { exceeded: boolean; reason?: string } {
+    if (this.steps &gt;= this.config.maxSteps) {
+      return { exceeded: true, reason: 'max_steps' }
+    }
+    if (this.getElapsedMs() &gt;= this.config.maxTimeMs) {
+      return { exceeded: true, reason: 'max_time' }
+    }
+    if (this.tokensUsed &gt;= this.config.maxTokens) {
+      return { exceeded: true, reason: 'max_tokens' }
+    }
+    return { exceeded: false }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/agent/loop/agent-loop.engine.v2.ts</strong></p>
+<pre><code class="language-typescript">import OpenAI from 'openai'
+import { BudgetTracker } from './budget-tracker'
+import { AgentRunConfig } from '../types/agent-config.types'
+import { ToolRegistryService } from '../../tools/registry/tool-registry.service'
+
+export class AgentLoopEngineV2 {
+  private openai: OpenAI
+
+  constructor(private toolRegistry: ToolRegistryService) {
+    this.openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+  }
+
+  async run(userMessage: string, config?: AgentRunConfig) {
+    const budget = BudgetTracker.create(config)
+    const messages: OpenAI.ChatCompletionMessageParam[] = [
+      { role: 'system', content: '你是一个运维诊断助手。' },
+      { role: 'user', content: userMessage },
+    ]
+
+    const tools = this.toolRegistry.listTools().map(tool =&gt; ({
+      type: 'function' as const,
+      function: {
+        name: tool.name,
+        description: tool.description,
+        parameters: tool.schema,
+      },
+    }))
+
+    // 循环直到模型不再调用工具或预算用尽
+    while (true) {
+      // 检查预算
+      const budgetCheck = budget.isExceeded()
+      if (budgetCheck.exceeded) {
+        return {
+          success: true,
+          reply: '（达到预算上限）',
+          steps: budget.getSteps(),
+          tokensUsed: budget.getTokensUsed(),
+          timeMs: budget.getElapsedMs(),
+          finishReason: budgetCheck.reason,
+        }
+      }
+
+      budget.incrementStep()
+
+      // 调用 LLM
+      const response = await this.openai.chat.completions.create({
+        model: 'gpt-4',
+        messages,
+        tools,
+      })
+
+      const choice = response.choices[0]
+      const assistantMessage = choice.message
+
+      // 记录 token 消耗
+      if (response.usage) {
+        budget.addTokens(response.usage.total_tokens)
+      }
+
+      // 如果没有 tool_calls，说明模型完成任务
+      if (!assistantMessage.tool_calls || assistantMessage.tool_calls.length === 0) {
+        return {
+          success: true,
+          reply: assistantMessage.content || '',
+          steps: budget.getSteps(),
+          tokensUsed: budget.getTokensUsed(),
+          timeMs: budget.getElapsedMs(),
+          finishReason: 'completed',
+        }
+      }
+
+      // 有 tool_calls，执行工具
+      messages.push(assistantMessage)
+
+      for (const toolCall of assistantMessage.tool_calls) {
+        const toolName = toolCall.function.name
+        const toolArgs = JSON.parse(toolCall.function.arguments)
+
+        try {
+          const result = await this.toolRegistry.execute(toolName, toolArgs, {
+            userId: 'system',
+            requestId: `agent-${Date.now()}`,
+          })
+
+          messages.push({
+            role: 'tool',
+            tool_call_id: toolCall.id,
+            content: JSON.stringify(result),
+          })
+        } catch (error: any) {
+          messages.push({
+            role: 'tool',
+            tool_call_id: toolCall.id,
+            content: `Error: ${error.message}`,
+          })
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<h3 id="43-v2-暴露的痛点">4.3 v2 暴露的痛点</h3>
+<ol>
+<li><strong>Provider 耦合</strong>：循环引擎直接依赖 <code>OpenAI</code> 类，换成 Claude/Gemini 需要重写整个循环逻辑。</li>
+<li><strong>终止原因不明确</strong>：只返回字符串 <code>'max_steps'</code>/<code>'completed'</code>，没有类型约束，容易拼写错误。</li>
+<li><strong>无轨迹审计</strong>：循环结束后只能看到最终回复，无法追溯中间步骤（哪个 tool 被调用了多少次、每步耗时多少）。</li>
+<li><strong>错误处理粗糙</strong>：Tool 执行失败时只记录 <code>Error: xxx</code>，模型可能会陷入重试同一个失败的工具。</li>
+</ol>
+<hr>
+<h2 id="5-v3终态">5. v3：终态</h2>
+<h3 id="51-v3-要实现什么">5.1 v3 要实现什么</h3>
+<p><strong>目标</strong>：在 v2 基础上抽象 Provider、规范终止原因、记录完整轨迹、优化错误处理。</p>
+<p><strong>新增功能</strong>：</p>
+<ul>
+<li>Provider 抽象：定义 <code>LLMProvider</code> 接口，循环引擎只依赖接口</li>
+<li>终止原因枚举：<code>FinishReason</code> 类型安全</li>
+<li>轨迹记录：每一步的 <code>type</code>（model_turn / tool_call）、<code>timestamp</code>、<code>data</code></li>
+<li>审计服务：循环结束后自动记录轨迹到审计日志</li>
+</ul>
+<h3 id="52-v3-目录结构">5.2 v3 目录结构</h3>
+<p>（与 §1.4 完全一致，此处省略）</p>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<p><strong>apps/api/src/agent/types/finish-reason.types.ts</strong></p>
+<pre><code class="language-typescript">// 终止原因：必须是以下 5 种之一
+export type FinishReason =
+  | 'completed'      // 模型主动结束（无 tool_calls）
+  | 'max_steps'      // 达到最大步数
+  | 'max_time'       // 达到最大时间
+  | 'max_tokens'     // 达到最大 token
+  | 'error'          // 执行过程中出现错误
+
+export function isFinishReason(value: string): value is FinishReason {
+  return ['completed', 'max_steps', 'max_time', 'max_tokens', 'error'].includes(value)
+}
+</code></pre>
+<p><strong>apps/api/src/agent/types/agent-trajectory.types.ts</strong></p>
+<pre><code class="language-typescript">// 单步轨迹事件
+export type TrajectoryStep =
+  | {
+      type: 'model_turn'
+      timestamp: string
+      data: {
+        content?: string
+        toolCalls?: Array&lt;{
+          id: string
+          name: string
+          arguments: string
+        }&gt;
+      }
+    }
+  | {
+      type: 'tool_call'
+      timestamp: string
+      data: {
+        toolCallId: string
+        toolName: string
+        arguments: any
+        result?: any
+        error?: string
+      }
+    }
+
+// 完整轨迹
+export interface AgentTrajectory {
+  runId: string
+  userMessage: string
+  steps: TrajectoryStep[]
+  finishReason: FinishReason
+  totalSteps: number
+  totalTokens: number
+  totalTimeMs: number
+  createdAt: string
+}
+</code></pre>
+<p><strong>apps/api/src/agent/types/agent-config.types.ts</strong></p>
+<pre><code class="language-typescript">export interface AgentRunConfig {
+  maxSteps?: number      // 最大步数，默认 20
+  maxTimeMs?: number     // 最大运行时间（毫秒），默认 30000
+  maxTokens?: number     // 最大 token 消耗，默认 10000
+}
+
+export const DEFAULT_AGENT_CONFIG: Required&lt;AgentRunConfig&gt; = {
+  maxSteps: 20,
+  maxTimeMs: 30000,
+  maxTokens: 10000,
+}
+</code></pre>
+<p><strong>apps/api/src/agent/provider/llm-provider.interface.ts</strong></p>
+<pre><code class="language-typescript">// 统一的 LLM Provider 接口
+export interface LLMMessage {
+  role: 'system' | 'user' | 'assistant' | 'tool'
+  content?: string
+  toolCalls?: Array&lt;{
+    id: string
+    name: string
+    arguments: string
+  }&gt;
+  toolCallId?: string  // 用于 tool role
+}
+
+export interface LLMTool {
+  name: string
+  description: string
+  parameters: any  // JSON Schema
+}
+
+export interface LLMResponse {
+  content?: string
+  toolCalls?: Array&lt;{
+    id: string
+    name: string
+    arguments: string
+  }&gt;
+  usage?: {
+    totalTokens: number
+  }
+}
+
+export interface LLMProvider {
+  chat(messages: LLMMessage[], tools: LLMTool[]): Promise&lt;LLMResponse&gt;
+}
+</code></pre>
+<p><strong>apps/api/src/agent/provider/openai-provider.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import OpenAI from 'openai'
+import {
+  LLMProvider,
+  LLMMessage,
+  LLMTool,
+  LLMResponse,
+} from './llm-provider.interface'
+
+@Injectable()
+export class OpenAIProvider implements LLMProvider {
+  private openai: OpenAI
+
+  constructor() {
+    this.openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+  }
+
+  async chat(messages: LLMMessage[], tools: LLMTool[]): Promise&lt;LLMResponse&gt; {
+    // 转换消息格式
+    const openaiMessages: OpenAI.ChatCompletionMessageParam[] = messages.map(
+      msg =&gt; {
+        if (msg.role === 'tool') {
+          return {
+            role: 'tool',
+            tool_call_id: msg.toolCallId!,
+            content: msg.content || '',
+          }
+        }
+        if (msg.role === 'assistant' &amp;&amp; msg.toolCalls) {
+          return {
+            role: 'assistant',
+            content: msg.content || null,
+            tool_calls: msg.toolCalls.map(tc =&gt; ({
+              id: tc.id,
+              type: 'function' as const,
+              function: {
+                name: tc.name,
+                arguments: tc.arguments,
+              },
+            })),
+          }
+        }
+        return {
+          role: msg.role,
+          content: msg.content || '',
+        }
+      },
+    )
+
+    // 转换工具格式
+    const openaiTools: OpenAI.ChatCompletionTool[] = tools.map(tool =&gt; ({
+      type: 'function',
+      function: {
+        name: tool.name,
+        description: tool.description,
+        parameters: tool.parameters,
+      },
+    }))
+
+    // 调用 OpenAI API
+    const response = await this.openai.chat.completions.create({
+      model: 'gpt-4',
+      messages: openaiMessages,
+      tools: openaiTools,
+    })
+
+    const choice = response.choices[0]
+    const message = choice.message
+
+    // 转换响应格式
+    return {
+      content: message.content || undefined,
+      toolCalls: message.tool_calls?.map(tc =&gt; ({
+        id: tc.id,
+        name: tc.function.name,
+        arguments: tc.function.arguments,
+      })),
+      usage: response.usage
+        ? { totalTokens: response.usage.total_tokens }
+        : undefined,
+    }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/agent/provider/provider.factory.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { LLMProvider } from './llm-provider.interface'
+import { OpenAIProvider } from './openai-provider'
+
+@Injectable()
+export class ProviderFactory {
+  create(providerName: string): LLMProvider {
+    switch (providerName) {
+      case 'openai':
+        return new OpenAIProvider()
+      // 未来可以加入其他 Provider
+      // case 'claude':
+      //   return new ClaudeProvider()
+      default:
+        throw new Error(`Unknown provider: ${providerName}`)
+    }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/agent/loop/budget-tracker.ts</strong></p>
+<pre><code class="language-typescript">import { AgentRunConfig, DEFAULT_AGENT_CONFIG } from '../types/agent-config.types'
+import { FinishReason } from '../types/finish-reason.types'
+
+export class BudgetTracker {
+  private steps = 0
+  private tokensUsed = 0
+  private startTime: number
+
+  constructor(private config: Required&lt;AgentRunConfig&gt;) {
+    this.startTime = Date.now()
+  }
+
+  static create(config?: AgentRunConfig): BudgetTracker {
+    const fullConfig = { ...DEFAULT_AGENT_CONFIG, ...config }
+    return new BudgetTracker(fullConfig)
+  }
+
+  incrementStep(): void {
+    this.steps++
+  }
+
+  addTokens(count: number): void {
+    this.tokensUsed += count
+  }
+
+  getElapsedMs(): number {
+    return Date.now() - this.startTime
+  }
+
+  getSteps(): number {
+    return this.steps
+  }
+
+  getTokensUsed(): number {
+    return this.tokensUsed
+  }
+
+  // 检查是否超过任一预算，返回终止原因
+  checkBudget(): { exceeded: boolean; reason?: FinishReason } {
+    if (this.steps &gt;= this.config.maxSteps) {
+      return { exceeded: true, reason: 'max_steps' }
+    }
+    if (this.getElapsedMs() &gt;= this.config.maxTimeMs) {
+      return { exceeded: true, reason: 'max_time' }
+    }
+    if (this.tokensUsed &gt;= this.config.maxTokens) {
+      return { exceeded: true, reason: 'max_tokens' }
+    }
+    return { exceeded: false }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/agent/loop/agent-loop.engine.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { v4 as uuidv4 } from 'uuid'
+import { LLMProvider, LLMMessage, LLMTool } from '../provider/llm-provider.interface'
+import { BudgetTracker } from './budget-tracker'
+import { AgentRunConfig } from '../types/agent-config.types'
+import { FinishReason } from '../types/finish-reason.types'
+import { AgentTrajectory, TrajectoryStep } from '../types/agent-trajectory.types'
+import { ToolRegistryService } from '../../tools/registry/tool-registry.service'
+
+export interface AgentLoopResult {
+  runId: string
+  reply: string
+  finishReason: FinishReason
+  trajectory: AgentTrajectory
+}
+
+@Injectable()
+export class AgentLoopEngine {
+  constructor(private toolRegistry: ToolRegistryService) {}
+
+  async run(
+    provider: LLMProvider,
+    userMessage: string,
+    config?: AgentRunConfig,
+  ): Promise&lt;AgentLoopResult&gt; {
+    const runId = uuidv4()
+    const budget = BudgetTracker.create(config)
+    const steps: TrajectoryStep[] = []
+
+    const messages: LLMMessage[] = [
+      { role: 'system', content: '你是一个运维诊断助手。' },
+      { role: 'user', content: userMessage },
+    ]
+
+    const tools: LLMTool[] = this.toolRegistry.listTools().map(tool =&gt; ({
+      name: tool.name,
+      description: tool.description,
+      parameters: tool.schema,
+    }))
+
+    let finishReason: FinishReason = 'completed'
+    let finalReply = ''
+
+    try {
+      // 循环直到模型不再调用工具或预算用尽
+      while (true) {
+        // 检查预算
+        const budgetCheck = budget.checkBudget()
+        if (budgetCheck.exceeded) {
+          finishReason = budgetCheck.reason!
+          finalReply = '（达到预算上限，任务未完成）'
+          break
+        }
+
+        budget.incrementStep()
+
+        // 调用 LLM
+        const response = await provider.chat(messages, tools)
+
+        // 记录 token 消耗
+        if (response.usage) {
+          budget.addTokens(response.usage.totalTokens)
+        }
+
+        // 记录模型回复步骤
+        steps.push({
+          type: 'model_turn',
+          timestamp: new Date().toISOString(),
+          data: {
+            content: response.content,
+            toolCalls: response.toolCalls,
+          },
+        })
+
+        // 如果没有 tool_calls，说明模型完成任务
+        if (!response.toolCalls || response.toolCalls.length === 0) {
+          finishReason = 'completed'
+          finalReply = response.content || '（模型未返回内容）'
+          break
+        }
+
+        // 有 tool_calls，构造 assistant 消息
+        messages.push({
+          role: 'assistant',
+          content: response.content,
+          toolCalls: response.toolCalls,
+        })
+
+        // 执行每个工具
+        for (const toolCall of response.toolCalls) {
+          const toolName = toolCall.name
+          let toolArgs: any
+
+          try {
+            toolArgs = JSON.parse(toolCall.arguments)
+          } catch (error) {
+            const errorMsg = 'Invalid JSON in tool arguments'
+            messages.push({
+              role: 'tool',
+              toolCallId: toolCall.id,
+              content: JSON.stringify({ error: errorMsg }),
+            })
+            steps.push({
+              type: 'tool_call',
+              timestamp: new Date().toISOString(),
+              data: {
+                toolCallId: toolCall.id,
+                toolName,
+                arguments: toolCall.arguments,
+                error: errorMsg,
+              },
+            })
+            continue
+          }
+
+          try {
+            const result = await this.toolRegistry.execute(toolName, toolArgs, {
+              userId: 'system',
+              requestId: runId,
+            })
+
+            messages.push({
+              role: 'tool',
+              toolCallId: toolCall.id,
+              content: JSON.stringify(result),
+            })
+
+            steps.push({
+              type: 'tool_call',
+              timestamp: new Date().toISOString(),
+              data: {
+                toolCallId: toolCall.id,
+                toolName,
+                arguments: toolArgs,
+                result,
+              },
+            })
+          } catch (error: any) {
+            const errorMsg = error.message || 'Tool execution failed'
+            messages.push({
+              role: 'tool',
+              toolCallId: toolCall.id,
+              content: JSON.stringify({ error: errorMsg }),
+            })
+
+            steps.push({
+              type: 'tool_call',
+              timestamp: new Date().toISOString(),
+              data: {
+                toolCallId: toolCall.id,
+                toolName,
+                arguments: toolArgs,
+                error: errorMsg,
+              },
+            })
+          }
+        }
+      }
+    } catch (error: any) {
+      finishReason = 'error'
+      finalReply = `执行出错：${error.message}`
+    }
+
+    const trajectory: AgentTrajectory = {
+      runId,
+      userMessage,
+      steps,
+      finishReason,
+      totalSteps: budget.getSteps(),
+      totalTokens: budget.getTokensUsed(),
+      totalTimeMs: budget.getElapsedMs(),
+      createdAt: new Date().toISOString(),
+    }
+
+    return {
+      runId,
+      reply: finalReply,
+      finishReason,
+      trajectory,
+    }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/agent/provider/openai-provider.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import OpenAI from 'openai'
+import { LLMProvider, LLMMessage, LLMTool, LLMResponse } from './llm-provider.interface'
+
+@Injectable()
+export class OpenAIProvider implements LLMProvider {
+  private client: OpenAI
+
+  constructor() {
+    this.client = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+  }
+
+  async chat(messages: LLMMessage[], tools: LLMTool[]): Promise&lt;LLMResponse&gt; {
+    // 转换为 OpenAI SDK 格式
+    const openaiMessages = messages.map((m) =&gt; ({
+      role: m.role,
+      content: m.content ?? '',
+      ...(m.toolCalls ? { tool_calls: m.toolCalls.map(tc =&gt; ({
+        id: tc.id,
+        type: 'function' as const,
+        function: { name: tc.name, arguments: JSON.stringify(tc.arguments) },
+      })) } : {}),
+      ...(m.toolCallId ? { tool_call_id: m.toolCallId } : {}),
+    }))
+
+    const openaiTools = tools.map((t) =&gt; ({
+      type: 'function' as const,
+      function: {
+        name: t.name,
+        description: t.description,
+        parameters: t.parameters,
+      },
+    }))
+
+    const completion = await this.client.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages: openaiMessages as any,
+      tools: openaiTools.length &gt; 0 ? openaiTools : undefined,
+      tool_choice: openaiTools.length &gt; 0 ? 'auto' : undefined,
+    })
+
+    const choice = completion.choices[0]
+    const message = choice.message
+
+    // 转换为统一格式
+    return {
+      content: message.content ?? null,
+      toolCalls: message.tool_calls?.map((tc) =&gt; ({
+        id: tc.id,
+        name: tc.function.name,
+        arguments: JSON.parse(tc.function.arguments),
+      })),
+      usage: {
+        promptTokens: completion.usage?.prompt_tokens ?? 0,
+        completionTokens: completion.usage?.completion_tokens ?? 0,
+        totalTokens: completion.usage?.total_tokens ?? 0,
+      },
+      finishReason: choice.finish_reason,
+    }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/agent/provider/provider.factory.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { LLMProvider } from './llm-provider.interface'
+import { OpenAIProvider } from './openai-provider'
+
+export type ProviderName = 'openai' | 'anthropic' | 'gemini'
+
+@Injectable()
+export class ProviderFactory {
+  constructor(private openaiProvider: OpenAIProvider) {}
+
+  getProvider(name: ProviderName = 'openai'): LLMProvider {
+    switch (name) {
+      case 'openai':
+        return this.openaiProvider
+      case 'anthropic':
+        throw new Error('Anthropic Provider 未实现，参见 Day 20')
+      case 'gemini':
+        throw new Error('Gemini Provider 未实现')
+      default:
+        throw new Error(`未知 Provider: ${name}`)
+    }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/agent/loop/budget-tracker.ts</strong></p>
+<pre><code class="language-typescript">import { AgentRunConfig, DEFAULT_AGENT_CONFIG } from '../types/agent-config.types'
+import { FinishReason } from '../types/finish-reason.types'
+
+export class BudgetTracker {
+  private startTime: number
+  private stepCount = 0
+  private tokenCount = 0
+  private config: Required&lt;AgentRunConfig&gt;
+
+  constructor(config?: AgentRunConfig) {
+    this.config = { ...DEFAULT_AGENT_CONFIG, ...config }
+    this.startTime = Date.now()
+  }
+
+  incrementStep(): void {
+    this.stepCount += 1
+  }
+
+  addTokens(tokens: number): void {
+    this.tokenCount += tokens
+  }
+
+  /**
+   * 检查是否超预算。返回 null 表示未超预算，返回 FinishReason 表示因该原因超预算。
+   * 三种预算独立检查，任一超过即触发终止。
+   */
+  checkExceeded(): FinishReason | null {
+    if (this.stepCount &gt;= this.config.maxSteps) {
+      return 'max_steps'
+    }
+    if (Date.now() - this.startTime &gt;= this.config.maxTimeMs) {
+      return 'max_time'
+    }
+    if (this.tokenCount &gt;= this.config.maxTokens) {
+      return 'max_tokens'
+    }
+    return null
+  }
+
+  getStats() {
+    return {
+      steps: this.stepCount,
+      timeMs: Date.now() - this.startTime,
+      tokens: this.tokenCount,
+      limits: this.config,
+    }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/agent/loop/agent-loop.engine.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable, Inject } from '@nestjs/common'
+import { LLMProvider, LLMMessage, LLMTool } from '../provider/llm-provider.interface'
+import { ToolRegistryService } from '../../tools/registry/tool-registry.service'
+import { AgentRunConfig } from '../types/agent-config.types'
+import { AgentTrajectory, TrajectoryStep } from '../types/agent-trajectory.types'
+import { FinishReason } from '../types/finish-reason.types'
+import { BudgetTracker } from './budget-tracker'
+
+export interface AgentRunResult {
+  finalMessage: string
+  trajectory: AgentTrajectory
+  finishReason: FinishReason
+}
+
+@Injectable()
+export class AgentLoopEngine {
+  constructor(
+    @Inject('LLMProvider') private provider: LLMProvider,
+    private toolRegistry: ToolRegistryService,
+  ) {}
+
+  /**
+   * 运行 Agent Loop。核心循环逻辑：
+   * 1. 检查预算 → 若超预算立即终止
+   * 2. 调用 LLM → 拿到回复和 tool_calls
+   * 3. 若无 tool_calls → 模型主动完成，返回 completed
+   * 4. 若有 tool_calls → 执行每个 Tool，把结果追加到 messages
+   * 5. 回到步骤 1
+   */
+  async run(
+    userMessage: string,
+    tools: LLMTool[],
+    config?: AgentRunConfig,
+  ): Promise&lt;AgentRunResult&gt; {
+    const budget = new BudgetTracker(config)
+    const trajectory: AgentTrajectory = { steps: [], stats: null as any }
+
+    const messages: LLMMessage[] = [
+      {
+        role: 'system',
+        content: '你是运维诊断助手，可以调用工具查询服务器指标和告警详情。分析问题时先收集数据，再给出结论。',
+      },
+      { role: 'user', content: userMessage },
+    ]
+
+    let finalMessage = ''
+    let finishReason: FinishReason = 'completed'
+
+    while (true) {
+      // 步骤 1：检查预算
+      const exceeded = budget.checkExceeded()
+      if (exceeded) {
+        finishReason = exceeded
+        finalMessage = `[执行被强制终止：${exceeded}]`
+        break
+      }
+
+      // 步骤 2：调用 LLM
+      budget.incrementStep()
+      const stepIndex = trajectory.steps.length + 1
+      const stepStart = Date.now()
+
+      let response
+      try {
+        response = await this.provider.chat(messages, tools)
+      } catch (err) {
+        finishReason = 'error'
+        finalMessage = `[LLM 调用失败：${(err as Error).message}]`
+        trajectory.steps.push({
+          index: stepIndex,
+          type: 'error',
+          content: (err as Error).message,
+          durationMs: Date.now() - stepStart,
+          timestamp: new Date().toISOString(),
+        })
+        break
+      }
+
+      budget.addTokens(response.tokensUsed)
+
+      // 记录模型回合
+      trajectory.steps.push({
+        index: stepIndex,
+        type: 'model_turn',
+        content: response.content,
+        toolCalls: response.toolCalls,
+        tokensUsed: response.tokensUsed,
+        durationMs: Date.now() - stepStart,
+        timestamp: new Date().toISOString(),
+      })
+
+      // 步骤 3：无 tool_calls → 模型完成
+      if (!response.toolCalls || response.toolCalls.length === 0) {
+        finalMessage = response.content
+        finishReason = 'completed'
+        break
+      }
+
+      // 步骤 4：执行每个 Tool 并追加结果到 messages
+      messages.push({
+        role: 'assistant',
+        content: response.content,
+        toolCalls: response.toolCalls,
+      })
+
+      for (const toolCall of response.toolCalls) {
+        const toolStart = Date.now()
+        let toolResult: string
+        let toolStep: TrajectoryStep
+
+        try {
+          const args = JSON.parse(toolCall.arguments)
+          const result = await this.toolRegistry.execute(toolCall.name, args, {
+            userId: 'agent-loop',
+            requestId: `agent-${Date.now()}`,
+          })
+          toolResult = JSON.stringify(result)
+          toolStep = {
+            index: trajectory.steps.length + 1,
+            type: 'tool_call',
+            toolName: toolCall.name,
+            toolArgs: args,
+            toolResult: result,
+            durationMs: Date.now() - toolStart,
+            timestamp: new Date().toISOString(),
+          }
+        } catch (err) {
+          toolResult = JSON.stringify({ error: (err as Error).message })
+          toolStep = {
+            index: trajectory.steps.length + 1,
+            type: 'tool_call',
+            toolName: toolCall.name,
+            toolArgs: {},
+            toolError: (err as Error).message,
+            durationMs: Date.now() - toolStart,
+            timestamp: new Date().toISOString(),
+          }
+        }
+
+        trajectory.steps.push(toolStep)
+        messages.push({
+          role: 'tool',
+          content: toolResult,
+          toolCallId: toolCall.id,
+        })
+      }
+    }
+
+    trajectory.stats = budget.getStats()
+    return { finalMessage, trajectory, finishReason }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/agent/audit/trajectory-audit.service.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable, Logger } from '@nestjs/common'
+import { AgentTrajectory } from '../types/agent-trajectory.types'
+import { FinishReason } from '../types/finish-reason.types'
+
+interface AuditRecord {
+  timestamp: string
+  userMessage: string
+  finalMessage: string
+  finishReason: FinishReason
+  stepCount: number
+  totalTokens: number
+  totalTimeMs: number
+  trajectory: AgentTrajectory
+}
+
+@Injectable()
+export class TrajectoryAuditService {
+  private readonly logger = new Logger(TrajectoryAuditService.name)
+
+  /**
+   * 记录一次 Agent Loop 执行。生产环境可替换为写入 LangSmith / LangFuse / 自建平台。
+   * 这里先用日志打印做验证。
+   */
+  async logRun(
+    userMessage: string,
+    result: {
+      finalMessage: string
+      trajectory: AgentTrajectory
+      finishReason: FinishReason
+    },
+  ): Promise&lt;void&gt; {
+    const record: AuditRecord = {
+      timestamp: new Date().toISOString(),
+      userMessage,
+      finalMessage: result.finalMessage,
+      finishReason: result.finishReason,
+      stepCount: result.trajectory.steps.length,
+      totalTokens: result.trajectory.stats.tokens,
+      totalTimeMs: result.trajectory.stats.timeMs,
+      trajectory: result.trajectory,
+    }
+
+    this.logger.log(
+      `[Agent Run] finish=${record.finishReason} steps=${record.stepCount} tokens=${record.totalTokens} time=${record.totalTimeMs}ms`,
+    )
+
+    // 生产环境：await this.langsmithClient.createRun(record)
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/agent/agent.service.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { AgentLoopEngine, AgentRunResult } from './loop/agent-loop.engine'
+import { TrajectoryAuditService } from './audit/trajectory-audit.service'
+import { ToolRegistryService } from '../tools/registry/tool-registry.service'
+import { AgentRunConfig } from './types/agent-config.types'
+
+@Injectable()
+export class AgentService {
+  constructor(
+    private loopEngine: AgentLoopEngine,
+    private auditService: TrajectoryAuditService,
+    private toolRegistry: ToolRegistryService,
+  ) {}
+
+  async run(userMessage: string, config?: AgentRunConfig): Promise&lt;AgentRunResult&gt; {
+    // 把 Day 11 Tool Registry 里的所有 Tool 转成 LLM 可识别的格式
+    const tools = this.toolRegistry.listAll().map((tool) =&gt; ({
+      name: tool.name,
+      description: tool.description,
+      parameters: this.zodToJsonSchema(tool.schema),
+    }))
+
+    const result = await this.loopEngine.run(userMessage, tools, config)
+    await this.auditService.logRun(userMessage, result)
+    return result
+  }
+
+  /**
+   * 简化版 Zod → JSON Schema 转换。生产环境用 zod-to-json-schema 库。
+   */
+  private zodToJsonSchema(schema: any): Record&lt;string, unknown&gt; {
+    // 这里由 Day 11 Tool Registry 提供更完整的转换，或用 zod-to-json-schema 库
+    return schema._def?.jsonSchema || { type: 'object', properties: {} }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/agent/agent.controller.ts</strong></p>
+<pre><code class="language-typescript">import { Body, Controller, HttpException, HttpStatus, Post } from '@nestjs/common'
+import { AgentService } from './agent.service'
+import { AgentRunConfig } from './types/agent-config.types'
+
+interface AgentRunDto {
+  userMessage: string
+  config?: AgentRunConfig
+}
+
+@Controller('agent')
+export class AgentController {
+  constructor(private agentService: AgentService) {}
+
+  @Post('run')
+  async run(@Body() dto: AgentRunDto) {
+    if (!dto.userMessage || typeof dto.userMessage !== 'string') {
+      throw new HttpException('userMessage 必须是非空字符串', HttpStatus.BAD_REQUEST)
+    }
+
+    const result = await this.agentService.run(dto.userMessage, dto.config)
+
+    return {
+      success: true,
+      finalMessage: result.finalMessage,
+      finishReason: result.finishReason,
+      stats: result.trajectory.stats,
+      trajectory: result.trajectory,
+    }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/agent/agent.module.ts</strong></p>
+<pre><code class="language-typescript">import { Module } from '@nestjs/common'
+import { AgentController } from './agent.controller'
+import { AgentService } from './agent.service'
+import { AgentLoopEngine } from './loop/agent-loop.engine'
+import { TrajectoryAuditService } from './audit/trajectory-audit.service'
+import { ProviderFactory } from './provider/provider.factory'
+import { OpenAIProvider } from './provider/openai-provider'
+import { ToolsModule } from '../tools/tools.module'
+
+@Module({
+  imports: [ToolsModule],
+  controllers: [AgentController],
+  providers: [
+    AgentService,
+    AgentLoopEngine,
+    TrajectoryAuditService,
+    ProviderFactory,
+    OpenAIProvider,
+    {
+      provide: 'LLMProvider',
+      useFactory: (factory: ProviderFactory) =&gt; factory.create('openai'),
+      inject: [ProviderFactory],
+    },
+  ],
+})
+export class AgentModule {}
+</code></pre>
+<p><strong>apps/api/src/agent/index.ts</strong></p>
+<pre><code class="language-typescript">export * from './types/agent-config.types'
+export * from './types/finish-reason.types'
+export * from './types/agent-trajectory.types'
+export * from './provider/llm-provider.interface'
+export * from './loop/agent-loop.engine'
+export * from './agent.service'
+export * from './agent.module'
+</code></pre>
+<h3 id="54-v3-用到的知识点">5.4 v3 用到的知识点</h3>
+<h4 id="知识点-1agent-loop模型自主循环">知识点 1：Agent Loop（模型自主循环）</h4>
+<ul>
+<li><strong>解决的问题</strong>：单轮 Function Calling 只能"调一次工具就结束"。复杂问题需要模型多次调用工具、观察结果、决策下一步。Agent Loop 让模型自己决定"要不要再调工具、什么时候结束"。</li>
+<li><strong>运行机制</strong>：
+<ul>
+<li>循环体：send messages → LLM 返回 <code>tool_calls</code> 或纯文本</li>
+<li>如果返回 <code>tool_calls</code>：执行工具、把结果加入 messages、进入下一轮</li>
+<li>如果返回纯文本：说明模型认为任务完成，循环结束</li>
+<li>每轮循环前检查预算，超预算强制终止</li>
+</ul>
+</li>
+<li><strong>项目落点</strong>：<code>agent-loop.engine.ts</code> 的 <code>while (true)</code> 循环。三种退出路径：模型无 tool_calls（正常）、预算超限（强制）、异常抛出（error）。</li>
+<li><strong>生产误区</strong>：
+<ul>
+<li>误区 1：无限循环。忘记加预算检查或退出条件写错，模型可能反复调用同一工具。</li>
+<li>误区 2：把 tool 执行结果直接 return 给用户。用户看到的应该是模型对结果的自然语言解读，不是工具原始 JSON。</li>
+<li>误区 3：不把 tool_call 加入 messages。OpenAI API 要求 tool 结果必须对应之前的 tool_call_id，缺一不可。</li>
+</ul>
+</li>
+<li><strong>验证方法</strong>：
+<ul>
+<li>单元测试：mock Provider 依次返回"tool_calls → tool_calls → 纯文本"，断言循环执行了 3 步后结束。</li>
+<li>反证实验：故意让 mock Provider 一直返回 tool_calls（模拟死循环），断言 <code>max_steps</code> 触发终止。</li>
+</ul>
+</li>
+</ul>
+<h4 id="知识点-2预算设计step-time-token-三维">知识点 2：预算设计（step / time / token 三维）</h4>
+<ul>
+<li><strong>解决的问题</strong>：单一"最大步数"约束不够。有的模型每步 100ms 返回、有的每步 5s 返回；有的任务每步 100 token、有的每步 5000 token。只限 step 无法防止时间/成本失控。三维预算独立生效，任一触发即终止。</li>
+<li><strong>运行机制</strong>：
+<ul>
+<li><code>maxSteps</code>：计数器每轮 +1，达到上限触发 <code>max_steps</code></li>
+<li><code>maxTimeMs</code>：记录 <code>startTime</code>，每轮检查 <code>Date.now() - startTime</code>，超时触发 <code>max_time</code></li>
+<li><code>maxTokens</code>：累加每次 LLM 响应的 <code>usage.total_tokens</code>，超限触发 <code>max_tokens</code></li>
+</ul>
+</li>
+<li><strong>项目落点</strong>：<code>budget-tracker.ts</code> 的 <code>checkExceeded()</code> 方法。返回 <code>FinishReason | null</code>，null 表示可以继续，否则立即终止循环。</li>
+<li><strong>生产误区</strong>：
+<ul>
+<li>误区 1：把预算检查放在循环体末尾。应该放在<strong>每次调用 LLM 之前</strong>，否则会浪费一次昂贵的 API 调用。</li>
+<li>误区 2：预算写死在代码里。生产环境应该按用户等级/任务类型动态调整（免费用户 5 步、付费 20 步）。</li>
+<li>误区 3：不记录预算消耗。用户不知道为什么被中断，无法优化 prompt。</li>
+</ul>
+</li>
+<li><strong>验证方法</strong>：
+<ul>
+<li>单元测试：构造 <code>BudgetTracker({ maxSteps: 3 })</code>，连续 <code>incrementStep()</code> 3 次后 <code>checkExceeded()</code> 返回 <code>'max_steps'</code>。</li>
+<li>集成测试：构造一个只调工具不终结的场景，观察实际耗费是否在预算内。</li>
+</ul>
+</li>
+</ul>
+<h4 id="知识点-3终止原因分类finish-reason">知识点 3：终止原因分类（Finish Reason）</h4>
+<ul>
+<li><strong>解决的问题</strong>：循环结束后，用户和上层系统需要知道<strong>为什么结束</strong>。是模型完成任务？还是被预算强制中断？还是异常？不同原因需要不同的后续处理：<code>completed</code> 展示结果，<code>max_steps</code> 提示用户扩大预算，<code>error</code> 展示错误并支持重试。</li>
+<li><strong>运行机制</strong>：
+<ul>
+<li><code>completed</code>：LLM 返回纯文本（无 tool_calls）</li>
+<li><code>max_steps</code>/<code>max_time</code>/<code>max_tokens</code>：预算追踪器检测到超限</li>
+<li><code>error</code>：任意步骤抛出异常</li>
+<li>终止原因是<strong>有限枚举</strong>，不允许字符串自由拼接</li>
+</ul>
+</li>
+<li><strong>项目落点</strong>：<code>finish-reason.types.ts</code> 的 <code>type FinishReason = 'completed' | 'max_steps' | 'max_time' | 'max_tokens' | 'error'</code>。循环引擎返回的 <code>AgentRunResult</code> 中 <code>finishReason</code> 字段是必填。</li>
+<li><strong>生产误区</strong>：
+<ul>
+<li>误区 1：只用 <code>success: boolean</code> 表示结束状态。丢失了"为什么失败"的信息，无法针对性优化。</li>
+<li>误区 2：把终止原因写在自由文本字段。上层系统无法可靠地按原因分类处理。</li>
+<li>误区 3：不区分 <code>max_steps</code> 和 <code>error</code>。前者是"任务复杂需要更多预算"，后者是"系统故障需要修复"，处理策略完全不同。</li>
+</ul>
+</li>
+<li><strong>验证方法</strong>：
+<ul>
+<li>单元测试：分别构造五种触发场景，断言返回的 <code>finishReason</code> 与预期一致。</li>
+<li>UI 验证：前端根据 <code>finishReason</code> 显示不同图标（成功打勾/预算耗尽提示/错误红叉）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="知识点-4tool-call-id-匹配tool_call_id-tool-result">知识点 4：Tool Call ID 匹配（tool_call_id ↔ tool result）</h4>
+<ul>
+<li><strong>解决的问题</strong>：LLM 一次可能返回多个 <code>tool_calls</code>（并发调用），每个 tool 的结果必须<strong>精确匹配</strong>回原始 call_id，否则模型无法关联"哪个结果属于哪个调用"。</li>
+<li><strong>运行机制</strong>：
+<ul>
+<li>LLM 返回：<code>tool_calls: [{id: "call_abc", ...}, {id: "call_xyz", ...}]</code></li>
+<li>执行工具后，messages 追加：<code>{role: 'tool', tool_call_id: 'call_abc', content: ...}</code> 和 <code>{role: 'tool', tool_call_id: 'call_xyz', content: ...}</code></li>
+<li>下一轮 LLM 通过 <code>tool_call_id</code> 找到对应结果</li>
+</ul>
+</li>
+<li><strong>项目落点</strong>：<code>agent-loop.engine.ts</code> 的 <code>for (const toolCall of response.toolCalls)</code> 循环。每个 tool 执行完立即 push 到 messages，保持 <code>tool_call_id</code> 一一对应。</li>
+<li><strong>生产误区</strong>：
+<ul>
+<li>误区 1：并发执行 tool 后按错误顺序 push messages。虽然 tool_call_id 能匹配，但顺序错乱会让某些模型（比如 Claude）报错。</li>
+<li>误区 2：某个 tool 执行失败就直接 return，不把失败结果 push 回 messages。会导致下一轮 LLM 找不到对应结果，报"Missing tool result for call_abc"。</li>
+<li>误区 3：手动生成 tool_call_id。必须使用 LLM 返回的原始 id，不能自己造。</li>
+</ul>
+</li>
+<li><strong>验证方法</strong>：
+<ul>
+<li>单元测试：mock Provider 返回两个 tool_calls，断言 messages 中 tool 结果的 <code>tool_call_id</code> 与原始 <a href="http://call.id" target="_blank" rel="noopener noreferrer">call.id</a> 完全一致。</li>
+<li>反证实验：故意在 tool 结果里改一个字符，观察下一轮 LLM 是否报错。</li>
+</ul>
+</li>
+</ul>
+<h4 id="知识点-5provider-抽象adapter-模式">知识点 5：Provider 抽象（Adapter 模式）</h4>
+<ul>
+<li><strong>解决的问题</strong>：今天用 OpenAI，明天可能换 Claude（Anthropic）、Gemini（Google）、Qwen（阿里）、本地部署的 LLaMA。如果循环引擎直接 <code>import OpenAI</code>，每次换 Provider 都要改核心逻辑。用 Adapter 模式把 Provider 抽象成接口，切换 Provider 只改配置。</li>
+<li><strong>运行机制</strong>：
+<ul>
+<li>定义统一接口 <code>LLMProvider</code>：<code>chat(messages, tools) =&gt; Promise&lt;LLMResponse&gt;</code></li>
+<li>每个 Provider 实现该接口：<code>OpenAIProvider</code>、<code>ClaudeProvider</code>、<code>GeminiProvider</code></li>
+<li>循环引擎只依赖接口，不知道具体是哪家</li>
+<li>工厂 <code>ProviderFactory.create(name)</code> 根据配置返回具体实例</li>
+</ul>
+</li>
+<li><strong>项目落点</strong>：<code>llm-provider.interface.ts</code> 定义合同，<code>openai-provider.ts</code> 是第一个实现，<code>provider.factory.ts</code> 是选择器。循环引擎通过 NestJS 依赖注入拿到 <code>LLMProvider</code>，不 <code>import OpenAI</code>。</li>
+<li><strong>生产误区</strong>：
+<ul>
+<li>误区 1：接口过度抽象。为了"兼容所有 Provider"设计一堆通用字段，反而丢失了各 Provider 的特色能力（比如 Claude 的 prompt caching、OpenAI 的 JSON mode）。</li>
+<li>误区 2：抽象泄漏。接口里出现 <code>openai_specific_field</code>，说明抽象没做好。</li>
+<li>误区 3：Provider 内部处理业务逻辑。Provider 只负责"把 messages 传给 LLM、把响应转成统一格式"，不做工具执行、不做重试、不做审计。</li>
+</ul>
+</li>
+<li><strong>验证方法</strong>：
+<ul>
+<li>单元测试：写一个 <code>MockProvider</code> 实现 <code>LLMProvider</code> 接口，注入到循环引擎，断言循环逻辑不因 Provider 变化而失效。</li>
+<li>集成测试：切换 <code>OPENAI_API_KEY</code> 为无效值，观察是否只有 <code>openai-provider.ts</code> 报错，循环引擎不受影响。</li>
+</ul>
+</li>
+</ul>
+<h4 id="知识点-6轨迹审计trajectory-recording">知识点 6：轨迹审计（Trajectory Recording）</h4>
+<ul>
+<li><strong>解决的问题</strong>：Agent 循环是黑盒——用户只看到最终回复，看不到"模型调了哪些工具、每步用了多少 token、卡在哪一步"。轨迹审计把每一步都记录下来，便于排查问题、优化 prompt、做效果评估。</li>
+<li><strong>运行机制</strong>：
+<ul>
+<li>每轮循环产生一个 <code>TrajectoryStep</code>：类型（model_turn / tool_call / tool_result / finished）、时间戳、内容</li>
+<li>循环结束后打包成 <code>AgentTrajectory</code>：包含所有 steps + 总预算消耗</li>
+<li>审计服务（<code>TrajectoryAuditService</code>）负责持久化：日志打印/写数据库/上报 LangSmith</li>
+</ul>
+</li>
+<li><strong>项目落点</strong>：<code>agent-trajectory.types.ts</code> 定义 step 类型，<code>agent-loop.engine.ts</code> 在每步 push 一条记录，<code>trajectory-audit.service.ts</code> 在循环结束后写审计。</li>
+<li><strong>生产误区</strong>：
+<ul>
+<li>误区 1：审计写在循环体里。会拖慢主流程（如果审计接口慢），应该异步或在循环外统一处理。</li>
+<li>误区 2：记录完整 tool 结果。tool 可能返回大量数据（比如 1000 条日志），审计存储会爆炸。应该记录元数据（结果长度、字段数）或裁剪后的样本。</li>
+<li>误区 3：把用户敏感数据写到审计。审计通常给多个团队看，密码/token/PII 必须脱敏。</li>
+</ul>
+</li>
+<li><strong>验证方法</strong>：
+<ul>
+<li>单元测试：mock Provider 返回 3 步的场景，断言 <code>trajectory.steps.length === 3</code> 且每步类型正确。</li>
+<li>生产验证：查询近 1 小时的审计日志，统计各 <code>finishReason</code> 的分布，找出 <code>max_steps</code> 占比过高的场景（可能需要优化 prompt）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="6-三版对比一览表">6. 三版对比一览表</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>功能</strong></td>
+<td>单轮 Function Calling（调一次工具就结束）</td>
+<td>循环调用 + 三维预算约束</td>
+<td>循环 + 预算 + 终止原因 + Provider 抽象 + 轨迹审计</td>
+</tr>
+<tr>
+<td><strong>事件类型 / 数据模型</strong></td>
+<td>直接用 OpenAI 原生响应类型</td>
+<td>引入 AgentRunConfig（预算配置）</td>
+<td>完整领域模型：AgentRunConfig / AgentTrajectory / TrajectoryStep / FinishReason / LLMResponse</td>
+</tr>
+<tr>
+<td><strong>状态存储</strong></td>
+<td>无状态，每次调用独立</td>
+<td>循环内维护 messages 数组和 budgetTracker</td>
+<td>完整轨迹（trajectory）+ 预算追踪器 + 审计记录</td>
+</tr>
+<tr>
+<td><strong>归约逻辑</strong></td>
+<td>直接返回 LLM 响应</td>
+<td>循环内累加 messages、检查预算、执行 tool</td>
+<td>分层归约：Provider 归一响应 到 循环归约 messages 到 审计归约 trajectory</td>
+</tr>
+<tr>
+<td><strong>可测试</strong></td>
+<td>只能集成测试（依赖真实 API）</td>
+<td>可 mock 部分场景但仍依赖 OpenAI 类型</td>
+<td>完全可测：MockProvider 实现接口即可，无需真实 API</td>
+</tr>
+<tr>
+<td><strong>架构层次</strong></td>
+<td>单文件（agent.service.ts）</td>
+<td>两层（service + loop）</td>
+<td>五层（types / provider / loop / audit / service）</td>
+</tr>
+<tr>
+<td><strong>换事件源代价</strong></td>
+<td>换 Provider 要改 agent.service.ts 里的调用代码</td>
+<td>换 Provider 要改循环引擎里的 API 调用逻辑</td>
+<td>换 Provider 只加一个 xxx-provider.ts，循环引擎不动</td>
+</tr>
+<tr>
+<td><strong>编译期抓遗漏</strong></td>
+<td>any 类型泛滥，运行时才发现字段缺失</td>
+<td>AgentRunConfig 有类型但 Provider 响应仍是 any</td>
+<td>完整类型链：LLMProvider 接口约束 + FinishReason 判别联合 + TrajectoryStep 判别联合，编译期能抓 case 遗漏</td>
+</tr>
+<tr>
+<td><strong>对齐后续 Day</strong></td>
+<td>Day 13 LangChain 无法复用</td>
+<td>Day 13-15 LangChain 集成需要重写循环</td>
+<td>Day 13-20 LangChain/LangGraph 可以直接把 LLMProvider 接口对接到 ChatOpenAI / ChatAnthropic，FinishReason 直接映射到 LangGraph 的 END 节点</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="65-前端底子补弱html-form-与-abortcontroller-结合的取消能力">6.5 前端底子补弱：HTML form 与 AbortController 结合的取消能力</h2>
+<p><strong>为什么放在 Agent Loop 这一天讲</strong>：Agent Loop 会跑 30 秒以上，前端必须让用户能"中途取消"。这依赖两个原生能力：form 的 submit / formdata 事件、fetch 的 AbortController 信号。</p>
+<h3 id="651-场景锚点">6.5.1 场景锚点</h3>
+<p>用户在 Agent 对话框输入"srv-042 CPU 异常分析"，Agent Loop 开始执行。等了 10 秒还没结果，用户不耐烦想取消。前端要做两件事：</p>
+<ol>
+<li>阻止 form 重复提交（防止用户狂点导致 100 个 Agent 同时跑）</li>
+<li>通过 AbortController 中断已经发出的请求</li>
+</ol>
+<h3 id="652-项目代码">6.5.2 项目代码</h3>
+<p>apps/web/src/features/agent-chat/AgentChatForm.vue 的核心模板与脚本：</p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;form @submit.prevent="handleSubmit"&gt;
+    &lt;textarea
+      v-model="userInput"
+      :disabled="isRunning"
+      required
+      maxlength="500"
+      placeholder="问点什么..."
+    /&gt;
+    &lt;div class="actions"&gt;
+      &lt;button type="submit" :disabled="isRunning || !userInput.trim()"&gt;
+        提交
+      &lt;/button&gt;
+      &lt;button type="button" v-if="isRunning" @click="handleCancel"&gt;
+        取消
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;p v-if="finishReason === 'max_steps'" class="warn"&gt;
+      模型达到最大步数，未完成任务。请优化提问或联系管理员扩大预算。
+    &lt;/p&gt;
+  &lt;/form&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+
+const userInput = ref('')
+const isRunning = ref(false)
+const finishReason = ref&lt;string | null&gt;(null)
+let abortController: AbortController | null = null
+
+async function handleSubmit() {
+  if (isRunning.value) return
+  isRunning.value = true
+  finishReason.value = null
+  abortController = new AbortController()
+
+  try {
+    const res = await fetch('/api/agent/run', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userMessage: userInput.value }),
+      signal: abortController.signal,
+    })
+    const data = await res.json()
+    finishReason.value = data.finishReason
+  } catch (err: any) {
+    if (err.name === 'AbortError') {
+      finishReason.value = 'cancelled'
+    } else {
+      finishReason.value = 'error'
+    }
+  } finally {
+    isRunning.value = false
+    abortController = null
+  }
+}
+
+function handleCancel() {
+  abortController?.abort()
+}
+&lt;/script&gt;
+</code></pre>
+<h3 id="653-设计点拆解">6.5.3 设计点拆解</h3>
+<ul>
+<li><strong>@submit.prevent</strong>：阻止 form 默认提交行为（会刷新页面）。等价于 event.preventDefault()。</li>
+<li><strong>type submit vs type button</strong>：默认 button 的 type 是 submit，点击会触发 form submit。取消按钮必须显式写 type="button"，否则会被识别成"再次提交"。</li>
+<li><strong>:disabled="isRunning"</strong>：HTML 原生 disabled 属性会阻止 form 提交，比 JS 判断更可靠。即使用户绕过 Vue 逻辑也无法触发。</li>
+<li><strong>required / maxlength</strong>：HTML 原生校验。浏览器会自动阻止空输入或超长输入，无需 JS。</li>
+<li><strong>AbortController.abort()</strong>：调用后 fetch 会立即 reject AbortError。后端如果监听了 req.on close，可以停止 LLM 调用。</li>
+</ul>
+<h3 id="654-原理">6.5.4 原理</h3>
+<p>AbortController 的机制：</p>
+<ul>
+<li>new AbortController() 创建一个控制器</li>
+<li>controller.signal 是一个 AbortSignal 对象，可传给任何支持它的 API（fetch、setTimeout、addEventListener）</li>
+<li>controller.abort() 广播中断信号，所有监听该 signal 的操作立即中断</li>
+<li>signal.aborted 是布尔值，可以查询当前状态</li>
+</ul>
+<p>后端 Express/Nest 也能读取这个信号：req.on close 或 req.aborted。</p>
+<h3 id="655-反例">6.5.5 反例</h3>
+<ul>
+<li><strong>反例 1</strong>：不用 AbortController，只在前端 finally 里 isRunning = false。请求仍在后端跑，浪费 API 费用。</li>
+<li><strong>反例 2</strong>：用 setTimeout 30000 而不用 signal。超时后前端认为失败，但后端仍会返回结果，UI 状态错乱。</li>
+<li><strong>反例 3</strong>：取消按钮不设 type="button"。用户点取消反而触发 submit，Agent Loop 又跑一次。</li>
+</ul>
+<h3 id="656-分层提问">6.5.6 分层提问</h3>
+<ol>
+<li><strong>入门</strong>：为什么 form 的默认按钮 type 是 submit？（HTML 规范历史遗留，早期 form 只有一个提交按钮）</li>
+<li><strong>进阶</strong>：AbortController 能取消已经发送到服务器的请求吗？（能中断连接，但服务器可能已经开始处理，需要服务器端也监听中断）</li>
+<li><strong>深入</strong>：多个 fetch 共享同一个 signal，abort 一次会怎样？（所有 fetch 同时被中断）</li>
+</ol>
+<h3 id="657-项目对手戏">6.5.7 项目对手戏</h3>
+<p>对手问：我用 Promise.race 加 setTimeout 也能实现超时取消，为什么要用 AbortController？</p>
+<p>回答：Promise.race 只能让前端认为超时，请求本身还在发送、后端还在处理。AbortController 是双向的——前端中断 fetch、后端读到 aborted 信号可以停止 LLM 调用，节省真金白银的 API 费用。对 Agent Loop 这种一次调用几毛钱的场景，双向取消是必备。</p>
+<h3 id="658-面试真题三档答法">6.5.8 面试真题三档答法</h3>
+<p>问：如何实现前端取消 fetch 请求？</p>
+<ul>
+<li><strong>初级答</strong>：用 AbortController，new 一个 controller，把 signal 传给 fetch，需要取消时调用 abort()。</li>
+<li><strong>中级答</strong>：AbortController 是 DOM 标准的中断信号机制，一个 controller 可以广播给多个 fetch、setTimeout、addEventListener。fetch 收到 abort 后会 reject AbortError，可以在 catch 里区分处理。</li>
+<li><strong>高级答</strong>：AbortController 是双向的，服务器端也能通过 req.on close 或 req.aborted 感知客户端中断，从而停止耗时操作。在 Agent Loop 场景下，需要前后端配合：前端 abort 后，后端要在 while 循环里检查 req.aborted 并跳出，避免继续消耗 LLM token。同时要处理 race condition——如果 abort 发生在 fetch 返回后、data.json() 之前，仍会抛 AbortError，需要在 catch 里判断 finishReason 是否已收到部分数据。</li>
+</ul>
+<hr>
+<hr>
+<h2 id="7-验证">§7 验证</h2>
+<h3 id="71---75本日不涉及全部前置到-15">§7.1 - §7.5（本日不涉及，全部前置到 §1.5）</h3>
+<h3 id="76-单元-集成测试">§7.6 单元 + 集成测试</h3>
+<p><strong>§7.6.1 Loop 终止原因单元测试</strong>（<code>apps/api/src/agent/__tests__/loop.spec.ts</code>）</p>
+<pre><code class="language-typescript">import { AgentLoop } from '../loop';
+import type { LlmProvider, ToolRegistry, Trajectory } from '../types';
+
+const makeProvider = (responses: any[]): LlmProvider =&gt; {
+  let i = 0;
+  return {
+    name: 'stub',
+    invoke: async () =&gt; responses[i++] ?? { finishReason: 'stop', message: { role: 'assistant', content: 'done' } },
+  };
+};
+
+const makeRegistry = (): ToolRegistry =&gt; ({
+  get: (name) =&gt; ({ name, execute: async () =&gt; ({ ok: true, data: { echoed: name } }) }),
+  list: () =&gt; [],
+});
+
+describe('AgentLoop terminate reasons', () =&gt; {
+  it('stops on finishReason=stop', async () =&gt; {
+    const loop = new AgentLoop(
+      makeProvider([{ finishReason: 'stop', message: { role: 'assistant', content: 'final' } }]),
+      makeRegistry(),
+      { maxSteps: 10, maxTokens: 10000, maxDurationMs: 30000 },
+    );
+    const r = await loop.run({ userInput: 'x' });
+    expect(r.terminate).toBe('stop');
+    expect(r.trajectory.length).toBeGreaterThan(0);
+  });
+
+  it('stops on maxSteps', async () =&gt; {
+    const responses = Array.from({ length: 20 }, () =&gt; ({
+      finishReason: 'tool_call',
+      message: { role: 'assistant', content: '', toolCalls: [{ id: 't1', name: 'listServers', args: {} }] },
+    }));
+    const loop = new AgentLoop(makeProvider(responses), makeRegistry(), { maxSteps: 3, maxTokens: 100000, maxDurationMs: 30000 });
+    const r = await loop.run({ userInput: 'x' });
+    expect(r.terminate).toBe('max_steps');
+    expect(r.stepCount).toBe(3);
+  });
+
+  it('stops on maxTokens', async () =&gt; {
+    const responses = Array.from({ length: 20 }, () =&gt; ({
+      finishReason: 'tool_call',
+      usage: { promptTokens: 500, completionTokens: 500 },
+      message: { role: 'assistant', content: '', toolCalls: [{ id: 't1', name: 'listServers', args: {} }] },
+    }));
+    const loop = new AgentLoop(makeProvider(responses), makeRegistry(), { maxSteps: 100, maxTokens: 2000, maxDurationMs: 30000 });
+    const r = await loop.run({ userInput: 'x' });
+    expect(r.terminate).toBe('max_tokens');
+  });
+
+  it('stops on abort signal', async () =&gt; {
+    const ac = new AbortController();
+    const responses = Array.from({ length: 20 }, () =&gt; ({
+      finishReason: 'tool_call',
+      message: { role: 'assistant', content: '', toolCalls: [{ id: 't1', name: 'listServers', args: {} }] },
+    }));
+    const loop = new AgentLoop(makeProvider(responses), makeRegistry(), { maxSteps: 100, maxTokens: 100000, maxDurationMs: 30000 });
+    setTimeout(() =&gt; ac.abort(), 20);
+    const r = await loop.run({ userInput: 'x', signal: ac.signal });
+    expect(r.terminate).toBe('abort');
+  });
+});
+</code></pre>
+<p><strong>§7.6.2 Provider 429 重试映射测试</strong>（<code>apps/api/src/agent/__tests__/provider.spec.ts</code>）</p>
+<pre><code class="language-typescript">import { OpenAiProvider } from '../providers/openai.provider';
+
+describe('OpenAiProvider retry policy', () =&gt; {
+  it('retries on 429 up to 3 times with exponential backoff', async () =&gt; {
+    let calls = 0;
+    const fakeFetch = async () =&gt; {
+      calls++;
+      if (calls &lt; 3) return new Response('', { status: 429, headers: { 'retry-after': '0' } });
+      return new Response(JSON.stringify({ choices: [{ finish_reason: 'stop', message: { role: 'assistant', content: 'ok' } }], usage: { prompt_tokens: 10, completion_tokens: 5 } }), { status: 200 });
+    };
+    const p = new OpenAiProvider({ apiKey: 'x', fetchImpl: fakeFetch as any, maxRetries: 3 });
+    const r = await p.invoke({ messages: [{ role: 'user', content: 'x' }], tools: [] });
+    expect(r.finishReason).toBe('stop');
+    expect(calls).toBe(3);
+  });
+
+  it('gives up after 3 retries and returns terminate=provider_error', async () =&gt; {
+    const fakeFetch = async () =&gt; new Response('', { status: 429, headers: { 'retry-after': '0' } });
+    const p = new OpenAiProvider({ apiKey: 'x', fetchImpl: fakeFetch as any, maxRetries: 3 });
+    await expect(p.invoke({ messages: [{ role: 'user', content: 'x' }], tools: [] })).rejects.toMatchObject({ code: 'PROVIDER_RATE_LIMIT' });
+  });
+
+  it('does not retry on 400 (client error)', async () =&gt; {
+    let calls = 0;
+    const fakeFetch = async () =&gt; {
+      calls++;
+      return new Response(JSON.stringify({ error: 'bad request' }), { status: 400 });
+    };
+    const p = new OpenAiProvider({ apiKey: 'x', fetchImpl: fakeFetch as any, maxRetries: 3 });
+    await expect(p.invoke({ messages: [{ role: 'user', content: 'x' }], tools: [] })).rejects.toMatchObject({ code: 'PROVIDER_BAD_REQUEST' });
+    expect(calls).toBe(1);
+  });
+});
+</code></pre>
+<p><strong>§7.6.3 端到端：异常触发 → Agent 诊断 → Trajectory 落库</strong>（<code>apps/api/test/e2e/agent-diagnose.e2e-spec.ts</code>）</p>
+<pre><code class="language-typescript">import * as request from 'supertest';
+import { INestApplication } from '@nestjs/common';
+import { Test } from '@nestjs/testing';
+import { AppModule } from '../../src/app.module';
+import { PrismaService } from '../../src/prisma/prisma.service';
+
+describe('Agent diagnose e2e', () =&gt; {
+  let app: INestApplication;
+  let prisma: PrismaService;
+
+  beforeAll(async () =&gt; {
+    const m = await Test.createTestingModule({ imports: [AppModule] }).compile();
+    app = m.createNestApplication();
+    prisma = m.get(PrismaService);
+    await app.init();
+    await prisma.agentRun.deleteMany();
+  });
+  afterAll(async () =&gt; app.close());
+
+  it('POST /agent/diagnose returns structured report + persists trajectory', async () =&gt; {
+    const alert = await prisma.alert.create({ data: { serverId: 'srv-e2e', metric: 'cpu', value: 99, status: 'NEW', version: 0 } });
+    const res = await request(app.getHttpServer())
+      .post('/agent/diagnose')
+      .send({ alertId: alert.id });
+    expect(res.status).toBe(201);
+    expect(res.body.terminate).toMatch(/stop|max_steps|max_tokens/);
+    expect(res.body.report).toBeDefined();
+    expect(Array.isArray(res.body.trajectory)).toBe(true);
+
+    const persisted = await prisma.agentRun.findFirst({ where: { alertId: alert.id } });
+    expect(persisted).toBeDefined();
+    expect(persisted!.stepCount).toBeGreaterThan(0);
+  });
+});
+</code></pre>
+<p>三组测试全部通过后才算 §7.6 结束。</p>
+<h3 id="77-反证实验-1-拿掉-maxsteps-预算">§7.7 反证实验 1 —— 拿掉 maxSteps 预算</h3>
+<p><strong>目的</strong>：证明没有 step 预算时，Loop 会因 Tool 返回空导致无限循环，token 快速烧尽。</p>
+<p><strong>动作</strong>：</p>
+<p>在 <code>apps/api/src/agent/loop.ts</code> 里把 <code>budget.maxSteps</code> 检查注释掉：</p>
+<pre><code class="language-typescript">async run(input: LoopInput): Promise&lt;LoopResult&gt; {
+  const t0 = Date.now();
+  while (true) {
+    // if (this.stepCount &gt;= this.budget.maxSteps) return this.terminate('max_steps');  ← 反证实验 1
+    if (Date.now() - t0 &gt; this.budget.maxDurationMs) return this.terminate('max_duration');
+    // ... 后续
+  }
+}
+</code></pre>
+<p>同时用 stub tool 让 <code>listServers</code> 一直返回 <code>{ ok: true, data: [] }</code>，让模型误以为需要继续调用。</p>
+<p><strong>期待现象</strong>：</p>
+<ol>
+<li><code>§7.6.1</code> 的 <code>stops on maxSteps</code> 用例断言超时（因为不再返回 <code>max_steps</code>）。</li>
+<li>Loop 转而在 <code>max_tokens</code> 或 <code>max_duration</code> 上停止，<code>trajectory.length</code> 大幅上涨（&gt;= 20 步）。</li>
+<li>前端 AgentRunPanel 在 UI 上显示 tokens 数字快速跳到 4000+，用户能看到"预算烧尽"的可观测反馈。</li>
+</ol>
+<p><strong>记录到 <code>docs/reversal-experiments/2026-07-25-no-max-steps.md</code></strong>（结构：动作 / 期待现象 / 实际现象 / 恢复动作 / 结论证据）。</p>
+<p><strong>恢复</strong>：撤销注释，重跑 §7.6.1 三组终止用例，确认再次绿。</p>
+<h3 id="78-反证实验-2-provider-无限重试">§7.8 反证实验 2 —— Provider 无限重试</h3>
+<p><strong>目的</strong>：证明 Provider Adapter 的 <code>maxRetries</code> 边界失效后，一次 429 会引发指数放大的重试风暴。</p>
+<p><strong>动作</strong>：</p>
+<p>在 <code>apps/api/src/agent/providers/openai.provider.ts</code> 的 <code>invoke()</code> 里，把 <code>maxRetries</code> 判断改为 <code>while (true)</code>：</p>
+<pre><code class="language-typescript">let retries = 0;
+while (true) {
+  const res = await this.fetchImpl(url, options);
+  if (res.status === 429) {
+    // if (retries &gt;= this.maxRetries) throw new ProviderRateLimitError();  ← 反证实验 2
+    retries++;
+    await new Promise(r =&gt; setTimeout(r, Math.pow(2, retries) * 100));
+    continue;
+  }
+  // ...
+}
+</code></pre>
+<p><strong>期待现象</strong>：</p>
+<ol>
+<li><code>§7.6.2</code> 的 <code>gives up after 3 retries</code> 用例超时红。</li>
+<li>单个请求可能重试几十次，Prometheus 计数器 <code>agent_provider_retry_count{code=429}</code> 快速上涨。</li>
+<li>若同时有并发请求，会形成"雪崩"——每个都重试，Provider 侧压力放大 10-100 倍。</li>
+</ol>
+<p><strong>记录到 <code>docs/reversal-experiments/2026-07-25-infinite-retry.md</code></strong>。</p>
+<p><strong>恢复</strong>：撤销代码改动，重跑 §7.6.2 三组用例，确认再次绿。</p>
+<h3 id="79-四件套-commit不推送">§7.9 四件套 + commit（不推送）</h3>
+<pre><code class="language-bash">cd D:/demo/ai-techer/p1-monitor
+pnpm typecheck
+pnpm lint
+pnpm test
+pnpm build
+</code></pre>
+<p>Commit：</p>
+<pre><code class="language-bash">git add apps/api/src/agent/ \
+        apps/api/test/e2e/agent-diagnose.e2e-spec.ts \
+        apps/web/src/features/agent-run/ \
+        docs/reversal-experiments/2026-07-25-*.md
+
+git commit -m "feat(agent): add agent loop with 3-budget and provider abstraction
+
+- add loop.ts with maxSteps / maxTokens / maxDurationMs budgets
+- add openai/anthropic provider adapters with retry policy
+- add /agent/diagnose endpoint + trajectory persistence
+- add AgentRunPanel with cancel button (AbortController)
+- add 2 reversal experiments (no maxSteps + infinite retry)
+
+Refs: Day12"
+</code></pre>
+<p><strong>禁止 <code>git push</code></strong>，禁止部署，禁止在生产 API key 上跑测试。</p>
+<hr>
+<h2 id="8-v3-自检清单对齐规范-8">§8 v3 自检清单（对齐规范 §8）</h2>
+<p>按顺序逐项打勾，一个不过要回去补。</p>
+<ol>
+<li><code>§0 项目当前状态</code> 明确列出 Day11 已完成的 Tool Registry 能力与今天要新增的 Agent Loop 4 类问题（Loop 状态图 / 三类预算 / Provider 抽象 / 终止原因）。</li>
+<li><code>§1.4</code> 有 5 个子块：rationale / tree / diff-table / 依赖箭头 / 3 个理解问题。</li>
+<li><code>§1.5</code> 出现"按第 5.3 节的代码"和"边写边问自己"两条指令。</li>
+<li><code>§5</code> 覆盖 v1 → v2 → v3 三层演进，每层给出代码与遗留问题。</li>
+<li><code>§5.3</code> 完整代码零省略号、零"…此处略"（Loop / Provider / Endpoint / 前端 Panel 四段完整）。</li>
+<li><code>§5.4</code> 六个知识点，每点五要素俱全（解决的问题 / 运行机制 / 项目落点 / 生产误区 / 验证方法）。</li>
+<li><code>§6.5</code> 存在，主题聚焦 HTML/表单原生能力（本日：form + AbortController 双向取消）。</li>
+<li><code>§7.6/§7.7/§7.8</code> 分别给出单元/集成/E2E 测试代码与两个反证实验。</li>
+<li><code>§7.9</code> 明确禁止 <code>git push</code>，commit message 含 <code>Refs: Day12</code>。</li>
+<li>全文 0 处 <code>&gt; ✅</code> 或 <code>&gt; ❌</code> 块引用格式。</li>
+<li><code>§12</code> 保留 PDF 面试题原文与"不能替代教师五连问"的免责声明。</li>
+</ol>
+<hr>
+<h2 id="9-ai-与人分工">§9 AI 与人分工</h2>
+<ul>
+<li>人写：<code>loop.ts</code> 主循环、三类预算判断顺序、Provider Adapter 的重试策略、Trajectory 序列化、前端 AbortController 取消按钮。</li>
+<li>AI 辅助：OpenAI/Anthropic SDK 调用样板、Prisma AgentRun schema、单元测试用例枚举、README 章节。</li>
+<li>记录：AI Review 里必须写清每段 AI 建议的接受/修改/拒绝理由；核心 Loop 控制流、预算判断顺序、重试映射一律不得由 AI 代写。</li>
+</ul>
+<hr>
+<h2 id="10-时间盒">§10 时间盒</h2>
+<ul>
+<li>原理与源码理解 90 分钟：读完本文 §1、§3-§5.4、§7.7、§7.8；不写代码。</li>
+<li>真实项目增量 180 分钟：写 <code>loop.ts</code> → Provider Adapter → <code>/agent/diagnose</code> endpoint → 前端 AgentRunPanel → Trajectory 持久化。</li>
+<li>测试与故障注入 60 分钟：跑 §7.6 三组测试；执行 §7.7、§7.8 两次反证实验。</li>
+<li>架构证据 + AI Review + 复盘 30 分钟：更新架构证据文档，回答课末三题。</li>
+</ul>
+<p>超时提醒：若"真实项目增量"块超过 270 分钟，停下评估卡在哪一层——是 Provider SDK 调用姿势不对（去 §5.4 知识点 5），还是 Loop 终止判断顺序颠倒（去 §5.4 知识点 3）。</p>
+<hr>
+<h2 id="11-通过标准">§11 通过标准</h2>
+<ul>
+<li><code>§7.6.1</code> Loop 4 种终止原因（stop / max_steps / max_tokens / abort）测试全绿。</li>
+<li><code>§7.6.2</code> Provider 429 重试与 400 不重试测试全绿。</li>
+<li><code>§7.6.3</code> E2E 从异常触发到 Trajectory 落库通过。</li>
+<li><code>§7.7</code> <code>§7.8</code> 两次反证实验都记录了"动作 / 期待现象 / 实际现象 / 恢复动作 / 结论证据"五项。</li>
+<li>commit 存在且 message 以 <code>Refs: Day12</code> 结尾；本地无 <code>git push</code>。</li>
+<li>至少一次真实模型调用（OpenAI 或 Anthropic）完成一次异常诊断，report 字段可读。</li>
+</ul>
+<hr>
+<h2 id="12-pdf-面试题">§12 PDF 面试题</h2>
+<p>以下两道来源于公开 PDF 面试题，作为知识对照点保留，<strong>不能替代</strong>教师依据真实 diff 现场提出的五连问。教师验收权在教师，本节仅供自查。</p>
+<ol>
+<li>如何实现 AI Agent 的 Function Calling 流程？
+来源：《2026已发交个朋友全栈AI工程师》，第 6 页。</li>
+<li>项目中如何处理大模型调用超时或失败？
+来源：《2026京东前端面试-大模型方向》，第 8 页。</li>
+</ol>
+<p>对应知识：Agent Loop 主循环、tool_call/tool_result 消息组装、三类预算、Provider 重试与终止映射。</p>
+<hr>
+<h2 id="13-课末-3-个核心问题写完后先答这三题再进入教师五连问">§13 课末 3 个核心问题（写完后先答这三题，再进入教师五连问）</h2>
+<ol>
+<li>从前端 AgentRunPanel 的"诊断"按钮 click 到数据库 <code>AgentRun</code> 表插入一行 <code>terminate='stop'</code> 的记录，请指着 <code>loop.ts</code> 与 <code>openai.provider.ts</code> 的代码解释完整数据流。三类预算（step / token / duration）分别在哪几行判断？如果颠倒判断顺序（先 token 再 step），会带来什么可观察的差异？</li>
+<li>如果故意移除本日最关键的保护机制（选一个：maxSteps / Provider maxRetries / 前端 AbortController），线上会看到什么可观察现象？请给出最小复现、定位证据（哪张表、哪条日志、哪个 Prom 指标）、临时止损与根因修复、以及一条防复发测试。</li>
+<li>引用今天 <code>loop.ts</code>、<code>openai.provider.ts</code> 与 <code>AgentRunPanel.vue</code> 的具体代码段，证明"预算生效、真实模型完成一次诊断、失败能被明确解释"三项目标已经达成；再说明本实现距离企业生产标准还缺什么（比如：多 Provider 路由、Prompt 缓存、结果 Eval 标签、跨租户配额），并给出下一步演进路径。</li>
+</ol>
+<hr>
+<h2 id="14-教师五连问教师在真实-diff-前现场发问不预设题目">§14 教师五连问（教师在真实 diff 前现场发问，不预设题目）</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录、架构证据后，教师依据真实 diff 按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"发问 5 道。评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day12-old.html">查看 Day 12 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/11.html">← Day 11 · Tool Registry</a>
+            <a href="/ai-teacher-agent-devolop/day/13.html">Day 13 · 持久化/幂等 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#14-%E6%9C%AC%E6%97%A5%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8A%A8%E6%89%8B%E5%89%8D%E5%85%88%E7%9C%8B%E9%AA%A8%E6%9E%B6">1.4 本日项目目录结构（动手前先看骨架）</a></li><li><a href="#15-%E9%98%B6%E6%AE%B5-d%E5%8A%A8%E6%89%8B%E8%84%9A%E6%89%8B%E6%9E%B620-%E5%88%86%E9%92%9F%E5%85%88%E6%90%AD%E9%AA%A8%E6%9E%B6%E5%86%8D%E7%9C%8B%E6%AD%A3%E6%96%87">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F90-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">2. 学习节奏（90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E6%9C%80%E5%B0%8F%E9%97%AD%E7%8E%AF">3. v1：最小闭环</a></li><li><a href="#4-v2%E5%8A%A0%E5%BE%AA%E7%8E%AF%E5%92%8C%E9%A2%84%E7%AE%97">4. v2：加循环和预算</a></li><li><a href="#5-v3%E7%BB%88%E6%80%81">5. v3：终态</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94%E4%B8%80%E8%A7%88%E8%A1%A8">6. 三版对比一览表</a></li><li><a href="#65-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1html-form-%E4%B8%8E-abortcontroller-%E7%BB%93%E5%90%88%E7%9A%84%E5%8F%96%E6%B6%88%E8%83%BD%E5%8A%9B">6.5 前端底子补弱：HTML form 与 AbortController 结合的取消能力</a></li><li><a href="#7-%E9%AA%8C%E8%AF%81">§7 验证</a></li><li><a href="#8-v3-%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95%E5%AF%B9%E9%BD%90%E8%A7%84%E8%8C%83-8">§8 v3 自检清单（对齐规范 §8）</a></li><li><a href="#9-ai-%E4%B8%8E%E4%BA%BA%E5%88%86%E5%B7%A5">§9 AI 与人分工</a></li><li><a href="#10-%E6%97%B6%E9%97%B4%E7%9B%92">§10 时间盒</a></li><li><a href="#11-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86">§11 通过标准</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">§12 PDF 面试题</a></li><li><a href="#13-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E5%86%99%E5%AE%8C%E5%90%8E%E5%85%88%E7%AD%94%E8%BF%99%E4%B8%89%E9%A2%98%E5%86%8D%E8%BF%9B%E5%85%A5%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">§13 课末 3 个核心问题（写完后先答这三题，再进入教师五连问）</a></li><li><a href="#14-%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E6%95%99%E5%B8%88%E5%9C%A8%E7%9C%9F%E5%AE%9E-diff-%E5%89%8D%E7%8E%B0%E5%9C%BA%E5%8F%91%E9%97%AE%E4%B8%8D%E9%A2%84%E8%AE%BE%E9%A2%98%E7%9B%AE">§14 教师五连问（教师在真实 diff 前现场发问，不预设题目）</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

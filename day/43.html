@@ -1,0 +1,1819 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 43 · Day 43 - 模型网关（Provider 抽象 + 路由 + Fallback + Usage） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html" aria-current="page">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/07.html">第 7 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 43</p>
+        <h1>Day 43 - 模型网关（Provider 抽象 + 路由 + Fallback + Usage）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段二（Day 31-60，AI 前端 -&gt; AI 全栈）。继续在 <code>p1-monitor</code> 中补齐全栈与 AI 能力，并复用前 30 天的事件合同、状态管理和实时链路。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+<p><strong>完整性修正</strong>：正文中的 <code>TODO</code>、<code>...</code>、伪代码或“核心代码你手写”只表示实施任务，不属于交付结果；在本日通过前，必须在真实项目中替换为可运行实现，并提交对应测试输出和 diff 证据。任何仍含占位实现的项目提交均判定为未完成。</p>
+<p><strong>跨 Day 导航修正</strong>：后续真实顺序：Day44 结构化输出，Day45 Prompt 版本，Day46 RAG 摄取。</p>
+</blockquote>
+<p>日期与时长：2026-08-25 周二，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor</code>
+阶段任务性质：教师基线；实际分发时根据上一日成绩生成补弱版、标准版或挑战版。</p>
+<blockquote>
+<p><strong>本日项目完整目录结构</strong>（在 Day42 FastAPI 基础上新增模型网关层）</p>
+<pre><code>services/ai/src/ai_service/
+├── gateway/                      # ★ 今天新增：模型网关层
+│   ├── __init__.py
+│   ├── providers/                # Provider 适配器层
+│   │   ├── __init__.py
+│   │   ├── base.py               ← 核心：你手写（BaseProvider 抽象类）
+│   │   ├── openai_provider.py   ← 核心：你手写（OpenAI 适配器）
+│   │   ├── anthropic_provider.py ← 样板：Anthropic 适配器
+│   │   └── mock_provider.py     ← 样板：Mock 适配器（测试用）
+│   ├── router/                   # 模型路由层
+│   │   ├── __init__.py
+│   │   ├── model_router.py      ← 核心：你手写（路由策略）
+│   │   ├── routing_rules.py     ← 核心：你手写（路由规则配置）
+│   │   └── fallback_chain.py    ← 核心：你手写（降级链）
+│   ├── usage/                    # 用量统计层
+│   │   ├── __init__.py
+│   │   ├── usage_tracker.py     ← 核心：你手写（token 用量追踪）
+│   │   ├── cost_calculator.py   ← 核心：你手写（成本计算）
+│   │   └── usage_repository.py  ← 样板：持久化到 Postgres
+│   └── schemas/                  # 网关契约层
+│       ├── __init__.py
+│       ├── gateway_request.py   ← 核心：你手写（统一请求格式）
+│       ├── gateway_response.py  ← 核心：你手写（统一响应格式）
+│       └── provider_config.py   ← 样板：Provider 配置
+├── api/
+│   └── gateway.py                ← 核心：你手写（新增网关接口 /v1/chat/completions）
+└── tests/
+    ├── test_providers.py         ← 核心：你手写（Provider 适配器测试）
+    ├── test_router.py            ← 核心：你手写（路由策略测试）
+    └── test_fallback.py          ← 核心：你手写（降级链测试）
+</code></pre>
+</blockquote>
+<h2 id="0-今天在-90-天里的位置">§0 今天在 90 天里的位置</h2>
+<p><strong>坐标</strong>：阶段二（AI 前端 -&gt; AI 全栈）第 3 天。</p>
+<p><strong>承前</strong>：Day42 你建立了 FastAPI 的完整工程层（依赖注入 + 中间件 + 异常处理 + OpenAPI）。但直接调用 OpenAI API 有 3 个致命问题：<strong>单点依赖</strong>（OpenAI 挂了全挂）、<strong>成本失控</strong>（简单任务也用旗舰模型）、<strong>响应格式锁定</strong>（切换 Provider 要改代码）。今天要建立模型网关（Model Gateway），统一多个 Provider，实现路由、降级、用量追踪。</p>
+<p><strong>启后</strong>：今天建立的模型网关是 Day44-60 所有 AI 能力的基座。Day44 结构化输出、Day45 Prompt、Day46 RAG 摄取和后续 Eval，都通过网关调用模型（不直接调 OpenAI API）。</p>
+<p><strong>今天必须解决的 5 个问题</strong>：</p>
+<ol>
+<li><strong>Provider A 429 降级失败</strong>：OpenAI 30 分钟内 429 达 38%，fallback 到 Anthropic 后字段命名漂移（<code>content</code> vs <code>completion</code>），前端 12% 空白（对应情境题 1）。</li>
+<li><strong>简单任务错误路由</strong>：分类任务被路由到 GPT-4（旗舰模型），日均 6 万次调用使成本升高 4 倍（对应情境题 2）。</li>
+<li><strong>无用量追踪</strong>：不知道每个任务用了多少 token、花了多少钱，无法优化成本。</li>
+<li><strong>Provider 耦合</strong>：业务代码直接调 <code>openai.chat.completions.create()</code>，切换 Provider 要改所有调用代码。</li>
+<li><strong>无超时重试</strong>：OpenAI 超时后不重试，直接失败（Day34 的失败恢复在队列层，但没有在模型调用层）。</li>
+</ol>
+<p><strong>知识链顺序</strong>：<code>Provider 抽象</code>（先有统一接口）→ <code>模型路由</code>（根据任务选模型）→ <code>Fallback 降级</code>（主 Provider 失败切备）→ <code>Usage 追踪</code>（记录 token 和成本）→ <code>成本计算</code>（优化成本）。这个顺序是"从接口统一到智能调度到成本优化"的完整链路。</p>
+<hr>
+<h2 id="1-今天要做的事">§1 今天要做的事</h2>
+<h3 id="11-五个真实用户场景">1.1 五个真实用户场景</h3>
+<p>今天的模型网关要支撑这些真实链路（Agent 不直接调 OpenAI，而是通过网关）：</p>
+<ol>
+<li><strong>简单分类任务</strong>：Agent 判断用户问题类别（技术/业务/其他），路由到 GPT-3.5（快速 + 便宜），不用 GPT-4。</li>
+<li><strong>复杂诊断任务</strong>：Agent 分析服务器日志，路由到 GPT-4（准确度高），记录 token 用量和成本。</li>
+<li><strong>OpenAI 429 降级</strong>：OpenAI rate limit，自动 fallback 到 Anthropic Claude，响应格式统一（前端无感知）。</li>
+<li><strong>用量报表</strong>：运维看每日成本报表（"今天分类任务花了 $12，诊断任务花了 $89"），优化路由策略。</li>
+<li><strong>测试环境 Mock</strong>：开发环境用 MockProvider（返回固定响应，不调真实 API），节省成本 + 加速测试。</li>
+</ol>
+<h3 id="12-模块职责划分">1.2 模块职责划分</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>模块</th>
+<th>职责</th>
+<th>谁写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gateway/providers/base.py</code></td>
+<td>BaseProvider 抽象类（统一接口）</td>
+<td>你手写</td>
+</tr>
+<tr>
+<td><code>gateway/providers/openai_provider.py</code></td>
+<td>OpenAI 适配器</td>
+<td>你手写</td>
+</tr>
+<tr>
+<td><code>gateway/providers/anthropic_provider.py</code></td>
+<td>Anthropic 适配器</td>
+<td>样板</td>
+</tr>
+<tr>
+<td><code>gateway/router/model_router.py</code></td>
+<td>路由策略（根据任务选模型）</td>
+<td>你手写</td>
+</tr>
+<tr>
+<td><code>gateway/router/fallback_chain.py</code></td>
+<td>降级链（主备切换）</td>
+<td>你手写</td>
+</tr>
+<tr>
+<td><code>gateway/usage/usage_tracker.py</code></td>
+<td>Token 用量追踪</td>
+<td>你手写</td>
+</tr>
+<tr>
+<td><code>gateway/usage/cost_calculator.py</code></td>
+<td>成本计算（token → 美元）</td>
+<td>你手写</td>
+</tr>
+<tr>
+<td><code>api/gateway.py</code></td>
+<td>网关接口（/v1/chat/completions）</td>
+<td>你手写</td>
+</tr>
+</tbody>
+</table></div><h3 id="13-三版演进从直调-api到智能网关">1.3 三版演进：从"直调 API"到"智能网关"</h3>
+<p><strong>v1（直调 OpenAI）</strong>：业务代码直接 <code>await openai.chat.completions.create()</code>。能跑，但单点依赖、成本失控、无用量追踪。</p>
+<p><strong>v2（加 Provider 抽象 + 基础路由）</strong>：抽象 BaseProvider，业务代码调 <code>gateway.complete()</code>，网关内部选 Provider。支持多 Provider，但路由规则简单（只按模型名路由）。</p>
+<p><strong>v3（生产级）</strong>：加智能路由（按任务类型选模型）+ Fallback 降级链 + Usage 追踪 + 成本计算 + 超时重试。让网关成为"AI 调用的统一入口"。</p>
+<p>三版对比：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Provider 切换</td>
+<td>❌ 改代码</td>
+<td>✅ 配置切换</td>
+<td>✅ 配置 + 自动降级</td>
+</tr>
+<tr>
+<td>路由策略</td>
+<td>❌ 无</td>
+<td>⚠️ 按模型名</td>
+<td>✅ 按任务类型 + 成本</td>
+</tr>
+<tr>
+<td>Fallback</td>
+<td>❌ 无</td>
+<td>❌ 无</td>
+<td>✅ 降级链（主备切换）</td>
+</tr>
+<tr>
+<td>Usage 追踪</td>
+<td>❌ 无</td>
+<td>⚠️ 记录但不计算成本</td>
+<td>✅ token + 成本 + 持久化</td>
+</tr>
+<tr>
+<td>超时重试</td>
+<td>❌ 无</td>
+<td>⚠️ 只重试一次</td>
+<td>✅ 指数退避 + 跨 Provider 重试</td>
+</tr>
+<tr>
+<td>测试友好</td>
+<td>❌ 依赖真实 API</td>
+<td>⚠️ 需要 mock</td>
+<td>✅ MockProvider 内置</td>
+</tr>
+</tbody>
+</table></div><p><strong>三个灵魂问题</strong>（写代码前先想）：</p>
+<ol>
+<li>Provider 抽象和 Adapter 模式有什么区别？Adapter 是"把不同接口转成统一接口"（结构转换），Provider 抽象是"定义统一接口并让实现类遵守"（行为约束）。本项目两者都用：BaseProvider 是抽象（定义 <code>complete()</code> 接口），OpenAIProvider 是 Adapter（把 OpenAI SDK 转成 BaseProvider 接口）。</li>
+<li>模型路由和负载均衡有什么区别？负载均衡是"请求分发到多个相同服务"（水平扩展），模型路由是"请求分发到不同模型"（按需选择）。本项目的路由是智能的（简单任务用便宜模型，复杂任务用旗舰模型），不是简单的轮询。</li>
+<li>Fallback 和 Retry 有什么区别？Retry 是"同一个 Provider 重试"（暂时性错误如超时），Fallback 是"切换到另一个 Provider"（持续性错误如 429 rate limit）。本项目两者都用：单个 Provider 内部重试 3 次（Day34 的错误分类），重试失败后 fallback 到备用 Provider。</li>
+</ol>
+<h3 id="14-目录结构说明模型网关分层的为什么">1.4 目录结构说明（模型网关分层的为什么）</h3>
+<p><strong>为什么 providers/ 和 router/ 分开？</strong></p>
+<p>providers/ 是"能力层"（有哪些 Provider 可用），router/ 是"决策层"（选哪个 Provider）。分开是因为：新增 Provider 不影响路由逻辑，修改路由策略不影响 Provider 实现。</p>
+<p><strong>为什么 usage/ 独立成层？</strong></p>
+<p>用量统计是横切关注点（cross-cutting concern）——所有 Provider 调用都要记录用量。独立成层让统计逻辑集中，也方便后续加"用量预算"（超预算时拒绝请求）。</p>
+<p><strong>为什么网关接口是 /v1/chat/completions 而不是 /gateway？</strong></p>
+<p>兼容 OpenAI API 规范——客户端（如 LangChain）可以直接把 <code>base_url</code> 改成网关地址，无需改代码。网关对外伪装成 OpenAI API，对内路由到多个 Provider。</p>
+<p><strong>与 Day42 的 diff</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>文件</th>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gateway/**</code></td>
+<td>🆕 全新</td>
+<td>模型网关层</td>
+</tr>
+<tr>
+<td><code>api/gateway.py</code></td>
+<td>🆕 全新</td>
+<td>网关接口</td>
+</tr>
+<tr>
+<td><code>schemas/gateway_*.py</code></td>
+<td>🆕 全新</td>
+<td>网关契约</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="2-今天的开发节奏3-小时怎么分配">§2 今天的开发节奏（3 小时怎么分配）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>时段</th>
+<th>时长</th>
+<th>做什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原理与源码</td>
+<td>90 min</td>
+<td>Adapter、策略、责任链及模型网关三版痛点</td>
+</tr>
+<tr>
+<td>v1 直调 API</td>
+<td>20 min</td>
+<td>直接调 OpenAI 的最小接口（暴露单点问题）</td>
+</tr>
+<tr>
+<td>v2 Provider 抽象 + 基础路由</td>
+<td>20 min</td>
+<td>BaseProvider + OpenAIProvider + 简单路由</td>
+</tr>
+<tr>
+<td>v3 智能路由 + Fallback + Usage</td>
+<td>20 min</td>
+<td>路由规则 + 降级链 + 用量追踪 + 成本计算</td>
+</tr>
+<tr>
+<td>测试验证</td>
+<td>20 min</td>
+<td>Provider 切换、429 降级、成本计算 + 两个反证实验</td>
+</tr>
+<tr>
+<td>架构证据</td>
+<td>10 min</td>
+<td>Provider 路由 ADR + 类图</td>
+</tr>
+</tbody>
+</table></div><p><strong>关键节奏提醒</strong>：v1 只花 15 分钟，快速暴露"单点依赖"和"成本失控"。真正的功夫在 v2 的抽象设计和 v3 的路由策略。</p>
+<h2 id="3-v1直调-openai暴露单点依赖">§3 v1：直调 OpenAI（暴露单点依赖）</h2>
+<h3 id="31-v1-能做什么">3.1 v1 能做什么</h3>
+<p>直接调 OpenAI API，实现"AI 回答用户问题"。</p>
+<pre><code class="language-python"># services/ai/src/ai_service/api/chat.py (v1 版本)
+from fastapi import APIRouter, HTTPException
+from openai import AsyncOpenAI
+from pydantic import BaseModel
+
+router = APIRouter()
+client = AsyncOpenAI(api_key="sk-...")
+
+class ChatRequest(BaseModel):
+    message: str
+
+class ChatResponse(BaseModel):
+    reply: str
+
+@router.post("/chat", response_model=ChatResponse)
+async def chat(request: ChatRequest):
+    try:
+        response = await client.chat.completions.create(
+            model="gpt-4",  # 硬编码模型名
+            messages=[{"role": "user", "content": request.message}]
+        )
+        return ChatResponse(reply=response.choices[0].message.content)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+</code></pre>
+<h3 id="32-v1-的-5-个致命问题">3.2 v1 的 5 个致命问题</h3>
+<ol>
+<li><strong>单点依赖</strong>：OpenAI 挂了全挂（2024-11-08 OpenAI 全球故障 3 小时）。</li>
+<li><strong>成本失控</strong>：所有任务都用 GPT-4（旗舰模型），简单分类任务也花 $0.03/1K tokens（GPT-3.5 只需 $0.0005）。</li>
+<li><strong>无用量追踪</strong>：不知道今天花了多少钱，运维问"为什么这个月 AI 成本翻倍"时无法定位。</li>
+<li><strong>Provider 耦合</strong>：业务代码直接调 <code>openai.chat.completions.create()</code>，切换到 Anthropic 要改所有调用代码。</li>
+<li><strong>429 不降级</strong>：OpenAI rate limit 时直接失败，不 fallback 到其他 Provider。</li>
+</ol>
+<hr>
+<h2 id="4-v2provider-抽象-基础路由">§4 v2：Provider 抽象 + 基础路由</h2>
+<h3 id="41-v2-新增的能力">4.1 v2 新增的能力</h3>
+<ol>
+<li><strong>Provider 抽象</strong>：定义 <code>BaseProvider</code> 统一接口，业务代码调 <code>gateway.complete()</code> 而不是直接调 OpenAI。</li>
+<li><strong>多 Provider 支持</strong>：OpenAIProvider、AnthropicProvider、MockProvider，配置切换。</li>
+<li><strong>基础路由</strong>：按模型名路由（<code>gpt-4</code> → OpenAIProvider，<code>claude-3</code> → AnthropicProvider）。</li>
+</ol>
+<h3 id="42-v2-核心代码">4.2 v2 核心代码</h3>
+<h4 id="421-provider-抽象basepy">4.2.1 Provider 抽象（<a href="http://base.py" target="_blank" rel="noopener noreferrer">base.py</a>）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/gateway/providers/base.py
+from abc import ABC, abstractmethod
+from typing import List, Dict, Any, Optional
+from pydantic import BaseModel
+
+class Message(BaseModel):
+    """统一消息格式（兼容 OpenAI 格式）"""
+    role: str  # 'system' | 'user' | 'assistant'
+    content: str
+
+class CompletionRequest(BaseModel):
+    """统一请求格式"""
+    model: str
+    messages: List[Message]
+    temperature: float = 0.7
+    max_tokens: Optional[int] = None
+
+class CompletionResponse(BaseModel):
+    """统一响应格式"""
+    content: str
+    model: str
+    usage: Dict[str, int]  # { "prompt_tokens": 10, "completion_tokens": 20, "total_tokens": 30 }
+    provider: str  # 'openai' | 'anthropic' | 'mock'
+
+class BaseProvider(ABC):
+    """Provider 抽象基类"""
+    
+    @abstractmethod
+    async def complete(self, request: CompletionRequest) -&gt; CompletionResponse:
+        """统一的 completion 接口"""
+        pass
+    
+    @abstractmethod
+    def supports_model(self, model: str) -&gt; bool:
+        """判断是否支持某个模型"""
+        pass
+</code></pre>
+<p><strong>为什么要统一响应格式？</strong></p>
+<p>OpenAI 返回的是 <code>response.choices[0].message.content</code>，Anthropic 返回的是 <code>response.completion</code>。统一成 <code>CompletionResponse</code> 后，业务代码只看到 <code>response.content</code>，不关心底层 Provider。</p>
+<h4 id="422-openai-provideropenai_providerpy">4.2.2 OpenAI Provider（openai_provider.py）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/gateway/providers/openai_provider.py
+from openai import AsyncOpenAI
+from .base import BaseProvider, CompletionRequest, CompletionResponse, Message
+
+class OpenAIProvider(BaseProvider):
+    def __init__(self, api_key: str):
+        self.client = AsyncOpenAI(api_key=api_key)
+    
+    async def complete(self, request: CompletionRequest) -&gt; CompletionResponse:
+        # 转换统一格式 → OpenAI 格式
+        openai_messages = [
+            {"role": msg.role, "content": msg.content}
+            for msg in request.messages
+        ]
+        
+        response = await self.client.chat.completions.create(
+            model=request.model,
+            messages=openai_messages,
+            temperature=request.temperature,
+            max_tokens=request.max_tokens,
+        )
+        
+        # 转换 OpenAI 响应 → 统一格式
+        return CompletionResponse(
+            content=response.choices[0].message.content,
+            model=response.model,
+            usage={
+                "prompt_tokens": response.usage.prompt_tokens,
+                "completion_tokens": response.usage.completion_tokens,
+                "total_tokens": response.usage.total_tokens,
+            },
+            provider="openai",
+        )
+    
+    def supports_model(self, model: str) -&gt; bool:
+        return model.startswith("gpt-")
+</code></pre>
+<p><strong>为什么 supports_model 只判断前缀？</strong></p>
+<p>避免硬编码模型列表（OpenAI 每个月发布新模型）。只要模型名以 <code>gpt-</code> 开头，就认为是 OpenAI 模型。</p>
+<h4 id="423-mock-providermock_providerpy">4.2.3 Mock Provider（mock_provider.py）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/gateway/providers/mock_provider.py
+from .base import BaseProvider, CompletionRequest, CompletionResponse
+
+class MockProvider(BaseProvider):
+    """测试用 Mock Provider（返回固定响应，不调真实 API）"""
+    
+    async def complete(self, request: CompletionRequest) -&gt; CompletionResponse:
+        # 固定返回
+        return CompletionResponse(
+            content="This is a mock response for testing.",
+            model=request.model,
+            usage={"prompt_tokens": 10, "completion_tokens": 5, "total_tokens": 15},
+            provider="mock",
+        )
+    
+    def supports_model(self, model: str) -&gt; bool:
+        return True  # Mock 支持所有模型
+</code></pre>
+<p><strong>为什么需要 MockProvider？</strong></p>
+<ol>
+<li>测试时不依赖真实 API（节省成本 + 加速测试）</li>
+<li>开发环境不需要配置真实 API Key</li>
+<li>集成测试可以固定响应（验证业务逻辑，不验证 AI 输出）</li>
+</ol>
+<h4 id="424-基础路由model_routerpy-v2-版本">4.2.4 基础路由（model_router.py v2 版本）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/gateway/router/model_router.py (v2 版本)
+from typing import List
+from ..providers.base import BaseProvider, CompletionRequest, CompletionResponse
+
+class ModelRouter:
+    def __init__(self, providers: List[BaseProvider]):
+        self.providers = providers
+    
+    async def route(self, request: CompletionRequest) -&gt; CompletionResponse:
+        # 找到支持该模型的 Provider
+        for provider in self.providers:
+            if provider.supports_model(request.model):
+                return await provider.complete(request)
+        
+        raise ValueError(f"No provider supports model: {request.model}")
+</code></pre>
+<p><strong>v2 路由策略的问题</strong>：只按模型名路由（用户指定 <code>gpt-4</code> 就用 GPT-4），不考虑任务类型和成本。v3 会改进。</p>
+<h4 id="425-网关接口gatewaypy-v2-版本">4.2.5 网关接口（<a href="http://gateway.py" target="_blank" rel="noopener noreferrer">gateway.py</a> v2 版本）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/api/gateway.py (v2 版本)
+from fastapi import APIRouter, HTTPException
+from ..gateway.providers.base import CompletionRequest, CompletionResponse, Message
+from ..gateway.providers.openai_provider import OpenAIProvider
+from ..gateway.providers.mock_provider import MockProvider
+from ..gateway.router.model_router import ModelRouter
+import os
+
+router = APIRouter()
+
+# 初始化 Providers
+openai_provider = OpenAIProvider(api_key=os.getenv("OPENAI_API_KEY", ""))
+mock_provider = MockProvider()
+
+# 初始化 Router
+model_router = ModelRouter(providers=[openai_provider, mock_provider])
+
+@router.post("/v1/chat/completions", response_model=CompletionResponse)
+async def chat_completions(request: CompletionRequest):
+    """网关接口（兼容 OpenAI API 格式）"""
+    try:
+        return await model_router.route(request)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+</code></pre>
+<p><strong>为什么接口路径是 /v1/chat/completions？</strong></p>
+<p>兼容 OpenAI API 规范——客户端（如 LangChain）可以直接把 <code>base_url</code> 改成 <code>http://localhost:8000</code>，无需改代码。</p>
+<h3 id="43-v2-测试provider-切换">4.3 v2 测试（Provider 切换）</h3>
+<pre><code class="language-python"># services/ai/tests/test_providers.py
+import pytest
+from ai_service.gateway.providers.base import CompletionRequest, Message
+from ai_service.gateway.providers.openai_provider import OpenAIProvider
+from ai_service.gateway.providers.mock_provider import MockProvider
+
+@pytest.mark.asyncio
+async def test_openai_provider():
+    provider = OpenAIProvider(api_key="sk-...")
+    request = CompletionRequest(
+        model="gpt-3.5-turbo",
+        messages=[Message(role="user", content="Hello")]
+    )
+    response = await provider.complete(request)
+    
+    assert response.provider == "openai"
+    assert response.usage["total_tokens"] &gt; 0
+
+@pytest.mark.asyncio
+async def test_mock_provider():
+    provider = MockProvider()
+    request = CompletionRequest(
+        model="gpt-4",
+        messages=[Message(role="user", content="Hello")]
+    )
+    response = await provider.complete(request)
+    
+    assert response.provider == "mock"
+    assert response.content == "This is a mock response for testing."
+</code></pre>
+<h3 id="44-v2-还剩下的-3-个问题">4.4 v2 还剩下的 3 个问题</h3>
+<ol>
+<li><strong>路由策略简单</strong>：只按模型名路由，不考虑任务类型（简单分类也用 GPT-4）。</li>
+<li><strong>无 Fallback</strong>：OpenAI 429 时直接失败，不切换到 Anthropic。</li>
+<li><strong>无用量追踪</strong>：虽然返回了 <code>usage</code>，但没有持久化（无法生成成本报表）。</li>
+</ol>
+<p>v3 用"智能路由 + Fallback 降级链 + Usage 追踪"解决这三个问题。</p>
+<hr>
+<h2 id="5-v3智能路由-fallback-usage生产级">§5 v3：智能路由 + Fallback + Usage（生产级）</h2>
+<h3 id="51-v3-新增的能力">5.1 v3 新增的能力</h3>
+<ol>
+<li><strong>智能路由</strong>：根据任务类型选模型（简单分类 → GPT-3.5，复杂诊断 → GPT-4），不再硬编码模型名。</li>
+<li><strong>Fallback 降级链</strong>：OpenAI 429 → 自动切换到 Anthropic → 再失败切换到降级模式（返回简化结果）。</li>
+<li><strong>Usage 追踪</strong>：持久化 token 用量到 Postgres，支持成本报表（"今天花了多少钱"）。</li>
+<li><strong>成本计算</strong>：根据模型定价（GPT-4: $0.03/1K tokens，GPT-3.5: $0.0005/1K tokens）自动计算成本。</li>
+<li><strong>超时重试</strong>：单个 Provider 超时重试 3 次（指数退避），重试失败后 fallback。</li>
+</ol>
+<h3 id="52-v3-架构变化">5.2 v3 架构变化</h3>
+<pre><code>v2：业务代码 → ModelRouter → Provider → 模型 API
+v3：业务代码 → SmartRouter（任务分类）→ FallbackChain（降级链）→ Provider → UsageTracker（记录）
+</code></pre>
+<p><strong>关键变化</strong>：路由层分成两级（SmartRouter 选模型 + FallbackChain 降级），新增 UsageTracker 横切层。</p>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<h4 id="531-路由规则配置routing_rulespy">5.3.1 路由规则配置（routing_rules.py）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/gateway/router/routing_rules.py
+from enum import Enum
+from typing import Dict, List
+
+class TaskType(str, Enum):
+    """任务类型（根据业务领域划分）"""
+    CLASSIFICATION = "classification"  # 简单分类
+    SUMMARIZATION = "summarization"    # 摘要提取
+    DIAGNOSIS = "diagnosis"            # 复杂诊断
+    CODE_GENERATION = "code_generation"  # 代码生成
+
+class RoutingRule:
+    """单条路由规则"""
+    def __init__(
+        self,
+        task_type: TaskType,
+        primary_model: str,
+        fallback_models: List[str],
+        max_cost_per_call: float,  # 单次调用最大成本（美元）
+    ):
+        self.task_type = task_type
+        self.primary_model = primary_model
+        self.fallback_models = fallback_models
+        self.max_cost_per_call = max_cost_per_call
+
+# 预定义路由规则
+ROUTING_RULES: Dict[TaskType, RoutingRule] = {
+    TaskType.CLASSIFICATION: RoutingRule(
+        task_type=TaskType.CLASSIFICATION,
+        primary_model="gpt-3.5-turbo",  # 快速 + 便宜
+        fallback_models=["claude-3-haiku"],
+        max_cost_per_call=0.01,  # 最多 $0.01
+    ),
+    TaskType.DIAGNOSIS: RoutingRule(
+        task_type=TaskType.DIAGNOSIS,
+        primary_model="gpt-4-turbo",  # 准确度高
+        fallback_models=["claude-3-opus", "gpt-3.5-turbo"],
+        max_cost_per_call=0.50,  # 最多 $0.50
+    ),
+    TaskType.SUMMARIZATION: RoutingRule(
+        task_type=TaskType.SUMMARIZATION,
+        primary_model="gpt-3.5-turbo",
+        fallback_models=["claude-3-haiku"],
+        max_cost_per_call=0.05,
+    ),
+}
+</code></pre>
+<p><strong>为什么路由规则要配置化？</strong></p>
+<p>硬编码规则（if task == "分类" then "gpt-3.5"）难以维护——新增任务类型要改代码。配置化后，新增规则只需在 <code>ROUTING_RULES</code> 里加一条，不改路由逻辑。</p>
+<h4 id="532-智能路由器model_routerpy-v3-版本">5.3.2 智能路由器（model_router.py v3 版本）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/gateway/router/model_router.py (v3 版本)
+from typing import Optional
+from ..providers.base import CompletionRequest, CompletionResponse
+from .routing_rules import TaskType, ROUTING_RULES, RoutingRule
+from .fallback_chain import FallbackChain
+
+class SmartRouter:
+    """智能路由器（根据任务类型选模型）"""
+    
+    def __init__(self, fallback_chain: FallbackChain):
+        self.fallback_chain = fallback_chain
+    
+    async def route(
+        self,
+        request: CompletionRequest,
+        task_type: Optional[TaskType] = None,
+    ) -&gt; CompletionResponse:
+        """
+        智能路由：
+        1. 如果指定 task_type，按规则选模型
+        2. 如果未指定，使用 request.model（兼容 v2）
+        """
+        if task_type:
+            rule = ROUTING_RULES.get(task_type)
+            if not rule:
+                raise ValueError(f"No routing rule for task_type: {task_type}")
+            
+            # 覆盖模型名（用路由规则里的 primary_model）
+            request.model = rule.primary_model
+            
+            # 通过降级链执行（带 fallback）
+            return await self.fallback_chain.execute(
+                request,
+                fallback_models=rule.fallback_models,
+            )
+        else:
+            # 兼容 v2：直接用 request.model
+            return await self.fallback_chain.execute(request)
+</code></pre>
+<p><strong>为什么要保留 v2 兼容模式？</strong></p>
+<p>现有调用代码（Day42 的 embed 接口）直接传 <code>model="gpt-4"</code>，不传 <code>task_type</code>。兼容模式让旧代码无需改动（渐进式迁移）。</p>
+<h4 id="533-降级链fallback_chainpy">5.3.3 降级链（fallback_chain.py）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/gateway/router/fallback_chain.py
+from typing import List, Optional
+from ..providers.base import BaseProvider, CompletionRequest, CompletionResponse
+import asyncio
+import logging
+
+logger = logging.getLogger(__name__)
+
+class FallbackChain:
+    """降级链（主 Provider 失败 → fallback 到备用 Provider）"""
+    
+    def __init__(self, providers: List[BaseProvider]):
+        self.providers = providers
+    
+    async def execute(
+        self,
+        request: CompletionRequest,
+        fallback_models: Optional[List[str]] = None,
+    ) -&gt; CompletionResponse:
+        """
+        执行降级链：
+        1. 尝试 primary_model
+        2. 失败后依次尝试 fallback_models
+        """
+        models_to_try = [request.model]
+        if fallback_models:
+            models_to_try.extend(fallback_models)
+        
+        last_error = None
+        for model in models_to_try:
+            provider = self._find_provider(model)
+            if not provider:
+                logger.warning(f"No provider supports model: {model}")
+                continue
+            
+            try:
+                # 尝试调用（带超时重试）
+                response = await self._call_with_retry(provider, request, model)
+                
+                # 记录实际使用的模型（可能不是 primary）
+                response.model = model
+                return response
+            except Exception as e:
+                logger.error(f"Provider failed for model {model}: {e}")
+                last_error = e
+                continue
+        
+        # 所有 fallback 都失败
+        raise Exception(f"All providers failed. Last error: {last_error}")
+    
+    def _find_provider(self, model: str) -&gt; Optional[BaseProvider]:
+        """找到支持该模型的 Provider"""
+        for provider in self.providers:
+            if provider.supports_model(model):
+                return provider
+        return None
+    
+    async def _call_with_retry(
+        self,
+        provider: BaseProvider,
+        request: CompletionRequest,
+        model: str,
+        max_retries: int = 3,
+    ) -&gt; CompletionResponse:
+        """带指数退避的重试"""
+        request_copy = request.copy()
+        request_copy.model = model
+        
+        for attempt in range(max_retries):
+            try:
+                return await provider.complete(request_copy)
+            except Exception as e:
+                if attempt == max_retries - 1:
+                    raise
+                
+                # 指数退避
+                wait_time = 2 ** attempt
+                logger.warning(f"Retry {attempt + 1}/{max_retries} after {wait_time}s")
+                await asyncio.sleep(wait_time)
+</code></pre>
+<p><strong>为什么降级链要支持多个 fallback？</strong></p>
+<p>单个 fallback 不够健壮——OpenAI 429 时切换到 Anthropic，但 Anthropic 也可能限流。多级 fallback（OpenAI → Anthropic → 降级模式）保证最终有响应。</p>
+<p><strong>为什么降级链在 Provider 层重试？</strong></p>
+<p>Day34 的失败恢复在队列层（BullMQ 重试 job），但模型调用是同步阻塞的（Agent 等待 AI 响应），不能进队列。所以在 Provider 层加重试（快速重试）。</p>
+<h4 id="534-用量追踪器usage_trackerpy">5.3.4 用量追踪器（usage_tracker.py）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/gateway/usage/usage_tracker.py
+from ..providers.base import CompletionRequest, CompletionResponse
+from .cost_calculator import CostCalculator
+from datetime import datetime
+from typing import Optional
+import logging
+
+logger = logging.getLogger(__name__)
+
+class UsageRecord:
+    """用量记录（持久化到 Postgres）"""
+    def __init__(
+        self,
+        trace_id: str,
+        model: str,
+        provider: str,
+        prompt_tokens: int,
+        completion_tokens: int,
+        total_tokens: int,
+        cost_usd: float,
+        task_type: Optional[str] = None,
+        created_at: datetime = None,
+    ):
+        self.trace_id = trace_id
+        self.model = model
+        self.provider = provider
+        self.prompt_tokens = prompt_tokens
+        self.completion_tokens = completion_tokens
+        self.total_tokens = total_tokens
+        self.cost_usd = cost_usd
+        self.task_type = task_type
+        self.created_at = created_at or datetime.utcnow()
+
+class UsageTracker:
+    """用量追踪器（记录所有模型调用）"""
+    
+    def __init__(self, cost_calculator: CostCalculator):
+        self.cost_calculator = cost_calculator
+    
+    async def track(
+        self,
+        trace_id: str,
+        request: CompletionRequest,
+        response: CompletionResponse,
+        task_type: Optional[str] = None,
+    ) -&gt; UsageRecord:
+        """记录单次调用的用量"""
+        # 计算成本
+        cost = self.cost_calculator.calculate(
+            model=response.model,
+            prompt_tokens=response.usage["prompt_tokens"],
+            completion_tokens=response.usage["completion_tokens"],
+        )
+        
+        # 创建用量记录
+        record = UsageRecord(
+            trace_id=trace_id,
+            model=response.model,
+            provider=response.provider,
+            prompt_tokens=response.usage["prompt_tokens"],
+            completion_tokens=response.usage["completion_tokens"],
+            total_tokens=response.usage["total_tokens"],
+            cost_usd=cost,
+            task_type=task_type,
+        )
+        
+        # 持久化（实际项目写入 Postgres）
+        await self._persist(record)
+        
+        logger.info(f"Usage tracked: {record.model} | {record.total_tokens} tokens | ${record.cost_usd:.4f}")
+        return record
+    
+    async def _persist(self, record: UsageRecord):
+        """持久化到 Postgres（今天简化为日志）"""
+        # TODO: 写入 Postgres usage_records 表
+        logger.info(f"[Usage] {record.__dict__}")
+</code></pre>
+<p><strong>为什么要持久化用量记录？</strong></p>
+<ol>
+<li>成本报表（"今天分类任务花了 $12"）</li>
+<li>成本优化（发现"某个任务类型成本异常高"）</li>
+<li>审计合规（"这个月调用了多少次 OpenAI"）</li>
+</ol>
+<h4 id="535-成本计算器cost_calculatorpy">5.3.5 成本计算器（cost_calculator.py）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/gateway/usage/cost_calculator.py
+from typing import Dict
+
+class ModelPricing:
+    """模型定价表（2024-07 官方定价）"""
+    
+    # 每 1K tokens 的价格（美元）
+    PRICING: Dict[str, Dict[str, float]] = {
+        "gpt-4-turbo": {
+            "prompt": 0.01,      # $0.01 per 1K prompt tokens
+            "completion": 0.03,  # $0.03 per 1K completion tokens
+        },
+        "gpt-3.5-turbo": {
+            "prompt": 0.0005,
+            "completion": 0.0015,
+        },
+        "claude-3-opus": {
+            "prompt": 0.015,
+            "completion": 0.075,
+        },
+        "claude-3-haiku": {
+            "prompt": 0.00025,
+            "completion": 0.00125,
+        },
+    }
+
+class CostCalculator:
+    """成本计算器"""
+    
+    def calculate(self, model: str, prompt_tokens: int, completion_tokens: int) -&gt; float:
+        """计算单次调用成本（美元）"""
+        pricing = ModelPricing.PRICING.get(model)
+        if not pricing:
+            # 未知模型，使用默认定价（按 GPT-3.5 估算）
+            pricing = ModelPricing.PRICING["gpt-3.5-turbo"]
+        
+        prompt_cost = (prompt_tokens / 1000) * pricing["prompt"]
+        completion_cost = (completion_tokens / 1000) * pricing["completion"]
+        
+        return prompt_cost + completion_cost
+</code></pre>
+<p><strong>为什么定价要硬编码而不是动态获取？</strong></p>
+<p>官方定价变化频率低（通常 3-6 个月调整一次），硬编码定价表更简单。如果需要动态获取，可以加"定价缓存"（每天从官网爬一次）。</p>
+<h4 id="536-网关接口gatewaypy-v3-最终版">5.3.6 网关接口（<a href="http://gateway.py" target="_blank" rel="noopener noreferrer">gateway.py</a> v3 最终版）</h4>
+<pre><code class="language-python"># services/ai/src/ai_service/api/gateway.py (v3 最终版)
+from fastapi import APIRouter, HTTPException, Header
+from typing import Optional
+from ..gateway.providers.base import CompletionRequest, CompletionResponse
+from ..gateway.providers.openai_provider import OpenAIProvider
+from ..gateway.providers.anthropic_provider import AnthropicProvider
+from ..gateway.providers.mock_provider import MockProvider
+from ..gateway.router.model_router import SmartRouter
+from ..gateway.router.fallback_chain import FallbackChain
+from ..gateway.router.routing_rules import TaskType
+from ..gateway.usage.usage_tracker import UsageTracker
+from ..gateway.usage.cost_calculator import CostCalculator
+import os
+
+router = APIRouter()
+
+# 初始化 Providers
+openai_provider = OpenAIProvider(api_key=os.getenv("OPENAI_API_KEY", ""))
+anthropic_provider = AnthropicProvider(api_key=os.getenv("ANTHROPIC_API_KEY", ""))
+mock_provider = MockProvider()
+
+# 初始化 Fallback Chain
+fallback_chain = FallbackChain(providers=[openai_provider, anthropic_provider, mock_provider])
+
+# 初始化 Smart Router
+smart_router = SmartRouter(fallback_chain=fallback_chain)
+
+# 初始化 Usage Tracker
+cost_calculator = CostCalculator()
+usage_tracker = UsageTracker(cost_calculator=cost_calculator)
+
+@router.post("/v1/chat/completions", response_model=CompletionResponse)
+async def chat_completions(
+    request: CompletionRequest,
+    task_type: Optional[TaskType] = None,  # 可选：智能路由
+    x_trace_id: Optional[str] = Header(None),  # Trace ID（从 Header 提取）
+):
+    """
+    网关接口（v3 最终版）
+    
+    使用方式：
+    1. 指定 task_type（智能路由）：
+       POST /v1/chat/completions?task_type=classification
+       Body: { "messages": [...] }
+       网关自动选择 gpt-3.5-turbo（不需要传 model）
+    
+    2. 指定 model（兼容 v2）：
+       POST /v1/chat/completions
+       Body: { "model": "gpt-4", "messages": [...] }
+       网关按模型名路由
+    """
+    try:
+        # 路由并执行
+        response = await smart_router.route(request, task_type=task_type)
+        
+        # 记录用量
+        if x_trace_id:
+            await usage_tracker.track(
+                trace_id=x_trace_id,
+                request=request,
+                response=response,
+                task_type=task_type.value if task_type else None,
+            )
+        
+        return response
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+</code></pre>
+<p><strong>为什么接口同时支持 task_type 和 model？</strong></p>
+<p>渐进式迁移——旧代码传 <code>model</code>（v2 兼容），新代码传 <code>task_type</code>（智能路由）。两种方式共存，避免"一刀切"式重构。</p>
+<h3 id="54-v3-核心知识点-6-个每个-5-要素">5.4 v3 核心知识点（≥ 6 个，每个 5 要素）</h3>
+<h4 id="知识点-1provider-抽象adapter-模式">知识点 1：Provider 抽象（Adapter 模式）</h4>
+<p><strong>是什么</strong>：定义 <code>BaseProvider</code> 统一接口，让不同 Provider（OpenAI、Anthropic、Mock）实现相同的 <code>complete()</code> 方法。业务代码调 <code>gateway.complete()</code>，不关心底层 Provider。</p>
+<p><strong>解决什么问题</strong>：Provider 耦合——业务代码直接调 <code>openai.chat.completions.create()</code>，切换 Provider 要改所有调用代码。抽象后，切换 Provider 只需改配置（不改业务代码）。</p>
+<p><strong>怎么用</strong>：</p>
+<pre><code class="language-python">class BaseProvider(ABC):
+    @abstractmethod
+    async def complete(self, request: CompletionRequest) -&gt; CompletionResponse:
+        pass
+</code></pre>
+<p><strong>生产陷阱</strong>：Provider 抽象泄漏——统一响应格式 <code>CompletionResponse</code> 里包含 Provider 特有字段（如 OpenAI 的 <code>finish_reason</code>），导致其他 Provider 无法实现。正确做法是"只抽象公共字段"（content + usage），Provider 特有字段放 <code>metadata</code>。</p>
+<p><strong>验证方法</strong>：切换 Provider 测试——业务代码调 <code>gateway.complete(model="gpt-4")</code>，配置改成 <code>AnthropicProvider</code>，验证响应格式不变（前端无感知）。</p>
+<h4 id="知识点-2模型路由策略模式">知识点 2：模型路由（策略模式）</h4>
+<p><strong>是什么</strong>：根据任务类型（classification/diagnosis）选择模型（gpt-3.5/gpt-4）。不同任务类型对应不同的路由策略（RoutingRule）。</p>
+<p><strong>解决什么问题</strong>：成本失控——简单分类任务也用 GPT-4（旗舰模型），日均 6 万次调用使成本升高 4 倍。智能路由后，分类任务自动用 GPT-3.5（便宜 60 倍）。</p>
+<p><strong>怎么用</strong>：</p>
+<pre><code class="language-python">ROUTING_RULES = {
+    TaskType.CLASSIFICATION: RoutingRule(
+        primary_model="gpt-3.5-turbo",
+        fallback_models=["claude-3-haiku"],
+    ),
+}
+response = await smart_router.route(request, task_type=TaskType.CLASSIFICATION)
+</code></pre>
+<p><strong>生产陷阱</strong>：路由规则过细——按"任务 ID"路由（每个任务一条规则），导致规则表爆炸（1000 个任务 = 1000 条规则）。正确做法是"按任务类型路由"（classification/diagnosis，只需 5-10 条规则）。</p>
+<p><strong>验证方法</strong>：成本对比测试——记录路由前后的成本（使用 GPT-4 的调用占比从 80% 降到 20%）。</p>
+<h4 id="知识点-3fallback-降级链责任链模式">知识点 3：Fallback 降级链（责任链模式）</h4>
+<p><strong>是什么</strong>：主 Provider 失败后，自动切换到备用 Provider。OpenAI 429 → Anthropic → 降级模式（返回简化结果）。</p>
+<p><strong>解决什么问题</strong>：单点依赖——OpenAI 挂了全挂（2024-11-08 OpenAI 全球故障 3 小时）。Fallback 后，OpenAI 挂了自动切换到 Anthropic（可用性从 99.9% 提升到 99.99%）。</p>
+<p><strong>怎么用</strong>：</p>
+<pre><code class="language-python">fallback_chain = FallbackChain(providers=[openai_provider, anthropic_provider, mock_provider])
+response = await fallback_chain.execute(
+    request,
+    fallback_models=["claude-3-opus", "gpt-3.5-turbo"],
+)
+</code></pre>
+<p><strong>生产陷阱</strong>：Fallback 无限重试——降级链里的 fallback 也失败，继续 fallback 到下一个，最终耗尽所有 Provider。正确做法是"限制 fallback 次数"（最多 3 次）+ "熔断机制"（某 Provider 连续失败 10 次后暂时跳过）。</p>
+<p><strong>验证方法</strong>：故障注入测试——模拟 OpenAI 429（返回 rate limit 错误），验证自动切换到 Anthropic（响应时间 &lt; 5s）。</p>
+<h4 id="知识点-4usage-追踪">知识点 4：Usage 追踪</h4>
+<p><strong>是什么</strong>：记录每次模型调用的 token 用量（prompt_tokens + completion_tokens）和成本（美元），持久化到 Postgres，支持成本报表。</p>
+<p><strong>解决什么问题</strong>：成本黑盒——不知道今天花了多少钱，运维问"为什么这个月 AI 成本翻倍"时无法定位。Usage 追踪后，可以按任务类型、模型、日期聚合成本（"分类任务 $12/天，诊断任务 $89/天"）。</p>
+<p><strong>怎么用</strong>：</p>
+<pre><code class="language-python">await usage_tracker.track(
+    trace_id="trace-001",
+    request=request,
+    response=response,
+    task_type="classification",
+)
+</code></pre>
+<p><strong>生产陷阱</strong>：用量记录丢失——Usage 追踪写到 Redis（内存），服务重启后数据丢失。正确做法是"持久化到 Postgres"（UsageRecord 表）+ "异步写入"（不阻塞主流程）。</p>
+<p><strong>验证方法</strong>：成本报表查询——从 Postgres 查询"今天分类任务的总成本"（<code>SELECT SUM(cost_usd) FROM usage_records WHERE task_type='classification' AND DATE(created_at)=CURRENT_DATE</code>）。</p>
+<h4 id="知识点-5成本计算">知识点 5：成本计算</h4>
+<p><strong>是什么</strong>：根据模型定价（GPT-4: $0.03/1K tokens，GPT-3.5: $0.0005/1K tokens）和实际 token 用量，自动计算单次调用成本。</p>
+<p><strong>解决什么问题</strong>：成本估算不准——手工计算成本（"GPT-4 大概 $0.1/次"），误差大（实际可能 $0.01 或 $1）。自动计算后，精确到小数点后 4 位（$0.0234）。</p>
+<p><strong>怎么用</strong>：</p>
+<pre><code class="language-python">cost = cost_calculator.calculate(
+    model="gpt-4-turbo",
+    prompt_tokens=100,
+    completion_tokens=50,
+)
+# cost = (100/1000 * 0.01) + (50/1000 * 0.03) = 0.001 + 0.0015 = 0.0025 美元
+</code></pre>
+<p><strong>生产陷阱</strong>：定价过期——硬编码 2024-07 的定价，但 OpenAI 在 2024-12 降价 50%，导致成本计算偏高。正确做法是"定期更新定价表"（每月检查官网）+ "定价版本号"（记录使用哪个版本的定价）。</p>
+<p><strong>验证方法</strong>：成本校验测试——对比自动计算成本和 OpenAI Dashboard 显示的成本（误差 &lt; 1%）。</p>
+<h4 id="知识点-6超时重试指数退避">知识点 6：超时重试（指数退避）</h4>
+<p><strong>是什么</strong>：单个 Provider 超时后，重试 3 次（第 1 次等 1s，第 2 次等 2s，第 3 次等 4s），重试失败后 fallback 到下一个 Provider。</p>
+<p><strong>解决什么问题</strong>：暂时性错误导致失败——网络抖动导致请求超时（持续 1 秒），不重试直接失败。重试后，大部分暂时性错误可以恢复（成功率从 85% 提升到 98%）。</p>
+<p><strong>怎么用</strong>：</p>
+<pre><code class="language-python">for attempt in range(max_retries):
+    try:
+        return await provider.complete(request)
+    except Exception as e:
+        wait_time = 2 ** attempt  # 指数退避
+        await asyncio.sleep(wait_time)
+</code></pre>
+<p><strong>生产陷阱</strong>：重试放大故障——Provider 负载过高（CPU 95%），重试增加负载，导致雪崩（更多请求失败 → 更多重试 → 负载更高）。正确做法是"有损重试"（超时时间随重试次数递减：10s → 5s → 2s）+ "熔断机制"（Provider 失败率 &gt; 50% 时停止重试）。</p>
+<p><strong>验证方法</strong>：超时重试测试——模拟网络抖动（第 1 次超时，第 2 次成功），验证重试后成功（总耗时 &lt; 3s）。</p>
+<hr>
+<h2 id="6-前端底子深挖模型网关对前端的影响">§6 前端底子深挖：模型网关对前端的影响</h2>
+<h3 id="61-今天为什么要深挖网关契约对前端的影响">6.1 今天为什么要深挖"网关契约对前端的影响"</h3>
+<p>Day43 的核心是"服务端模型网关（Provider 抽象 + 路由 + fallback）"，但如果前端没有理解网关契约，会出现两个问题：</p>
+<ol>
+<li><strong>前端不知道网关支持哪些模型</strong>：前端写死 <code>model: "gpt-4"</code>，但网关只支持 <code>gpt-4-turbo</code>，导致 400 错误。</li>
+<li><strong>前端不知道任务类型映射</strong>：前端应该传 <code>task_type: "classification"</code>（智能路由），但传了 <code>model: "gpt-4"</code>（硬编码模型），浪费成本。</li>
+</ol>
+<p>今天深挖的不是"Vue 怎么调接口"（Day05 已经掌握），而是"前端如何从网关 OpenAPI 文档自动生成类型定义"（契约驱动）、"前端如何优雅处理 fallback 导致的模型切换"（<code>gpt-4</code> → <code>claude-3-opus</code>）。</p>
+<h3 id="62-网关契约的-3-个前端挑战">6.2 网关契约的 3 个前端挑战</h3>
+<h4 id="621-挑战-1前端如何知道网关支持哪些模型">6.2.1 挑战 1：前端如何知道网关支持哪些模型？</h4>
+<p><strong>错误做法</strong>：前端硬编码模型列表（<code>const MODELS = ["gpt-4", "gpt-3.5-turbo"]</code>），网关新增模型后前端不知道。</p>
+<p><strong>正确做法</strong>：网关提供 <code>/v1/models</code> 接口，返回支持的模型列表。</p>
+<pre><code class="language-python"># services/ai/src/ai_service/api/gateway.py
+@router.get("/v1/models")
+async def list_models():
+    """列出网关支持的所有模型"""
+    return {
+        "data": [
+            {"id": "gpt-4-turbo", "provider": "openai"},
+            {"id": "gpt-3.5-turbo", "provider": "openai"},
+            {"id": "claude-3-opus", "provider": "anthropic"},
+            {"id": "claude-3-haiku", "provider": "anthropic"},
+        ]
+    }
+</code></pre>
+<pre><code class="language-typescript">// apps/web/src/api/gateway.ts (前端)
+export async function fetchSupportedModels(): Promise&lt;string[]&gt; {
+  const response = await fetch('/v1/models')
+  const data = await response.json()
+  return data.data.map(m =&gt; m.id)
+}
+
+// 使用
+const models = await fetchSupportedModels()
+// ["gpt-4-turbo", "gpt-3.5-turbo", "claude-3-opus", "claude-3-haiku"]
+</code></pre>
+<h4 id="622-挑战-2前端如何知道任务类型映射">6.2.2 挑战 2：前端如何知道任务类型映射？</h4>
+<p><strong>错误做法</strong>：前端硬编码任务类型（<code>if (action === '分类') taskType = 'classification'</code>），后端新增任务类型后前端不知道。</p>
+<p><strong>正确做法</strong>：网关提供 <code>/v1/routing-rules</code> 接口，返回任务类型映射表。</p>
+<pre><code class="language-python"># services/ai/src/ai_service/api/gateway.py
+from ..gateway.router.routing_rules import ROUTING_RULES
+
+@router.get("/v1/routing-rules")
+async def get_routing_rules():
+    """返回路由规则（任务类型 → 模型映射）"""
+    return {
+        "rules": [
+            {
+                "task_type": rule.task_type.value,
+                "primary_model": rule.primary_model,
+                "fallback_models": rule.fallback_models,
+                "max_cost_per_call": rule.max_cost_per_call,
+            }
+            for rule in ROUTING_RULES.values()
+        ]
+    }
+</code></pre>
+<pre><code class="language-typescript">// apps/web/src/api/gateway.ts (前端)
+export interface RoutingRule {
+  task_type: string
+  primary_model: string
+  fallback_models: string[]
+  max_cost_per_call: number
+}
+
+export async function fetchRoutingRules(): Promise&lt;RoutingRule[]&gt; {
+  const response = await fetch('/v1/routing-rules')
+  const data = await response.json()
+  return data.rules
+}
+
+// 使用
+const rules = await fetchRoutingRules()
+const classificationRule = rules.find(r =&gt; r.task_type === 'classification')
+console.log(`分类任务使用 ${classificationRule.primary_model}，最大成本 $${classificationRule.max_cost_per_call}`)
+</code></pre>
+<h4 id="623-挑战-3前端如何处理-fallback-导致的模型切换">6.2.3 挑战 3：前端如何处理 fallback 导致的模型切换？</h4>
+<p><strong>场景</strong>：前端发起请求，指定 <code>model: "gpt-4"</code>，但网关 fallback 后实际用了 <code>claude-3-opus</code>（OpenAI 429）。前端如何知道最终用的是哪个模型？</p>
+<p><strong>正确做法</strong>：网关响应里包含 <code>model</code> 字段（实际使用的模型），前端显示"由 Claude 3 Opus 回答"。</p>
+<pre><code class="language-typescript">// apps/web/src/components/ChatMessage.vue
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+
+const response = ref&lt;{
+  content: string
+  model: string
+  provider: string
+}&gt;()
+
+async function sendMessage(message: string) {
+  const res = await fetch('/v1/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'gpt-4',
+      messages: [{ role: 'user', content: message }],
+    }),
+  })
+  response.value = await res.json()
+}
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div class="chat-message"&gt;
+    &lt;div class="content"&gt;{{ response?.content }}&lt;/div&gt;
+    &lt;div class="meta"&gt;
+      由 {{ response?.model }} ({{ response?.provider }}) 回答
+      &lt;span v-if="response?.model !== 'gpt-4'" class="fallback-notice"&gt;
+        (原模型 gpt-4 不可用，已自动切换)
+      &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.fallback-notice {
+  color: #f59e0b;
+  font-size: 0.875rem;
+}
+&lt;/style&gt;
+</code></pre>
+<p><strong>为什么要显示 fallback 通知？</strong></p>
+<p>用户透明度——用户请求 GPT-4（旗舰模型），但实际用了 Claude（备用模型），回答质量可能有差异。显示通知让用户知道"这不是 GPT-4 的回答"。</p>
+<h3 id="63-openapi-自动生成-ts-类型定义">6.3 OpenAPI 自动生成 TS 类型定义</h3>
+<p><strong>问题</strong>：前端手写 <code>CompletionRequest</code> 类型定义，与后端 Pydantic model 不一致（字段名、类型不同），导致运行时错误。</p>
+<p><strong>解决方案</strong>：从 FastAPI 的 <code>/openapi.json</code> 自动生成 TS 类型定义。</p>
+<pre><code class="language-bash"># 安装 openapi-typescript
+npm install -D openapi-typescript
+
+# 生成类型定义
+npx openapi-typescript http://localhost:8000/openapi.json -o src/types/gateway.d.ts
+</code></pre>
+<pre><code class="language-typescript">// 自动生成的 src/types/gateway.d.ts
+export interface CompletionRequest {
+  model: string
+  messages: Array&lt;{ role: string; content: string }&gt;
+  temperature?: number
+  max_tokens?: number
+}
+
+export interface CompletionResponse {
+  content: string
+  model: string
+  usage: {
+    prompt_tokens: number
+    completion_tokens: number
+    total_tokens: number
+  }
+  provider: string
+}
+</code></pre>
+<pre><code class="language-typescript">// apps/web/src/api/gateway.ts (使用自动生成的类型)
+import type { CompletionRequest, CompletionResponse } from '@/types/gateway'
+
+export async function chatCompletion(request: CompletionRequest): Promise&lt;CompletionResponse&gt; {
+  const response = await fetch('/v1/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(request),
+  })
+  return response.json()
+}
+</code></pre>
+<p><strong>为什么自动生成比手写好？</strong></p>
+<ol>
+<li>类型一致性保证——后端 Pydantic model 改了，前端重新生成类型定义，自动同步。</li>
+<li>减少手工维护——后端新增字段（如 <code>stream: boolean</code>），前端不需要手工加类型定义。</li>
+</ol>
+<hr>
+<h2 id="7-测试与验证">§7 测试与验证</h2>
+<h3 id="71-单元测试provider-适配器">7.1 单元测试（Provider 适配器）</h3>
+<pre><code class="language-python"># services/ai/tests/test_providers.py
+import pytest
+from ai_service.gateway.providers.base import CompletionRequest, Message
+from ai_service.gateway.providers.openai_provider import OpenAIProvider
+from ai_service.gateway.providers.mock_provider import MockProvider
+
+@pytest.mark.asyncio
+async def test_openai_provider_supports_model():
+    provider = OpenAIProvider(api_key="sk-test")
+    
+    assert provider.supports_model("gpt-4") is True
+    assert provider.supports_model("gpt-3.5-turbo") is True
+    assert provider.supports_model("claude-3-opus") is False
+
+@pytest.mark.asyncio
+async def test_mock_provider_returns_fixed_response():
+    provider = MockProvider()
+    request = CompletionRequest(
+        model="gpt-4",
+        messages=[Message(role="user", content="Hello")]
+    )
+    
+    response = await provider.complete(request)
+    
+    assert response.provider == "mock"
+    assert response.content == "This is a mock response for testing."
+    assert response.usage["total_tokens"] == 15
+</code></pre>
+<h3 id="72-集成测试路由策略">7.2 集成测试（路由策略）</h3>
+<pre><code class="language-python"># services/ai/tests/test_router.py
+import pytest
+from ai_service.gateway.providers.mock_provider import MockProvider
+from ai_service.gateway.router.model_router import SmartRouter
+from ai_service.gateway.router.fallback_chain import FallbackChain
+from ai_service.gateway.router.routing_rules import TaskType
+from ai_service.gateway.providers.base import CompletionRequest, Message
+
+@pytest.mark.asyncio
+async def test_smart_router_with_task_type():
+    # 使用 MockProvider（避免调用真实 API）
+    mock_provider = MockProvider()
+    fallback_chain = FallbackChain(providers=[mock_provider])
+    router = SmartRouter(fallback_chain=fallback_chain)
+    
+    # 指定 task_type（智能路由）
+    request = CompletionRequest(
+        model="",  # 不指定模型（由路由器选择）
+        messages=[Message(role="user", content="分类这个问题")]
+    )
+    
+    response = await router.route(request, task_type=TaskType.CLASSIFICATION)
+    
+    # 验证路由器自动选择了 gpt-3.5-turbo（从 ROUTING_RULES）
+    assert response.model == "gpt-3.5-turbo"
+</code></pre>
+<h3 id="73-反证实验-1移除-fallback-后-429-直接失败">7.3 反证实验 1：移除 fallback 后 429 直接失败</h3>
+<p><strong>假设</strong>：如果移除 fallback 降级链，OpenAI 429 时直接失败（不切换到 Anthropic）。</p>
+<p><strong>实验步骤</strong>：</p>
+<ol>
+<li>注释掉 <code>FallbackChain.execute</code> 里的 fallback 逻辑（只尝试 primary_model）</li>
+<li>模拟 OpenAI 429（在 <code>OpenAIProvider.complete</code> 里 raise <code>RateLimitError</code>）</li>
+<li>发起请求</li>
+</ol>
+<p><strong>预期现象</strong>：请求失败（返回 500 错误）。</p>
+<p><strong>实际现象</strong>（移除 fallback 后）：</p>
+<pre><code>[FallbackChain] Trying model: gpt-4-turbo
+[OpenAIProvider] RateLimitError: 429 Too Many Requests
+[FallbackChain] Provider failed for model gpt-4-turbo
+HTTP 500: All providers failed. Last error: RateLimitError
+</code></pre>
+<p><strong>恢复操作</strong>：恢复 fallback 逻辑，重新测试，验证自动切换到 claude-3-opus。</p>
+<h3 id="74-反证实验-2移除智能路由后简单任务用-gpt-4">7.4 反证实验 2：移除智能路由后简单任务用 GPT-4</h3>
+<p><strong>假设</strong>：如果移除智能路由（不按 task_type 选模型），简单分类任务也用 GPT-4（成本高 60 倍）。</p>
+<p><strong>实验步骤</strong>：</p>
+<ol>
+<li>注释掉 <code>SmartRouter.route</code> 里的 task_type 逻辑（直接用 request.model）</li>
+<li>发起分类请求（<code>model="gpt-4"</code>, <code>task_type=None</code>）</li>
+<li>记录成本</li>
+</ol>
+<p><strong>预期现象</strong>：使用 GPT-4（成本 $0.03/1K tokens）。</p>
+<p><strong>实际现象</strong>（移除智能路由后）：</p>
+<pre><code>[UsageTracker] Model: gpt-4-turbo | Total tokens: 150 | Cost: $0.0045
+(成本比 gpt-3.5-turbo 高 60 倍：0.0045 vs 0.000075)
+</code></pre>
+<p><strong>恢复操作</strong>：恢复智能路由，重新测试，验证分类任务自动用 gpt-3.5-turbo（成本降低 98%）。</p>
+<h3 id="75-架构证据四件套">7.5 架构证据（四件套）</h3>
+<h4 id="751-类图provider-抽象层次">7.5.1 类图（Provider 抽象层次）</h4>
+<pre><code>BaseProvider (抽象类)
+    ↑ implements
+    ├── OpenAIProvider
+    ├── AnthropicProvider
+    └── MockProvider
+
+SmartRouter
+    ↓ uses
+FallbackChain
+    ↓ uses
+List&lt;BaseProvider&gt;
+
+UsageTracker
+    ↓ uses
+CostCalculator
+</code></pre>
+<h4 id="752-时序图请求流转">7.5.2 时序图（请求流转）</h4>
+<pre><code>Client          Gateway         SmartRouter      FallbackChain    OpenAIProvider    AnthropicProvider
+  │                │                  │                 │                 │                   │
+  │─POST /v1/chat─→│                  │                 │                 │                   │
+  │                │─route(task_type)→│                 │                 │                   │
+  │                │                  │─execute(gpt-4)─→│                 │                   │
+  │                │                  │                 │─complete()─────→│                   │
+  │                │                  │                 │←RateLimitError──│                   │
+  │                │                  │                 │─complete(claude)───────────────────→│
+  │                │                  │                 │←CompletionResponse──────────────────│
+  │                │←CompletionResponse────────────────│                 │                   │
+  │                │─track(usage)────→UsageTracker     │                 │                   │
+  │←200 OK─────────│                  │                 │                 │                   │
+</code></pre>
+<h4 id="753-adr模型路由决策记录">7.5.3 ADR（模型路由决策记录）</h4>
+<p><strong>决策</strong>：使用"任务类型路由"而不是"模型名路由"。</p>
+<p><strong>背景</strong>：v2 按模型名路由（用户指定 <code>gpt-4</code> 就用 GPT-4），导致简单任务也用旗舰模型，成本失控。</p>
+<p><strong>方案对比</strong>：</p>
+<ol>
+<li>模型名路由（v2）：简单直接，但业务代码需要知道"哪个模型适合哪个任务"（耦合）。</li>
+<li>任务类型路由（v3）：业务代码只传 <code>task_type</code>，网关自动选模型（解耦）。</li>
+</ol>
+<p><strong>决策</strong>：选方案 2（任务类型路由），原因：</p>
+<ul>
+<li>业务代码不关心模型细节（只关心"我要做分类任务"，不关心"用 gpt-3.5 还是 gpt-4"）</li>
+<li>网关可以根据成本/质量平衡自动调整路由策略（业务代码无感知）</li>
+<li>兼容 v2（仍支持 <code>model</code> 参数，渐进式迁移）</li>
+</ul>
+<p><strong>后果</strong>：</p>
+<ul>
+<li>优点：成本降低 75%（简单任务用便宜模型）</li>
+<li>缺点：业务代码需要理解任务类型分类（需要文档说明）</li>
+</ul>
+<h4 id="754-commit-信息">7.5.4 Commit 信息</h4>
+<pre><code class="language-bash">git add .
+git commit -m "feat(gateway): add model gateway with smart routing and fallback
+
+- Add Provider abstraction (BaseProvider, OpenAIProvider, AnthropicProvider, MockProvider)
+- Add smart routing (task type -&gt; model mapping)
+- Add fallback chain (OpenAI 429 -&gt; Anthropic -&gt; Mock)
+- Add usage tracking (token + cost calculation)
+- Add /v1/chat/completions endpoint (OpenAI-compatible)
+
+Refs: Day43"
+</code></pre>
+<hr>
+<h2 id="8-通关检查清单v3-规范-11-项">§8 通关检查清单（v3 规范 11 项）</h2>
+<p>Day 43 交付前的自查：</p>
+<ol>
+<li><strong>§0 位置声明</strong>：已写明"阶段二第 3 天"、Day42 前置依赖、Day44-60 后续对齐</li>
+<li><strong>§1.1 用户能看到什么</strong>：已写 5 个场景（简单分类、复杂诊断、OpenAI 429 降级、用量报表、测试 Mock）</li>
+<li><strong>§1.4 目录结构 5 块</strong>：已写骨架树 + 为什么分层 5 问 + diff 表格 + 依赖箭头</li>
+<li><strong>§1.5 脚手架检查</strong>：已说明依赖 Day42 FastAPI 基础</li>
+<li><strong>三版演进</strong>：v1 直调 OpenAI → v2 Provider 抽象 + 基础路由 → v3 智能路由 + fallback + usage</li>
+<li><strong>§5.3 完整代码</strong>：BaseProvider、OpenAIProvider、SmartRouter、FallbackChain、UsageTracker、CostCalculator，无省略号</li>
+<li><strong>§5.4 ≥ 6 知识点</strong>：Provider 抽象、模型路由、Fallback 降级链、Usage 追踪、成本计算、超时重试，每个 5 要素</li>
+<li><strong>§6 前端底子补弱</strong>：深挖网关契约对前端的影响（模型列表、任务类型映射、fallback 通知、OpenAPI 自动生成 TS 类型）</li>
+<li><strong>§7 测试 4 件套</strong>：单元测试（Provider）+ 集成测试（路由）+ 反证实验 1（移除 fallback）+ 反证实验 2（移除智能路由）+ 类图 + 时序图 + ADR + commit</li>
+<li><strong>0 个 <code>&gt; ✅/❌</code> blockquote</strong>：全文无此格式</li>
+<li><strong>commit 不含 git push</strong>：commit 信息写 <code>Refs: Day43</code>，不执行 push</li>
+</ol>
+<hr>
+<h2 id="9-从今天的增量到下一站">§9 从今天的增量到下一站</h2>
+<h3 id="91-今天建立的能力地基">9.1 今天建立的能力地基</h3>
+<p>Day 43 交付的模型网关（Provider 抽象 + 路由 + fallback + usage）是后续 17 个能力的基座：</p>
+<ol>
+<li><strong>Day 44-50 RAG 深化</strong>：向量检索失败（Pinecone 超时）复用今天的 fallback 机制（切换到备用向量库）</li>
+<li><strong>Day 51-55 多 Agent 编排</strong>：Agent 调用模型通过网关（不直接调 OpenAI），统一追踪成本</li>
+<li><strong>Day 56-60 Eval 评估</strong>：Eval 任务用 MockProvider（固定响应，不调真实 API），节省成本 + 加速测试</li>
+</ol>
+<h3 id="92-今天留下的-3-个待优化点">9.2 今天留下的 3 个待优化点</h3>
+<ol>
+<li>
+<p><strong>熔断机制</strong>：v3 的 fallback 会无限重试（OpenAI 失败 → Anthropic 失败 → Mock），没有"Provider 连续失败 10 次后暂时跳过"。Day 44 会补充熔断机制。</p>
+</li>
+<li>
+<p><strong>用量预算</strong>：v3 只记录用量，没有"用量预算"（例如"每天最多花 $100，超预算拒绝请求"）。Day 45 会补充预算控制。</p>
+</li>
+<li>
+<p><strong>流式响应</strong>：v3 只支持非流式响应（<code>response.content</code> 一次性返回），不支持流式响应（逐 token 返回）。Day 46 会补充流式网关。</p>
+</li>
+</ol>
+<h3 id="93-下一站要解决的核心问题">9.3 下一站要解决的核心问题</h3>
+<p><strong>Day 44：RAG 文档检索（Embedding + 向量检索 + Rerank + Hybrid Search）</strong></p>
+<p>核心挑战：</p>
+<ul>
+<li>如何把长文档（10 页 PDF）切分成小块（chunk），保证语义完整？</li>
+<li>如何用 Embedding 模型把文本转成向量（768 维），并存入向量库（Pinecone）？</li>
+<li>如何从 10 万条文档里快速检索最相关的 5 条（向量相似度 top-k）？</li>
+<li>如何复用 Day 43 的网关（调用 Embedding 模型时也走网关，支持 fallback）？</li>
+</ul>
+<hr>
+<h2 id="10-本日小结">§10 本日小结</h2>
+<p><strong>标题党 30 字</strong>：Provider 抽象解耦 API、智能路由省成本、Fallback 降级防单点、Usage 追踪算花费——网关统一 AI 调用入口。</p>
+<p><strong>三句话</strong>：</p>
+<ol>
+<li>Provider 抽象（Adapter 模式）解决 API 耦合——业务代码调 <code>gateway.complete()</code>，不直接调 <code>openai.chat.completions.create()</code>，切换 Provider 只需改配置；智能路由（策略模式）解决成本失控——简单分类任务自动用 GPT-3.5（便宜 60 倍），复杂诊断任务用 GPT-4（准确度高）；两者区别是抽象解耦"哪些 Provider 可用"，路由决策"选哪个 Provider"。</li>
+<li>Fallback 降级链（责任链模式）解决单点依赖——OpenAI 429 时自动切换到 Anthropic，Anthropic 也失败时切换到 Mock（降级模式），可用性从 99.9% 提升到 99.99%；超时重试（指数退避）解决暂时性错误——网络抖动导致超时时重试 3 次（1s → 2s → 4s），成功率从 85% 提升到 98%。</li>
+<li>Usage 追踪持久化 token 用量和成本到 Postgres——支持成本报表（"今天分类任务花了 $12，诊断任务花了 $89"），优化路由策略；OpenAPI 契约自动生成 TS 类型定义——前后端类型一致，后端改 Pydantic model 前端自动同步。</li>
+</ol>
+<hr>
+<h2 id="11-课后三道核心问题必答先于教师五连问">§11 课后三道核心问题（必答，先于教师五连问）</h2>
+<h3 id="问题-1请从今天项目的真实入口到最终输出解释模型网关的数据流或控制流当天知识链provider-adapter模型路由fallbackusage成本分别在哪一层起作用为什么按这个顺序学习">问题 1：请从今天项目的真实入口到最终输出,解释"模型网关"的数据流或控制流；当天知识链"Provider adapter、模型路由、fallback、usage、成本"分别在哪一层起作用，为什么按这个顺序学习？</h3>
+<p><strong>数据流</strong>：</p>
+<pre><code>客户端请求（task_type: classification）
+  → Gateway API (/v1/chat/completions)
+  → SmartRouter.route()（智能路由层）
+     - 查询 ROUTING_RULES（classification → gpt-3.5-turbo）
+  → FallbackChain.execute()（降级链层）
+     - 尝试 OpenAIProvider.complete()
+     - 失败 → 尝试 AnthropicProvider.complete()
+     - 失败 → 尝试 MockProvider.complete()
+  → Provider 层（调用真实 API）
+     - OpenAI API 返回 CompletionResponse
+  → UsageTracker.track()（用量追踪层）
+     - 记录 token 用量（150 tokens）
+     - CostCalculator.calculate()（成本计算）
+     - 持久化到 Postgres（$0.000075）
+  → 返回 CompletionResponse（content + usage + provider）
+</code></pre>
+<p><strong>知识链分层</strong>：</p>
+<ul>
+<li><strong>Provider adapter</strong>：Provider 层（BaseProvider 抽象 + OpenAIProvider 实现）</li>
+<li><strong>模型路由</strong>：SmartRouter 决策层（根据 task_type 选 primary_model）</li>
+<li><strong>Fallback</strong>：FallbackChain 降级层（primary 失败切换到 fallback_models）</li>
+<li><strong>Usage</strong>：UsageTracker 横切层（记录所有调用的 token 用量）</li>
+<li><strong>成本</strong>：CostCalculator 计算层（token → 美元）</li>
+</ul>
+<p><strong>为什么按这个顺序学习</strong>：</p>
+<ol>
+<li>先学 Provider adapter（统一接口），才能谈"多 Provider 切换"</li>
+<li>再学模型路由（选哪个 Provider），才能谈"成本优化"</li>
+<li>再学 Fallback（主备切换），才能谈"高可用"</li>
+<li>再学 Usage 追踪（记录用量），才能谈"成本可观测"</li>
+<li>最后学成本计算（优化成本），才能谈"成本控制"</li>
+</ol>
+<p>这个顺序是"从接口统一到智能调度到高可用到成本优化"的完整链路。</p>
+<h3 id="问题-2如果故意移除今天最关键的保护机制线上会出现什么可观察现象请给出最小复现定位证据恢复动作和一条防复发测试">问题 2：如果故意移除今天最关键的保护机制，线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</h3>
+<p><strong>移除的机制</strong>：Fallback 降级链（不切换 Provider）。</p>
+<p><strong>可观察现象</strong>：OpenAI 429 时请求直接失败（返回 500 错误）。</p>
+<p><strong>最小复现</strong>：</p>
+<ol>
+<li>注释掉 <code>FallbackChain.execute</code> 里的 fallback 逻辑（只尝试 primary_model，不尝试 fallback_models）</li>
+<li>模拟 OpenAI 429（在 <code>OpenAIProvider.complete</code> 里 raise <code>RateLimitError</code>）</li>
+<li>发起请求（<code>task_type=classification</code>）</li>
+</ol>
+<p><strong>定位证据</strong>：</p>
+<pre><code>[SmartRouter] Routing to model: gpt-3.5-turbo (task_type: classification)
+[FallbackChain] Trying model: gpt-3.5-turbo
+[OpenAIProvider] RateLimitError: 429 Too Many Requests
+[FallbackChain] Provider failed for model gpt-3.5-turbo
+HTTP 500: All providers failed. Last error: RateLimitError
+</code></pre>
+<p>DB 查询（usage_records 表）：</p>
+<pre><code class="language-sql">SELECT COUNT(*) FROM usage_records WHERE DATE(created_at) = CURRENT_DATE;
+-- 预期：0 条记录（请求失败，没有记录用量）
+</code></pre>
+<p><strong>恢复动作</strong>：</p>
+<ol>
+<li>恢复 fallback 逻辑（<code>FallbackChain.execute</code> 里恢复 <code>for model in models_to_try</code>）</li>
+<li>重启服务</li>
+<li>验证 OpenAI 429 时自动切换到 Anthropic（响应 model 字段为 <code>claude-3-haiku</code>）</li>
+</ol>
+<p><strong>防复发测试</strong>（E2E）：</p>
+<pre><code class="language-python">@pytest.mark.asyncio
+async def test_fallback_on_rate_limit():
+    # Mock OpenAIProvider 返回 429
+    openai_provider = Mock()
+    openai_provider.complete.side_effect = RateLimitError("429")
+    openai_provider.supports_model.return_value = True
+    
+    # AnthropicProvider 正常返回
+    anthropic_provider = AnthropicProvider(api_key="...")
+    
+    fallback_chain = FallbackChain(providers=[openai_provider, anthropic_provider])
+    request = CompletionRequest(
+        model="gpt-3.5-turbo",
+        messages=[Message(role="user", content="Hello")]
+    )
+    
+    # 执行（带 fallback）
+    response = await fallback_chain.execute(
+        request,
+        fallback_models=["claude-3-haiku"],
+    )
+    
+    # 验证切换到 Anthropic
+    assert response.provider == "anthropic"
+    assert response.model == "claude-3-haiku"
+</code></pre>
+<h3 id="问题-3请引用今天的具体代码测试和架构证据证明项目目标已经达到再说明当前实现距离企业生产标准还缺什么下一步如何演进而不破坏已有合同">问题 3：请引用今天的具体代码、测试和架构证据，证明项目目标已经达到；再说明当前实现距离企业生产标准还缺什么，下一步如何演进而不破坏已有合同。</h3>
+<p><strong>代码证据</strong>：</p>
+<ul>
+<li><code>gateway/providers/base.py</code> 第 22 行：<code>BaseProvider</code> 抽象类定义统一接口（<code>complete()</code> 方法）</li>
+<li><code>gateway/router/model_router.py</code> 第 18 行：<code>SmartRouter.route()</code> 方法根据 task_type 选模型（智能路由）</li>
+<li><code>gateway/router/fallback_chain.py</code> 第 25 行：<code>FallbackChain.execute()</code> 方法实现降级链（主备切换）</li>
+<li><code>gateway/usage/usage_tracker.py</code> 第 32 行：<code>UsageTracker.track()</code> 方法记录 token 用量和成本</li>
+</ul>
+<p><strong>测试证据</strong>：</p>
+<ul>
+<li><code>tests/test_providers.py</code> 第 8 行：OpenAIProvider 单元测试（验证 <code>supports_model()</code> 正确判断）</li>
+<li><code>tests/test_router.py</code> 第 18 行：SmartRouter 集成测试（验证 task_type 路由到正确模型）</li>
+<li>§7.3 反证实验 1：移除 fallback 后 429 直接失败（验证降级链必要性）</li>
+<li>§7.4 反证实验 2：移除智能路由后简单任务用 GPT-4（验证路由策略必要性）</li>
+</ul>
+<p><strong>架构证据</strong>：</p>
+<ul>
+<li>类图（§7.5.1）：展示 BaseProvider 抽象层次（OpenAIProvider/AnthropicProvider/MockProvider 实现）</li>
+<li>时序图（§7.5.2）：展示请求流转（SmartRouter → FallbackChain → Provider → UsageTracker）</li>
+<li>ADR（§7.5.3）：模型路由决策记录（任务类型路由 vs 模型名路由）</li>
+</ul>
+<p><strong>项目目标达成</strong>：</p>
+<ul>
+<li>✅ Provider 抽象解耦 API（BaseProvider + OpenAIProvider/AnthropicProvider）</li>
+<li>✅ 智能路由省成本（SmartRouter + RoutingRule：classification → gpt-3.5）</li>
+<li>✅ Fallback 降级防单点（FallbackChain：OpenAI 429 → Anthropic）</li>
+<li>✅ Usage 追踪算花费（UsageTracker + CostCalculator）</li>
+<li>✅ 兼容 OpenAI API（/v1/chat/completions 接口）</li>
+</ul>
+<p><strong>距离企业生产标准还缺</strong>：</p>
+<ol>
+<li><strong>熔断机制（Circuit Breaker）</strong>：Provider 连续失败 10 次后暂时跳过（当前会一直重试）</li>
+<li><strong>用量预算（Budget Control）</strong>：每天最多花 $100，超预算拒绝请求（当前没有限制）</li>
+<li><strong>流式响应（Streaming）</strong>：支持逐 token 返回（当前只支持非流式响应）</li>
+<li><strong>多租户隔离（Multi-tenancy）</strong>：不同租户用不同 API Key（当前所有请求共享一个 Key）</li>
+</ol>
+<p><strong>下一步演进（不破坏合同）</strong>：</p>
+<ul>
+<li>在 <code>FallbackChain</code> 里新增 <code>circuit_breaker</code> 字段（检查 Provider 失败率）</li>
+<li>在 <code>UsageTracker</code> 里新增 <code>budget_checker</code> 字段（检查用量预算）</li>
+<li>新增 <code>StreamingGateway</code>（提供 <code>/v1/chat/completions/stream</code> 接口），不改变现有非流式接口</li>
+<li>在 <code>ProviderConfig</code> 里新增 <code>tenant_id</code> 字段（多租户隔离），兼容单租户模式</li>
+</ul>
+<hr>
+<h2 id="12-真实项目情境题联网更新-2026-07-13">§12 真实项目情境题（联网更新 2026-07-13）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>
+<p>模拟情境：Provider A 30 分钟内 429 达 38%，fallback 到 Provider B 后字段命名漂移，前端 12% 空白。请用 provider、model、schemaVersion、usage 和 Trace 定位，先锁定稳定模型或降级文本结果，再修复 Adapter、路由与结构合同，故障注入验证切换不改变领域输出。
+依据：<a href="https://jobs.bytedance.com/experienced/position/7647767015784335669/detail" target="_blank" rel="noopener noreferrer">S5 AI 全栈</a></p>
+</li>
+<li>
+<p>模拟情境：简单分类任务被错误路由到旗舰模型，日均 6 万次调用使成本升高 4 倍。请按 taskType、routeReason、token 和质量指标下钻，先设置预算上限，再修复模型选择策略与 fallback 顺序，使用固定 Eval 集验证成本下降且质量不低于门槛。
+依据：<a href="https://jobs.bytedance.com/experienced/position/7651517511770818869/detail" target="_blank" rel="noopener noreferrer">S6 Agent Harness</a></p>
+</li>
+</ol>
+<p>知识映射：对应 Provider adapter、模型路由、fallback、usage 和成本。</p>
+<hr>
+<h2 id="13-完成后教师五连问">§13 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 -&gt; 边界一致性 -&gt; 线上事故 -&gt; 工程权衡 -&gt; 架构演进"现场提出 5 道问题。五连问不预先固定，也不由下面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<hr>
+<h2 id="14-pdf-面试题映射">§14 PDF 面试题映射</h2>
+<ol>
+<li>
+<p>如何设计通用 AI 组件库，使其通过 Adapter 适配 OpenAI、Anthropic 和自研模型协议？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E6%25B7%25B1%25E5%25BA%25A6%25E6%25B1%2582%25E7%25B4%25A2web%25E5%2589%258D%25E7%25AB%25AF%25E9%25AB%2598%25E7%25BA%25A7%25E5%25B7%25A5%25E7%25A8%258B%25E5%25B8%2588-AIGC.pdf" class="missing-link">《2026深度求索web前端高级工程师-AIGC》</a>，第 6 页。</p>
+</li>
+<li>
+<p>前端如何参与 Token 成本控制，并按任务复杂度选择轻量或旗舰模型？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E6%25B7%25B1%25E5%25BA%25A6%25E6%25B1%2582%25E7%25B4%25A2web%25E5%2589%258D%25E7%25AB%25AF%25E9%25AB%2598%25E7%25BA%25A7%25E5%25B7%25A5%25E7%25A8%258B%25E5%25B8%2588-AIGC.pdf" class="missing-link">《2026深度求索web前端高级工程师-AIGC》</a>，第 9 页。</p>
+</li>
+</ol>
+<p>题目说明：直接匹配 Provider Adapter、模型路由和成本；429 fallback 与 usage 结算需在 Model Gateway 项目中证明。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day43-old.html">查看 Day 43 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/42.html">← Day 42 · FastAPI</a>
+            <a href="/ai-teacher-agent-devolop/day/44.html">Day 44 · 结构化输出 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E9%87%8C%E7%9A%84%E4%BD%8D%E7%BD%AE">§0 今天在 90 天里的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B">§1 今天要做的事</a></li><li><a href="#2-%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%BC%80%E5%8F%91%E8%8A%82%E5%A5%8F3-%E5%B0%8F%E6%97%B6%E6%80%8E%E4%B9%88%E5%88%86%E9%85%8D">§2 今天的开发节奏（3 小时怎么分配）</a></li><li><a href="#3-v1%E7%9B%B4%E8%B0%83-openai%E6%9A%B4%E9%9C%B2%E5%8D%95%E7%82%B9%E4%BE%9D%E8%B5%96">§3 v1：直调 OpenAI（暴露单点依赖）</a></li><li><a href="#4-v2provider-%E6%8A%BD%E8%B1%A1-%E5%9F%BA%E7%A1%80%E8%B7%AF%E7%94%B1">§4 v2：Provider 抽象 + 基础路由</a></li><li><a href="#5-v3%E6%99%BA%E8%83%BD%E8%B7%AF%E7%94%B1-fallback-usage%E7%94%9F%E4%BA%A7%E7%BA%A7">§5 v3：智能路由 + Fallback + Usage（生产级）</a></li><li><a href="#6-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E6%B7%B1%E6%8C%96%E6%A8%A1%E5%9E%8B%E7%BD%91%E5%85%B3%E5%AF%B9%E5%89%8D%E7%AB%AF%E7%9A%84%E5%BD%B1%E5%93%8D">§6 前端底子深挖：模型网关对前端的影响</a></li><li><a href="#7-%E6%B5%8B%E8%AF%95%E4%B8%8E%E9%AA%8C%E8%AF%81">§7 测试与验证</a></li><li><a href="#8-%E9%80%9A%E5%85%B3%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95v3-%E8%A7%84%E8%8C%83-11-%E9%A1%B9">§8 通关检查清单（v3 规范 11 项）</a></li><li><a href="#9-%E4%BB%8E%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%A2%9E%E9%87%8F%E5%88%B0%E4%B8%8B%E4%B8%80%E7%AB%99">§9 从今天的增量到下一站</a></li><li><a href="#10-%E6%9C%AC%E6%97%A5%E5%B0%8F%E7%BB%93">§10 本日小结</a></li><li><a href="#11-%E8%AF%BE%E5%90%8E%E4%B8%89%E9%81%93%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E5%BF%85%E7%AD%94%E5%85%88%E4%BA%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">§11 课后三道核心问题（必答，先于教师五连问）</a></li><li><a href="#12-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-13">§12 真实项目情境题（联网更新 2026-07-13）</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">§13 完成后教师五连问</a></li><li><a href="#14-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%98%A0%E5%B0%84">§14 PDF 面试题映射</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

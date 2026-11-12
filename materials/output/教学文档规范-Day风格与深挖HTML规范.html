@@ -1,0 +1,675 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>教学文档规范 · Day 风格与深挖 HTML 规范（v2） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials" open="">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html" aria-current="page">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        
+        <span aria-current="page">课程资料</span>
+      </nav>
+      <header class="article-header">
+        
+        <h1>教学文档规范 · Day 风格与深挖 HTML 规范（v2）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p>本文件是 Day01 打磨 + Day02 骨架化过程中沉淀的<strong>强制规范</strong>，用于后续 Day02-Day90 的改写与 subagent 审核。所有 <code>Day*.md</code> 与 <code>Day*深挖-*.html</code> 必须逐项对齐；未对齐条目在 subagent 审核时视为 <strong>BLOCK</strong>。</p>
+<p>参考基线：<code>output/90天逐日任务/Day01.md</code>（权威版正式版）· <code>output/90天逐日任务/Day02.md</code>（骨架 + TODO 占位版基线）· <code>output/Day01深挖-前端底子补弱.html</code>（深挖基线）· <code>C:\Users\kaiqj\.claude\CLAUDE.md</code>（学习硬红线）· <code>C:\Users\kaiqj\.claude\projects\D-------------------ai--\memory\feedback_daily_scaffold.md</code>（骨架规则 memory）· <code>output/简历用词红线自检清单.md</code>（用词红线）· <code>output/AI教师五连问验收协议.md</code>（教师验收协议）。</p>
+<p><strong>v2 变更</strong>：新增 §0.1「三种标注符号」/§1 头部块规范 / §5 TODO 占位法 / §9 阶段 1「骨架版」形态 / §11 AI Review 记录 / §8 subagent checklist 全面增补。</p>
+</blockquote>
+<hr>
+<h2 id="0-立项前提这是学习文档不是交付文档">0. 立项前提：这是"学习文档"不是"交付文档"</h2>
+<ul>
+<li>用户目标是 <strong>60/90 天深度学习</strong>，不是快速产出功能。文档服务学习曲线，不是服务产品排期。</li>
+<li>硬红线：<strong>AI 辅助 30% + 手写核心 70%</strong>。以下内容 AI 只出结构、脚手架、样板、类型骨架，<strong>禁止</strong> AI 直接生成完整实现：
+<ul>
+<li>NestJS Module / Controller / Service / Provider / Middleware / Guard / Interceptor 完整代码；</li>
+<li>Vercel AI SDK Tool Calling 的 <code>tool()</code> 完整实现、Schema <code>z.object</code> 完整字段、执行体；</li>
+<li>LangChain.js 的 RAG 关键链路（分割策略、embedding、reranker、hybrid search 组合）；</li>
+<li>LangGraph.js 的 StateGraph、Node 逻辑、Edge 条件路由、human-in-the-loop 实现；</li>
+<li>具体业务算法（异常检测、聚合、缓存、重试策略等）；</li>
+<li>System Prompt / Few-shot / 多轮上下文管理的 prompt 主体；</li>
+<li>Try-Catch / 日志 / 重试 / 断点调试的错误处理主体；</li>
+<li>Schema 字段主体（zod 的 <code>z.object</code> 具体字段、Prisma 具体列除表结构骨架外的业务字段）；</li>
+<li>Adapter / 映射函数 / reducer / 状态机的主体逻辑；</li>
+<li>单元测试用例的断言体与 payload 内容（外壳可生成，见 §0.1）。</li>
+</ul>
+</li>
+<li>允许 AI 直接生成（30%）：<code>package.json</code> / <code>tsconfig</code> / <code>docker-compose</code> / <code>.gitignore</code> / <code>Dockerfile</code> / <code>README</code> 骨架、DTO 类型骨架（<code>type XxxDto = z.infer&lt;typeof XxxSchema&gt;</code> 这种 2 行文件）、Prisma Schema 表结构骨架、Swagger 装饰器、测试框架样板（<code>describe / it / expect</code> 外壳）、环境变量类型、基础 CRUD 的 <code>findMany/create/update/delete</code>、基础 RESTful 路由声明、TypeScript 类型 / 接口 / Enum 声明、<code>throw new Error('TODO: 手写实现')</code> 空壳、<code>New-Item -ItemType Directory</code> 等目录创建脚本。</li>
+<li>生成 30% 内容时必须在文档里标注 <code>&gt; ✅ 这是样板代码，可以直接使用。建议：快速浏览确认格式即可。</code></li>
+<li>遇到 70% 内容的请求，<strong>必须拒绝生成</strong>，改为提供学习指导（阅读链接 + 核心概念 + 手写步骤 + 验收清单）。拒绝话术使用 <code>C:\Users\kaiqj\.claude\CLAUDE.md</code> 里的「拒绝模板」。</li>
+</ul>
+<hr>
+<h2 id="01-三种标注符号强制统一">0.1 三种标注符号（强制统一）</h2>
+<p><code>Day*.md</code> / 深挖 HTML 里必须使用以下三种标注，<strong>不得混用其他 emoji 或颜色标签</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>符号</th>
+<th>语义</th>
+<th>使用场景</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&gt; ✅</code></td>
+<td>AI 生成的样板代码，用户浏览即可</td>
+<td>30% 内容处必须打此标</td>
+<td><code>&gt; ✅ 这是样板代码，可以直接使用。建议：快速浏览确认格式即可。</code></td>
+</tr>
+<tr>
+<td><code>&gt; ❌</code></td>
+<td>AI 拒绝生成的核心逻辑，用户必须手写</td>
+<td>70% 内容处必须打此标 + 学习指导</td>
+<td><code>&gt; ❌ AI 不生成 Schema 完整字段——这是核心业务逻辑（属规范 §0 硬红线）。你必须手写 Schema 字段。</code></td>
+</tr>
+<tr>
+<td><code>&gt; ⚠️</code></td>
+<td>骨架版占位 / 待用户确认的选题 / 强红线警告</td>
+<td>文档尚未展开、深挖 HTML 未确认选题、<code>git push</code> 警告等</td>
+<td><code>&gt; ⚠️ 本文件目前是「结构骨架 + TODO 占位」，正文尚未展开。</code></td>
+</tr>
+</tbody>
+</table></div><p><strong>红线</strong>：<code>&gt; ✅</code> 后不得跟"你自己写"这类矛盾表述；<code>&gt; ❌</code> 后必须紧跟"学习指导"（阅读链接 / 核心概念 / 手写步骤 / 验收清单）；<code>&gt; ⚠️</code> 是提醒不是禁止，允许配合 TODO 占位使用。</p>
+<hr>
+<h2 id="1-daymd-权威版章节顺序强制">1. <code>Day*.md</code> 权威版章节顺序（强制）</h2>
+<p>以下顺序是 Day01 打磨后的最终形态。<strong>任何一天都必须完整覆盖，禁止跳节，禁止调换顺序</strong>。缺项 = BLOCK。</p>
+<p><strong>文件头部（§0 之前）强制信息块</strong>：</p>
+<pre><code># Day {N}：{主题}（{三版演进副标题}）
+
+任务版本：标准版
+日期与时长：{YYYY-MM-DD} {周几}，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：{绝对路径，例如 D:\demo\ai-techer\p1-monitor\frontend}
+角色视角：{一句话说明本日读者预设背景}
+配套文档：[Day{N-1}.md](./Day{N-1}.md) · [Day{N}深挖-{弱项主题}.html](../Day{N}深挖-{弱项主题}.html)（深挖 HTML 未生成时标注"待生成，选题需先与用户确认"）
+本文件规范来源：[教学文档规范-Day风格与深挖HTML规范.md](../教学文档规范-Day风格与深挖HTML规范.md)
+
+&gt; ⚠️ 骨架状态提示（仅骨架版必须写）：本文件目前是「结构骨架 + TODO 占位」，正文尚未展开。展开顺序遵循规范 §9 阶段 2。
+</code></pre>
+<p><strong>权威版 Day01 头部无 <code>&gt; 生成说明</code> 语句</strong>；<code>90天按周学习计划</code> 副本才在头部加 <code>&gt; 生成说明：本文件由 [权威源任务](../../output/90天逐日任务/Day{N}.md) 自动生成…</code> 一行（副本头由脚本 <code>scripts/Generate-WeeklyPlan.ps1</code> 生成，见 §11 双份同步）。</p>
+<pre><code>0. 今天在 90 天路线中的位置          ← 承上启下：昨天做完的、今天要做的、明天依赖的
+1. 今天要交付的功能模块
+   1.1 用户能看到什么                ← 只描述用户可见现象，不谈技术
+   1.2 这个模块在项目里承担什么       ← 在整个 p1/p2/p3 项目里的定位
+   1.3 三版演进的目标（v1 / v2 / v3）  ← 见 §3 "三版演进" 规则；不适用的天在此说明并给替代结构
+   1.4 本日项目目录结构（动手前先看骨架） ← 强制。含依赖方向、每个文件职责一句话、动手前 3 个自问
+1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）  ← 强制。原第 7 节 7.1-7.5 前置
+   1.5.1 D-1：搭工程骨架 / 装依赖
+   1.5.2 D-2：创建目录
+   1.5.3 D-3：实现 domain / Schema 层
+   1.5.4 D-4：实现 features / DTO 层
+   1.5.5 D-5：接入编排层（App.vue / main.ts / bootstrap）
+2. 学习节奏（90 阅读 / 90 动手）      ← 阶段 A-F 时间盒表
+3. v1：最小闭环                      ← 见 §3
+4. v2：加一个关键设计维度             ← 见 §3
+5. v3：终态                           ← 见 §3
+   5.1 v3 要实现什么
+   5.2 v3 目录结构                    ← 与 §1.4 完全一致，或写"见 §1.4（保持完全一致）"
+   5.3 v3 完整代码                    ← 逐文件展示
+   5.4 v3 用到的知识点               ← 至少 6 个知识点，每个含"解决的问题 / 运行机制 / 项目落点 / 生产误区 / 验证方法"5 要素
+6. 三版对比一览表                     ← 见 §7 九列字段
+6.5 前端底子补弱（独立深挖 HTML 入口）  ← 强制。链接 + 候选主题列表 + 自检依据（12号报告 / 能力画像 / 简历红线）
+7. 项目验收清单（阶段 E-F，约 55 分钟）  ← 只保留 7.6-7.9 验收环节；7.1-7.5 脚手架已前置到 §1.5
+   7.6 E：写核心逻辑单元测试
+   7.7 F-1：反证实验 1
+   7.8 F-2：反证实验 2
+   7.9 F-3：验证 + 提交
+8. 通过标准                            ← 逐项可勾选的验收
+9. 提交物                              ← commit / 测试输出 / 学习日志 / 反证记录 / 架构证据 / AI Review 记录 / 课末三问答案
+10. 课末 3 个核心问题                  ← 提交前先自答，不许查资料
+11. 真实项目情境题（联网更新 YYYY-MM-DD）← 至少 2 题，每题标注"依据"来源链接，答案按 "定位证据 → 临时止损 → 根因修复 → 回归验证" 四段组织
+12. PDF 面试题                         ← 至少 2 题，标注来源 PDF 与页码；标注"文件名不等于官方题库"边界
+13. 完成后教师五连问                   ← 引用《AI教师五连问验收协议》；教师现场出题，本节不预设答案
+14. 本 Day 在 90 天路线中的锚点        ← 与 §0 呼应，指向后续依赖的 Day
+</code></pre>
+<p><strong>顺序不可变原因</strong>：</p>
+<ul>
+<li>§1.4 目录结构必须在 §1.5 脚手架之前，因为脚手架第一步就是按目录建文件夹。</li>
+<li>§1.5 脚手架必须在 §2 学习节奏之前，因为读者要先跑起来才知道后面时间盒在做什么。</li>
+<li>§7 验收清单必须在 §6 三版对比之后，因为测试和反证针对的是 v3 终态。</li>
+<li>§10 课末三问必须在 §11 情境题之前——三问不看资料自答，情境题可以查阅当日项目代码。</li>
+<li>§13 五连问是教师现场出题门禁，不预设答案；本节只写"引用协议 + 学生提交格式"。</li>
+</ul>
+<hr>
+<h2 id="2-14-目录结构-章节内部结构强制">2. §1.4 "目录结构" 章节内部结构（强制）</h2>
+<p>必须包含 5 个子块，缺一 BLOCK：</p>
+<ol>
+<li><strong>一句话说明为什么放在最前面</strong>：读者读代码前先立骨架，才不会看某个文件时不知道它在哪一层。</li>
+<li><strong>完整目录树</strong>：ASCII 树 + 每个文件后跟中文一句话说明职责。至少覆盖 domain / features / composables(或 shared) / 编排层 4 层。
+<ul>
+<li><strong>新增文件必须用 <code>★</code> 前缀标注</strong>（例如 <code>★ AgentEvent 9 变体 + schemaVersion</code>），与已存在文件区分。</li>
+<li>前置 Day 已建的文件在树里保留但不加 <code>★</code>，可加注释"Day 01 已建"。</li>
+</ul>
+</li>
+<li><strong>三版演进对应的文件差异表</strong>：v1 / v2 / v3 三列，行=文件，格子=建 / 不建 / 改。</li>
+<li><strong>依赖方向图</strong>：单向箭头。明确标注"红线：xxx 层出现 import 上层就是塌方"。红线要具体到"什么样的 import 语句就算塌方"，不写"不要循环依赖"这种空话。</li>
+<li><strong>动手前先问自己 3 个问题</strong>：答不上就带着问题读下去。每题给出后面章节的锚点（例如"见 v3 的第 5.4 节「层与依赖方向」"）。骨架版可写 <code>TODO：展开正文时把三个问题的完整答案补上</code>。</li>
+</ol>
+<hr>
+<h2 id="3-3-5-三版演进-规则强制">3. §3-§5 "三版演进" 规则（强制）</h2>
+<p><strong>v1 → v2 → v3 是本课的核心教学法</strong>，用来演示"为什么最终代码要长成 v3 那样"。每一步重构必须解决前一步暴露的具体痛点。</p>
+<h3 id="31-三版通用规则">3.1 三版通用规则</h3>
+<ul>
+<li>v1 = 最小闭环。<strong>只解决当天核心概念的 1 个维度</strong>。允许把所有东西塞在一个文件里。</li>
+<li>v2 = 加一个关键设计维度。这个维度必须是 v1 无法优雅表达的。<strong>在 v2 章节末尾必须写"暴露的痛点"，直接引出 v3</strong>。</li>
+<li>v3 = 终态。补齐错误 / 边界 / 分层 / 可测试性。v3 就是用户最终交付的形态。</li>
+<li>每一版都要有：<strong>要实现什么</strong>（用户视角） → <strong>完整代码</strong>（不省略、不 <code>...</code>） → <strong>用到的知识点</strong>（每个点讲清"解决的问题 / 运行机制 / 项目落点 / 生产误区 / 验证方法"） → <strong>暴露的痛点</strong>（v3 章节改为"用到的知识点"，不再有痛点）。</li>
+</ul>
+<h3 id="32-当天主题不适合三版演进时">3.2 当天主题不适合三版演进时</h3>
+<p>个别 Day 的主题天然不适合"功能递增"的三版演进（例如 Day02 "领域合同"、Day23 "评测 Eval"、Day89 "复盘"）。此时：</p>
+<ul>
+<li>§1.3 明确说明"本日不用功能递增三版演进"，并给出替代结构。已有先例：
+<ul>
+<li><strong>保护递进型（Day02 领域合同）</strong>：v1=只定义 Domain 类型不做校验 / v2=加 zod Schema + DTO/Domain 分层 / v3=加版本合同 + 兼容适配器。三版依次给出的是"保护强度"而非"功能范围"。</li>
+<li><strong>实验对照型</strong>：实验 A / 实验 B / 实验 C，每个实验独立可跑，用来对比同一问题的三种解法。</li>
+</ul>
+</li>
+<li>§3-§5 章节标题相应改写，但<strong>必须保留 3 个递进阶段 + 每阶段"要实现什么/完整代码/知识点/痛点"结构</strong>。禁止合并为一节。</li>
+<li>骨架版 Day 允许各版正文写 <code>TODO（阶段 2 展开）：...</code> 占位，但必须在占位里说清"AI 只出什么、用户手写什么"（例如 <code>AI 只出 interface 骨架，业务字段由用户手写</code>）。</li>
+</ul>
+<h3 id="33-v3-完整代码-逐文件展示的写法">3.3 v3 "完整代码" 逐文件展示的写法</h3>
+<ul>
+<li>每个文件用二级块 <code>**src/domain/xxx.ts**</code> 标题。</li>
+<li>代码块用 <code>```typescript</code> / <code>```vue</code> / <code>```json</code> 精确标注语言。</li>
+<li>关键行用行内注释解释"为什么这么写"，<strong>不写"这里做什么"</strong>（做什么由代码本身说清楚，为什么才是学习价值）。</li>
+</ul>
+<hr>
+<h2 id="4-7-验收清单强制">4. §7 验收清单（强制）</h2>
+<p><strong>只放验收，不放脚手架。</strong> 7.1-7.5 已前置到 §1.5。</p>
+<ul>
+<li>7.6 E：写核心逻辑测试（20 分钟）
+<ul>
+<li>至少 6 个测试用例覆盖：happy path / 边界 / 错误 / 幂等 / 状态转移 / 反例。</li>
+<li>测试针对 v3 里最纯的那一层（reducer / service / schema validator），<strong>不 mount 组件、不启服务器</strong>。</li>
+</ul>
+</li>
+<li>7.7 F-1：反证实验 1（5 分钟）
+<ul>
+<li>临时删除 v3 里一个关键保护（去重 / exhaustive check / schema 校验 / 权限守卫），跑测试观察失败输出。</li>
+<li><strong>截图或复制失败输出，保存到 <code>docs/evidence/day-{N}/{实验名}.md</code>。</strong></li>
+<li>完成后<strong>恢复代码</strong>。文档里明确写"实验完成后恢复代码"。</li>
+</ul>
+</li>
+<li>7.8 F-2：反证实验 2（5 分钟）
+<ul>
+<li>同上，换另一个保护。</li>
+</ul>
+</li>
+<li>7.9 F-3：验证 + 提交（10 分钟）
+<ul>
+<li><code>pnpm typecheck &amp;&amp; pnpm lint &amp;&amp; pnpm test &amp;&amp; pnpm build</code> 四件套。</li>
+<li>Conventional Commits 提交信息模板，标注 Day 号、v1/v2/v3 阶段。</li>
+<li><strong>禁止</strong>在文档里写 <code>git push</code>。commit 后由用户自己决定何时 push。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="5-15-动手脚手架-章节格式强制">5. §1.5 "动手脚手架" 章节格式（强制）</h2>
+<ul>
+<li>顶部一句话说明为什么放在正文前。</li>
+<li><strong>动手节奏建议</strong>（一行）：本节 X 分钟 → 读正文 X 分钟 → §7 验收 X 分钟。</li>
+<li>5 个子节 1.5.1-1.5.5，每节标题末尾标注分钟数。</li>
+<li>命令块用 <code>```powershell</code> 或 <code>```bash</code>（当天项目跑在 Windows 上就用 powershell）。</li>
+<li>1.5.5 结尾必须给"看到什么现象说明跑起来了 + 卡住不要死磕，先跳过继续读正文"。</li>
+</ul>
+<hr>
+<h2 id="6-深挖-html-规范dayn深挖-弱项主题html">6. 深挖 HTML 规范（<code>Day{N}深挖-{弱项主题}.html</code>）</h2>
+<p>深挖 HTML 是 <strong>补弱专用文档</strong>，只在当天主题触碰到用户能力缺口时才生成。<strong>必须由用户先确认要挖哪几个弱点、锚点在项目里的哪段代码</strong>，AI 不自作主张选题。</p>
+<h3 id="61-文件命名">6.1 文件命名</h3>
+<p><code>Day{N}深挖-{主题}.html</code>。主题短语用中文名词，例如 <code>前端底子补弱</code>、<code>NestJS 依赖注入</code>、<code>RAG 检索精度</code>、<code>LangGraph 状态机</code>。</p>
+<h3 id="62-结构强制">6.2 结构（强制）</h3>
+<pre><code>&lt;header&gt;
+  标题 + 一句话摘要（挖哪些弱点、依据哪份能力报告）
+  返回 Day{N}.md 的链接
+  TOC：编号 + 每个深挖的标题
+&lt;/header&gt;
+
+&lt;!-- 6 篇深挖，每篇结构一致：--&gt;
+&lt;section id="dig-{n}"&gt;
+  &lt;h2&gt;深挖 {n}：{主题} —— 从今天项目里的 {锚点} 讲起&lt;/h2&gt;
+  &lt;h3&gt;{n}.1 场景锚点（10 秒定位）&lt;/h3&gt;          ← 项目里的哪段代码
+  &lt;h3&gt;{n}.2 项目代码（原样）&lt;/h3&gt;               ← 直接粘贴 v3 里的对应代码
+  &lt;h3&gt;{n}.3 设计点拆解&lt;/h3&gt;                     ← 3-5 个设计点
+  &lt;h3&gt;{n}.4 原理&lt;/h3&gt;                           ← 为什么这样设计
+  &lt;h3&gt;{n}.5 反例&lt;/h3&gt;                           ← 常见错误写法与失败输出
+  &lt;h3&gt;{n}.6 分层提问（点开答案）&lt;/h3&gt;           ← &lt;details&gt;&lt;summary&gt; 折叠答案，用户先自答
+  &lt;h3&gt;{n}.7 项目对手戏&lt;/h3&gt;                    ← 假设面试官挑战"为什么不用 XXX"的对话
+  &lt;h3&gt;{n}.8 面试真题三档答法&lt;/h3&gt;               ← 烂 / 及格 / 优秀 三档模板
+&lt;/section&gt;
+
+&lt;footer&gt;
+  返回 Day{N}.md 链接 + 配套文档链接
+&lt;/footer&gt;
+</code></pre>
+<p><strong>禁止在深挖 HTML 里放动手脚手架</strong>（<code>§7.1-7.5</code> 的内容不进 HTML）。深挖 HTML 只讲"为什么这么写"和"怎么在面试里讲"，不讲"怎么建目录"。</p>
+<h3 id="63-视觉与交互">6.3 视觉与交互</h3>
+<ul>
+<li>单文件 HTML，内联 CSS，无外部依赖。</li>
+<li>代码块内联语法高亮（<code>&lt;span class="k"&gt;</code> 关键字、<code>&lt;span class="s"&gt;</code> 字符串、<code>&lt;span class="c"&gt;</code> 注释、<code>&lt;span class="t"&gt;</code> 类型、<code>&lt;span class="f"&gt;</code> 函数）。</li>
+<li><code>&lt;details&gt;</code> 折叠答案，<code>&lt;summary&gt;</code> 是问题，用户先自答再展开。</li>
+<li>顶部 TOC 用 <code>&lt;ol&gt;</code> 锚点跳转。</li>
+<li>使用 <code>&lt;div class="callout"&gt;</code>、<code>&lt;div class="callout ok"&gt;</code>、<code>&lt;div class="callout warn"&gt;</code> 三种提示块。</li>
+</ul>
+<h3 id="64-内容硬要求">6.4 内容硬要求</h3>
+<ul>
+<li>每篇深挖必须锚定当天项目里的<strong>一段真实代码</strong>（v3 里的），不能凭空造例子。</li>
+<li>分层提问至少 3 个层次：新手看不懂的、面试常问的、资深才会追问的。</li>
+<li>面试真题三档必须给出<strong>具体话术</strong>，"烂答"要真的烂到能一眼看出问题，"优秀答"要包含项目证据 + 权衡取舍。</li>
+</ul>
+<h3 id="65-选题依据">6.5 选题依据</h3>
+<ul>
+<li>Day01 的 6 个深挖对应 <code>output/12号学生严格训练报告.md</code> 里点名的 6 个能力缺口。</li>
+<li>后续 Day 生成深挖 HTML 前<strong>必须先与用户确认</strong>：本日暴露的哪几个弱点值得挖？锚点在 v3 里的哪段代码？</li>
+<li>未确认前禁止 AI 自己拟深挖题目。</li>
+</ul>
+<hr>
+<h2 id="7-day01-里的三版对比一览表字段强制">7. Day01 里的"三版对比一览表"字段（强制）</h2>
+<p>§6 的对比表列必须完整覆盖 9 个维度，缺项 BLOCK：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>功能</td>
+<td>用户视角能看到什么</td>
+</tr>
+<tr>
+<td>事件类型 / 数据模型</td>
+<td>类型层面的表达（隐式 / 判别联合 / Schema）</td>
+</tr>
+<tr>
+<td>状态存储</td>
+<td>多个 ref / 事件数组 / reducer 结果</td>
+</tr>
+<tr>
+<td>归约逻辑</td>
+<td>塞在回调里 / computed / 独立纯函数</td>
+</tr>
+<tr>
+<td>可测试</td>
+<td>E2E / mount 组件 / 纯函数直测</td>
+</tr>
+<tr>
+<td>架构层次</td>
+<td>单文件 / composable 抽离 / 三层</td>
+</tr>
+<tr>
+<td>换事件源代价</td>
+<td>UI 重写 / composable 改造 / 只改编排</td>
+</tr>
+<tr>
+<td>编译期抓遗漏</td>
+<td>无 / 部分 / 完整（exhaustive check）</td>
+</tr>
+<tr>
+<td>对齐后续 Day</td>
+<td>该版能否被后续 Day 直接复用</td>
+</tr>
+</tbody>
+</table></div><p>当天主题不是"Agent 事件流"时，字段可替换但仍需 9 列。</p>
+<hr>
+<h2 id="8-subagent-审核-checklist这份文档最终作用">8. Subagent 审核 checklist（这份文档最终作用）</h2>
+<p>生成 / 修改任何 <code>Day*.md</code> 或深挖 HTML 后，spawn 一个 <code>code-reviewer</code> subagent，输入以下 checklist。任何 BLOCK 项都必须先修复才能收工。</p>
+<h3 id="81-daymd-checklist">8.1 <code>Day*.md</code> checklist</h3>
+<ul>
+<li>[ ] §0-§14 全部存在，顺序与本规范 §1 一致</li>
+<li>[ ] §1.4 目录结构 5 个子块齐全（说明 / 目录树 / v1v2v3 差异表 / 依赖方向 / 3 个自问）</li>
+<li>[ ] §1.5 脚手架有 1.5.1-1.5.5 五节，每节标题末尾有分钟数</li>
+<li>[ ] §3-§5 三版演进齐全，每版有"要实现什么 / 完整代码 / 知识点"，v1/v2 末尾有"暴露的痛点"</li>
+<li>[ ] §5.3 v3 完整代码逐文件展示，无 <code>...</code> 省略</li>
+<li>[ ] §5.4 v3 知识点 ≥ 6 个，每个含"解决的问题 / 运行机制 / 项目落点 / 生产误区 / 验证方法"</li>
+<li>[ ] §6 三版对比表 9 列齐全</li>
+<li>[ ] §6.5 深挖 HTML 入口链接存在，指向真实存在的 HTML 文件</li>
+<li>[ ] §7 只保留 7.6-7.9 验收，无 7.1-7.5 脚手架残留</li>
+<li>[ ] §7.7 / §7.8 明确写"实验完成后恢复代码"</li>
+<li>[ ] §7.9 无 <code>git push</code> 命令</li>
+<li>[ ] §11 真实项目情境题至少 2 题，每题有依据链接</li>
+<li>[ ] §12 PDF 面试题至少 2 题，标注来源 PDF 与页码</li>
+<li>[ ] 全文没有生成 70% 红线内容（NestJS/Agent SDK/RAG/LangGraph 核心实现）</li>
+<li>[ ] 生成 30% 内容处有 <code>✅ 这是样板代码</code> 标注</li>
+</ul>
+<h3 id="82-深挖-html-checklist">8.2 深挖 HTML checklist</h3>
+<ul>
+<li>[ ] 文件名格式 <code>Day{N}深挖-{主题}.html</code></li>
+<li>[ ] 顶部有返回 <code>Day{N}.md</code> 的链接与 TOC</li>
+<li>[ ] 6 篇深挖每篇有 8 个子节（场景锚点 / 项目代码 / 拆解 / 原理 / 反例 / 分层提问 / 项目对手戏 / 面试真题）</li>
+<li>[ ] 每篇锚定真实项目代码，不是凭空造例子</li>
+<li>[ ] 分层提问用 <code>&lt;details&gt;</code> 折叠</li>
+<li>[ ] 面试真题三档（烂 / 及格 / 优秀）都有具体话术</li>
+<li>[ ] 无动手脚手架（无 <code>pnpm create</code> / <code>pnpm install</code> 等命令）</li>
+<li>[ ] 单文件 HTML，无外部 CSS/JS 依赖</li>
+<li>[ ] 选题在生成前已与用户确认</li>
+</ul>
+<h3 id="83-双份同步-checklist">8.3 双份同步 checklist</h3>
+<ul>
+<li>[ ] <code>output/90天逐日任务/Day{N}.md</code>（权威版）与 <code>90天按周学习计划/Week{XX}-Day{N1}-{N2}/Day{N}.md</code>（副本）内容一致</li>
+<li>[ ] 目录结构 §1.4 里的树与实际 v3 完整代码里的文件路径完全一致</li>
+<li>[ ] 深挖 HTML 里引用的代码片段与 <code>Day*.md</code> §5.3 里的代码完全一致</li>
+</ul>
+<hr>
+<h2 id="9-交付节奏建议针对-89-天批量改写">9. 交付节奏建议（针对 89 天批量改写）</h2>
+<p><strong>不批量硬造内容</strong>。执行顺序：</p>
+<ol>
+<li><strong>阶段 1（可批量）</strong>：只把 Day02-Day90 的<strong>结构骨架</strong>补齐——添加 §0 / §1.4 / §1.5 / §7 拆分的空表头，标注 "TODO: 该 Day 展开时按本规范填写"。用户确认结构统一后再进入阶段 2。</li>
+<li><strong>阶段 2（一次一天）</strong>：按用户排的优先级，逐日展开正文。用户先给"本日想教的核心概念"和"三版拆法"，AI 生成骨架 + 30% 样板 + 学习指导，用户手写 70%。</li>
+<li><strong>阶段 3（按需）</strong>：深挖 HTML 只在用户明确要求且指定弱点锚点时才生成，不批量做。</li>
+</ol>
+<hr>
+<h2 id="10-与其他协议的关系">10. 与其他协议的关系</h2>
+<ul>
+<li>本文件规定<strong>文档形态</strong>；<code>AI教师五连问验收协议.md</code> 规定<strong>教师验收行为</strong>；<code>AI教师每日三问执行协议.md</code> 规定<strong>每日三问执行</strong>；<code>每日任务分发协议.md</code> 规定<strong>任务下发</strong>。四份协议并列，互不覆盖。</li>
+<li>学习硬红线（30/70）以 <code>C:\Users\kaiqj\.claude\CLAUDE.md</code> 为准，本文件只重申，不修改。</li>
+<li>骨架结构规则以 <code>feedback_daily_scaffold.md</code>（memory）为准，本文件是它的展开与固化。</li>
+</ul>
+<hr>
+<p><strong>更新记录</strong></p>
+<ul>
+<li>2026-07-15 · 首版。基于 Day01 打磨过程沉淀。作者：用户 + Claude 协作。</li>
+</ul>
+
+          
+          
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E7%AB%8B%E9%A1%B9%E5%89%8D%E6%8F%90%E8%BF%99%E6%98%AF%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3%E4%B8%8D%E6%98%AF%E4%BA%A4%E4%BB%98%E6%96%87%E6%A1%A3">0. 立项前提：这是"学习文档"不是"交付文档"</a></li><li><a href="#01-%E4%B8%89%E7%A7%8D%E6%A0%87%E6%B3%A8%E7%AC%A6%E5%8F%B7%E5%BC%BA%E5%88%B6%E7%BB%9F%E4%B8%80">0.1 三种标注符号（强制统一）</a></li><li><a href="#1-daymd-%E6%9D%83%E5%A8%81%E7%89%88%E7%AB%A0%E8%8A%82%E9%A1%BA%E5%BA%8F%E5%BC%BA%E5%88%B6">1. Day*.md 权威版章节顺序（强制）</a></li><li><a href="#2-14-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84-%E7%AB%A0%E8%8A%82%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84%E5%BC%BA%E5%88%B6">2. §1.4 "目录结构" 章节内部结构（强制）</a></li><li><a href="#3-3-5-%E4%B8%89%E7%89%88%E6%BC%94%E8%BF%9B-%E8%A7%84%E5%88%99%E5%BC%BA%E5%88%B6">3. §3-§5 "三版演进" 规则（强制）</a></li><li><a href="#4-7-%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95%E5%BC%BA%E5%88%B6">4. §7 验收清单（强制）</a></li><li><a href="#5-15-%E5%8A%A8%E6%89%8B%E8%84%9A%E6%89%8B%E6%9E%B6-%E7%AB%A0%E8%8A%82%E6%A0%BC%E5%BC%8F%E5%BC%BA%E5%88%B6">5. §1.5 "动手脚手架" 章节格式（强制）</a></li><li><a href="#6-%E6%B7%B1%E6%8C%96-html-%E8%A7%84%E8%8C%83dayn%E6%B7%B1%E6%8C%96-%E5%BC%B1%E9%A1%B9%E4%B8%BB%E9%A2%98html">6. 深挖 HTML 规范（Day{N}深挖-{弱项主题}.html）</a></li><li><a href="#7-day01-%E9%87%8C%E7%9A%84%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94%E4%B8%80%E8%A7%88%E8%A1%A8%E5%AD%97%E6%AE%B5%E5%BC%BA%E5%88%B6">7. Day01 里的"三版对比一览表"字段（强制）</a></li><li><a href="#8-subagent-%E5%AE%A1%E6%A0%B8-checklist%E8%BF%99%E4%BB%BD%E6%96%87%E6%A1%A3%E6%9C%80%E7%BB%88%E4%BD%9C%E7%94%A8">8. Subagent 审核 checklist（这份文档最终作用）</a></li><li><a href="#9-%E4%BA%A4%E4%BB%98%E8%8A%82%E5%A5%8F%E5%BB%BA%E8%AE%AE%E9%92%88%E5%AF%B9-89-%E5%A4%A9%E6%89%B9%E9%87%8F%E6%94%B9%E5%86%99">9. 交付节奏建议（针对 89 天批量改写）</a></li><li><a href="#10-%E4%B8%8E%E5%85%B6%E4%BB%96%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%85%B3%E7%B3%BB">10. 与其他协议的关系</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

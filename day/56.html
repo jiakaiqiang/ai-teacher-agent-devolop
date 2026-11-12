@@ -1,0 +1,1301 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 56 · Day 56 - CI/CD（质量门禁 + Migration Safety + 镜像扫描 + 产物追溯） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html" aria-current="page">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/08.html">第 8 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 56</p>
+        <h1>Day 56 - CI/CD（质量门禁 + Migration Safety + 镜像扫描 + 产物追溯）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节为本 Day 的权威执行口径）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段二（Day 31-60，AI 前端 -&gt; AI 全栈）。本日继续在 <code>p1-monitor</code> 真实链路中累积，不创建平行 Demo。</li>
+<li><strong>功能交付</strong>：必须交付一个能跑、能测、能从真实用户入口观察结果的完整模块，知识点由该模块自然引出。</li>
+<li><strong>三版演进</strong>：本日以项目门禁/评测为主：v1 是当前基线与最小可运行链路；v2 是加入一个关键质量维度后的可测版本；v3 是加入失败可见、回归阻断和架构证据后的生产终态。三版必须分别产生可观察差异，不能只保留考核题目。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（90 分钟阅读），D 60 分钟、E 20 分钟、F 10 分钟（90 分钟动手）。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；复用已有 Schema、RAG、租户、评测、Docker 或 Trace 合同，禁止另建第二套接口。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 动态教师五连问；任何“完整执行版/执行版补全要求”只可作为背景，不能替代本日交付。</li>
+<li><strong>跨 Day 导航</strong>：Day57 监控/Trace，Day58 事故演练，Day59 求职证据。</li>
+</ul>
+<p><strong>补强要求</strong>：若正文使用“完整执行版”或“执行版补全要求”，领取任务时必须把省略部分展开为当天可执行的测试/反证/情境题，并记录真实项目 diff。</p>
+</blockquote>
+<p><strong>日期与时长</strong>：2026-09-07 周一，180 分钟（90 分钟阅读 + 90 分钟动手）
+<strong>项目</strong>：<code>D:\demo\ai-techer\p1-monitor</code><br>
+<strong>阶段任务性质</strong>：建立生产级 CI/CD Pipeline</p>
+<hr>
+<h2 id="0-day-56-在-90-天路线图里的位置">§0 Day 56 在 90 天路线图里的位置</h2>
+<h3 id="01-前情提要day-01-55-已建立的能力">0.1 前情提要（Day 01-55 已建立的能力）</h3>
+<p>Day 01-55 建立了完整的 RAG 全栈应用和 Docker Compose 配置：</p>
+<ul>
+<li><strong>Day 01-54</strong>：Vue3 + NestJS + FastAPI + RAG + 多租户</li>
+<li><strong>Day 55</strong>：Docker Compose（一键启动 + 健康检查 + Volume 持久化）</li>
+</ul>
+<p><strong>核心缺失</strong>：没有 CI/CD Pipeline（代码提交后需手动测试、构建、部署）。</p>
+<h3 id="02-今天的核心任务">0.2 今天的核心任务</h3>
+<p>Day 56 建立<strong>生产级 CI/CD Pipeline</strong>，实现自动化质量门禁：</p>
+<ol>
+<li><strong>Pipeline</strong>：typecheck → lint → unit → integration → E2E → build → scan</li>
+<li><strong>质量门禁</strong>：坏合同/测试/迁移会阻断发布</li>
+<li><strong>Migration Safety</strong>：expand-contract 模式（向前兼容）</li>
+<li><strong>镜像扫描</strong>：检测高危依赖（CVE 扫描）</li>
+<li><strong>产物追溯</strong>：签名 + 元数据（Git SHA、构建时间）</li>
+</ol>
+<h3 id="03-今天要解决的-5-个问题">0.3 今天要解决的 5 个问题</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>问题</th>
+<th>现象</th>
+<th>根因</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 合同漂移</td>
+<td>FastAPI OpenAPI 与 Nest 客户端类型不一致</td>
+<td>没有合同测试</td>
+<td>Contract Testing</td>
+</tr>
+<tr>
+<td>2. 破坏性迁移</td>
+<td>Migration 锁表 18 分钟</td>
+<td>直接 ALTER TABLE</td>
+<td>expand-contract 模式</td>
+</tr>
+<tr>
+<td>3. 高危依赖</td>
+<td>镜像包含 CVE-2024-1234 漏洞</td>
+<td>没有镜像扫描</td>
+<td>Trivy 扫描</td>
+</tr>
+<tr>
+<td>4. 产物不可追溯</td>
+<td>不知道镜像来自哪次 commit</td>
+<td>没有镜像标签</td>
+<td>Git SHA + 元数据</td>
+</tr>
+<tr>
+<td>5. 坏代码进生产</td>
+<td>测试失败但仍部署</td>
+<td>没有门禁</td>
+<td>测试失败阻断部署</td>
+</tr>
+</tbody>
+</table></div><h3 id="04-今天的前置依赖">0.4 今天的前置依赖</h3>
+<ul>
+<li><strong>Day 55</strong>：Docker Compose（镜像构建）</li>
+<li><strong>Day 27</strong>：Prisma Migration（数据库迁移）</li>
+</ul>
+<h3 id="05-今天留给下一站的伏笔">0.5 今天留给下一站的伏笔</h3>
+<ul>
+<li><strong>Day 57-60</strong>：灰度发布（蓝绿部署、金丝雀发布）</li>
+<li><strong>Day 61-70</strong>：生产级监控（部署成功率、回滚次数）</li>
+</ul>
+<hr>
+<h2 id="1-今天建立的完整能力">§1 今天建立的完整能力</h2>
+<h3 id="11-用户能看到什么5-个场景">§1.1 用户能看到什么（5 个场景）</h3>
+<h4 id="场景-1坏合同阻断发布">场景 1：坏合同阻断发布</h4>
+<p><strong>操作</strong>：修改 FastAPI OpenAPI（删除字段 <code>title</code>），提交代码。</p>
+<pre><code class="language-python"># services/ai/src/schemas.py
+class DocumentResponse(BaseModel):
+    id: str
+    # title: str  # ❌ 删除字段（破坏合同）
+    content: str
+</code></pre>
+<p><strong>CI 输出</strong>：</p>
+<pre><code>✅ Typecheck passed
+✅ Lint passed
+✅ Unit tests passed
+❌ Contract tests failed
+
+Error: FastAPI contract changed
+- Expected field: title (string)
+- Actual: field missing
+
+Contract diff:
+  {
+    "id": "string",
+-   "title": "string",
+    "content": "string"
+  }
+
+🚫 Deployment blocked
+</code></pre>
+<h4 id="场景-2破坏性迁移阻断发布">场景 2：破坏性迁移阻断发布</h4>
+<p><strong>操作</strong>：直接 ALTER TABLE（锁表迁移）。</p>
+<pre><code class="language-sql">-- apps/api/prisma/migrations/xxx_add_column.sql
+ALTER TABLE documents ADD COLUMN new_field VARCHAR(255) NOT NULL DEFAULT '';
+</code></pre>
+<p><strong>CI 输出</strong>：</p>
+<pre><code>✅ Typecheck passed
+✅ Lint passed
+✅ Unit tests passed
+❌ Migration safety check failed
+
+Error: Detected unsafe migration
+- ALTER TABLE with NOT NULL constraint
+- Estimated lock time: 18 minutes (8000 万行)
+
+Recommendation: Use expand-contract pattern
+1. Add column as nullable
+2. Backfill data
+3. Add NOT NULL constraint (after backfill)
+
+🚫 Deployment blocked
+</code></pre>
+<h4 id="场景-3高危依赖阻断发布">场景 3：高危依赖阻断发布</h4>
+<p><strong>操作</strong>：使用包含漏洞的依赖。</p>
+<pre><code class="language-json">// package.json
+{
+  "dependencies": {
+    "axios": "0.21.1"  // ❌ 包含 CVE-2021-3749（高危）
+  }
+}
+</code></pre>
+<p><strong>CI 输出</strong>：</p>
+<pre><code>✅ Typecheck passed
+✅ Lint passed
+✅ Unit tests passed
+✅ Build passed
+❌ Image scan failed
+
+High severity vulnerabilities found:
+- CVE-2021-3749 (axios 0.21.1): SSRF vulnerability
+- CVE-2022-0691 (node 16.13.0): HTTP request smuggling
+
+Recommendation: Upgrade dependencies
+- axios: 0.21.1 → 1.6.0
+- node: 16.13.0 → 20.11.0
+
+🚫 Deployment blocked
+</code></pre>
+<h4 id="场景-4测试失败阻断发布">场景 4：测试失败阻断发布</h4>
+<p><strong>操作</strong>：引入 Bug（E2E 测试失败）。</p>
+<pre><code class="language-typescript">// apps/api/src/document/document.service.ts
+async getById(id: string): Promise&lt;Document&gt; {
+  return null  // ❌ Bug：返回 null
+}
+</code></pre>
+<p><strong>CI 输出</strong>：</p>
+<pre><code>✅ Typecheck passed
+✅ Lint passed
+✅ Unit tests passed
+❌ E2E tests failed (1/5 failed)
+
+Failed test: GET /documents/:id should return document
+  Expected: { id: '123', title: 'Test' }
+  Actual: null
+
+🚫 Deployment blocked
+</code></pre>
+<h4 id="场景-5产物可追溯">场景 5：产物可追溯</h4>
+<p><strong>操作</strong>：查询镜像元数据。</p>
+<pre><code class="language-bash">docker inspect p1-monitor-api:latest | jq '.[0].Config.Labels'
+</code></pre>
+<p><strong>输出</strong>：</p>
+<pre><code class="language-json">{
+  "git.commit": "abc123def456",
+  "git.branch": "main",
+  "build.timestamp": "2026-09-07T10:30:00Z",
+  "build.pipeline": "github-actions",
+  "build.number": "456"
+}
+</code></pre>
+<p><strong>验证</strong>：能追溯到具体 commit、构建时间、Pipeline 编号。</p>
+<h3 id="12-各模块职责分工">§1.2 各模块职责分工</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                         GitHub Actions Workflow                   │
+│  - lint → typecheck → unit → integration → E2E → build → scan   │
+└─────────────────────────────────────────────────────────────────┘
+                                  ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                         质量门禁（Gate）                           │
+│  - 测试失败 → 阻断                                                 │
+│  - 合同漂移 → 阻断                                                 │
+│  - 破坏性迁移 → 阻断                                               │
+│  - 高危依赖 → 阻断                                                 │
+└─────────────────────────────────────────────────────────────────┘
+                                  ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                         镜像构建 + 签名                             │
+│  - Docker build                                                   │
+│  - 注入 Git SHA + 构建时间                                         │
+│  - Trivy 扫描                                                     │
+└─────────────────────────────────────────────────────────────────┘
+                                  ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                         产物推送 + 元数据                           │
+│  - Push to Registry                                               │
+│  - 记录 Git SHA、构建时间、Pipeline 编号                           │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="13-三版演进">§1.3 三版演进</h3>
+<h4 id="v1手动测试-部署day-01-55">v1：手动测试 + 部署（Day 01-55）</h4>
+<ul>
+<li>手动运行测试（<code>npm test</code>）</li>
+<li>手动构建镜像（<code>docker build</code>）</li>
+<li>问题：坏代码进生产、无法追溯</li>
+</ul>
+<h4 id="v2cicd-pipeline-质量门禁今天">v2：CI/CD Pipeline + 质量门禁（今天）</h4>
+<ul>
+<li>自动测试 + 构建 + 扫描</li>
+<li>测试失败阻断部署</li>
+<li>镜像扫描 + 合同测试</li>
+<li>产物可追溯（Git SHA + 元数据）</li>
+</ul>
+<h4 id="v3灰度发布-自动回滚day-57-60">v3：灰度发布 + 自动回滚（Day 57-60）</h4>
+<ul>
+<li>蓝绿部署（零停机）</li>
+<li>金丝雀发布（5% 流量试错）</li>
+<li>自动回滚（错误率 &gt; 1% → 回滚）</li>
+</ul>
+<h3 id="14-今天的完整目录结构">§1.4 今天的完整目录结构</h3>
+<pre><code>p1-monitor/
+├── .github/
+│   └── workflows/
+│       ├── ci.yml                          # CI Pipeline
+│       ├── contract-test.yml               # 合同测试
+│       └── migration-safety.yml            # 迁移安全检查
+├── scripts/
+│   ├── check-migration-safety.sh           # 迁移安全检查脚本
+│   ├── check-contract.sh                   # 合同检查脚本
+│   └── sign-image.sh                       # 镜像签名脚本
+├── apps/api/
+│   ├── prisma/
+│   │   ├── migrations/
+│   │   └── migration-safety-rules.json     # 迁移安全规则
+│   └── test/
+│       ├── unit/
+│       ├── integration/
+│       └── e2e/
+└── docs/
+    ├── ci-pipeline.md                      # CI Pipeline 文档
+    └── adr/
+        └── 001-expand-contract-migration.md  # Migration ADR
+</code></pre>
+<p><strong>为什么需要 migration-safety-rules.json？</strong></p>
+<p>定义"安全迁移"和"破坏性迁移"的规则：</p>
+<ul>
+<li>安全：ADD COLUMN nullable、CREATE INDEX CONCURRENTLY</li>
+<li>破坏：ALTER TABLE NOT NULL、DROP COLUMN、ADD COLUMN NOT NULL</li>
+</ul>
+<hr>
+<h2 id="2-今天的开发节奏3-小时90-阅读-90-动手">§2 今天的开发节奏（3 小时：90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>任务</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>阶段 1</strong></td>
+<td>40 min</td>
+<td>理解 CI/CD Pipeline、质量门禁、Migration Safety</td>
+<td>笔记</td>
+</tr>
+<tr>
+<td><strong>阶段 2</strong></td>
+<td>100 min</td>
+<td>编写 GitHub Actions Workflow + 质量门禁脚本</td>
+<td>完整 Pipeline</td>
+</tr>
+<tr>
+<td><strong>阶段 3</strong></td>
+<td>25 min</td>
+<td>测试：坏合同/测试/迁移 → 阻断</td>
+<td>测试通过</td>
+</tr>
+<tr>
+<td><strong>阶段 4</strong></td>
+<td>15 min</td>
+<td>CI 流程图 + ADR + commit</td>
+<td>架构证据</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="3-v1手动测试-部署day-01-55-基线">§3 v1：手动测试 + 部署（Day 01-55 基线）</h2>
+<h3 id="31-v1-的问题">3.1 v1 的问题</h3>
+<p>Day 01-55 需要手动测试和部署：</p>
+<pre><code class="language-bash"># 手动测试
+npm test
+
+# 手动构建
+docker build -t p1-monitor-api .
+
+# 手动部署
+docker-compose up -d
+</code></pre>
+<p><strong>问题</strong>：</p>
+<ol>
+<li>坏代码进生产（测试失败但仍部署）</li>
+<li>无法追溯（不知道镜像来自哪次 commit）</li>
+<li>破坏性迁移（锁表 18 分钟）</li>
+<li>高危依赖（未扫描漏洞）</li>
+</ol>
+<hr>
+<h2 id="4-v2cicd-pipeline-质量门禁今天">§4 v2：CI/CD Pipeline + 质量门禁（今天）</h2>
+<h3 id="41-github-actions-workflow完整-pipeline">4.1 GitHub Actions Workflow（完整 Pipeline）</h3>
+<pre><code class="language-yaml"># .github/workflows/ci.yml
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/api
+
+jobs:
+  # ========== 阶段 1：代码质量检查 ==========
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run ESLint
+        run: npm run lint
+      
+      - name: Run Prettier check
+        run: npm run format:check
+
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - run: npm ci
+      - run: npm run typecheck
+
+  # ========== 阶段 2：单元测试 ==========
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - run: npm ci
+      - run: npm run test:unit
+      
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage/lcov.info
+
+  # ========== 阶段 3：集成测试 ==========
+  integration-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: ankane/pgvector:v0.5.1
+        env:
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: p1_monitor_test
+        options: &gt;-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      
+      redis:
+        image: redis:7-alpine
+        options: &gt;-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - run: npm ci
+      - run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/p1_monitor_test
+      
+      - run: npm run test:integration
+        env:
+          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/p1_monitor_test
+          REDIS_URL: redis://localhost:6379
+
+  # ========== 阶段 4：E2E 测试 ==========
+  e2e-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Start services
+        run: docker-compose up -d
+      
+      - name: Wait for services
+        run: |
+          timeout 60 bash -c 'until curl -f http://localhost:3000/health; do sleep 2; done'
+      
+      - name: Run E2E tests
+        run: npm run test:e2e
+      
+      - name: Stop services
+        if: always()
+        run: docker-compose down
+
+  # ========== 阶段 5：合同测试 ==========
+  contract-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - run: npm ci
+      
+      - name: Check FastAPI contract
+        run: ./scripts/check-contract.sh
+      
+      - name: Fail if contract changed
+        run: |
+          if [ -f contract-diff.txt ]; then
+            cat contract-diff.txt
+            exit 1
+          fi
+
+  # ========== 阶段 6：迁移安全检查 ==========
+  migration-safety:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整 git 历史
+      
+      - name: Check migration safety
+        run: ./scripts/check-migration-safety.sh
+      
+      - name: Fail if unsafe migration
+        run: |
+          if [ -f unsafe-migrations.txt ]; then
+            cat unsafe-migrations.txt
+            exit 1
+          fi
+
+  # ========== 阶段 7：构建镜像 ==========
+  build:
+    runs-on: ubuntu-latest
+    needs: [lint, typecheck, unit-test, integration-test, e2e-test, contract-test, migration-safety]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Build image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./apps/api
+          push: false
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          labels: |
+            git.commit=${{ github.sha }}
+            git.branch=${{ github.ref_name }}
+            build.timestamp=${{ github.event.head_commit.timestamp }}
+            build.pipeline=github-actions
+            build.number=${{ github.run_number }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # ========== 阶段 8：镜像扫描 ==========
+  scan:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Run Trivy scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '1'  # 高危漏洞阻断
+      
+      - name: Upload Trivy results
+        uses: github/codeql-action/upload-sarif@v2
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+</code></pre>
+<p><strong>为什么需要 8 个阶段？</strong></p>
+<p>分层验证：</p>
+<ol>
+<li>lint/typecheck：代码格式 + 类型检查</li>
+<li>unit-test：单元测试</li>
+<li>integration-test：集成测试（需要 Postgres + Redis）</li>
+<li>e2e-test：端到端测试（需要完整服务）</li>
+<li>contract-test：合同测试（检查 API 合同漂移）</li>
+<li>migration-safety：迁移安全检查（检查破坏性迁移）</li>
+<li>build：构建镜像（只有前 6 个阶段全通过才构建）</li>
+<li>scan：镜像扫描（检测高危依赖）</li>
+</ol>
+<h3 id="42-合同测试脚本">4.2 合同测试脚本</h3>
+<pre><code class="language-bash"># scripts/check-contract.sh
+#!/bin/bash
+set -e
+
+echo "Checking FastAPI OpenAPI contract..."
+
+# 1. 启动 FastAPI 服务（后台）
+cd services/ai
+uvicorn main:app --host 0.0.0.0 --port 8000 &amp;
+FASTAPI_PID=$!
+
+# 等待服务就绪
+sleep 5
+
+# 2. 获取当前 OpenAPI schema
+curl -s http://localhost:8000/openapi.json &gt; current-openapi.json
+
+# 3. 对比 baseline（上次提交的 schema）
+if [ -f openapi-baseline.json ]; then
+  diff openapi-baseline.json current-openapi.json &gt; contract-diff.txt || true
+  
+  if [ -s contract-diff.txt ]; then
+    echo "❌ Contract changed:"
+    cat contract-diff.txt
+    kill $FASTAPI_PID
+    exit 1
+  fi
+fi
+
+# 4. 更新 baseline（如果是 main 分支）
+if [ "$GITHUB_REF" == "refs/heads/main" ]; then
+  cp current-openapi.json openapi-baseline.json
+fi
+
+echo "✅ Contract check passed"
+kill $FASTAPI_PID
+</code></pre>
+<p><strong>为什么需要合同测试？</strong></p>
+<p>防止 API 合同漂移：FastAPI 删除字段后，NestJS 客户端仍然期望该字段存在，导致运行时错误。合同测试在 CI 阶段提前发现问题。</p>
+<h3 id="43-迁移安全检查脚本">4.3 迁移安全检查脚本</h3>
+<pre><code class="language-bash"># scripts/check-migration-safety.sh
+#!/bin/bash
+set -e
+
+echo "Checking migration safety..."
+
+# 1. 获取新增的 migration 文件
+NEW_MIGRATIONS=$(git diff --name-only HEAD~1 HEAD | grep "prisma/migrations" || true)
+
+if [ -z "$NEW_MIGRATIONS" ]; then
+  echo "No new migrations"
+  exit 0
+fi
+
+# 2. 检查每个 migration 文件
+for migration in $NEW_MIGRATIONS; do
+  echo "Checking $migration"
+  
+  # 读取 SQL 内容
+  SQL_CONTENT=$(cat "$migration")
+  
+  # 检查破坏性操作
+  if echo "$SQL_CONTENT" | grep -qE "ALTER TABLE .* ADD COLUMN .* NOT NULL(?! DEFAULT)"; then
+    echo "❌ Unsafe migration: ADD COLUMN NOT NULL without DEFAULT"
+    echo "File: $migration"
+    echo "$SQL_CONTENT"
+    echo "$migration" &gt;&gt; unsafe-migrations.txt
+  fi
+  
+  if echo "$SQL_CONTENT" | grep -qi "DROP COLUMN"; then
+    echo "❌ Unsafe migration: DROP COLUMN"
+    echo "File: $migration"
+    echo "$migration" &gt;&gt; unsafe-migrations.txt
+  fi
+  
+  if echo "$SQL_CONTENT" | grep -qiE "CREATE INDEX(?! CONCURRENTLY)"; then
+    echo "⚠️  Warning: CREATE INDEX without CONCURRENTLY (may lock table)"
+    echo "File: $migration"
+  fi
+done
+
+if [ -f unsafe-migrations.txt ]; then
+  echo "❌ Unsafe migrations detected"
+  exit 1
+fi
+
+echo "✅ Migration safety check passed"
+</code></pre>
+<p><strong>为什么需要迁移安全检查？</strong></p>
+<p>防止破坏性迁移锁表：<code>ALTER TABLE ADD COLUMN NOT NULL</code> 会锁表 18 分钟（8000 万行），导致服务不可用。迁移安全检查在 CI 阶段阻断破坏性迁移。</p>
+<h3 id="44-migration-safety-规则">4.4 Migration Safety 规则</h3>
+<pre><code class="language-json">// apps/api/prisma/migration-safety-rules.json
+{
+  "safe": [
+    {
+      "pattern": "ADD COLUMN .* DEFAULT .*",
+      "description": "添加列（带默认值）",
+      "reason": "不锁表（Postgres 11+）"
+    },
+    {
+      "pattern": "CREATE INDEX CONCURRENTLY",
+      "description": "并发创建索引",
+      "reason": "不锁表"
+    },
+    {
+      "pattern": "DROP INDEX CONCURRENTLY",
+      "description": "并发删除索引",
+      "reason": "不锁表"
+    }
+  ],
+  "unsafe": [
+    {
+      "pattern": "ALTER TABLE .* ADD COLUMN .* NOT NULL(?! DEFAULT)",
+      "description": "添加 NOT NULL 列（无默认值）",
+      "reason": "锁表（需回填数据）",
+      "recommendation": "Use expand-contract: 1. ADD nullable 2. Backfill 3. ADD NOT NULL"
+    },
+    {
+      "pattern": "DROP COLUMN",
+      "description": "删除列",
+      "reason": "破坏向后兼容",
+      "recommendation": "Use expand-contract: 1. Stop using 2. Wait 1 release 3. DROP"
+    },
+    {
+      "pattern": "ALTER TABLE .* ALTER COLUMN .* TYPE",
+      "description": "修改列类型",
+      "reason": "锁表 + 破坏兼容",
+      "recommendation": "Use expand-contract: 1. ADD new column 2. Backfill 3. Switch 4. DROP old"
+    }
+  ]
+}
+</code></pre>
+<h3 id="45-expand-contract-migration-模式">4.5 Expand-Contract Migration 模式</h3>
+<p><strong>问题</strong>：直接 <code>ALTER TABLE ADD COLUMN NOT NULL</code> 锁表 18 分钟。</p>
+<p><strong>解决方案</strong>：expand-contract 三阶段迁移（向前兼容）。</p>
+<h4 id="阶段-1expand扩展">阶段 1：Expand（扩展）</h4>
+<pre><code class="language-sql">-- Migration 1: 添加可空列
+ALTER TABLE documents ADD COLUMN new_field VARCHAR(255) NULL;
+</code></pre>
+<p><strong>部署</strong>：旧代码（不使用 <code>new_field</code>）和新代码（写入 <code>new_field</code>）共存。</p>
+<h4 id="阶段-2contract收缩前的回填">阶段 2：Contract（收缩前的回填）</h4>
+<pre><code class="language-sql">-- Migration 2: 回填数据
+UPDATE documents SET new_field = 'default_value' WHERE new_field IS NULL;
+</code></pre>
+<p><strong>部署</strong>：新代码已经写入 <code>new_field</code>，旧数据回填完成。</p>
+<h4 id="阶段-3contract收缩">阶段 3：Contract（收缩）</h4>
+<pre><code class="language-sql">-- Migration 3: 添加 NOT NULL 约束
+ALTER TABLE documents ALTER COLUMN new_field SET NOT NULL;
+</code></pre>
+<p><strong>部署</strong>：所有代码都使用 <code>new_field</code>，数据已回填，添加约束不锁表。</p>
+<p><strong>为什么分三个阶段？</strong></p>
+<p>保证旧代码和新代码共存（向前兼容）：</p>
+<ul>
+<li>阶段 1：旧代码不写 <code>new_field</code>（NULL），新代码写 <code>new_field</code></li>
+<li>阶段 2：回填旧数据（所有行的 <code>new_field</code> 都有值）</li>
+<li>阶段 3：添加 NOT NULL 约束（不锁表，因为没有 NULL 值）</li>
+</ul>
+<h3 id="46-镜像签名产物追溯">4.6 镜像签名（产物追溯）</h3>
+<pre><code class="language-bash"># scripts/sign-image.sh
+#!/bin/bash
+set -e
+
+IMAGE_NAME=$1
+GIT_SHA=$(git rev-parse HEAD)
+GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+BUILD_TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+echo "Signing image: $IMAGE_NAME"
+
+# 1. 添加 Git 元数据标签
+docker tag $IMAGE_NAME $IMAGE_NAME:$GIT_SHA
+
+docker image inspect $IMAGE_NAME --format='{{json .Config.Labels}}' | jq \
+  --arg sha "$GIT_SHA" \
+  --arg branch "$GIT_BRANCH" \
+  --arg timestamp "$BUILD_TIMESTAMP" \
+  '. + {
+    "git.commit": $sha,
+    "git.branch": $branch,
+    "build.timestamp": $timestamp
+  }'
+
+echo "✅ Image signed"
+</code></pre>
+<p><strong>为什么需要镜像签名？</strong></p>
+<p>产物追溯：生产环境出问题时，能快速定位到具体 commit、构建时间、Pipeline 编号，方便回滚和调试。</p>
+<hr>
+<h2 id="5-测试与验证完整执行版">§5 测试与验证（完整执行版）</h2>
+<h3 id="51-坏合同阻断测试">5.1 坏合同阻断测试</h3>
+<pre><code class="language-bash"># 1. 修改 FastAPI（删除字段）
+# 2. 提交代码
+git add .
+git commit -m "Remove title field"
+git push
+
+# 3. 查看 CI 日志
+# 预期：Contract test 失败，部署阻断
+</code></pre>
+<h3 id="52-破坏性迁移阻断测试">5.2 破坏性迁移阻断测试</h3>
+<pre><code class="language-bash"># 1. 创建破坏性迁移
+echo "ALTER TABLE documents ADD COLUMN new_field VARCHAR(255) NOT NULL;" &gt; apps/api/prisma/migrations/xxx_unsafe.sql
+
+# 2. 提交代码
+git add .
+git commit -m "Add unsafe migration"
+git push
+
+# 3. 查看 CI 日志
+# 预期：Migration safety check 失败，部署阻断
+</code></pre>
+<h3 id="53-高危依赖阻断测试">5.3 高危依赖阻断测试</h3>
+<pre><code class="language-bash"># 1. 降级依赖到有漏洞版本
+npm install axios@0.21.1
+
+# 2. 提交代码
+git add package.json package-lock.json
+git commit -m "Downgrade axios"
+git push
+
+# 3. 查看 CI 日志
+# 预期：Image scan 失败（检测到 CVE-2021-3749），部署阻断
+</code></pre>
+<hr>
+<h2 id="6-深挖前端底子完整执行版">§6 深挖前端底子（完整执行版）</h2>
+<h3 id="61-为什么用-sarif-格式输出扫描结果">6.1 为什么用 SARIF 格式输出扫描结果？</h3>
+<p>SARIF（Static Analysis Results Interchange Format）是标准化的静态分析结果格式，GitHub Security tab 原生支持，能直接在 PR 里显示漏洞。</p>
+<h3 id="62-为什么-e2e-测试需要-timeout">6.2 为什么 E2E 测试需要 timeout？</h3>
+<p>E2E 测试启动完整服务需要时间（Postgres 启动 + migration + API 启动），<code>timeout 60</code> 等待最多 60 秒，避免服务未就绪时测试失败。</p>
+<hr>
+<h2 id="7-adrarchitecture-decision-record">§7 ADR（Architecture Decision Record）</h2>
+<h3 id="adr-001-expand-contract-migration-模式">ADR 001: Expand-Contract Migration 模式</h3>
+<p><strong>背景</strong>：直接 <code>ALTER TABLE ADD COLUMN NOT NULL</code> 锁表 18 分钟，导致服务不可用。</p>
+<p><strong>决策</strong>：采用 expand-contract 三阶段迁移模式。</p>
+<p><strong>理由</strong>：</p>
+<ol>
+<li>保证向前兼容（旧代码和新代码共存）</li>
+<li>避免锁表（分阶段执行，每阶段不锁表）</li>
+<li>可回滚（阶段 1/2 失败可直接回滚）</li>
+</ol>
+<p><strong>权衡</strong>：</p>
+<ul>
+<li>优势：零停机迁移</li>
+<li>劣势：需要 3 次部署（复杂度增加）</li>
+</ul>
+<p><strong>验证</strong>：</p>
+<ul>
+<li>单元测试：验证迁移 SQL 语法正确</li>
+<li>集成测试：验证旧代码和新代码共存</li>
+<li>E2E 测试：验证完整流程</li>
+</ul>
+<hr>
+<h2 id="8-14-标准收尾章节完整执行版">§8-14 标准收尾章节（完整执行版）</h2>
+<p><strong>通关检查清单</strong>：</p>
+<ol>
+<li>✅ §0 位置声明</li>
+<li>✅ §1.1 用户能看到什么（5 个场景）</li>
+<li>✅ §1.4 目录结构（GitHub Actions + 脚本 + ADR）</li>
+<li>✅ 三版演进（v1 手动 → v2 CI/CD → v3 灰度）</li>
+<li>✅ §4 完整代码（ci.yml + <a href="http://check-contract.sh" target="_blank" rel="noopener noreferrer">check-contract.sh</a> + <a href="http://check-migration-safety.sh" target="_blank" rel="noopener noreferrer">check-migration-safety.sh</a>）</li>
+<li>✅ 核心知识点（Pipeline、质量门禁、Migration Safety、镜像扫描、产物追溯）</li>
+<li>✅ §6 前端底子（SARIF 格式、E2E timeout）</li>
+<li>✅ §7 测试 3 件套（坏合同阻断、破坏性迁移阻断、高危依赖阻断）</li>
+<li>✅ ADR（Expand-Contract Migration）</li>
+</ol>
+<p><strong>本日小结</strong>：Pipeline 8 阶段自动化、质量门禁阻断坏代码、expand-contract 防锁表、Trivy 扫描高危依赖、Git SHA 追溯产物——生产级 CI/CD 完整实现。</p>
+<p><strong>下一站</strong>：Day 57-60 灰度发布（蓝绿部署、金丝雀发布、自动回滚）</p>
+<p>（Day 56 原版情境题 + 面试题 + 五连问执行版补全要求）</p>
+<hr>
+<h2 id="11-课后三道核心问题必答先于教师五连问">§11 课后三道核心问题（必答，先于教师五连问）</h2>
+<h3 id="问题-1请从今天项目的真实入口到最终输出解释cicd的数据流或控制流当天知识链pipeline质量门禁migration-safety镜像扫描回滚分别在哪一层起作用为什么按这个顺序学习">问题 1：请从今天项目的真实入口到最终输出，解释"CI/CD"的数据流或控制流；当天知识链"Pipeline、质量门禁、migration safety、镜像扫描、回滚"分别在哪一层起作用，为什么按这个顺序学习？</h3>
+<p><strong>控制流</strong>：</p>
+<pre><code>git push
+  → GitHub Actions 触发
+  → lint + typecheck（代码质量）
+  → unit test（单元测试）
+  → integration test（集成测试，需要 Postgres + Redis）
+  → E2E test（端到端测试，需要完整服务）
+  → contract test（合同测试，检查 API 合同漂移）
+  → migration safety（迁移安全检查，阻断破坏性迁移）
+  → build（构建镜像，注入 Git SHA + 元数据）
+  → scan（Trivy 扫描高危依赖）
+  → push（推送镜像到 Registry）
+</code></pre>
+<p><strong>知识链分层</strong>：</p>
+<ul>
+<li><strong>Pipeline</strong>：编排层（定义 8 个阶段顺序）</li>
+<li><strong>质量门禁</strong>：决策层（测试失败 → 阻断）</li>
+<li><strong>migration safety</strong>：数据安全层（检查破坏性迁移）</li>
+<li><strong>镜像扫描</strong>：安全层（检测高危依赖）</li>
+<li><strong>回滚</strong>：恢复层（失败后恢复到上一个版本）</li>
+</ul>
+<p><strong>为什么按这个顺序学习</strong>：</p>
+<ol>
+<li>先学 Pipeline（理解整体流程）</li>
+<li>再学质量门禁（理解如何阻断坏代码）</li>
+<li>再学 migration safety（理解数据迁移安全）</li>
+<li>再学镜像扫描（理解安全扫描）</li>
+<li>最后学回滚（理解失败恢复）</li>
+</ol>
+<p>这个顺序是"从流程到决策到数据安全到镜像安全到失败恢复"的分层学习路径。</p>
+<h3 id="问题-2如果故意移除今天最关键的保护机制线上会出现什么可观察现象请给出最小复现定位证据恢复动作和一条防复发测试">问题 2：如果故意移除今天最关键的保护机制，线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</h3>
+<p><strong>移除的机制</strong>：迁移安全检查（允许破坏性迁移）。</p>
+<p><strong>可观察现象</strong>：Migration 锁表 18 分钟，API 响应超时，用户无法访问。</p>
+<p><strong>最小复现</strong>：</p>
+<ol>
+<li>移除 migration-safety 检查（注释掉 ci.yml 里的 migration-safety job）</li>
+<li>提交破坏性迁移：<pre><code class="language-sql">ALTER TABLE documents ADD COLUMN new_field VARCHAR(255) NOT NULL;
+</code></pre>
+</li>
+<li>部署到生产环境</li>
+<li>观察：API 响应超时（因为 migration 锁表）</li>
+</ol>
+<p><strong>定位证据</strong>：</p>
+<pre><code class="language-sql">-- 查询锁等待
+SELECT * FROM pg_stat_activity WHERE wait_event_type = 'Lock';
+
+-- 预期：大量查询等待 documents 表锁
+</code></pre>
+<p>日志：</p>
+<pre><code>[Migration] Running migration: xxx_add_column.sql
+[Migration] ALTER TABLE documents ADD COLUMN new_field VARCHAR(255) NOT NULL;
+[Migration] (18 分钟后) Migration completed
+[API] Error: Connection pool timeout (waiting for migration)
+</code></pre>
+<p><strong>恢复动作</strong>：</p>
+<ol>
+<li>停止 migration：<code>docker-compose stop api</code></li>
+<li>回滚 migration：<pre><code class="language-sql">ALTER TABLE documents DROP COLUMN new_field;
+</code></pre>
+</li>
+<li>修复 migration（改为 expand-contract）：<pre><code class="language-sql">-- Migration 1: 添加可空列
+ALTER TABLE documents ADD COLUMN new_field VARCHAR(255) NULL;
+</code></pre>
+</li>
+<li>重新部署</li>
+</ol>
+<p><strong>防复发测试</strong>（CI）：</p>
+<pre><code class="language-yaml"># .github/workflows/ci.yml
+migration-safety:
+  steps:
+    - name: Check migration safety
+      run: ./scripts/check-migration-safety.sh
+    
+    - name: Fail if unsafe migration
+      run: |
+        if [ -f unsafe-migrations.txt ]; then
+          exit 1
+        fi
+</code></pre>
+<h3 id="问题-3请引用今天的具体代码测试和架构证据证明项目目标已经达到再说明当前实现距离企业生产标准还缺什么下一步如何演进而不破坏已有合同">问题 3：请引用今天的具体代码、测试和架构证据，证明项目目标已经达到；再说明当前实现距离企业生产标准还缺什么，下一步如何演进而不破坏已有合同。</h3>
+<p><strong>代码证据</strong>：</p>
+<ul>
+<li><code>.github/workflows/ci.yml</code> 第 8 行：lint job（ESLint + Prettier）</li>
+<li><code>.github/workflows/ci.yml</code> 第 48 行：integration-test job（需要 Postgres + Redis services）</li>
+<li><code>.github/workflows/ci.yml</code> 第 120 行：contract-test job（检查 FastAPI 合同漂移）</li>
+<li><code>.github/workflows/ci.yml</code> 第 138 行：migration-safety job（检查破坏性迁移）</li>
+<li><code>.github/workflows/ci.yml</code> 第 185 行：scan job（Trivy 扫描高危依赖，<code>exit-code: 1</code> 阻断）</li>
+</ul>
+<p><strong>测试证据</strong>：</p>
+<ul>
+<li>坏合同阻断测试：删除 FastAPI 字段 → CI 失败（contract test）</li>
+<li>破坏性迁移阻断测试：提交 <code>ALTER TABLE ADD COLUMN NOT NULL</code> → CI 失败（migration-safety）</li>
+<li>高危依赖阻断测试：降级 axios 到 0.21.1 → CI 失败（scan）</li>
+</ul>
+<p><strong>架构证据</strong>：</p>
+<ul>
+<li>CI 流程图：8 个阶段依赖关系（lint → typecheck → unit → integration → E2E → contract → migration-safety → build → scan）</li>
+<li>ADR 001：Expand-Contract Migration 模式决策记录</li>
+</ul>
+<p><strong>项目目标达成</strong>：</p>
+<ul>
+<li>✅ Pipeline（8 个阶段自动化）</li>
+<li>✅ 质量门禁（测试失败阻断）</li>
+<li>✅ Migration Safety（破坏性迁移阻断）</li>
+<li>✅ 镜像扫描（高危依赖阻断）</li>
+<li>✅ 产物追溯（Git SHA + 构建时间）</li>
+</ul>
+<p><strong>距离企业生产标准还缺</strong>：</p>
+<ol>
+<li><strong>灰度发布</strong>：当前一次性全量部署（无法试错）</li>
+<li><strong>自动回滚</strong>：当前手动回滚（无自动化）</li>
+<li><strong>多环境部署</strong>：当前只有生产环境（缺少 staging 环境）</li>
+<li><strong>性能测试</strong>：当前无性能测试（无法检测性能退化）</li>
+</ol>
+<p><strong>下一步演进（不破坏合约）</strong>：</p>
+<ul>
+<li>新增 <code>staging</code> 环境（复用 CI Pipeline，不改变现有流程）</li>
+<li>新增 <code>deploy-canary.yml</code>（金丝雀发布，5% 流量试错）</li>
+<li>新增 <code>auto-rollback.yml</code>（错误率 &gt; 1% → 自动回滚）</li>
+<li>新增 <code>performance-test</code> job（k6 性能测试，P95 延迟退化 &gt; 10% → 阻断）</li>
+</ul>
+<hr>
+<h2 id="12-真实项目情境题day-56-原版执行版补全要求">§12 真实项目情境题（Day 56 原版，执行版补全要求）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>
+<p>模拟情境：数据库 migration 在单测通过，却在生产因 8000 万行锁表 18 分钟；API 与旧 Schema 同时运行时报错。请用 migration 日志、锁等待、合同测试和部署 Trace 定位，先停止迁移并回滚应用，再设计向前兼容的 expand-contract 流程，验证旧新版本共存。
+依据：<a href="https://www.postgresql.org/docs/current/transaction-iso.html" target="_blank" rel="noopener noreferrer">PostgreSQL Transaction Isolation</a></p>
+</li>
+<li>
+<p>模拟情境：CI 全绿但镜像含高危依赖，且 FastAPI OpenAPI 与 Nest 客户端类型已漂移。请先阻断发布并标记受影响制品，再加入镜像扫描、合同 diff、E2E 和产物签名，故意提交坏合同与漏洞版本验证门禁确实失败。
+依据：<a href="https://jobs.bytedance.com/experienced/position/7309098238475831562/detail" target="_blank" rel="noopener noreferrer">S2 AgentOps</a></p>
+</li>
+</ol>
+<p>知识映射：对应 Pipeline、质量门禁、migration safety、扫描、回滚与追溯。</p>
+<hr>
+<h2 id="13-pdf-面试题映射day-56-原版执行版补全要求">§13 PDF 面试题映射（Day 56 原版，执行版补全要求）</h2>
+<ol>
+<li>
+<p>全栈 CI/CD 流程如何组织 lint、单测、集成测试、Docker 构建、灰度和回滚？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E7%25BE%258E%25E5%259B%25A2%25E5%2589%258D%25E7%25AB%25AF%25E5%2585%25A8%25E6%25A0%2588%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026美团前端全栈开发》</a>，第 12 页。</p>
+</li>
+<li>
+<p>如何用规范、Code Review、测试、类型安全和日志追踪保证大型项目质量？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E7%25BE%258E%25E5%259B%25A2%25E5%2589%258D%25E7%25AB%25AF%25E5%2585%25A8%25E6%25A0%2588%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026美团前端全栈开发》</a>，第 13 页。</p>
+</li>
+</ol>
+<p>题目说明：直接匹配 Pipeline 和质量门禁；镜像扫描、migration safety 与产物溯源需当天额外验收。</p>
+<hr>
+<h2 id="14-完成后教师五连问day-56-原版执行版补全要求">§14 完成后教师五连问（Day 56 原版，执行版补全要求）</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"现场提出 5 道问题。五连问不预先固定，也不由下面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day56-old.html">查看 Day 56 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/55.html">← Day 55 · Docker Compose</a>
+            <a href="/ai-teacher-agent-devolop/day/57.html">Day 57 · 监控/Trace →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-day-56-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E5%9B%BE%E9%87%8C%E7%9A%84%E4%BD%8D%E7%BD%AE">§0 Day 56 在 90 天路线图里的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E5%BB%BA%E7%AB%8B%E7%9A%84%E5%AE%8C%E6%95%B4%E8%83%BD%E5%8A%9B">§1 今天建立的完整能力</a></li><li><a href="#2-%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%BC%80%E5%8F%91%E8%8A%82%E5%A5%8F3-%E5%B0%8F%E6%97%B690-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">§2 今天的开发节奏（3 小时：90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E6%89%8B%E5%8A%A8%E6%B5%8B%E8%AF%95-%E9%83%A8%E7%BD%B2day-01-55-%E5%9F%BA%E7%BA%BF">§3 v1：手动测试 + 部署（Day 01-55 基线）</a></li><li><a href="#4-v2cicd-pipeline-%E8%B4%A8%E9%87%8F%E9%97%A8%E7%A6%81%E4%BB%8A%E5%A4%A9">§4 v2：CI/CD Pipeline + 质量门禁（今天）</a></li><li><a href="#5-%E6%B5%8B%E8%AF%95%E4%B8%8E%E9%AA%8C%E8%AF%81%E5%AE%8C%E6%95%B4%E6%89%A7%E8%A1%8C%E7%89%88">§5 测试与验证（完整执行版）</a></li><li><a href="#6-%E6%B7%B1%E6%8C%96%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E5%AE%8C%E6%95%B4%E6%89%A7%E8%A1%8C%E7%89%88">§6 深挖前端底子（完整执行版）</a></li><li><a href="#7-adrarchitecture-decision-record">§7 ADR（Architecture Decision Record）</a></li><li><a href="#8-14-%E6%A0%87%E5%87%86%E6%94%B6%E5%B0%BE%E7%AB%A0%E8%8A%82%E5%AE%8C%E6%95%B4%E6%89%A7%E8%A1%8C%E7%89%88">§8-14 标准收尾章节（完整执行版）</a></li><li><a href="#11-%E8%AF%BE%E5%90%8E%E4%B8%89%E9%81%93%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E5%BF%85%E7%AD%94%E5%85%88%E4%BA%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">§11 课后三道核心问题（必答，先于教师五连问）</a></li><li><a href="#12-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98day-56-%E5%8E%9F%E7%89%88%E6%89%A7%E8%A1%8C%E7%89%88%E8%A1%A5%E5%85%A8%E8%A6%81%E6%B1%82">§12 真实项目情境题（Day 56 原版，执行版补全要求）</a></li><li><a href="#13-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%98%A0%E5%B0%84day-56-%E5%8E%9F%E7%89%88%E6%89%A7%E8%A1%8C%E7%89%88%E8%A1%A5%E5%85%A8%E8%A6%81%E6%B1%82">§13 PDF 面试题映射（Day 56 原版，执行版补全要求）</a></li><li><a href="#14-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AEday-56-%E5%8E%9F%E7%89%88%E6%89%A7%E8%A1%8C%E7%89%88%E8%A1%A5%E5%85%A8%E8%A6%81%E6%B1%82">§14 完成后教师五连问（Day 56 原版，执行版补全要求）</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

@@ -1,0 +1,1262 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 02 · 领域合同（Schema × DTO × Domain 三版保护递进） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week" open="">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html" aria-current="page">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/01.html">第 1 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 02</p>
+        <h1>领域合同（Schema × DTO × Domain 三版保护递进）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（Day 02 权威执行口径）</strong></p>
+<ul>
+<li>阶段定位：阶段一（Day01-30，前端 -&gt; AI 前端），本日交付 p1-monitor 前端的领域合同模块。</li>
+<li>完整模块：AgentEvent、Server、Metric、Anomaly 的 Schema/DTO/Domain/Adapter 边界，代码落点为 src/domain/contracts/，必须能运行、能测试、能观察拒绝和兼容结果。</li>
+<li>v1：静态 Domain 类型；v2：zod 运行时校验与 DTO/Domain 分层；v3：schemaVersion、v1-to-v2 兼容适配器和弃用窗口。后一版必须明确修复前一版的具体痛点。</li>
+<li>累积复用：输入是 Day01 的 AgentEvent 判别联合；输出直接供 Day03 的领域对象、Day05 的 WebSocket 校验和 Day15 的历史恢复复用。</li>
+<li>时间盒：90 分钟阅读 + 90 分钟动手；阅读 30/30/30 分钟，动手完成 v1/v2/v3、至少 12 个合同测试和两个反证实验。</li>
+<li>硬门槛：提交真实 diff、typecheck/lint/test/build 输出和证据文件；任何 TODO、空壳或未运行的代码不得标记完成。</li>
+</ul>
+<p><strong>版本验收与反证</strong>：反证 1 临时去掉运行时 Schema 校验并注入脏数据，必须观察到运行时崩溃或错误边界缺失；反证 2 临时去掉 schemaVersion 并注入 v1 payload，必须观察到兼容判断失败；恢复保护后两项测试重新通过。</p>
+<p><strong>跨 Day 导航</strong>：前置 Day01 的事件合同；本日输出供 Day03/05/15 使用，随后与 Day30 的月度门禁一起验证跨层合同稳定性。</p>
+</blockquote>
+<p>任务版本：标准版
+日期与时长：2026-07-15 周三，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor\frontend</code>
+角色视角：有 Vue 中后台经验、第一次为 Agent 场景把「前后端合同」做严的开发者</p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p>90 天转型路线的三个阶段：</p>
+<pre><code>阶段一（Day 1-30）：前端 → AI 前端
+   项目：p1-monitor 智能运维监控（Vue 3 + TypeScript + WebSocket + Agent UI）
+
+阶段二（Day 31-60）：AI 前端 → AI 全栈
+   项目：p1-monitor 后端 + p1-monitor 全栈（NestJS + Python/FastAPI + RAG）
+
+阶段三（Day 61-90）：AI 全栈 → AI Agent 工程师
+   项目：p2-agent-workbench 多 Agent 协同工作台
+</code></pre>
+<p><strong>Day 2 处在阶段一第 2 天</strong>，直接接续 Day 1 在 <code>p1-monitor/frontend</code> 里定义的 <code>AgentEvent</code> 判别联合，把它升级为「有 Schema 校验、有版本合同、能挡非法输入」的正式领域合同。今天定义的合同会被 Day 3（<code>Server / Metric / Anomaly</code> 三张业务表）、Day 5（WebSocket 事件校验）、Day 15（SSE 断线重连时的历史校验）反复复用。</p>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<p>在 <code>p1-monitor/frontend</code> 里为 4 个核心领域对象建立完整合同：<code>AgentEvent</code> / <code>Server</code> / <code>Metric</code> / <code>Anomaly</code>。每个对象都要覆盖三层：</p>
+<ul>
+<li><strong>网络层 DTO</strong>（<code>unknown</code> → 通过 <code>zod</code> schema 校验 → 合法 DTO）；</li>
+<li><strong>领域层 Domain</strong>（DTO 经适配变成业务对象，可能带有 branded type 和不变量）；</li>
+<li><strong>版本兼容 Adapter</strong>（旧版本 payload 经适配器变成新版本 Domain）。</li>
+</ul>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p>从用户视角看，页面<strong>没有</strong>任何视觉变化——今天做的是<strong>内部合同层</strong>。但用户会感受到两个差异：</p>
+<ul>
+<li>之前后端偶尔漏字段或字段类型错误时，图表变成 <code>NaN</code>；今天开始，<strong>这类数据在进入视图层之前就被拒绝</strong>并打日志，图表不再乱。</li>
+<li>后端切换 <code>AgentEvent v1 → v2</code> 版本时，前端不再白屏，而是根据 <code>schemaVersion</code> 走<strong>兼容适配层</strong>。</li>
+</ul>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<ul>
+<li><strong>输入</strong>：来自 WebSocket / 未来 REST API 的 <code>unknown</code> 数据；</li>
+<li><strong>输出</strong>：一个<strong>合同边界</strong>，让下游（Vue 组件、reducer、图表库）永远只看到合法数据；</li>
+<li><strong>对齐后续</strong>：Day 3 建表结构、Day 5 挂 WebSocket、Day 15 恢复历史事件流时，都直接复用今天定义的 schema。</li>
+</ul>
+<h3 id="13-三版演进的目标">1.3 三版演进的目标</h3>
+<p>Day 02 主题是「领域合同」，天然不适合 Day 01 那种"功能递增"的三版演进。本日采用<strong>保护递进</strong>三版：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>实现的功能</th>
+<th>代码结构</th>
+<th>引入的知识</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td>只定义 Domain 类型，不做运行时校验</td>
+<td>一个 <code>types.ts</code> 存所有 interface</td>
+<td>TypeScript 静态类型的<strong>边界</strong>：只挡编译期错误，挡不住线上非法输入</td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>v1 + 用 <code>zod</code> schema 做运行时校验，DTO/Domain 分层</td>
+<td><code>schemas.ts</code> + <code>dtos.ts</code> + <code>domain.ts</code> 三文件</td>
+<td>运行时 Schema、<code>unknown → DTO → Domain</code>、<code>safeParse</code> 错误路径</td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>v2 + 版本合同（<code>schemaVersion</code> 字段 + 兼容适配器）</td>
+<td>加入 <code>adapters/v1-to-v2.ts</code></td>
+<td>合同版本、弃用窗口、兼容层的隔离原则、非法样本注入测试</td>
+</tr>
+</tbody>
+</table></div><p><strong>用户最终在项目里交付的是 v3</strong>。v1、v2 是过渡：v1 让你亲眼看到"只写 TS 类型挡不住脏数据"；v2 让你亲眼看到"没有版本字段时上游一改动就白屏"；v3 才是生产可用的合同层。</p>
+<hr>
+<h2 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h2>
+<p><strong>为什么放在最前面</strong>：Day 02 的合同层要动 4 个领域对象、3 个层次（Schema / DTO / Domain），如果不先立骨架，你会在 <code>types.ts</code> / <code>schemas.ts</code> / <code>dtos.ts</code> / <code>domain.ts</code> 里来回找文件。看完这棵树，下面章节里再出现 <code>src/domain/contracts/schemas/agent-event.schema.ts</code> 时，你就能立刻定位它在项目里的位置。</p>
+<p><strong>今天在 <code>p1-monitor/frontend/</code> 下要建立/扩展的完整前端源码树（v3 完整版）</strong>：</p>
+<pre><code>src/
+├── domain/                                              ← 领域层（纯类型 + 纯逻辑，不依赖 Vue）
+│   ├── agent/                                           ← Day 01 已建
+│   │   ├── agent-event.ts                               ← Day 01：事件类型（判别联合）
+│   │   ├── agent-run-state.ts                           ← Day 01：状态类型 + reducer
+│   │   └── agent-run-state.spec.ts                      ← Day 01：reducer 测试
+│   └── contracts/                                       ← ★ Day 02 新增：领域合同层
+│       ├── schemas/                                     ← ★ 运行时 Schema（zod）
+│       │   ├── agent-event.schema.ts                    ← ★ AgentEvent 9 变体 + schemaVersion
+│       │   ├── server.schema.ts                         ← ★ Server 领域对象 Schema
+│       │   ├── metric.schema.ts                         ← ★ Metric 时序数据 Schema
+│       │   └── anomaly.schema.ts                        ← ★ Anomaly 异常事件 Schema
+│       ├── dtos/                                        ← ★ 网络层 DTO（Schema infer 出来的类型）
+│       │   ├── agent-event.dto.ts                       ← ★ type AgentEventDto = z.infer&lt;typeof schema&gt;
+│       │   ├── server.dto.ts                            ← ★ DTO：网络层 Server 类型
+│       │   ├── metric.dto.ts                            ← ★ DTO：网络层 Metric 类型
+│       │   └── anomaly.dto.ts                           ← ★ DTO：网络层 Anomaly 类型
+│       ├── domain/                                      ← ★ 业务领域对象（含 branded type / 不变量）
+│       │   ├── server.ts                                ← ★ type ServerId = string &amp; { __brand: 'ServerId' }
+│       │   ├── metric.ts                                ← ★ 带单位 / 时间范围不变量的 Metric
+│       │   └── anomaly.ts                               ← ★ 严重度枚举 + 处置状态机
+│       ├── adapters/                                    ← ★ DTO ↔ Domain 适配 + 版本兼容
+│       │   ├── dto-to-domain.ts                         ← ★ unknown → safeParse → DTO → Domain
+│       │   └── v1-to-v2.ts                              ← ★ AgentEvent v1 兼容适配器
+│       └── contracts.spec.ts                            ← ★ 至少 12 个合同测试
+├── features/                                            ← Day 01 已建；今天不动
+│   └── agent-run/
+│       ├── ui/AgentRunPanel.vue                         ← 沿用 Day01 交互，仅更新类型 import 并用回归测试证明行为不变
+│       └── fixtures/sample-run.ts                       ← 改为从 contracts/fixtures/ 导入
+├── composables/
+│   └── useAgentRun.ts                                   ← Day 02 起：从 dto-to-domain 拿数据
+└── App.vue                                              ← 编排层：Day 02 起校验入口只在这里
+</code></pre>
+<p><strong>三版演进对应的文件差异</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>建/改的文件</th>
+<th>不建的文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td>只有 <code>domain/contracts/domain/*.ts</code>（4 个纯类型文件）</td>
+<td>其余全不建；直接 <code>as</code> 强断言</td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>v1 + <code>schemas/*.ts</code> + <code>dtos/*.ts</code> + <code>adapters/dto-to-domain.ts</code> + <code>contracts.spec.ts</code></td>
+<td>还没有版本合同 <code>v1-to-v2.ts</code></td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>完整树（含 <code>adapters/v1-to-v2.ts</code>）</td>
+<td>——</td>
+</tr>
+</tbody>
+</table></div><p><strong>依赖方向（务必单向）</strong>：</p>
+<pre><code>App.vue → composables → features → domain/contracts/adapters → domain/contracts/domain
+                                                              ↘ domain/contracts/dtos ← domain/contracts/schemas
+</code></pre>
+<p><strong>红线</strong>：<code>domain/contracts/domain/*.ts</code> 里出现 <code>import { z } from 'zod'</code> 就是塌方。<strong>Domain 层不认识运行时校验库</strong>——校验是 adapter 的活儿，Domain 只管业务不变量。</p>
+<p><strong>动手前先问自己 3 个问题</strong>（答不上就带着问题往下读 v1 → v2 → v3）：</p>
+<ol>
+<li>为什么必须分 DTO 和 Domain 两层？直接把 <code>z.infer</code> 出来的类型当业务对象用不行吗？—— 见 v3 的第 5.4 节「DTO / Domain 分层的必要性」。
+<strong>DTO只保证结构合法 不保证业务的可用 Domain保证数据在业务上是合法好用的，z.infer能用不建议用，如果直接使用的话会存在 脏数据进业务逻辑，业务层和后端返回字段强耦合等</strong></li>
+<li><code>schemaVersion</code> 放在事件的哪一层？payload 内还是外？—— 见 v3 的第 5.4 节「版本字段位置的权衡」。</li>
+<li>兼容适配器什么时候删？—— 见 v3 的第 5.4 节「弃用窗口」。</li>
+</ol>
+<hr>
+<h2 id="15-阶段-d动手脚手架20-分钟先搭骨架再看正文">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</h2>
+<p><strong>为什么放在正文前面</strong>：Day 02 要新增 12 个以上文件，如果不先建目录、装依赖，你读到 v3 完整代码那节会不知道往哪儿放。先用 20 分钟把 <code>zod</code> 装上、目录建齐、跑一次 <code>pnpm typecheck</code> 确认没打错字，再回过头读代码解释才有感觉。</p>
+<p><strong>动手节奏建议</strong>：本节 1.5.1-1.5.5 快速过一遍（20 分钟） → 读第 2-6 节正文（约 120 分钟） → 到第 7 节做测试 + 反证 + 验收（60 分钟）。</p>
+<h3 id="151-d-1装依赖3-分钟">1.5.1 D-1：装依赖（3 分钟）</h3>
+<pre><code class="language-powershell">Set-Location D:\demo\ai-techer\p1-monitor\frontend
+pnpm add zod
+pnpm typecheck  # 确认 Day 01 代码没被破坏
+</code></pre>
+<h3 id="152-d-2创建目录3-分钟">1.5.2 D-2：创建目录（3 分钟）</h3>
+<p>按 §1.4 目录树建目录（此时先建空目录，文件在 1.5.3-1.5.5 里逐个填上）：</p>
+<pre><code class="language-powershell">New-Item -ItemType Directory -Force -Path `
+  src\domain\contracts\schemas, `
+  src\domain\contracts\dtos, `
+  src\domain\contracts\domain, `
+  src\domain\contracts\adapters
+</code></pre>
+<h3 id="153-d-3实现-schemas-dtos-domain-层约-10-分钟">1.5.3 D-3：实现 schemas / dtos / domain 层（约 10 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>src/domain/contracts/schemas/agent-event.schema.ts</code>（9 种事件 schema + schemaVersion）</li>
+<li>写 <code>src/domain/contracts/schemas/server.schema.ts</code></li>
+<li>写 <code>src/domain/contracts/schemas/metric.schema.ts</code></li>
+<li>写 <code>src/domain/contracts/schemas/anomaly.schema.ts</code></li>
+<li>写 <code>src/domain/contracts/dtos/*.ts</code>（4 个 DTO 文件，每个只有 <code>z.infer</code> 一行）</li>
+<li>写 <code>src/domain/contracts/domain/*.ts</code>（4 个 Domain 类型文件）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>z.object()</code> 和 <code>z.discriminatedUnion()</code> 分别在什么场景用？
+数据只有一种形状 → z.object()
+数据分几种变体,靠某个字段的值区分是哪种 → z.discriminatedUnion()</li>
+<li><code>safeParse</code> 相比 <code>parse</code> 的区别？为什么生产代码不该用 <code>parse</code>？
+parse 用异常表达失败,漏接就崩;safeParse 把失败变成必须处理的返回值,编译器逼你兜底。生产代码在处理外部不可信数据(后端响应、事件流),失败是预期内的事,所以用 safePars
+(个人看法)  <strong>safeParse 返回一个带 success 和 error 的结果对象,我必须先判断 success 才能拿 data,不判断的话 TS 在编译时就报错逼我处理。后端数据校验失败时,就走 error 分支跑我自己的报错/兜底流程。而 parse 是直接抛异常,粗暴,漏接就整个崩。</strong></li>
+<li><code>schemaVersion</code> 为什么放在 event 外层而不是 payload 内？</li>
+</ul>
+<h3 id="154-d-4实现-adapters-层约-4-分钟">1.5.4 D-4：实现 adapters 层（约 4 分钟）</h3>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>src/domain/contracts/adapters/dto-to-domain.ts</code>（unknown → safeParse → DTO → Domain 映射）</li>
+<li>写 <code>src/domain/contracts/adapters/v1-to-v2.ts</code>（v1 事件兼容适配器）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么 <code>toServer</code> 函数先 <code>safeParse</code> 再转 Domain，而不是直接 <code>parse</code> 然后 try-catch？</li>
+<li>v1-to-v2 适配器什么时候可以删？</li>
+</ul>
+<h3 id="155-d-5接入-appvue约-3-分钟">1.5.5 D-5：接入 App.vue（约 3 分钟）</h3>
+<p>按第 5.3 节改 <code>src/App.vue</code>，把 Day 01 的 <code>sampleEvents</code> import 路径换成从 <code>adapters/dto-to-domain</code> 拿校验后的事件。</p>
+<pre><code class="language-powershell">pnpm dev
+</code></pre>
+<p>浏览器打开 <code>http://localhost:5173</code>，观察：</p>
+<ul>
+<li>控制台无报错（说明 schema 校验通过）</li>
+<li>页面展示与 Day 01 一致（说明合同层是透明的）</li>
+</ul>
+<p>看到这个画面就说明 v3 已经跑起来了。<strong>卡住不要死磕</strong>：先跳过继续读第 2-6 节正文，读完再回来调试；测试和反证实验放到第 7 节做。</p>
+<hr>
+<h2 id="2-学习节奏90-阅读-90-动手">2. 学习节奏（90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>内容</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>30 分钟</td>
+<td>阅读第 3 节（v1：纯 TS 类型）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td>B</td>
+<td>30 分钟</td>
+<td>阅读第 4 节（v2：加 zod 校验）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td>C</td>
+<td>30 分钟</td>
+<td>阅读第 5 节（v3：加版本合同）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td>D</td>
+<td>60 分钟</td>
+<td>在自己项目里手写 v3（Schema + Domain + Adapter）</td>
+<td>动手</td>
+</tr>
+<tr>
+<td>E</td>
+<td>20 分钟</td>
+<td>写 ≥ 12 个合同测试 + 两个反证实验</td>
+<td>动手</td>
+</tr>
+<tr>
+<td>F</td>
+<td>10 分钟</td>
+<td>运行 lint/typecheck/test/build，提交 commit</td>
+<td>动手</td>
+</tr>
+</tbody>
+</table></div><p>前 90 分钟只读、不写；后 90 分钟只写、不读。<strong>中途遇到不懂的先跳过、别停下</strong>。</p>
+<hr>
+<h2 id="3-v1只定义-domain-类型不做运行时校验">3. v1：只定义 Domain 类型，不做运行时校验</h2>
+<h3 id="31-v1-要实现什么">3.1 v1 要实现什么</h3>
+<p>只做一件事：定义 4 个核心领域对象的 TypeScript 类型（<code>Server</code> / <code>Metric</code> / <code>Anomaly</code> / <code>AgentEvent</code>），让代码能通过编译期类型检查。</p>
+<p><strong>技术上要处理</strong>：</p>
+<ul>
+<li>用 <code>interface</code> 或 <code>type</code> 定义每个对象的字段结构；</li>
+<li>用 branded type 区分 <code>ServerId</code> 和普通 <code>string</code>；</li>
+<li>从网络拿到的 <code>unknown</code> 数据直接 <code>as Server</code> 强断言。</li>
+</ul>
+<p><strong>v1 暴露的痛点</strong>：</p>
+<p>编译通过不等于运行正确。后端返回 <code>{ id: 123 }</code>（数字）时，前端 <code>as Server</code> 照样能编译，但运行时拿到的 <code>server.id.split('-')</code> 直接崩溃。</p>
+<h3 id="32-v1-完整代码">3.2 v1 完整代码</h3>
+<p><strong>src/domain/contracts/domain/server.ts</strong></p>
+<pre><code class="language-typescript">// ServerId 是字符串，但用 branded type 区分它和普通 string
+export type ServerId = string &amp; { readonly __brand: 'ServerId' }
+
+export interface Server {
+  id: ServerId
+  name: string
+  ip: string
+  status: 'online' | 'offline' | 'maintenance'
+  tags: string[]
+}
+</code></pre>
+<p><strong>src/domain/contracts/domain/metric.ts</strong></p>
+<pre><code class="language-typescript">export type MetricId = string &amp; { readonly __brand: 'MetricId' }
+
+export interface Metric {
+  id: MetricId
+  serverId: string  // 暂时用 string，v2 会改成 ServerId
+  name: string
+  value: number
+  unit: string
+  timestamp: string  // ISO 时间戳
+}
+</code></pre>
+<p><strong>src/domain/contracts/domain/anomaly.ts</strong></p>
+<pre><code class="language-typescript">export type AnomalyId = string &amp; { readonly __brand: 'AnomalyId' }
+
+export type Severity = 'low' | 'medium' | 'high' | 'critical'
+
+export interface Anomaly {
+  id: AnomalyId
+  serverId: string
+  metricName: string
+  severity: Severity
+  detectedAt: string
+  message: string
+}
+</code></pre>
+<p><strong>src/domain/contracts/domain/agent-event.ts</strong></p>
+<pre><code class="language-typescript">import type { RunId } from '@/domain/agent/agent-event'
+
+// 复用 Day 01 的 RunId branded type
+
+type EventMeta = {
+  runId: RunId
+  sequence: number
+  occurredAt: string
+}
+
+export type AgentEventDomain =
+  | (EventMeta &amp; { type: 'run.started'; payload: Record&lt;string, never&gt; })
+  | (EventMeta &amp; { type: 'text.delta'; payload: { text: string } })
+  | (EventMeta &amp; { type: 'tool.started'; payload: { callId: string; toolName: string; argumentSummary: string } })
+  | (EventMeta &amp; { type: 'tool.succeeded'; payload: { callId: string; resultSummary: string; durationMs: number } })
+  | (EventMeta &amp; { type: 'tool.failed'; payload: { callId: string; code: string; message: string } })
+  | (EventMeta &amp; { type: 'approval.required'; payload: { approvalId: string; action: string; risk: 'low' | 'medium' | 'high' } })
+  | (EventMeta &amp; { type: 'run.cancelled'; payload: { reason: string } })
+  | (EventMeta &amp; { type: 'run.failed'; payload: { code: string; message: string } })
+  | (EventMeta &amp; { type: 'run.finished'; payload: { summary: string } })
+</code></pre>
+<p><strong>使用示例（在 App.vue 或 composable 里）</strong>：</p>
+<pre><code class="language-typescript">import type { Server } from '@/domain/contracts/domain/server'
+
+// 从网络拿到的数据
+const rawData: unknown = await fetch('/api/servers/srv-001').then(r =&gt; r.json())
+
+// v1 的做法：直接强断言
+const server = rawData as Server
+
+console.log(server.name)  // 如果后端返回的 rawData 没有 name 字段，这里会是 undefined，但 TS 认为它是 string
+</code></pre>
+<h3 id="33-v1-用到的知识点">3.3 v1 用到的知识点</h3>
+<p><strong>知识点 1：Branded Type——用类型系统区分"语义上不同的 string"</strong></p>
+<p><code>ServerId</code> 和 <code>MetricId</code> 都是字符串，但业务上不能混用。Branded type 通过交叉类型 <code>string &amp; { __brand: 'ServerId' }</code> 让 TS 把它们当成不同类型：</p>
+<pre><code class="language-typescript">type ServerId = string &amp; { readonly __brand: 'ServerId' }
+type MetricId = string &amp; { readonly __brand: 'MetricId' }
+
+const srvId: ServerId = 'srv-001' as ServerId
+const metId: MetricId = 'met-001' as MetricId
+
+function getServer(id: ServerId) { /* ... */ }
+
+getServer(srvId)   // ✅ 编译通过
+getServer(metId)   // ❌ 编译报错：MetricId 不能赋给 ServerId
+getServer('srv-002')  // ❌ 编译报错：string 不能赋给 ServerId
+</code></pre>
+<p>运行时 <code>ServerId</code> 就是普通字符串，<code>__brand</code> 字段只存在于类型层，不占内存。</p>
+<p><strong>v1 的局限</strong>：branded type 只在编译期生效。网络返回 <code>{ id: 123 }</code> 时，<code>as ServerId</code> 照样能编译通过，运行时爆炸。</p>
+<h3 id="34-v1-暴露的痛点触发-v2-重构的实验">3.4 v1 暴露的痛点（触发 v2 重构的实验）</h3>
+<p><strong>实验 1：后端返回字段类型错误</strong></p>
+<p>模拟后端返回错误数据：</p>
+<pre><code class="language-typescript">const fakeResponse: unknown = {
+  id: 123,  // 应该是 string，这里错误地返回了 number
+  name: 'srv-001',
+  ip: '192.168.1.1',
+  status: 'online',
+  tags: ['prod', 'api'],
+}
+
+const server = fakeResponse as Server
+
+console.log(server.id.split('-'))  // 💥 运行时崩溃：123.split is not a function
+</code></pre>
+<p>TS 编译器认为 <code>server.id</code> 是 <code>ServerId</code>（即 <code>string</code>），但运行时它是 <code>number</code>。</p>
+<p><strong>实验 2：后端返回字段缺失</strong></p>
+<pre><code class="language-typescript">const fakeResponse: unknown = {
+  id: 'srv-001',
+  // name 字段缺失
+  ip: '192.168.1.1',
+  status: 'online',
+  tags: [],
+}
+
+const server = fakeResponse as Server
+
+console.log(server.name.toUpperCase())  // 💥 运行时崩溃：Cannot read property 'toUpperCase' of undefined
+</code></pre>
+<p><strong>v1 的根本问题</strong>：TypeScript 的类型系统只在编译期生效，<code>as</code> 强断言绕过了所有检查。运行时拿到的数据是什么样，TS 根本不知道。</p>
+<hr>
+<h2 id="4-v2加-zod-schema-做运行时校验dtodomain-分层">4. v2：加 zod schema 做运行时校验，DTO/Domain 分层</h2>
+<h3 id="41-v2-要实现什么">4.1 v2 要实现什么</h3>
+<p>在 v1 基础上加两件事：</p>
+<ol>
+<li>用 <code>zod</code> schema 在运行时校验网络数据，拒绝不合法的输入；</li>
+<li>分 DTO 和 Domain 两层：DTO 是网络层类型（<code>z.infer</code> 出来的），Domain 是业务层类型（可能带额外不变量）。</li>
+</ol>
+<p><strong>技术上要处理</strong>：</p>
+<ul>
+<li>写 4 个 <code>zod</code> schema（<code>ServerSchema</code> / <code>MetricSchema</code> / <code>AnomalySchema</code> / <code>AgentEventSchema</code>）；</li>
+<li>从 schema <code>infer</code> 出 DTO 类型；</li>
+<li>写 <code>dto-to-domain.ts</code> 适配器，把 DTO 转成 Domain；</li>
+<li>在 <code>App.vue</code> 里调用 <code>safeParse</code> 校验网络数据。</li>
+</ul>
+<p><strong>v2 暴露的痛点</strong>：</p>
+<p>后端从 <code>AgentEvent v1</code> 升级到 <code>v2</code>（比如给 <code>payload</code> 加了新字段），前端 schema 还是 v1 格式，<code>safeParse</code> 会拒绝所有 v2 事件，导致页面白屏。没有版本字段，前端无法区分"这是 v1 还是 v2"。</p>
+<h3 id="42-v2-完整代码">4.2 v2 完整代码</h3>
+<p><strong>src/domain/contracts/schemas/server.schema.ts</strong></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+
+export const ServerSchema = z.object({
+  id: z.string().regex(/^srv-[a-z0-9]+$/),  // 校验 id 格式
+  name: z.string().min(1),
+  ip: z.string().ip(),  // 校验 IP 格式
+  status: z.enum(['online', 'offline', 'maintenance']),
+  tags: z.array(z.string()),
+})
+</code></pre>
+<p><strong>src/domain/contracts/schemas/metric.schema.ts</strong></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+
+export const MetricSchema = z.object({
+  id: z.string().regex(/^met-[a-z0-9]+$/),
+  serverId: z.string().regex(/^srv-[a-z0-9]+$/),
+  name: z.string().min(1),
+  value: z.number(),
+  unit: z.enum(['percent', 'bytes', 'count', 'ms']),
+  timestamp: z.string().datetime(),  // ISO 8601 格式
+})
+</code></pre>
+<p><strong>src/domain/contracts/schemas/anomaly.schema.ts</strong></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+
+export const AnomalySchema = z.object({
+  id: z.string().regex(/^ano-[a-z0-9]+$/),
+  serverId: z.string().regex(/^srv-[a-z0-9]+$/),
+  metricName: z.string(),
+  severity: z.enum(['low', 'medium', 'high', 'critical']),
+  detectedAt: z.string().datetime(),
+  message: z.string(),
+})
+</code></pre>
+<p><strong>src/domain/contracts/schemas/agent-event.schema.ts</strong></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+
+const EventMetaSchema = z.object({
+  runId: z.string(),
+  sequence: z.number().int().nonnegative(),
+  occurredAt: z.string().datetime(),
+})
+
+const RunStartedSchema = EventMetaSchema.extend({
+  type: z.literal('run.started'),
+  payload: z.object({}),
+})
+
+const TextDeltaSchema = EventMetaSchema.extend({
+  type: z.literal('text.delta'),
+  payload: z.object({
+    text: z.string(),
+  }),
+})
+
+const ToolStartedSchema = EventMetaSchema.extend({
+  type: z.literal('tool.started'),
+  payload: z.object({
+    callId: z.string(),
+    toolName: z.string(),
+    argumentSummary: z.string(),
+  }),
+})
+
+const ToolSucceededSchema = EventMetaSchema.extend({
+  type: z.literal('tool.succeeded'),
+  payload: z.object({
+    callId: z.string(),
+    resultSummary: z.string(),
+    durationMs: z.number().int().nonnegative(),
+  }),
+})
+
+const ToolFailedSchema = EventMetaSchema.extend({
+  type: z.literal('tool.failed'),
+  payload: z.object({
+    callId: z.string(),
+    code: z.string(),
+    message: z.string(),
+  }),
+})
+
+const ApprovalRequiredSchema = EventMetaSchema.extend({
+  type: z.literal('approval.required'),
+  payload: z.object({
+    approvalId: z.string(),
+    action: z.string(),
+    risk: z.enum(['low', 'medium', 'high']),
+  }),
+})
+
+const RunCancelledSchema = EventMetaSchema.extend({
+  type: z.literal('run.cancelled'),
+  payload: z.object({
+    reason: z.string(),
+  }),
+})
+
+const RunFailedSchema = EventMetaSchema.extend({
+  type: z.literal('run.failed'),
+  payload: z.object({
+    code: z.string(),
+    message: z.string(),
+  }),
+})
+
+const RunFinishedSchema = EventMetaSchema.extend({
+  type: z.literal('run.finished'),
+  payload: z.object({
+    summary: z.string(),
+  }),
+})
+
+export const AgentEventSchema = z.discriminatedUnion('type', [
+  RunStartedSchema,
+  TextDeltaSchema,
+  ToolStartedSchema,
+  ToolSucceededSchema,
+  ToolFailedSchema,
+  ApprovalRequiredSchema,
+  RunCancelledSchema,
+  RunFailedSchema,
+  RunFinishedSchema,
+])
+</code></pre>
+<p><strong>src/domain/contracts/dtos/server.dto.ts</strong></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+import { ServerSchema } from '../schemas/server.schema'
+
+export type ServerDto = z.infer&lt;typeof ServerSchema&gt;
+</code></pre>
+<p><strong>src/domain/contracts/dtos/metric.dto.ts</strong></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+import { MetricSchema } from '../schemas/metric.schema'
+
+export type MetricDto = z.infer&lt;typeof MetricSchema&gt;
+</code></pre>
+<p><strong>src/domain/contracts/dtos/anomaly.dto.ts</strong></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+import { AnomalySchema } from '../schemas/anomaly.schema'
+
+export type AnomalyDto = z.infer&lt;typeof AnomalySchema&gt;
+</code></pre>
+<p><strong>src/domain/contracts/dtos/agent-event.dto.ts</strong></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+import { AgentEventSchema } from '../schemas/agent-event.schema'
+
+export type AgentEventDto = z.infer&lt;typeof AgentEventSchema&gt;
+</code></pre>
+<p><strong>src/domain/contracts/adapters/dto-to-domain.ts</strong></p>
+<pre><code class="language-typescript">import { ServerSchema } from '../schemas/server.schema'
+import { MetricSchema } from '../schemas/metric.schema'
+import { AnomalySchema } from '../schemas/anomaly.schema'
+import { AgentEventSchema } from '../schemas/agent-event.schema'
+import type { Server, ServerId } from '../domain/server'
+import type { Metric, MetricId } from '../domain/metric'
+import type { Anomaly, AnomalyId } from '../domain/anomaly'
+import type { AgentEventDomain } from '../domain/agent-event'
+import type { RunId } from '@/domain/agent/agent-event'
+
+export function toServer(input: unknown): Server | null {
+  const result = ServerSchema.safeParse(input)
+  if (!result.success) {
+    console.error('ServerSchema validation failed:', result.error)
+    return null
+  }
+  return {
+    ...result.data,
+    id: result.data.id as ServerId,
+  }
+}
+
+export function toMetric(input: unknown): Metric | null {
+  const result = MetricSchema.safeParse(input)
+  if (!result.success) {
+    console.error('MetricSchema validation failed:', result.error)
+    return null
+  }
+  return {
+    ...result.data,
+    id: result.data.id as MetricId,
+    serverId: result.data.serverId as ServerId,
+  }
+}
+
+export function toAnomaly(input: unknown): Anomaly | null {
+  const result = AnomalySchema.safeParse(input)
+  if (!result.success) {
+    console.error('AnomalySchema validation failed:', result.error)
+    return null
+  }
+  return {
+    ...result.data,
+    id: result.data.id as AnomalyId,
+    serverId: result.data.serverId as ServerId,
+  }
+}
+
+export function toAgentEvent(input: unknown): AgentEventDomain | null {
+  const result = AgentEventSchema.safeParse(input)
+  if (!result.success) {
+    console.error('AgentEventSchema validation failed:', result.error)
+    return null
+  }
+  return {
+    ...result.data,
+    runId: result.data.runId as RunId,
+  } as AgentEventDomain
+}
+</code></pre>
+<p><strong>使用示例（在 App.vue 里）</strong>：</p>
+<pre><code class="language-typescript">import { toServer } from '@/domain/contracts/adapters/dto-to-domain'
+
+const rawData: unknown = await fetch('/api/servers/srv-001').then(r =&gt; r.json())
+
+const server = toServer(rawData)
+
+if (server === null) {
+  // 校验失败，rawData 不符合 ServerSchema
+  console.error('Invalid server data')
+  return
+}
+
+// 校验通过，server 是合法的 Server 对象
+console.log(server.name)
+</code></pre>
+<h3 id="43-v2-用到的知识点">4.3 v2 用到的知识点</h3>
+<p><strong>知识点 2：zod 运行时 Schema——在代码里描述数据"长什么样"</strong></p>
+<pre><code class="language-typescript">const ServerSchema = z.object({
+  id: z.string().regex(/^srv-[a-z0-9]+$/),
+  status: z.enum(['online', 'offline', 'maintenance']),
+})
+</code></pre>
+<p>这段代码做了两件事：</p>
+<ol>
+<li>定义了一个<strong>运行时可执行的校验器</strong>；</li>
+<li>TS 能从它 <code>infer</code> 出类型 <code>{ id: string; status: 'online' | 'offline' | 'maintenance' }</code>。</li>
+</ol>
+<p><code>safeParse</code> 返回 <code>{ success: true, data: T } | { success: false, error: ZodError }</code>，不会抛异常。生产代码应该用 <code>safeParse</code> 而不是 <code>parse</code>（后者失败会抛异常，容易导致未捕获错误）。</p>
+<p><strong>知识点 3：DTO / Domain 分层——网络层和业务层的类型不一定相同</strong></p>
+<ul>
+<li><strong>DTO</strong>（Data Transfer Object）：网络传输的格式，直接从 schema <code>infer</code> 出来，字段是 <code>string</code> / <code>number</code> / <code>boolean</code> 这类基础类型。</li>
+<li><strong>Domain</strong>：业务层对象，可能带有 branded type（<code>ServerId</code>）、不变量（"Metric 的 timestamp 必须在过去 24 小时内"）、业务方法（"Anomaly 是否需要立即处理"）。</li>
+</ul>
+<p>Adapter 的职责就是把 DTO 转成 Domain，可能包括：</p>
+<ul>
+<li>把 <code>string</code> 转成 <code>ServerId</code> branded type；</li>
+<li>检查业务不变量；</li>
+<li>计算衍生字段（比如 <code>isRecent</code> 字段根据 <code>timestamp</code> 计算）。</li>
+</ul>
+<h3 id="44-v2-暴露的痛点触发-v3-重构的实验">4.4 v2 暴露的痛点（触发 v3 重构的实验）</h3>
+<p><strong>实验：后端升级事件格式，前端 schema 未同步</strong></p>
+<p>假设后端把 <code>AgentEvent</code> 从 v1 升级到 v2，给 <code>tool.succeeded</code> 的 payload 加了新字段 <code>cost</code>（调用工具的花费）：</p>
+<pre><code class="language-typescript">// 后端返回的 v2 事件
+const v2Event: unknown = {
+  runId: 'run-001',
+  sequence: 3,
+  occurredAt: '2026-07-15T10:00:04Z',
+  type: 'tool.succeeded',
+  payload: {
+    callId: 'c1',
+    resultSummary: 'CPU 平均 87%',
+    durationMs: 1800,
+    cost: 0.05,  // v2 新增字段
+  },
+}
+
+// 前端 schema 还是 v1（没有 cost 字段）
+const result = AgentEventSchema.safeParse(v2Event)
+
+console.log(result.success)  // false
+console.log(result.error)    // ZodError: Unrecognized key 'cost' in object
+</code></pre>
+<p>zod 默认是 <code>.strict()</code> 模式，多余字段会导致校验失败。即使改成 <code>.passthrough()</code>（允许多余字段），前端也无法区分"这是 v1 还是 v2"，无法做兼容处理。</p>
+<p><strong>v2 的根本问题</strong>：合同没有版本字段，前端无法根据版本号做适配。后端一升级，前端要么白屏（strict 模式拒绝），要么静默丢数据（passthrough 模式忽略新字段）。</p>
+<hr>
+<h2 id="5-v3加版本合同schemaversion-字段-兼容适配器">5. v3：加版本合同（schemaVersion 字段 + 兼容适配器）</h2>
+<h3 id="51-v3-要实现什么">5.1 v3 要实现什么</h3>
+<p>在 v2 基础上加两件事：</p>
+<ol>
+<li>给每个事件加 <code>schemaVersion</code> 字段（放在事件外层，不是 payload 内）；</li>
+<li>写版本兼容适配器（<code>v1-to-v2.ts</code>），让前端能同时处理 v1 和 v2 格式的事件。</li>
+</ol>
+<p><strong>技术上要处理</strong>：</p>
+<ul>
+<li>修改 <code>AgentEventSchema</code>，加 <code>schemaVersion: z.literal('v2')</code>；</li>
+<li>写 v1 schema（不带 cost 字段）；</li>
+<li>写 <code>adaptV1ToV2</code> 函数，把 v1 事件转成 v2 格式；</li>
+<li>在 <code>dto-to-domain.ts</code> 里先判断版本，走对应适配器。</li>
+</ul>
+<p><strong>v3 是生产可用的终态</strong>。后端从 v1 升级到 v2 时，前端能根据 <code>schemaVersion</code> 字段识别并适配，不会白屏。</p>
+<h3 id="52-v3-目录结构">5.2 v3 目录结构</h3>
+<p>与 §1.4 完全一致，v3 就是完整树。</p>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<p>完整代码与 12 个合同测试分散在本文件第 3-5 节和第 7 节；执行时必须逐文件实现并运行命令，不能以摘要代替代码。</p>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么 <code>schemaVersion</code> 放在事件外层而不是 payload 内？</li>
+<li>v1-to-v2 适配器什么时候可以删？</li>
+<li>DTO 和 Domain 分两层的必要性是什么？</li>
+</ul>
+<h3 id="54-v3-用到的知识点">5.4 v3 用到的知识点</h3>
+<p><strong>知识点 4：schemaVersion 放在事件外层而不是 payload 内</strong></p>
+<p>版本是整个事件的属性，不是 payload 的属性。放外层可以在不解析 payload 的情况下判断版本，避免鸡生蛋问题。</p>
+<p><strong>知识点 5：兼容适配器的隔离原则</strong></p>
+<p><code>v1-to-v2.ts</code> 是临时代码，有明确的生命周期：写入 → 弃用窗口 → 删除。隔离在单独文件，删除时不污染核心逻辑。</p>
+<p><strong>知识点 6：DTO / Domain 分层的必要性</strong></p>
+<p>DTO 关注"数据结构合法"，Domain 关注"业务不变量"。Adapter 在两者之间做业务规则检查。</p>
+<hr>
+<h2 id="6-三版对比一览表">6. 三版对比一览表</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>功能</strong></td>
+<td>只定义类型</td>
+<td>加运行时校验</td>
+<td>加版本合同 + 兼容适配器</td>
+</tr>
+<tr>
+<td><strong>数据模型</strong></td>
+<td>interface / type</td>
+<td>zod schema</td>
+<td>zod schema + schemaVersion</td>
+</tr>
+<tr>
+<td><strong>状态存储</strong></td>
+<td>无（纯类型）</td>
+<td>DTO（infer 出来的）</td>
+<td>DTO + Domain 分层</td>
+</tr>
+<tr>
+<td><strong>归约逻辑</strong></td>
+<td>强断言 as</td>
+<td>safeParse</td>
+<td>safeParse + 版本判断 + 适配器</td>
+</tr>
+<tr>
+<td><strong>可测试</strong></td>
+<td>无（纯类型不可测）</td>
+<td>可测 schema.safeParse</td>
+<td>可测 schema + 适配器 + 业务不变量</td>
+</tr>
+<tr>
+<td><strong>架构层次</strong></td>
+<td>单文件 types.ts</td>
+<td>schemas + dtos + adapters</td>
+<td>schemas + dtos + domain + adapters + 版本兼容层</td>
+</tr>
+<tr>
+<td><strong>换数据源代价</strong></td>
+<td>高（每处都要改 as）</td>
+<td>中（改 adapter 入口）</td>
+<td>低（只改版本判断逻辑）</td>
+</tr>
+<tr>
+<td><strong>编译期抓遗漏</strong></td>
+<td>无</td>
+<td>无</td>
+<td>有（schemaVersion 字面量类型 exhaustive check）</td>
+</tr>
+<tr>
+<td><strong>对齐后续 Day</strong></td>
+<td>Day 3 建表时重构</td>
+<td>Day 5 挂 WebSocket 时重构</td>
+<td>Day 15 历史恢复直接复用</td>
+</tr>
+</tbody>
+</table></div><h2 id="65-前端底子补弱独立深挖-html-入口">6.5 前端底子补弱（独立深挖 HTML 入口）</h2>
+<p>完整深挖文档：<a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02深挖-领域合同底子补弱.html</a></p>
+<p><strong>今天深挖的 8 个知识点</strong>（每个都有 8 子节：场景锚点 / 项目代码 / 设计点拆解 / 原理 / 反例 / 分层提问 / 项目对手戏 / 面试真题三档答法）：</p>
+<ol>
+<li><strong>深挖 1</strong>：zod discriminated union —— 从 <code>AgentEventSchema</code> 的 9 种事件变体讲起</li>
+<li><strong>深挖 2</strong>：safeParse vs parse —— 从 <code>dto-to-domain.ts</code> 的错误处理讲起</li>
+<li><strong>深挖 3</strong>：Branded Type —— 从 <code>ServerId</code> 和 <code>MetricId</code> 不能混用讲起</li>
+<li><strong>深挖 4</strong>：DTO / Domain 分层 —— 从"网络层类型 ≠ 业务层类型"讲起</li>
+<li><strong>深挖 5</strong>：版本合同 —— 从 <code>schemaVersion</code> 字段位置权衡讲起</li>
+<li><strong>深挖 6</strong>：弃用窗口 —— 从 <code>v1-to-v2.ts</code> 的生命周期讲起</li>
+<li><strong>深挖 7</strong>：TypeScript 的类型守卫 —— 从 <code>typeof input === 'object'</code> 讲起</li>
+<li><strong>深挖 8</strong>：exhaustive check —— 从 <code>switch(version)</code> 的 <code>default: never</code> 讲起</li>
+</ol>
+<hr>
+<h2 id="7-项目验收清单阶段-e-f约-55-分钟">7. 项目验收清单（阶段 E-F，约 55 分钟）</h2>
+<h3 id="76-e写核心逻辑测试20-分钟">7.6 E：写核心逻辑测试（20 分钟）</h3>
+<p>在 <code>src/domain/contracts/contracts.spec.ts</code> 里补齐至少 12 个测试：</p>
+<ul>
+<li><code>toServer</code> 3 个测试（合法 / id 格式错误 / 缺字段）</li>
+<li><code>toMetric</code> 3 个测试（合法 / timestamp 格式错误 / 负数 value）</li>
+<li><code>toAnomaly</code> 3 个测试（合法 / severity 枚举错误 / 缺字段）</li>
+<li><code>toAgentEvent</code> 3 个测试（v2 合法 / v1 经适配器 / 缺 schemaVersion）</li>
+</ul>
+<pre><code class="language-powershell">pnpm test
+</code></pre>
+<p>看到 12 个测试全部通过。</p>
+<h3 id="77-f-1反证实验-15-分钟">7.7 F-1：反证实验 1（5 分钟）</h3>
+<p><strong>验证 v1 的痛点</strong>：强断言挡不住脏数据。</p>
+<p>在 <code>src/App.vue</code> 或新建 <code>src/experiments/v1-pain.ts</code>：</p>
+<pre><code class="language-typescript">const fakeServer: unknown = { id: 123, name: 'srv-001' }
+const server = fakeServer as Server
+console.log(server.id.split('-'))  // 运行时崩溃
+</code></pre>
+<p>跑 <code>pnpm dev</code>，打开控制台，看到报错 <code>123.split is not a function</code>。</p>
+<p><strong>恢复代码</strong>：删除实验代码，确认 <code>pnpm dev</code> 能正常运行。</p>
+<h3 id="78-f-2反证实验-25-分钟">7.8 F-2：反证实验 2（5 分钟）</h3>
+<p><strong>验证 v2 的痛点</strong>：没有版本字段时无法兼容旧格式。</p>
+<p>在 <code>contracts.spec.ts</code> 加一个测试：</p>
+<pre><code class="language-typescript">it('v2 schema 拒绝 v1 格式的 tool.succeeded', () =&gt; {
+  const v1Event = {
+    schemaVersion: 'v1',
+    runId: 'run-001',
+    sequence: 3,
+    occurredAt: '2026-07-15T10:00:04Z',
+    type: 'tool.succeeded',
+    payload: { callId: 'c1', resultSummary: 'ok', durationMs: 1800 },
+  }
+  const result = AgentEventSchemaV2.safeParse(v1Event)
+  expect(result.success).toBe(false)  // v2 schema 拒绝 v1
+})
+</code></pre>
+<p>跑 <code>pnpm test</code>，看到测试通过（证明 v2 schema 确实会拒绝 v1 格式）。</p>
+<p><strong>恢复代码</strong>：删除实验测试，确认 <code>pnpm test</code> 其他测试全部通过。</p>
+<h3 id="79-f-3验证-提交10-分钟">7.9 F-3：验证 + 提交（10 分钟）</h3>
+<pre><code class="language-powershell">pnpm typecheck
+pnpm lint
+pnpm test
+pnpm build
+</code></pre>
+<p>四件套全部通过后提交：</p>
+<pre><code class="language-powershell">git add src/domain/contracts/
+git commit -m "feat(contracts): add runtime schema validation with version support
+
+- Add zod schemas for Server/Metric/Anomaly/AgentEvent
+- Implement DTO/Domain layer separation
+- Add v1-to-v2 adapter for backward compatibility
+- Add 12 contract tests
+
+Refs: Day02"
+</code></pre>
+<p><strong>⚠️ 不要 <code>git push</code></strong>（Day 30 前所有 commit 留在本地）。</p>
+<hr>
+<h2 id="8-通过标准">8. 通过标准</h2>
+<ul>
+<li>[ ] <code>contracts.spec.ts</code> 至少 12 个测试全部通过</li>
+<li>[ ] <code>pnpm typecheck</code> 无错误</li>
+<li>[ ] <code>pnpm build</code> 成功</li>
+<li>[ ] 两个反证实验都跑过且能复现 v1/v2 的痛点</li>
+<li>[ ] <code>git log</code> 能看到 Day02 的 commit（含 <code>Refs: Day02</code>）</li>
+</ul>
+<hr>
+<h2 id="9-提交物">9. 提交物</h2>
+<ul>
+<li><code>src/domain/contracts/</code> 完整目录（schemas / dtos / domain / adapters + contracts.spec.ts）</li>
+<li><code>contracts.spec.ts</code> 至少 12 个测试</li>
+<li>两个反证实验的截图或日志（证明你跑过）</li>
+<li>课末三问的答案（见 §10）</li>
+</ul>
+<hr>
+<h2 id="10-课末-3-个核心问题">10. 课末 3 个核心问题</h2>
+<ol>
+<li>
+<p><strong>为什么必须分 DTO 和 Domain 两层？</strong> 直接把 <code>z.infer</code> 出来的类型当业务对象用不行吗？</p>
+<p>你的答案：dto是后端返回的数据格式以及类型 domain是 前端对于后端数据根据业务处理后的数据 不能直接当业务对象的原因是 前端业务系统有时候的数据类型和后端直接返回的不一致 会导致报错</p>
+</li>
+<li>
+<p><strong><code>schemaVersion</code> 放在事件的哪一层？</strong> payload 内还是外？为什么？</p>
+<p>你的答案：放在外层 用户确定具体的版本 如果放在payload 里面的话则我们还得遍历一遍payload对象</p>
+</li>
+<li>
+<p><strong>兼容适配器什么时候删？</strong> 如何判断"弃用窗口"结束？</p>
+<p>你的答案：我们通过统一适配器的方式将分析旧版本</p>
+</li>
+</ol>
+<hr>
+<h2 id="11-真实项目情境题联网更新-2026-07-15">11. 真实项目情境题（联网更新 2026-07-15）</h2>
+<ol>
+<li>
+<p>你在做一个 Agent 监控前端，后端突然说"我们给 <code>tool.succeeded</code> 加了 <code>tokens</code> 字段（消耗的 token 数），你前端要不要改？" 你怎么回答？你会检查哪几个文件？</p>
+<p>来源：<a href="https://example.com/agent-contract-breaks" target="_blank" rel="noopener noreferrer">真实 Agent 项目踩坑记录</a>（模拟链接）</p>
+</li>
+<li>
+<p>你的同事说"zod schema 太啰嗦了，我直接用 TypeScript interface 不行吗？" 你会怎么解释"运行时校验"的必要性？</p>
+<p>来源：<a href="https://example.com/zod-vs-interface" target="_blank" rel="noopener noreferrer">Code Review 常见争议点</a>（模拟链接）</p>
+</li>
+</ol>
+<hr>
+<h2 id="12-pdf-面试题">12. PDF 面试题</h2>
+<blockquote>
+<p>⚠️ <strong>边界说明</strong>：以下题目来自用户提供的 PDF 文件，文件名不等于官方题库。题目用于教学演示，不代表任何公司的真实面试题库。</p>
+</blockquote>
+<ol>
+<li>TypeScript 的 <code>interface</code> 和 <code>type</code> 有什么区别？定义 AI 插件协议时选哪个？
+interface 使用与描述可扩展对象契约 type适用于标识联合组合状态分支 定义ai协议一般混用 插件示例生命周期 可注入的用interface 时间联合 状态机 错误码工具参数等用type
+插件可实现的行为合同优先 interface，插件消息和事件协议优先判别联合 type
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E5%25B7%25B2%25E5%258F%2591%25E4%25BA%25A4%25E4%25B8%25AA%25E6%259C%258B%25E5%258F%258B%25E5%2585%25A8%25E6%25A0%2588AI%25E5%25B7%25A5%25E7%25A8%258B%25E5%25B8%2588.pdf" class="missing-link">《2026已发交个朋友全栈AI工程师》</a>，第 2 页。</li>
+<li>什么是 TypeScript 类型守卫？处理大模型返回 JSON 时怎样使用？
+类型守卫是运行时的检查逻辑  一般我们可以使用内置的 typeof instanceof in  也可以通过value in T的方式去执行一返回值的守卫 但是我们对于复杂的项目通常使用zod第三方包进行处理。
+类型守卫负责在运行时验证数据，并帮助 TypeScript 缩小类型；处理简单模型 JSON 可以手写 value is T，复杂生产协议则优先使用 Zod，同时永远不要用 as 代替校验
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E5%25B7%25B2%25E5%258F%2591%25E4%25BA%25A4%25E4%25B8%25AA%25E6%259C%258B%25E5%258F%258B%25E5%2585%25A8%25E6%25A0%2588AI%25E5%25B7%25A5%25E7%25A8%258B%25E5%25B8%2588.pdf" class="missing-link">《2026已发交个朋友全栈AI工程师》</a>，第 2 页。</li>
+</ol>
+<p>题目说明：对应判别联合、运行时 <code>unknown</code> 校验及 DTO/Domain 合同边界；第二题是原文追问。</p>
+<hr>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<p>Day02 完成后，用户会执行 <code>/ai-teacher-qa Day02</code>，AI 教师会按《<a href="http://xn--AI-l72c89pd6pepk6gy71zu4hpxpr4l.md" target="_blank" rel="noopener noreferrer">AI教师五连问验收协议.md</a>》逐题提问。预习这 5 个问题：</p>
+<ol>
+<li><strong>演示验收</strong>：请演示你的 <code>contracts.spec.ts</code> 测试全部通过的截图。</li>
+<li><strong>核心挑战</strong>：Day02 最难的部分是什么？你卡在哪里最久？</li>
+<li><strong>对比思考</strong>：v1/v2/v3 三版你觉得哪一版最关键？为什么？</li>
+<li><strong>项目对手戏</strong>：假设 Day 5 挂 WebSocket 时后端推来一个 v3 事件（<code>schemaVersion: 'v3'</code>），你的代码会怎么处理？会崩溃吗？</li>
+<li><strong>知识盲区</strong>：zod 的 <code>.passthrough()</code> 和 <code>.strip()</code> 和 <code>.strict()</code> 有什么区别？哪个适合生产环境？</li>
+</ol>
+<hr>
+<h2 id="14-本-day-在-90-天路线中的锚点">14. 本 Day 在 90 天路线中的锚点</h2>
+<ul>
+<li><strong>前置</strong>：Day 01（定义了 <code>AgentEvent</code> 判别联合，今天升级为有 schema 的合同）</li>
+<li><strong>后续</strong>：
+<ul>
+<li>Day 03：建 <code>Server / Metric / Anomaly</code> 三张表，复用今天的 schema</li>
+<li>Day 05：挂 WebSocket，每条消息都过 <code>toAgentEvent</code> 校验</li>
+<li>Day 15：SSE 断线重连时，历史事件流经 <code>toAgentEvent</code> 批量校验</li>
+</ul>
+</li>
+</ul>
+<p><strong>今天的合同层是整个 p1-monitor 前端的数据入口守门员</strong>——Day 3-30 的所有网络数据都要先过这一层。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day02-old.html">查看 Day 02 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/01.html">← Day 01 · AI 前端架构</a>
+            <a href="/ai-teacher-agent-devolop/day/03.html">Day 03 · 异步与竞态 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#14-%E6%9C%AC%E6%97%A5%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8A%A8%E6%89%8B%E5%89%8D%E5%85%88%E7%9C%8B%E9%AA%A8%E6%9E%B6">1.4 本日项目目录结构（动手前先看骨架）</a></li><li><a href="#15-%E9%98%B6%E6%AE%B5-d%E5%8A%A8%E6%89%8B%E8%84%9A%E6%89%8B%E6%9E%B620-%E5%88%86%E9%92%9F%E5%85%88%E6%90%AD%E9%AA%A8%E6%9E%B6%E5%86%8D%E7%9C%8B%E6%AD%A3%E6%96%87">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F90-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">2. 学习节奏（90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E5%8F%AA%E5%AE%9A%E4%B9%89-domain-%E7%B1%BB%E5%9E%8B%E4%B8%8D%E5%81%9A%E8%BF%90%E8%A1%8C%E6%97%B6%E6%A0%A1%E9%AA%8C">3. v1：只定义 Domain 类型，不做运行时校验</a></li><li><a href="#4-v2%E5%8A%A0-zod-schema-%E5%81%9A%E8%BF%90%E8%A1%8C%E6%97%B6%E6%A0%A1%E9%AA%8Cdtodomain-%E5%88%86%E5%B1%82">4. v2：加 zod schema 做运行时校验，DTO/Domain 分层</a></li><li><a href="#5-v3%E5%8A%A0%E7%89%88%E6%9C%AC%E5%90%88%E5%90%8Cschemaversion-%E5%AD%97%E6%AE%B5-%E5%85%BC%E5%AE%B9%E9%80%82%E9%85%8D%E5%99%A8">5. v3：加版本合同（schemaVersion 字段 + 兼容适配器）</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94%E4%B8%80%E8%A7%88%E8%A1%A8">6. 三版对比一览表</a></li><li><a href="#65-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1%E7%8B%AC%E7%AB%8B%E6%B7%B1%E6%8C%96-html-%E5%85%A5%E5%8F%A3">6.5 前端底子补弱（独立深挖 HTML 入口）</a></li><li><a href="#7-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95%E9%98%B6%E6%AE%B5-e-f%E7%BA%A6-55-%E5%88%86%E9%92%9F">7. 项目验收清单（阶段 E-F，约 55 分钟）</a></li><li><a href="#8-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86">8. 通过标准</a></li><li><a href="#9-%E6%8F%90%E4%BA%A4%E7%89%A9">9. 提交物</a></li><li><a href="#10-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">10. 课末 3 个核心问题</a></li><li><a href="#11-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-15">11. 真实项目情境题（联网更新 2026-07-15）</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">12. PDF 面试题</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">14. 本 Day 在 90 天路线中的锚点</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

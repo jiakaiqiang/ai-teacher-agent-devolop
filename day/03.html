@@ -1,0 +1,853 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 03 · 异步与竞态（单项读取 → 四项并发 → 切换时取消与防串台） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week" open="">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html" aria-current="page">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/01.html">第 1 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 03</p>
+        <h1>异步与竞态（单项读取 → 四项并发 → 切换时取消与防串台）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <p>任务版本：标准版</p>
+<p>日期与时长：2026-07-16 周四，3h（90 分钟阅读 + 90 分钟动手）</p>
+<p>项目：<code>D:\demo\ai-techer\p1-monitor\frontend</code>，配合相邻的 <code>backend</code></p>
+<p>角色视角：你已经能用 Vue 展示状态，也会用 Day 02 的合同校验一条指标。今天要判断一批<strong>合法数据属于哪一次点击</strong>。</p>
+<p>前置课程：<a href="/ai-teacher-agent-devolop/day/01.html">Day 01 事件与状态</a> · <a href="/ai-teacher-agent-devolop/day/02.html">Day 02 领域合同</a></p>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p>阶段一的第一天，你根据事件决定界面能进入哪个状态。第二天，你在数据进入页面前检查了字段。现在看一个两者都能通过的故障：你点了 B，最后显示的是 A 的 CPU。A 的字段全部合法，问题出在页面把一次已经过时的读取当成了当前结果。</p>
+<p>今天沿着一次服务器切换，从点击、发请求、校验、提交状态，一直走到屏幕。明天的四张图直接消费这里取回的时间序列。</p>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p>在现有页面打开指标面板，默认读 <code>srv-001</code>。点 <code>srv-002</code> 后标题和加载提示一起切换。四项请求结束后，面板显示 CPU、内存、温度和磁盘 I/O 的最新读数。数据库还没有样本时显示“暂无采样”。仅温度接口出错时，另外三项照常显示，温度一行给出失败原因。</p>
+<h3 id="12-输入输出与项目边界">1.2 输入、输出与项目边界</h3>
+<p>后端的 <code>src/main.ts</code> 设置了 <code>api</code> 前缀，<code>metrics.controller.ts</code> 暴露 <code>GET /api/metrics/recent/:serverId?type=cpu&amp;limit=20</code>。<code>metrics.service.ts</code> 按采样时间降序返回数组，最新点在下标 0。下面是一条用于读代码的响应样例：</p>
+<pre><code class="language-json">[{"id":"42","serverId":"srv-001","metricType":"cpu","value":52,"unit":"%","timestamp":"2026-07-16T01:00:00.000Z"}]
+</code></pre>
+<p>API Client 把 JSON 交给合同层，输出一项指标的点列。加载逻辑决定这批点能否提交。Vue 面板只读当前状态。Day 04 绘制从左到右的时间轴时，可以复制点列再反转，今天保留接口的原始排序。</p>
+<h3 id="13-三版演进的目标">1.3 三版演进的目标</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>这次加什么</th>
+<th>怎样看出还缺什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1</td>
+<td>读一台服务器的 CPU，穿过 Day 02 的合同，显示一个真实值</td>
+<td>把写法重复四次，观察后一个请求何时才能发出</td>
+</tr>
+<tr>
+<td>v2</td>
+<td>同时发起四项读取，显示加载和整批结果</td>
+<td>让 A 晚于 B 返回，观察 B 的标题下出现 A 的样本</td>
+</tr>
+<tr>
+<td>v3</td>
+<td>切换时取消上一批，按请求序号提交，逐项保留成功结果</td>
+<td>用可控响应重放旧成功、旧失败、超时及空数组，核对屏幕状态</td>
+</tr>
+</tbody>
+</table></div><h2 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h2>
+<p>所有路径都相对于已有的 <code>frontend/</code>。今天容易混淆两处判断：一条记录能否进入领域层，以及一次读取能否写入页面。先找出它们各自所在的文件。</p>
+<pre><code class="language-text">src/
+├── domain/contracts/
+│   ├── schemas/metric.schema.ts       Day 02 已有，补齐真实单位
+│   └── adapters/dto-to-domain.ts      Day 02 已有，沿用 toMetric
+├── features/metrics/
+│   ├── metrics-client.ts              v1 起使用，读取并适配一项指标
+│   ├── useMetrics.ts                  v3 新增，每个面板拥有自己的请求状态
+│   ├── MetricsPanel.vue               三版均从这个组件进入
+│   └── useMetrics.spec.ts             用可控 Promise 重放乱序
+└── App.vue                            在原有面板旁挂载 MetricsPanel
+vite.config.ts                         开发时把 /api 转发给 Nest
+</code></pre>
+<p>依赖从 <code>App → MetricsPanel → useMetrics → metrics-client → Day 02 adapter</code> 单向流动。v1、v2 的面板直接调用 client，v3 才抽出加载逻辑。读完三版，你应该能指出：谁知道后端字段叫 <code>metricType</code>？谁知道哪次点击仍然有效？关掉面板时谁负责取消？</p>
+<h2 id="15-动手脚手架计入阶段-d">1.5 动手脚手架（计入阶段 D）</h2>
+<ol>
+<li>在 Day 01–02 已完成的 <code>frontend</code> 运行 <code>pnpm typecheck</code>。确认已有 <code>toMetric(input: unknown): Metric | null</code>、Vue 和 Vitest。进入 <code>src/features</code> 新建 <code>metrics</code> 目录。</li>
+<li>启动使用学习数据库的现有后端。默认端口为 4567，若设置了 <code>PORT</code> 就换成实际端口。在 PowerShell 运行 <code>(Invoke-WebRequest 'http://localhost:4567/api/metrics/recent/srv-001?type=cpu&amp;limit=1').Content</code>。把真实的一行数据或 <code>[]</code> 记下来。空数组是成功响应，连接失败则先检查服务与端口。</li>
+<li>在已有 Vite 配置的 <code>server.proxy</code> 下合入 <code>'/api': 'http://localhost:4567'</code>，保留现有插件与别名，重启开发服务器。在已有 <code>App.vue</code> 的 script setup 中导入 <code>import MetricsPanel from './features/metrics/MetricsPanel.vue'</code>，在模板中加入 <code>&lt;MetricsPanel /&gt;</code>。</li>
+<li>依次采用 §3、§4、§5 的面板实现。每换一版，先写下对一次切换的预测，再对照 Network 和页面。v3 完成后，按 §7 把肉眼看到的顺序固定为测试。</li>
+</ol>
+<h2 id="2-学习节奏90-分钟阅读-90-分钟动手">2. 学习节奏（90 分钟阅读 / 90 分钟动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th style="text-align:right">分钟</th>
+<th>结束时手上有什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A / B / C 阅读</td>
+<td style="text-align:right">各 30</td>
+<td>读 §3–5，每版各画一条请求时间线</td>
+</tr>
+<tr>
+<td>D 动手</td>
+<td style="text-align:right">55</td>
+<td>接通后端与合同 15 分钟，两版对照 15 分钟，接入 v3 25 分钟</td>
+</tr>
+<tr>
+<td>E 实验</td>
+<td style="text-align:right">25</td>
+<td>运行 §7 的测试，移除保护，记录失败，再恢复</td>
+</tr>
+<tr>
+<td>F 验收</td>
+<td style="text-align:right">10</td>
+<td>核对 20 次切换记录、工程命令输出与学习日志</td>
+</tr>
+</tbody>
+</table></div><h2 id="3-v1先把数据库的一条-cpu-指标显示出来">3. v1：先把数据库的一条 CPU 指标显示出来</h2>
+<h3 id="31-先预测合同会在哪里拒绝">3.1 先预测合同会在哪里拒绝</h3>
+<p>把 §1.2 的样例直接交给第二天的 <code>toMetric</code>。它需要 <code>met-42</code>、<code>name</code> 和领域单位 <code>percent</code>，而网络上传来 <code>"42"</code>、<code>metricType</code> 和 <code>"%"</code>。如果你把拒绝结果换成数值 0，用户会把合同错误读成“CPU 很空闲”。</p>
+<h3 id="32-v1-完整示例">3.2 v1 完整示例</h3>
+<p>在 Day 02 的 <code>metric.schema.ts</code> 中，把原有单位枚举扩为 <code>z.enum(['percent', 'bytes', 'count', 'ms', 'celsius', 'MB/s'])</code>。若你的 Domain 单独声明了单位联合，同步增加后两项。保留原有单位以继续接受第二天的合法样本。下面的 client 逐条核对服务端返回的服务器、指标名及单位，再复用 <code>toMetric</code> 校验值和时间戳。</p>
+<p><strong>src/features/metrics/metrics-client.ts（三版共用）</strong></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+import { toMetric } from '../../domain/contracts/adapters/dto-to-domain'
+
+export const kinds = ['cpu', 'memory', 'temperature', 'disk_io'] as const
+export type Kind = typeof kinds[number]
+export type Metric = NonNullable&lt;ReturnType&lt;typeof toMetric&gt;&gt;
+
+const rowSchema = z.object({
+  id: z.string().regex(/^\d+$/),
+  serverId: z.string(),
+  metricType: z.enum(kinds),
+  value: z.number(),
+  unit: z.string(),
+  timestamp: z.string(),
+})
+
+const units: Record&lt;Kind, Record&lt;string, string&gt;&gt; = {
+  cpu: { '%': 'percent' }, memory: { '%': 'percent' },
+  temperature: { C: 'celsius', '°C': 'celsius' }, disk_io: { 'MB/s': 'MB/s' },
+}
+
+export class ReadError extends Error {
+  constructor(message: string, readonly retryable: boolean) { super(message) }
+}
+
+export async function readSeries(serverId: string, kind: Kind, signal?: AbortSignal) {
+  const url = `/api/metrics/recent/${encodeURIComponent(serverId)}?type=${kind}&amp;limit=20`
+  const response = await fetch(url, { signal })
+  if (!response.ok) {
+    throw new ReadError(`HTTP ${response.status}`, response.status &gt;= 500 || response.status === 429)
+  }
+  const json: unknown = await response.json()
+  const rows = rowSchema.array().safeParse(json)
+  if (!rows.success) throw new ReadError('指标列表格式错误', false)
+  return rows.data.map(row =&gt; {
+    const unit = units[kind][row.unit]
+    if (row.serverId !== serverId || row.metricType !== kind || typeof unit !== 'string') {
+      throw new ReadError('返回的服务器、指标或单位不匹配', false)
+    }
+    const metric = toMetric({
+      id: `met-${row.id}`, serverId, name: kind, value: row.value, unit, timestamp: row.timestamp,
+    })
+    if (!metric) throw new ReadError('指标未通过 Day 02 合同', false)
+    return metric
+  })
+}
+</code></pre>
+<p><strong>src/features/metrics/MetricsPanel.vue（v1）</strong></p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import { onMounted, ref } from 'vue'
+import { readSeries } from './metrics-client'
+
+const caption = ref('正在读取 CPU')
+onMounted(async () =&gt; {
+  try {
+    const [latest] = await readSeries('srv-001', 'cpu')
+    caption.value = latest ? `${latest.value}%` : '暂无采样'
+  } catch (error) {
+    caption.value = error instanceof Error ? error.message : '读取失败'
+  }
+})
+&lt;/script&gt;
+
+&lt;template&gt;&lt;p&gt;srv-001 CPU · {{ caption }}&lt;/p&gt;&lt;/template&gt;
+</code></pre>
+<h3 id="33-知识点拆解">3.3 知识点拆解</h3>
+<p><strong>Event Loop。</strong> 面板发出请求后，浏览器仍能响应下一次点击。<code>await</code> 挂起当前异步函数，Promise 兑现或拒绝后，后半段通过微任务继续执行。浏览器有机会在任务之间渲染，<code>await</code> 本身不保证出现一帧新画面。先预测下面三行日志的顺序，再贴进浏览器控制台验证。第二行登记的回调会等当前同步代码跑完。</p>
+<pre><code class="language-javascript">console.log('1 发起 CPU 读取')
+Promise.resolve().then(() =&gt; console.log('3 继续处理结果'))
+console.log('2 点击处理结束')
+</code></pre>
+<p><strong>HTTP 成功与数据可用是两个判断。</strong> <code>fetch</code> 收到 500 时仍可兑现为 Response，因此先检查 <code>ok</code>。200 配 <code>[]</code> 应该走“暂无采样”，200 配 <code>[{"value":"52"}]</code> 应该走合同错误。分别给 client 这两个响应，观察页面文字。到这里，页面已经能区分 0%、空数据和读失败。</p>
+<h3 id="34-触发-v2-的实验">3.4 触发 v2 的实验</h3>
+<p>临时将 v1 中的一次读取改为 <code>for (const kind of kinds) await readSeries('srv-001', kind)</code>，同时导入 <code>kinds</code>。在 Network 打开节流，观察后一个请求的起点。假设每项读 200 ms，串行约需 800 ms；请在自己的瀑布图上标出实测值。内存请求的参数并不依赖 CPU 的结果，它为什么要等？</p>
+<h2 id="4-v2一次选择同时读四项指标">4. v2：一次选择，同时读四项指标</h2>
+<h3 id="41-这版要实现什么">4.1 这版要实现什么</h3>
+<p>四个请求使用同一个服务器 ID，分别取四种时间序列。保留 v1 的 client，用下面的组件替换 v1 面板。成功读数带上样本里的 <code>serverId</code>，方便观察“当前选择”和“实际数据来源”是否一致。</p>
+<h3 id="42-v2-完整面板">4.2 v2 完整面板</h3>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import { onMounted, ref } from 'vue'
+import { kinds, readSeries } from './metrics-client'
+
+const selected = ref('srv-001')
+const lines = ref&lt;string[]&gt;([])
+async function load(id: string) {
+  selected.value = id
+  lines.value = ['加载中']
+  try {
+    const series = await Promise.all(kinds.map(kind =&gt; readSeries(id, kind)))
+    lines.value = series.map((points, i) =&gt; {
+      const p = points[0]
+      return p ? `${p.serverId} · ${p.name} · ${p.value} ${p.unit}` : `${kinds[i]} · 暂无采样`
+    })
+  } catch (error) {
+    lines.value = [error instanceof Error ? error.message : '读取失败']
+  }
+}
+onMounted(() =&gt; load(selected.value))
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;button v-for="id in ['srv-001', 'srv-002']" :key="id" @click="load(id)"&gt;{{ id }}&lt;/button&gt;
+  &lt;h2&gt;{{ selected }}&lt;/h2&gt;
+  &lt;p v-for="line in lines" :key="line"&gt;{{ line }}&lt;/p&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="43-知识点拆解">4.3 知识点拆解</h3>
+<p><strong>并发的起点。</strong> <code>map</code> 调用四次 <code>readSeries</code>，每次都能走到第一个 <code>await</code> 并发出请求。<code>Promise.all</code> 汇总已经启动的工作，结果数组按输入顺序排列。给温度请求加延迟，在 Network 看四项开始时间，再检查第三行仍是温度。把四个函数本身交给 <code>Promise.all</code> 不会启动读取。</p>
+<p><strong>整批失败。</strong> 若 CPU 成功、温度返回 500，聚合 Promise 会拒绝，v2 的 catch 会把面板改成一行错误。其他请求仍可完成。在 Network 暂时阻止一个指标 URL，比较“成功请求数”和“可见读数数”。这两个数字的差距就是 v3 要修的第二个问题。</p>
+<h3 id="44-触发-v3-的实验">4.4 触发 v3 的实验</h3>
+<p>在 v2 的 <code>await Promise.all(...)</code> 之后、写 <code>lines.value</code> 之前临时加入：</p>
+<pre><code class="language-typescript">if (id === 'srv-001') await new Promise(resolve =&gt; setTimeout(resolve, 1500))
+</code></pre>
+<p>让两台服务器都有采样。点 A（001），等它的四项读取结束但还处于延迟中，立即点 B（002）。等 B 出现后再等到 A 醒来。记录标题和样本上的服务器号：</p>
+<pre><code class="language-text">点击 A ── A 的数据到达 ────────────── A 提交 → 标题 B，样本 A
+                 点击 B ── B 提交 → 标题 B，样本 B
+</code></pre>
+<p>A、B 都通过了 schema。错误发生在赋值那一行。即使此时取消 A 的网络请求，那个已经拿到结果的异步函数仍然能继续。移除临时延迟，进入 v3。</p>
+<h2 id="5-v3取消上一批只允许当前批次提交">5. v3：取消上一批，只允许当前批次提交</h2>
+<h3 id="51-先写下这版必须守住的规则">5.1 先写下这版必须守住的规则</h3>
+<p>每次点击（包括连续两次点同一台）都有独立序号。切换时立即显示新服务器的 <code>loading</code>。全部成功且点数为零时进入 <code>empty</code>，全部失败进入 <code>error</code>，其他情况进入 <code>ready</code>，逐项展示点列、空采样或失败原因。旧批次成功、失败、超时或被取消，都不能写入当前页面。</p>
+<h3 id="52-目录与职责">5.2 目录与职责</h3>
+<p>沿用 §1.4 的目录。v1 的 client 已支持 <code>signal</code>，今天实际发请求和读响应体的地方只有 <code>readSeries</code>。现在增加 <code>useMetrics.ts</code>，把一次点击的生命周期从组件中提出来。保留 §3.2 的 client 和 §1.5 的 App 入口，下面两个文件即构成 v3 的新增与替换代码。</p>
+<h3 id="53-v3-完整加载逻辑与面板">5.3 v3 完整加载逻辑与面板</h3>
+<p><strong>src/features/metrics/useMetrics.ts</strong></p>
+<pre><code class="language-typescript">import { shallowRef } from 'vue'
+import { kinds, readSeries, ReadError, type Kind, type Metric } from './metrics-client'
+
+type Issue = { message: string; retryable: boolean }
+type Card =
+  | { kind: Kind; ok: true; points: Metric[] }
+  | { kind: Kind; ok: false; issue: Issue }
+type State =
+  | { status: 'loading' | 'empty'; id: string }
+  | { status: 'ready' | 'error'; id: string; cards: Card[] }
+
+function explain(reason: unknown): Issue {
+  if (reason instanceof ReadError) return { message: reason.message, retryable: reason.retryable }
+  if (reason instanceof DOMException &amp;&amp; reason.name === 'TimeoutError') {
+    return { message: '请求超时', retryable: true }
+  }
+  if (reason instanceof SyntaxError) return { message: '响应不是合法 JSON', retryable: false }
+  if (reason instanceof TypeError) return { message: '连接失败，请检查网络', retryable: true }
+  return { message: '读取失败，请检查请求日志', retryable: false }
+}
+
+export function useMetrics(read = readSeries, timeoutMs = 5000) {
+  const state = shallowRef&lt;State&gt;({ status: 'empty', id: '' })
+  let latest = 0
+  let active: AbortController | undefined
+
+  function cancel() {
+    latest += 1
+    active?.abort()
+    active = undefined
+  }
+
+  async function load(id: string) {
+    cancel()
+    const requestId = latest
+    const controller = new AbortController()
+    active = controller
+    state.value = { status: 'loading', id }
+    const timer = setTimeout(() =&gt; {
+      controller.abort(new DOMException('超过读取时限', 'TimeoutError'))
+    }, timeoutMs)
+
+    try {
+      const results = await Promise.allSettled(kinds.map(kind =&gt; read(id, kind, controller.signal)))
+      if (requestId !== latest) return
+      const cards: Card[] = results.map((result, i) =&gt; result.status === 'fulfilled'
+        ? { ok: true, kind: kinds[i]!, points: result.value }
+        : { ok: false, kind: kinds[i]!, issue: explain(result.reason) })
+      if (cards.every(card =&gt; card.ok &amp;&amp; card.points.length === 0)) {
+        state.value = { status: 'empty', id }
+      } else {
+        const status = cards.every(card =&gt; !card.ok) ? 'error' : 'ready'
+        state.value = { status, id, cards }
+      }
+    } finally {
+      clearTimeout(timer)
+      if (requestId === latest) active = undefined
+    }
+  }
+
+  return { state, load, cancel }
+}
+</code></pre>
+<p><strong>src/features/metrics/MetricsPanel.vue</strong></p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import { onBeforeUnmount, onMounted } from 'vue'
+import { useMetrics } from './useMetrics'
+
+const { state, load, cancel } = useMetrics()
+onMounted(() =&gt; load('srv-001'))
+onBeforeUnmount(cancel)
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;button v-for="id in ['srv-001', 'srv-002']" :key="id" @click="load(id)"&gt;{{ id }}&lt;/button&gt;
+  &lt;section aria-live="polite"&gt;
+    &lt;h2&gt;{{ state.id }} 指标&lt;/h2&gt;
+    &lt;p v-if="state.status === 'loading'"&gt;加载中&lt;/p&gt;
+    &lt;p v-else-if="state.status === 'empty'"&gt;暂无采样&lt;/p&gt;
+    &lt;template v-else-if="'cards' in state"&gt;
+      &lt;p v-if="state.status === 'error'"&gt;本次四项读取均失败&lt;/p&gt;
+      &lt;ul&gt;
+        &lt;li v-for="card in state.cards" :key="card.kind"&gt;
+          {{ card.kind }} ·
+          &lt;template v-if="!card.ok"&gt;{{ card.issue.message }}&lt;/template&gt;
+          &lt;template v-else-if="card.points[0]"&gt;
+            {{ card.points[0].serverId }} · {{ card.points[0].value }} {{ card.points[0].unit }}
+          &lt;/template&gt;
+          &lt;template v-else&gt;暂无采样&lt;/template&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;button v-if="state.cards.some(card =&gt; !card.ok &amp;&amp; card.issue.retryable)"
+              @click="load(state.id)"&gt;重新读取本机指标&lt;/button&gt;
+    &lt;/template&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="54-把六个判断落到具体代码">5.4 把六个判断落到具体代码</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>你会遇到的现象</th>
+<th>机制与代码落点</th>
+<th>怎样验证自己的解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>切到 B 后，A 的四项还占着连接</td>
+<td>每批只有一个 controller，四次 fetch 共享 signal。切换和卸载都调用 <code>cancel</code></td>
+<td>放慢响应，在 Network 里找仍在传输的 A 请求，观察取消状态。已完成的请求会保留成功记录</td>
+</tr>
+<tr>
+<td>A → B → A，最早的 A 能通过服务器 ID 比较</td>
+<td>每一次 <code>load</code> 都取得新序号。比对发生在聚合完成后、写响应式状态之前</td>
+<td>让第一批 A 最后返回，对照 §7 的旧批次测试；两次 A 的样本值应设成不同值</td>
+</tr>
+<tr>
+<td>A 的收尾赶在 B 读取期间执行</td>
+<td>每批清自己的 timer，只有当前批能释放 <code>active</code>。清错引用会使下一次点击无法取消 B</td>
+<td>临时无条件清空 <code>active</code>，让 A 收尾后再点 C，检查 B 的 signal</td>
+</tr>
+<tr>
+<td>CPU 已成功，温度超时</td>
+<td>超时会以 <code>TimeoutError</code> 中断本批未完成的 fetch；<code>allSettled</code> 保留已经成功的点，按输入顺序返回每项结局</td>
+<td>只拖慢温度，等到时限；页面可同时出现 CPU 读数和温度超时</td>
+</tr>
+<tr>
+<td>切换、500、脏 JSON 都可能结束一次等待</td>
+<td>先按序号丢弃过期批次，再由 <code>explain</code> 区分当前批的 HTTP、超时、网络与合同错误。合同错误要修数据或映射</td>
+<td>404 与 500 都能看到状态码，仅 500 可触发重试；切换导致的取消不会弹错误</td>
+</tr>
+<tr>
+<td>空库容易被画成四个 0，或一直转圈</td>
+<td><code>State</code> 一次替换整份快照。四个成功空数组进入 empty；真实的 0 存在长度为 1 的点列中</td>
+<td>用 <code>[]</code> 和 <code>[{…, value: 0}]</code> 分别读取，观察“暂无采样”和数值 0</td>
+</tr>
+</tbody>
+</table></div><p><strong>读时序图。</strong> 当 A 的 HTTP 已经结束，取消能省下的网络工作可能是零。此时 §4.4 的延迟仍会到期，序号检查挡在唯一的结果提交点。另一方面，仅有序号能保住画面，旧读取仍可能占用带宽。在 §7 的两个反证里，观察取消是否传到网络，以及旧数据是否还能写入页面。<a href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort" target="_blank" rel="noopener noreferrer">MDN 的 abort 语义</a> · <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled" target="_blank" rel="noopener noreferrer">MDN 的 allSettled 返回顺序</a></p>
+<h2 id="6-三版对比一览表">6. 三版对比一览表</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可见功能</td>
+<td>一台机器一个 CPU 读数</td>
+<td>可切换并读四项</td>
+<td>快速切换与局部失败都可解释</td>
+</tr>
+<tr>
+<td>数据模型</td>
+<td>一个点列</td>
+<td>四个点列整体成功</td>
+<td>各指标各有成功或失败结果</td>
+</tr>
+<tr>
+<td>状态存储</td>
+<td>caption</td>
+<td>selected 与 lines 独立</td>
+<td>带 id 的 State 快照</td>
+</tr>
+<tr>
+<td>提交逻辑</td>
+<td>首次读取后赋值</td>
+<td>谁最后到谁覆盖</td>
+<td>当前序号才能提交</td>
+</tr>
+<tr>
+<td>可测试性</td>
+<td>可测合同与 HTTP</td>
+<td>靠延迟复现页面覆盖</td>
+<td>可注入 read，精确控制兑现顺序</td>
+</tr>
+<tr>
+<td>架构层次</td>
+<td>组件 → client → 合同</td>
+<td>聚合写在组件内</td>
+<td>组件 → 加载逻辑 → client → 合同</td>
+</tr>
+<tr>
+<td>更换数据源</td>
+<td>改 client</td>
+<td>整批失败语义仍在组件</td>
+<td>保持 read 的点列和取消约定即可</td>
+</tr>
+<tr>
+<td>编译期约束</td>
+<td>单项值类型</td>
+<td>成功后拿到数组</td>
+<td>读 points 或 issue 前按 ok 收窄</td>
+</tr>
+<tr>
+<td>后续复用</td>
+<td>合同入口</td>
+<td>并发读取</td>
+<td>Day 04 取点列，Day 06 快照补偿可沿用请求归属判断</td>
+</tr>
+</tbody>
+</table></div><h3 id="65-前端底子补弱">6.5 前端底子补弱</h3>
+<ul>
+<li><strong>还说不清 await 在等什么？</strong> 回到 §3.3，把 <code>Promise.resolve()</code> 换成一个由按钮手动兑现的 Promise。等待期间点另一个按钮，解释它为何仍会响应。</li>
+<li><strong>把所有失败都当空数组？</strong> 对照 §5.4，逐项预测“CPU 是 0、温度无采样、内存 500、磁盘正常”的画面。指出哪个状态允许重试。</li>
+<li><strong>只会说“取消了就行”？</strong> 在 §7 的可控读取中忽略 signal，先让 B 报错，再让 A 成功。指出界面正确时是哪一行起了作用。</li>
+</ul>
+<h2 id="7-项目验收清单">7. 项目验收清单</h2>
+<h3 id="76-用可控-promise-固定返回顺序">7.6 用可控 Promise 固定返回顺序</h3>
+<p><strong>src/features/metrics/useMetrics.spec.ts</strong>。假读取只替换网络，保留真实的状态提交代码。第一个用例故意让旧读取忽略 signal，模拟响应已经到手、后续异步工作还在继续。</p>
+<pre><code class="language-typescript">import { expect, it } from 'vitest'
+import { useMetrics } from './useMetrics'
+import { kinds, ReadError, type Metric } from './metrics-client'
+
+function pending&lt;T&gt;() {
+  let release!: (value: T) =&gt; void
+  const promise = new Promise&lt;T&gt;(resolve =&gt; { release = resolve })
+  return { promise, release }
+}
+
+it('旧批次迟到时保留 B 的错误快照，同时向 A 传播取消', async () =&gt; {
+  const a = pending&lt;Metric[]&gt;()
+  const signals: AbortSignal[] = []
+  const { state, load } = useMetrics(async (id, _kind, signal) =&gt; {
+    if (id === 'srv-002') throw new ReadError('HTTP 500', true)
+    signals.push(signal!)
+    return a.promise
+  })
+  const first = load('srv-001')
+  await load('srv-002')
+  expect(signals).toHaveLength(4)
+  expect(signals.every(signal =&gt; signal.aborted)).toBe(true)
+  a.release([])
+  await first
+  expect(state.value).toMatchObject({ id: 'srv-002', status: 'error' })
+})
+
+it('当前服务器的四项均成功且无采样时显示 empty', async () =&gt; {
+  const { state, load } = useMetrics(async () =&gt; [])
+  const task = load('srv-001')
+  expect(state.value.status).toBe('loading')
+  await task
+  expect(state.value.status).toBe('empty')
+})
+
+it('温度超时保留其他三项结果，可重试温度错误', async () =&gt; {
+  const { state, load } = useMetrics(async (_id, kind, signal) =&gt; {
+    if (kind !== 'temperature') return []
+    return new Promise&lt;Metric[]&gt;((_resolve, reject) =&gt; {
+      signal!.addEventListener('abort', () =&gt; reject(signal!.reason), { once: true })
+    })
+  }, 5)
+  await load('srv-001')
+  expect(state.value).toMatchObject({
+    status: 'ready',
+    cards: kinds.map(kind =&gt; kind === 'temperature'
+      ? { kind, ok: false, issue: { message: '请求超时', retryable: true } }
+      : { kind, ok: true, points: [] }),
+  })
+})
+</code></pre>
+<p>再自行补两条回归。① A → B → A，第一批最后失败，第三批成功，页面保留第三批状态；② 面板卸载后才兑现旧读取，断言已 abort 且状态对象引用不再变化。切换实验同时记录“最后一次选择”和“最后一次提交”，只截最终页面会漏掉中途短暂串台。</p>
+<h3 id="77-反证一去掉提交前的序号判断">7.7 反证一：去掉提交前的序号判断</h3>
+<p>只注释 <code>if (requestId !== latest) return</code>，运行第一个测试。B 已进入 error，A 返回空数组后却把它改成 A 的 empty。记下期望值与实际值，恢复判断，确认同一用例转绿。用例里的 A 显式忽略了 signal，因此结果可重复。</p>
+<h3 id="78-反证二保留序号去掉网络取消">7.8 反证二：保留序号，去掉网络取消</h3>
+<p>只注释 <code>cancel()</code> 函数体内的 <code>active?.abort()</code>，保留 <code>latest += 1</code>。第一个用例的 signal 断言失败。单看页面仍可能正常，但旧请求继续占用连接。恢复取消，重新运行三条用例。把两次失败分别对应到“错误提交”和“多做工作”。</p>
+<h3 id="79-工程验证">7.9 工程验证</h3>
+<p>在学习项目的 <code>frontend</code> 中依次运行：</p>
+<pre><code class="language-powershell">pnpm exec vitest run src/features/metrics/useMetrics.spec.ts
+pnpm typecheck
+pnpm lint
+pnpm test
+pnpm build
+</code></pre>
+<p>连接真实后端，在两台有采样的机器间连续切换 20 次。为每批临时记录 <code>requestId / id / start / commit 或 discard</code>，核对每次提交都属于当时的选择。把测试和手动验收的输出分别保存，再提交本日学习代码。</p>
+<h2 id="8-通过标准">8. 通过标准</h2>
+<ul>
+<li>[ ] 首屏有真实请求与响应样例，四种指标能显示各自的最新点，0 值、空数组和错误有不同表现。</li>
+<li>[ ] 20 次切换中，旧成功和旧失败均未覆盖当前状态；测试覆盖取消、超时、局部失败与卸载。</li>
+<li>[ ] 两个反证各有一次确定的失败与恢复后的通过记录，工程检查通过。</li>
+<li>[ ] 能指着一段请求时间线解释：哪一刻可以取消网络工作，哪一刻必须检查是否还允许写页面。</li>
+</ul>
+<h2 id="9-提交物">9. 提交物</h2>
+<p>学习项目的代码 commit；<code>docs/evidence/day-03/</code> 下的真实响应、请求时序图、20 次切换记录、测试及工程输出、两组反证；<code>docs/learning/day-03.md</code> 中的课末三问与 AI Review。记录一条你接受、修改或拒绝的建议，并引用测试或现场观察说明理由。</p>
+<h2 id="10-课末三个核心问题">10. 课末三个核心问题</h2>
+<ol>
+<li>点 B 后 A 的数据仍通过了 schema。沿着组件、client、合同和状态提交点，指出哪一层有足够的信息决定能否显示 A。</li>
+<li>四项读取中，CPU 返回 0、温度超时、其余成功但为空。v2 和 v3 各显示什么？指给教师看代码里决定这项差异的两行。</li>
+<li>A → B → A 时，用服务器 ID 比较为什么会漏判？画出三个请求的启动和完成顺序，设计一个只能由第一批触发的失败断言。</li>
+</ol>
+<h2 id="11-真实项目情境题">11. 真实项目情境题</h2>
+<p>以下为教学模拟，数字用于构造实验。每题按“定位证据 → 临时止损 → 根因修复 → 回归验证”组织回答。</p>
+<ol>
+<li>运维在 800 ms 内切换 6 台机器，最终标题正确，CPU 偶尔属于第一台。给出最少需要记录的字段，指出只看 HTTP 200 会错过什么。把回归扩到 100 次，并设计能发现短暂错显的断言。</li>
+<li>看板扩为 8 项读取，一项超时、两项返回 500，其他五项仍有使用价值。画出逐项失败与整屏失败的分界，说明如何限制同时在途的请求，以及用户切走后排队中的读取如何停止。用一组故障输入证明成功模块仍可读。</li>
+</ol>
+<h2 id="12-pdf-面试题">12. PDF 面试题</h2>
+<p>沿用课程本地资料的题目映射。文件名仅作索引，题目用于学习自测。</p>
+<ol>
+<li>浏览器事件循环如何工作？连续微任务对流式 UI 的渲染机会有什么影响？用 §3.3 的输出顺序说明，再解释为什么看见日志并不能证明屏幕已绘制。资料《2026已发交个朋友全栈AI工程师》第 1 页。</li>
+<li><code>Promise.all</code> 和 <code>Promise.allSettled</code> 各适合什么场景？用 v2 和 v3 对同一个 500 的反应作答，并说明谁负责取消其余请求。资料《2026高德 Al agent 前端开发》第 3 页。</li>
+</ol>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<p>提交真实 diff、测试与时序图后，教师围绕局部机制、合同边界、线上故障、工程取舍、后续复用逐步追问。第一项现场演示是重放一次 A 晚于 B 的返回，让教师看到两个序号及最终状态。<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">教师五连问验收协议</a></p>
+<h2 id="14-本-day-在-90-天路线中的锚点">14. 本 Day 在 90 天路线中的锚点</h2>
+<p>Day 01 提供了“用一种状态描述当前画面”的思路，Day 02 提供了数据入口的校验。Day 03 交给 Day 04 的是<strong>按服务器和指标分类、已经校验、带时间戳与单位的点列</strong>。下一课用这些点列初始化 ECharts 的四张图；之后接入实时推送时，REST 仍可承担首屏和重连后的快照读取。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day03-old.html">查看 Day 03 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/02.html">← Day 02 · 领域合同</a>
+            <a href="/ai-teacher-agent-devolop/day/04.html">Day 04 · Vue/ECharts 原理 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#14-%E6%9C%AC%E6%97%A5%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8A%A8%E6%89%8B%E5%89%8D%E5%85%88%E7%9C%8B%E9%AA%A8%E6%9E%B6">1.4 本日项目目录结构（动手前先看骨架）</a></li><li><a href="#15-%E5%8A%A8%E6%89%8B%E8%84%9A%E6%89%8B%E6%9E%B6%E8%AE%A1%E5%85%A5%E9%98%B6%E6%AE%B5-d">1.5 动手脚手架（计入阶段 D）</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F90-%E5%88%86%E9%92%9F%E9%98%85%E8%AF%BB-90-%E5%88%86%E9%92%9F%E5%8A%A8%E6%89%8B">2. 学习节奏（90 分钟阅读 / 90 分钟动手）</a></li><li><a href="#3-v1%E5%85%88%E6%8A%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%B8%80%E6%9D%A1-cpu-%E6%8C%87%E6%A0%87%E6%98%BE%E7%A4%BA%E5%87%BA%E6%9D%A5">3. v1：先把数据库的一条 CPU 指标显示出来</a></li><li><a href="#4-v2%E4%B8%80%E6%AC%A1%E9%80%89%E6%8B%A9%E5%90%8C%E6%97%B6%E8%AF%BB%E5%9B%9B%E9%A1%B9%E6%8C%87%E6%A0%87">4. v2：一次选择，同时读四项指标</a></li><li><a href="#5-v3%E5%8F%96%E6%B6%88%E4%B8%8A%E4%B8%80%E6%89%B9%E5%8F%AA%E5%85%81%E8%AE%B8%E5%BD%93%E5%89%8D%E6%89%B9%E6%AC%A1%E6%8F%90%E4%BA%A4">5. v3：取消上一批，只允许当前批次提交</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94%E4%B8%80%E8%A7%88%E8%A1%A8">6. 三版对比一览表</a></li><li><a href="#7-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95">7. 项目验收清单</a></li><li><a href="#8-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86">8. 通过标准</a></li><li><a href="#9-%E6%8F%90%E4%BA%A4%E7%89%A9">9. 提交物</a></li><li><a href="#10-%E8%AF%BE%E6%9C%AB%E4%B8%89%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">10. 课末三个核心问题</a></li><li><a href="#11-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98">11. 真实项目情境题</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">12. PDF 面试题</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">14. 本 Day 在 90 天路线中的锚点</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

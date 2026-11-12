@@ -1,0 +1,1632 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 07 · 事件与算法（阈值检测 → Z-Score → 领域事件驱动） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week" open="">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html" aria-current="page">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/01.html">第 1 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 07</p>
+        <h1>事件与算法（阈值检测 → Z-Score → 领域事件驱动）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段一（Day 1-30，前端 -&gt; AI 前端）。所有 BFF、NestJS、数据库、队列和 Agent 后端增量都必须服务于 <code>p1-monitor</code> 的真实 AI 前端链路，不得另起无关 Demo。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+</blockquote>
+<p>任务版本：标准版
+日期与时长：2026-07-20 周一，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：D:\demo\ai-techer\p1-monitor（后端 + 前端）
+角色视角：掌握 Day 1-6 事件流、合同、异步、图表、WebSocket 的全栈开发者，现在要在服务端做异常检测</p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p><strong>承上</strong>：</p>
+<ul>
+<li>Day 1 建立了 AgentEvent 事件流和 reducer 状态机</li>
+<li>Day 2 为事件类型加上了 zod schema 运行时校验</li>
+<li>Day 3-4 实现了指标读取与图表渲染</li>
+<li>Day 5-6 建立了 WebSocket 实时推送 + 心跳重连</li>
+</ul>
+<p><strong>启下</strong>：</p>
+<ul>
+<li>Day 8 会把今天的异常事件写入告警中心</li>
+<li>Day 15 会用今天的确定性测试跑历史数据回归</li>
+<li>Day 30 会用今天的领域事件模式扩展多种检测算法</li>
+</ul>
+<p><strong>今天的核心</strong>：
+在服务端对 WebSocket 推送前的指标数据做<strong>异常检测</strong>，通过 <strong>NestJS DI → 领域事件 → 确定性测试</strong>三个递进层次，保证异常告警的正确性、可测性和可扩展性。</p>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p>在 p1-monitor 运维监控系统的服务器详情页：</p>
+<ol>
+<li><strong>实时告警</strong>：CPU/内存超过阈值时，图表上出现红色标注点</li>
+<li><strong>趋势告警</strong>：连续 5 个点显著偏离历史均值（Z-Score &gt; 3）时，出现黄色警告</li>
+<li><strong>告警去重</strong>：同一异常在 5 分钟内只上报一次，不刷屏</li>
+<li><strong>可回溯</strong>：切换到"告警历史"页面，可以看到每条告警的原始数据和检测规则</li>
+</ol>
+<p><strong>关键</strong>：告警必须"稳定复现"——同一份历史数据回放，产生的告警集合完全一致，不能靠调阈值掩盖 bug。</p>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<p><strong>在 p1-monitor 项目中的定位</strong>：</p>
+<ul>
+<li><strong>架构层</strong>：领域层（domain），负责业务规则的核心逻辑</li>
+<li><strong>依赖方</strong>：Day 8 告警中心、Day 15 历史回放都依赖今天的检测规则</li>
+<li><strong>被依赖方</strong>：今天依赖 Day 2 的 MetricSnapshot 类型、Day 5 的 WebSocket Gateway</li>
+</ul>
+<p><strong>为什么是 Day 7</strong>：</p>
+<ul>
+<li>Day 1-6 建立了"数据传输管道"，但数据本身没有业务判断</li>
+<li>今天开始加入"业务规则层"，必须处理 <strong>NestJS DI 生命周期 + 领域事件解耦 + 确定性测试</strong>问题</li>
+<li>这些问题在 Day 8 告警中心会更复杂，所以先在检测算法这个纯逻辑场景练习</li>
+</ul>
+<h3 id="13-三版演进的目标v1-v2-v3">1.3 三版演进的目标（v1 / v2 / v3）</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>核心目标</th>
+<th>用户体验</th>
+<th>技术关键点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td>简单阈值检测</td>
+<td>CPU &gt; 80 就告警</td>
+<td>if 判断</td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>Z-Score 统计检测</td>
+<td>显著偏离均值时告警</td>
+<td>滑窗均值 + 标准差</td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>领域事件 + DI 隔离 + 确定性测试</td>
+<td>检测规则可插拔，测试稳定复现</td>
+<td>NestJS Provider + EventEmitter</td>
+</tr>
+</tbody>
+</table></div><p><strong>痛点演进</strong>：</p>
+<ul>
+<li>v1 痛点：阈值写死、单值判断、不同服务器共用阈值不合理</li>
+<li>v2 痛点：滑窗数据放在 Service 里成为跨请求共享状态，并发时串台</li>
+<li>v3 终态：<code>REQUEST</code> scope 隔离状态 + 领域事件解耦告警和检测 + 固定样本集测试</li>
+</ul>
+<h3 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h3>
+<p><strong>为什么放在最前面</strong>：每天动手前必须先在脑子里立起骨架，知道今天要建哪些文件、它们之间的依赖关系是什么、哪条依赖不能反过来。骨架不清晰直接动手 = 返工。</p>
+<p><strong>今天在 <code>p1-monitor/backend/</code> 下要建立的完整源码树（v3 完整版）</strong>：</p>
+<pre><code>backend/
+├── src/
+│   ├── domain/
+│   │   └── anomaly/                        ← 今天新建（领域层）
+│   │       ├── anomaly.types.ts            ← Anomaly / DetectionRule 类型
+│   │       ├── anomaly.events.ts           ← 领域事件定义
+│   │       ├── detectors/
+│   │       │   ├── threshold-detector.ts   ← 阈值检测（纯函数）
+│   │       │   ├── zscore-detector.ts      ← Z-Score 检测（纯函数）
+│   │       │   └── detector.interface.ts   ← 检测器接口
+│   │       └── fixtures/
+│   │           ├── rising-trend.json       ← 上升趋势样本
+│   │           ├── falling-trend.json      ← 下降趋势样本
+│   │           ├── out-of-order.json       ← 乱序样本
+│   │           └── duplicate.json          ← 重复样本
+│   ├── anomaly/                            ← 今天新建（应用层）
+│   │   ├── anomaly.module.ts               ← 模块定义
+│   │   ├── anomaly.service.ts              ← 编排检测器 + 发事件
+│   │   ├── anomaly.service.spec.ts         ← Service 测试
+│   │   └── anomaly.listener.ts             ← 监听 metric.created 事件
+│   └── metrics/                            ← Day 5 已建立，今天派发事件
+│       └── metrics.service.ts
+</code></pre>
+<p><strong>三版演进对应的文件差异</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>文件</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>threshold-detector.ts</code></td>
+<td>存在（写死 80）</td>
+<td>加可配置阈值</td>
+<td>同 v2</td>
+</tr>
+<tr>
+<td><code>zscore-detector.ts</code></td>
+<td>无</td>
+<td>存在（滑窗在 Service 里）</td>
+<td>滑窗改用 REQUEST scope</td>
+</tr>
+<tr>
+<td><code>anomaly.service.ts</code></td>
+<td>直接返回 boolean</td>
+<td>返回 Anomaly[]</td>
+<td>派发领域事件</td>
+</tr>
+<tr>
+<td><code>anomaly.listener.ts</code></td>
+<td>无</td>
+<td>无</td>
+<td>监听 metric.created</td>
+</tr>
+<tr>
+<td><code>fixtures/*.json</code></td>
+<td>无</td>
+<td>无</td>
+<td>4 个固定样本</td>
+</tr>
+</tbody>
+</table></div><p><strong>依赖方向（务必单向，反过来一次都不行）</strong>：</p>
+<pre><code>MetricsService (发 metric.created)
+     ↓
+AnomalyListener (监听事件)
+     ↓
+AnomalyService (编排)
+     ↓
+detectors/* (纯函数)
+     ↓
+anomaly.types.ts (类型)
+</code></pre>
+<p><strong>红线</strong>：</p>
+<ul>
+<li><code>detectors/*.ts</code> 里出现 <code>@Injectable</code> 或 <code>import { Injectable } from '@nestjs/common'</code> 就是架构塌方（检测器必须是纯函数，Node.js 直接可测）</li>
+<li><code>AnomalyService</code> 里直接调用 <code>MetricsService</code> 就是架构塌方（必须通过事件解耦）</li>
+</ul>
+<p><strong>动手前先问自己 3 个问题</strong>：</p>
+<ol>
+<li>为什么检测器要放在 <code>domain/anomaly/detectors/</code>，不放在 <code>anomaly/detectors/</code>？—— 见 §5.4 知识点「领域层与应用层」</li>
+<li>Z-Score 的滑窗数据放在哪一层？—— 见 §5.4 知识点「NestJS Scope」</li>
+<li><code>AnomalyService</code> 检测到异常后，直接调用 <code>AlertService</code> 还是发事件？—— 见 §5.4 知识点「领域事件解耦」</li>
+</ol>
+<h3 id="15-阶段-d动手脚手架30-分钟先搭骨架再看正文">1.5 阶段 D：动手脚手架（30 分钟，先搭骨架再看正文）</h3>
+<p><strong>时间盒</strong>：阶段 D 总共 30 分钟。如果遇到问题（例如 DI scope 报错），先标记 <code>// TODO</code>，继续往下，读完 v3 代码后回来改。</p>
+<h4 id="151-d-1搭工程骨架-装依赖5-分钟">1.5.1 D-1：搭工程骨架 / 装依赖（5 分钟）</h4>
+<pre><code class="language-bash">cd p1-monitor/backend
+pnpm add @nestjs/event-emitter
+</code></pre>
+<h4 id="152-d-2创建目录3-分钟">1.5.2 D-2：创建目录（3 分钟）</h4>
+<pre><code class="language-bash">cd backend/src
+mkdir -p domain/anomaly/detectors domain/anomaly/fixtures
+mkdir -p anomaly
+touch domain/anomaly/anomaly.types.ts
+touch domain/anomaly/anomaly.events.ts
+touch domain/anomaly/detectors/detector.interface.ts
+touch domain/anomaly/detectors/threshold-detector.ts
+touch domain/anomaly/detectors/zscore-detector.ts
+touch anomaly/anomaly.module.ts anomaly/anomaly.service.ts anomaly/anomaly.service.spec.ts
+touch anomaly/anomaly.listener.ts
+</code></pre>
+<h4 id="153-d-3实现-domain-层40-分钟">1.5.3 D-3：实现 domain 层（40 分钟）</h4>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>domain/anomaly/anomaly.types.ts</code>（Anomaly 类型、DetectionRule 接口）</li>
+<li>写 <code>domain/anomaly/anomaly.events.ts</code>（<code>MetricCreatedEvent</code> / <code>AnomalyDetectedEvent</code>）</li>
+<li>写 <code>domain/anomaly/detectors/*.ts</code>（三个检测器纯函数）</li>
+<li>写 <code>domain/anomaly/fixtures/*.json</code>（4 个固定样本）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么 <code>Anomaly</code> 类型里要有 <code>ruleId</code> 字段？（可回溯性）</li>
+<li>Z-Score 算法：<code>(x - mean) / stddev &gt; 3</code> 表示什么？（3σ 原则）</li>
+<li>固定样本为什么用 JSON 而不是硬编码在 spec 文件里？（可复用、可回归）</li>
+</ul>
+<h4 id="154-d-4实现应用层40-分钟">1.5.4 D-4：实现应用层（40 分钟）</h4>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>写 <code>anomaly/anomaly.module.ts</code>（注册 REQUEST scope Provider + Listener）</li>
+<li>写 <code>anomaly/anomaly.service.ts</code>（编排检测器 + 发事件）</li>
+<li>写 <code>anomaly/anomaly.listener.ts</code>（监听 metric.created）</li>
+<li>在 <code>AppModule</code> 里注册 <code>EventEmitterModule.forRoot()</code> + <code>AnomalyModule</code></li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>Scope.REQUEST</code> 和 <code>Scope.DEFAULT</code> 有什么区别？（每请求新实例 vs 单例）</li>
+<li>为什么 Listener 要放在应用层，不放在领域层？（领域层不依赖框架）</li>
+<li>发事件用 <code>emit</code> 还是 <code>emitAsync</code>？（fire-and-forget vs 等待处理完）</li>
+</ul>
+<h4 id="155-d-5升级-metrics-派发事件10-分钟">1.5.5 D-5：升级 Metrics 派发事件（10 分钟）</h4>
+<p>按第 5.3 节的代码：</p>
+<ul>
+<li>升级 <code>metrics/metrics.service.ts</code>（新建 metric 后派发 <code>metric.created</code>）</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>MetricsService</code> 需要注入 <code>EventEmitter2</code> 吗？（是）</li>
+<li>事件 payload 里应该包含完整 MetricSnapshot 还是只有 id？（完整对象，减少下游查询）</li>
+<li>派发事件失败会不会影响主流程？（不会，emit 是 fire-and-forget）</li>
+</ul>
+<hr>
+<h2 id="2-学习节奏90-阅读-90-动手">2. 学习节奏（90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>内容</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>30 分钟</td>
+<td>阅读第 3 节（v1 阈值检测）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>30 分钟</td>
+<td>阅读第 4 节（v2 Z-Score 检测）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>30 分钟</td>
+<td>阅读第 5 节（v3 领域事件 + DI 隔离）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td><strong>D</strong></td>
+<td>60 分钟</td>
+<td>在自己项目里实现 v3 完整功能（见 §1.5）</td>
+<td>动手</td>
+</tr>
+<tr>
+<td><strong>E</strong></td>
+<td>20 分钟</td>
+<td>写核心逻辑测试 + 两个反证实验（见 §7.6-7.8）</td>
+<td>动手</td>
+</tr>
+<tr>
+<td><strong>F</strong></td>
+<td>10 分钟</td>
+<td>运行 lint/typecheck/test/build，提交 commit（见 §7.9）</td>
+<td>动手</td>
+</tr>
+</tbody>
+</table></div><p><strong>设计原则</strong>：</p>
+<ul>
+<li>前 60 分钟只读、不写</li>
+<li>后 120 分钟只写、不读</li>
+<li>E 阶段的"反证实验"用 4 个固定样本验证 v1/v2 的痛点</li>
+</ul>
+<hr>
+<h2 id="3-v1最小闭环阈值检测">3. v1：最小闭环（阈值检测）</h2>
+<h3 id="31-v1-要实现什么">3.1 v1 要实现什么</h3>
+<p><strong>用户视角</strong>：</p>
+<ul>
+<li>CPU &gt; 80% 时上报告警</li>
+<li>内存 &gt; 90% 时上报告警</li>
+</ul>
+<p><strong>技术视角</strong>：</p>
+<ul>
+<li>一个函数 <code>if (metric.value &gt; threshold) return true</code></li>
+<li>阈值写死在代码里</li>
+</ul>
+<h3 id="32-v1-完整代码">3.2 v1 完整代码</h3>
+<p><strong>backend/src/domain/anomaly/detectors/threshold-detector.ts</strong>（v1 版本）</p>
+<pre><code class="language-ts">import type { MetricSnapshot } from '@/domain/metrics/metric.types'
+
+/**
+ * v1: 简单阈值检测
+ * 缺点：阈值写死、不同服务器共用阈值不合理
+ */
+export function detectByThreshold(metric: MetricSnapshot): boolean {
+  const thresholds = {
+    cpu: 80,
+    memory: 90,
+    network: 100,
+    disk: 500,
+  }
+  return metric.metric.value &gt; thresholds[metric.type]
+}
+</code></pre>
+<p><strong>backend/src/anomaly/anomaly.service.ts</strong>（v1 版本）</p>
+<pre><code class="language-ts">import { Injectable } from '@nestjs/common'
+import { detectByThreshold } from '@/domain/anomaly/detectors/threshold-detector'
+import type { MetricSnapshot } from '@/domain/metrics/metric.types'
+
+@Injectable()
+export class AnomalyService {
+  check(metric: MetricSnapshot): boolean {
+    return detectByThreshold(metric)
+  }
+}
+</code></pre>
+<h3 id="33-v1-用到的知识点">3.3 v1 用到的知识点</h3>
+<ol>
+<li>
+<p><strong>NestJS @Injectable</strong>：</p>
+<ul>
+<li>解决的问题：让 Service 可以被 DI 容器管理</li>
+<li>运行机制：装饰器在启动时注册 provider</li>
+<li>项目落点：<code>AnomalyService</code></li>
+<li>生产误区：忘记加装饰器，注入时报错 "Nest can't resolve dependencies"</li>
+<li>验证方法：<code>nest start</code> 无 error 且能被注入</li>
+</ul>
+</li>
+<li>
+<p><strong>纯函数检测器</strong>：</p>
+<ul>
+<li>解决的问题：把业务规则从框架里剥离，可以 Node.js 直接测</li>
+<li>运行机制：输入 metric，输出 boolean</li>
+<li>项目落点：<code>detectByThreshold</code></li>
+<li>生产误区：在纯函数里 import 框架（@nestjs/common）</li>
+<li>验证方法：<code>vitest run detectors/*.spec.ts</code>（无 NestJS 依赖）</li>
+</ul>
+</li>
+</ol>
+<h3 id="34-v1-暴露的痛点">3.4 v1 暴露的痛点</h3>
+<p><strong>痛点 1</strong>：阈值写死</p>
+<p>生产不同服务器负载不同（Web 服务器 CPU 70% 就异常，计算服务器 90% 才异常），阈值应该按服务器配置。</p>
+<p><strong>痛点 2</strong>：单值判断，误报率高</p>
+<p>一个瞬时的 CPU 90% 不代表异常（可能是短暂任务），需要看趋势（连续 5 个点偏离均值才算异常）。</p>
+<p><strong>痛点 3</strong>：检测和告警耦合</p>
+<p><code>AnomalyService.check</code> 返回 boolean，调用方需要自己判断"要不要发告警"、"要不要写库"，逻辑分散。</p>
+<hr>
+<h2 id="4-v2加统计层z-score-检测">4. v2：加统计层（Z-Score 检测）</h2>
+<h3 id="41-v2-要实现什么">4.1 v2 要实现什么</h3>
+<p><strong>用户视角</strong>：</p>
+<ul>
+<li>CPU 值显著偏离最近 20 个点的均值时告警（Z-Score &gt; 3）</li>
+<li>减少瞬时抖动的误报</li>
+</ul>
+<p><strong>技术视角</strong>：</p>
+<ul>
+<li>维护每个 serverId 的滑窗历史（最近 20 个点）</li>
+<li>计算均值、标准差</li>
+<li>判断 <code>abs((x - mean) / stddev) &gt; 3</code></li>
+</ul>
+<h3 id="42-v2-完整代码">4.2 v2 完整代码</h3>
+<p><strong>backend/src/domain/anomaly/detectors/zscore-detector.ts</strong>（v2 版本）</p>
+<pre><code class="language-ts">import type { MetricSnapshot } from '@/domain/metrics/metric.types'
+
+export interface ZScoreResult {
+  isAnomaly: boolean
+  zscore: number
+  mean: number
+  stddev: number
+}
+
+/**
+ * Z-Score 检测：判断当前值是否显著偏离历史均值
+ * 需要至少 5 个历史点才能计算
+ * 阈值：|Z-Score| &gt; 3（3σ 原则）
+ */
+export function detectByZScore(
+  history: readonly number[],
+  current: number,
+  threshold = 3,
+): ZScoreResult {
+  if (history.length &lt; 5) {
+    return { isAnomaly: false, zscore: 0, mean: current, stddev: 0 }
+  }
+  
+  const mean = history.reduce((sum, v) =&gt; sum + v, 0) / history.length
+  const variance = history.reduce((sum, v) =&gt; sum + (v - mean) ** 2, 0) / history.length
+  const stddev = Math.sqrt(variance)
+  
+  if (stddev === 0) {
+    return { isAnomaly: false, zscore: 0, mean, stddev: 0 }
+  }
+  
+  const zscore = (current - mean) / stddev
+  return {
+    isAnomaly: Math.abs(zscore) &gt; threshold,
+    zscore,
+    mean,
+    stddev,
+  }
+}
+</code></pre>
+<p><strong>backend/src/anomaly/anomaly.service.ts</strong>（v2 版本，滑窗放 Service，有并发问题）</p>
+<pre><code class="language-ts">import { Injectable } from '@nestjs/common'
+import { detectByZScore } from '@/domain/anomaly/detectors/zscore-detector'
+import type { MetricSnapshot } from '@/domain/metrics/metric.types'
+
+@Injectable()
+export class AnomalyService {
+  // 问题：滑窗数据是单例共享的，并发请求会串台
+  private history = new Map&lt;string, number[]&gt;()
+  
+  check(metric: MetricSnapshot): boolean {
+    const key = `${metric.serverId}:${metric.type}`
+    const hist = this.history.get(key) ?? []
+    
+    const result = detectByZScore(hist, metric.metric.value)
+    
+    // 更新滑窗
+    const newHist = [...hist, metric.metric.value].slice(-20)
+    this.history.set(key, newHist)
+    
+    return result.isAnomaly
+  }
+}
+</code></pre>
+<h3 id="43-v2-用到的知识点">4.3 v2 用到的知识点</h3>
+<ol>
+<li>
+<p><strong>Z-Score 算法</strong>：</p>
+<ul>
+<li>解决的问题：判断单点是否显著偏离历史</li>
+<li>运行机制：<code>(x - μ) / σ</code>，绝对值 &gt; 3 表示极端偏离</li>
+<li>项目落点：<code>detectByZScore</code></li>
+<li>生产误区：数据点太少（&lt; 5）时不能计算，会报除零</li>
+<li>验证方法：用固定序列 [10,10,10,10,10,100] 验证 100 被识别为异常</li>
+</ul>
+</li>
+<li>
+<p><strong>纯函数 + 依赖注入分离</strong>：</p>
+<ul>
+<li>解决的问题：算法可以纯函数测试，状态在 Service 里管理</li>
+<li>运行机制：<code>zscore-detector.ts</code> 是纯函数，<code>AnomalyService</code> 管理历史</li>
+<li>项目落点：<code>detectors/zscore-detector.ts</code> vs <code>AnomalyService.check</code></li>
+<li>生产误区：把 Map 放在 detector 模块顶层</li>
+<li>验证方法：detector 测试不 import NestJS</li>
+</ul>
+</li>
+</ol>
+<h3 id="44-v2-暴露的痛点">4.4 v2 暴露的痛点</h3>
+<p><strong>痛点 1</strong>：DI 单例导致跨请求串台</p>
+<p><code>AnomalyService</code> 默认是 singleton scope，<code>this.history</code> 是全局共享的。并发场景下，请求 A 的滑窗数据被请求 B 的写入污染，检测结果串台。</p>
+<p><strong>痛点 2</strong>：检测和告警耦合</p>
+<p><code>check</code> 返回 boolean 后，调用方还要自己决定"要不要写 anomaly 表、要不要发通知"，逻辑散在多个地方。</p>
+<p><strong>痛点 3</strong>：测试不稳定</p>
+<p>滑窗依赖调用顺序，同一测试脚本重跑结果可能不同（前一个测试留下的历史污染下一个测试）。</p>
+<hr>
+<h2 id="5-v3生产就绪领域事件-di-隔离-确定性测试">5. v3：生产就绪（领域事件 + DI 隔离 + 确定性测试）</h2>
+<h3 id="51-v3-要实现什么">5.1 v3 要实现什么</h3>
+<ul>
+<li><strong>问题 1</strong>：跨请求串台 → <strong>REQUEST scope</strong>，每请求新实例</li>
+<li><strong>问题 2</strong>：检测和告警耦合 → <strong>领域事件</strong>，<code>AnomalyDetectedEvent</code> 派发给多个订阅者</li>
+<li><strong>问题 3</strong>：测试不稳定 → <strong>fixtures/*.json</strong> 固定样本 + 每次测试重置状态</li>
+<li><strong>问题 4</strong>：检测规则不可插拔 → <strong>Detector 接口 + 多个实现</strong></li>
+</ul>
+<h3 id="52-v3-目录结构">5.2 v3 目录结构</h3>
+<p>见 §1.4，完整目录树在那里已列出。核心新增：</p>
+<pre><code>domain/anomaly/
+├── anomaly.events.ts    ← 领域事件（MetricCreatedEvent、AnomalyDetectedEvent）
+├── detectors/
+│   ├── detector.interface.ts    ← Detector 接口
+│   ├── threshold-detector.ts    ← 纯函数
+│   └── zscore-detector.ts       ← 纯函数
+└── fixtures/*.json      ← 固定样本
+
+anomaly/
+├── anomaly.module.ts    ← REQUEST scope + EventEmitter
+├── anomaly.service.ts   ← 编排 + 派发事件
+└── anomaly.listener.ts  ← 监听 metric.created
+</code></pre>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<p><strong>backend/src/domain/anomaly/anomaly.types.ts</strong></p>
+<pre><code class="language-ts">import type { MetricSnapshot } from '@/domain/metrics/metric.types'
+
+export type AnomalySeverity = 'info' | 'warning' | 'critical'
+
+export interface Anomaly {
+  id: string
+  metricId: MetricSnapshot['id']
+  serverId: MetricSnapshot['serverId']
+  metricType: MetricSnapshot['type']
+  ruleId: string
+  severity: AnomalySeverity
+  zscore?: number
+  threshold?: number
+  detectedAt: string
+}
+</code></pre>
+<p><strong>backend/src/domain/anomaly/anomaly.events.ts</strong></p>
+<pre><code class="language-ts">import type { MetricSnapshot } from '@/domain/metrics/metric.types'
+import type { Anomaly } from './anomaly.types'
+
+export class MetricCreatedEvent {
+  static readonly type = 'metric.created'
+  constructor(public readonly metric: MetricSnapshot) {}
+}
+
+export class AnomalyDetectedEvent {
+  static readonly type = 'anomaly.detected'
+  constructor(public readonly anomaly: Anomaly) {}
+}
+</code></pre>
+<p><strong>backend/src/domain/anomaly/detectors/detector.interface.ts</strong></p>
+<pre><code class="language-ts">import type { MetricSnapshot } from '@/domain/metrics/metric.types'
+import type { Anomaly } from '../anomaly.types'
+
+export interface DetectionContext {
+  history: readonly number[]  // 该 serverId + type 的最近 N 个值
+}
+
+export interface Detector {
+  readonly ruleId: string
+  detect(metric: MetricSnapshot, ctx: DetectionContext): Anomaly | null
+}
+</code></pre>
+<p><strong>backend/src/domain/anomaly/detectors/threshold-detector.ts</strong></p>
+<pre><code class="language-ts">import type { MetricSnapshot } from '@/domain/metrics/metric.types'
+import type { Detector, DetectionContext } from './detector.interface'
+import type { Anomaly } from '../anomaly.types'
+
+const THRESHOLDS: Record&lt;MetricSnapshot['type'], number&gt; = {
+  cpu: 80, memory: 90, network: 100, disk: 500,
+}
+
+export const thresholdDetector: Detector = {
+  ruleId: 'threshold-v1',
+  detect(metric, _ctx): Anomaly | null {
+    const threshold = THRESHOLDS[metric.type]
+    if (metric.metric.value &lt;= threshold) return null
+    
+    return {
+      id: `anomaly-${metric.id}-threshold`,
+      metricId: metric.id,
+      serverId: metric.serverId,
+      metricType: metric.type,
+      ruleId: 'threshold-v1',
+      severity: metric.metric.value &gt; threshold * 1.2 ? 'critical' : 'warning',
+      threshold,
+      detectedAt: new Date().toISOString(),
+    }
+  },
+}
+</code></pre>
+<p><strong>backend/src/domain/anomaly/detectors/zscore-detector.ts</strong></p>
+<pre><code class="language-ts">import type { MetricSnapshot } from '@/domain/metrics/metric.types'
+import type { Detector, DetectionContext } from './detector.interface'
+import type { Anomaly } from '../anomaly.types'
+
+const Z_THRESHOLD = 3
+const MIN_HISTORY = 5
+
+function computeZScore(history: readonly number[], current: number): number {
+  const mean = history.reduce((s, v) =&gt; s + v, 0) / history.length
+  const variance = history.reduce((s, v) =&gt; s + (v - mean) ** 2, 0) / history.length
+  const stddev = Math.sqrt(variance)
+  return stddev === 0 ? 0 : (current - mean) / stddev
+}
+
+export const zscoreDetector: Detector = {
+  ruleId: 'zscore-v1',
+  detect(metric, ctx): Anomaly | null {
+    if (ctx.history.length &lt; MIN_HISTORY) return null
+    
+    const zscore = computeZScore(ctx.history, metric.metric.value)
+    if (Math.abs(zscore) &lt;= Z_THRESHOLD) return null
+    
+    return {
+      id: `anomaly-${metric.id}-zscore`,
+      metricId: metric.id,
+      serverId: metric.serverId,
+      metricType: metric.type,
+      ruleId: 'zscore-v1',
+      severity: Math.abs(zscore) &gt; 5 ? 'critical' : 'warning',
+      zscore,
+      detectedAt: new Date().toISOString(),
+    }
+  },
+}
+</code></pre>
+<p><strong>backend/src/anomaly/anomaly.service.ts</strong>（v3，REQUEST scope）</p>
+<pre><code class="language-ts">import { Injectable, Scope } from '@nestjs/common'
+import { EventEmitter2 } from '@nestjs/event-emitter'
+import { thresholdDetector } from '@/domain/anomaly/detectors/threshold-detector'
+import { zscoreDetector } from '@/domain/anomaly/detectors/zscore-detector'
+import { AnomalyDetectedEvent } from '@/domain/anomaly/anomaly.events'
+import type { MetricSnapshot } from '@/domain/metrics/metric.types'
+import type { Anomaly } from '@/domain/anomaly/anomaly.types'
+
+@Injectable({ scope: Scope.REQUEST })
+export class AnomalyService {
+  // REQUEST scope: 每个请求独立实例，history 不会跨请求污染
+  private history = new Map&lt;string, number[]&gt;()
+  private detectors = [thresholdDetector, zscoreDetector]
+  
+  constructor(private readonly events: EventEmitter2) {}
+  
+  check(metric: MetricSnapshot): Anomaly[] {
+    const key = `${metric.serverId}:${metric.type}`
+    const hist = this.history.get(key) ?? []
+    
+    const anomalies: Anomaly[] = []
+    for (const detector of this.detectors) {
+      const anomaly = detector.detect(metric, { history: hist })
+      if (anomaly) {
+        anomalies.push(anomaly)
+        this.events.emit(AnomalyDetectedEvent.type, new AnomalyDetectedEvent(anomaly))
+      }
+    }
+    
+    // 更新滑窗（保留最近 20 个点）
+    this.history.set(key, [...hist, metric.metric.value].slice(-20))
+    
+    return anomalies
+  }
+}
+</code></pre>
+<p><strong>backend/src/anomaly/anomaly.listener.ts</strong></p>
+<pre><code class="language-ts">import { Injectable } from '@nestjs/common'
+import { OnEvent } from '@nestjs/event-emitter'
+import { ModuleRef } from '@nestjs/core'
+import { AnomalyService } from './anomaly.service'
+import { MetricCreatedEvent } from '@/domain/anomaly/anomaly.events'
+
+@Injectable()
+export class AnomalyListener {
+  constructor(private readonly moduleRef: ModuleRef) {}
+  
+  @OnEvent(MetricCreatedEvent.type)
+  async handleMetricCreated(event: MetricCreatedEvent) {
+    // AnomalyService 是 REQUEST scope，需用 resolve 而非 get
+    const service = await this.moduleRef.resolve(AnomalyService)
+    service.check(event.metric)
+  }
+}
+</code></pre>
+<p><strong>backend/src/anomaly/anomaly.module.ts</strong></p>
+<pre><code class="language-ts">import { Module } from '@nestjs/common'
+import { AnomalyService } from './anomaly.service'
+import { AnomalyListener } from './anomaly.listener'
+
+@Module({
+  providers: [AnomalyService, AnomalyListener],
+  exports: [AnomalyService],
+})
+export class AnomalyModule {}
+</code></pre>
+<p><strong>backend/src/metrics/metrics.service.ts</strong>（升级：派发事件）</p>
+<pre><code class="language-ts">import { Injectable } from '@nestjs/common'
+import { EventEmitter2 } from '@nestjs/event-emitter'
+import { MetricCreatedEvent } from '@/domain/anomaly/anomaly.events'
+import type { MetricSnapshot } from '@/domain/metrics/metric.types'
+
+@Injectable()
+export class MetricsService {
+  constructor(private readonly events: EventEmitter2) {}
+  
+  async create(dto: Omit&lt;MetricSnapshot, 'id'&gt;): Promise&lt;MetricSnapshot&gt; {
+    const metric: MetricSnapshot = {
+      ...dto,
+      id: `metric-${Date.now()}` as any,
+    }
+    // 持久化省略
+    
+    // 派发领域事件（fire-and-forget）
+    this.events.emit(MetricCreatedEvent.type, new MetricCreatedEvent(metric))
+    
+    return metric
+  }
+}
+</code></pre>
+<p><strong>backend/src/app.module.ts</strong>（注册）</p>
+<pre><code class="language-ts">import { Module } from '@nestjs/common'
+import { EventEmitterModule } from '@nestjs/event-emitter'
+import { MetricsModule } from './metrics/metrics.module'
+import { AnomalyModule } from './anomaly/anomaly.module'
+
+@Module({
+  imports: [
+    EventEmitterModule.forRoot(),
+    MetricsModule,
+    AnomalyModule,
+  ],
+})
+export class AppModule {}
+</code></pre>
+<p><strong>backend/src/domain/anomaly/fixtures/rising-trend.json</strong></p>
+<pre><code class="language-json">{
+  "description": "均值 50 附近的正常波动，第 20 个点突然跳到 95（异常）",
+  "history": [48, 52, 49, 51, 50, 47, 53, 50, 49, 51, 48, 52, 50, 49, 51, 50, 48, 52, 49],
+  "current": 95,
+  "expected": {
+    "threshold": { "ruleId": "threshold-v1", "hit": true },
+    "zscore": { "ruleId": "zscore-v1", "hit": true, "zscoreAbs": 20 }
+  }
+}
+</code></pre>
+<p><strong>backend/src/domain/anomaly/fixtures/falling-trend.json</strong></p>
+<pre><code class="language-json">{
+  "description": "均值 50 附近的正常波动，第 20 个点突然跌到 5（异常）",
+  "history": [48, 52, 49, 51, 50, 47, 53, 50, 49, 51, 48, 52, 50, 49, 51, 50, 48, 52, 49],
+  "current": 5,
+  "expected": {
+    "threshold": { "ruleId": "threshold-v1", "hit": false },
+    "zscore": { "ruleId": "zscore-v1", "hit": true, "zscoreAbs": 20 }
+  }
+}
+</code></pre>
+<p><strong>backend/src/domain/anomaly/fixtures/out-of-order.json</strong></p>
+<pre><code class="language-json">{
+  "description": "乱序时间戳的样本；检测器应该按 timestamp 排序后计算",
+  "raw": [
+    { "timestamp": "10:03", "value": 50 },
+    { "timestamp": "10:01", "value": 48 },
+    { "timestamp": "10:02", "value": 52 }
+  ],
+  "expectedOrder": ["10:01", "10:02", "10:03"]
+}
+</code></pre>
+<p><strong>backend/src/domain/anomaly/fixtures/duplicate.json</strong></p>
+<pre><code class="language-json">{
+  "description": "重复的 metric.id，应该只触发一次异常",
+  "metrics": [
+    { "id": "m-1", "value": 95 },
+    { "id": "m-1", "value": 95 }
+  ],
+  "expectedAnomalyCount": 1
+}
+</code></pre>
+<h3 id="54-v3-用到的知识点">5.4 v3 用到的知识点</h3>
+<ol>
+<li>
+<p><strong>NestJS Scope（REQUEST / DEFAULT / TRANSIENT）</strong>：</p>
+<ul>
+<li>解决的问题：控制 Provider 实例的生命周期，避免跨请求状态污染</li>
+<li>运行机制：DEFAULT 是单例，REQUEST 每请求新实例，TRANSIENT 每次注入新实例</li>
+<li>项目落点：<code>AnomalyService</code> 用 <code>Scope.REQUEST</code></li>
+<li>生产误区：REQUEST scope 的 Service 在 EventListener（默认 DEFAULT）里注入会拿到旧实例，必须用 <code>moduleRef.resolve</code></li>
+<li>验证方法：并发跑 50 个请求，检查每个请求的 <code>history</code> 是否独立</li>
+</ul>
+</li>
+<li>
+<p><strong>领域事件（Domain Events）</strong>：</p>
+<ul>
+<li>解决的问题：解耦发生方和处理方，一个事件可以被多个订阅者处理</li>
+<li>运行机制：<code>EventEmitter2.emit(type, payload)</code> → 所有 <code>@OnEvent(type)</code> 方法被调用</li>
+<li>项目落点：<code>MetricCreatedEvent</code>、<code>AnomalyDetectedEvent</code></li>
+<li>生产误区：把事件类型写成字符串魔术值，改名时漏改；应该用类的 static 属性</li>
+<li>验证方法：单元测试用 <code>spyOn(events, 'emit')</code> 验证被调用</li>
+</ul>
+</li>
+<li>
+<p><strong>领域层与应用层分离</strong>：</p>
+<ul>
+<li>解决的问题：核心业务规则不依赖框架，可以脱离 NestJS 独立测试</li>
+<li>运行机制：<code>domain/anomaly/*</code> 只用 TypeScript，<code>anomaly/*</code> 用 NestJS</li>
+<li>项目落点：detectors 是纯函数，AnomalyService 是 Provider</li>
+<li>生产误区：在 detector 里 <code>import { Injectable }</code></li>
+<li>验证方法：<code>grep -r 'from.*@nestjs' src/domain/</code> 应该无结果</li>
+</ul>
+</li>
+<li>
+<p><strong>接口 + 多实现（策略模式）</strong>：</p>
+<ul>
+<li>解决的问题：检测规则可插拔，加新规则不改 Service</li>
+<li>运行机制：<code>Detector</code> 接口 + 多个实现对象 + Service 遍历执行</li>
+<li>项目落点：<code>detector.interface.ts</code> + <code>thresholdDetector</code>/<code>zscoreDetector</code></li>
+<li>生产误区：把所有规则的 if-else 写在 Service 里</li>
+<li>验证方法：加新规则时只需新增一个 detector 对象，不改 Service</li>
+</ul>
+</li>
+<li>
+<p><strong>纯函数检测器与可测性</strong>：</p>
+<ul>
+<li>解决的问题：算法逻辑可以在 Node.js 直接测，不需要 NestJS TestingModule</li>
+<li>运行机制：输入 <code>(metric, ctx)</code>，输出 <code>Anomaly | null</code>，无副作用</li>
+<li>项目落点：<code>thresholdDetector.detect</code> / <code>zscoreDetector.detect</code></li>
+<li>生产误区：在 detector 里 <code>console.log</code> 或读环境变量，测试不稳定</li>
+<li>验证方法：<code>vitest run src/domain/anomaly/detectors/*.spec.ts</code> 无 NestJS 依赖</li>
+</ul>
+</li>
+<li>
+<p><strong>确定性测试（固定样本）</strong>：</p>
+<ul>
+<li>解决的问题：测试结果不依赖运行时间、执行顺序，随时可复现</li>
+<li>运行机制：把测试输入放 JSON 文件，测试代码读 JSON 断言</li>
+<li>项目落点：<code>fixtures/*.json</code> + <code>spec.ts</code></li>
+<li>生产误区：用 <code>new Date()</code> 生成时间戳，测试结果每次不同</li>
+<li>验证方法：连续跑 10 次测试，结果完全一致</li>
+</ul>
+</li>
+<li>
+<p><strong>Z-Score 与统计学</strong>：</p>
+<ul>
+<li>解决的问题：单点判断异常时，避免瞬时抖动误报</li>
+<li>运行机制：<code>(x - mean) / stddev</code>，绝对值 &gt; 3 表示统计上极端</li>
+<li>项目落点：<code>computeZScore</code> 函数</li>
+<li>生产误区：stddev = 0 时不做保护会除零；history &lt; 5 时算 Z-Score 不可靠</li>
+<li>验证方法：用 <code>[10,10,10,10,10]</code> 序列 + current 100，应该返回 stddev=0 分支</li>
+</ul>
+</li>
+<li>
+<p><strong>EventEmitter fire-and-forget vs emitAsync</strong>：</p>
+<ul>
+<li>解决的问题：区分"派发即可返回"和"等所有监听器处理完"的场景</li>
+<li>运行机制：<code>emit</code> 立即返回，<code>emitAsync</code> 等所有异步 handler 完成</li>
+<li>项目落点：<code>metrics.service</code> 用 <code>emit</code>（不阻塞主流程）</li>
+<li>生产误区：在 handler 里抛异常，<code>emit</code> 会吞掉，需要监听 error</li>
+<li>验证方法：故意在 handler 里抛异常，验证主流程不受影响</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="6-三版对比">6. 三版对比</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1 阈值检测</th>
+<th>v2 Z-Score</th>
+<th>v3 事件驱动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>代码行数</strong></td>
+<td>~30</td>
+<td>~80</td>
+<td>~250</td>
+</tr>
+<tr>
+<td><strong>文件数</strong></td>
+<td>2</td>
+<td>3</td>
+<td>8</td>
+</tr>
+<tr>
+<td><strong>算法类型</strong></td>
+<td>固定阈值</td>
+<td>统计（滑窗均值+标准差）</td>
+<td>多算法组合</td>
+</tr>
+<tr>
+<td><strong>误报率</strong></td>
+<td>高（瞬时抖动）</td>
+<td>中（3σ 过滤）</td>
+<td>低（多规则交叉）</td>
+</tr>
+<tr>
+<td><strong>状态管理</strong></td>
+<td>无</td>
+<td>Service 单例（有并发问题）</td>
+<td>REQUEST scope 隔离</td>
+</tr>
+<tr>
+<td><strong>可扩展性</strong></td>
+<td>硬编码</td>
+<td>硬编码</td>
+<td>Detector 接口可插拔</td>
+</tr>
+<tr>
+<td><strong>告警耦合</strong></td>
+<td>调用方判断</td>
+<td>调用方判断</td>
+<td>领域事件订阅</td>
+</tr>
+<tr>
+<td><strong>可测性</strong></td>
+<td>低（单值输入）</td>
+<td>中（滑窗依赖顺序）</td>
+<td>高（固定样本 + REQUEST 隔离）</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>Demo</td>
+<td>单机小规模</td>
+<td>生产</td>
+</tr>
+</tbody>
+</table></div><h3 id="65-前端底子补弱独立深挖-html-入口">6.5 前端底子补弱（独立深挖 HTML 入口）</h3>
+<p>完整的深挖内容见 <code>Day07深挖-事件与算法.html</code>，包含以下 8 个深挖主题：</p>
+<ol>
+<li><strong>深挖 1</strong>：NestJS DI —— 从今天项目里的 <code>Scope.REQUEST</code> 讲起</li>
+<li><strong>深挖 2</strong>：领域事件模式 —— 从今天项目里的 <code>EventEmitter2</code> 讲起</li>
+<li><strong>深挖 3</strong>：Z-Score 统计学 —— 从今天项目里的 3σ 原则讲起</li>
+<li><strong>深挖 4</strong>：纯函数与可测性 —— 从今天项目里的 detectors 讲起</li>
+<li><strong>深挖 5</strong>：领域层与应用层 —— 从今天项目里的 domain/anomaly 讲起</li>
+<li><strong>深挖 6</strong>：装饰器原理 —— 从今天项目里的 <code>@Injectable</code>/<code>@OnEvent</code> 讲起</li>
+<li><strong>深挖 7</strong>：确定性测试 —— 从今天项目里的 fixtures 讲起</li>
+<li><strong>深挖 8</strong>：策略模式 —— 从今天项目里的 Detector 接口讲起</li>
+</ol>
+<hr>
+<h2 id="7-项目验收清单阶段-e-f约-40-分钟">7. 项目验收清单（阶段 E-F，约 40 分钟）</h2>
+<h3 id="76-e写核心逻辑单元测试25-分钟">7.6 E：写核心逻辑单元测试（25 分钟）</h3>
+<p><strong>backend/src/domain/anomaly/detectors/threshold-detector.spec.ts</strong></p>
+<pre><code class="language-ts">import { describe, it, expect } from 'vitest'
+import { thresholdDetector } from './threshold-detector'
+import rising from '../fixtures/rising-trend.json'
+
+describe('thresholdDetector', () =&gt; {
+  it('CPU &gt; 80 时返回 anomaly', () =&gt; {
+    const metric = {
+      id: 'm-1' as any, serverId: 's-1' as any, type: 'cpu' as const,
+      timestamp: '2026-07-20T10:00:00Z',
+      metric: { value: rising.current, unit: '%' },
+    }
+    const result = thresholdDetector.detect(metric, { history: [] })
+    expect(result).not.toBeNull()
+    expect(result!.ruleId).toBe('threshold-v1')
+    expect(result!.severity).toBe('critical')
+  })
+  
+  it('CPU &lt;= 80 时返回 null', () =&gt; {
+    const metric = {
+      id: 'm-2' as any, serverId: 's-1' as any, type: 'cpu' as const,
+      timestamp: '2026-07-20T10:00:00Z',
+      metric: { value: 50, unit: '%' },
+    }
+    expect(thresholdDetector.detect(metric, { history: [] })).toBeNull()
+  })
+})
+</code></pre>
+<p><strong>backend/src/domain/anomaly/detectors/zscore-detector.spec.ts</strong></p>
+<pre><code class="language-ts">import { describe, it, expect } from 'vitest'
+import { zscoreDetector } from './zscore-detector'
+import rising from '../fixtures/rising-trend.json'
+import falling from '../fixtures/falling-trend.json'
+
+describe('zscoreDetector', () =&gt; {
+  it('上升趋势跳变触发异常', () =&gt; {
+    const metric = {
+      id: 'm-1' as any, serverId: 's-1' as any, type: 'cpu' as const,
+      timestamp: '2026-07-20T10:00:00Z',
+      metric: { value: rising.current, unit: '%' },
+    }
+    const result = zscoreDetector.detect(metric, { history: rising.history })
+    expect(result).not.toBeNull()
+    expect(Math.abs(result!.zscore!)).toBeGreaterThan(3)
+  })
+  
+  it('下降趋势跳变触发异常', () =&gt; {
+    const metric = {
+      id: 'm-2' as any, serverId: 's-1' as any, type: 'cpu' as const,
+      timestamp: '2026-07-20T10:00:00Z',
+      metric: { value: falling.current, unit: '%' },
+    }
+    const result = zscoreDetector.detect(metric, { history: falling.history })
+    expect(result).not.toBeNull()
+    expect(Math.abs(result!.zscore!)).toBeGreaterThan(3)
+  })
+  
+  it('history &lt; 5 返回 null', () =&gt; {
+    const metric = {
+      id: 'm-3' as any, serverId: 's-1' as any, type: 'cpu' as const,
+      timestamp: '2026-07-20T10:00:00Z',
+      metric: { value: 100, unit: '%' },
+    }
+    expect(zscoreDetector.detect(metric, { history: [50, 50, 50] })).toBeNull()
+  })
+  
+  it('stddev = 0 返回 null（不除零）', () =&gt; {
+    const metric = {
+      id: 'm-4' as any, serverId: 's-1' as any, type: 'cpu' as const,
+      timestamp: '2026-07-20T10:00:00Z',
+      metric: { value: 100, unit: '%' },
+    }
+    expect(zscoreDetector.detect(metric, { history: [50, 50, 50, 50, 50] })).toBeNull()
+  })
+})
+</code></pre>
+<h3 id="77-f-1反证实验-110-分钟">7.7 F-1：反证实验 1（10 分钟）</h3>
+<p><strong>目标</strong>：证明 v2 的 DEFAULT scope 会跨请求串台</p>
+<p><strong>做法</strong>：</p>
+<ol>
+<li>把 <code>AnomalyService</code> 的 scope 改回 <code>DEFAULT</code>（单例）</li>
+<li>并发发 50 个不同 <code>serverId</code> 的 metric</li>
+<li>打印每个请求的 <code>this.history</code> 引用地址（<code>console.log(this)</code>)</li>
+</ol>
+<p><strong>预期</strong>：所有请求打印的实例 id 相同 → 共享 history → 串台</p>
+<p><strong>修正</strong>：改回 <code>Scope.REQUEST</code>，每个请求实例 id 不同</p>
+<h3 id="78-f-2反证实验-25-分钟">7.8 F-2：反证实验 2（5 分钟）</h3>
+<p><strong>目标</strong>：证明纯函数 detector 可以脱离 NestJS 直接测</p>
+<p><strong>做法</strong>：</p>
+<ol>
+<li>在项目外新建一个 <code>test-outside.ts</code>：<code>import { thresholdDetector } from '.../detectors/threshold-detector'</code></li>
+<li>用 <code>tsx test-outside.ts</code> 直接跑</li>
+<li>观察是否需要 <code>@nestjs/testing</code> 或 mock</li>
+</ol>
+<p><strong>预期</strong>：脚本能直接跑，无 NestJS 依赖</p>
+<p><strong>修正</strong>：如果 detector 里意外 import 了 NestJS，删除 import，改为纯函数</p>
+<h3 id="79-f-3验证-提交5-分钟">7.9 F-3：验证 + 提交（5 分钟）</h3>
+<pre><code class="language-bash">pnpm typecheck &amp;&amp; pnpm lint &amp;&amp; pnpm test &amp;&amp; pnpm build
+git add src/domain/anomaly/ src/anomaly/ src/metrics/metrics.service.ts
+git commit -m "feat(anomaly): add domain event driven detection with REQUEST scope
+
+Refs: Day7"
+</code></pre>
+<p><strong>注意</strong>：不要执行 <code>git push</code>，等手动推。</p>
+<hr>
+<h2 id="8-通过标准v3-自检清单">8. 通过标准（v3 自检清单）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>编号</th>
+<th>检查项</th>
+<th>通过标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>领域层纯净</td>
+<td><code>src/domain/anomaly/**</code> 不 import <code>@nestjs/*</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>REQUEST scope</td>
+<td><code>AnomalyService</code> 加了 <code>@Injectable({ scope: Scope.REQUEST })</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>事件解耦</td>
+<td>Service 只 <code>emit</code>，不 <code>import { AlertService }</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Detector 接口</td>
+<td>至少 2 个 detector 实现同一接口</td>
+</tr>
+<tr>
+<td>5</td>
+<td>固定样本</td>
+<td><code>fixtures/</code> 下至少 4 个 JSON</td>
+</tr>
+<tr>
+<td>6</td>
+<td>确定性测试</td>
+<td>测试代码不用 <code>new Date()</code> 或 <code>Math.random()</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Listener 使用 resolve</td>
+<td><code>moduleRef.resolve</code> 而非 <code>get</code>（REQUEST scope 要求）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>反证实验记录</td>
+<td>README 记录 v2 v3 并发结果对比</td>
+</tr>
+<tr>
+<td>9</td>
+<td>类型检查</td>
+<td><code>pnpm typecheck</code> 无 error</td>
+</tr>
+<tr>
+<td>10</td>
+<td>构建通过</td>
+<td><code>pnpm build</code> 无 error</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="9-提交物">9. 提交物</h2>
+<ol>
+<li><strong>代码</strong>：<code>git diff HEAD~1</code> 输出（约 500 行）</li>
+<li><strong>测试截图</strong>：<code>pnpm test</code> 终端输出（至少 8 个测试全绿）</li>
+<li><strong>反证实验记录</strong>：两个反证实验的操作步骤 + 观察现象</li>
+<li><strong>学习日志</strong>：回答 §10 的 3 个核心问题</li>
+<li><strong>架构证据</strong>：<code>madge --circular</code> 输出 + <code>grep -r '@nestjs' src/domain/</code> 输出（应为空）</li>
+</ol>
+<hr>
+<h2 id="10-课末-3-个核心问题">10. 课末 3 个核心问题</h2>
+<ol>
+<li>
+<p><strong>请从今天项目的真实入口到最终输出，解释"事件与算法"的数据流或控制流；当天知识链"Nest DI、领域事件、时间排序、异常检测、确定性测试"分别在哪一层起作用，为什么按这个顺序学习？</strong></p>
+<p>参考答案框架：</p>
+<ul>
+<li>入口：<code>MetricsService.create</code> 派发 <code>MetricCreatedEvent</code></li>
+<li>流向：<code>AnomalyListener</code> → <code>moduleRef.resolve(AnomalyService)</code> → 遍历 detectors → 匹配则 emit <code>AnomalyDetectedEvent</code></li>
+<li>NestJS DI：控制 Service 生命周期，REQUEST scope 隔离状态</li>
+<li>领域事件：解耦发生方和处理方</li>
+<li>异常检测：领域层纯函数</li>
+<li>确定性测试：固定样本保证复现</li>
+</ul>
+</li>
+<li>
+<p><strong>如果故意移除今天最关键的保护机制，线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</strong></p>
+<p>参考答案框架：</p>
+<ul>
+<li>移除机制：把 <code>Scope.REQUEST</code> 改成 <code>Scope.DEFAULT</code></li>
+<li>可观察现象：并发场景下不同 serverId 的滑窗数据串台，检测结果错误</li>
+<li>最小复现：并发跑 50 个不同 serverId 的 metric.create</li>
+<li>定位证据：<code>console.log(this)</code> 打印实例 id 相同</li>
+<li>恢复动作：改回 <code>Scope.REQUEST</code> + Listener 用 <code>moduleRef.resolve</code></li>
+<li>防复发测试：并发隔离测试，验证不同 serverId 的实例 id 不同</li>
+</ul>
+</li>
+<li>
+<p><strong>请引用今天的具体代码、测试和架构证据，证明项目目标已经达到；再说明当前实现距离企业生产标准还缺什么，下一步如何演进而不破坏已有合同。</strong></p>
+<p>参考答案框架：</p>
+<ul>
+<li>代码证据：<code>anomaly.service.ts</code> 的 <code>Scope.REQUEST</code> + <code>events.emit</code></li>
+<li>测试证据：<code>zscore-detector.spec.ts</code> 4 个测试全绿</li>
+<li>架构证据：<code>grep -r '@nestjs' src/domain/</code> 空结果</li>
+<li>缺少功能：持久化 Anomaly、去重（同一 rule 5 分钟内只报一次）、多租户配置</li>
+<li>下一步：Day 8 加告警中心 + 去重规则；合同不变（仍然是 <code>AnomalyDetectedEvent</code>）</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="11-真实项目情境题联网更新-2026-07-16">11. 真实项目情境题（联网更新 2026-07-16）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<h3 id="情境题-1乱序-重复-metric-导致误报刷屏">情境题 1：乱序 + 重复 metric 导致误报刷屏</h3>
+<p><strong>背景</strong>：
+异常检测输入包含乱序时间点和重复 Metric，算法把下降趋势判断为上升，10 分钟产生 300 条重复告警。</p>
+<p><strong>任务</strong>：
+请用原始序列、排序前后数据、确定性测试和领域事件日志定位；先暂停自动建异常止损，再修复时间排序和去重不变量，并用上升、下降、少样本、重复样本固定集验证。</p>
+<p><strong>回答框架（定位证据 → 临时止损 → 根因修复 → 回归验证）</strong>：</p>
+<ol>
+<li>
+<p><strong>定位证据</strong>：</p>
+<ul>
+<li>抓取原始 metric 序列：<code>kubectl logs metrics-service | grep "metric.created"</code></li>
+<li>对比排序前后的 timestamp：证明时间戳乱序</li>
+<li>领域事件日志：<code>AnomalyDetectedEvent</code> 短时间内 300 次</li>
+</ul>
+</li>
+<li>
+<p><strong>临时止损</strong>：</p>
+<ul>
+<li>关闭 <code>AnomalyListener</code>：注释 <code>@OnEvent</code></li>
+<li>或加限流：5 分钟内同一 <code>ruleId + serverId + metricType</code> 只触发 1 次</li>
+</ul>
+</li>
+<li>
+<p><strong>根因修复</strong>：</p>
+<ul>
+<li>在 <code>AnomalyListener</code> 入口按 timestamp 排序历史</li>
+<li>用 <code>metric.id</code> 作为去重键（Set 或 Redis）</li>
+<li>见 §5.3 v3 代码</li>
+</ul>
+</li>
+<li>
+<p><strong>回归验证</strong>：</p>
+<ul>
+<li>用 <code>out-of-order.json</code> fixture 验证排序生效</li>
+<li>用 <code>duplicate.json</code> fixture 验证去重生效</li>
+<li>连续跑 10 次结果完全一致</li>
+</ul>
+</li>
+</ol>
+<p><strong>依据</strong>：<a href="https://docs.nestjs.com/techniques/events" target="_blank" rel="noopener noreferrer">NestJS Event Emitter</a></p>
+<h3 id="情境题-2di-scope-导致缓存串台">情境题 2：DI Scope 导致缓存串台</h3>
+<p><strong>背景</strong>：
+<code>AnomalyService</code> 通过错误 DI scope 持有跨请求可变缓存，并发 50 请求时不同 serverId 的检测结果串台。</p>
+<p><strong>任务</strong>：
+请依据 provider scope、实例标识和调用链定位；先禁用缓存止损，再调整 Nest provider 生命周期和领域事件边界，使用并行隔离测试证明无共享污染。</p>
+<p><strong>回答框架</strong>：</p>
+<ol>
+<li>
+<p><strong>定位证据</strong>：</p>
+<ul>
+<li>在 <code>AnomalyService.check</code> 里加 <code>console.log(this)</code> 打印实例 id</li>
+<li>并发跑 50 请求，观察是否所有请求的 this 相同</li>
+<li>观察 <code>history</code> Map 的 key 数量爆炸</li>
+</ul>
+</li>
+<li>
+<p><strong>临时止损</strong>：</p>
+<ul>
+<li>禁用 <code>history</code> 缓存（每次都返回空数组）</li>
+<li>影响：Z-Score 检测失效，只剩阈值检测</li>
+</ul>
+</li>
+<li>
+<p><strong>根因修复</strong>：</p>
+<ul>
+<li>改用 <code>Scope.REQUEST</code></li>
+<li>Listener 里用 <code>moduleRef.resolve(AnomalyService)</code> 而非注入</li>
+<li>见 §5.3 v3 代码</li>
+</ul>
+</li>
+<li>
+<p><strong>回归验证</strong>：</p>
+<ul>
+<li>并发跑 50 个不同 serverId 的 metric.create</li>
+<li>断言每个请求的 <code>this.history.size</code> 都 &lt;= 4（只有当前 serverId 的键）</li>
+</ul>
+</li>
+</ol>
+<p><strong>依据</strong>：<a href="https://docs.nestjs.com/fundamentals/injection-scopes" target="_blank" rel="noopener noreferrer">NestJS Injection Scopes</a></p>
+<p><strong>知识映射</strong>：Nest DI、领域事件、时间排序、异常检测和确定性反证。</p>
+<hr>
+<h2 id="12-pdf-面试题">12. PDF 面试题</h2>
+<blockquote>
+<p><strong>说明</strong>：以下题目来自 PDF 资源文件，文件名用于教学分类，不等于官方题库或真实面试题来源。题目构造用于教学练习。</p>
+</blockquote>
+<h3 id="题目-1typescript-装饰器是什么在-ai-框架中有什么潜在用途">题目 1：TypeScript 装饰器是什么？在 AI 框架中有什么潜在用途？</h3>
+<p><strong>来源</strong>：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E4%25BA%25AC%25E4%25B8%259C%25E5%2589%258D%25E7%25AB%25AF%25E9%259D%25A2%25E8%25AF%2595-%25E5%25A4%25A7%25E6%25A8%25A1%25E5%259E%258B%25E6%2596%25B9%25E5%2590%2591.pdf" class="missing-link">《2026京东前端面试-大模型方向》</a>，第 9 页。</p>
+<p><strong>初级答法</strong>：</p>
+<ul>
+<li>装饰器是函数，可以修饰类/方法/属性</li>
+<li>语法：<code>@decorator</code></li>
+</ul>
+<p><strong>中级答法</strong>：</p>
+<ul>
+<li>装饰器在编译期被 tsc 转换为函数调用</li>
+<li>分为类装饰器、方法装饰器、属性装饰器、参数装饰器</li>
+<li>常见框架用法：NestJS 的 <code>@Injectable</code>、<code>@Controller</code>、<code>@Get</code></li>
+</ul>
+<p><strong>高级答法（今天项目里的应用）</strong>：</p>
+<ul>
+<li><code>@Injectable({ scope: Scope.REQUEST })</code>：注册 Provider 到 DI 容器，控制生命周期</li>
+<li><code>@OnEvent(MetricCreatedEvent.type)</code>：注册事件监听器</li>
+<li>AI 框架场景：LangGraph 的 <code>@task</code> 装饰器把普通函数变成可编排的 Node，需要装饰器机制来读取元数据</li>
+</ul>
+<h3 id="题目-2项目中怎样处理前端异常监控">题目 2：项目中怎样处理前端异常监控？</h3>
+<p><strong>来源</strong>：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E7%25BE%258E%25E5%259B%25A2%25E5%2589%258D%25E7%25AB%25AF%25E6%259E%25B6%25E6%259E%2584%25E5%25B8%2588%25E9%259D%25A2%25E8%25AF%2595-%25E6%2595%25B0%25E6%258D%25AE%25E6%259D%2583%25E9%2599%2590%25E6%2596%25B9%25E5%2590%2591.pdf" class="missing-link">《2026美团前端架构师面试-数据权限方向》</a>，第 10 页。</p>
+<p><strong>初级答法</strong>：</p>
+<ul>
+<li>window.onerror、unhandledrejection、Vue errorHandler</li>
+<li>采集后上报到 Sentry / 自研平台</li>
+</ul>
+<p><strong>中级答法</strong>：</p>
+<ul>
+<li>分类：JS runtime error、Promise reject、资源加载失败、接口 500</li>
+<li>去重：按错误堆栈 hash 去重，避免刷屏</li>
+<li>采样：高频错误按比例采样</li>
+</ul>
+<p><strong>高级答法（关联今天）</strong>：</p>
+<ul>
+<li>今天做的是<strong>后端异常检测</strong>（指标异常），前端异常监控是<strong>同类问题</strong></li>
+<li>都要处理："定义什么算异常"、"去重"、"回溯原始输入"</li>
+<li>前端异常也可以用领域事件模型：<code>error.captured</code> → 采集 → <code>error.deduped</code> → 上报</li>
+<li>确定性测试同样适用：固定错误样本 → 期望的采集结果</li>
+</ul>
+<hr>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"现场提出 5 道问题。</p>
+<p>五连问不预先固定，也不由下面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<p><strong>示例问题方向</strong>（实际问题会根据学生的 diff 调整）：</p>
+<ol>
+<li><strong>演示验收</strong>：请演示反证实验 1 的操作步骤和结果对比截图（v2 单例 vs v3 REQUEST）。</li>
+<li><strong>核心挑战</strong>：Day 7 最难理解的是"REQUEST scope 里的 Listener 必须用 moduleRef.resolve"，你是怎么理解这个约束的？</li>
+<li><strong>对比思考</strong>：领域事件模式和直接调用 <code>AlertService.notify()</code> 的本质区别是什么？如果只有一个订阅者，还需要事件吗？</li>
+<li><strong>项目对手戏</strong>：假设 Day 8 要在同一 metric 事件上加"运维值班调度"逻辑，你会怎么组织代码？直接改 AnomalyService 还是加新的 Listener？为什么？</li>
+<li><strong>知识盲区</strong>：如果 Z-Score 检测器需要"最近 24 小时的 history"（而不是滑窗最近 20 点），要怎么改？REQUEST scope 还合适吗？</li>
+</ol>
+<hr>
+<h2 id="14-本-day-在-90-天路线中的锚点">14. 本 Day 在 90 天路线中的锚点</h2>
+<p><strong>向前承接</strong>：</p>
+<ul>
+<li>Day 1：AgentEvent 事件流为今天的领域事件铺路</li>
+<li>Day 2：MetricSnapshot 类型是检测器的输入</li>
+<li>Day 5-6：WebSocket 推送需要在服务端先做检测</li>
+</ul>
+<p><strong>向后传递</strong>：</p>
+<ul>
+<li>Day 8：把 <code>AnomalyDetectedEvent</code> 消费到告警中心</li>
+<li>Day 15：用今天的确定性测试跑历史数据回归</li>
+<li>Day 30：用领域事件模式扩展多种 AI 检测算法</li>
+</ul>
+<p><strong>复用点</strong>：</p>
+<ul>
+<li><code>Detector</code> 接口会在 Day 30 用来插拔 LLM-based 检测器</li>
+<li>领域事件模式会在 Day 8 用来广播告警到多个通道（邮件/钉钉/短信）</li>
+<li>REQUEST scope 模式会在 Day 15 用来隔离历史回放的状态</li>
+</ul>
+<p><strong>螺旋上升</strong>：</p>
+<ul>
+<li>Day 7 在异常检测场景练习领域事件</li>
+<li>Day 8 在告警中心场景应用领域事件（同事件多订阅者）</li>
+<li>Day 30 在 AI 检测场景扩展领域事件（同事件跨服务）</li>
+</ul>
+<hr>
+<p><strong>完成 Day 7 后，你已经掌握</strong>：</p>
+<ul>
+<li>NestJS Scope 三种模式与选型</li>
+<li>领域事件解耦发生方和处理方</li>
+<li>领域层与应用层的边界</li>
+<li>策略模式（Detector 接口 + 多实现）</li>
+<li>Z-Score 统计学原理与除零保护</li>
+<li>确定性测试与固定样本</li>
+</ul>
+<p><strong>下一步 Day 8</strong>：把 <code>AnomalyDetectedEvent</code> 消费到告警中心，加去重、限流、多渠道推送。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day07-old.html">查看 Day 07 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/06.html">← Day 06 · 实时可靠性</a>
+            <a href="/ai-teacher-agent-devolop/day/08.html">Day 08 · API/分页 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F90-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">2. 学习节奏（90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E6%9C%80%E5%B0%8F%E9%97%AD%E7%8E%AF%E9%98%88%E5%80%BC%E6%A3%80%E6%B5%8B">3. v1：最小闭环（阈值检测）</a></li><li><a href="#4-v2%E5%8A%A0%E7%BB%9F%E8%AE%A1%E5%B1%82z-score-%E6%A3%80%E6%B5%8B">4. v2：加统计层（Z-Score 检测）</a></li><li><a href="#5-v3%E7%94%9F%E4%BA%A7%E5%B0%B1%E7%BB%AA%E9%A2%86%E5%9F%9F%E4%BA%8B%E4%BB%B6-di-%E9%9A%94%E7%A6%BB-%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%B5%8B%E8%AF%95">5. v3：生产就绪（领域事件 + DI 隔离 + 确定性测试）</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94">6. 三版对比</a></li><li><a href="#7-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95%E9%98%B6%E6%AE%B5-e-f%E7%BA%A6-40-%E5%88%86%E9%92%9F">7. 项目验收清单（阶段 E-F，约 40 分钟）</a></li><li><a href="#8-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86v3-%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95">8. 通过标准（v3 自检清单）</a></li><li><a href="#9-%E6%8F%90%E4%BA%A4%E7%89%A9">9. 提交物</a></li><li><a href="#10-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">10. 课末 3 个核心问题</a></li><li><a href="#11-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-16">11. 真实项目情境题（联网更新 2026-07-16）</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">12. PDF 面试题</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">14. 本 Day 在 90 天路线中的锚点</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

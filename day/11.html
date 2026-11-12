@@ -1,0 +1,4043 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 11 · Tool Registry（v1 直接暴露 → v2 Schema 守门 → v3 完整审计） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html" aria-current="page">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/02.html">第 2 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 11</p>
+        <h1>Tool Registry（v1 直接暴露 → v2 Schema 守门 → v3 完整审计）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段一（Day 1-30，前端 -&gt; AI 前端）。所有 BFF、NestJS、数据库、队列和 Agent 后端增量都必须服务于 <code>p1-monitor</code> 的真实 AI 前端链路，不得另起无关 Demo。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+</blockquote>
+<p>任务版本：标准版
+日期与时长：2026-07-24 周五，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor</code>
+角色视角：有 NestJS 后端经验、第一次为 Agent 场景设计 Tool 的开发者</p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p>90 天转型路线的三个阶段：</p>
+<pre><code>阶段一（Day 1-30）：前端 → AI 前端
+   项目：p1-monitor 智能运维监控（Vue 3 + TypeScript + WebSocket + Agent UI）
+   Day 1-5：前端 Agent 运行时展示、状态机、WebSocket 实时
+   Day 6-10：后端 Nest + Prisma + FSM + M2 门禁
+
+阶段二（Day 31-60）：AI 前端 → AI 全栈
+   项目：p1-monitor 后端 + p1-monitor 全栈（NestJS + Python/FastAPI + RAG）
+   Day 11-20：Tool Registry + LangChain RAG + 向量检索
+   Day 21-30：Agent 编排 + LangGraph 状态机
+
+阶段三（Day 61-90）：AI 全栈 → AI Agent 工程师
+   项目：p2-agent-workbench 多 Agent 协同工作台
+</code></pre>
+<p><strong>Day 11 处在阶段一第 11 天</strong>，Day 10 M2 门禁通过后，<code>p1-monitor</code> 后端已经具备完整的 CRUD + 状态机能力。从今天开始引入 <strong>Agent Tool Calling</strong>：让 LLM 能够调用后端的真实数据查询函数。</p>
+<p>Day 11 的核心任务是搭建 <strong>Tool Registry</strong>——一个管理所有 Agent 工具的中央注册表，具备 Schema 校验、超时保护、结果裁剪和审计能力。这个 Registry 会被后面 Day 12（LangChain 集成）、Day 15（RAG 工具）、Day 18（多工具编排）反复使用。</p>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<p>在 <code>p1-monitor/apps/api</code> 里交付一个模块 <strong><code>ToolsModule</code></strong>：注册三个只读运维工具（<code>listServers</code>、<code>getMetrics</code>、<code>getAlertDetail</code>），让它们能够被 LLM 通过 Function Calling 安全调用，并记录每次调用的审计日志。</p>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p><strong>场景</strong>：运维工程师在 Agent 对话框里问"srv-042 最近 10 分钟的 CPU 指标是多少？"</p>
+<pre><code>用户输入：srv-042 最近 10 分钟的 CPU 指标是多少？
+
+Agent 内部流程：
+1. LLM 生成 Function Call：
+   {
+     "name": "getMetrics",
+     "arguments": {
+       "serverId": "srv-042",
+       "metricType": "cpu",
+       "minutes": 10
+     }
+   }
+
+2. Tool Registry 执行流程：
+   ✓ Schema 校验：参数类型和范围检查通过
+   ✓ 执行查询：调用 Prisma 查询最近 10 分钟数据
+   ✓ 超时保护：查询在 5 秒内返回
+   ✓ 结果裁剪：返回前 100 条记录
+   ✓ 审计记录：记录 toolName/args/duration/resultSize
+
+3. LLM 收到结果后生成回复：
+   "srv-042 在最近 10 分钟内 CPU 平均使用率为 87%，
+    峰值 95% 出现在 14:23，建议检查异常进程。"
+</code></pre>
+<p>用户看到的是最终的自然语言回复，但背后经过了完整的 Tool Registry 保护链路。</p>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<ul>
+<li><strong>输入</strong>：LLM 生成的 Function Call（toolName + arguments JSON）</li>
+<li><strong>输出</strong>：校验后的查询结果（JSON），附带审计记录</li>
+<li><strong>对齐后续</strong>：今天定义的 <strong>Tool 接口规范</strong>（<code>ToolDefinition</code> / <code>ToolExecutor</code>）是 Day 12-20 所有 Agent 工具的合同基线</li>
+</ul>
+<h3 id="13-三版演进的目标">1.3 三版演进的目标</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>实现的功能</th>
+<th>代码结构</th>
+<th>引入的知识</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td>直接暴露 Prisma 查询给 LLM</td>
+<td>单文件、<code>prisma.metrics.findMany()</code> 直接返回</td>
+<td>Tool 的最小闭环、Function Calling 基本概念</td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>v1 + <strong>Zod Schema 校验</strong> + <strong>超时保护</strong></td>
+<td>抽离 <code>tool-schema.ts</code> + <code>Promise.race</code> 超时</td>
+<td>Zod 校验、超时机制、参数边界</td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>v2 + <strong>结果裁剪</strong> + <strong>审计日志</strong> + <strong>Registry 统一管理</strong></td>
+<td>完整分层（types/errors/audit/registry/tools/controller）</td>
+<td>Registry 模式、最小权限、审计链、错误分类</td>
+</tr>
+</tbody>
+</table></div><p><strong>用户最终在项目里交付的是 v3</strong>。v1 和 v2 是教学用的过渡版本。</p>
+<hr>
+<h2 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h2>
+<p><strong>为什么放在最前面</strong>：Tool Registry 涉及多个关注点（类型定义、错误处理、审计、注册、具体工具实现、HTTP 入口），如果不先在脑子里立起骨架，写到一半就会把类型、逻辑、IO 混在一起。看完这棵树，下面章节再出现 <code>src/tools/registry/tool-registry.service.ts</code> 时，你就能立刻定位它在架构中的位置。</p>
+<p><strong>今天在 <code>p1-monitor/apps/api/src/</code> 下要建立的完整目录树（v3 完整版）</strong>：</p>
+<pre><code>apps/api/src/
+├── tools/                                    ← 【新增】Tool Registry 模块
+│   ├── types/
+│   │   └── tool.types.ts                     ← Tool 接口定义（ToolDefinition / ToolExecutor / ToolContext）
+│   ├── errors/
+│   │   └── tool.errors.ts                    ← Tool 专用错误类（SchemaError / TimeoutError / ExecutionError）
+│   ├── audit/
+│   │   └── tool-audit.service.ts             ← 审计日志服务（记录每次 Tool 调用）
+│   ├── registry/
+│   │   ├── tool-registry.service.ts          ← 中央注册表（注册/查找/执行 Tool）
+│   │   └── tool-registry.service.spec.ts     ← Registry 单元测试
+│   ├── implementations/                       ← 具体 Tool 实现
+│   │   ├── list-servers.tool.ts              ← Tool 1：列出所有服务器
+│   │   ├── get-metrics.tool.ts               ← Tool 2：查询指标数据
+│   │   └── get-alert-detail.tool.ts          ← Tool 3：查询告警详情
+│   ├── index.ts                              ← 桶文件（导出所有公开接口）
+│   ├── tools.module.ts                       ← NestJS 模块（注册 ToolRegistry + Audit）
+│   └── tools.controller.ts                   ← HTTP 入口（POST /tools/execute）
+├── prisma/
+│   └── prisma.service.ts                     ← 【沿用 Day07】Prisma 服务
+└── main.ts                                   ← 【沿用】应用入口
+</code></pre>
+<p><strong>三版演进对应的文件差异</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>新增文件</th>
+<th>核心变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td><code>tools/get-metrics.tool.ts</code>（直接调 Prisma）&lt;br&gt;<code>tools/tools.controller.ts</code>（单路由）</td>
+<td>最小闭环：一个 Tool + 一个 HTTP 端点</td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td><code>tools/types/tool.types.ts</code>&lt;br&gt;<code>tools/get-metrics.tool.ts</code>（加 Zod Schema）</td>
+<td>加入 Schema 校验 + 超时保护</td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td><code>tools/errors/tool.errors.ts</code>&lt;br&gt;<code>tools/audit/tool-audit.service.ts</code>&lt;br&gt;<code>tools/registry/tool-registry.service.ts</code>&lt;br&gt;<code>tools/implementations/</code> 三个 Tool&lt;br&gt;<code>tools/tools.module.ts</code></td>
+<td>完整分层：类型/错误/审计/注册表分离</td>
+</tr>
+</tbody>
+</table></div><p><strong>依赖方向（务必单向，反过来一次都不行）</strong>：</p>
+<pre><code>tools.controller.ts
+    ↓ 调用
+tool-registry.service.ts ──→ tool-audit.service.ts
+    ↓ 持有所有 Tool          ↓ 记录审计日志
+implementations/*.tool.ts ──→ PrismaService
+    ↓ 实现 ToolDefinition    ↓ 查询数据库
+tool.types.ts
+</code></pre>
+<p><strong>红线</strong>：</p>
+<ul>
+<li><code>implementations/*.tool.ts</code> 里出现 <code>import { Controller } from '@nestjs/common'</code> 就是层次塌方第一步。Tool 实现必须是纯业务逻辑，不依赖 HTTP 框架。</li>
+<li><code>tool-registry.service.ts</code> 里出现 <code>import { PrismaService }</code> 就是职责混乱。Registry 只管理 Tool 生命周期，不直接访问数据库。</li>
+</ul>
+<p><strong>动手前先问自己 3 个问题</strong>：</p>
+<ol>
+<li>
+<p>为什么 Tool 实现要放在 <code>implementations/</code> 目录而不是直接放在 <code>tools/</code> 根目录？<br>
+→ 见 §5.4 知识点 2「Registry 模式」：未来会有 10+ 个 Tool，如果都平铺在根目录，<code>tools/</code> 会变成垃圾堆。<code>implementations/</code> 是"具体实现"的明确边界。</p>
+</li>
+<li>
+<p>为什么需要单独的 <code>tool.errors.ts</code> 而不是直接 <code>throw new Error()</code>？<br>
+→ 见 §5.4 知识点 1「错误分类」：Schema 错误、超时错误、执行错误需要不同的处理策略（Schema 错误是客户端问题，超时是基础设施问题，执行错误需要重试）。统一的 <code>Error</code> 无法区分。</p>
+</li>
+<li>
+<p>审计日志为什么要单独抽成 <code>tool-audit.service.ts</code> 而不是在 Registry 里直接 <code>console.log()</code>？<br>
+→ 见 §5.4 知识点 6「审计链」：审计是独立关注点，未来会接入 ELK/Prometheus/DataDog。如果写在 Registry 里，换审计方案就要改 Registry 核心逻辑。</p>
+</li>
+</ol>
+<hr>
+<h2 id="15-阶段-d动手脚手架20-分钟先搭骨架再看正文">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</h2>
+<p>按第 5.3 节的代码写，边写边问自己下面的问题。</p>
+<h3 id="151-d-1搭工程骨架-装依赖5-分钟">1.5.1 D-1：搭工程骨架 / 装依赖（5 分钟）</h3>
+<pre><code class="language-bash">cd D:\demo\ai-techer\p1-monitor\apps\api
+
+# 安装 Zod（Schema 校验库）
+pnpm add zod
+
+# 创建目录
+mkdir -p src/tools/{types,errors,audit,registry,implementations}
+</code></pre>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么选 Zod 而不是 Joi 或 class-validator？（Zod 有 TypeScript 类型推导，Schema 定义即类型定义）</li>
+</ul>
+<h3 id="152-d-2实现类型层5-分钟">1.5.2 D-2：实现类型层（5 分钟）</h3>
+<p>按第 5.3 节的代码写 <code>src/tools/types/tool.types.ts</code>。</p>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>ToolDefinition</code> 的 <code>schema</code> 字段为什么是 <code>z.ZodType</code> 而不是普通对象？（运行时校验需要可执行的 Schema）</li>
+<li><code>ToolContext</code> 为什么要包含 <code>userId</code> 和 <code>requestId</code>？（审计追踪和权限控制的最小上下文）</li>
+</ul>
+<h3 id="153-d-3实现错误层3-分钟">1.5.3 D-3：实现错误层（3 分钟）</h3>
+<p>按第 5.3 节的代码写 <code>src/tools/errors/tool.errors.ts</code>。</p>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>为什么每个错误类都要继承 <code>Error</code> 并设置 <code>this.name</code>？（错误栈追踪和错误类型判断）</li>
+</ul>
+<h3 id="154-d-4实现审计层5-分钟">1.5.4 D-4：实现审计层（5 分钟）</h3>
+<p>按第 5.3 节的代码写 <code>src/tools/audit/tool-audit.service.ts</code>。</p>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>审计日志为什么要记录 <code>resultSize</code> 而不是完整的 <code>result</code>？（避免日志爆炸，只记元数据）</li>
+<li>为什么 <code>logExecution</code> 是 <code>async</code> 方法？（未来接入外部日志系统需要异步写入）</li>
+</ul>
+<h3 id="155-d-5实现-registry-和-tools剩余时间">1.5.5 D-5：实现 Registry 和 Tools（剩余时间）</h3>
+<p>按第 5.3 节的代码依次写：</p>
+<ul>
+<li><code>src/tools/registry/tool-registry.service.ts</code></li>
+<li><code>src/tools/implementations/list-servers.tool.ts</code></li>
+<li><code>src/tools/implementations/get-metrics.tool.ts</code></li>
+<li><code>src/tools/implementations/get-alert-detail.tool.ts</code></li>
+<li><code>src/tools/tools.module.ts</code></li>
+<li><code>src/tools/tools.controller.ts</code></li>
+<li><code>src/tools/index.ts</code></li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li>Registry 的 <code>execute()</code> 方法为什么要按"查找 → 校验 → 超时包装 → 执行 → 裁剪 → 审计"六步执行？（每一步都是独立的保护层）</li>
+<li>三个 Tool 的 <code>schema</code> 定义有什么共同模式？（都限制了参数范围：<code>minutes</code> 最大 1440，<code>limit</code> 最大 100）</li>
+</ul>
+<hr>
+<h2 id="2-学习节奏90-阅读-90-动手">2. 学习节奏（90 阅读 / 90 动手）</h2>
+<p>Day 11 总时长 180 分钟，分为 6 个阶段（A-F）：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>活动</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A：读文档头</strong></td>
+<td>30 分钟</td>
+<td>阅读 §0-§1.4（位置/目标/目录结构）</td>
+<td>在脑子里建立 Tool Registry 的骨架图</td>
+</tr>
+<tr>
+<td><strong>B：读三版演进</strong></td>
+<td>30 分钟</td>
+<td>阅读 §3-§5（v1/v2/v3 完整代码）</td>
+<td>理解"为什么 v3 要分这么多层"</td>
+</tr>
+<tr>
+<td><strong>C：读知识点深挖</strong></td>
+<td>30 分钟</td>
+<td>阅读 §5.4（6 个知识点）+ §6.5（HTML 深挖）</td>
+<td>记录每个知识点的"解决的问题/验证方法"</td>
+</tr>
+<tr>
+<td><strong>D：搭骨架</strong></td>
+<td>60 分钟</td>
+<td>执行 §1.5（D-1 到 D-5）</td>
+<td>10 个文件骨架全部创建</td>
+</tr>
+<tr>
+<td><strong>E：写测试</strong></td>
+<td>20 分钟</td>
+<td>执行 §7.6（写 Registry + 3 个 Tool 的单元测试）</td>
+<td>至少 15 个测试用例通过</td>
+</tr>
+<tr>
+<td><strong>F：验收</strong></td>
+<td>10 分钟</td>
+<td>执行 §7.7-§7.9（反证实验 + 提交）</td>
+<td>commit + 反证记录</td>
+</tr>
+</tbody>
+</table></div><p><strong>阶段切换规则</strong>：</p>
+<ul>
+<li>A → B：读完目录结构后，能闭眼说出"types/errors/audit/registry/implementations"五层各自的职责。</li>
+<li>B → C：读完 v3 代码后，能说出"v2 暴露的痛点是什么，v3 如何解决"。</li>
+<li>C → D：读完知识点后，能回答 §1.4.5 的 3 个问题。</li>
+<li>D → E：骨架搭完后，<code>pnpm typecheck</code> 通过（可能有逻辑未实现，但类型正确）。</li>
+<li>E → F：测试通过后，<code>pnpm test</code> 至少 15 个用例全绿。</li>
+</ul>
+<hr>
+<h2 id="3-v1最小闭环">3. v1：最小闭环</h2>
+<h3 id="31-v1-要实现什么">3.1 v1 要实现什么</h3>
+<p><strong>目标</strong>：用最少的代码让 LLM 能够调用一个真实的数据库查询函数。</p>
+<p><strong>功能范围</strong>：</p>
+<ul>
+<li>一个 Tool：<code>getMetrics</code>（查询最近 N 分钟的指标数据）</li>
+<li>一个 HTTP 端点：<code>POST /tools/execute</code></li>
+<li>直接调用 Prisma，无校验、无超时、无审计</li>
+</ul>
+<p><strong>用户视角</strong>：</p>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/tools/execute \
+  -H "Content-Type: application/json" \
+  -d '{
+    "toolName": "getMetrics",
+    "arguments": {
+      "serverId": "srv-042",
+      "metricType": "cpu",
+      "minutes": 10
+    }
+  }'
+
+# 返回：
+{
+  "success": true,
+  "data": [
+    { "timestamp": "2026-07-24T14:20:00Z", "value": 85.2 },
+    { "timestamp": "2026-07-24T14:21:00Z", "value": 87.5 },
+    ...
+  ]
+}
+</code></pre>
+<h3 id="32-v1-完整代码">3.2 v1 完整代码</h3>
+<p><strong>apps/api/src/tools/get-metrics-v1.tool.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { PrismaService } from '../prisma/prisma.service'
+
+@Injectable()
+export class GetMetricsToolV1 {
+  constructor(private prisma: PrismaService) {}
+
+  async execute(args: any): Promise&lt;any&gt; {
+    const { serverId, metricType, minutes } = args
+    
+    const since = new Date(Date.now() - minutes * 60 * 1000)
+    
+    const metrics = await this.prisma.metric.findMany({
+      where: {
+        serverId,
+        type: metricType,
+        timestamp: { gte: since },
+      },
+      orderBy: { timestamp: 'desc' },
+    })
+    
+    return metrics.map(m =&gt; ({
+      timestamp: m.timestamp.toISOString(),
+      value: m.value,
+    }))
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/tools/tools-v1.controller.ts</strong></p>
+<pre><code class="language-typescript">import { Controller, Post, Body } from '@nestjs/common'
+import { GetMetricsToolV1 } from './get-metrics-v1.tool'
+
+@Controller('tools')
+export class ToolsControllerV1 {
+  constructor(private getMetricsTool: GetMetricsToolV1) {}
+
+  @Post('execute')
+  async execute(@Body() body: { toolName: string; arguments: any }) {
+    const { toolName, arguments: args } = body
+    
+    if (toolName === 'getMetrics') {
+      const data = await this.getMetricsTool.execute(args)
+      return { success: true, data }
+    }
+    
+    return { success: false, error: 'Unknown tool' }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/tools/tools-v1.module.ts</strong></p>
+<pre><code class="language-typescript">import { Module } from '@nestjs/common'
+import { PrismaModule } from '../prisma/prisma.module'
+import { GetMetricsToolV1 } from './get-metrics-v1.tool'
+import { ToolsControllerV1 } from './tools-v1.controller'
+
+@Module({
+  imports: [PrismaModule],
+  controllers: [ToolsControllerV1],
+  providers: [GetMetricsToolV1],
+})
+export class ToolsModuleV1 {}
+</code></pre>
+<h3 id="33-v1-用到的知识点">3.3 v1 用到的知识点</h3>
+<p><strong>知识点 1：Function Calling 基本概念</strong></p>
+<ul>
+<li><strong>解决的问题</strong>：LLM 只能生成文本，如何让它调用真实的函数（查数据库、调 API、读文件）？</li>
+<li><strong>运行机制</strong>：LLM 生成结构化的 JSON（toolName + arguments），后端解析后调用对应函数，把结果返回给 LLM。</li>
+<li><strong>项目落点</strong>：<code>POST /tools/execute</code> 接收 <code>{ toolName, arguments }</code>，路由到具体 Tool。</li>
+<li><strong>生产误区</strong>：以为 LLM 能"直接执行代码"——实际上 LLM 只生成调用请求，执行权在服务端。</li>
+<li><strong>验证方法</strong>：用 <code>curl</code> 手动发送 Function Call，看能否返回数据库结果。</li>
+</ul>
+<p><strong>知识点 2：Tool 的最小接口</strong></p>
+<ul>
+<li><strong>解决的问题</strong>：如何定义一个"可被 LLM 调用的函数"的最小形式？</li>
+<li><strong>运行机制</strong>：Tool 至少需要 <code>name</code>（标识）+ <code>execute(args)</code>（执行逻辑）。</li>
+<li><strong>项目落点</strong>：<code>GetMetricsToolV1.execute(args)</code> 是 Tool 的核心方法。</li>
+<li><strong>生产误区</strong>：把 Tool 写成 NestJS Controller——Tool 应该是纯业务逻辑，不依赖 HTTP。</li>
+<li><strong>验证方法</strong>：能否在单元测试里直接 <code>new GetMetricsToolV1(prisma).execute(args)</code> 而不启动 HTTP 服务？</li>
+</ul>
+<h3 id="34-v1-暴露的痛点">3.4 v1 暴露的痛点</h3>
+<ol>
+<li><strong>无参数校验</strong>：<code>args.minutes</code> 可能是负数、字符串、或者 1000000，直接传给数据库会崩溃。</li>
+<li><strong>无超时保护</strong>：如果查询卡住 30 秒，整个请求挂起，用户无感知。</li>
+<li><strong>无结果限制</strong>：返回 10 万条记录会撑爆内存和 LLM context。</li>
+<li><strong>无错误分类</strong>：数据库连接失败、参数错误、查询超时都返回同一个 500 错误。</li>
+<li><strong>硬编码路由</strong>：每加一个 Tool 就要在 Controller 里加一个 <code>if</code>，100 个 Tool 就是 100 个 <code>if</code>。</li>
+</ol>
+<p><strong>下一版改进方向</strong>：加入 Zod Schema 校验 + 超时保护。</p>
+<hr>
+<h2 id="4-v2加入-schema-校验和超时保护">4. v2：加入 Schema 校验和超时保护</h2>
+<h3 id="41-v2-要实现什么">4.1 v2 要实现什么</h3>
+<p><strong>目标</strong>：在 v1 基础上加入参数校验和超时保护，防止非法输入和慢查询。</p>
+<p><strong>功能范围</strong>：</p>
+<ul>
+<li>用 Zod 定义 <code>getMetrics</code> 的参数 Schema（<code>minutes</code> 范围 1-1440，<code>metricType</code> 枚举）</li>
+<li>用 <code>Promise.race</code> 实现 5 秒超时</li>
+<li>抽离 <code>ToolDefinition</code> 接口</li>
+</ul>
+<p><strong>新增保护</strong>：</p>
+<pre><code class="language-typescript">// 参数校验
+const schema = z.object({
+  serverId: z.string().min(1),
+  metricType: z.enum(['cpu', 'memory', 'disk']),
+  minutes: z.number().int().min(1).max(1440), // 最多查 24 小时
+})
+
+// 超时保护
+const result = await Promise.race([
+  tool.execute(args),
+  new Promise((_, reject) =&gt; 
+    setTimeout(() =&gt; reject(new Error('Timeout')), 5000)
+  ),
+])
+</code></pre>
+<h3 id="42-v2-完整代码">4.2 v2 完整代码</h3>
+<p><strong>apps/api/src/tools/types/tool.types.ts</strong></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+
+export interface ToolDefinition&lt;TArgs = any, TResult = any&gt; {
+  name: string
+  description: string
+  schema: z.ZodType&lt;TArgs&gt;
+  execute: (args: TArgs, context: ToolContext) =&gt; Promise&lt;TResult&gt;
+}
+
+export interface ToolContext {
+  userId?: string
+  requestId: string
+  timestamp: Date
+}
+</code></pre>
+<p><strong>apps/api/src/tools/get-metrics-v2.tool.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { z } from 'zod'
+import { PrismaService } from '../prisma/prisma.service'
+import { ToolDefinition, ToolContext } from './types/tool.types'
+
+const GetMetricsSchema = z.object({
+  serverId: z.string().min(1),
+  metricType: z.enum(['cpu', 'memory', 'disk']),
+  minutes: z.number().int().min(1).max(1440),
+})
+
+type GetMetricsArgs = z.infer&lt;typeof GetMetricsSchema&gt;
+
+interface MetricResult {
+  timestamp: string
+  value: number
+}
+
+@Injectable()
+export class GetMetricsToolV2 implements ToolDefinition&lt;GetMetricsArgs, MetricResult[]&gt; {
+  name = 'getMetrics'
+  description = 'Query server metrics for the last N minutes'
+  schema = GetMetricsSchema
+
+  constructor(private prisma: PrismaService) {}
+
+  async execute(args: GetMetricsArgs, context: ToolContext): Promise&lt;MetricResult[]&gt; {
+    const { serverId, metricType, minutes } = args
+    
+    const since = new Date(Date.now() - minutes * 60 * 1000)
+    
+    const metrics = await this.prisma.metric.findMany({
+      where: {
+        serverId,
+        type: metricType,
+        timestamp: { gte: since },
+      },
+      orderBy: { timestamp: 'desc' },
+    })
+    
+    return metrics.map(m =&gt; ({
+      timestamp: m.timestamp.toISOString(),
+      value: m.value,
+    }))
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/tools/tools-v2.controller.ts</strong></p>
+<pre><code class="language-typescript">import { Controller, Post, Body, HttpException, HttpStatus } from '@nestjs/common'
+import { GetMetricsToolV2 } from './get-metrics-v2.tool'
+import { ToolContext } from './types/tool.types'
+import { randomUUID } from 'crypto'
+
+@Controller('tools')
+export class ToolsControllerV2 {
+  private readonly TIMEOUT_MS = 5000
+
+  constructor(private getMetricsTool: GetMetricsToolV2) {}
+
+  @Post('execute')
+  async execute(@Body() body: { toolName: string; arguments: any }) {
+    const { toolName, arguments: rawArgs } = body
+    
+    if (toolName !== 'getMetrics') {
+      throw new HttpException('Unknown tool', HttpStatus.NOT_FOUND)
+    }
+
+    // Schema 校验
+    const parseResult = this.getMetricsTool.schema.safeParse(rawArgs)
+    if (!parseResult.success) {
+      throw new HttpException({
+        error: 'Invalid arguments',
+        details: parseResult.error.format(),
+      }, HttpStatus.BAD_REQUEST)
+    }
+
+    const context: ToolContext = {
+      requestId: randomUUID(),
+      timestamp: new Date(),
+    }
+
+    // 超时保护
+    try {
+      const result = await Promise.race([
+        this.getMetricsTool.execute(parseResult.data, context),
+        new Promise&lt;never&gt;((_, reject) =&gt;
+          setTimeout(() =&gt; reject(new Error('Tool execution timeout')), this.TIMEOUT_MS)
+        ),
+      ])
+      
+      return { success: true, data: result }
+    } catch (error) {
+      if (error.message === 'Tool execution timeout') {
+        throw new HttpException('Tool execution timeout', HttpStatus.REQUEST_TIMEOUT)
+      }
+      throw new HttpException('Tool execution failed', HttpStatus.INTERNAL_SERVER_ERROR)
+    }
+  }
+}
+</code></pre>
+<h3 id="43-v2-用到的知识点">4.3 v2 用到的知识点</h3>
+<p><strong>知识点 3：Zod Schema 校验</strong></p>
+<ul>
+<li><strong>解决的问题</strong>：如何在运行时校验 LLM 生成的参数是否合法？</li>
+<li><strong>运行机制</strong>：Zod 提供 <code>safeParse()</code>，返回 <code>{ success, data/error }</code>，失败时包含详细错误信息。</li>
+<li><strong>项目落点</strong>：<code>GetMetricsSchema</code> 限制 <code>minutes</code> 范围 1-1440，<code>metricType</code> 只能是 cpu/memory/disk。</li>
+<li><strong>生产误区</strong>：用 TypeScript 类型约束代替运行时校验——TS 类型编译后消失，无法防止运行时非法输入。</li>
+<li><strong>验证方法</strong>：发送 <code>{ minutes: -1 }</code> 或 <code>{ metricType: 'invalid' }</code>，应该返回 400 错误。</li>
+</ul>
+<p><strong>知识点 4：超时保护机制</strong></p>
+<ul>
+<li><strong>解决的问题</strong>：如何防止慢查询卡住整个请求？</li>
+<li><strong>运行机制</strong>：<code>Promise.race([执行, 超时Promise])</code>，先完成的 Promise 决定结果。</li>
+<li><strong>项目落点</strong>：5 秒超时，超时后抛出 <code>REQUEST_TIMEOUT</code> 错误。</li>
+<li><strong>生产误区</strong>：以为设置数据库连接超时就够了——连接超时只保护连接阶段，查询本身可能慢。</li>
+<li><strong>验证方法</strong>：写一个故意慢的查询（<code>SELECT pg_sleep(10)</code>），看 5 秒后是否超时。</li>
+</ul>
+<h3 id="44-v2-暴露的痛点">4.4 v2 暴露的痛点</h3>
+<ol>
+<li><strong>无结果裁剪</strong>：即使参数合法，返回 1 万条记录仍然会撑爆内存。</li>
+<li><strong>无审计日志</strong>：无法追踪哪个用户在什么时间调用了什么 Tool。</li>
+<li><strong>硬编码 Tool 查找</strong>：Controller 里仍然是 <code>if (toolName === 'getMetrics')</code>，加新 Tool 仍需改代码。</li>
+<li><strong>错误处理粗糙</strong>：所有执行错误都返回 500，无法区分是数据库错误还是业务逻辑错误。</li>
+<li><strong>无最小权限</strong>：所有 Tool 都能访问所有数据，没有字段白名单。</li>
+</ol>
+<p><strong>下一版改进方向</strong>：引入 Registry 统一管理 Tool + 审计日志 + 结果裁剪。</p>
+<hr>
+<h2 id="5-v3完整的-tool-registry">5. v3：完整的 Tool Registry</h2>
+<h3 id="51-v3-要实现什么">5.1 v3 要实现什么</h3>
+<p><strong>目标</strong>：建立完整的 Tool Registry 架构，支持动态注册、统一执行、审计日志和结果裁剪。</p>
+<p><strong>功能范围</strong>：</p>
+<ul>
+<li>三个只读 Tool：<code>listServers</code> / <code>getMetrics</code> / <code>getAlertDetail</code></li>
+<li>Registry 统一管理所有 Tool（注册、查找、执行）</li>
+<li>审计服务记录每次调用（toolName / args / duration / resultSize）</li>
+<li>结果裁剪（最多返回 100 条记录）</li>
+<li>自定义错误类（SchemaError / TimeoutError / ExecutionError）</li>
+</ul>
+<p><strong>架构图</strong>：</p>
+<pre><code>HTTP Request
+    ↓
+ToolsController
+    ↓
+ToolRegistryService.execute(toolName, args)
+    ├─ 1. 查找 Tool
+    ├─ 2. Schema 校验
+    ├─ 3. 超时包装
+    ├─ 4. 执行 Tool
+    ├─ 5. 结果裁剪
+    └─ 6. 审计记录
+    ↓
+返回结果
+</code></pre>
+<h3 id="52-v3-目录结构">5.2 v3 目录结构</h3>
+<pre><code>apps/api/src/tools/
+├── types/tool.types.ts
+├── errors/tool.errors.ts
+├── audit/tool-audit.service.ts
+├── registry/
+│   ├── tool-registry.service.ts
+│   └── tool-registry.service.spec.ts
+├── implementations/
+│   ├── list-servers.tool.ts
+│   ├── get-metrics.tool.ts
+│   └── get-alert-detail.tool.ts
+├── index.ts
+├── tools.module.ts
+└── tools.controller.ts
+</code></pre>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<h4 id="531-类型定义">5.3.1 类型定义</h4>
+<p><strong>apps/api/src/tools/types/tool.types.ts</strong></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+
+/**
+ * Tool 定义接口
+ * 每个 Tool 必须实现此接口才能被 Registry 注册
+ */
+export interface ToolDefinition&lt;TArgs = any, TResult = any&gt; {
+  /** Tool 唯一标识符 */
+  name: string
+  
+  /** Tool 描述（给 LLM 看的，解释这个 Tool 做什么） */
+  description: string
+  
+  /** 参数 Schema（用于运行时校验） */
+  schema: z.ZodType&lt;TArgs&gt;
+  
+  /** 执行函数 */
+  execute: (args: TArgs, context: ToolContext) =&gt; Promise&lt;TResult&gt;
+}
+
+/**
+ * Tool 执行上下文
+ * 包含调用追踪和权限信息
+ */
+export interface ToolContext {
+  /** 用户 ID（用于权限检查和审计） */
+  userId?: string
+  
+  /** 请求 ID（用于日志追踪） */
+  requestId: string
+  
+  /** 调用时间戳 */
+  timestamp: Date
+}
+
+/**
+ * Tool 执行结果
+ * 统一的返回格式
+ */
+export interface ToolResult&lt;T = any&gt; {
+  success: boolean
+  data?: T
+  error?: {
+    code: string
+    message: string
+    details?: any
+  }
+  meta: {
+    toolName: string
+    duration: number
+    resultSize: number
+    truncated: boolean
+  }
+}
+</code></pre>
+<h4 id="532-错误定义">5.3.2 错误定义</h4>
+<p><strong>apps/api/src/tools/errors/tool.errors.ts</strong></p>
+<pre><code class="language-typescript">/**
+ * Tool 专用错误基类
+ */
+export abstract class ToolError extends Error {
+  abstract readonly code: string
+
+  constructor(message: string) {
+    super(message)
+    this.name = this.constructor.name
+    Error.captureStackTrace(this, this.constructor)
+  }
+}
+
+/**
+ * Schema 校验失败
+ * HTTP 400 - 客户端错误
+ */
+export class ToolSchemaError extends ToolError {
+  readonly code = 'TOOL_SCHEMA_ERROR'
+
+  constructor(
+    message: string,
+    public readonly details: any,
+  ) {
+    super(message)
+  }
+}
+
+/**
+ * Tool 执行超时
+ * HTTP 408 - 服务端性能问题
+ */
+export class ToolTimeoutError extends ToolError {
+  readonly code = 'TOOL_TIMEOUT'
+
+  constructor(
+    public readonly toolName: string,
+    public readonly timeoutMs: number,
+  ) {
+    super(`Tool '${toolName}' execution timeout after ${timeoutMs}ms`)
+  }
+}
+
+/**
+ * Tool 执行失败
+ * HTTP 500 - 服务端逻辑错误
+ */
+export class ToolExecutionError extends ToolError {
+  readonly code = 'TOOL_EXECUTION_ERROR'
+
+  constructor(
+    public readonly toolName: string,
+    public readonly cause: Error,
+  ) {
+    super(`Tool '${toolName}' execution failed: ${cause.message}`)
+  }
+}
+
+/**
+ * Tool 未找到
+ * HTTP 404 - 客户端错误
+ */
+export class ToolNotFoundError extends ToolError {
+  readonly code = 'TOOL_NOT_FOUND'
+
+  constructor(public readonly toolName: string) {
+    super(`Tool '${toolName}' not found in registry`)
+  }
+}
+</code></pre>
+<h4 id="533-审计服务">5.3.3 审计服务</h4>
+<p><strong>apps/api/src/tools/audit/tool-audit.service.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable, Logger } from '@nestjs/common'
+
+export interface ToolAuditLog {
+  toolName: string
+  userId?: string
+  requestId: string
+  arguments: any
+  timestamp: Date
+  duration: number
+  success: boolean
+  error?: string
+  resultSize: number
+}
+
+@Injectable()
+export class ToolAuditService {
+  private readonly logger = new Logger(ToolAuditService.name)
+
+  /**
+   * 记录 Tool 调用审计日志
+   * 生产环境应写入 ELK / Prometheus / DataDog
+   */
+  async logExecution(log: ToolAuditLog): Promise&lt;void&gt; {
+    // 当前实现：写入结构化日志
+    this.logger.log({
+      event: 'tool_execution',
+      ...log,
+      // 敏感参数脱敏
+      arguments: this.sanitizeArgs(log.arguments),
+    })
+
+    // TODO: 生产环境写入外部审计系统
+    // await this.auditRepository.save(log)
+  }
+
+  /**
+   * 脱敏敏感参数
+   */
+  private sanitizeArgs(args: any): any {
+    if (!args || typeof args !== 'object') return args
+
+    const sanitized = { ...args }
+    const sensitiveKeys = ['password', 'token', 'apiKey', 'secret']
+
+    for (const key of sensitiveKeys) {
+      if (key in sanitized) {
+        sanitized[key] = '***REDACTED***'
+      }
+    }
+
+    return sanitized
+  }
+}
+</code></pre>
+<h4 id="534-registry-服务">5.3.4 Registry 服务</h4>
+<p><strong>apps/api/src/tools/registry/tool-registry.service.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable, Logger } from '@nestjs/common'
+import {
+  ToolDefinition,
+  ToolContext,
+  ToolResult,
+} from '../types/tool.types'
+import {
+  ToolNotFoundError,
+  ToolSchemaError,
+  ToolTimeoutError,
+  ToolExecutionError,
+} from '../errors/tool.errors'
+import { ToolAuditService } from '../audit/tool-audit.service'
+
+@Injectable()
+export class ToolRegistryService {
+  private readonly logger = new Logger(ToolRegistryService.name)
+  private readonly tools = new Map&lt;string, ToolDefinition&gt;()
+  private readonly TIMEOUT_MS = 5000
+  private readonly MAX_RESULT_SIZE = 100
+
+  constructor(private readonly auditService: ToolAuditService) {}
+
+  register(tool: ToolDefinition): void {
+    if (this.tools.has(tool.name)) {
+      this.logger.warn(`Tool already registered, overwriting`)
+    }
+    this.tools.set(tool.name, tool)
+    this.logger.log(`Tool registered`)
+  }
+
+  registerAll(tools: ToolDefinition[]): void {
+    tools.forEach(tool =&gt; this.register(tool))
+  }
+
+  find(name: string): ToolDefinition | undefined {
+    return this.tools.get(name)
+  }
+
+  listTools(): string[] {
+    return Array.from(this.tools.keys())
+  }
+
+  async execute&lt;T = any&gt;(
+    toolName: string,
+    rawArgs: any,
+    context: ToolContext,
+  ): Promise&lt;ToolResult&lt;T&gt;&gt; {
+    const startTime = Date.now()
+
+    try {
+      const tool = this.tools.get(toolName)
+      if (!tool) {
+        throw new ToolNotFoundError(toolName)
+      }
+
+      const parseResult = tool.schema.safeParse(rawArgs)
+      if (!parseResult.success) {
+        throw new ToolSchemaError(
+          'Invalid tool arguments',
+          parseResult.error.format(),
+        )
+      }
+
+      const result = await this.executeWithTimeout(
+        tool,
+        parseResult.data,
+        context,
+      )
+
+      const truncatedResult = this.truncateResult(result)
+      const duration = Date.now() - startTime
+
+      await this.auditService.logExecution({
+        toolName,
+        userId: context.userId,
+        requestId: context.requestId,
+        arguments: rawArgs,
+        timestamp: context.timestamp,
+        duration,
+        success: true,
+        resultSize: this.getResultSize(result),
+      })
+
+      return {
+        success: true,
+        data: truncatedResult.data,
+        meta: {
+          toolName,
+          duration,
+          resultSize: this.getResultSize(result),
+          truncated: truncatedResult.truncated,
+        },
+      }
+    } catch (error) {
+      const duration = Date.now() - startTime
+
+      await this.auditService.logExecution({
+        toolName,
+        userId: context.userId,
+        requestId: context.requestId,
+        arguments: rawArgs,
+        timestamp: context.timestamp,
+        duration,
+        success: false,
+        error: error.message,
+        resultSize: 0,
+      })
+
+      return {
+        success: false,
+        error: {
+          code: error.code || 'UNKNOWN_ERROR',
+          message: error.message,
+          details: error.details,
+        },
+        meta: {
+          toolName,
+          duration,
+          resultSize: 0,
+          truncated: false,
+        },
+      }
+    }
+  }
+
+  private async executeWithTimeout&lt;TArgs, TResult&gt;(
+    tool: ToolDefinition&lt;TArgs, TResult&gt;,
+    args: TArgs,
+    context: ToolContext,
+  ): Promise&lt;TResult&gt; {
+    const timeoutPromise = new Promise&lt;never&gt;((_, reject) =&gt; {
+      setTimeout(() =&gt; {
+        reject(new ToolTimeoutError(tool.name, this.TIMEOUT_MS))
+      }, this.TIMEOUT_MS)
+    })
+
+    try {
+      return await Promise.race([
+        tool.execute(args, context),
+        timeoutPromise,
+      ])
+    } catch (error) {
+      if (error instanceof ToolTimeoutError) {
+        throw error
+      }
+      throw new ToolExecutionError(tool.name, error)
+    }
+  }
+
+  private truncateResult&lt;T&gt;(result: T): { data: T; truncated: boolean } {
+    if (Array.isArray(result)) {
+      if (result.length &gt; this.MAX_RESULT_SIZE) {
+        return {
+          data: result.slice(0, this.MAX_RESULT_SIZE) as T,
+          truncated: true,
+        }
+      }
+    }
+    return { data: result, truncated: false }
+  }
+
+  private getResultSize(result: any): number {
+    if (Array.isArray(result)) {
+      return result.length
+    }
+    if (result &amp;&amp; typeof result === 'object') {
+      return Object.keys(result).length
+    }
+    return 1
+  }
+}
+</code></pre>
+<h4 id="535-具体-tool-实现">5.3.5 具体 Tool 实现</h4>
+<p><strong>apps/api/src/tools/implementations/list-servers.tool.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { z } from 'zod'
+import { PrismaService } from '../../prisma/prisma.service'
+import { ToolDefinition, ToolContext } from '../types/tool.types'
+
+const ListServersSchema = z.object({
+  limit: z.number().int().min(1).max(100).optional().default(50),
+})
+
+type ListServersArgs = z.infer&lt;typeof ListServersSchema&gt;
+
+interface ServerInfo {
+  id: string
+  name: string
+  status: string
+}
+
+@Injectable()
+export class ListServersTool implements ToolDefinition&lt;ListServersArgs, ServerInfo[]&gt; {
+  name = 'listServers'
+  description = 'List all monitored servers with their current status'
+  schema = ListServersSchema
+
+  constructor(private readonly prisma: PrismaService) {}
+
+  async execute(args: ListServersArgs, context: ToolContext): Promise&lt;ServerInfo[]&gt; {
+    const servers = await this.prisma.server.findMany({
+      take: args.limit,
+      select: {
+        id: true,
+        name: true,
+        status: true,
+      },
+      orderBy: { name: 'asc' },
+    })
+
+    return servers.map(s =&gt; ({
+      id: s.id,
+      name: s.name,
+      status: s.status,
+    }))
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/tools/implementations/get-metrics.tool.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { z } from 'zod'
+import { PrismaService } from '../../prisma/prisma.service'
+import { ToolDefinition, ToolContext } from '../types/tool.types'
+
+const GetMetricsSchema = z.object({
+  serverId: z.string().min(1),
+  metricType: z.enum(['cpu', 'memory', 'disk']),
+  minutes: z.number().int().min(1).max(1440),
+})
+
+type GetMetricsArgs = z.infer&lt;typeof GetMetricsSchema&gt;
+
+interface MetricData {
+  timestamp: string
+  value: number
+}
+
+@Injectable()
+export class GetMetricsTool implements ToolDefinition&lt;GetMetricsArgs, MetricData[]&gt; {
+  name = 'getMetrics'
+  description = 'Query server metrics for the last N minutes'
+  schema = GetMetricsSchema
+
+  constructor(private readonly prisma: PrismaService) {}
+
+  async execute(args: GetMetricsArgs, context: ToolContext): Promise&lt;MetricData[]&gt; {
+    const { serverId, metricType, minutes } = args
+    
+    const since = new Date(Date.now() - minutes * 60 * 1000)
+    
+    const metrics = await this.prisma.metric.findMany({
+      where: {
+        serverId,
+        type: metricType,
+        timestamp: { gte: since },
+      },
+      select: {
+        timestamp: true,
+        value: true,
+      },
+      orderBy: { timestamp: 'desc' },
+      take: 1000,
+    })
+    
+    return metrics.map(m =&gt; ({
+      timestamp: m.timestamp.toISOString(),
+      value: m.value,
+    }))
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/tools/implementations/get-alert-detail.tool.ts</strong></p>
+<pre><code class="language-typescript">import { Injectable } from '@nestjs/common'
+import { z } from 'zod'
+import { PrismaService } from '../../prisma/prisma.service'
+import { ToolDefinition, ToolContext } from '../types/tool.types'
+
+const GetAlertDetailSchema = z.object({
+  alertId: z.string().uuid(),
+})
+
+type GetAlertDetailArgs = z.infer&lt;typeof GetAlertDetailSchema&gt;
+
+interface AlertDetail {
+  id: string
+  serverId: string
+  serverName: string
+  metricType: string
+  severity: string
+  status: string
+  message: string
+  createdAt: string
+  updatedAt: string
+}
+
+@Injectable()
+export class GetAlertDetailTool implements ToolDefinition&lt;GetAlertDetailArgs, AlertDetail | null&gt; {
+  name = 'getAlertDetail'
+  description = 'Get detailed information about a specific alert'
+  schema = GetAlertDetailSchema
+
+  constructor(private readonly prisma: PrismaService) {}
+
+  async execute(args: GetAlertDetailArgs, context: ToolContext): Promise&lt;AlertDetail | null&gt; {
+    const alert = await this.prisma.alert.findUnique({
+      where: { id: args.alertId },
+      include: {
+        server: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    })
+
+    if (!alert) {
+      return null
+    }
+
+    return {
+      id: alert.id,
+      serverId: alert.serverId,
+      serverName: alert.server.name,
+      metricType: alert.metricType,
+      severity: alert.severity,
+      status: alert.status,
+      message: alert.message,
+      createdAt: alert.createdAt.toISOString(),
+      updatedAt: alert.updatedAt.toISOString(),
+    }
+  }
+}
+</code></pre>
+<h4 id="536-module-和-controller">5.3.6 Module 和 Controller</h4>
+<p><strong>apps/api/src/tools/tools.module.ts</strong></p>
+<pre><code class="language-typescript">import { Module } from '@nestjs/common'
+import { PrismaModule } from '../prisma/prisma.module'
+import { ToolAuditService } from './audit/tool-audit.service'
+import { ToolRegistryService } from './registry/tool-registry.service'
+import { ListServersTool } from './implementations/list-servers.tool'
+import { GetMetricsTool } from './implementations/get-metrics.tool'
+import { GetAlertDetailTool } from './implementations/get-alert-detail.tool'
+import { ToolsController } from './tools.controller'
+
+@Module({
+  imports: [PrismaModule],
+  controllers: [ToolsController],
+  providers: [
+    ToolAuditService,
+    ToolRegistryService,
+    ListServersTool,
+    GetMetricsTool,
+    GetAlertDetailTool,
+  ],
+  exports: [ToolRegistryService],
+})
+export class ToolsModule {
+  constructor(
+    private readonly registry: ToolRegistryService,
+    private readonly listServersTool: ListServersTool,
+    private readonly getMetricsTool: GetMetricsTool,
+    private readonly getAlertDetailTool: GetAlertDetailTool,
+  ) {
+    this.registry.registerAll([
+      this.listServersTool,
+      this.getMetricsTool,
+      this.getAlertDetailTool,
+    ])
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/tools/tools.controller.ts</strong></p>
+<pre><code class="language-typescript">import { Controller, Post, Body, HttpException, HttpStatus } from '@nestjs/common'
+import { ToolRegistryService } from './registry/tool-registry.service'
+import { ToolContext } from './types/tool.types'
+import { randomUUID } from 'crypto'
+
+@Controller('tools')
+export class ToolsController {
+  constructor(private readonly registry: ToolRegistryService) {}
+
+  @Post('execute')
+  async execute(
+    @Body() body: { toolName: string; arguments: any; userId?: string },
+  ) {
+    const { toolName, arguments: rawArgs, userId } = body
+
+    const context: ToolContext = {
+      userId,
+      requestId: randomUUID(),
+      timestamp: new Date(),
+    }
+
+    const result = await this.registry.execute(toolName, rawArgs, context)
+
+    if (!result.success) {
+      const error = result.error
+      
+      if (error.code === 'TOOL_NOT_FOUND') {
+        throw new HttpException(error, HttpStatus.NOT_FOUND)
+      }
+      
+      if (error.code === 'TOOL_SCHEMA_ERROR') {
+        throw new HttpException(error, HttpStatus.BAD_REQUEST)
+      }
+      
+      if (error.code === 'TOOL_TIMEOUT') {
+        throw new HttpException(error, HttpStatus.REQUEST_TIMEOUT)
+      }
+      
+      throw new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR)
+    }
+
+    return result
+  }
+
+  @Post('list')
+  async listTools() {
+    return {
+      tools: this.registry.listTools(),
+    }
+  }
+}
+</code></pre>
+<p><strong>apps/api/src/tools/index.ts</strong></p>
+<pre><code class="language-typescript">export * from './types/tool.types'
+export * from './errors/tool.errors'
+export * from './audit/tool-audit.service'
+export * from './registry/tool-registry.service'
+export * from './implementations/list-servers.tool'
+export * from './implementations/get-metrics.tool'
+export * from './implementations/get-alert-detail.tool'
+export * from './tools.module'
+export * from './tools.controller'
+</code></pre>
+<hr>
+<h3 id="54-v3-用到的知识点6个核心知识点">5.4 v3 用到的知识点（6个核心知识点）</h3>
+<h4 id="知识点1错误分类toolerror-体系">知识点1：错误分类（ToolError 体系）</h4>
+<p><strong>解决的问题</strong>
+Tool 执行可能因多种原因失败：工具不存在、Schema 校验不通过、执行超时、执行逻辑抛错。统一的错误分类体系让调用方能根据错误类型决策（重试 / 降级 / 上报）。</p>
+<p><strong>运行机制</strong></p>
+<pre><code class="language-typescript">// 基类：ToolError
+export class ToolError extends Error {
+  constructor(
+    message: string,
+    public readonly code: string,
+    public readonly details?: unknown,
+  ) {
+    super(message)
+    this.name = this.constructor.name
+  }
+}
+
+// 子类：ToolNotFoundError
+export class ToolNotFoundError extends ToolError {
+  constructor(toolName: string, availableTools: string[]) {
+    super(
+      `Tool "${toolName}" not found`,
+      'TOOL_NOT_FOUND',
+      { availableTools }
+    )
+  }
+}
+</code></pre>
+<ul>
+<li>每种错误继承 <code>ToolError</code>，携带 <code>code</code> 字段供程序判断</li>
+<li><code>details</code> 字段存放上下文信息（如可用工具列表、超时阈值）</li>
+<li>NestJS 全局异常过滤器捕获后统一返回格式</li>
+</ul>
+<p><strong>项目落点</strong></p>
+<pre><code class="language-typescript">// tools/errors/tool.errors.ts
+export class ToolNotFoundError extends ToolError { ... }
+export class ToolSchemaError extends ToolError { ... }
+export class ToolTimeoutError extends ToolError { ... }
+export class ToolExecutionError extends ToolError { ... }
+
+// tools/registry/tool-registry.service.ts
+async execute(toolName: string, args: unknown, context: ToolContext) {
+  const tool = this.tools.get(toolName)
+  if (!tool) {
+    throw new ToolNotFoundError(toolName, Array.from(this.tools.keys()))
+  }
+  // ... 其他错误场景
+}
+</code></pre>
+<p><strong>生产误区</strong></p>
+<ol>
+<li>❌ 所有错误都抛 <code>Error('Failed')</code>，调用方无法区分失败原因</li>
+<li>❌ 错误 message 包含动态内容但无结构化 <code>details</code>，日志难以解析</li>
+<li>❌ 自定义错误不继承基类，catch 块需要多个 <code>instanceof</code> 判断</li>
+</ol>
+<p><strong>验证方法</strong></p>
+<pre><code class="language-bash"># 测试1：工具不存在
+curl -X POST http://localhost:3000/api/tools/execute \
+  -H "Content-Type: application/json" \
+  -d '{"toolName":"unknown","args":{}}'
+# 预期：{"code":"TOOL_NOT_FOUND","details":{"availableTools":[...]}}
+
+# 测试2：Schema 校验失败
+curl -X POST http://localhost:3000/api/tools/execute \
+  -H "Content-Type: application/json" \
+  -d '{"toolName":"get-metrics","args":{"serverId":""}}'
+# 预期：{"code":"TOOL_SCHEMA_ERROR","details":{"issues":[...]}}
+</code></pre>
+<hr>
+<h4 id="知识点2registry-模式工具注册表">知识点2：Registry 模式（工具注册表）</h4>
+<p><strong>解决的问题</strong>
+系统有 10+ 工具，硬编码 <code>if (name === 'listServers') { ... }</code> 会导致：</p>
+<ul>
+<li>新增工具需改多处代码</li>
+<li>无法动态查询可用工具列表</li>
+<li>权限控制、审计逻辑散落各处</li>
+</ul>
+<p>Registry 模式集中管理工具生命周期（注册 / 查询 / 执行）。</p>
+<p><strong>运行机制</strong></p>
+<pre><code class="language-typescript">// 1. 定义统一接口
+interface ToolDefinition {
+  name: string
+  description: string
+  schema: ZodSchema&lt;any&gt;
+  execute: (args: any, context: ToolContext) =&gt; Promise&lt;any&gt;
+}
+
+// 2. Registry 存储工具
+class ToolRegistryService {
+  private tools = new Map&lt;string, ToolDefinition&gt;()
+
+  register(tool: ToolDefinition): void {
+    this.tools.set(tool.name, tool)
+  }
+
+  async execute(toolName: string, args: unknown, context: ToolContext) {
+    const tool = this.tools.get(toolName)
+    if (!tool) throw new ToolNotFoundError(...)
+    // 统一的校验 / 超时 / 审计逻辑
+    return await tool.execute(args, context)
+  }
+}
+
+// 3. 工具实现只需声明 Definition
+export const listServersTool: ToolDefinition = {
+  name: 'list-servers',
+  schema: z.object({ status: z.enum(['active', 'inactive']).optional() }),
+  execute: async (args, ctx) =&gt; { ... },
+}
+</code></pre>
+<p><strong>项目落点</strong></p>
+<pre><code class="language-typescript">// tools/registry/tool-registry.service.ts
+@Injectable()
+export class ToolRegistryService {
+  private tools = new Map&lt;string, ToolDefinition&gt;()
+
+  register(tool: ToolDefinition): void { ... }
+  registerAll(tools: ToolDefinition[]): void { ... }
+  listTools(): Array&lt;{ name: string; description: string }&gt; { ... }
+  async execute(toolName: string, args: unknown, context: ToolContext) { ... }
+}
+
+// tools/tools.module.ts
+@Module({
+  providers: [ToolRegistryService, ...],
+  exports: [ToolRegistryService],
+})
+export class ToolsModule implements OnModuleInit {
+  onModuleInit() {
+    this.registry.registerAll([
+      listServersTool,
+      getMetricsTool,
+      getAlertDetailTool,
+    ])
+  }
+}
+</code></pre>
+<p><strong>生产误区</strong></p>
+<ol>
+<li>❌ 每次调用 <code>execute</code> 都重新构造工具实例（性能浪费）</li>
+<li>❌ Registry 不做权限检查，权限逻辑散落在每个 Tool 的 <code>execute</code> 里</li>
+<li>❌ 未记录工具注册顺序，同名工具覆盖时无日志告警</li>
+</ol>
+<p><strong>验证方法</strong></p>
+<pre><code class="language-bash"># 测试1：查询工具列表
+curl http://localhost:3000/api/tools/list
+# 预期：{"tools":[{"name":"list-servers","description":"..."},{"name":"get-metrics","description":"..."},...]}
+
+# 测试2：执行已注册工具
+curl -X POST http://localhost:3000/api/tools/execute \
+  -d '{"toolName":"list-servers","args":{"status":"active"}}'
+# 预期：{"success":true,"data":[...]}
+
+# 测试3：动态注册新工具（开发环境）
+# 在 tools/implementations/ 新增 foo.tool.ts，重启后调用 /list 应自动出现
+</code></pre>
+<hr>
+<h4 id="知识点3schema-校验与类型推导zod">知识点3：Schema 校验与类型推导（Zod）</h4>
+<p><strong>解决的问题</strong>
+Tool 参数来自 AI 生成，可能传入非法值：</p>
+<ul>
+<li><code>serverId: 123</code>（应该是 string）</li>
+<li><code>limit: -1</code>（应该 &gt; 0）</li>
+<li>缺失必填字段 <code>serverId</code></li>
+</ul>
+<p>Zod Schema 在运行时校验参数，并提供 TypeScript 类型推导。</p>
+<p><strong>运行机制</strong></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+
+// 1. 定义 Schema
+const GetMetricsArgsSchema = z.object({
+  serverId: z.string().min(1, 'serverId cannot be empty'),
+  metricNames: z.array(z.string()).optional(),
+  startTime: z.number().int().positive().optional(),
+  endTime: z.number().int().positive().optional(),
+})
+
+// 2. 推导类型
+type GetMetricsArgs = z.infer&lt;typeof GetMetricsArgsSchema&gt;
+// 等价于：
+// type GetMetricsArgs = {
+//   serverId: string
+//   metricNames?: string[]
+//   startTime?: number
+//   endTime?: number
+// }
+
+// 3. 运行时校验
+const result = GetMetricsArgsSchema.safeParse(args)
+if (!result.success) {
+  throw new ToolSchemaError('get-metrics', result.error.issues)
+}
+const validArgs: GetMetricsArgs = result.data
+</code></pre>
+<p><strong>项目落点</strong></p>
+<pre><code class="language-typescript">// tools/implementations/get-metrics.tool.ts
+const GetMetricsArgsSchema = z.object({
+  serverId: z.string().min(1),
+  metricNames: z.array(z.string()).optional(),
+  startTime: z.number().int().positive().optional(),
+  endTime: z.number().int().positive().optional(),
+})
+
+type GetMetricsArgs = z.infer&lt;typeof GetMetricsArgsSchema&gt;
+
+export const getMetricsTool: ToolDefinition&lt;GetMetricsArgs&gt; = {
+  name: 'get-metrics',
+  schema: GetMetricsArgsSchema,
+  execute: async (args: GetMetricsArgs, ctx) =&gt; {
+    // args 已通过校验，TS 类型安全
+    const metrics = await ctx.prisma.metric.findMany({
+      where: { serverId: args.serverId },
+    })
+    return metrics
+  },
+}
+
+// tools/registry/tool-registry.service.ts
+async execute(toolName: string, args: unknown, context: ToolContext) {
+  const tool = this.tools.get(toolName)
+  const parseResult = tool.schema.safeParse(args)
+  if (!parseResult.success) {
+    throw new ToolSchemaError(toolName, parseResult.error.issues)
+  }
+  // 校验通过后才执行
+  return await tool.execute(parseResult.data, context)
+}
+</code></pre>
+<p><strong>生产误区</strong></p>
+<ol>
+<li>❌ 只在类型层面定义接口，运行时不校验，AI 传错参数直接崩溃</li>
+<li>❌ Schema 定义过于宽松（<code>z.string()</code> 允许空字符串），未加 <code>.min(1)</code> 约束</li>
+<li>❌ 错误信息只有 <code>Invalid input</code>，未将 Zod 的 <code>issues</code> 数组暴露给调用方</li>
+</ol>
+<p><strong>验证方法</strong></p>
+<pre><code class="language-bash"># 测试1：缺失必填字段
+curl -X POST http://localhost:3000/api/tools/execute \
+  -d '{"toolName":"get-metrics","args":{}}'
+# 预期：{"code":"TOOL_SCHEMA_ERROR","details":{"issues":[{"path":["serverId"],"message":"Required"}]}}
+
+# 测试2：类型错误
+curl -X POST http://localhost:3000/api/tools/execute \
+  -d '{"toolName":"get-metrics","args":{"serverId":123}}'
+# 预期：{"code":"TOOL_SCHEMA_ERROR","details":{"issues":[{"path":["serverId"],"message":"Expected string, received number"}]}}
+
+# 测试3：自定义约束（空字符串）
+curl -X POST http://localhost:3000/api/tools/execute \
+  -d '{"toolName":"get-metrics","args":{"serverId":""}}'
+# 预期：{"code":"TOOL_SCHEMA_ERROR","details":{"issues":[{"path":["serverId"],"message":"serverId cannot be empty"}]}}
+</code></pre>
+<hr>
+<h4 id="知识点4超时保护机制promiserace-abortcontroller">知识点4：超时保护机制（Promise.race + AbortController）</h4>
+<p><strong>解决的问题</strong>
+Tool 可能因以下原因长时间挂起：</p>
+<ul>
+<li>查询大表未加索引</li>
+<li>外部 API 无响应</li>
+<li>死循环 / 内存泄漏</li>
+</ul>
+<p>超时机制保证在固定时间内返回结果或抛出 <code>ToolTimeoutError</code>。</p>
+<p><strong>运行机制</strong></p>
+<pre><code class="language-typescript">async function withTimeout&lt;T&gt;(
+  promise: Promise&lt;T&gt;,
+  timeoutMs: number,
+  errorMessage: string
+): Promise&lt;T&gt; {
+  const timeoutPromise = new Promise&lt;never&gt;((_, reject) =&gt; {
+    setTimeout(() =&gt; reject(new ToolTimeoutError(errorMessage, timeoutMs)), timeoutMs)
+  })
+
+  return Promise.race([promise, timeoutPromise])
+}
+
+// 使用示例
+const result = await withTimeout(
+  tool.execute(args, context),
+  5000,
+  `Tool "${toolName}" execution timeout`
+)
+</code></pre>
+<p>原理：</p>
+<ol>
+<li><code>Promise.race</code> 同时运行原任务和超时定时器</li>
+<li>哪个先完成就返回哪个的结果</li>
+<li>超时定时器触发时 reject <code>ToolTimeoutError</code></li>
+</ol>
+<p><strong>项目落点</strong></p>
+<pre><code class="language-typescript">// tools/registry/tool-registry.service.ts
+@Injectable()
+export class ToolRegistryService {
+  private readonly TIMEOUT_MS = 5000
+
+  async execute(toolName: string, args: unknown, context: ToolContext): Promise&lt;ToolResult&gt; {
+    const tool = this.tools.get(toolName)
+    if (!tool) throw new ToolNotFoundError(...)
+
+    const parseResult = tool.schema.safeParse(args)
+    if (!parseResult.success) throw new ToolSchemaError(...)
+
+    const startTime = Date.now()
+
+    try {
+      // 超时保护
+      const data = await this.withTimeout(
+        tool.execute(parseResult.data, context),
+        this.TIMEOUT_MS,
+        `Tool "${toolName}" execution timeout`
+      )
+
+      const duration = Date.now() - startTime
+      const result: ToolResult = {
+        success: true,
+        data: this.truncateResult(data),
+        metadata: { executionTime: duration },
+      }
+
+      await this.auditService.logExecution({
+        toolName,
+        args: parseResult.data,
+        result,
+        duration,
+        userId: context.userId,
+      })
+
+      return result
+    } catch (error) {
+      // ... 错误处理
+    }
+  }
+
+  private async withTimeout&lt;T&gt;(
+    promise: Promise&lt;T&gt;,
+    timeoutMs: number,
+    errorMessage: string
+  ): Promise&lt;T&gt; {
+    const timeoutPromise = new Promise&lt;never&gt;((_, reject) =&gt; {
+      setTimeout(() =&gt; reject(new ToolTimeoutError(errorMessage, timeoutMs)), timeoutMs)
+    })
+    return Promise.race([promise, timeoutPromise])
+  }
+}
+</code></pre>
+<p><strong>生产误区</strong></p>
+<ol>
+<li>❌ 超时后 Promise 仍在后台运行（未使用 <code>AbortController</code> 取消）</li>
+<li>❌ 所有工具使用统一超时值（查询工具 5s，分析工具应该 30s）</li>
+<li>❌ 超时错误被捕获后未清理资源（数据库连接、文件句柄）</li>
+</ol>
+<p><strong>验证方法</strong></p>
+<pre><code class="language-bash"># 测试1：模拟慢查询
+# 修改 get-metrics.tool.ts：
+async execute(args, ctx) {
+  await new Promise(resolve =&gt; setTimeout(resolve, 6000)) // 睡眠 6s
+  return []
+}
+
+curl -X POST http://localhost:3000/api/tools/execute \
+  -d '{"toolName":"get-metrics","args":{"serverId":"s1"}}'
+# 预期：5s 后返回 {"code":"TOOL_TIMEOUT","details":{"timeoutMs":5000}}
+
+# 测试2：正常执行
+# 恢复 get-metrics.tool.ts 正常逻辑
+curl -X POST http://localhost:3000/api/tools/execute \
+  -d '{"toolName":"list-servers","args":{}}'
+# 预期：&lt; 1s 返回结果
+</code></pre>
+<hr>
+<h4 id="知识点5结果裁剪防止超大响应">知识点5：结果裁剪（防止超大响应）</h4>
+<p><strong>解决的问题</strong>
+Tool 返回的数据可能过大：</p>
+<ul>
+<li><code>list-servers</code> 返回 10000 台服务器（每台 2KB，总计 20MB）</li>
+<li><code>get-metrics</code> 返回 1 小时的秒级数据（3600 条记录）</li>
+</ul>
+<p>超大响应导致：</p>
+<ul>
+<li>网络传输慢</li>
+<li>AI Token 消耗爆炸</li>
+<li>前端渲染卡顿</li>
+</ul>
+<p>结果裁剪机制限制返回记录数。</p>
+<p><strong>运行机制</strong></p>
+<pre><code class="language-typescript">private truncateResult(data: any): any {
+  if (Array.isArray(data)) {
+    if (data.length &gt; this.MAX_RESULT_SIZE) {
+      this.logger.warn(`Result truncated: ${data.length} -&gt; ${this.MAX_RESULT_SIZE}`)
+      return {
+        items: data.slice(0, this.MAX_RESULT_SIZE),
+        total: data.length,
+        truncated: true,
+      }
+    }
+    return data
+  }
+  return data
+}
+
+// 使用示例
+const data = await tool.execute(args, context)
+const result: ToolResult = {
+  success: true,
+  data: this.truncateResult(data), // 裁剪前 10000 条 -&gt; 裁剪后 100 条
+  metadata: { executionTime: duration },
+}
+</code></pre>
+<p><strong>项目落点</strong></p>
+<pre><code class="language-typescript">// tools/registry/tool-registry.service.ts
+@Injectable()
+export class ToolRegistryService {
+  private readonly MAX_RESULT_SIZE = 100
+
+  async execute(toolName: string, args: unknown, context: ToolContext): Promise&lt;ToolResult&gt; {
+    // ... 校验、执行
+    const data = await tool.execute(parseResult.data, context)
+
+    const result: ToolResult = {
+      success: true,
+      data: this.truncateResult(data), // 裁剪逻辑
+      metadata: { executionTime: duration },
+    }
+
+    return result
+  }
+
+  private truncateResult(data: any): any {
+    if (Array.isArray(data)) {
+      if (data.length &gt; this.MAX_RESULT_SIZE) {
+        this.logger.warn(`Result truncated: ${data.length} -&gt; ${this.MAX_RESULT_SIZE}`)
+        return {
+          items: data.slice(0, this.MAX_RESULT_SIZE),
+          total: data.length,
+          truncated: true,
+        }
+      }
+    }
+    return data
+  }
+}
+</code></pre>
+<p><strong>生产误区</strong></p>
+<ol>
+<li>❌ 直接在数据库层 <code>LIMIT 100</code>，导致无法统计总数（用户不知道还有多少数据）</li>
+<li>❌ 裁剪后未设置 <code>truncated: true</code> 标记，AI 误以为只有 100 条数据</li>
+<li>❌ 裁剪逻辑在每个 Tool 里重复实现，未统一到 Registry</li>
+</ol>
+<p><strong>验证方法</strong></p>
+<pre><code class="language-bash"># 测试1：大量数据
+# 在数据库插入 500 台服务器
+curl -X POST http://localhost:3000/api/tools/execute \
+  -d '{"toolName":"list-servers","args":{}}'
+# 预期：{"success":true,"data":{"items":[...100条...],"total":500,"truncated":true}}
+
+# 测试2：少量数据
+# 数据库只有 10 台服务器
+curl -X POST http://localhost:3000/api/tools/execute \
+  -d '{"toolName":"list-servers","args":{}}'
+# 预期：{"success":true,"data":[...10条...]} (无 truncated 字段)
+</code></pre>
+<hr>
+<h4 id="知识点6审计链toolauditservice">知识点6：审计链（ToolAuditService）</h4>
+<p><strong>解决的问题</strong>
+生产环境需回答：</p>
+<ul>
+<li>谁在什么时间调用了哪个工具？</li>
+<li>传入的参数是什么？</li>
+<li>执行结果是成功还是失败？</li>
+<li>执行耗时多久？</li>
+<li>是否访问了敏感数据（serverId / alertId）？</li>
+</ul>
+<p>审计服务将所有调用记录持久化到数据库，支持事后溯源。</p>
+<p><strong>运行机制</strong></p>
+<pre><code class="language-typescript">// 1. 定义审计日志结构
+interface AuditLogEntry {
+  toolName: string
+  args: Record&lt;string, any&gt;
+  result: ToolResult
+  duration: number
+  userId: string
+  timestamp: Date
+}
+
+// 2. 审计服务记录日志
+@Injectable()
+export class ToolAuditService {
+  async logExecution(entry: AuditLogEntry): Promise&lt;void&gt; {
+    await this.prisma.toolAuditLog.create({
+      data: {
+        toolName: entry.toolName,
+        args: this.sanitize(entry.args), // 脱敏
+        result: entry.result,
+        duration: entry.duration,
+        userId: entry.userId,
+        timestamp: entry.timestamp || new Date(),
+      },
+    })
+  }
+
+  private sanitize(data: any): any {
+    // 移除敏感字段（password / token）
+    const sensitiveKeys = ['password', 'token', 'apiKey']
+    const sanitized = { ...data }
+    for (const key of sensitiveKeys) {
+      if (key in sanitized) {
+        sanitized[key] = '***REDACTED***'
+      }
+    }
+    return sanitized
+  }
+}
+
+// 3. Registry 在执行前后调用审计
+async execute(toolName: string, args: unknown, context: ToolContext) {
+  const startTime = Date.now()
+  try {
+    const data = await tool.execute(args, context)
+    const duration = Date.now() - startTime
+
+    const result: ToolResult = { success: true, data, metadata: { executionTime: duration } }
+
+    await this.auditService.logExecution({
+      toolName,
+      args,
+      result,
+      duration,
+      userId: context.userId,
+    })
+
+    return result
+  } catch (error) {
+    const duration = Date.now() - startTime
+    const result: ToolResult = { success: false, error: error.message }
+
+    await this.auditService.logExecution({
+      toolName,
+      args,
+      result,
+      duration,
+      userId: context.userId,
+    })
+
+    throw error
+  }
+}
+</code></pre>
+<p><strong>项目落点</strong></p>
+<pre><code class="language-typescript">// tools/audit/tool-audit.service.ts
+@Injectable()
+export class ToolAuditService {
+  constructor(private readonly prisma: PrismaService) {}
+
+  async logExecution(entry: AuditLogEntry): Promise&lt;void&gt; {
+    await this.prisma.toolAuditLog.create({
+      data: {
+        toolName: entry.toolName,
+        args: this.sanitize(entry.args),
+        result: entry.result,
+        duration: entry.duration,
+        userId: entry.userId,
+        timestamp: entry.timestamp || new Date(),
+      },
+    })
+  }
+
+  private sanitize(data: any): any { ... }
+}
+
+// tools/registry/tool-registry.service.ts
+async execute(toolName: string, args: unknown, context: ToolContext): Promise&lt;ToolResult&gt; {
+  const startTime = Date.now()
+
+  try {
+    const data = await this.withTimeout(...)
+    const duration = Date.now() - startTime
+
+    const result: ToolResult = { success: true, data: this.truncateResult(data), metadata: { executionTime: duration } }
+
+    await this.auditService.logExecution({
+      toolName,
+      args: parseResult.data,
+      result,
+      duration,
+      userId: context.userId,
+    })
+
+    return result
+  } catch (error) {
+    const duration = Date.now() - startTime
+
+    const result: ToolResult = {
+      success: false,
+      error: error instanceof ToolError ? error.message : 'Unknown error',
+      metadata: { executionTime: duration },
+    }
+
+    await this.auditService.logExecution({
+      toolName,
+      args: parseResult.data,
+      result,
+      duration,
+      userId: context.userId,
+    })
+
+    throw error
+  }
+}
+</code></pre>
+<p><strong>生产误区</strong></p>
+<ol>
+<li>❌ 审计日志同步写入数据库，导致 Tool 执行变慢（应该用消息队列异步写入）</li>
+<li>❌ 未对敏感字段脱敏，审计日志泄露用户密码 / Token</li>
+<li>❌ 只记录成功调用，失败调用未记录（无法排查问题）</li>
+</ol>
+<p><strong>验证方法</strong></p>
+<pre><code class="language-bash"># 测试1：执行工具后查询审计日志
+curl -X POST http://localhost:3000/api/tools/execute \
+  -d '{"toolName":"list-servers","args":{}}'
+
+# 查询数据库
+psql -d monitoring -c "SELECT tool_name, args, duration, user_id FROM tool_audit_log ORDER BY timestamp DESC LIMIT 1;"
+# 预期：
+# tool_name   | args | duration | user_id
+# list-servers | {}   | 234      | user-123
+
+# 测试2：失败调用也被记录
+curl -X POST http://localhost:3000/api/tools/execute \
+  -d '{"toolName":"unknown","args":{}}'
+
+psql -d monitoring -c "SELECT tool_name, result FROM tool_audit_log ORDER BY timestamp DESC LIMIT 1;"
+# 预期：
+# tool_name | result
+# unknown   | {"success":false,"error":"Tool \"unknown\" not found"}
+</code></pre>
+<hr>
+<hr>
+<h2 id="6-三版对比一览表看清进化路径">6. 三版对比一览表（看清进化路径）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>对比维度</th>
+<th>v1 最小闭环</th>
+<th>v2 Schema + 超时</th>
+<th>v3 生产级 Registry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>文件数</strong></td>
+<td>2 个</td>
+<td>3 个</td>
+<td>9 个</td>
+</tr>
+<tr>
+<td><strong>代码行数</strong></td>
+<td>~80 行</td>
+<td>~150 行</td>
+<td>~600 行</td>
+</tr>
+<tr>
+<td><strong>工具定义方式</strong></td>
+<td>Controller 方法</td>
+<td>Controller 方法 + Schema</td>
+<td>ToolDefinition 接口</td>
+</tr>
+<tr>
+<td><strong>参数校验</strong></td>
+<td>无</td>
+<td>Zod Schema</td>
+<td>Zod Schema（Registry 统一校验）</td>
+</tr>
+<tr>
+<td><strong>超时保护</strong></td>
+<td>无</td>
+<td>有（5s）</td>
+<td>有（5s，可配置）</td>
+</tr>
+<tr>
+<td><strong>结果裁剪</strong></td>
+<td>无</td>
+<td>无</td>
+<td>有（100 条）</td>
+</tr>
+<tr>
+<td><strong>错误分类</strong></td>
+<td>通用 Error</td>
+<td>通用 Error</td>
+<td>4 种自定义 ToolError</td>
+</tr>
+<tr>
+<td><strong>审计日志</strong></td>
+<td>无</td>
+<td>无</td>
+<td>有（ToolAuditService）</td>
+</tr>
+<tr>
+<td><strong>工具注册</strong></td>
+<td>硬编码路由</td>
+<td>硬编码路由</td>
+<td>动态注册（Registry）</td>
+</tr>
+<tr>
+<td><strong>可扩展性</strong></td>
+<td>差（新增工具改 Controller）</td>
+<td>差（新增工具改 Controller）</td>
+<td>好（新增工具只需实现 ToolDefinition）</td>
+</tr>
+<tr>
+<td><strong>测试难度</strong></td>
+<td>中（需启动 NestJS）</td>
+<td>中（需启动 NestJS）</td>
+<td>低（Registry 可独立测试）</td>
+</tr>
+<tr>
+<td><strong>生产就绪</strong></td>
+<td>❌ 不可用</td>
+<td>⚠️ 勉强可用</td>
+<td>✅ 可用</td>
+</tr>
+</tbody>
+</table></div><p><strong>关键差异总结</strong></p>
+<ol>
+<li><strong>v1 → v2</strong>：加入 Schema 校验和超时保护，防止非法输入和挂起</li>
+<li><strong>v2 → v3</strong>：引入 Registry 模式、错误分类、审计日志，满足生产环境的可观测性和可扩展性需求</li>
+<li><strong>代码量增长原因</strong>：
+<ul>
+<li>v1 只有 Controller 和 Tool 实现</li>
+<li>v2 增加 Schema 定义</li>
+<li>v3 增加 Registry、Audit、Error、Types 四层抽象</li>
+</ul>
+</li>
+</ol>
+<p><strong>实战建议</strong></p>
+<ul>
+<li>学习阶段：从 v1 开始，理解最小闭环</li>
+<li>小团队项目（&lt; 5 个工具）：使用 v2</li>
+<li>企业级项目（10+ 工具 + 多人协作）：必须使用 v3</li>
+</ul>
+<hr>
+<h3 id="65-前端底子补弱details-summary-折叠面板审计日志展示">6.5 前端底子补弱：details + summary 折叠面板（审计日志展示）</h3>
+<h4 id="主题details-summary-折叠面板">主题：<code>&lt;details&gt;</code> + <code>&lt;summary&gt;</code> 折叠面板</h4>
+<p><strong>场景锚点</strong>
+Tool 审计日志需要展示：</p>
+<ul>
+<li>工具名称 + 执行时间 + 状态（成功 / 失败）：默认可见</li>
+<li>完整的 <code>args</code>、<code>result</code>、<code>duration</code> 数据：点击后展开</li>
+</ul>
+<p>使用原生 <code>&lt;details&gt;</code> + <code>&lt;summary&gt;</code> 实现无 JS 的折叠面板。</p>
+<hr>
+<h4 id="651-项目代码审计日志展示">6.5.1 项目代码（审计日志展示）</h4>
+<p><strong>apps/web/src/components/AuditLogViewer.tsx</strong></p>
+<pre><code class="language-tsx">import React from 'react'
+
+interface AuditLog {
+  id: string
+  toolName: string
+  args: Record&lt;string, any&gt;
+  result: { success: boolean; data?: any; error?: string }
+  duration: number
+  userId: string
+  timestamp: string
+}
+
+export function AuditLogViewer({ logs }: { logs: AuditLog[] }) {
+  return (
+    &lt;div className="audit-log-viewer"&gt;
+      {logs.map(log =&gt; (
+        &lt;details key={log.id} className="audit-log-item"&gt;
+          &lt;summary className="audit-log-summary"&gt;
+            &lt;span className={`status ${log.result.success ? 'success' : 'failure'}`}&gt;
+              {log.result.success ? '✅' : '❌'}
+            &lt;/span&gt;
+            &lt;span className="tool-name"&gt;{log.toolName}&lt;/span&gt;
+            &lt;span className="timestamp"&gt;{new Date(log.timestamp).toLocaleString()}&lt;/span&gt;
+            &lt;span className="duration"&gt;{log.duration}ms&lt;/span&gt;
+          &lt;/summary&gt;
+          
+          &lt;div className="audit-log-details"&gt;
+            &lt;section&gt;
+              &lt;h4&gt;Arguments&lt;/h4&gt;
+              &lt;pre&gt;{JSON.stringify(log.args, null, 2)}&lt;/pre&gt;
+            &lt;/section&gt;
+            
+            &lt;section&gt;
+              &lt;h4&gt;Result&lt;/h4&gt;
+              &lt;pre&gt;{JSON.stringify(log.result, null, 2)}&lt;/pre&gt;
+            &lt;/section&gt;
+            
+            &lt;section&gt;
+              &lt;h4&gt;Metadata&lt;/h4&gt;
+              &lt;ul&gt;
+                &lt;li&gt;User ID: {log.userId}&lt;/li&gt;
+                &lt;li&gt;Duration: {log.duration}ms&lt;/li&gt;
+                &lt;li&gt;Timestamp: {log.timestamp}&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/section&gt;
+          &lt;/div&gt;
+        &lt;/details&gt;
+      ))}
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+<p><strong>apps/web/src/styles/audit-log.css</strong></p>
+<pre><code class="language-css">.audit-log-viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.audit-log-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.audit-log-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #f9fafb;
+  cursor: pointer;
+  list-style: none; /* 移除默认三角箭头 */
+  user-select: none;
+}
+
+.audit-log-summary::-webkit-details-marker {
+  display: none; /* 移除 Chrome 的默认标记 */
+}
+
+.audit-log-summary::before {
+  content: '▶';
+  font-size: 12px;
+  color: #6b7280;
+  transition: transform 0.2s;
+}
+
+details[open] .audit-log-summary::before {
+  transform: rotate(90deg);
+}
+
+.audit-log-summary:hover {
+  background: #f3f4f6;
+}
+
+.status {
+  font-size: 18px;
+}
+
+.tool-name {
+  font-weight: 600;
+  color: #111827;
+}
+
+.timestamp {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.duration {
+  margin-left: auto;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.audit-log-details {
+  padding: 16px;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
+
+.audit-log-details section {
+  margin-bottom: 16px;
+}
+
+.audit-log-details section:last-child {
+  margin-bottom: 0;
+}
+
+.audit-log-details h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.audit-log-details pre {
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  overflow-x: auto;
+}
+
+.audit-log-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.audit-log-details li {
+  padding: 4px 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+</code></pre>
+<hr>
+<h4 id="652-设计点拆解5-个关键设计点">6.5.2 设计点拆解（5 个关键设计点）</h4>
+<p><strong>设计点1：无 JS 折叠交互</strong></p>
+<pre><code class="language-html">&lt;details&gt;
+  &lt;summary&gt;点击展开&lt;/summary&gt;
+  &lt;div&gt;隐藏内容&lt;/div&gt;
+&lt;/details&gt;
+</code></pre>
+<ul>
+<li><code>&lt;details&gt;</code> 默认状态：<code>closed</code>（内容隐藏）</li>
+<li>点击 <code>&lt;summary&gt;</code> 后：浏览器自动切换为 <code>open</code> 状态</li>
+<li>无需 <code>onClick</code> 事件，完全由浏览器原生支持</li>
+</ul>
+<p><strong>设计点2：移除默认三角箭头</strong></p>
+<pre><code class="language-css">.audit-log-summary {
+  list-style: none; /* 移除 Firefox 的默认箭头 */
+}
+
+.audit-log-summary::-webkit-details-marker {
+  display: none; /* 移除 Chrome 的默认标记 */
+}
+</code></pre>
+<p>默认情况下，浏览器会在 <code>&lt;summary&gt;</code> 前显示一个三角箭头。通过上述 CSS 移除后，自定义箭头。</p>
+<p><strong>设计点3：自定义展开 / 收起箭头</strong></p>
+<pre><code class="language-css">.audit-log-summary::before {
+  content: '▶'; /* 收起状态：右箭头 */
+  transition: transform 0.2s;
+}
+
+details[open] .audit-log-summary::before {
+  transform: rotate(90deg); /* 展开状态：下箭头 */
+}
+</code></pre>
+<ul>
+<li><code>::before</code> 伪元素插入箭头图标</li>
+<li><code>details[open]</code> 属性选择器匹配展开状态</li>
+<li><code>transform: rotate(90deg)</code> 实现旋转动画</li>
+</ul>
+<p><strong>设计点4：<code>&lt;summary&gt;</code> 作为表格行布局</strong></p>
+<pre><code class="language-css">.audit-log-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.duration {
+  margin-left: auto; /* 推到右侧 */
+}
+</code></pre>
+<ul>
+<li><code>display: flex</code> 将 <code>&lt;summary&gt;</code> 内的元素横向排列</li>
+<li><code>gap: 12px</code> 统一间距</li>
+<li><code>margin-left: auto</code> 将 duration 推到最右侧</li>
+</ul>
+<p><strong>设计点5：展开内容的层次布局</strong></p>
+<pre><code class="language-html">&lt;div className="audit-log-details"&gt;
+  &lt;section&gt;
+    &lt;h4&gt;Arguments&lt;/h4&gt;
+    &lt;pre&gt;{JSON.stringify(log.args, null, 2)}&lt;/pre&gt;
+  &lt;/section&gt;
+  &lt;section&gt;
+    &lt;h4&gt;Result&lt;/h4&gt;
+    &lt;pre&gt;{JSON.stringify(log.result, null, 2)}&lt;/pre&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
+</code></pre>
+<ul>
+<li>每个 <code>&lt;section&gt;</code> 包含一个标题 + 内容块</li>
+<li><code>&lt;pre&gt;</code> 标签保留 JSON 格式化空格</li>
+<li><code>overflow-x: auto</code> 处理超长内容</li>
+</ul>
+<hr>
+<h4 id="653-原理深挖details-的-dom-api">6.5.3 原理深挖（<code>&lt;details&gt;</code> 的 DOM API）</h4>
+<p><strong>原理1：<code>open</code> 属性控制展开状态</strong></p>
+<pre><code class="language-html">&lt;!-- 默认收起 --&gt;
+&lt;details&gt;
+  &lt;summary&gt;点击展开&lt;/summary&gt;
+  &lt;div&gt;内容&lt;/div&gt;
+&lt;/details&gt;
+
+&lt;!-- 默认展开 --&gt;
+&lt;details open&gt;
+  &lt;summary&gt;点击收起&lt;/summary&gt;
+  &lt;div&gt;内容&lt;/div&gt;
+&lt;/details&gt;
+</code></pre>
+<p>JavaScript 可以直接操作 <code>open</code> 属性：</p>
+<pre><code class="language-javascript">const details = document.querySelector('details')
+
+// 展开
+details.open = true
+
+// 收起
+details.open = false
+
+// 切换
+details.open = !details.open
+</code></pre>
+<p><strong>原理2：<code>toggle</code> 事件监听展开 / 收起</strong></p>
+<pre><code class="language-javascript">const details = document.querySelector('details')
+
+details.addEventListener('toggle', (event) =&gt; {
+  if (details.open) {
+    console.log('展开了')
+  } else {
+    console.log('收起了')
+  }
+})
+</code></pre>
+<p>用途：</p>
+<ul>
+<li>展开时加载数据（懒加载）</li>
+<li>收起时清理资源</li>
+<li>统计用户交互行为</li>
+</ul>
+<p><strong>原理3：CSS 属性选择器 <code>details[open]</code></strong></p>
+<pre><code class="language-css">/* 收起状态 */
+details {
+  border: 1px solid #ccc;
+}
+
+/* 展开状态 */
+details[open] {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+</code></pre>
+<p>CSS 可以根据 <code>open</code> 属性的存在与否应用不同样式。</p>
+<p><strong>原理4：浏览器兼容性</strong></p>
+<ul>
+<li>✅ Chrome 12+</li>
+<li>✅ Firefox 49+</li>
+<li>✅ Safari 6+</li>
+<li>✅ Edge 79+</li>
+<li>❌ IE（不支持，需要 polyfill）</li>
+</ul>
+<p><strong>Polyfill 方案</strong>（兼容 IE）：</p>
+<pre><code class="language-javascript">// details-polyfill.js
+if (!('open' in document.createElement('details'))) {
+  document.addEventListener('click', (event) =&gt; {
+    if (event.target.tagName === 'SUMMARY') {
+      const details = event.target.parentElement
+      if (details.tagName === 'DETAILS') {
+        if (details.hasAttribute('open')) {
+          details.removeAttribute('open')
+        } else {
+          details.setAttribute('open', '')
+        }
+      }
+    }
+  })
+}
+</code></pre>
+<hr>
+<h4 id="654-反例3-个常见错误">6.5.4 反例（3 个常见错误）</h4>
+<p><strong>反例1：在 <code>&lt;summary&gt;</code> 外层套 <code>&lt;div&gt;</code></strong></p>
+<p>❌ 错误写法：</p>
+<pre><code class="language-html">&lt;details&gt;
+  &lt;div&gt;
+    &lt;summary&gt;标题&lt;/summary&gt;
+  &lt;/div&gt;
+  &lt;div&gt;内容&lt;/div&gt;
+&lt;/details&gt;
+</code></pre>
+<p>❌ 问题：<code>&lt;summary&gt;</code> 必须是 <code>&lt;details&gt;</code> 的<strong>直接子元素</strong>，否则浏览器不会识别为可点击区域。</p>
+<p>✅ 正确写法：</p>
+<pre><code class="language-html">&lt;details&gt;
+  &lt;summary&gt;
+    &lt;div&gt;标题&lt;/div&gt;
+  &lt;/summary&gt;
+  &lt;div&gt;内容&lt;/div&gt;
+&lt;/details&gt;
+</code></pre>
+<hr>
+<p><strong>反例2：用 <code>display: none</code> 隐藏内容</strong></p>
+<p>❌ 错误写法：</p>
+<pre><code class="language-css">details &gt; div {
+  display: none;
+}
+
+details[open] &gt; div {
+  display: block;
+}
+</code></pre>
+<p>❌ 问题：</p>
+<ol>
+<li>破坏了 <code>&lt;details&gt;</code> 的语义化</li>
+<li>屏幕阅读器无法正确解析展开 / 收起状态</li>
+</ol>
+<p>✅ 正确写法：
+不要手动控制内容的显示 / 隐藏，让浏览器原生处理。</p>
+<hr>
+<p><strong>反例3：在 <code>&lt;summary&gt;</code> 上阻止默认事件</strong></p>
+<p>❌ 错误写法：</p>
+<pre><code class="language-javascript">document.querySelector('summary').addEventListener('click', (event) =&gt; {
+  event.preventDefault() // 阻止默认展开行为
+  // 自定义逻辑
+})
+</code></pre>
+<p>❌ 问题：阻止默认事件后，<code>&lt;details&gt;</code> 无法展开。</p>
+<p>✅ 正确写法：
+如果需要自定义逻辑，在逻辑执行后让默认行为继续：</p>
+<pre><code class="language-javascript">document.querySelector('summary').addEventListener('click', (event) =&gt; {
+  // 自定义逻辑（如埋点）
+  console.log('用户点击了 summary')
+  // 不调用 event.preventDefault()，让浏览器继续处理展开 / 收起
+})
+</code></pre>
+<hr>
+<h4 id="655-分层提问3-个层次">6.5.5 分层提问（3 个层次）</h4>
+<p><strong>L1：基础层（记忆）</strong></p>
+<p>Q1：<code>&lt;details&gt;</code> 和 <code>&lt;summary&gt;</code> 的作用是什么？<br>
+A1：<code>&lt;details&gt;</code> 创建可折叠内容块，<code>&lt;summary&gt;</code> 是折叠块的标题，点击后展开 / 收起内容。</p>
+<p>Q2：如何让 <code>&lt;details&gt;</code> 默认展开？<br>
+A2：添加 <code>open</code> 属性：<code>&lt;details open&gt;</code>。</p>
+<p>Q3：如何移除浏览器默认的三角箭头？<br>
+A3：CSS 添加 <code>list-style: none</code> 和 <code>::-webkit-details-marker { display: none }</code>。</p>
+<hr>
+<p><strong>L2：应用层（理解）</strong></p>
+<p>Q4：如何实现"只允许同时展开一个 details"（手风琴效果）？<br>
+A4：监听 <code>toggle</code> 事件，当某个 details 展开时，关闭其他 details：</p>
+<pre><code class="language-javascript">document.querySelectorAll('details').forEach(details =&gt; {
+  details.addEventListener('toggle', () =&gt; {
+    if (details.open) {
+      document.querySelectorAll('details').forEach(other =&gt; {
+        if (other !== details) {
+          other.open = false
+        }
+      })
+    }
+  })
+})
+</code></pre>
+<p>Q5：如何实现"展开时从服务器加载数据"（懒加载）？<br>
+A5：监听 <code>toggle</code> 事件，当 <code>open</code> 为 true 且数据未加载时发起请求：</p>
+<pre><code class="language-javascript">details.addEventListener('toggle', async () =&gt; {
+  if (details.open &amp;&amp; !details.dataset.loaded) {
+    const data = await fetch('/api/audit-logs/' + details.dataset.id).then(r =&gt; r.json())
+    details.querySelector('.content').innerHTML = JSON.stringify(data, null, 2)
+    details.dataset.loaded = 'true'
+  }
+})
+</code></pre>
+<p>Q6：如何让 <code>&lt;summary&gt;</code> 的右侧显示状态图标（✅ / ❌）？<br>
+A6：使用 <code>display: flex</code> + <code>margin-left: auto</code>：</p>
+<pre><code class="language-css">.audit-log-summary {
+  display: flex;
+  align-items: center;
+}
+
+.status-icon {
+  margin-left: auto; /* 推到右侧 */
+}
+</code></pre>
+<hr>
+<p><strong>L3：系统层（迁移）</strong></p>
+<p>Q7：如果项目已经用 <code>div + onClick</code> 实现了折叠面板，迁移到 <code>&lt;details&gt;</code> 有哪些好处？<br>
+A7：</p>
+<ol>
+<li><strong>无障碍性</strong>：屏幕阅读器自动识别展开 / 收起状态</li>
+<li><strong>无 JS 依赖</strong>：即使 JS 加载失败，折叠功能仍可用</li>
+<li><strong>语义化</strong>：搜索引擎能更好地理解内容结构</li>
+<li><strong>代码量减少</strong>：不需要手动管理 state 和 onClick</li>
+</ol>
+<p>Q8：<code>&lt;details&gt;</code> 在移动端有哪些注意事项？<br>
+A8：</p>
+<ol>
+<li><code>&lt;summary&gt;</code> 的 <code>padding</code> 要足够大（至少 44x44px），方便触摸</li>
+<li>展开内容不要过长，避免滚动嵌套</li>
+<li>在 iOS Safari 中，<code>&lt;summary&gt;</code> 默认有蓝色高亮，需要用 <code>-webkit-tap-highlight-color: transparent</code> 移除</li>
+</ol>
+<p>Q9：如何实现"展开时添加动画"？<br>
+A9：使用 CSS <code>@keyframes</code>：</p>
+<pre><code class="language-css">details[open] &gt; .content {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</code></pre>
+<hr>
+<h4 id="656-项目对手戏与后端-api-的配合">6.5.6 项目对手戏（与后端 API 的配合）</h4>
+<p><strong>场景：审计日志列表 + 详情展开</strong></p>
+<ol>
+<li><strong>后端提供列表 API</strong>（只返回摘要信息）</li>
+</ol>
+<pre><code class="language-typescript">// GET /api/tools/audit-logs
+{
+  logs: [
+    {
+      id: 'log-1',
+      toolName: 'list-servers',
+      timestamp: '2026-07-16T10:30:00Z',
+      duration: 234,
+      success: true,
+    },
+    // ... 更多日志
+  ]
+}
+</code></pre>
+<ol start="2">
+<li><strong>前端渲染 <code>&lt;details&gt;</code> 列表</strong></li>
+</ol>
+<pre><code class="language-tsx">export function AuditLogList() {
+  const [logs, setLogs] = useState([])
+
+  useEffect(() =&gt; {
+    fetch('/api/tools/audit-logs')
+      .then(r =&gt; r.json())
+      .then(data =&gt; setLogs(data.logs))
+  }, [])
+
+  return (
+    &lt;div&gt;
+      {logs.map(log =&gt; (
+        &lt;details key={log.id} onToggle={(e) =&gt; handleToggle(e, log.id)}&gt;
+          &lt;summary&gt;
+            {log.toolName} - {log.timestamp} - {log.duration}ms
+          &lt;/summary&gt;
+          &lt;div className="content" data-log-id={log.id}&gt;
+            加载中...
+          &lt;/div&gt;
+        &lt;/details&gt;
+      ))}
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+<ol start="3">
+<li><strong>展开时加载详情</strong></li>
+</ol>
+<pre><code class="language-typescript">async function handleToggle(event: React.SyntheticEvent&lt;HTMLDetailsElement&gt;, logId: string) {
+  const details = event.currentTarget
+  if (details.open) {
+    const contentDiv = details.querySelector('.content')
+    if (!contentDiv.dataset.loaded) {
+      const data = await fetch(`/api/tools/audit-logs/${logId}`).then(r =&gt; r.json())
+      contentDiv.innerHTML = `&lt;pre&gt;${JSON.stringify(data, null, 2)}&lt;/pre&gt;`
+      contentDiv.dataset.loaded = 'true'
+    }
+  }
+}
+</code></pre>
+<ol start="4">
+<li><strong>后端提供详情 API</strong></li>
+</ol>
+<pre><code class="language-typescript">// GET /api/tools/audit-logs/:id
+{
+  id: 'log-1',
+  toolName: 'list-servers',
+  args: { status: 'active' },
+  result: {
+    success: true,
+    data: { items: [...], total: 500, truncated: true }
+  },
+  duration: 234,
+  userId: 'user-123',
+  timestamp: '2026-07-16T10:30:00Z',
+}
+</code></pre>
+<p><strong>关键配合点</strong></p>
+<ul>
+<li>列表 API 只返回必要字段，减少带宽</li>
+<li>详情 API 按需加载，避免一次性传输所有数据</li>
+<li>前端用 <code>data-loaded</code> 防止重复加载</li>
+</ul>
+<hr>
+<h4 id="657-面试真题3-道递进题">6.5.7 面试真题（3 道递进题）</h4>
+<p><strong>真题1：<code>&lt;details&gt;</code> 和 <code>&lt;dialog&gt;</code> 的区别？</strong></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>特性</th>
+<th><code>&lt;details&gt;</code></th>
+<th><code>&lt;dialog&gt;</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用途</td>
+<td>折叠面板（内联内容）</td>
+<td>模态框（覆盖内容）</td>
+</tr>
+<tr>
+<td>默认行为</td>
+<td>点击 summary 展开 / 收起</td>
+<td>需要 JS 调用 <code>showModal()</code></td>
+</tr>
+<tr>
+<td>布局影响</td>
+<td>展开时推开下方内容</td>
+<td>展开时覆盖页面</td>
+</tr>
+<tr>
+<td>关闭方式</td>
+<td>再次点击 summary</td>
+<td><code>&lt;form method="dialog"&gt;</code> 或 <code>dialog.close()</code></td>
+</tr>
+<tr>
+<td>无障碍</td>
+<td>自动添加 <code>aria-expanded</code></td>
+<td>自动添加 <code>role="dialog"</code> + focus 管理</td>
+</tr>
+</tbody>
+</table></div><hr>
+<p><strong>真题2：如何实现"点击 details 外部区域时收起"？</strong></p>
+<pre><code class="language-javascript">document.addEventListener('click', (event) =&gt; {
+  const details = document.querySelector('details[open]')
+  if (details &amp;&amp; !details.contains(event.target)) {
+    details.open = false
+  }
+})
+</code></pre>
+<p>注意：</p>
+<ul>
+<li><code>details.contains(event.target)</code> 判断点击是否在 details 内部</li>
+<li>如果点击在外部，设置 <code>details.open = false</code></li>
+</ul>
+<hr>
+<p><strong>真题3：如何实现"展开时滚动到 details 顶部"？</strong></p>
+<pre><code class="language-javascript">details.addEventListener('toggle', () =&gt; {
+  if (details.open) {
+    details.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+})
+</code></pre>
+<p>用途：</p>
+<ul>
+<li>列表很长时，展开后自动滚动到当前项</li>
+<li>提升用户体验（无需手动滚动找到展开内容）</li>
+</ul>
+<hr>
+<hr>
+<h2 id="7-项目验收清单必须全部通过">7. 项目验收清单（必须全部通过）</h2>
+<h3 id="71-av1-最小闭环能跑通">7.1 A：v1 最小闭环能跑通</h3>
+<pre><code class="language-bash"># 1. 启动 API 服务
+cd apps/api
+pnpm run dev
+
+# 2. 测试 list-servers 工具
+curl -X POST http://localhost:3000/api/tools/execute \
+  -H "Content-Type: application/json" \
+  -d '{"toolName":"list-servers","args":{}}'
+
+# 预期输出
+{
+  "success": true,
+  "data": [
+    {"id":"s1","name":"web-server-01","status":"active","ip":"10.0.1.10"},
+    {"id":"s2","name":"api-server-01","status":"active","ip":"10.0.1.20"}
+  ]
+}
+</code></pre>
+<p><strong>通过标准</strong></p>
+<ul>
+<li>返回 HTTP 200</li>
+<li><code>success: true</code></li>
+<li><code>data</code> 数组包含至少 1 台服务器</li>
+</ul>
+<hr>
+<h3 id="72-bv2-schema-校验生效">7.2 B：v2 Schema 校验生效</h3>
+<p><strong>测试1：缺失必填字段</strong></p>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/api/tools/execute \
+  -H "Content-Type: application/json" \
+  -d '{"toolName":"get-metrics","args":{}}'
+
+# 预期输出
+{
+  "code": "TOOL_SCHEMA_ERROR",
+  "message": "Schema validation failed for tool \"get-metrics\"",
+  "details": {
+    "issues": [
+      {
+        "path": ["serverId"],
+        "message": "Required"
+      }
+    ]
+  }
+}
+</code></pre>
+<p><strong>测试2：类型错误</strong></p>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/api/tools/execute \
+  -H "Content-Type: application/json" \
+  -d '{"toolName":"get-metrics","args":{"serverId":123}}'
+
+# 预期输出
+{
+  "code": "TOOL_SCHEMA_ERROR",
+  "details": {
+    "issues": [
+      {
+        "path": ["serverId"],
+        "message": "Expected string, received number"
+      }
+    ]
+  }
+}
+</code></pre>
+<p><strong>测试3：自定义约束（空字符串）</strong></p>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/api/tools/execute \
+  -H "Content-Type: application/json" \
+  -d '{"toolName":"get-metrics","args":{"serverId":""}}'
+
+# 预期输出
+{
+  "code": "TOOL_SCHEMA_ERROR",
+  "details": {
+    "issues": [
+      {
+        "path": ["serverId"],
+        "message": "String must contain at least 1 character(s)"
+      }
+    ]
+  }
+}
+</code></pre>
+<p><strong>通过标准</strong></p>
+<ul>
+<li>3 个测试全部返回 <code>TOOL_SCHEMA_ERROR</code></li>
+<li><code>details.issues</code> 数组包含详细错误信息</li>
+</ul>
+<hr>
+<h3 id="73-cv2-超时保护生效">7.3 C：v2 超时保护生效</h3>
+<p><strong>测试步骤</strong></p>
+<ol>
+<li><strong>模拟慢工具</strong>：修改 <code>get-metrics.tool.ts</code></li>
+</ol>
+<pre><code class="language-typescript">// apps/api/src/tools/implementations/get-metrics.tool.ts
+export const getMetricsTool: ToolDefinition&lt;GetMetricsArgs&gt; = {
+  name: 'get-metrics',
+  description: 'Get server metrics',
+  schema: GetMetricsArgsSchema,
+  async execute(args: GetMetricsArgs, context: ToolContext) {
+    // 模拟慢查询：睡眠 6 秒
+    await new Promise(resolve =&gt; setTimeout(resolve, 6000))
+    
+    return []
+  },
+}
+</code></pre>
+<ol start="2">
+<li><strong>调用工具</strong></li>
+</ol>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/api/tools/execute \
+  -H "Content-Type: application/json" \
+  -d '{"toolName":"get-metrics","args":{"serverId":"s1"}}'
+
+# 预期输出（5秒后返回）
+{
+  "code": "TOOL_TIMEOUT",
+  "message": "Tool \"get-metrics\" execution timeout",
+  "details": {
+    "timeoutMs": 5000
+  }
+}
+</code></pre>
+<ol start="3">
+<li><strong>恢复正常逻辑</strong></li>
+</ol>
+<pre><code class="language-typescript">// 删除 setTimeout，恢复原始逻辑
+async execute(args: GetMetricsArgs, context: ToolContext) {
+  const metrics = await context.prisma.metric.findMany({
+    where: { serverId: args.serverId },
+  })
+  return metrics
+}
+</code></pre>
+<p><strong>通过标准</strong></p>
+<ul>
+<li>模拟慢查询时，5 秒后返回 <code>TOOL_TIMEOUT</code></li>
+<li>恢复正常逻辑后，1 秒内返回正常数据</li>
+</ul>
+<hr>
+<h3 id="74-dv3-registry-能动态注册工具">7.4 D：v3 Registry 能动态注册工具</h3>
+<p><strong>测试步骤</strong></p>
+<ol>
+<li><strong>查询初始工具列表</strong></li>
+</ol>
+<pre><code class="language-bash">curl http://localhost:3000/api/tools/list
+
+# 预期输出
+{
+  "tools": [
+    {"name":"list-servers","description":"List all servers"},
+    {"name":"get-metrics","description":"Get server metrics"},
+    {"name":"get-alert-detail","description":"Get alert details"}
+  ]
+}
+</code></pre>
+<ol start="2">
+<li><strong>新增测试工具</strong></li>
+</ol>
+<p>创建 <code>apps/api/src/tools/implementations/test-tool.tool.ts</code></p>
+<pre><code class="language-typescript">import { z } from 'zod'
+import { ToolDefinition, ToolContext } from '../types/tool.types'
+
+const TestToolArgsSchema = z.object({
+  message: z.string(),
+})
+
+type TestToolArgs = z.infer&lt;typeof TestToolArgsSchema&gt;
+
+export const testTool: ToolDefinition&lt;TestToolArgs&gt; = {
+  name: 'test-tool',
+  description: 'Test tool for verification',
+  schema: TestToolArgsSchema,
+  async execute(args: TestToolArgs, context: ToolContext) {
+    return { echo: args.message }
+  },
+}
+</code></pre>
+<ol start="3">
+<li><strong>在 Module 中注册</strong></li>
+</ol>
+<pre><code class="language-typescript">// apps/api/src/tools/tools.module.ts
+import { testTool } from './implementations/test-tool.tool'
+
+export class ToolsModule implements OnModuleInit {
+  onModuleInit() {
+    this.registry.registerAll([
+      listServersTool,
+      getMetricsTool,
+      getAlertDetailTool,
+      testTool, // 新增
+    ])
+  }
+}
+</code></pre>
+<ol start="4">
+<li><strong>重启服务，验证工具已注册</strong></li>
+</ol>
+<pre><code class="language-bash">curl http://localhost:3000/api/tools/list
+
+# 预期输出（包含 test-tool）
+{
+  "tools": [
+    {"name":"list-servers","description":"List all servers"},
+    {"name":"get-metrics","description":"Get server metrics"},
+    {"name":"get-alert-detail","description":"Get alert details"},
+    {"name":"test-tool","description":"Test tool for verification"}
+  ]
+}
+</code></pre>
+<ol start="5">
+<li><strong>调用新工具</strong></li>
+</ol>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/api/tools/execute \
+  -H "Content-Type: application/json" \
+  -d '{"toolName":"test-tool","args":{"message":"hello"}}'
+
+# 预期输出
+{
+  "success": true,
+  "data": {"echo":"hello"},
+  "metadata": {"executionTime":5}
+}
+</code></pre>
+<p><strong>通过标准</strong></p>
+<ul>
+<li><code>/tools/list</code> 返回 4 个工具（包含 test-tool）</li>
+<li>调用 test-tool 返回正确结果</li>
+<li>无需修改 Controller 代码</li>
+</ul>
+<hr>
+<h3 id="75-ev3-审计日志被记录">7.5 E：v3 审计日志被记录</h3>
+<p><strong>测试步骤</strong></p>
+<ol>
+<li><strong>执行工具</strong></li>
+</ol>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/api/tools/execute \
+  -H "Content-Type: application/json" \
+  -d '{"toolName":"list-servers","args":{"status":"active"}}'
+</code></pre>
+<ol start="2">
+<li><strong>查询数据库审计日志</strong></li>
+</ol>
+<pre><code class="language-sql">-- 进入 PostgreSQL
+psql -U postgres -d monitoring
+
+-- 查询最近 1 条审计日志
+SELECT 
+  tool_name,
+  args,
+  result-&gt;&gt;'success' as success,
+  duration,
+  user_id,
+  timestamp
+FROM tool_audit_log
+ORDER BY timestamp DESC
+LIMIT 1;
+</code></pre>
+<p><strong>预期输出</strong></p>
+<pre><code> tool_name    | args                      | success | duration | user_id  | timestamp
+--------------+---------------------------+---------+----------+----------+-------------------------
+ list-servers | {"status":"active"}       | true    | 234      | user-123 | 2026-07-16 10:30:45.123
+</code></pre>
+<ol start="3">
+<li><strong>执行失败的工具（验证失败日志也被记录）</strong></li>
+</ol>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/api/tools/execute \
+  -H "Content-Type: application/json" \
+  -d '{"toolName":"unknown","args":{}}'
+</code></pre>
+<p><strong>查询失败日志</strong></p>
+<pre><code class="language-sql">SELECT 
+  tool_name,
+  result-&gt;&gt;'success' as success,
+  result-&gt;&gt;'error' as error
+FROM tool_audit_log
+ORDER BY timestamp DESC
+LIMIT 1;
+</code></pre>
+<p><strong>预期输出</strong></p>
+<pre><code> tool_name | success | error
+-----------+---------+-------------------------------------
+ unknown   | false   | Tool "unknown" not found
+</code></pre>
+<p><strong>通过标准</strong></p>
+<ul>
+<li>成功调用被记录，<code>success: true</code></li>
+<li>失败调用被记录，<code>success: false</code>，包含错误信息</li>
+<li>审计日志包含 <code>args</code>、<code>result</code>、<code>duration</code>、<code>userId</code></li>
+</ul>
+<hr>
+<h3 id="76-f写核心逻辑单元测试">7.6 F：写核心逻辑单元测试</h3>
+<p>创建 <code>apps/api/src/tools/registry/tool-registry.service.spec.ts</code></p>
+<pre><code class="language-typescript">import { Test } from '@nestjs/testing'
+import { ToolRegistryService } from './tool-registry.service'
+import { ToolAuditService } from '../audit/tool-audit.service'
+import { PrismaService } from '../../prisma/prisma.service'
+import { ToolDefinition, ToolContext } from '../types/tool.types'
+import { z } from 'zod'
+import { ToolNotFoundError, ToolSchemaError, ToolTimeoutError } from '../errors/tool.errors'
+
+describe('ToolRegistryService', () =&gt; {
+  let service: ToolRegistryService
+  let auditService: ToolAuditService
+
+  const mockTool: ToolDefinition = {
+    name: 'mock-tool',
+    description: 'Mock tool for testing',
+    schema: z.object({ value: z.string() }),
+    async execute(args: any) {
+      return { result: args.value }
+    },
+  }
+
+  const mockSlowTool: ToolDefinition = {
+    name: 'slow-tool',
+    description: 'Slow tool for timeout testing',
+    schema: z.object({}),
+    async execute() {
+      await new Promise(resolve =&gt; setTimeout(resolve, 10000))
+      return {}
+    },
+  }
+
+  beforeEach(async () =&gt; {
+    const module = await Test.createTestingModule({
+      providers: [
+        ToolRegistryService,
+        {
+          provide: ToolAuditService,
+          useValue: {
+            logExecution: jest.fn(),
+          },
+        },
+        {
+          provide: PrismaService,
+          useValue: {},
+        },
+      ],
+    }).compile()
+
+    service = module.get&lt;ToolRegistryService&gt;(ToolRegistryService)
+    auditService = module.get&lt;ToolAuditService&gt;(ToolAuditService)
+  })
+
+  describe('register', () =&gt; {
+    it('should register a tool', () =&gt; {
+      service.register(mockTool)
+      const tools = service.listTools()
+      expect(tools).toHaveLength(1)
+      expect(tools[0].name).toBe('mock-tool')
+    })
+
+    it('should overwrite existing tool with warning', () =&gt; {
+      service.register(mockTool)
+      service.register(mockTool)
+      const tools = service.listTools()
+      expect(tools).toHaveLength(1)
+    })
+  })
+
+  describe('execute', () =&gt; {
+    const context: ToolContext = {
+      prisma: {} as any,
+      userId: 'test-user',
+    }
+
+    beforeEach(() =&gt; {
+      service.register(mockTool)
+    })
+
+    it('should execute tool successfully', async () =&gt; {
+      const result = await service.execute('mock-tool', { value: 'test' }, context)
+      
+      expect(result.success).toBe(true)
+      expect(result.data).toEqual({ result: 'test' })
+      expect(result.metadata?.executionTime).toBeGreaterThan(0)
+      expect(auditService.logExecution).toHaveBeenCalled()
+    })
+
+    it('should throw ToolNotFoundError for unknown tool', async () =&gt; {
+      await expect(
+        service.execute('unknown', {}, context)
+      ).rejects.toThrow(ToolNotFoundError)
+    })
+
+    it('should throw ToolSchemaError for invalid args', async () =&gt; {
+      await expect(
+        service.execute('mock-tool', { value: 123 }, context)
+      ).rejects.toThrow(ToolSchemaError)
+    })
+
+    it('should throw ToolTimeoutError for slow tool', async () =&gt; {
+      service.register(mockSlowTool)
+
+      await expect(
+        service.execute('slow-tool', {}, context)
+      ).rejects.toThrow(ToolTimeoutError)
+    }, 10000)
+
+    it('should log audit even on failure', async () =&gt; {
+      try {
+        await service.execute('unknown', {}, context)
+      } catch (error) {
+        // 预期抛出错误
+      }
+
+      expect(auditService.logExecution).toHaveBeenCalledWith(
+        expect.objectContaining({
+          toolName: 'unknown',
+          result: expect.objectContaining({
+            success: false,
+          }),
+        })
+      )
+    })
+  })
+
+  describe('truncateResult', () =&gt; {
+    it('should truncate large arrays', async () =&gt; {
+      const largeTool: ToolDefinition = {
+        name: 'large-tool',
+        description: 'Returns large array',
+        schema: z.object({}),
+        async execute() {
+          return Array.from({ length: 500 }, (_, i) =&gt; ({ id: i }))
+        },
+      }
+
+      service.register(largeTool)
+
+      const result = await service.execute('large-tool', {}, {
+        prisma: {} as any,
+        userId: 'test-user',
+      })
+
+      expect(result.data.truncated).toBe(true)
+      expect(result.data.items).toHaveLength(100)
+      expect(result.data.total).toBe(500)
+    })
+
+    it('should not truncate small arrays', async () =&gt; {
+      const result = await service.execute('mock-tool', { value: 'test' }, {
+        prisma: {} as any,
+        userId: 'test-user',
+      })
+
+      expect(result.data.truncated).toBeUndefined()
+    })
+  })
+})
+</code></pre>
+<p><strong>运行测试</strong></p>
+<pre><code class="language-bash">cd apps/api
+pnpm test tool-registry.service.spec.ts
+
+# 预期输出
+PASS  src/tools/registry/tool-registry.service.spec.ts
+  ToolRegistryService
+    register
+      ✓ should register a tool (5ms)
+      ✓ should overwrite existing tool with warning (3ms)
+    execute
+      ✓ should execute tool successfully (45ms)
+      ✓ should throw ToolNotFoundError for unknown tool (8ms)
+      ✓ should throw ToolSchemaError for invalid args (6ms)
+      ✓ should throw ToolTimeoutError for slow tool (5023ms)
+      ✓ should log audit even on failure (12ms)
+    truncateResult
+      ✓ should truncate large arrays (38ms)
+      ✓ should not truncate small arrays (7ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+</code></pre>
+<p><strong>通过标准</strong></p>
+<ul>
+<li>所有 9 个测试通过</li>
+<li>覆盖 Registry 核心逻辑：注册 / 执行 / 校验 / 超时 / 裁剪 / 审计</li>
+</ul>
+<hr>
+<h3 id="77-g-1反证实验1移除超时保护">7.7 G-1：反证实验1（移除超时保护）</h3>
+<p><strong>目的</strong>：验证超时保护的必要性</p>
+<p><strong>步骤</strong></p>
+<ol>
+<li><strong>备份原始代码</strong></li>
+</ol>
+<pre><code class="language-bash">cp apps/api/src/tools/registry/tool-registry.service.ts apps/api/src/tools/registry/tool-registry.service.ts.bak
+</code></pre>
+<ol start="2">
+<li><strong>移除超时保护逻辑</strong></li>
+</ol>
+<pre><code class="language-typescript">// apps/api/src/tools/registry/tool-registry.service.ts
+async execute(toolName: string, args: unknown, context: ToolContext): Promise&lt;ToolResult&gt; {
+  // ... 省略校验逻辑
+
+  const startTime = Date.now()
+
+  try {
+    // ❌ 移除超时保护，直接执行
+    const data = await tool.execute(parseResult.data, context)
+
+    // ... 其余逻辑不变
+  }
+}
+</code></pre>
+<ol start="3">
+<li><strong>模拟慢工具</strong></li>
+</ol>
+<pre><code class="language-typescript">// apps/api/src/tools/implementations/get-metrics.tool.ts
+async execute(args: GetMetricsArgs, context: ToolContext) {
+  await new Promise(resolve =&gt; setTimeout(resolve, 30000)) // 睡眠 30 秒
+  return []
+}
+</code></pre>
+<ol start="4">
+<li><strong>调用工具</strong></li>
+</ol>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/api/tools/execute \
+  -H "Content-Type: application/json" \
+  -d '{"toolName":"get-metrics","args":{"serverId":"s1"}}'
+
+# 现象：请求挂起 30 秒才返回
+</code></pre>
+<ol start="5">
+<li><strong>恢复代码</strong></li>
+</ol>
+<pre><code class="language-bash">cp apps/api/src/tools/registry/tool-registry.service.ts.bak apps/api/src/tools/registry/tool-registry.service.ts
+</code></pre>
+<p><strong>结论</strong></p>
+<ul>
+<li>移除超时保护后，慢工具导致请求长时间挂起</li>
+<li>超时保护机制能保证在 5 秒内返回（成功或超时错误）</li>
+</ul>
+<hr>
+<h3 id="78-g-2反证实验2移除结果裁剪">7.8 G-2：反证实验2（移除结果裁剪）</h3>
+<p><strong>目的</strong>：验证结果裁剪的必要性</p>
+<p><strong>步骤</strong></p>
+<ol>
+<li><strong>备份原始代码</strong></li>
+</ol>
+<pre><code class="language-bash">cp apps/api/src/tools/registry/tool-registry.service.ts apps/api/src/tools/registry/tool-registry.service.ts.bak
+</code></pre>
+<ol start="2">
+<li><strong>移除结果裁剪逻辑</strong></li>
+</ol>
+<pre><code class="language-typescript">// apps/api/src/tools/registry/tool-registry.service.ts
+async execute(toolName: string, args: unknown, context: ToolContext): Promise&lt;ToolResult&gt; {
+  // ... 省略其他逻辑
+
+  const result: ToolResult = {
+    success: true,
+    data: data, // ❌ 直接返回原始数据，不裁剪
+    metadata: { executionTime: duration },
+  }
+
+  return result
+}
+</code></pre>
+<ol start="3">
+<li><strong>插入大量测试数据</strong></li>
+</ol>
+<pre><code class="language-sql">-- 插入 5000 台服务器
+INSERT INTO server (id, name, status, ip)
+SELECT 
+  'server-' || generate_series,
+  'Server ' || generate_series,
+  'active',
+  '10.0.' || (generate_series / 256) || '.' || (generate_series % 256)
+FROM generate_series(1, 5000);
+</code></pre>
+<ol start="4">
+<li><strong>调用 list-servers</strong></li>
+</ol>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/api/tools/execute \
+  -H "Content-Type: application/json" \
+  -d '{"toolName":"list-servers","args":{}}' \
+  &gt; response.json
+
+# 查看响应大小
+ls -lh response.json
+# 输出：-rw-r--r-- 1 user user 2.5M Jul 16 10:30 response.json
+</code></pre>
+<p><strong>现象</strong></p>
+<ul>
+<li>响应体积 2.5MB（5000 条记录 × 每条 500 字节）</li>
+<li>传输时间 &gt; 10 秒（取决于网络带宽）</li>
+<li>前端渲染卡顿（大量 DOM 节点）</li>
+</ul>
+<ol start="5">
+<li><strong>恢复代码并测试</strong></li>
+</ol>
+<pre><code class="language-bash">cp apps/api/src/tools/registry/tool-registry.service.ts.bak apps/api/src/tools/registry/tool-registry.service.ts
+
+curl -X POST http://localhost:3000/api/tools/execute \
+  -H "Content-Type: application/json" \
+  -d '{"toolName":"list-servers","args":{}}' \
+  &gt; response-truncated.json
+
+ls -lh response-truncated.json
+# 输出：-rw-r--r-- 1 user user 52K Jul 16 10:31 response-truncated.json
+</code></pre>
+<p><strong>对比</strong></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>指标</th>
+<th>无裁剪</th>
+<th>有裁剪</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>响应体积</td>
+<td>2.5MB</td>
+<td>52KB</td>
+</tr>
+<tr>
+<td>传输时间</td>
+<td>&gt; 10s</td>
+<td>&lt; 1s</td>
+</tr>
+<tr>
+<td>返回记录数</td>
+<td>5000</td>
+<td>100（+ total: 5000）</td>
+</tr>
+</tbody>
+</table></div><p><strong>结论</strong></p>
+<ul>
+<li>结果裁剪将响应体积减少 98%</li>
+<li>传输时间减少 90%</li>
+<li>用户仍能通过 <code>total</code> 字段知道总数</li>
+</ul>
+<hr>
+<h3 id="79-h验证-提交">7.9 H：验证 + 提交</h3>
+<p><strong>步骤1：运行完整测试套件</strong></p>
+<pre><code class="language-bash">cd apps/api
+pnpm test
+
+# 预期输出
+Test Suites: 5 passed, 5 total
+Tests:       27 passed, 27 total
+</code></pre>
+<p><strong>步骤2：手动验证核心流程</strong></p>
+<pre><code class="language-bash"># 1. 查询工具列表
+curl http://localhost:3000/api/tools/list
+
+# 2. 执行成功的工具
+curl -X POST http://localhost:3000/api/tools/execute \
+  -d '{"toolName":"list-servers","args":{}}'
+
+# 3. 触发 Schema 错误
+curl -X POST http://localhost:3000/api/tools/execute \
+  -d '{"toolName":"get-metrics","args":}'
+
+# 4. 触发工具不存在错误
+curl -X POST http://localhost:3000/api/tools/execute \
+  -d '{"toolName":"unknown","args":{}}'
+
+# 5. 验证审计日志
+psql -d monitoring -c "SELECT COUNT(*) FROM tool_audit_log;"
+</code></pre>
+<p><strong>步骤3：检查代码质量</strong></p>
+<pre><code class="language-bash"># 类型检查
+pnpm run type-check
+
+# Lint 检查
+pnpm run lint
+
+# 格式化
+pnpm run format
+</code></pre>
+<p><strong>步骤4：提交代码</strong></p>
+<pre><code class="language-bash">git add .
+git commit -m "feat(tools): implement Tool Registry v3 with audit and timeout
+
+- Add ToolDefinition interface for unified tool structure
+- Implement ToolRegistryService with dynamic registration
+- Add 4 custom ToolError classes (NotFound/Schema/Timeout/Execution)
+- Implement ToolAuditService for execution logging
+- Add timeout protection (5s) and result truncation (100 items)
+- Implement 3 tools: list-servers, get-metrics, get-alert-detail
+- Add comprehensive unit tests (9 test cases, 100% coverage)
+
+Breaking Changes: None (new feature)
+"
+</code></pre>
+<p><strong>通过标准</strong></p>
+<ul>
+<li>所有单元测试通过</li>
+<li>手动验证 5 个核心流程全部正常</li>
+<li>无 TypeScript / ESLint 错误</li>
+<li>Git commit message 符合规范</li>
+</ul>
+<hr>
+<hr>
+<h2 id="8-通过标准同行-code-review-视角">8. 通过标准（同行 Code Review 视角）</h2>
+<p><strong>8.1 架构层面</strong></p>
+<ul>
+<li>✅ Registry 模式将工具注册、执行、审计逻辑集中管理</li>
+<li>✅ ToolDefinition 接口统一工具定义，新增工具无需改动 Controller</li>
+<li>✅ 错误分类体系（4 种 ToolError）让调用方能根据错误类型决策</li>
+</ul>
+<p><strong>8.2 可靠性层面</strong></p>
+<ul>
+<li>✅ Schema 校验防止非法输入导致的崩溃</li>
+<li>✅ 超时保护（5s）防止慢查询挂起整个请求</li>
+<li>✅ 结果裁剪（100 条）防止超大响应消耗网络和内存</li>
+</ul>
+<p><strong>8.3 可观测性层面</strong></p>
+<ul>
+<li>✅ 审计服务记录所有工具调用（成功 + 失败）</li>
+<li>✅ 敏感字段脱敏（password / token）</li>
+<li>✅ 记录执行耗时，支持性能分析</li>
+</ul>
+<p><strong>8.4 测试覆盖</strong></p>
+<ul>
+<li>✅ 单元测试覆盖 Registry 核心逻辑（9 个测试用例）</li>
+<li>✅ 反证实验验证超时保护和结果裁剪的必要性</li>
+<li>✅ 手动测试覆盖 5 个核心流程</li>
+</ul>
+<hr>
+<h2 id="9-提交物证明你真的做完了">9. 提交物（证明你真的做完了）</h2>
+<p><strong>9.1 代码文件</strong>（9 个核心文件）</p>
+<p>apps/api/src/tools/
+├── types/tool.types.ts
+├── errors/tool.errors.ts
+├── audit/tool-audit.service.ts
+├── registry/tool-registry.service.ts
+├── registry/tool-registry.service.spec.ts
+├── implementations/list-servers.tool.ts
+├── implementations/get-metrics.tool.ts
+├── implementations/get-alert-detail.tool.ts
+├── tools.module.ts
+├── tools.controller.ts
+└── index.ts</p>
+<p><strong>9.2 Git 提交记录</strong></p>
+<p>git log --oneline -1
+输出：feat(tools): implement Tool Registry v3 with audit and timeout</p>
+<hr>
+<h2 id="10-课末3个核心问题面试高频">10. 课末3个核心问题（面试高频）</h2>
+<h3 id="问题1为什么需要-registry-模式">问题1：为什么需要 Registry 模式？</h3>
+<p><strong>L1：可扩展性</strong>
+硬编码 if-else：新增工具需要修改 Controller 代码
+Registry 模式：新增工具只需实现 ToolDefinition 接口并注册</p>
+<p><strong>L2：统一逻辑</strong>
+硬编码方式：Schema 校验、超时保护、审计日志在每个工具里重复实现
+Registry 模式：这些逻辑在 Registry 层统一处理</p>
+<p><strong>L3：测试隔离</strong>
+Registry 可以独立测试，工具实现也可以独立测试</p>
+<hr>
+<h3 id="问题2超时保护用-promiserace-实现超时后原始-promise-还在运行吗">问题2：超时保护用 Promise.race 实现，超时后原始 Promise 还在运行吗？</h3>
+<p><strong>回答</strong></p>
+<p>是的，原始 Promise 仍在运行。Promise.race 只是返回最快完成的那个，不会取消其他 Promise。</p>
+<p><strong>生产级解决方案（AbortController）</strong></p>
+<p>使用 AbortController 主动取消任务：</p>
+<p>private async withTimeout&lt;T&gt;(
+fn: (signal: AbortSignal) =&gt; Promise&lt;T&gt;,
+timeoutMs: number
+): Promise&lt;T&gt; {
+const controller = new AbortController()</p>
+<p>const timeoutPromise = new Promise&lt;never&gt;((_, reject) =&gt; {
+setTimeout(() =&gt; {
+controller.abort()
+reject(new ToolTimeoutError('timeout', timeoutMs))
+}, timeoutMs)
+})</p>
+<p>return Promise.race([fn(controller.signal), timeoutPromise])
+}</p>
+<hr>
+<h3 id="问题3审计日志记录失败会影响工具执行吗">问题3：审计日志记录失败会影响工具执行吗？</h3>
+<p><strong>当前实现会影响</strong></p>
+<p>生产级处理方案：</p>
+<p>方案1：Try-Catch 包裹
+try {
+await this.auditService.logExecution({ ... })
+} catch (error) {
+this.logger.error('Audit log failed', error)
+}</p>
+<p>方案2：异步审计（不阻塞返回）
+this.auditService.logExecution({ ... }).catch(error =&gt; {
+this.logger.error('Audit log failed', error)
+})</p>
+<p>方案3：消息队列（最稳定）
+await this.eventBus.publish(new ToolExecutedEvent({ ... }))</p>
+<hr>
+<h2 id="11-真实项目情境题">11. 真实项目情境题</h2>
+<h3 id="情境1ai-传入的-serverid-在数据库中不存在应该返回什么">情境1：AI 传入的 serverId 在数据库中不存在，应该返回什么？</h3>
+<p><strong>推荐方案：Registry 层拦截</strong></p>
+<p>在 ToolDefinition 中增加 validate 钩子：</p>
+<p>interface ToolDefinition&lt;T = any&gt; {
+name: string
+description: string
+schema: ZodSchema&lt;T&gt;
+validate?: (args: T, context: ToolContext) =&gt; Promise&lt;void&gt;
+execute: (args: T, context: ToolContext) =&gt; Promise&lt;any&gt;
+}</p>
+<p>export const getMetricsTool: ToolDefinition&lt;GetMetricsArgs&gt; = {
+name: 'get-metrics',
+schema: GetMetricsArgsSchema,</p>
+<p>async validate(args: GetMetricsArgs, context: ToolContext) {
+const server = await context.prisma.server.findUnique({
+where: { id: args.serverId },
+})
+if (!server) {
+throw new ToolExecutionError(
+<code>Server "${args.serverId}" not found</code>,
+'SERVER_NOT_FOUND'
+)
+}
+},</p>
+<p>async execute(args: GetMetricsArgs, context: ToolContext) {
+const metrics = await context.prisma.metric.findMany({
+where: { serverId: args.serverId },
+})
+return metrics
+},
+}</p>
+<hr>
+<h3 id="情境2生产环境审计表已有-1000-万条记录查询变慢怎么办">情境2：生产环境审计表已有 1000 万条记录，查询变慢怎么办？</h3>
+<p><strong>优化方案</strong></p>
+<ol>
+<li>
+<p>添加索引
+CREATE INDEX idx_tool_audit_log_user_timestamp
+ON tool_audit_log (user_id, timestamp DESC);</p>
+</li>
+<li>
+<p>分区表（按月分区）
+CREATE TABLE tool_audit_log (...) PARTITION BY RANGE (timestamp);</p>
+</li>
+<li>
+<p>冷热数据分离
+热数据表：最近 30 天
+冷数据表：30 天前</p>
+</li>
+<li>
+<p>归档到对象存储（S3）
+3 个月前的数据归档到 S3，存储成本降低 90%</p>
+</li>
+</ol>
+<hr>
+<h3 id="情境3同一个用户在-1-秒内调用-100-次工具怎么防止滥用">情境3：同一个用户在 1 秒内调用 100 次工具，怎么防止滥用？</h3>
+<p><strong>方案1：内存限流（单实例）</strong></p>
+<p>@Injectable()
+export class RateLimiterService {
+private readonly userLimits = new Map&lt;string, number[]&gt;()
+private readonly WINDOW_MS = 1000
+private readonly MAX_REQUESTS = 10</p>
+<p>async checkLimit(userId: string): Promise&lt;void&gt; {
+const now = Date.now()
+const userRequests = this.userLimits.get(userId) || []</p>
+<pre><code>const validRequests = userRequests.filter(
+  timestamp =&gt; now - timestamp &lt; this.WINDOW_MS
+)
+
+if (validRequests.length &gt;= this.MAX_REQUESTS) {
+  throw new Error('Rate limit exceeded')
+}
+
+validRequests.push(now)
+this.userLimits.set(userId, validRequests)
+</code></pre>
+<p>}
+}</p>
+<p><strong>方案2：Redis 限流（分布式）</strong></p>
+<p>async checkLimit(userId: string): Promise&lt;void&gt; {
+const key = <code>rate-limit:${userId}</code>
+const current = await this.redis.incr(key)</p>
+<p>if (current === 1) {
+await this.redis.expire(key, 1)
+}</p>
+<p>if (current &gt; 10) {
+throw new Error('Rate limit exceeded')
+}
+}</p>
+<hr>
+<h2 id="12-pdf-面试题带答案">12. PDF 面试题（带答案）</h2>
+<h3 id="121-选择题">12.1 选择题</h3>
+<p><strong>题目1：Registry 模式的主要优势是？</strong></p>
+<p>A. 提高代码执行速度<br>
+B. 减少内存占用<br>
+C. 提高可扩展性和可维护性<br>
+D. 降低服务器负载</p>
+<p><strong>答案：C</strong></p>
+<p>解析：Registry 模式通过统一的接口管理工具，新增工具无需修改现有代码，提高了可扩展性。同时将通用逻辑（校验、超时、审计）集中在 Registry 层，提高了可维护性。</p>
+<hr>
+<p><strong>题目2：Zod Schema 的 safeParse 和 parse 的区别是？</strong></p>
+<p>A. safeParse 更快<br>
+B. safeParse 不会抛出异常，而 parse 会<br>
+C. safeParse 支持异步校验<br>
+D. 没有区别</p>
+<p><strong>答案：B</strong></p>
+<p>解析：</p>
+<ul>
+<li>safeParse 返回 { success: boolean, data?: T, error?: ZodError }，不会抛异常</li>
+<li>parse 校验失败时直接抛出 ZodError</li>
+</ul>
+<p>生产环境推荐使用 safeParse，因为可以自定义错误处理逻辑。</p>
+<hr>
+<p><strong>题目3：以下哪个不是 ToolError 的子类？</strong></p>
+<p>A. ToolNotFoundError<br>
+B. ToolSchemaError<br>
+C. ToolTimeoutError<br>
+D. ToolPermissionError</p>
+<p><strong>答案：D</strong></p>
+<p>解析：Day11 实现的 4 种错误是：</p>
+<ul>
+<li>ToolNotFoundError（工具不存在）</li>
+<li>ToolSchemaError（Schema 校验失败）</li>
+<li>ToolTimeoutError（执行超时）</li>
+<li>ToolExecutionError（执行逻辑错误）</li>
+</ul>
+<p>ToolPermissionError 是扩展场景，Day11 未实现。</p>
+<hr>
+<h3 id="122-编程题">12.2 编程题</h3>
+<p><strong>题目：实现一个支持重试机制的 Tool 执行器</strong></p>
+<p>要求：</p>
+<ol>
+<li>当工具执行失败时，自动重试最多 3 次</li>
+<li>只有 ToolExecutionError 和 ToolTimeoutError 才重试</li>
+<li>ToolNotFoundError 和 ToolSchemaError 不重试</li>
+<li>重试间隔：1s、2s、4s（指数退避）</li>
+</ol>
+<p><strong>参考答案</strong></p>
+<p>async executeWithRetry(
+toolName: string,
+args: unknown,
+context: ToolContext,
+maxRetries: number = 3
+): Promise&lt;ToolResult&gt; {
+let lastError: Error | null = null</p>
+<p>for (let attempt = 0; attempt &lt;= maxRetries; attempt++) {
+try {
+return await this.execute(toolName, args, context)
+} catch (error) {
+lastError = error</p>
+<pre><code>  // 不重试的错误类型
+  if (
+    error instanceof ToolNotFoundError ||
+    error instanceof ToolSchemaError
+  ) {
+    throw error
+  }
+  
+  // 最后一次尝试失败，直接抛错
+  if (attempt === maxRetries) {
+    throw error
+  }
+  
+  // 指数退避：1s、2s、4s
+  const delay = Math.pow(2, attempt) * 1000
+  this.logger.warn(
+    `Tool execution failed, retrying in ${delay}ms`,
+    error
+  )
+  await new Promise(resolve =&gt; setTimeout(resolve, delay))
+}
+</code></pre>
+<p>}</p>
+<p>throw lastError
+}</p>
+<hr>
+<p><strong>免责声明</strong></p>
+<p>本文档中的面试题和答案仅供学习参考，实际面试题目和答案可能因公司、岗位、时间而异。建议结合项目实践深度理解，而非死记硬背。</p>
+<hr>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<h3 id="问题1你觉得-registry-模式最大的好处是什么">问题1：你觉得 Registry 模式最大的好处是什么？</h3>
+<p><strong>参考回答</strong></p>
+<p>最大的好处是可扩展性。新增工具只需实现 ToolDefinition 接口并注册，无需修改 Controller 或 Registry 的核心逻辑。这符合开闭原则（对扩展开放，对修改关闭）。</p>
+<p>同时，Registry 将通用逻辑（Schema 校验、超时保护、审计日志）集中处理，避免在每个工具里重复实现，提高了可维护性。</p>
+<hr>
+<h3 id="问题2如果让你优化这个系统你会从哪个方向入手">问题2：如果让你优化这个系统，你会从哪个方向入手？</h3>
+<p><strong>参考回答</strong></p>
+<p>我会从以下 3 个方向优化：</p>
+<ol>
+<li>
+<p>性能优化</p>
+<ul>
+<li>审计日志改为异步写入（消息队列）</li>
+<li>添加 Redis 缓存工具元数据</li>
+<li>数据库审计表添加索引和分区</li>
+</ul>
+</li>
+<li>
+<p>可靠性优化</p>
+<ul>
+<li>实现 AbortController 超时取消机制</li>
+<li>添加重试机制（针对临时性错误）</li>
+<li>添加断路器（防止某个工具故障影响整个系统）</li>
+</ul>
+</li>
+<li>
+<p>可观测性优化</p>
+<ul>
+<li>添加 OpenTelemetry 链路追踪</li>
+<li>添加 Prometheus 指标（调用次数、成功率、耗时分布）</li>
+<li>添加告警规则（超时率 &gt; 10% 时告警）</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="问题3v1-v2-v3-三个版本你在实际项目中会用哪个">问题3：v1 / v2 / v3 三个版本，你在实际项目中会用哪个？</h3>
+<p><strong>参考回答</strong></p>
+<p>取决于项目规模：</p>
+<ul>
+<li>v1（最小闭环）：用于 MVP 验证，快速上线（1-2 天）</li>
+<li>v2（Schema + 超时）：用于小型项目（&lt; 5 个工具，&lt; 1000 日活）</li>
+<li>v3（生产级 Registry）：用于企业级项目（10+ 工具，多人协作，需要审计）</li>
+</ul>
+<p>实际项目中，我会先用 v1 验证需求，确认有价值后再升级到 v3。避免过早优化。</p>
+<hr>
+<h3 id="问题4如果审计日志写入失败你会怎么处理">问题4：如果审计日志写入失败，你会怎么处理？</h3>
+<p><strong>参考回答</strong></p>
+<p>不应该让审计日志写入失败影响工具执行。我会用以下方案：</p>
+<ol>
+<li>
+<p>Try-Catch 包裹审计逻辑
+try {
+await this.auditService.logExecution({ ... })
+} catch (error) {
+this.logger.error('Audit log failed', error)
+}</p>
+</li>
+<li>
+<p>异步写入（不阻塞返回）
+this.auditService.logExecution({ ... }).catch(error =&gt; {
+this.logger.error('Audit log failed', error)
+})</p>
+</li>
+<li>
+<p>消息队列（最稳定）
+将审计事件发送到 RabbitMQ，单独的 Worker 消费队列并写入数据库，失败时自动重试。</p>
+</li>
+</ol>
+<hr>
+<h3 id="问题5这个项目你学到了什么">问题5：这个项目你学到了什么？</h3>
+<p><strong>参考回答</strong></p>
+<p>我学到了以下 3 点：</p>
+<ol>
+<li>
+<p>架构模式的价值</p>
+<ul>
+<li>Registry 模式让系统更易扩展</li>
+<li>错误分类让错误处理更精细</li>
+<li>审计链让系统更可观测</li>
+</ul>
+</li>
+<li>
+<p>渐进式设计</p>
+<ul>
+<li>先实现 v1 最小闭环（验证需求）</li>
+<li>再加 v2 健壮性（Schema + 超时）</li>
+<li>最后升级 v3 生产级（Registry + 审计）</li>
+<li>避免一开始就追求完美</li>
+</ul>
+</li>
+<li>
+<p>生产环境的复杂性</p>
+<ul>
+<li>超时保护不只是 Promise.race，还要考虑资源泄漏</li>
+<li>审计日志不能阻塞业务逻辑</li>
+<li>大表查询需要索引 / 分区 / 归档</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="14-本-day-在-90-天路线中的锚点">14. 本 Day 在 90 天路线中的锚点</h2>
+<h3 id="141-前置依赖">14.1 前置依赖</h3>
+<ul>
+<li>
+<p>Day07-09：NestJS 基础</p>
+<ul>
+<li>Module / Controller / Service 依赖注入</li>
+<li>理解装饰器（@Injectable、@Module）</li>
+<li>掌握 NestJS 异常处理</li>
+</ul>
+</li>
+<li>
+<p>Day10：Zod Schema 校验</p>
+<ul>
+<li>理解 Schema 定义和类型推导</li>
+<li>掌握 safeParse 和错误处理</li>
+</ul>
+</li>
+</ul>
+<h3 id="142-后续内容">14.2 后续内容</h3>
+<ul>
+<li>
+<p>Day12-13：Vercel AI SDK Tool Calling</p>
+<ul>
+<li>使用 Day11 的 Tool Registry 作为底层实现</li>
+<li>将工具暴露给 AI（Claude / GPT）</li>
+</ul>
+</li>
+<li>
+<p>Day14-16：LangChain.js RAG</p>
+<ul>
+<li>工具作为 RAG 的数据源之一</li>
+<li>审计日志用于追踪 RAG 查询</li>
+</ul>
+</li>
+<li>
+<p>Day17-20：LangGraph.js 状态机编排</p>
+<ul>
+<li>工具作为 Agent 的 Action</li>
+<li>Registry 支持动态加载工具到状态机</li>
+</ul>
+</li>
+</ul>
+<h3 id="143-技能树位置">14.3 技能树位置</h3>
+<p>90 天 Agent 全栈工程师
+├── 基础阶段（Day01-10）
+│   └── Day10：Zod Schema 校验
+├── 后端核心（Day11-20）
+│   ├── Day11：Tool Registry（本节）← 你在这里
+│   ├── Day12-13：AI SDK Tool Calling
+│   ├── Day14-16：LangChain RAG
+│   └── Day17-20：LangGraph 状态机
+├── 前端 AI 交互（Day21-30）
+└── 生产部署（Day31-40）</p>
+<hr>
+<p><strong>Day11 完成标志</strong></p>
+<p>当你能做到以下 3 点，说明已完全掌握：</p>
+<ol>
+<li>✅ 能独立实现 v3 版本的 Tool Registry（无需看文档）</li>
+<li>✅ 能解释清楚 3 个核心问题（Registry 模式 / 超时保护 / 审计日志）</li>
+<li>✅ 能应对 3 个真实项目情境题（serverId 不存在 / 审计表优化 / 限流防滥用）</li>
+</ol>
+<p>恭喜你完成 Day11！明天继续 Day12：Vercel AI SDK Tool Calling。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day11-old.html">查看 Day 11 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/10.html">← Day 10 · M2 门禁</a>
+            <a href="/ai-teacher-agent-devolop/day/12.html">Day 12 · Agent Loop →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#14-%E6%9C%AC%E6%97%A5%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8A%A8%E6%89%8B%E5%89%8D%E5%85%88%E7%9C%8B%E9%AA%A8%E6%9E%B6">1.4 本日项目目录结构（动手前先看骨架）</a></li><li><a href="#15-%E9%98%B6%E6%AE%B5-d%E5%8A%A8%E6%89%8B%E8%84%9A%E6%89%8B%E6%9E%B620-%E5%88%86%E9%92%9F%E5%85%88%E6%90%AD%E9%AA%A8%E6%9E%B6%E5%86%8D%E7%9C%8B%E6%AD%A3%E6%96%87">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F90-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">2. 学习节奏（90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E6%9C%80%E5%B0%8F%E9%97%AD%E7%8E%AF">3. v1：最小闭环</a></li><li><a href="#4-v2%E5%8A%A0%E5%85%A5-schema-%E6%A0%A1%E9%AA%8C%E5%92%8C%E8%B6%85%E6%97%B6%E4%BF%9D%E6%8A%A4">4. v2：加入 Schema 校验和超时保护</a></li><li><a href="#5-v3%E5%AE%8C%E6%95%B4%E7%9A%84-tool-registry">5. v3：完整的 Tool Registry</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94%E4%B8%80%E8%A7%88%E8%A1%A8%E7%9C%8B%E6%B8%85%E8%BF%9B%E5%8C%96%E8%B7%AF%E5%BE%84">6. 三版对比一览表（看清进化路径）</a></li><li><a href="#7-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95%E5%BF%85%E9%A1%BB%E5%85%A8%E9%83%A8%E9%80%9A%E8%BF%87">7. 项目验收清单（必须全部通过）</a></li><li><a href="#8-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86%E5%90%8C%E8%A1%8C-code-review-%E8%A7%86%E8%A7%92">8. 通过标准（同行 Code Review 视角）</a></li><li><a href="#9-%E6%8F%90%E4%BA%A4%E7%89%A9%E8%AF%81%E6%98%8E%E4%BD%A0%E7%9C%9F%E7%9A%84%E5%81%9A%E5%AE%8C%E4%BA%86">9. 提交物（证明你真的做完了）</a></li><li><a href="#10-%E8%AF%BE%E6%9C%AB3%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91">10. 课末3个核心问题（面试高频）</a></li><li><a href="#11-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98">11. 真实项目情境题</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98%E5%B8%A6%E7%AD%94%E6%A1%88">12. PDF 面试题（带答案）</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">14. 本 Day 在 90 天路线中的锚点</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

@@ -1,0 +1,861 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 53 · Day 53 - LangChain 适用边界（框架抽象 vs 自研 + Build-vs-Buy 决策） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html" aria-current="page">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/08.html">第 8 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 53</p>
+        <h1>Day 53 - LangChain 适用边界（框架抽象 vs 自研 + Build-vs-Buy 决策）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节为本 Day 的权威执行口径）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段二（Day 31-60，AI 前端 -&gt; AI 全栈）。本日继续在 <code>p1-monitor</code> 真实链路中累积，不创建平行 Demo。</li>
+<li><strong>功能交付</strong>：必须交付一个能跑、能测、能从真实用户入口观察结果的完整模块，知识点由该模块自然引出。</li>
+<li><strong>三版演进</strong>：本日以项目门禁/评测为主：v1 是当前基线与最小可运行链路；v2 是加入一个关键质量维度后的可测版本；v3 是加入失败可见、回归阻断和架构证据后的生产终态。三版必须分别产生可观察差异，不能只保留考核题目。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（90 分钟阅读），D 60 分钟、E 20 分钟、F 10 分钟（90 分钟动手）。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；复用已有 Schema、RAG、租户、评测、Docker 或 Trace 合同，禁止另建第二套接口。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 动态教师五连问；任何“完整执行版/执行版补全要求”只可作为背景，不能替代本日交付。</li>
+<li><strong>跨 Day 导航</strong>：Day54 多租户权限，Day55 Docker Compose，Day56 CI/CD。</li>
+</ul>
+<p><strong>补强要求</strong>：若正文使用“完整执行版”或“执行版补全要求”，领取任务时必须把省略部分展开为当天可执行的测试/反证/情境题，并记录真实项目 diff。</p>
+</blockquote>
+<p><strong>日期与时长</strong>：2026-09-04 周五，180 分钟（90 分钟阅读 + 90 分钟动手）
+<strong>项目</strong>：<code>D:\demo\ai-techer\p1-monitor</code><br>
+<strong>阶段任务性质</strong>：评估 LangChain 适用边界</p>
+<hr>
+<h2 id="0-day-53-在-90-天路线图里的位置">§0 Day 53 在 90 天路线图里的位置</h2>
+<h3 id="01-前情提要day-01-52-已建立的能力">0.1 前情提要（Day 01-52 已建立的能力）</h3>
+<p>Day 01-52 建立了完整的 RAG 全链路（自研实现）：</p>
+<ul>
+<li><strong>Day 41-48</strong>：RAG 全链路（文档摄取 → 分块 → 向量化 → 检索）</li>
+<li><strong>Day 49</strong>：引用闭环（Citation）</li>
+<li><strong>Day 50</strong>：五十日门禁（现场 Bug 定位）</li>
+<li><strong>Day 51</strong>：检索评测（Precision@k、Recall@k、MRR）</li>
+<li><strong>Day 52</strong>：生成质量评测（LLM Judge + 偏差分析）</li>
+</ul>
+<h3 id="02-今天的核心任务">0.2 今天的核心任务</h3>
+<p>Day 53 评估<strong>LangChain 适用边界</strong>，回答"什么时候用框架、什么时候自研"：</p>
+<ol>
+<li><strong>用框架复现现有 RAG</strong>：用 LangChain 重写 Day 48 混合检索</li>
+<li><strong>对比收益与成本</strong>：抽象收益 vs 调试成本 vs 版本风险</li>
+<li><strong>同基线评测</strong>：用 Day 51 的 Eval 集对比性能</li>
+<li><strong>Build-vs-Buy 决策</strong>：若收益不能覆盖成本，回滚到自研</li>
+</ol>
+<h3 id="03-今天要解决的-5-个问题">0.3 今天要解决的 5 个问题</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>问题</th>
+<th>现象</th>
+<th>根因</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 框架抽象收益未量化</td>
+<td>不知道用框架是否更好</td>
+<td>没有对比评测</td>
+<td>同一 Eval 集对比 MRR</td>
+</tr>
+<tr>
+<td>2. 调试成本增加</td>
+<td>异常堆栈只剩框架内部调用</td>
+<td>框架抽象层太厚</td>
+<td>增加 instrumentation</td>
+</tr>
+<tr>
+<td>3. Trace 丢失</td>
+<td>升级 LangChain 后 30% Trace 丢失</td>
+<td>框架版本不兼容</td>
+<td>版本锁定 + 回归测试</td>
+</tr>
+<tr>
+<td>4. 性能退化</td>
+<td>检索 P95 翻倍</td>
+<td>框架初始化开销</td>
+<td>冷启动优化</td>
+</tr>
+<tr>
+<td>5. 沉没成本陷阱</td>
+<td>收益不足但继续投入</td>
+<td>没有退出标准</td>
+<td>Build-vs-Buy ADR + 回滚机制</td>
+</tr>
+</tbody>
+</table></div><h3 id="04-今天的前置依赖">0.4 今天的前置依赖</h3>
+<ul>
+<li><strong>Day 48</strong>：混合检索（Hybrid Search）</li>
+<li><strong>Day 51</strong>：检索评测（Eval 集）</li>
+</ul>
+<h3 id="05-今天留给下一站的伏笔">0.5 今天留给下一站的伏笔</h3>
+<ul>
+<li><strong>Day 54-55</strong>：成本优化（Embedding 缓存、Rerank 选择性调用）</li>
+<li><strong>Day 56-60</strong>：在线评测（A/B Test、实时监控）</li>
+</ul>
+<hr>
+<h2 id="1-今天建立的完整能力">§1 今天建立的完整能力</h2>
+<h3 id="11-用户能看到什么5-个场景">§1.1 用户能看到什么（5 个场景）</h3>
+<h4 id="场景-1用-langchain-复现现有-rag">场景 1：用 LangChain 复现现有 RAG</h4>
+<p><strong>操作</strong>：用 LangChain 重写 Day 48 混合检索。</p>
+<p><strong>对比</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>自研实现（Day 48）</th>
+<th>LangChain 实现（Day 53）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码行数</td>
+<td>300 行</td>
+<td>150 行</td>
+</tr>
+<tr>
+<td>初始化时间</td>
+<td>0.3s</td>
+<td>1.5s（冷启动慢）</td>
+</tr>
+<tr>
+<td>MRR</td>
+<td>0.68</td>
+<td>0.68（相同）</td>
+</tr>
+<tr>
+<td>异常堆栈可读性</td>
+<td>高（直接定位到业务代码）</td>
+<td>低（框架内部调用）</td>
+</tr>
+<tr>
+<td>Trace 完整性</td>
+<td>100%</td>
+<td>70%（升级后丢失 30%）</td>
+</tr>
+</tbody>
+</table></div><p><strong>结论</strong>：代码量减少 50%，但性能退化（冷启动 5 倍慢）、调试成本增加、Trace 丢失。</p>
+<h4 id="场景-2升级-langchain-导致性能退化">场景 2：升级 LangChain 导致性能退化</h4>
+<p><strong>现象</strong>：升级 LangChain 0.1.x → 0.2.x 后，检索 P95 从 200ms 升至 400ms（翻倍）。</p>
+<p><strong>根因定位</strong>：</p>
+<pre><code class="language-python"># 升级前（0.1.x）
+from langchain.retrievers import BM25Retriever
+retriever = BM25Retriever.from_documents(docs)  # 初始化快
+
+# 升级后（0.2.x）
+from langchain_community.retrievers import BM25Retriever
+retriever = BM25Retriever.from_documents(docs)  # 初始化慢（内部实现变化）
+</code></pre>
+<p><strong>修复</strong>：回滚到 0.1.x + 锁定版本。</p>
+<h4 id="场景-3异常堆栈只剩框架内部调用">场景 3：异常堆栈只剩框架内部调用</h4>
+<p><strong>自研实现（Day 48）异常堆栈</strong>：</p>
+<pre><code>Traceback (most recent call last):
+  File "hybrid_search_service.py", line 42, in search
+    bm25_results = self.bm25_search(query)
+  File "bm25_searcher.py", line 18, in bm25_search
+    scores = self.bm25.get_scores(query_tokens)
+IndexError: list index out of range
+</code></pre>
+<p><strong>LangChain 实现异常堆栈</strong>：</p>
+<pre><code>Traceback (most recent call last):
+  File "langchain/retrievers/base.py", line 89, in _get_relevant_documents
+    return self._retrieve(query)
+  File "langchain_community/retrievers/bm25.py", line 123, in _retrieve
+    return self._run_query(query)
+  File "langchain_community/retrievers/bm25.py", line 156, in _run_query
+    scores = self.bm25_model.get_scores(tokens)
+IndexError: list index out of range
+</code></pre>
+<p><strong>对比</strong>：LangChain 堆栈多了 3 层框架调用，定位问题更难。</p>
+<h4 id="场景-4trace-丢失-30">场景 4：Trace 丢失 30%</h4>
+<p><strong>现象</strong>：升级 LangChain 后，OpenTelemetry Trace 只覆盖 70% 的请求。</p>
+<p><strong>根因</strong>：LangChain 0.2.x 内部使用异步上下文，导致 Trace Context 传播失败。</p>
+<p><strong>修复</strong>：增加 LangChain 专用的 instrumentation。</p>
+<pre><code class="language-python"># services/ai/src/ai_service/observability/langchain_instrumentation.py
+from opentelemetry import trace
+from langchain.callbacks.base import BaseCallbackHandler
+
+class TracingCallbackHandler(BaseCallbackHandler):
+    def on_chain_start(self, serialized, inputs, **kwargs):
+        tracer = trace.get_tracer(__name__)
+        span = tracer.start_span(f"langchain.{serialized['name']}")
+        span.set_attribute("inputs", str(inputs))
+    
+    def on_chain_end(self, outputs, **kwargs):
+        span = trace.get_current_span()
+        span.set_attribute("outputs", str(outputs))
+        span.end()
+</code></pre>
+<h4 id="场景-5build-vs-buy-决策">场景 5：Build-vs-Buy 决策</h4>
+<p><strong>决策框架</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>自研</th>
+<th>LangChain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码维护成本</td>
+<td>高（300 行自己维护）</td>
+<td>低（150 行 + 依赖框架）</td>
+</tr>
+<tr>
+<td>调试成本</td>
+<td>低（堆栈清晰）</td>
+<td>高（框架抽象层厚）</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>高（冷启动 0.3s）</td>
+<td>低（冷启动 1.5s）</td>
+</tr>
+<tr>
+<td>Trace 完整性</td>
+<td>高（100%）</td>
+<td>低（70%）</td>
+</tr>
+<tr>
+<td>版本风险</td>
+<td>低（自己控制）</td>
+<td>高（框架升级风险）</td>
+</tr>
+<tr>
+<td><strong>综合评分</strong></td>
+<td>7/10</td>
+<td>5/10</td>
+</tr>
+</tbody>
+</table></div><p><strong>结论</strong>：本项目场景下，自研收益 &gt; LangChain，回滚到自研实现。</p>
+<h3 id="12-各模块职责分工">§1.2 各模块职责分工</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                         自研实现（Day 48）                         │
+│  - 300 行自研代码                                                 │
+│  - 完全可控、堆栈清晰、Trace 100%                                  │
+└─────────────────────────────────────────────────────────────────┘
+                                  vs
+┌─────────────────────────────────────────────────────────────────┐
+│                         LangChain 实现（Day 53）                  │
+│  - 150 行业务代码 + 框架抽象                                       │
+│  - 代码量减少、但调试成本增加、Trace 70%                            │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="13-三版演进">§1.3 三版演进</h3>
+<h4 id="v1自研实现day-01-52">v1：自研实现（Day 01-52）</h4>
+<ul>
+<li>完全自研（300 行）</li>
+<li>优点：可控、性能高、Trace 完整</li>
+<li>缺点：维护成本高</li>
+</ul>
+<h4 id="v2langchain-适配今天">v2：LangChain 适配（今天）</h4>
+<ul>
+<li>用 LangChain 复现（150 行）</li>
+<li>对比收益与成本</li>
+<li><strong>结论</strong>：本项目场景不适合 LangChain，回滚到 v1</li>
+</ul>
+<h4 id="v3混合策略day-54-60">v3：混合策略（Day 54-60）</h4>
+<ul>
+<li>核心链路自研（检索、生成）</li>
+<li>边缘工具用框架（文档加载、格式转换）</li>
+</ul>
+<h3 id="14-今天的完整目录结构">§1.4 今天的完整目录结构</h3>
+<pre><code>services/ai/
+├── src/
+│   └── ai_service/
+│       ├── rag/
+│       │   ├── hybrid_search/
+│       │   │   ├── hybrid_search_service.py        # 自研实现（Day 48）
+│       │   │   └── hybrid_search_langchain.py      # LangChain 实现（Day 53）
+│       │   └── retriever_adapter.py                # 统一接口（支持切换）
+│       ├── observability/
+│       │   └── langchain_instrumentation.py        # LangChain Trace 适配
+│       └── evaluation/
+│           └── framework_comparison.py             # 框架对比评测
+
+docs/
+└── decisions/
+    └── 0003-build-vs-buy-rag-retriever.md          # Build-vs-Buy ADR
+
+scripts/
+└── compare-frameworks.sh                           # 对比脚本
+</code></pre>
+<p><strong>为什么需要 retriever_adapter.py？</strong></p>
+<p>统一接口支持快速切换（自研 ↔ LangChain），方便 A/B Test。</p>
+<pre><code class="language-python"># services/ai/src/ai_service/rag/retriever_adapter.py
+class RetrieverAdapter:
+    def __init__(self, impl: str = 'self-built'):
+        if impl == 'self-built':
+            self.retriever = HybridSearchService()  # 自研
+        elif impl == 'langchain':
+            self.retriever = HybridSearchLangChain()  # LangChain
+    
+    async def search(self, query: str, top_k: int) -&gt; List[Document]:
+        return await self.retriever.search(query, top_k)
+</code></pre>
+<hr>
+<h2 id="2-今天的开发节奏3-小时90-阅读-90-动手">§2 今天的开发节奏（3 小时：90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>任务</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>阶段 1</strong></td>
+<td>40 min</td>
+<td>理解 LangChain 抽象（Retriever、Chain、Callback）</td>
+<td>笔记：LangChain 架构</td>
+</tr>
+<tr>
+<td><strong>阶段 2</strong></td>
+<td>100 min</td>
+<td>用 LangChain 复现 Day 48 + 对比评测</td>
+<td>LangChain 实现 + 对比报告</td>
+</tr>
+<tr>
+<td><strong>阶段 3</strong></td>
+<td>25 min</td>
+<td>Build-vs-Buy 决策 + 回滚</td>
+<td>ADR + commit</td>
+</tr>
+<tr>
+<td><strong>阶段 4</strong></td>
+<td>15 min</td>
+<td>架构证据 + 复盘</td>
+<td>依赖图 + commit</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="3-v1自研实现day-48-基线">§3 v1：自研实现（Day 48 基线）</h2>
+<h3 id="31-v1-代码自研混合检索">3.1 v1 代码（自研混合检索）</h3>
+<pre><code class="language-python"># services/ai/src/ai_service/rag/hybrid_search/hybrid_search_service.py（Day 48）
+class HybridSearchService:
+    def __init__(self, db, bm25_index):
+        self.db = db
+        self.bm25_index = bm25_index
+    
+    async def search(self, query: str, top_k: int = 5) -&gt; List[Document]:
+        # 1. 向量检索
+        vector_results = await self.vector_search(query, top_k * 2)
+        
+        # 2. BM25 检索
+        bm25_results = self.bm25_search(query, top_k * 2)
+        
+        # 3. RRF 融合
+        merged = self.rrf_merge(vector_results, bm25_results, top_k)
+        
+        return merged
+</code></pre>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>代码清晰（300 行）</li>
+<li>异常堆栈直接定位业务代码</li>
+<li>Trace 100% 覆盖</li>
+<li>冷启动快（0.3s）</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>维护成本高（自己维护 300 行）</li>
+</ul>
+<hr>
+<h2 id="4-v2langchain-实现今天">§4 v2：LangChain 实现（今天）</h2>
+<h3 id="41-用-langchain-复现">4.1 用 LangChain 复现</h3>
+<pre><code class="language-python"># services/ai/src/ai_service/rag/hybrid_search/hybrid_search_langchain.py
+from langchain.retrievers import EnsembleRetriever
+from langchain_community.retrievers import BM25Retriever
+from langchain_community.vectorstores import PGVector
+
+class HybridSearchLangChain:
+    def __init__(self, db_url: str, documents: List[Document]):
+        # 1. 向量检索
+        self.vector_store = PGVector.from_documents(
+            documents,
+            embedding=OpenAIEmbeddings(),
+            connection_string=db_url
+        )
+        self.vector_retriever = self.vector_store.as_retriever(search_kwargs={'k': 10})
+        
+        # 2. BM25 检索
+        self.bm25_retriever = BM25Retriever.from_documents(documents)
+        self.bm25_retriever.k = 10
+        
+        # 3. 混合检索（Ensemble）
+        self.ensemble = EnsembleRetriever(
+            retrievers=[self.vector_retriever, self.bm25_retriever],
+            weights=[0.5, 0.5]
+        )
+    
+    async def search(self, query: str, top_k: int = 5) -&gt; List[Document]:
+        results = self.ensemble.get_relevant_documents(query)
+        return results[:top_k]
+</code></pre>
+<p><strong>对比</strong>：</p>
+<ul>
+<li>代码量：300 行 → 150 行（减少 50%）</li>
+<li>初始化时间：0.3s → 1.5s（慢 5 倍）</li>
+</ul>
+<h3 id="42-同基线评测day-51-eval-集">4.2 同基线评测（Day 51 Eval 集）</h3>
+<pre><code class="language-python"># services/ai/src/ai_service/evaluation/framework_comparison.py
+import time
+
+async def compare_frameworks():
+    eval_set = load_eval_set('data/eval_sets/eval_set_v3.json')
+    
+    # 1. 自研实现
+    self_built = HybridSearchService(db, bm25_index)
+    start = time.time()
+    self_built_results = []
+    for query in eval_set:
+        results = await self_built.search(query['query'], top_k=5)
+        self_built_results.append(results)
+    self_built_time = time.time() - start
+    
+    # 2. LangChain 实现
+    langchain = HybridSearchLangChain(db_url, documents)
+    start = time.time()
+    langchain_results = []
+    for query in eval_set:
+        results = await langchain.search(query['query'], top_k=5)
+        langchain_results.append(results)
+    langchain_time = time.time() - start
+    
+    # 3. 计算 MRR
+    self_built_mrr = calculate_mrr(self_built_results, eval_set)
+    langchain_mrr = calculate_mrr(langchain_results, eval_set)
+    
+    print(f"自研实现: MRR={self_built_mrr:.2f}, Time={self_built_time:.2f}s")
+    print(f"LangChain: MRR={langchain_mrr:.2f}, Time={langchain_time:.2f}s")
+</code></pre>
+<p><strong>结果</strong>：</p>
+<pre><code>自研实现: MRR=0.68, Time=2.5s
+LangChain: MRR=0.68, Time=3.2s
+</code></pre>
+<p><strong>结论</strong>：MRR 相同，但 LangChain 慢 28%。</p>
+<h3 id="43-build-vs-buy-adr">4.3 Build-vs-Buy ADR</h3>
+<pre><code class="language-markdown"># ADR 0003: Build vs Buy - RAG Retriever
+
+## Status
+Accepted（回滚到自研）
+
+## Context
+Day 48 自研了混合检索（300 行），Day 53 用 LangChain 复现（150 行）。需要决策：继续自研 vs 迁移到 LangChain。
+
+## Decision
+**回滚到自研实现**
+
+## Rationale
+| 维度 | 自研 | LangChain |
+|---|---|---|
+| 代码维护成本 | 300 行 | 150 行 |
+| 调试成本 | 低（堆栈清晰） | 高（框架抽象厚） |
+| 性能 | MRR=0.68, 2.5s | MRR=0.68, 3.2s（慢 28%） |
+| Trace 完整性 | 100% | 70% |
+| 版本风险 | 低 | 高（升级风险） |
+
+**综合评分**：自研 7/10，LangChain 5/10。
+
+## Consequences
+- 保留自研实现（Day 48 代码）
+- LangChain 代码保留在 `hybrid_search_langchain.py`（供 Day 56-60 A/B Test）
+- 定期（每季度）重新评估
+
+## Alternatives Considered
+1. **全量迁移到 LangChain**：代码量减少，但性能退化 + 调试成本增加
+2. **混合策略**：核心自研 + 边缘用框架（Day 54-60 采用此策略）
+</code></pre>
+<hr>
+<h2 id="5-v2-深挖知识点完整执行版">§5 v2 深挖知识点（完整执行版）</h2>
+<h3 id="51-langchain-抽象的收益与成本">5.1 LangChain 抽象的收益与成本</h3>
+<p><strong>收益</strong>：</p>
+<ul>
+<li>代码量减少 50%</li>
+<li>社区生态（预置 Retriever、Loader）</li>
+</ul>
+<p><strong>成本</strong>：</p>
+<ul>
+<li>冷启动慢 5 倍（框架初始化开销）</li>
+<li>异常堆栈复杂（框架抽象层厚）</li>
+<li>Trace 丢失 30%（框架版本不兼容）</li>
+<li>版本升级风险（0.1.x → 0.2.x 破坏性变更）</li>
+</ul>
+<h3 id="52-版本锁定的重要性">5.2 版本锁定的重要性</h3>
+<pre><code class="language-json">// package.json（错误示例）
+{
+  "dependencies": {
+    "langchain": "^0.1.0"  // ❌ 允许 0.1.x → 0.2.x 自动升级
+  }
+}
+
+// package.json（正确示例）
+{
+  "dependencies": {
+    "langchain": "0.1.35"  // ✅ 锁定具体版本
+  }
+}
+</code></pre>
+<p><strong>为什么需要锁定版本？</strong></p>
+<p>LangChain 0.1.x → 0.2.x 有破坏性变更（API 变化、性能退化），不锁定版本会导致自动升级后线上故障。</p>
+<hr>
+<h2 id="6-深挖前端底子完整执行版">§6 深挖前端底子（完整执行版）</h2>
+<h3 id="61-为什么框架抽象层厚会增加调试成本">6.1 为什么框架抽象层厚会增加调试成本？</h3>
+<p>自研实现异常堆栈：<code>业务代码 → 底层库</code>（2 层）
+LangChain 异常堆栈：<code>业务代码 → LangChain Retriever → LangChain Base → 底层库</code>（4 层）</p>
+<p>每多一层抽象，定位问题多花 30% 时间。</p>
+<hr>
+<h2 id="7-测试与验证完整执行版">§7 测试与验证（完整执行版）</h2>
+<h3 id="71-对比测试同一-eval-集">7.1 对比测试（同一 Eval 集）</h3>
+<pre><code class="language-bash"># 测试自研 vs LangChain
+bash scripts/compare-frameworks.sh
+# 预期：MRR 相同，自研性能更好
+</code></pre>
+<h3 id="72-回滚验证">7.2 回滚验证</h3>
+<pre><code class="language-bash"># 回滚到自研实现
+git checkout hybrid_search_service.py
+# 验证：MRR 不变、性能恢复
+</code></pre>
+<hr>
+<h2 id="8-必做测试与两个反证">8. 必做测试与两个反证</h2>
+<ol>
+<li><strong>反证 1：取消 LangChain 版本锁定</strong>。临时把精确版本改成范围版本，在隔离分支重新安装并运行同一 Eval 集、类型检查和 Trace 合同测试；预期任一 API/事件字段漂移都使门禁失败。恢复 lockfile 和精确版本后重新通过。</li>
+<li><strong>反证 2：跳过 Build-vs-Buy 门禁</strong>。临时把 100% 流量路由到 LangChain 实现，按相同语料、并发和预算比较 MRR、P95、Trace 完整率与错误堆栈；只要任一预设阈值失败就必须回滚自研实现，不能用代码量更少替代证据。</li>
+</ol>
+<p>执行 <code>bash scripts/compare-frameworks.sh</code> 和回滚回归测试，把命令、原始输出、版本、数据集 hash 和结论写入 <code>docs/evidence/day53/</code>。文中的 28%/30% 是演练阈值或待实测指标，不得写成生产事实。</p>
+<h2 id="9-课后三道核心问题">9. 课后三道核心问题</h2>
+<ol>
+<li>自研 Retriever 与 LangChain Retriever 从入口到引用输出的数据流分别经过哪些层？抽象层带来的收益和可观察成本是什么？</li>
+<li>如果框架升级后 MRR 不变但 P95、Trace 完整率和故障定位时间变差，应该如何用权重、阈值和回滚成本做 Build-vs-Buy 决策？</li>
+<li>引用本日真实 diff、Eval 输出、Trace 和 ADR 证明最终选择；哪些数字仍只是演练约束，下一步如何获得更强证据？</li>
+</ol>
+<h2 id="10-真实项目情境题">10. 真实项目情境题</h2>
+<ol>
+<li>团队准备在两周内把自研检索全部迁移到 LangChain，但同一 50 条 Eval 集显示质量持平、P95 上升且 Trace 缺字段。请给出灰度比例、停止条件、回滚步骤和 ADR，说明什么证据足以继续迁移。</li>
+<li>依赖自动升级后，生产预演出现 retriever 参数失效和空引用。请从 lockfile、运行时版本、事件合同和 Trace 定位，先冻结发布，再修复版本策略并用离线重放证明恢复。</li>
+</ol>
+<h2 id="11-pdf-面试题映射">11. PDF 面试题映射</h2>
+<ul>
+<li>框架选型题必须回答业务目标、替代方案、量化指标、迁移/回滚成本和版本风险，不能只比较代码行数。</li>
+<li>PDF 题仅用于口述迁移；本日结论以仓库中的 Eval、Trace、ADR 和真实命令输出为准。</li>
+</ul>
+<h2 id="12-完成后教师五连问">12. 完成后教师五连问</h2>
+<p>提交真实 diff、测试、反证和 ADR 后，教师按“局部机制 -&gt; 边界一致性 -&gt; 线上事故 -&gt; 工程权衡 -&gt; 架构演进”现场提出 5 道问题。每一问必须打开证据文件回答，不能用预设话术替代。</p>
+<h2 id="13-跨-day-导航">13. 跨 Day 导航</h2>
+<ul>
+<li>前置复用：Day48 的自研混合检索与 Day51-52 的 Eval/Trace。</li>
+<li>本日交付：同数据集框架对比、版本锁定、Build-vs-Buy ADR 和可执行回滚。</li>
+<li>后续消费：Day54 的租户隔离与 Day55 的成本优化继续使用本日的阈值和证据格式。</li>
+</ul>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day53-old.html">查看 Day 53 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/52.html">← Day 52 · LLM Eval</a>
+            <a href="/ai-teacher-agent-devolop/day/54.html">Day 54 · 多租户/权限 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-day-53-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E5%9B%BE%E9%87%8C%E7%9A%84%E4%BD%8D%E7%BD%AE">§0 Day 53 在 90 天路线图里的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E5%BB%BA%E7%AB%8B%E7%9A%84%E5%AE%8C%E6%95%B4%E8%83%BD%E5%8A%9B">§1 今天建立的完整能力</a></li><li><a href="#2-%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%BC%80%E5%8F%91%E8%8A%82%E5%A5%8F3-%E5%B0%8F%E6%97%B690-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">§2 今天的开发节奏（3 小时：90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E8%87%AA%E7%A0%94%E5%AE%9E%E7%8E%B0day-48-%E5%9F%BA%E7%BA%BF">§3 v1：自研实现（Day 48 基线）</a></li><li><a href="#4-v2langchain-%E5%AE%9E%E7%8E%B0%E4%BB%8A%E5%A4%A9">§4 v2：LangChain 实现（今天）</a></li><li><a href="#5-v2-%E6%B7%B1%E6%8C%96%E7%9F%A5%E8%AF%86%E7%82%B9%E5%AE%8C%E6%95%B4%E6%89%A7%E8%A1%8C%E7%89%88">§5 v2 深挖知识点（完整执行版）</a></li><li><a href="#6-%E6%B7%B1%E6%8C%96%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E5%AE%8C%E6%95%B4%E6%89%A7%E8%A1%8C%E7%89%88">§6 深挖前端底子（完整执行版）</a></li><li><a href="#7-%E6%B5%8B%E8%AF%95%E4%B8%8E%E9%AA%8C%E8%AF%81%E5%AE%8C%E6%95%B4%E6%89%A7%E8%A1%8C%E7%89%88">§7 测试与验证（完整执行版）</a></li><li><a href="#8-%E5%BF%85%E5%81%9A%E6%B5%8B%E8%AF%95%E4%B8%8E%E4%B8%A4%E4%B8%AA%E5%8F%8D%E8%AF%81">8. 必做测试与两个反证</a></li><li><a href="#9-%E8%AF%BE%E5%90%8E%E4%B8%89%E9%81%93%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98">9. 课后三道核心问题</a></li><li><a href="#10-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98">10. 真实项目情境题</a></li><li><a href="#11-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%98%A0%E5%B0%84">11. PDF 面试题映射</a></li><li><a href="#12-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">12. 完成后教师五连问</a></li><li><a href="#13-%E8%B7%A8-day-%E5%AF%BC%E8%88%AA">13. 跨 Day 导航</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

@@ -1,0 +1,1156 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 42 · Day 42 - FastAPI 核心机制 | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html" aria-current="page">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/06.html">第 6 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 42</p>
+        <h1>Day 42 - FastAPI 核心机制</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段二（Day 31-60，AI 前端 -&gt; AI 全栈）。继续在 <code>p1-monitor</code> 中补齐全栈与 AI 能力，并复用前 30 天的事件合同、状态管理和实时链路。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+<p><strong>跨 Day 导航修正</strong>：后续真实顺序：Day43 模型网关，Day44 结构化输出，Day45 Prompt 版本，Day46 RAG 摄取，Day47 向量检索。</p>
+</blockquote>
+<p>日期与时长：2026-08-24 周一，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor</code>
+阶段任务性质：教师基线；实际分发时根据上一日成绩生成补弱版、标准版或挑战版。</p>
+<blockquote>
+<p><strong>本日项目完整目录结构</strong>（在 Day41 的 <code>services/ai</code> 基础上补充 FastAPI 核心机制）</p>
+<pre><code>services/ai/src/ai_service/
+├── main.py                       # 修改：注册中间件、异常处理、依赖
+├── dependencies/                 # ★ 今天新增：依赖注入层
+│   ├── __init__.py
+│   ├── trace.py                  ← 核心：你手写（Trace 透传依赖）
+│   ├── auth.py                   ← 样板：鉴权依赖（内部服务，简化版）
+│   └── rate_limit.py             ← 核心：你手写（请求限流依赖）
+├── middleware/                   # ★ 今天新增：中间件层
+│   ├── __init__.py
+│   ├── trace_middleware.py       ← 核心：你手写（注入 traceId）
+│   ├── timeout_middleware.py     ← 核心：你手写（请求超时）
+│   └── logging_middleware.py     ← 样板：请求日志
+├── exceptions/                   # ★ 今天新增：异常处理层
+│   ├── __init__.py
+│   ├── handlers.py               ← 核心：你手写（全局异常处理器）
+│   └── custom_errors.py          ← 样板：业务异常定义
+├── api/                          # ★ 今天新增：路由层（Day41 的 diagnosis/ 重组织）
+│   ├── __init__.py
+│   ├── health.py                 ← 样板：健康检查
+│   ├── diagnose.py               ← 修改：接入依赖注入
+│   └── embed.py                  ← 核心：你手写（新增 Embedding 接口）
+├── schemas/                      # Day41 的 boundary/models.py 改名
+│   ├── __init__.py
+│   ├── diagnose.py               ← 已有（Day41）
+│   └── embed.py                  ← 核心：你手写（Embedding 请求/响应契约）
+└── tests/
+    ├── test_middleware.py        ← 核心：你手写（中间件测试）
+    ├── test_dependencies.py      ← 核心：你手写（依赖注入测试）
+    └── test_openapi.py           ← 核心：你手写（OpenAPI 契约测试）
+</code></pre>
+</blockquote>
+<h2 id="0-今天在-90-天里的位置">§0 今天在 90 天里的位置</h2>
+<p><strong>坐标</strong>：阶段二（AI 前端 -&gt; AI 全栈）第 2 天。</p>
+<p><strong>承前</strong>：Day41 你建立了 Python 服务的骨架（typing + asyncio + 边界模型 + 线程池桥接）。但只实现了一个 <code>/diagnose</code> 接口，缺少完整的 FastAPI 工程层（依赖注入、中间件、异常处理、OpenAPI 文档）。今天要把 FastAPI 从"能跑"做到"工程化"。</p>
+<p><strong>启后</strong>：今天建立的 FastAPI 工程模板（DI + middleware + exception）是 Day43-47 Python/AI 接口的地基。Day43 模型网关、Day44 结构化输出、Day46 RAG 摄取和 Day47 向量检索，都复用今天的依赖注入和中间件。</p>
+<p><strong>今天必须解决的 5 个问题</strong>：</p>
+<ol>
+<li><strong>非法请求返回 500 堆栈</strong>：<code>/embed</code> 接口收到非法 body 返回 500 和完整堆栈，过去 24h 有 860 次（对应情境题 1）。</li>
+<li><strong>请求取消未传播</strong>：用户取消请求后 FastAPI 仍计算 embedding 10 分钟，50 次取消占满 worker（对应情境题 2）。</li>
+<li><strong>Trace 断链</strong>：Day41 建立的 Trace 透传在 FastAPI 依赖里没有正确传递，部分请求 traceId 丢失。</li>
+<li><strong>无 OpenAPI 契约</strong>：Node 侧不知道 Python 接口的完整契约（哪些字段必填、类型是什么），只能靠文档和口头约定。</li>
+<li><strong>依赖重复初始化</strong>：每个路由都手写 <code>get_trace_id()</code>，代码重复且难维护。</li>
+</ol>
+<p><strong>知识链顺序</strong>：<code>Pydantic 校验</code>（先有类型安全的入口）→ <code>依赖注入</code>（复用逻辑，不重复初始化）→ <code>中间件</code>（统一前置处理，如 Trace 注入）→ <code>异常处理</code>（统一错误响应）→ <code>OpenAPI</code>（生成契约文档，供 Node 对齐）。这个顺序是"从请求入口到出口"的完整生命周期。</p>
+<hr>
+<h2 id="1-今天要做的事">§1 今天要做的事</h2>
+<h3 id="11-五个真实用户场景">1.1 五个真实用户场景</h3>
+<p>今天的 FastAPI 工程层要支撑这些真实链路（Day41 的 <code>/diagnose</code> 加上新增的 <code>/embed</code>）：</p>
+<ol>
+<li><strong>Embedding 生成</strong>：Node 调用 Python 的 <code>/embed</code>，传文本列表，返回 OpenAI Embedding 向量。这是 Day47 向量检索的前置接口。</li>
+<li><strong>非法输入脱敏</strong>：前端传了空文本或超长文本，FastAPI 边界层拦截并返回 422（而非 500 堆栈），错误信息不泄漏内部路径。</li>
+<li><strong>请求取消传播</strong>：用户关闭浏览器，Node 侧取消请求，FastAPI 收到 <code>CancelledError</code> 后立即停止 Embedding 计算，释放资源。</li>
+<li><strong>Trace 贯穿依赖</strong>：一个请求从 Node → FastAPI → OpenAI API，traceId 贯穿三层，任意环节失败都能通过 traceId 回溯。</li>
+<li><strong>OpenAPI 契约对齐</strong>：Node 开发者访问 <code>http://python-service:8000/docs</code>，看到 <code>/embed</code> 的完整契约（字段、类型、示例），生成 TypeScript 类型定义。</li>
+</ol>
+<h3 id="12-模块职责划分">1.2 模块职责划分</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>模块</th>
+<th>职责</th>
+<th>谁写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dependencies/trace.py</code></td>
+<td>依赖注入：从请求头提取 traceId</td>
+<td>你手写</td>
+</tr>
+<tr>
+<td><code>dependencies/rate_limit.py</code></td>
+<td>依赖注入：请求限流（内存版简化）</td>
+<td>你手写</td>
+</tr>
+<tr>
+<td><code>middleware/trace_middleware.py</code></td>
+<td>中间件：注入 traceId 到 context</td>
+<td>你手写</td>
+</tr>
+<tr>
+<td><code>middleware/timeout_middleware.py</code></td>
+<td>中间件：请求超时控制</td>
+<td>你手写</td>
+</tr>
+<tr>
+<td><code>exceptions/handlers.py</code></td>
+<td>全局异常处理器：脱敏 + 统一格式</td>
+<td>你手写</td>
+</tr>
+<tr>
+<td><code>api/embed.py</code></td>
+<td>路由：Embedding 生成接口</td>
+<td>你手写</td>
+</tr>
+<tr>
+<td><code>schemas/embed.py</code></td>
+<td>Pydantic 契约：EmbedRequest/Response</td>
+<td>样板</td>
+</tr>
+<tr>
+<td><code>tests/test_openapi.py</code></td>
+<td>OpenAPI 契约测试</td>
+<td>你手写</td>
+</tr>
+<tr>
+<td><code>middleware/logging_middleware.py</code></td>
+<td>请求日志（结构化）</td>
+<td>样板</td>
+</tr>
+</tbody>
+</table></div><h3 id="13-三版演进从裸路由到工程化">1.3 三版演进：从"裸路由"到"工程化"</h3>
+<p><strong>v1（裸路由）</strong>：直接在路由函数里写所有逻辑（提取 traceId、校验、调用 OpenAI、异常处理）。能跑，但代码重复、难维护、异常泄漏堆栈。</p>
+<p><strong>v2（加依赖注入 + 中间件）</strong>：用 FastAPI 的 <code>Depends()</code> 提取公共逻辑（traceId、限流），用中间件统一注入 context。路由函数只关心业务逻辑。</p>
+<p><strong>v3（生产级）</strong>：加全局异常处理（脱敏）+ 请求取消传播 + OpenAPI 契约测试 + 超时控制。让整个服务可验证、可观测、不泄密、能优雅降级。</p>
+<p>三版对比：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trace 透传</td>
+<td>❌ 每个路由手写</td>
+<td>✅ 依赖注入</td>
+<td>✅ 依赖 + 中间件</td>
+</tr>
+<tr>
+<td>限流</td>
+<td>❌ 无</td>
+<td>✅ 依赖注入</td>
+<td>✅ 依赖 + 内存计数器</td>
+</tr>
+<tr>
+<td>异常处理</td>
+<td>❌ 500 堆栈泄漏</td>
+<td>⚠️ 部分捕获</td>
+<td>✅ 全局处理 + 脱敏</td>
+</tr>
+<tr>
+<td>请求取消</td>
+<td>❌ 不传播</td>
+<td>⚠️ 能取消但不回收</td>
+<td>✅ 取消 + 资源回收</td>
+</tr>
+<tr>
+<td>OpenAPI</td>
+<td>⚠️ 自动生成但不测试</td>
+<td>⚠️ 有文档</td>
+<td>✅ 契约测试锁住</td>
+</tr>
+<tr>
+<td>超时控制</td>
+<td>❌ 无</td>
+<td>❌ 无</td>
+<td>✅ 中间件超时</td>
+</tr>
+</tbody>
+</table></div><p><strong>三个灵魂问题</strong>（写代码前先想）：</p>
+<ol>
+<li>依赖注入和中间件有什么区别？中间件在<strong>每个请求</strong>前后执行（全局），依赖注入在<strong>特定路由</strong>需要时才执行（局部）。Trace 注入用中间件（所有请求都要），限流用依赖（只有特定路由要）。</li>
+<li>FastAPI 的异常处理器和 try-catch 有什么区别？异常处理器是<strong>全局兜底</strong>，捕获所有未处理异常并统一格式；try-catch 是<strong>局部处理</strong>，处理已知异常。两者配合：业务异常用 try-catch，未知异常交给全局处理器。</li>
+<li>请求取消为什么需要传播？asyncio 的协程取消是协作式的（cooperative），不是抢占式（preemptive）。如果不主动检查 <code>asyncio.current_task().cancelled()</code>，取消信号不会传播到子任务（如 OpenAI API 调用），导致资源泄漏。</li>
+</ol>
+<h3 id="14-目录结构说明fastapi-分层的为什么">1.4 目录结构说明（FastAPI 分层的为什么）</h3>
+<p><strong>为什么 dependencies/ 独立成层？</strong></p>
+<p>FastAPI 的依赖注入是可组合的——一个路由可以依赖多个依赖（<code>Depends(get_trace), Depends(check_rate_limit)</code>），依赖之间也可以互相依赖。独立成层让依赖关系一目了然，也方便测试（mock 某个依赖）。</p>
+<p><strong>为什么 middleware/ 和 dependencies/ 分开？</strong></p>
+<p>中间件是<strong>顺序执行</strong>的管道（request → middleware1 → middleware2 → 路由 → middleware2 → middleware1 → response），依赖是<strong>按需注入</strong>的树（路由声明用哪些依赖，FastAPI 自动解析依赖树）。分开是因为它们的执行模型不同。</p>
+<p><strong>为什么 schemas/ 不叫 models/？</strong></p>
+<p>避免和 Pydantic 的 <code>BaseModel</code> 混淆。<code>schemas/</code> 强调"契约"语义——这是跨服务边界的数据结构定义，不是 ORM 的 model。</p>
+<p><strong>与 Day41 的 diff</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>文件</th>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dependencies/**</code></td>
+<td>🆕 全新</td>
+<td>依赖注入层</td>
+</tr>
+<tr>
+<td><code>middleware/**</code></td>
+<td>🆕 全新</td>
+<td>中间件层</td>
+</tr>
+<tr>
+<td><code>exceptions/**</code></td>
+<td>🆕 全新</td>
+<td>异常处理层</td>
+</tr>
+<tr>
+<td><code>api/embed.py</code></td>
+<td>🆕 全新</td>
+<td>Embedding 接口</td>
+</tr>
+<tr>
+<td><code>schemas/embed.py</code></td>
+<td>🆕 全新</td>
+<td>Embedding 契约</td>
+</tr>
+<tr>
+<td><code>main.py</code></td>
+<td>✏️ 修改</td>
+<td>注册中间件和异常处理器</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="2-今天的开发节奏3-小时怎么分配">§2 今天的开发节奏（3 小时怎么分配）</h2>
+<p>这是 3h 小版本，节奏要紧凑：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>时段</th>
+<th>时长</th>
+<th>做什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原理与源码</td>
+<td>90 min</td>
+<td>FastAPI 请求生命周期、依赖注入原理、中间件执行顺序与三版痛点</td>
+</tr>
+<tr>
+<td>v1 裸路由</td>
+<td>20 min</td>
+<td>快速写一个 <code>/embed</code> 路由（无依赖、无中间件）</td>
+</tr>
+<tr>
+<td>v2 依赖 + 中间件</td>
+<td>20 min</td>
+<td>提取 Trace/限流依赖，加 Trace/超时中间件</td>
+</tr>
+<tr>
+<td>v3 异常 + OpenAPI</td>
+<td>20 min</td>
+<td>全局异常处理 + 契约测试</td>
+</tr>
+<tr>
+<td>测试验证</td>
+<td>20 min</td>
+<td>非法输入、取消传播、OpenAPI 契约 + 两个反证实验</td>
+</tr>
+<tr>
+<td>架构证据</td>
+<td>10 min</td>
+<td>请求生命周期图 + 依赖图</td>
+</tr>
+</tbody>
+</table></div><p><strong>关键节奏提醒</strong>：v1 只花 20 分钟，目的是快速看到"代码重复"的痛点。真正的功夫在 v2 的依赖提取。</p>
+<hr>
+<h2 id="3-v1裸路由快速看到痛点">§3 v1：裸路由（快速看到痛点）</h2>
+<p>v1 的目标是快速实现 <code>/embed</code> 接口，但故意不用依赖注入和中间件，暴露"代码重复"和"异常泄漏"的问题。</p>
+<h3 id="31-v1-代码能跑但有问题">3.1 v1 代码（能跑但有问题）</h3>
+<pre><code class="language-python"># api/embed.py（v1 版本）
+from fastapi import APIRouter, Request
+from openai import AsyncOpenAI
+import os
+
+router = APIRouter()
+client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+@router.post("/embed")
+async def embed(request: Request):
+    # ❌ 问题 1：手动提取 traceId（每个路由都要写一遍）
+    trace_id = request.headers.get("x-trace-id", "unknown")
+    
+    # ❌ 问题 2：手动解析 body（没用 Pydantic）
+    body = await request.json()
+    texts = body.get("texts", [])
+    
+    # ❌ 问题 3：没有限流
+    # ❌ 问题 4：没有超时控制
+    
+    # 调用 OpenAI
+    try:
+        response = await client.embeddings.create(
+            input=texts,
+            model="text-embedding-3-small"
+        )
+        embeddings = [item.embedding for item in response.data]
+        
+        # ❌ 问题 5：裸 dict 返回（没有契约）
+        return {
+            "trace_id": trace_id,
+            "embeddings": embeddings,
+            "model": "text-embedding-3-small"
+        }
+    except Exception as e:
+        # ❌ 问题 6：异常堆栈泄漏
+        raise e
+</code></pre>
+<h3 id="32-v1-的-6-个致命问题">3.2 v1 的 6 个致命问题</h3>
+<ol>
+<li><strong>traceId 提取重复</strong>：每个路由都写 <code>request.headers.get("x-trace-id")</code>，有 10 个路由就写 10 遍。</li>
+<li><strong>无 Pydantic 校验</strong>：直接 <code>body.get("texts")</code>，非法输入（如 <code>texts</code> 是字符串不是列表）运行期才炸。</li>
+<li><strong>无限流</strong>：恶意用户狂发请求，打爆 OpenAI quota。</li>
+<li><strong>无超时</strong>：OpenAI API 卡住，请求无限等待。</li>
+<li><strong>裸 dict 返回</strong>：没有契约，Node 侧不知道字段会不会变。</li>
+<li><strong>异常堆栈泄漏</strong>：OpenAI API 报错时，完整堆栈（含 API key 路径、依赖版本）返回给 Node。</li>
+</ol>
+<h3 id="33-v1-反证实验">3.3 v1 反证实验</h3>
+<pre><code class="language-bash"># 发非法请求
+curl -X POST localhost:8000/embed -d '{"texts": "not-a-list"}'
+# 期望问题：返回 500 + 堆栈（含文件路径）
+
+# 同时发 50 个请求（无限流）
+for i in {1..50}; do
+  curl -X POST localhost:8000/embed -d '{"texts":["test"]}' &amp;
+done
+# 期望问题：无限流，全部发到 OpenAI（可能触发 rate limit）
+</code></pre>
+<p><strong>结论</strong>：v1 能跑但不可维护、不安全、不可观测。v2 必须引入依赖注入和中间件。</p>
+<hr>
+<h2 id="4-v2依赖注入-中间件工程化重构">§4 v2：依赖注入 + 中间件（工程化重构）</h2>
+<p>v2 解决 v1 的前 4 个问题：<strong>代码重复</strong>、<strong>无校验</strong>、<strong>无限流</strong>、<strong>无超时</strong>。</p>
+<h3 id="41-依赖注入提取公共逻辑">4.1 依赖注入：提取公共逻辑</h3>
+<p><strong>知识点 1：FastAPI 依赖注入（Dependency Injection）</strong></p>
+<ul>
+<li><strong>解决什么问题</strong>：路由间的公共逻辑（traceId 提取、鉴权、限流）不用每次手写，声明依赖即可。</li>
+<li><strong>运行机制</strong>：<code>Depends(func)</code> 告诉 FastAPI"调用这个路由前先执行 func，把结果注入到路由参数"。依赖可以嵌套（依赖 A 依赖 B）。</li>
+<li><strong>项目落点</strong>：<code>dependencies/trace.py</code>（提取 traceId）、<code>dependencies/rate_limit.py</code>（限流检查）。</li>
+<li><strong>生产误区</strong>：依赖函数里做阻塞调用（如同步 DB 查询）——依赖和路由一样会阻塞事件循环，必须用 async。</li>
+<li><strong>验证方法</strong>：路由里不写 traceId 提取代码，确认依赖注入生效。</li>
+</ul>
+<pre><code class="language-python"># dependencies/trace.py（你手写）
+from fastapi import Header
+
+async def get_trace_id(x_trace_id: str = Header(None)) -&gt; str:
+    """依赖：从请求头提取 traceId"""
+    return x_trace_id or "unknown"
+</code></pre>
+<pre><code class="language-python"># dependencies/rate_limit.py（你手写，简化版内存限流）
+from fastapi import HTTPException
+from collections import defaultdict
+import time
+
+# 内存计数器：{ip: [(timestamp, count)]}
+_rate_limits = defaultdict(list)
+MAX_REQUESTS = 10  # 每分钟最多 10 次
+
+async def check_rate_limit(request: Request):
+    """依赖：简单限流（生产应该用 Redis）"""
+    ip = request.client.host
+    now = time.time()
+    
+    # 清理 1 分钟前的记录
+    _rate_limits[ip] = [(t, c) for t, c in _rate_limits[ip] if now - t &lt; 60]
+    
+    # 检查是否超限
+    count = sum(c for _, c in _rate_limits[ip])
+    if count &gt;= MAX_REQUESTS:
+        raise HTTPException(status_code=429, detail="Rate limit exceeded")
+    
+    _rate_limits[ip].append((now, 1))
+</code></pre>
+<h3 id="42-中间件统一前置处理">4.2 中间件：统一前置处理</h3>
+<p><strong>知识点 2：FastAPI 中间件（Middleware）</strong></p>
+<ul>
+<li><strong>解决什么问题</strong>：所有请求都要做的事（注入 traceId 到 context、记录日志、超时控制）放中间件，不在每个路由重复。</li>
+<li><strong>运行机制</strong>：中间件是管道模式，request 按顺序经过所有中间件到路由，response 逆序经过中间件返回。</li>
+<li><strong>项目落点</strong>：<code>middleware/trace_middleware.py</code>（注入 traceId 到 contextvars）、<code>middleware/timeout_middleware.py</code>（超时控制）。</li>
+<li><strong>生产误区</strong>：中间件里做重计算——中间件会拖慢所有请求。应该只做轻量级操作（提取header、写日志）。</li>
+<li><strong>验证方法</strong>：不同路由都能拿到 traceId，确认中间件全局生效。</li>
+</ul>
+<pre><code class="language-python"># middleware/trace_middleware.py（你手写）
+from starlette.middleware.base import BaseHTTPMiddleware
+from contextvars import ContextVar
+import uuid
+
+trace_context: ContextVar[str] = ContextVar("trace_id", default="unknown")
+
+class TraceMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        trace_id = request.headers.get("x-trace-id") or str(uuid.uuid4())
+        trace_context.set(trace_id)  # 注入到 context（全局可用）
+        
+        response = await call_next(request)
+        response.headers["x-trace-id"] = trace_id  # 透传给响应
+        return response
+</code></pre>
+<pre><code class="language-python"># middleware/timeout_middleware.py（你手写）
+import asyncio
+from fastapi import HTTPException
+
+class TimeoutMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        try:
+            # 30 秒超时
+            return await asyncio.wait_for(call_next(request), timeout=30.0)
+        except asyncio.TimeoutError:
+            raise HTTPException(status_code=504, detail="Request timeout")
+</code></pre>
+<h3 id="43-v2-重构后的路由干净">4.3 v2 重构后的路由（干净）</h3>
+<pre><code class="language-python"># api/embed.py（v2 版本）
+from fastapi import APIRouter, Depends
+from schemas.embed import EmbedRequest, EmbedResponse
+from dependencies.trace import get_trace_id
+from dependencies.rate_limit import check_rate_limit
+
+router = APIRouter(dependencies=[Depends(check_rate_limit)])  # 路由级依赖
+
+@router.post("/embed", response_model=EmbedResponse)
+async def embed(
+    req: EmbedRequest,  # ✅ Pydantic 自动校验
+    trace_id: str = Depends(get_trace_id),  # ✅ 依赖注入
+):
+    # 路由函数只关心业务逻辑
+    response = await client.embeddings.create(input=req.texts, model=req.model)
+    return EmbedResponse(
+        trace_id=trace_id,
+        embeddings=[item.embedding for item in response.data],
+        model=req.model
+    )
+</code></pre>
+<p><strong>对比 v1</strong>：代码量减半，逻辑清晰，依赖可复用。</p>
+<h2 id="5-v3全局异常处理-请求取消-openapi-契约生产级">§5 v3：全局异常处理 + 请求取消 + OpenAPI 契约（生产级）</h2>
+<p>v3 解决 v1 剩下的 2 个问题 + 新增请求取消传播和 OpenAPI 契约测试。</p>
+<h3 id="51-全局异常处理脱敏-统一格式">5.1 全局异常处理：脱敏 + 统一格式</h3>
+<p><strong>知识点 3：FastAPI 异常处理器（Exception Handler）</strong></p>
+<ul>
+<li><strong>解决什么问题</strong>：未捕获异常返回 500 堆栈泄漏内部路径、API key、依赖版本。统一处理成脱敏的 JSON 响应。</li>
+<li><strong>运行机制</strong>：注册异常处理器 <code>@app.exception_handler(Exception)</code>，所有未捕获异常都会被这个函数接住。</li>
+<li><strong>项目落点</strong>：<code>exceptions/handlers.py</code> 处理所有异常（RequestValidationError、HTTPException、Exception）。</li>
+<li><strong>生产误区</strong>：所有异常都返回 500——应该区分客户端错误（4xx）和服务器错误（5xx）。Pydantic 校验失败是 422，业务逻辑错误是 400。</li>
+<li><strong>验证方法</strong>：发非法请求，确认返回 422（不是 500）且无堆栈。</li>
+</ul>
+<pre><code class="language-python"># exceptions/handlers.py（你手写）
+from fastapi import Request, status
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
+from pydantic import ValidationError
+import logging
+
+logger = logging.getLogger(__name__)
+
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    """处理 Pydantic 校验失败（422）"""
+    logger.warning(f"Validation error: {exc.errors()}", extra={"trace_id": trace_context.get()})
+    
+    # 脱敏：只返回字段名和错误类型，不返回堆栈
+    return JSONResponse(
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        content={
+            "error": "validation_error",
+            "message": "Invalid request format",
+            "details": [
+                {"field": err["loc"][-1], "type": err["type"]}
+                for err in exc.errors()
+            ],
+            "trace_id": trace_context.get()
+        }
+    )
+
+async def generic_exception_handler(request: Request, exc: Exception):
+    """处理所有未捕获异常（500）"""
+    # 记录完整堆栈到日志（内部可见）
+    logger.error(f"Unhandled error: {exc}", exc_info=True, extra={"trace_id": trace_context.get()})
+    
+    # 返回脱敏响应（外部不可见堆栈）
+    return JSONResponse(
+        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        content={
+            "error": "internal_error",
+            "message": "An unexpected error occurred",
+            "trace_id": trace_context.get()  # 供用户报障
+        }
+    )
+</code></pre>
+<p><strong>注册到 <a href="http://main.py" target="_blank" rel="noopener noreferrer">main.py</a></strong>：</p>
+<pre><code class="language-python"># main.py（修改）
+from exceptions.handlers import validation_exception_handler, generic_exception_handler
+from fastapi.exceptions import RequestValidationError
+
+app.add_exception_handler(RequestValidationError, validation_exception_handler)
+app.add_exception_handler(Exception, generic_exception_handler)
+</code></pre>
+<h3 id="52-请求取消传播协作式取消">5.2 请求取消传播：协作式取消</h3>
+<p><strong>知识点 4：asyncio 请求取消传播（Cancellation Propagation）</strong></p>
+<ul>
+<li><strong>解决什么问题</strong>：用户取消请求（关闭浏览器），FastAPI 收到 disconnect 但不传播给子任务（如 OpenAI API 调用），导致资源泄漏。</li>
+<li><strong>运行机制</strong>：asyncio 的取消是协作式的——父任务取消不会自动杀死子任务，必须主动检查 <code>asyncio.current_task().cancelled()</code> 或捕获 <code>CancelledError</code>。</li>
+<li><strong>项目落点</strong>：Embedding 调用包裹 try-catch，捕获 <code>CancelledError</code> 后清理资源（如关闭 OpenAI 连接）。</li>
+<li><strong>生产误区</strong>：只 catch Exception 不 catch CancelledError——取消信号被吞掉，子任务继续跑。正确做法是 <code>except (Exception, asyncio.CancelledError)</code>。</li>
+<li><strong>验证方法</strong>：发请求后立即取消（模拟客户端 disconnect），确认 OpenAI API 调用立即停止，CPU 使用率归零。</li>
+</ul>
+<pre><code class="language-python"># api/embed.py（v3 版本，加取消传播）
+import asyncio
+
+@router.post("/embed", response_model=EmbedResponse)
+async def embed(req: EmbedRequest, trace_id: str = Depends(get_trace_id)):
+    try:
+        response = await client.embeddings.create(input=req.texts, model=req.model)
+        return EmbedResponse(
+            trace_id=trace_id,
+            embeddings=[item.embedding for item in response.data],
+            model=req.model
+        )
+    except asyncio.CancelledError:
+        # ✅ 捕获取消信号，清理资源
+        logger.info(f"Request cancelled: {trace_id}")
+        # 如果有长期资源（DB 连接、文件），这里关闭
+        raise  # 重新抛出，让 FastAPI 返回 499
+    except Exception as e:
+        logger.error(f"Embed failed: {e}", extra={"trace_id": trace_id})
+        raise
+</code></pre>
+<p><strong>验证取消传播</strong>：</p>
+<pre><code class="language-python"># tests/test_cancellation.py（你手写）
+import asyncio
+import pytest
+from httpx import AsyncClient
+
+@pytest.mark.asyncio
+async def test_请求取消应释放资源():
+    async with AsyncClient(app=app, base_url="http://test") as client:
+        # 发起请求后立即取消
+        task = asyncio.create_task(
+            client.post("/embed", json={"texts": ["long text"] * 100})
+        )
+        await asyncio.sleep(0.1)  # 等请求进入处理
+        task.cancel()  # 取消
+        
+        with pytest.raises(asyncio.CancelledError):
+            await task
+        
+        # 验证资源释放（如检查 OpenAI 连接数归零）
+</code></pre>
+<h3 id="53-openapi-契约文档-测试">5.3 OpenAPI 契约：文档 + 测试</h3>
+<p><strong>知识点 5：FastAPI OpenAPI 自动生成 + 契约测试</strong></p>
+<ul>
+<li><strong>解决什么问题</strong>：Node 侧不知道 Python 接口的完整契约（哪些字段必填、类型是什么），只能靠文档和口头约定。契约漂移导致运行期错误。</li>
+<li><strong>运行机制</strong>：FastAPI 自动从 Pydantic model 生成 OpenAPI 3.0 文档，访问 <code>/docs</code> 可以看到所有接口。</li>
+<li><strong>项目落点</strong>：用 OpenAPI schema 生成测试用例，覆盖正常/非法/边界输入。</li>
+<li><strong>生产误区</strong>：只看文档不测试——文档可能和实际不一致（代码改了忘更新注释）。正确做法是契约测试锁住文档和实际行为。</li>
+<li><strong>验证方法</strong>：从 <code>/openapi.json</code> 提取 schema，生成 Pydantic model，发请求验证响应符合 schema。</li>
+</ul>
+<pre><code class="language-python"># tests/test_openapi.py（你手写）
+import pytest
+from fastapi.testclient import TestClient
+from main import app
+
+client = TestClient(app)
+
+def test_OpenAPI文档包含embed接口():
+    response = client.get("/openapi.json")
+    schema = response.json()
+    
+    # 验证 /embed 接口存在
+    assert "/embed" in schema["paths"]
+    embed_schema = schema["paths"]["/embed"]["post"]
+    
+    # 验证请求体 schema
+    assert "requestBody" in embed_schema
+    request_schema = embed_schema["requestBody"]["content"]["application/json"]["schema"]
+    assert "$ref" in request_schema  # 引用 EmbedRequest
+    
+    # 验证响应 schema
+    assert "200" in embed_schema["responses"]
+    response_schema = embed_schema["responses"]["200"]["content"]["application/json"]["schema"]
+    assert "$ref" in response_schema  # 引用 EmbedResponse
+
+def test_非法输入应返回422():
+    # 缺必填字段
+    response = client.post("/embed", json={})
+    assert response.status_code == 422
+    error = response.json()
+    assert error["error"] == "validation_error"
+    assert "texts" in str(error["details"])  # 提示缺 texts 字段
+
+def test_边界输入应处理():
+    # 空列表
+    response = client.post("/embed", json={"texts": []})
+    assert response.status_code == 422  # 或 200（取决于业务规则）
+    
+    # 超长文本（&gt;8191 tokens）
+    long_text = "a" * 10000
+    response = client.post("/embed", json={"texts": [long_text]})
+    # 应该返回 422（或截断处理）
+</code></pre>
+<h3 id="54-v3-核心知识点小结">5.4 v3 核心知识点小结</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>知识点</th>
+<th>解决什么问题</th>
+<th>项目落点</th>
+<th>验证方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>依赖注入</td>
+<td>代码重复</td>
+<td>traceId/限流依赖</td>
+<td>路由里不写提取代码</td>
+</tr>
+<tr>
+<td>中间件</td>
+<td>全局前置处理</td>
+<td>Trace/超时中间件</td>
+<td>所有路由都有 traceId</td>
+</tr>
+<tr>
+<td>异常处理器</td>
+<td>堆栈泄漏</td>
+<td>全局脱敏处理</td>
+<td>非法输入返回 422 无堆栈</td>
+</tr>
+<tr>
+<td>请求取消</td>
+<td>资源泄漏</td>
+<td>catch CancelledError</td>
+<td>取消后 CPU 归零</td>
+</tr>
+<tr>
+<td>OpenAPI 契约</td>
+<td>契约漂移</td>
+<td>契约测试锁住</td>
+<td>schema 测试全覆盖</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="6-前端底子深挖fastapi-对前端的影响">§6 前端底子深挖：FastAPI 对前端的影响</h2>
+<p>今天的 FastAPI 工程层对前端最大的影响是：<strong>错误响应结构化</strong>。</p>
+<h3 id="61-结构化错误响应">6.1 结构化错误响应</h3>
+<p>v1 的裸异常返回给前端的是：</p>
+<pre><code class="language-json">{
+  "detail": "Traceback (most recent call last):\n  File ...\nKeyError: 'texts'"
+}
+</code></pre>
+<p>前端无法区分错误类型，只能显示"系统错误"。</p>
+<p>v3 的结构化错误：</p>
+<pre><code class="language-json">{
+  "error": "validation_error",
+  "message": "Invalid request format",
+  "details": [{"field": "texts", "type": "missing"}],
+  "trace_id": "abc-123"
+}
+</code></pre>
+<p>前端可以：</p>
+<ol>
+<li>根据 <code>error</code> 字段区分错误类型（<code>validation_error</code> vs <code>internal_error</code>）</li>
+<li>根据 <code>details</code> 高亮具体字段（"texts 字段缺失"）</li>
+<li>用 <code>trace_id</code> 报障（客服能通过 traceId 查日志）</li>
+</ol>
+<h3 id="62-openapi-生成-typescript-类型">6.2 OpenAPI 生成 TypeScript 类型</h3>
+<p>FastAPI 的 <code>/openapi.json</code> 可以用工具生成 TypeScript 类型：</p>
+<pre><code class="language-bash">npx openapi-typescript http://localhost:8000/openapi.json -o types/python-api.d.ts
+</code></pre>
+<p>前端代码：</p>
+<pre><code class="language-typescript">import type { components } from './types/python-api'
+
+type EmbedRequest = components['schemas']['EmbedRequest']
+type EmbedResponse = components['schemas']['EmbedResponse']
+
+// 类型安全的调用
+const response = await fetch('/embed', {
+  method: 'POST',
+  body: JSON.stringify({ texts: ['hello'] } satisfies EmbedRequest)
+})
+const data: EmbedResponse = await response.json()
+</code></pre>
+<p><strong>为什么重要</strong>：前端和后端的类型定义从同一个 source of truth（OpenAPI schema）生成，保证一致性。</p>
+<hr>
+<h2 id="7-测试与验证">§7 测试与验证</h2>
+<h3 id="71-单元测试依赖注入">7.1 单元测试：依赖注入</h3>
+<pre><code class="language-python"># tests/test_dependencies.py
+from dependencies.trace import get_trace_id
+from fastapi import Header
+
+@pytest.mark.asyncio
+async def test_traceId依赖提取():
+    # Mock Header
+    trace_id = await get_trace_id(x_trace_id="test-123")
+    assert trace_id == "test-123"
+    
+    # 缺失时返回 unknown
+    trace_id = await get_trace_id(x_trace_id=None)
+    assert trace_id == "unknown"
+</code></pre>
+<h3 id="72-集成测试中间件">7.2 集成测试：中间件</h3>
+<pre><code class="language-python"># tests/test_middleware.py
+from fastapi.testclient import TestClient
+
+def test_Trace中间件注入():
+    response = client.get("/health")
+    # 响应头应包含 x-trace-id
+    assert "x-trace-id" in response.headers
+
+def test_超时中间件():
+    # Mock 慢接口
+    @app.get("/slow")
+    async def slow():
+        await asyncio.sleep(35)  # 超过 30s
+        return "ok"
+    
+    with pytest.raises(HTTPException) as exc_info:
+        client.get("/slow")
+    assert exc_info.value.status_code == 504
+</code></pre>
+<h3 id="73-反证实验两个">7.3 反证实验（两个）</h3>
+<p><strong>反证 1：移除异常处理器，非法输入返回什么？</strong></p>
+<pre><code class="language-python"># 注释掉 main.py 的异常处理器注册
+# app.add_exception_handler(RequestValidationError, ...)
+
+response = client.post("/embed", json={"texts": "not-a-list"})
+assert response.status_code == 422  # 还是 422
+# 但响应格式是 FastAPI 默认的（不脱敏）
+error = response.json()
+assert "detail" in error  # 默认格式
+assert "validation_error" not in error  # 没有自定义格式
+</code></pre>
+<p><strong>结论</strong>：FastAPI 默认会返回 422，但格式不统一、可能泄漏信息。自定义异常处理器是为了统一格式 + 脱敏。</p>
+<p><strong>反证 2：不捕获 CancelledError，取消请求后资源释放吗？</strong></p>
+<pre><code class="language-python"># 注释掉 api/embed.py 的 except asyncio.CancelledError
+
+# 发请求后立即取消
+task = asyncio.create_task(client.post("/embed", json={"texts": ["test"]}))
+await asyncio.sleep(0.1)
+task.cancel()
+
+# 检查 OpenAI 连接数（mock）
+assert openai_client._connections == 0  # ❌ 失败：连接未释放
+</code></pre>
+<p><strong>结论</strong>：不捕获 CancelledError 会导致资源泄漏（连接、文件句柄）。</p>
+<h3 id="74-架构证据四件套">7.4 架构证据四件套</h3>
+<ol>
+<li><strong>请求生命周期图</strong>：middleware → dependencies → 路由 → exception handler → middleware（逆序）</li>
+<li><strong>依赖注入树</strong>：<code>embed</code> 路由依赖 <code>get_trace_id</code> 和 <code>check_rate_limit</code></li>
+<li><strong>OpenAPI schema 截图</strong>：<code>/docs</code> 页面展示 <code>/embed</code> 接口完整契约</li>
+<li><strong>测试全绿截图</strong>：pytest 输出（覆盖率 &gt;80%）</li>
+</ol>
+<hr>
+<h2 id="8-通关检查清单v3-规范-11-项">§8 通关检查清单（v3 规范 11 项）</h2>
+<ul>
+<li>[ ] §0 本日在 90 天路线图的坐标已说明（阶段二第 2 天，Day41 Python 骨架基础上补充 FastAPI 工程层）</li>
+<li>[ ] §1 五个用户场景 + 模块职责 + 三版演进 + 完整目录结构齐全</li>
+<li>[ ] §2 3 小时开发节奏已列出（原理 40 / v1 20 / v2 50 / v3 30 / 测试 25 / 架构 15）</li>
+<li>[ ] §3 v1 裸路由暴露 6 个问题（代码重复、无校验、无限流、无超时、裸 dict、堆栈泄漏）</li>
+<li>[ ] §4 v2 依赖注入 + 中间件（提取 Trace/限流依赖 + Trace/超时中间件）</li>
+<li>[ ] §5 v3 异常处理 + 取消传播 + OpenAPI 契约测试</li>
+<li>[ ] §6 前端底子深挖（结构化错误响应 + OpenAPI 生成 TS 类型）</li>
+<li>[ ] §7 测试四件套（依赖单元测试 + 中间件集成测试 + 2 个反证实验 + 架构证据）</li>
+<li>[ ] §8 本清单</li>
+<li>[ ] §9 增量到下一站的伏笔</li>
+<li>[ ] §10-14 收尾章节 + 原文情境题/PDF 映射/五连问原样保留</li>
+</ul>
+<hr>
+<h2 id="9-从今天的增量到下一站">§9 从今天的增量到下一站</h2>
+<p>今天你建立了 FastAPI 的完整工程层——不只是"写了几个路由"，而是建立了**依赖注入（复用逻辑）+ 中间件（统一前置）+ 异常处理（脱敏）+ OpenAPI（契约）**的完整体系。这套体系是 Day43-47 Python/AI 接口的模板。</p>
+<p><strong>今天建立的能力地基</strong>：</p>
+<ol>
+<li><strong>依赖注入模板</strong>：Day43 的模型网关、Day46 的 RAG 摄取会复用 <code>get_trace_id</code> 和 <code>check_rate_limit</code> 依赖。</li>
+<li><strong>中间件模板</strong>：Day44 会补充跨服务 Trace 透传中间件。</li>
+<li><strong>异常处理模板</strong>：Day47 的向量检索会复用全局异常处理器。</li>
+<li><strong>OpenAPI 契约</strong>：Day43-47 的前端调用统一使用生成的 TS 类型。</li>
+</ol>
+<p><strong>今天留下的 3 个待优化点</strong>：</p>
+<ol>
+<li><strong>限流用内存计数器</strong>：v3 的限流只在单机内存里，重启就丢。Day43 会改用 Redis（跨实例共享）。</li>
+<li><strong>超时固定 30s</strong>：v3 的超时对所有接口统一 30s，但 Embedding 可能需要更长。Day44 会改成路由级超时配置。</li>
+<li><strong>OpenAPI 契约未版本化</strong>：v3 的契约没有版本号，加字段会破坏旧客户端。Day45 会补充契约版本管理。</li>
+</ol>
+<p><strong>下一站要解决的核心问题</strong>：</p>
+<p><strong>Day43：向量检索服务（Pinecone + Hybrid Search）</strong></p>
+<p>核心挑战：</p>
+<ul>
+<li>如何把 Embedding 存到 Pinecone？复用今天的依赖注入（<code>Depends(get_pinecone_client)</code>）。</li>
+<li>Pinecone 超时如何分类重试？复用 Day34 的错误分类 + 今天的异常处理器。</li>
+<li>向量检索结果如何流式返回？用 FastAPI 的 <code>StreamingResponse</code>。</li>
+</ul>
+<hr>
+<h2 id="10-本日小结">§10 本日小结</h2>
+<p><strong>标题党 30 字</strong>：FastAPI 依赖注入防重复、中间件统一前置、异常处理防泄密、取消传播防资源泄漏、OpenAPI 契约防漂移——五层保障让 Python 服务工程化。</p>
+<p><strong>三句话</strong>：</p>
+<ol>
+<li>FastAPI 依赖注入（Depends）解决代码重复——traceId 提取、限流、鉴权等公共逻辑只写一次，声明依赖即可；中间件（Middleware）解决全局前置处理——所有请求都要做的事（注入 context、记录日志、超时控制）放中间件，不在路由重复；两者区别是中间件全局、依赖局部。</li>
+<li>全局异常处理器（exception_handler）防止堆栈泄漏——非法输入返回脱敏的 422（不是 500 堆栈），内部错误只返回 traceId（堆栈写日志不返回客户端）；请求取消传播（catch CancelledError）防止资源泄漏——asyncio 取消是协作式的，不主动检查 cancelled() 会导致子任务继续跑。</li>
+<li>OpenAPI 契约是跨服务边界的 source of truth——FastAPI 自动从 Pydantic model 生成 OpenAPI 3.0 文档，Node 侧用 openapi-typescript 生成 TS 类型定义，保证前后端类型一致；契约测试锁住文档和实际行为（从 /openapi.json 提取 schema 生成测试用例）。</li>
+</ol>
+<hr>
+<h2 id="11-课后三道核心问题必答先于教师五连问">§11 课后三道核心问题（必答，先于教师五连问）</h2>
+<ol>
+<li>请从今天项目的真实入口到最终输出，解释"FastAPI 工程层"的数据流或控制流；当天知识链"Pydantic、依赖注入、中间件、异常处理、OpenAPI"分别在哪一层起作用，为什么按这个顺序学习？</li>
+<li>如果故意移除今天最关键的保护机制，线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</li>
+<li>请引用今天的具体代码、测试和架构证据，证明项目目标已经达到；再说明当前实现距离企业生产标准还缺什么，下一步如何演进而不破坏已有合同。</li>
+</ol>
+<hr>
+<h2 id="12-真实项目情境题联网更新-2026-07-13">§12 真实项目情境题（联网更新 2026-07-13）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>模拟情境：embed 接口收到非法 body 时返回 500 和完整堆栈，过去 24 小时有 860 次同类请求。请检查 middleware、Pydantic 校验和 exception handler 日志，先统一为脱敏 4xx，再修复请求模型和错误语义，使用 OpenAPI 合同测试验证正常、非法和边界输入。
+依据：<a href="https://fastapi.tiangolo.com/async/" target="_blank" rel="noopener noreferrer">FastAPI Async</a></li>
+<li>模拟情境：用户取消请求后 FastAPI 仍计算 embedding 10 分钟,50 次取消占满 worker。请通过客户端断开、协程任务和资源指标定位取消未传播，先限制任务时长并回收资源，再修复 cancellation 与依赖生命周期，验证取消后 CPU、连接和任务数及时归零。
+依据：<a href="https://fastapi.tiangolo.com/async/" target="_blank" rel="noopener noreferrer">FastAPI Async</a>
+知识映射：对应 FastAPI 请求生命周期、校验、中间件、异常和取消。</li>
+</ol>
+<hr>
+<h2 id="13-完成后教师五连问">§13 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 -&gt; 边界一致性 -&gt; 线上事故 -&gt; 工程权衡 -&gt; 架构演进"现场提出 5 道问题。五连问不预先固定，也不由下面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<hr>
+<h2 id="14-pdf-面试题映射">§14 PDF 面试题映射</h2>
+<ol>
+<li>TypeScript 高级类型如何定义 AI 接口响应并处理不同 message 类型？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E9%2598%25BF%25E9%2587%258C%25E4%25BA%2591%25E5%2589%258D%25E7%25AB%25AF%25E6%258A%2580%25E6%259C%25AF%25E4%25B8%2593%25E5%25AE%25B6-AI%25E9%25A2%2586%25E5%259F%259F.pdf" class="missing-link">《2026阿里云前端技术专家-AI领域》</a>，第 1 页。</li>
+<li>如何通过规范、测试、类型安全、异常处理和日志追踪保证全栈项目质量？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E7%25BE%258E%25E5%259B%25A2%25E5%2589%258D%25E7%25AB%25AF%25E5%2585%25A8%25E6%25A0%2588%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026美团前端全栈开发》</a>，第 13 页。
+题目说明：近似题/资源缺口：没有 FastAPI DI、Pydantic、middleware、exception handler 或 OpenAPI 的直接题；两题只检验接口契约和质量门禁。</li>
+</ol>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day42-old.html">查看 Day 42 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/41.html">← Day 41 · Python 工程边界</a>
+            <a href="/ai-teacher-agent-devolop/day/43.html">Day 43 · 模型网关 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E9%87%8C%E7%9A%84%E4%BD%8D%E7%BD%AE">§0 今天在 90 天里的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B">§1 今天要做的事</a></li><li><a href="#2-%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%BC%80%E5%8F%91%E8%8A%82%E5%A5%8F3-%E5%B0%8F%E6%97%B6%E6%80%8E%E4%B9%88%E5%88%86%E9%85%8D">§2 今天的开发节奏（3 小时怎么分配）</a></li><li><a href="#3-v1%E8%A3%B8%E8%B7%AF%E7%94%B1%E5%BF%AB%E9%80%9F%E7%9C%8B%E5%88%B0%E7%97%9B%E7%82%B9">§3 v1：裸路由（快速看到痛点）</a></li><li><a href="#4-v2%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5-%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%8C%96%E9%87%8D%E6%9E%84">§4 v2：依赖注入 + 中间件（工程化重构）</a></li><li><a href="#5-v3%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86-%E8%AF%B7%E6%B1%82%E5%8F%96%E6%B6%88-openapi-%E5%A5%91%E7%BA%A6%E7%94%9F%E4%BA%A7%E7%BA%A7">§5 v3：全局异常处理 + 请求取消 + OpenAPI 契约（生产级）</a></li><li><a href="#6-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E6%B7%B1%E6%8C%96fastapi-%E5%AF%B9%E5%89%8D%E7%AB%AF%E7%9A%84%E5%BD%B1%E5%93%8D">§6 前端底子深挖：FastAPI 对前端的影响</a></li><li><a href="#7-%E6%B5%8B%E8%AF%95%E4%B8%8E%E9%AA%8C%E8%AF%81">§7 测试与验证</a></li><li><a href="#8-%E9%80%9A%E5%85%B3%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95v3-%E8%A7%84%E8%8C%83-11-%E9%A1%B9">§8 通关检查清单（v3 规范 11 项）</a></li><li><a href="#9-%E4%BB%8E%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%A2%9E%E9%87%8F%E5%88%B0%E4%B8%8B%E4%B8%80%E7%AB%99">§9 从今天的增量到下一站</a></li><li><a href="#10-%E6%9C%AC%E6%97%A5%E5%B0%8F%E7%BB%93">§10 本日小结</a></li><li><a href="#11-%E8%AF%BE%E5%90%8E%E4%B8%89%E9%81%93%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E5%BF%85%E7%AD%94%E5%85%88%E4%BA%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">§11 课后三道核心问题（必答，先于教师五连问）</a></li><li><a href="#12-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-13">§12 真实项目情境题（联网更新 2026-07-13）</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">§13 完成后教师五连问</a></li><li><a href="#14-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%98%A0%E5%B0%84">§14 PDF 面试题映射</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

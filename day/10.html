@@ -1,0 +1,1133 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 10 · Day 10 - M2 门禁（端到端纵向闭环 + 关闭 AI 独立修 Bug） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html" aria-current="page">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/02.html">第 2 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 10</p>
+        <h1>Day 10 - M2 门禁（端到端纵向闭环 + 关闭 AI 独立修 Bug）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段一（Day 1-30，前端 -&gt; AI 前端）。所有 BFF、NestJS、数据库、队列和 Agent 后端增量都必须服务于 <code>p1-monitor</code> 的真实 AI 前端链路，不得另起无关 Demo。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+<p><strong>补充真实项目情境题</strong>：</p>
+<ol>
+<li>HTTP/E2E 全绿但 WebSocket 广播断开时，门禁如何从用户可见结果、事件日志和数据库状态三处识别假成功？</li>
+<li>后端返回旧 <code>version</code> 导致前端乐观状态回滚时，如何定位、止损、修复并加入防复发测试？</li>
+</ol>
+</blockquote>
+<p>日期与时长：2026-07-23 周四，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor</code>
+阶段任务性质：教师基线；实际分发时根据 Day09 成绩生成补弱版、标准版或挑战版。</p>
+<hr>
+<h2 id="0-项目当前状态进入-day10-前">§0 项目当前状态（进入 Day10 前）</h2>
+<p>到 Day09 结束时，<code>p1-monitor</code> 已经具备端到端能力：</p>
+<ul>
+<li>后端 <code>apps/api</code>（Day07-Day09）：Nest + Prisma + Postgres，Cursor 分页 + 稳定排序 + Z-Score 异常检测 + 服务端权威 FSM + <code>expectedVersion</code> 乐观锁。</li>
+<li>前端 <code>apps/web</code>（Day04-Day05, Day09）：Vue3 + Vite + ECharts + WebSocket 房间隔离 + 乐观更新/revert 三段式。</li>
+<li>事件 <code>packages/features/alert-detect</code>（Day07）：Z-Score 命中即写 <code>Alert</code> 表并广播 WS。</li>
+<li>领域 <code>packages/domain</code>（Day08-Day09）：<code>AlertRow</code>/<code>AlertDetail</code>/<code>AlertQuery</code>/<code>toAlertVM</code>；<code>alert-fsm.ts</code> 状态转换表。</li>
+<li>实时 <code>apps/api/src/ws</code>（Day05-Day06）：房间订阅 + 心跳 + 重连 + 客户端去重。</li>
+</ul>
+<p>Day10 是 M2 门禁，不是新增功能日。它要证明"指标产生 → 检测 → 广播 → 前端刷新列表 → 打开详情 → 状态转换 → 数据库落库"的完整链路在没有 AI 辅助下也能被独立定位、修复和验证。</p>
+<p>进入 Day10 前必须回答自己（如果任何一条答不上，先停下补 Day07-Day09 的知识点）：</p>
+<ol>
+<li>一条 Metric 从 <code>POST /metrics</code> 到前端 AlertList 出现新一行，中间经过多少个函数、多少张表、多少个网络包？画不出时序图就不能进入 §7 闭卷环节。</li>
+<li>前端 <code>AlertActions.vue</code> 点击 <code>Acknowledge</code>，如果服务端返回 409，<code>state.ts</code> 的哪一行负责 <code>revert(prev)</code>？记不住就先回 Day09 §5.3。</li>
+<li>WebSocket 断线重连时，客户端如何用 <code>messageId</code> 保证不重复入库？记不住就回 Day06 §5.4 知识点 3。</li>
+</ol>
+<p>Day10 之后（Day11 起）会进入 M3 阶段（LangChain RAG / Agent 编排），业务模型稳定，不允许再回炉修数据链路 Bug。</p>
+<hr>
+<h2 id="1-今日目标">§1 今日目标</h2>
+<h3 id="11-概述">§1.1 概述</h3>
+<p>用一天时间做三件事：（1）画出 Day01-Day09 累积形成的端到端时序图，作为 M2 架构证据；（2）关闭 AI 辅助（Copilot / Cursor Chat / Claude Code 全部退出登录），在教师随机注入的 3 个未知 Bug 前独立完成"定位 → 止损 → 根因修复 → 回归"；（3）执行两次反证实验（拔掉一个关键保护机制看链路怎么塌），产出可追溯的证据链。</p>
+<p>不写新业务代码。今天只写：架构证据文档、E2E 回归测试、Bug 修复补丁、反证实验记录。</p>
+<h3 id="12-三层演进本日演进指门禁强度">§1.2 三层演进（本日"演进"指门禁强度）</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>门禁强度</th>
+<th>特征</th>
+<th>遗留问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1</td>
+<td>逐层自证</td>
+<td>每层独立跑单元测试通过即算过</td>
+<td>无法暴露层间接口不一致；出事只能各说各话</td>
+</tr>
+<tr>
+<td>v2</td>
+<td>端到端 E2E</td>
+<td>Playwright/Vitest 从 <code>POST /metrics</code> 打到前端 DOM 断言</td>
+<td>有 AI 辅助时看不出学生是否真的懂链路</td>
+</tr>
+<tr>
+<td>v3</td>
+<td>关闭 AI + 时序证据 + 反证</td>
+<td>独立修 3 Bug + 完整时序图 + 两次反证实验</td>
+<td>（明日 Day11 进入 M3，不再回炉此链路）</td>
+</tr>
+</tbody>
+</table></div><h3 id="13-交付物">§1.3 交付物</h3>
+<ol>
+<li><code>docs/architecture/m2-e2e-sequence.md</code>：端到端时序图（Mermaid 或 PlantUML），标注 requestId / WS sequence / Alert version 三条 ID 如何贯穿全链。</li>
+<li><code>apps/api/test/e2e/m2-full-loop.e2e-spec.ts</code>：从 <code>POST /metrics</code> 到 <code>GET /alerts/:id</code> 的完整回归。</li>
+<li><code>apps/web/tests/e2e/m2-gateway.spec.ts</code>：Playwright，从触发指标到 AlertList 出现新行到点击详情看到 FSM 转换。</li>
+<li><code>docs/m2-bug-report.md</code>：3 个 Bug 各自的"定位证据 / 临时止损 / 根因修复 / 回归验证"四段式记录。</li>
+<li>反证实验 1（§7.7）：断开 WebSocket 广播，测量列表刷新延迟。</li>
+<li>反证实验 2（§7.8）：故意让 <code>alerts.service.ts</code> 返回旧 version，测量前端 revert 触发率。</li>
+<li>commit：<code>docs(m2): freeze e2e evidence &amp; bug reports (Refs: Day10)</code>。</li>
+</ol>
+<h3 id="14-目录结构本日项目视角">§1.4 目录结构（本日项目视角）</h3>
+<p><strong>§1.4.1 rationale（先讲为什么这样组织）</strong></p>
+<ul>
+<li><code>docs/architecture/m2-e2e-sequence.md</code> 放到 <code>docs/architecture/</code>：这是<strong>架构证据</strong>而不是使用文档，未来 Day30/Day60/Day90 每次门禁都要更新一版对比图，需要一个稳定目录。</li>
+<li>E2E 测试拆到 <code>apps/api/test/e2e/</code> 与 <code>apps/web/tests/e2e/</code> 两处：Nest 端用 Vitest + Supertest 直接发 HTTP，前端端用 Playwright 驱动真浏览器，两者关注的失败模式不一样（后端看合同一致性，前端看渲染/时序），合并到一处反而丢信息。</li>
+<li><code>docs/m2-bug-report.md</code> 单文件承载 3 个 Bug：门禁记录要能一屏看完；如果拆 3 个文件，日后回溯 M2 门禁完整表现要跳来跳去。</li>
+<li>不新增业务代码目录：Day10 目标是"证明已有链路能工作"，不是"添加新功能"，任何新业务文件都算越界。</li>
+</ul>
+<p><strong>§1.4.2 tree（本日结束的目录快照，只展示与 M2 门禁相关的路径）</strong></p>
+<pre><code>p1-monitor/
+├─ docs/
+│  ├─ architecture/
+│  │  ├─ m2-e2e-sequence.md        # 【新增】端到端时序图 + 3 条 ID 追踪表
+│  │  └─ decisions/                # （历史 ADR，不改）
+│  ├─ m2-bug-report.md             # 【新增】3 Bug 四段式记录
+│  └─ reversal-experiments/
+│     ├─ 2026-07-23-ws-off.md      # 【新增】反证 1
+│     └─ 2026-07-23-stale-version.md # 【新增】反证 2
+├─ apps/
+│  ├─ api/
+│  │  └─ test/e2e/
+│  │     ├─ m2-full-loop.e2e-spec.ts   # 【新增】metric → alert → transition
+│  │     └─ jest-e2e.json              # 【不改】Day07 已存在
+│  └─ web/
+│     └─ tests/e2e/
+│        ├─ m2-gateway.spec.ts         # 【新增】Playwright 全链
+│        └─ playwright.config.ts       # 【不改】Day05 已存在
+└─ packages/                            # 【不改】领域/事件不新增
+</code></pre>
+<p><strong>§1.4.3 与 Day09 的目录 diff 表</strong></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>变更</th>
+<th>路径</th>
+<th>新/改/删</th>
+<th>为什么在这里</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新增</td>
+<td><code>docs/architecture/m2-e2e-sequence.md</code></td>
+<td>新</td>
+<td>架构证据，与代码分离，便于门禁归档</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>docs/m2-bug-report.md</code></td>
+<td>新</td>
+<td>Bug 修复记录，独立于代码 diff</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>docs/reversal-experiments/2026-07-23-ws-off.md</code></td>
+<td>新</td>
+<td>反证 1 记录</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>docs/reversal-experiments/2026-07-23-stale-version.md</code></td>
+<td>新</td>
+<td>反证 2 记录</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>apps/api/test/e2e/m2-full-loop.e2e-spec.ts</code></td>
+<td>新</td>
+<td>后端合同层回归</td>
+</tr>
+<tr>
+<td>新增</td>
+<td><code>apps/web/tests/e2e/m2-gateway.spec.ts</code></td>
+<td>新</td>
+<td>前端渲染层回归</td>
+</tr>
+<tr>
+<td>不改</td>
+<td><code>packages/domain/**</code>、<code>packages/features/**</code></td>
+<td>-</td>
+<td>今天不动业务代码</td>
+</tr>
+<tr>
+<td>不改</td>
+<td><code>apps/api/src/**</code>、<code>apps/web/src/**</code></td>
+<td>除 Bug 修复补丁</td>
+<td>今天不动业务代码</td>
+</tr>
+</tbody>
+</table></div><p><strong>§1.4.4 依赖箭头（谁调用谁）</strong></p>
+<pre><code>[Playwright m2-gateway.spec.ts]
+        │ 用真浏览器访问 http://localhost:5173
+        ▼
+[Vite dev server → apps/web/src/App.vue]
+        │ fetch /api/metrics / WS 订阅 room:alerts
+        ▼
+[apps/api Nest] ── PrismaService ──▶ [Postgres]
+        │                             │
+        │                             │ Z-Score 命中
+        │                             ▼
+        │                   [alert-detect worker]
+        │                             │ new Alert row + WS publish
+        │                             ▼
+        │                    [ws.gateway.ts room:alerts]
+        │                             │
+        ▼                             ▼
+[m2-full-loop.e2e-spec.ts]     [前端 AlertList 收到 sequence++]
+   直接 supertest 调 POST /metrics
+   等待 GET /alerts?since=... 出现新行
+   再 POST /alerts/:id/transition
+   断言 200 + version 递增
+</code></pre>
+<p><strong>§1.4.5 3 个理解问题（写代码前先在心里回答）</strong></p>
+<ol>
+<li>为什么后端 E2E 与前端 Playwright 都要覆盖同一条链路？如果只留一个会漏什么？
+→ 后端 E2E 只能保证 HTTP/DB 合同，看不到 WS 到浏览器的渲染路径；Playwright 覆盖渲染但不能保证多客户端一致性。两者互补，任一缺失都会让某类 Bug 在下一次门禁前才暴露。</li>
+<li>为什么 Bug 报告要求"四段式"（定位证据 → 临时止损 → 根因修复 → 回归验证）？如果只写"根因修复"会有什么后果？
+→ 只有"根因"没有"定位证据"，未来同类 Bug 出现时无法复用调试方法；没有"临时止损"意味着一旦生产复现只能等根因修好才能恢复用户；没有"回归验证"意味着修完不知道有没有真修好，也无法防止回炉。</li>
+<li>关闭 AI 后，如果 3 个 Bug 中有一个卡住超过 30 分钟，正确的做法是什么？
+→ 不是打开 AI，是先记录当前所有已知证据（错误信息、请求 payload、DB 快照、WS 帧），然后<strong>降级止损</strong>（回滚到上一个 tag），把根因排查放到本日之后。Day10 考察独立定位能力，卡住本身也是一种数据。</li>
+</ol>
+<h3 id="15-按第-53-节的代码-边写边问自己">§1.5 按第 5.3 节的代码 + 边写边问自己</h3>
+<p>Day10 与 Day03-Day09 不同：<strong>没有新业务代码需要照抄</strong>。§5.3 给出的是三类模板——时序图 Mermaid 模板、E2E 测试骨架、Bug 报告 markdown 模板。你按第 5.3 节的模板写出属于自己项目的证据，<strong>边写边问自己</strong>下面这几个问题：</p>
+<ul>
+<li>时序图里每个箭头能否指到具体代码行？（如 <code>apps/api/src/alerts/alerts.service.ts:78</code>）</li>
+<li>E2E 测试的每个 <code>expect()</code> 断言的是<strong>合同</strong>还是<strong>实现细节</strong>？断言实现细节会在下次重构时误伤。</li>
+<li>Bug 报告的"定位证据"能否只用 <code>git</code>、<code>curl</code>、<code>psql</code>、浏览器 DevTools 完成，不依赖 AI？</li>
+</ul>
+<hr>
+<h2 id="2-环境准备">§2 环境准备</h2>
+<ul>
+<li>Node 20.x、pnpm 9.x（沿用 Day01）。</li>
+<li>Postgres 16（沿用 Day01）。</li>
+<li>Playwright（Day05 已安装，如缺 <code>pnpm --filter web add -D @playwright/test &amp;&amp; pnpm --filter web exec playwright install chromium</code>）。</li>
+<li>Mermaid CLI（可选，用于导出时序图 PNG）：<code>pnpm add -D -w @mermaid-js/mermaid-cli</code>。</li>
+<li>关键：<strong>执行 §7 闭卷环节前，退出登录 GitHub Copilot、Cursor Chat、Claude Code、Kiro；关闭浏览器所有 AI 网页 tab</strong>。教师会在教师工位随机注入 3 个 Bug。</li>
+</ul>
+<hr>
+<h2 id="3-数据模型变更prisma">§3 数据模型变更（Prisma）</h2>
+<p>Day10 不改数据模型。以下为<strong>只读校验</strong>：</p>
+<pre><code class="language-bash">cd apps/api
+pnpm prisma migrate status
+# 期望：Database schema is up to date!
+</code></pre>
+<p>如果这一步就报错，属于 Bug 之一（迁移未 apply），进入 §7 独立修 Bug 环节而不是重跑 migrate（因为 M2 要求你能诊断迁移状态本身）。</p>
+<hr>
+<h2 id="4-引入依赖">§4 引入依赖</h2>
+<p>Day10 不新增运行时依赖。仅在 workspace root 补开发依赖：</p>
+<pre><code class="language-bash">pnpm add -D -w @mermaid-js/mermaid-cli
+</code></pre>
+<p>如果不打算导出 PNG，可跳过此步，<code>.md</code> 里的 Mermaid 源码本身就是证据。</p>
+<hr>
+<h2 id="5-核心代码">§5 核心代码</h2>
+<h3 id="51-v1逐层自证day07-day09-已有的样子">§5.1 v1：逐层自证（Day07-Day09 已有的样子）</h3>
+<p><strong>要实现什么</strong>：每层独立跑测试通过就算过关。</p>
+<p><strong>代码</strong>（历史状态，不需要新写）：</p>
+<ul>
+<li><code>apps/api/src/alerts/alerts.service.spec.ts</code>：Day09 已写，<code>transition()</code> 单元测试 25 组。</li>
+<li><code>apps/api/src/alerts/alerts.controller.spec.ts</code>：Day07-Day08 已有 Nest e2e 骨架。</li>
+<li><code>apps/web/src/features/alert-list/__tests__/index.spec.ts</code>：Day04-Day05 已写渲染快照。</li>
+</ul>
+<p><strong>遗留问题</strong>：</p>
+<ul>
+<li>每层测试都用 mock 上下游。后端 mock Prisma，前端 mock fetch。真实的 HTTP + WS + DB 三者合起来的 Bug（比如 WS 广播的 payload 少一个字段但前端类型没跟上）永远不会被这些单元测试抓到。</li>
+<li>学生可以只在自己熟悉的层写好测试，绕过陌生层。M2 门禁必须打破这个漏洞。</li>
+</ul>
+<h3 id="52-v2端到端-e2e本可以引入的东西">§5.2 v2：端到端 E2E（本可以引入的东西）</h3>
+<p><strong>要实现什么</strong>：一条 supertest 或 Playwright 测试从入口打到出口，只 mock 时钟。</p>
+<p><strong>代码</strong>（示意，v3 会补齐）：</p>
+<pre><code class="language-typescript">// apps/api/test/e2e/m2-full-loop.e2e-spec.ts（v2 初稿，仅一半）
+it('metric-in → alert-out (single request)', async () =&gt; {
+  const res = await request(app.getHttpServer())
+    .post('/metrics')
+    .send({ serverId: 'srv-1', metric: 'cpu', value: 99, ts: Date.now() });
+  expect(res.status).toBe(201);
+  // 缺：等待 Z-Score 命中 → 缺：查 Alert 表 → 缺：调 transition → 缺：验 version
+});
+</code></pre>
+<p><strong>遗留问题</strong>：</p>
+<ul>
+<li>只覆盖后端 HTTP + DB，跳过 WS 与前端渲染。</li>
+<li>有 AI 辅助时，学生可以让 Copilot 一键补齐，看不出是否真的懂链路。</li>
+<li>测试如果失败，学生无法在没有 AI 帮助下判断故障发生在哪一层。</li>
+</ul>
+<h3 id="53-v3完整端到端-关闭-ai-反证证据今天要写的样子">§5.3 v3：完整端到端 + 关闭 AI + 反证证据（今天要写的样子）</h3>
+<p>零省略号、零"…此处略"。</p>
+<p><strong>5.3.1 时序图模板 <code>docs/architecture/m2-e2e-sequence.md</code></strong></p>
+<pre><code class="language-markdown"># M2 端到端时序图
+
+## 三条追踪 ID
+
+| ID | 生成位置 | 传递路径 | 落库位置 |
+|---|---|---|---|
+| `requestId` | Nest `RequestIdMiddleware`（Day07） | HTTP header `x-request-id` → Winston log → Prisma log | `logs/api.log` |
+| `wsSequence` | `apps/api/src/ws/ws.gateway.ts` 房间维度自增 | WS frame payload → 前端 `wsClient.ts` 校验单调 | 前端 IndexedDB `wsCursor` |
+| `alertVersion` | `apps/api/prisma/schema.prisma` `Alert.version` 默认 0 | HTTP response body → 前端 `state.ts` `optimisticApply` | Postgres `Alert.version` 列 |
+
+## 主时序
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as 用户浏览器
+    participant W as Vite/Vue3 (apps/web)
+    participant A as Nest (apps/api)
+    participant D as Postgres
+    participant Z as alert-detect worker
+    participant G as ws.gateway
+
+    Note over U,W: T=0 用户在 AlertList 页
+    U-&gt;&gt;W: 打开 http://localhost:5173/alerts
+    W-&gt;&gt;A: GET /alerts?cursor=null&amp;limit=20
+    A-&gt;&gt;D: SELECT ... WHERE createdAt &lt;= now() ORDER BY (createdAt, id) DESC LIMIT 21
+    D--&gt;&gt;A: 20 行 + nextCursor
+    A--&gt;&gt;W: 200 { rows, nextCursor }
+    W--&gt;&gt;U: 渲染 AlertList
+
+    Note over U,G: T=5s 外部系统写指标
+    Note over A: POST /metrics 触发点
+    A-&gt;&gt;D: INSERT INTO Metric
+    D--&gt;&gt;A: OK
+    A-&gt;&gt;Z: emit('metric.created', metric)
+    Z-&gt;&gt;D: SELECT last 60 metrics for zscore
+    D--&gt;&gt;Z: series
+    Z-&gt;&gt;Z: computeZScore() 命中 (|z| &gt; 3)
+    Z-&gt;&gt;D: INSERT INTO Alert (status='NEW', version=0)
+    D--&gt;&gt;Z: alertId
+    Z-&gt;&gt;G: gateway.publishToRoom('alerts', alert)
+    G--&gt;&gt;W: WS frame { seq: 42, alert }
+    W-&gt;&gt;W: wsClient 检查 seq 单调
+    W-&gt;&gt;W: alertListStore.prependIfAbsent(alert)
+    W--&gt;&gt;U: 列表顶部出现新行
+
+    Note over U,D: T=6s 用户点确认
+    U-&gt;&gt;W: click "Acknowledge"
+    W-&gt;&gt;W: state.optimisticApply(alertId, 'ACK')
+    W--&gt;&gt;U: 状态立即变灰
+    W-&gt;&gt;A: POST /alerts/:id/transition {action:'ACK', expectedVersion:0}
+    A-&gt;&gt;A: assertCanTransition('NEW','ACK')
+    A-&gt;&gt;D: UPDATE Alert SET status='ACK', version=version+1 WHERE id=? AND version=0
+    D--&gt;&gt;A: 1 row affected → 返回 (status='ACK', version=1)
+    A--&gt;&gt;W: 200 { status:'ACK', version:1 }
+    W-&gt;&gt;W: state.commit(alertId, {status:'ACK', version:1})
+
+    Note over U,W: 反证：如果 D--&gt;&gt;A 返回 0 row（并发覆盖）
+    A--&gt;&gt;W: 409 { code:'VERSION_CONFLICT', current:{status:'ACK',version:1} }
+    W-&gt;&gt;W: state.revert(alertId, prev)
+    W--&gt;&gt;U: UI 回到 NEW 状态并弹出 toast
+```
+
+## 每个箭头对应的代码位置
+
+| 步骤 | 代码位置 |
+|---|---|
+| 1 | `apps/web/src/features/alert-list/index.vue:34` |
+| 4 | `apps/api/src/alerts/alerts.service.ts:22 findMany()` |
+| 12 | `packages/features/alert-detect/src/detector.ts:56` |
+| 15 | `apps/api/src/ws/ws.gateway.ts:88 publishToRoom` |
+| 19 | `apps/web/src/features/alert-detail/state.ts:12 optimisticApply` |
+| 22 | `apps/api/src/alerts/alerts.service.ts:104 transition()` |
+| 24 | `apps/api/src/alerts/alerts.service.ts:118 updateMany` |
+</code></pre>
+<p><strong>5.3.2 后端 E2E <code>apps/api/test/e2e/m2-full-loop.e2e-spec.ts</code></strong></p>
+<pre><code class="language-typescript">import { Test } from '@nestjs/testing';
+import { INestApplication } from '@nestjs/common';
+import * as request from 'supertest';
+import { AppModule } from '../../src/app.module';
+import { PrismaService } from '../../src/prisma/prisma.service';
+
+describe('M2 full loop e2e (metric → alert → transition)', () =&gt; {
+  let app: INestApplication;
+  let prisma: PrismaService;
+
+  beforeAll(async () =&gt; {
+    const moduleRef = await Test.createTestingModule({ imports: [AppModule] }).compile();
+    app = moduleRef.createNestApplication();
+    prisma = moduleRef.get(PrismaService);
+    await app.init();
+    await prisma.alert.deleteMany();
+    await prisma.metric.deleteMany();
+  });
+
+  afterAll(async () =&gt; {
+    await app.close();
+  });
+
+  it('metric-in → z-score hit → alert row → transition → version increments', async () =&gt; {
+    // 1. 灌 60 个正常指标建立基线
+    const baselineTs = Date.now() - 60_000;
+    for (let i = 0; i &lt; 60; i++) {
+      await request(app.getHttpServer())
+        .post('/metrics')
+        .send({ serverId: 'srv-e2e', metric: 'cpu', value: 30 + Math.random() * 5, ts: baselineTs + i * 1000 });
+    }
+
+    // 2. 触发异常值（|z| &gt; 3）
+    const spikeRes = await request(app.getHttpServer())
+      .post('/metrics')
+      .send({ serverId: 'srv-e2e', metric: 'cpu', value: 99, ts: Date.now() });
+    expect(spikeRes.status).toBe(201);
+
+    // 3. 轮询等待 Alert 落库（&lt;= 2 秒）
+    let alert;
+    for (let i = 0; i &lt; 20; i++) {
+      const list = await prisma.alert.findMany({ where: { serverId: 'srv-e2e' } });
+      if (list.length &gt; 0) { alert = list[0]; break; }
+      await new Promise(r =&gt; setTimeout(r, 100));
+    }
+    expect(alert).toBeDefined();
+    expect(alert.status).toBe('NEW');
+    expect(alert.version).toBe(0);
+
+    // 4. 执行合法状态转换
+    const transitionRes = await request(app.getHttpServer())
+      .post(`/alerts/${alert.id}/transition`)
+      .send({ action: 'ACK', expectedVersion: 0 });
+    expect(transitionRes.status).toBe(200);
+    expect(transitionRes.body.status).toBe('ACK');
+    expect(transitionRes.body.version).toBe(1);
+
+    // 5. 直接读 DB 确认
+    const persisted = await prisma.alert.findUnique({ where: { id: alert.id } });
+    expect(persisted.status).toBe('ACK');
+    expect(persisted.version).toBe(1);
+  });
+
+  it('metric-in → concurrent double ACK → exactly one 409', async () =&gt; {
+    // 先制造一个 alert
+    await prisma.alert.create({ data: { serverId: 'srv-race', metric: 'mem', value: 99, status: 'NEW', version: 0 } });
+    const alert = (await prisma.alert.findFirst({ where: { serverId: 'srv-race' } }))!;
+
+    const [a, b] = await Promise.all([
+      request(app.getHttpServer()).post(`/alerts/${alert.id}/transition`).send({ action: 'ACK', expectedVersion: 0 }),
+      request(app.getHttpServer()).post(`/alerts/${alert.id}/transition`).send({ action: 'ACK', expectedVersion: 0 }),
+    ]);
+
+    const codes = [a.status, b.status].sort();
+    expect(codes).toEqual([200, 409]);
+    const persisted = await prisma.alert.findUnique({ where: { id: alert.id } });
+    expect(persisted.version).toBe(1);
+  });
+});
+</code></pre>
+<p><strong>5.3.3 前端 Playwright <code>apps/web/tests/e2e/m2-gateway.spec.ts</code></strong></p>
+<pre><code class="language-typescript">import { test, expect } from '@playwright/test';
+
+test.describe('M2 gateway end-to-end', () =&gt; {
+  test('metric → WS frame → AlertList new row → click Acknowledge → status flips', async ({ page, request }) =&gt; {
+    // 打开列表页
+    await page.goto('http://localhost:5173/alerts');
+    const initialRowCount = await page.locator('[data-testid="alert-row"]').count();
+
+    // 建立基线 + 触发异常值
+    const baselineTs = Date.now() - 60_000;
+    for (let i = 0; i &lt; 60; i++) {
+      await request.post('http://localhost:3000/metrics', {
+        data: { serverId: 'srv-pw', metric: 'cpu', value: 30 + Math.random() * 5, ts: baselineTs + i * 1000 },
+      });
+    }
+    await request.post('http://localhost:3000/metrics', {
+      data: { serverId: 'srv-pw', metric: 'cpu', value: 99, ts: Date.now() },
+    });
+
+    // 等新行出现（&lt;= 3 秒）
+    const newRow = page.locator('[data-testid="alert-row"][data-server-id="srv-pw"]').first();
+    await expect(newRow).toBeVisible({ timeout: 3000 });
+
+    // 打开详情
+    await newRow.click();
+    await expect(page.locator('[data-testid="alert-status"]')).toHaveText('NEW');
+
+    // 点确认，观察乐观更新
+    const ackBtn = page.locator('[data-testid="alert-action-ack"]');
+    await ackBtn.click();
+    await expect(page.locator('[data-testid="alert-status"]')).toHaveText('ACK'); // 立即
+    await expect(page.locator('[data-testid="alert-version"]')).toHaveText('1');  // 服务端返回后
+
+    // 验证按钮 disabled + aria-busy 归位
+    await expect(ackBtn).toBeDisabled();
+    await expect(ackBtn).toHaveAttribute('aria-busy', 'false');
+  });
+
+  test('WebSocket disconnect → reconnect → no duplicate rows', async ({ page, context }) =&gt; {
+    await page.goto('http://localhost:5173/alerts');
+    const before = await page.locator('[data-testid="alert-row"]').count();
+
+    // 用 CDP 切断网络
+    const client = await context.newCDPSession(page);
+    await client.send('Network.enable');
+    await client.send('Network.emulateNetworkConditions', { offline: true, latency: 0, downloadThroughput: 0, uploadThroughput: 0 });
+    await page.waitForTimeout(3000);
+    await client.send('Network.emulateNetworkConditions', { offline: false, latency: 0, downloadThroughput: -1, uploadThroughput: -1 });
+
+    // 等重连
+    await page.waitForTimeout(2000);
+    const after = await page.locator('[data-testid="alert-row"]').count();
+    expect(after).toBeGreaterThanOrEqual(before);
+    // 若 wsClient.dedupe 生效，after 应等于 before + 服务端在离线期间新推的行数，不会重复
+  });
+});
+</code></pre>
+<p><strong>5.3.4 Bug 报告模板 <code>docs/m2-bug-report.md</code></strong></p>
+<pre><code class="language-markdown"># M2 独立修 Bug 记录
+
+日期：2026-07-23
+考生：&lt;姓名&gt;
+条件：AI 全部退出登录，网页 AI tab 关闭；允许查项目自身代码、日志、DB、DevTools。
+
+---
+
+## Bug 1: &lt;一句话现象&gt;
+
+### 定位证据
+
+- 现象截图：`evidence/bug1-symptom.png`
+- 复现步骤：&lt;最小 3 步&gt;
+- 关键日志（含 requestId）：
+</code></pre>
+<p>&lt;粘 5 行以内&gt;</p>
+<pre><code>- 涉及层：&lt;HTTP / DB / WS / 前端渲染 / FSM&gt;
+
+### 临时止损
+
+- 动作：&lt;回滚 tag / 前端隐藏功能 / 后端 feature flag off&gt;
+- 恢复用户可见时长：&lt;预计 5 分钟内&gt;
+
+### 根因修复
+
+- 文件：`&lt;path:line&gt;`
+- diff（&lt;= 15 行）：
+```diff
+- &lt;旧行&gt;
++ &lt;新行&gt;
+</code></pre>
+<ul>
+<li>为什么这是根因（一句话）：&lt;原因&gt;</li>
+</ul>
+<h3 id="回归验证">回归验证</h3>
+<ul>
+<li>新增/更新测试：<code>&lt;path&gt;</code></li>
+<li>覆盖场景：&lt;正例 + 至少一个反例&gt;</li>
+<li>本地跑通命令：<code>pnpm --filter &lt;pkg&gt; test &lt;spec&gt;</code></li>
+</ul>
+<hr>
+<h2 id="bug-2-一句话现象">Bug 2: &lt;一句话现象&gt;</h2>
+<p>（同 Bug 1 结构）</p>
+<hr>
+<h2 id="bug-3-一句话现象">Bug 3: &lt;一句话现象&gt;</h2>
+<p>（同 Bug 1 结构）</p>
+<pre><code>
+### §5.4 六个必掌握的知识点（每点五要素）
+
+**知识点 1 - 端到端数据流的"三条 ID 贯穿"（requestId / wsSequence / alertVersion）**
+
+- 解决的问题：分层系统的故障不是"某一层坏"，而是"层间接口在某个时刻状态不一致"。没有贯穿全链的 ID，事故还原会退化为"各说各话"，无法证明是哪一环先出错的。
+- 运行机制：`requestId` 由中间件在入口生成、贯穿日志与 DB 语句注释；`wsSequence` 由 gateway 房间维度自增、前端拒绝乱序；`alertVersion` 由 DB 列驱动、参与乐观锁与 UI 回滚。三条 ID 各覆盖一个维度（时间、顺序、状态），交叉起来才能定位。
+- 项目落点：`apps/api/src/common/request-id.middleware.ts`、`apps/api/src/ws/ws.gateway.ts`、`apps/api/prisma/schema.prisma` 的 `Alert.version`。
+- 生产误区：以为一个 `requestId` 就够了。`requestId` 无法区分同一请求触发的多个 WS 推送谁先谁后；`wsSequence` 无法关联到具体 DB 事务。
+- 验证方法：在测试里制造"两个客户端同时确认同一 alert"，用三条 ID 反查哪一层最先偏离预期。
+
+**知识点 2 - DI 与假上下游的边界（为什么单元测试全绿也能出事）**
+
+- 解决的问题：Nest DI 让每层可以 mock 掉依赖，但也带来"每层用不同 mock 版本的合同"的分裂。M2 就是要证明真实合同下链路能通。
+- 运行机制：Nest 通过 `useValue / useFactory` 让 spec 文件替换掉 Provider；一旦 Prisma / RedisPublisher 用 mock，DB/WS 的真实行为就被隔离掉了。
+- 项目落点：`alerts.service.spec.ts` 里 `providers: [{ provide: PrismaService, useValue: mockPrisma }]` 就是这种替换。E2E 里必须走真实 `PrismaService` + 真实 Postgres 才有意义。
+- 生产误区：只加更多 mock 单测来"提升覆盖率"。覆盖率不等于合同一致性，端到端才是。
+- 验证方法：本地 `pnpm --filter api test` vs `pnpm --filter api test:e2e` 分开跑；把 e2e 关掉某个真实依赖看断言能否发现。
+
+**知识点 3 - 竞态（同一 alert 双击 / WS 与 HTTP 谁先到）**
+
+- 解决的问题：分布式或异步链路里，"两个正确的请求碰撞"会产出错误状态。Day09 用 `expectedVersion` 解决了 DB 层；Day10 要证明当 WS 推送和用户点击几乎同时到达时，前端不会出现"我点的 ACK 被 WS 覆盖回 NEW"。
+- 运行机制：前端 `state.ts` 的 `optimisticApply` 记录 `prev`，`commit`/`revert` 都携带 `version`；WS 推送到达时若 `incoming.version &lt; local.version` 直接丢弃。
+- 项目落点：`apps/web/src/features/alert-detail/state.ts` 的 `receiveWsUpdate()` 中的版本比较分支。
+- 生产误区：以为"WS 广播总是权威"。WS 频道里流过的是历史事件的重放，本地已经乐观 commit 的更高版本必须优先。
+- 验证方法：Playwright 场景——先离线 3 秒，再上线，验证列表不会因为 WS 补发旧事件而回退状态。
+
+**知识点 4 - WS 断线重连与消息去重（Day05-Day06 累积的能力如何被 M2 检验）**
+
+- 解决的问题：网络不稳时 WS 会重连，重连后网关会把断线期间的事件重放；如果客户端不去重，用户看到重复的 alert 行；如果去重错误，用户看不到本该收到的新 alert。
+- 运行机制：客户端维护 `lastSeq`，WS `subscribe` 参数带 `since=lastSeq`；服务端从 Redis stream / DB 补发；客户端按 `messageId` 幂等入库。
+- 项目落点：`apps/web/src/lib/ws-client.ts` 的 `resume(lastSeq)` + `alertListStore.prependIfAbsent()`。
+- 生产误区：以 `alertId` 去重。同一 `alertId` 可能因状态转换被多次广播，`alertId + version + eventType` 组合键才是幂等键。
+- 验证方法：Playwright 场景——CDP 切断网络 3 秒，验证重连后行数增量与服务端实际新增数一致。
+
+**知识点 5 - 反证实验（拔一根线看谁最先塌）**
+
+- 解决的问题：正向证明"链路能通"不够，还要证明"关键保护缺失时会以哪种可观测方式失败"。这是 M2 门禁与前几日的最大区别。
+- 运行机制：临时改一行代码（注释掉 WS 广播 / 注释掉 `expectedVersion`），跑同一份 E2E 用例，观察哪个断言最先红。红的位置就是这条保护线的"最靠前拦截点"。
+- 项目落点：本日 §7.7、§7.8 两次实验的记录。反证结论必须能被下一位学生复现，实验记录格式必须固定。
+- 生产误区：把反证做成"随便注释一段看会不会崩"。必须有明确的"操作 / 期待现象 / 实际现象 / 恢复动作 / 结论证据"五项。
+- 验证方法：把实验记录交给同学，让 TA 按记录复现，若得不到同样的红断言就是记录不合格。
+
+**知识点 6 - 关闭 AI 的独立定位能力（不是排斥 AI，是证明基线）**
+
+- 解决的问题：M2 之前的学习允许 AI 辅助 30%。M2 是唯一一个考察"如果 AI 全离线，你还能独立走完全链路"的检查点。这个基线一旦缺失，后面 M3-M5 的 AI 深度使用无法建立信任。
+- 运行机制：闭卷环境下，学生只能用 `git log`、`grep`、`curl`、`psql`、DevTools Network/Console/Application 五件套。任何时候打开 Claude/Copilot 都算作弊。
+- 项目落点：不在代码里，在 `docs/m2-bug-report.md` 的"定位证据"字段里——不允许出现"AI 建议"字样。
+- 生产误区：把"关闭 AI"曲解成"不使用任何工具"。工具与 AI 不同，jq/httpie/postman/DBeaver 都是允许的。
+- 验证方法：教师随机抽 1 个 Bug 让学生口述定位过程，学生必须能只引用日志和代码文件路径，不能引用"我问了 AI 它说"。
+
+---
+
+## §6 前端底子补弱
+
+### §6.1 - §6.4（本日不涉及，跳过）
+
+### §6.5 HTML/表单底子补弱（本日必做）
+
+**主题：`&lt;button aria-live&gt;` + `role="status"` + toast 无 JS 兜底**
+
+M2 门禁的一个隐含考察点：反证实验拔掉 WS 广播时，UI 上必须有**用户可感知**的降级提示，而不是"看起来一切正常"。这条降级路径的最底子是 HTML 原生的 `role="status"` + `aria-live="polite"`，而不是各家组件库的 Toast SDK。
+
+**5 分钟练习**：
+
+```html
+&lt;!-- apps/web/src/features/alert-list/DegradeBanner.vue 的原生底子 --&gt;
+&lt;div role="status" aria-live="polite" id="ws-degrade-banner" hidden&gt;
+  &lt;p&gt;实时推送已断开，正显示最近一次拉取的数据。&lt;button type="button" onclick="location.reload()"&gt;刷新&lt;/button&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  // 无框架也能工作的兜底
+  const banner = document.getElementById('ws-degrade-banner');
+  window.addEventListener('offline', () =&gt; banner.hidden = false);
+  window.addEventListener('online', () =&gt; banner.hidden = true);
+&lt;/script&gt;
+</code></pre>
+<p>问自己：</p>
+<ol>
+<li>为什么用 <code>role="status"</code> 而不是 <code>role="alert"</code>？
+→ <code>alert</code> 会打断读屏用户当前朗读，用于错误；<code>status</code> 是礼貌通知，用于降级提示。选错会让视障用户被反复打断。</li>
+<li>为什么 <code>hidden</code> 属性优于 <code>display:none</code>？
+→ <code>hidden</code> 语义化，浏览器和辅助技术都识别；<code>display:none</code> 是纯样式，容易被后续 CSS 覆盖导致读屏和视觉不一致。</li>
+<li>如果 JS 挂了，用户能看到什么？
+→ 因为 banner 默认 <code>hidden</code>，JS 挂时用户看不到 banner，但也看不到旧的错误状态。理想情况是 SSR 时根据 <code>navigator.onLine</code> 决定初始 <code>hidden</code>。这属于 Day30 SSR 章节，今日只做客户端底子。</li>
+</ol>
+<p><strong>练习交付</strong>：把 banner 加入项目并在反证 1（§7.7）中验证它确实亮起来。</p>
+<hr>
+<h2 id="7-验证">§7 验证</h2>
+<h3 id="71---75本日不涉及全部前置到-15">§7.1 - §7.5（本日不涉及，全部前置到 §1.5）</h3>
+<h3 id="76-单元-集成测试">§7.6 单元 + 集成测试</h3>
+<p><strong>§7.6.1 后端 E2E 冒烟（<code>apps/api/test/e2e/m2-full-loop.e2e-spec.ts</code>）</strong></p>
+<pre><code class="language-bash">cd apps/api
+pnpm test:e2e -- m2-full-loop
+</code></pre>
+<p>期望输出（两个 it 全绿）：</p>
+<pre><code> PASS  test/e2e/m2-full-loop.e2e-spec.ts
+  M2 full loop e2e (metric → alert → transition)
+    ✓ metric-in → z-score hit → alert row → transition → version increments (~2.3s)
+    ✓ metric-in → concurrent double ACK → exactly one 409 (~0.4s)
+</code></pre>
+<p><strong>§7.6.2 前端 Playwright（<code>apps/web/tests/e2e/m2-gateway.spec.ts</code>）</strong></p>
+<pre><code class="language-bash"># 终端 1
+cd apps/api &amp;&amp; pnpm start:dev
+# 终端 2
+cd apps/web &amp;&amp; pnpm dev
+# 终端 3
+cd apps/web &amp;&amp; pnpm exec playwright test m2-gateway
+</code></pre>
+<p>期望输出：</p>
+<pre><code>Running 2 tests using 1 worker
+  ✓  m2-gateway.spec.ts:4:3 › metric → WS frame → AlertList new row → click Acknowledge → status flips (5.1s)
+  ✓  m2-gateway.spec.ts:32:3 › WebSocket disconnect → reconnect → no duplicate rows (7.4s)
+</code></pre>
+<p><strong>§7.6.3 时序图源码 lint</strong></p>
+<pre><code class="language-bash">pnpm exec mmdc -i docs/architecture/m2-e2e-sequence.md -o /tmp/m2.svg
+# 期望：无 parse error；生成的 SVG 至少 24 个 &lt;text&gt; 节点（每个 note/message 一个）
+</code></pre>
+<p>三组测试全部通过后才算 §7.6 结束。</p>
+<h3 id="77-反证实验-1-断开-websocket-广播">§7.7 反证实验 1 —— 断开 WebSocket 广播</h3>
+<p><strong>目的</strong>：证明当 WS 广播失效时，前端 <code>DegradeBanner</code> 能亮起，<code>m2-gateway.spec.ts</code> 的第一个用例会以确定断言失败。</p>
+<p><strong>动作</strong>：</p>
+<p>在 <code>apps/api/src/ws/ws.gateway.ts</code> 的 <code>publishToRoom</code> 里加一行 <code>return;</code> 直接短路：</p>
+<pre><code class="language-typescript">publishToRoom(room: string, payload: unknown) {
+  return; // ← 反证实验 1
+  this.server.to(room).emit('event', payload);
+}
+</code></pre>
+<p><strong>期待现象</strong>：</p>
+<ol>
+<li>后端 <code>pnpm test:e2e -- m2-full-loop</code> 仍通过（因为它不依赖 WS）。</li>
+<li>前端 Playwright <code>m2-gateway.spec.ts</code> 第一个用例的 <code>await expect(newRow).toBeVisible({ timeout: 3000 })</code> 断言超时红。</li>
+<li><code>DegradeBanner</code> 3 秒内出现（因为 <code>wsClient</code> 心跳超时会触发 <code>offline</code> 事件）。</li>
+</ol>
+<p><strong>记录到 <code>docs/reversal-experiments/2026-07-23-ws-off.md</code></strong>：</p>
+<pre><code class="language-markdown"># 反证实验 1 - 断开 WS 广播
+
+日期：2026-07-23
+执行者：&lt;姓名&gt;
+
+## 动作
+在 `ws.gateway.ts` publishToRoom 首行 `return;`
+
+## 期待现象
+- 后端 e2e：仍通过（WS 不在链路上）
+- 前端 Playwright 第一个用例：3s 超时失败于 `newRow visible`
+- DegradeBanner：3s 内亮起
+
+## 实际现象
+（粘 pnpm 输出关键 5 行）
+
+## 恢复动作
+- 撤销 `return;` 那一行
+- 重跑 §7.6.2，确认第一个用例再次绿
+
+## 结论证据
+- 若 DegradeBanner 未亮起：说明 wsClient 心跳超时逻辑失效，属于 Bug 4，进入 §7 Bug 报告
+- 若第一个用例断言未超时：说明前端 AlertList 有非法本地 fallback 数据源，需回溯 Day05
+</code></pre>
+<p><strong>恢复</strong>：撤销 <code>return;</code>，重跑 §7.6.2 第一个用例，确认再次绿。</p>
+<h3 id="78-反证实验-2-服务端返回旧-version">§7.8 反证实验 2 —— 服务端返回旧 version</h3>
+<p><strong>目的</strong>：证明前端 <code>state.ts</code> 的 <code>revert(prev)</code> 分支在服务端返回 stale 数据时确实被触发。</p>
+<p><strong>动作</strong>：</p>
+<p>在 <code>apps/api/src/alerts/alerts.service.ts</code> 的 <code>transition()</code> 里，让服务端 <code>updateMany</code> 之后<strong>故意读旧值</strong>返回：</p>
+<pre><code class="language-typescript">async transition(id: string, action: AlertAction, expectedVersion: number, actorId: string) {
+  return this.prisma.$transaction(async (tx) =&gt; {
+    const before = await tx.alert.findUnique({ where: { id } });
+    if (!before) throw new NotFoundException();
+    assertCanTransition(before.status, action);
+    const nextStatus = STATUS_TABLE[before.status][action];
+    const result = await tx.alert.updateMany({
+      where: { id, version: expectedVersion },
+      data: { status: nextStatus, version: { increment: 1 } },
+    });
+    if (result.count === 0) {
+      const current = await tx.alert.findUnique({ where: { id } });
+      throw new ConflictException({ code: 'VERSION_CONFLICT', current });
+    }
+    return before; // ← 反证实验 2：故意返回 before 而不是 after
+  });
+}
+</code></pre>
+<p><strong>期待现象</strong>：</p>
+<ol>
+<li>后端 e2e 第一个用例的 <code>expect(transitionRes.body.version).toBe(1)</code> 失败为 0（因为返回了 before）。</li>
+<li>前端 Playwright 第一个用例的 <code>await expect(page.locator('[data-testid="alert-version"]')).toHaveText('1')</code> 失败。</li>
+<li><code>state.ts</code> 的 <code>commit</code> 收到 <code>version=0</code>，与本地 <code>optimistic</code> 后的预期 <code>version=1</code> 不一致；正确实现应触发 <code>revert(prev)</code>，UI 回到 NEW。</li>
+</ol>
+<p><strong>记录到 <code>docs/reversal-experiments/2026-07-23-stale-version.md</code></strong>（结构与反证 1 相同）。</p>
+<p><strong>恢复</strong>：把 <code>return before;</code> 改回 <code>return { ...before, status: nextStatus, version: expectedVersion + 1 };</code>，重跑 §7.6.1 与 §7.6.2 第一个用例确认再次绿。</p>
+<h3 id="79-四件套-commit不推送">§7.9 四件套 + commit（不推送）</h3>
+<p>四件套：</p>
+<pre><code class="language-bash">cd D:/demo/ai-techer/p1-monitor
+pnpm typecheck
+pnpm lint
+pnpm test
+pnpm build
+</code></pre>
+<p>Commit（Conventional Commits + <code>Refs: Day10</code>）：</p>
+<pre><code class="language-bash">git add docs/architecture/m2-e2e-sequence.md \
+        docs/m2-bug-report.md \
+        docs/reversal-experiments/ \
+        apps/api/test/e2e/m2-full-loop.e2e-spec.ts \
+        apps/web/tests/e2e/m2-gateway.spec.ts \
+        apps/web/src/features/alert-list/DegradeBanner.vue
+
+git commit -m "docs(m2): freeze end-to-end evidence and independent bug reports
+
+- add mermaid e2e sequence with 3-ID trace table
+- add supertest e2e (metric-in → transition + concurrent 409)
+- add playwright e2e (WS to DOM + reconnect dedupe)
+- add 3 independent bug repro/fix/regression records
+- add 2 reversal experiments (WS off + stale version)
+
+Refs: Day10"
+</code></pre>
+<p><strong>禁止 <code>git push</code></strong>，禁止部署，禁止执行 Prisma 生产环境迁移。</p>
+<hr>
+<h2 id="8-v3-自检清单对齐规范-8">§8 v3 自检清单（对齐规范 §8）</h2>
+<p>按顺序逐项打勾，一个不过要回去补。</p>
+<ol>
+<li><code>§0 项目当前状态</code> 明确列出 Day07-Day09 累积能力与 M2 门禁要证明的 4 类问题（无 mock 合同 / 三条 ID / 反证 / 关 AI）。</li>
+<li><code>§1.4</code> 有 5 个子块：rationale / tree / diff-table / 依赖箭头 / 3 个理解问题。</li>
+<li><code>§1.5</code> 出现"按第 5.3 节的代码"和"边写边问自己"两条指令。</li>
+<li><code>§5</code> 覆盖 v1 → v2 → v3 三层演进（逐层自证 → E2E → 关 AI + 反证），每层给出代码/断言与遗留问题。</li>
+<li><code>§5.3</code> 完整给出时序图 Mermaid、后端 E2E、前端 Playwright、Bug 报告模板 4 段代码，零省略号、零"…此处略"。</li>
+<li><code>§5.4</code> 六个知识点，每点五要素俱全（解决的问题 / 运行机制 / 项目落点 / 生产误区 / 验证方法）。</li>
+<li><code>§6.5</code> 存在，主题聚焦 HTML/表单原生能力（本日：<code>role="status"</code> + <code>aria-live</code> + <code>hidden</code>）。</li>
+<li><code>§7.6/§7.7/§7.8</code> 分别给出测试代码与两个反证实验。</li>
+<li><code>§7.9</code> 明确禁止 <code>git push</code>，commit message 含 <code>Refs: Day10</code>。</li>
+<li>全文 0 处 <code>&gt; ✅</code> 或 <code>&gt; ❌</code> 块引用格式。</li>
+<li><code>§12</code> 保留 PDF 面试题原文与"不能替代教师五连问"的免责声明。</li>
+</ol>
+<hr>
+<h2 id="9-ai-与人分工">§9 AI 与人分工</h2>
+<p>Day10 是特殊日：<strong>人 100%，AI 0%</strong>。</p>
+<ul>
+<li>人写：时序图、E2E 测试、Bug 报告、反证实验记录、<code>DegradeBanner</code> HTML 底子。</li>
+<li>AI：<strong>全部关闭</strong>。GitHub Copilot、Cursor Chat、Claude Code、Kiro、任何 AI 网页 tab 一律退出登录并关闭。</li>
+<li>允许工具：<code>git</code>、<code>grep</code>、<code>curl</code>、<code>httpie</code>、<code>jq</code>、<code>psql</code>、<code>DBeaver</code>、DevTools（Network / Console / Application / Performance）。</li>
+<li>记录：本日不需要"AI Review"字段；改为"独立定位记录"字段，写清用哪些工具、哪些日志、哪些代码文件路径完成定位。</li>
+</ul>
+<p>违反规则的自我识别信号：若 Bug 报告里出现"AI 建议"、"Copilot 提示"、"我让它帮我"字样，本日成绩作废。</p>
+<hr>
+<h2 id="10-时间盒">§10 时间盒</h2>
+<ul>
+<li>原理与源码理解 90 分钟：画完 <code>m2-e2e-sequence.md</code> 时序图 + 三条 ID 追踪表；不写测试代码。</li>
+<li>真实项目增量 60 分钟：写 §5.3 的两个 e2e-spec 与 DegradeBanner；接受教师注入 3 个 Bug 并按四段式记录。</li>
+<li>测试与故障注入 20 分钟：跑 §7.6 三组测试；执行 §7.7、§7.8 两次反证实验。</li>
+<li>架构证据 + 复盘 10 分钟：把三件事（时序图 / Bug 报告 / 反证记录）交叉引用，回答课末三题。</li>
+</ul>
+<p>超时提醒：若"真实项目增量"块超过 130 分钟，停下评估卡点位置——是画不出时序图，还是找不到 Bug 层。前者去回 §5.3.1，后者去查 <code>logs/api.log</code> 的 <code>requestId</code> 全链。</p>
+<hr>
+<h2 id="11-通过标准">§11 通过标准</h2>
+<ul>
+<li><code>§7.6.1</code> 后端 e2e 两个 it 全绿。</li>
+<li><code>§7.6.2</code> 前端 Playwright 两个 test 全绿。</li>
+<li><code>§7.6.3</code> 时序图 Mermaid 无 parse error。</li>
+<li><code>docs/m2-bug-report.md</code> 有 3 个 Bug 的完整四段式记录，"定位证据"字段不含 AI 字样。</li>
+<li><code>§7.7</code> <code>§7.8</code> 两次反证实验都记录了"动作 / 期待现象 / 实际现象 / 恢复动作 / 结论证据"五项。</li>
+<li>commit 存在且 message 以 <code>Refs: Day10</code> 结尾；本地无 <code>git push</code>。</li>
+<li><strong>总分</strong>：闭卷（3 个 Bug 独立修复率）≥ 60% 且 时序图题 ≥ 60%，合计 ≥ 70。</li>
+</ul>
+<hr>
+<h2 id="12-pdf-面试题">§12 PDF 面试题</h2>
+<p>以下两道来源于公开 PDF 面试题，作为知识对照点保留，<strong>不能替代</strong>教师依据真实 diff 现场提出的五连问。教师验收权在教师，本节仅供自查。</p>
+<ol>
+<li>如果从零搭建企业级 AI Agent 编排平台，前端架构如何选型和设计？
+来源：《2026京东前端面试-大模型方向》，第 11 页。</li>
+<li>过去一年最具挑战性的技术问题是什么，你如何定位并解决？
+来源：《2026京东前端面试-大模型方向》，第 12 页。</li>
+</ol>
+<p>对应知识：M2 门禁对应第一题的"端到端数据流"部分（用今天时序图回答），第二题必须用今天 3 个 Bug 里最难的一个的四段式回答，禁止编造。</p>
+<hr>
+<h2 id="13-课末-3-个核心问题写完后先答这三题再进入教师五连问">§13 课末 3 个核心问题（写完后先答这三题，再进入教师五连问）</h2>
+<ol>
+<li>从 <code>POST /metrics</code> 到 AlertList 的新行渲染，请指着 <code>m2-e2e-sequence.md</code> 时序图逐个箭头讲一遍；三条 ID（requestId / wsSequence / alertVersion）分别在哪几个箭头上出现？如果只保留其中一条，哪类事故最难还原？</li>
+<li>反证实验 1（WS 断开）和反证实验 2（旧 version 返回）分别最先让哪个测试断言变红？如果断言变红的位置和你预期不一致，说明你对哪一层的行为理解有偏差？请回代码定位偏差点。</li>
+<li>3 个 Bug 里，哪一个最耗时定位？把定位过程压缩成 5 步交给下一位学生，让 TA 也能在 15 分钟内完成同类 Bug 的独立修复；再评估这 5 步是否可以固化为一个 <code>docs/debug-playbook.md</code> 的段落，供 Day11-Day30 使用。</li>
+</ol>
+<hr>
+<h2 id="14-教师五连问教师在真实-diff-前现场发问不预设题目">§14 教师五连问（教师在真实 diff 前现场发问，不预设题目）</h2>
+<p>学生提交 commit、测试输出、Bug 报告、反证记录、架构证据后，教师依据真实 diff 按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"发问 5 道。评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day10-old.html">查看 Day 10 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/09.html">← Day 09 · 状态机</a>
+            <a href="/ai-teacher-agent-devolop/day/11.html">Day 11 · Tool Registry →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E9%A1%B9%E7%9B%AE%E5%BD%93%E5%89%8D%E7%8A%B6%E6%80%81%E8%BF%9B%E5%85%A5-day10-%E5%89%8D">§0 项目当前状态（进入 Day10 前）</a></li><li><a href="#1-%E4%BB%8A%E6%97%A5%E7%9B%AE%E6%A0%87">§1 今日目标</a></li><li><a href="#2-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87">§2 环境准备</a></li><li><a href="#3-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E5%8F%98%E6%9B%B4prisma">§3 数据模型变更（Prisma）</a></li><li><a href="#4-%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96">§4 引入依赖</a></li><li><a href="#5-%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81">§5 核心代码</a></li><li><a href="#bug-2-%E4%B8%80%E5%8F%A5%E8%AF%9D%E7%8E%B0%E8%B1%A1">Bug 2: &lt;一句话现象&gt;</a></li><li><a href="#bug-3-%E4%B8%80%E5%8F%A5%E8%AF%9D%E7%8E%B0%E8%B1%A1">Bug 3: &lt;一句话现象&gt;</a></li><li><a href="#7-%E9%AA%8C%E8%AF%81">§7 验证</a></li><li><a href="#8-v3-%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95%E5%AF%B9%E9%BD%90%E8%A7%84%E8%8C%83-8">§8 v3 自检清单（对齐规范 §8）</a></li><li><a href="#9-ai-%E4%B8%8E%E4%BA%BA%E5%88%86%E5%B7%A5">§9 AI 与人分工</a></li><li><a href="#10-%E6%97%B6%E9%97%B4%E7%9B%92">§10 时间盒</a></li><li><a href="#11-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86">§11 通过标准</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">§12 PDF 面试题</a></li><li><a href="#13-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E5%86%99%E5%AE%8C%E5%90%8E%E5%85%88%E7%AD%94%E8%BF%99%E4%B8%89%E9%A2%98%E5%86%8D%E8%BF%9B%E5%85%A5%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">§13 课末 3 个核心问题（写完后先答这三题，再进入教师五连问）</a></li><li><a href="#14-%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E6%95%99%E5%B8%88%E5%9C%A8%E7%9C%9F%E5%AE%9E-diff-%E5%89%8D%E7%8E%B0%E5%9C%BA%E5%8F%91%E9%97%AE%E4%B8%8D%E9%A2%84%E8%AE%BE%E9%A2%98%E7%9B%AE">§14 教师五连问（教师在真实 diff 前现场发问，不预设题目）</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

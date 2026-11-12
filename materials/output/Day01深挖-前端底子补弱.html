@@ -1,0 +1,1770 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day01 深挖 · 前端底子补弱</title>
+<style>
+  :root {
+    --bg: #fbfbfa;
+    --fg: #1f2328;
+    --muted: #57606a;
+    --accent: #0969da;
+    --danger: #cf222e;
+    --ok: #1a7f37;
+    --warn: #9a6700;
+    --border: #d0d7de;
+    --code-bg: #f6f8fa;
+    --code-fg: #24292f;
+    --hi-key: #cf222e;
+    --hi-str: #0a3069;
+    --hi-com: #6e7781;
+    --hi-fun: #8250df;
+    --hi-type: #953800;
+    --hi-num: #0550ae;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 48px 32px 96px;
+  }
+  header.doc-head {
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  header.doc-head h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    line-height: 1.3;
+  }
+  header.doc-head .subtitle {
+    color: var(--muted);
+    font-size: 14px;
+  }
+  header.doc-head .subtitle a { color: var(--accent); text-decoration: none; }
+  header.doc-head .subtitle a:hover { text-decoration: underline; }
+  header.doc-head .method {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: #fff8c5;
+    border-left: 4px solid #eac54f;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  h2 {
+    margin: 56px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    font-size: 22px;
+  }
+  h3 {
+    margin: 40px 0 12px;
+    font-size: 18px;
+  }
+  h4 {
+    margin: 28px 0 8px;
+    font-size: 16px;
+    color: var(--fg);
+  }
+  p { margin: 12px 0; }
+
+  code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 90%;
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--code-fg);
+  }
+  pre {
+    background: var(--code-bg);
+    color: var(--code-fg);
+    padding: 16px 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 13.5px;
+    line-height: 1.65;
+    border: 1px solid var(--border);
+  }
+  pre code {
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+  .k { color: var(--hi-key); }
+  .s { color: var(--hi-str); }
+  .c { color: var(--hi-com); font-style: italic; }
+  .f { color: var(--hi-fun); }
+  .t { color: var(--hi-type); }
+  .n { color: var(--hi-num); }
+  .err { color: var(--danger); font-weight: 600; }
+  .ok  { color: var(--ok); font-weight: 600; }
+
+  blockquote {
+    margin: 16px 0;
+    padding: 10px 16px;
+    border-left: 4px solid var(--border);
+    background: #f6f8fa;
+    color: var(--muted);
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 16px 0;
+    font-size: 14.5px;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: #f6f8fa; font-weight: 600; }
+
+  details {
+    margin: 12px 0;
+    padding: 12px 16px;
+    background: #f6f8fa;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  details[open] { background: #ffffff; }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--accent);
+    user-select: none;
+  }
+  details > *:not(summary) { margin-top: 12px; }
+
+  .callout {
+    margin: 20px 0;
+    padding: 12px 16px;
+    border-radius: 6px;
+    border-left: 4px solid var(--accent);
+    background: #ddf4ff;
+    font-size: 14.5px;
+  }
+  .callout.warn { border-color: #eac54f; background: #fff8c5; }
+  .callout.danger { border-color: var(--danger); background: #ffebe9; }
+  .callout.ok { border-color: var(--ok); background: #dafbe1; }
+
+  .qa-block { margin: 24px 0; }
+  .qa-block .q-title {
+    font-weight: 600;
+    color: var(--fg);
+    margin-bottom: 8px;
+  }
+  .qa-block .q-tag {
+    display: inline-block;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: #ddf4ff;
+    color: var(--accent);
+    margin-right: 8px;
+    font-weight: 500;
+  }
+
+  .interview {
+    margin: 24px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    background: #ffffff;
+  }
+  .interview .tier {
+    margin: 10px 0;
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 14.5px;
+  }
+  .tier.bad  { background: #ffebe9; }
+  .tier.mid  { background: #fff8c5; }
+  .tier.good { background: #dafbe1; }
+  .tier b { display: inline-block; min-width: 92px; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 48px 0;
+  }
+
+  .toc {
+    background: #f6f8fa;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    font-size: 14px;
+  }
+  .toc ol { margin: 8px 0 0 20px; padding: 0; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  .footer-note {
+    margin-top: 64px;
+    padding: 20px 24px;
+    background: #f6f8fa;
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+</style>
+<link rel="icon" href="data:,"><link rel="stylesheet" href="/ai-teacher-agent-devolop/material.css"><script defer="" src="/ai-teacher-agent-devolop/reader.js"></script></head>
+<body><nav class="material-toolbar" aria-label="资料导航">
+    <a data-back="" href="/ai-teacher-agent-devolop/day/01.html">← 返回</a><a href="/ai-teacher-agent-devolop/">学习计划</a>
+  </nav>
+<main>
+
+<header class="doc-head">
+  <h1>Day01 深挖 · 前端底子补弱</h1>
+  <div class="subtitle">
+    配套主课程：<a href="/ai-teacher-agent-devolop/day/01.html">Day01.md</a>　·
+    配套画像：<a href="/ai-teacher-agent-devolop/missing.html?ref=.%2F12%E5%8F%B7%E5%AD%A6%E7%94%9F%E4%B8%A5%E6%A0%BC%E8%AE%AD%E7%BB%83%E6%8A%A5%E5%91%8A.md">12号学生严格训练报告</a>　/　<a href="/ai-teacher-agent-devolop/missing.html?ref=.%2F%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E8%83%BD%E5%8A%9B%E7%94%BB%E5%83%8F%E4%B8%8E%E8%AF%84%E7%BA%A7.md">当前能力画像与评级</a>
+  </div>
+  <div class="method">
+    <b>本文组织方式：</b>先给出今天 v3 项目里的一段真实代码 → 从这段代码里拆出知识点 → 用同一段代码变形做反例 → 分层提问逼你答 → 面试真题从这段代码出发。你不是在读教材，是在读自己刚写的代码。
+  </div>
+
+  <div class="toc">
+    <b>目录</b>
+    <ol>
+      <li><a href="#dig-1">深挖 1：TypeScript 判别联合 —— 从项目里的 <code>AgentEvent</code> 讲起</a></li>
+      <li><a href="#dig-2">深挖 2：JavaScript / Event Loop —— 从 <code>fixtures/sample-run.ts</code> 的 <code>setTimeout</code> 讲起</a></li>
+      <li><a href="#dig-3">深挖 3：测试纪律 —— 从 <code>agent-run-state.spec.ts</code> 为什么能测讲起</a></li>
+      <li><a href="#dig-4">深挖 4：AI 流式处理 —— 从 fixture 到真 SSE 的心智负担迁移</a></li>
+      <li><a href="#dig-5">深挖 5：架构表达 —— 30 秒讲清 domain / features / composables / app 四层</a></li>
+      <li><a href="#dig-6">深挖 6：证据链与自述 —— 把今天的 v3 讲成 STAR + ADR</a></li>
+    </ol>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<h2 id="dig-1">深挖 1：TypeScript 判别联合 —— 从今天项目里的 <code>AgentEvent</code> 讲起</h2>
+
+<p><b>为什么先挖这个：</b>12 号报告里把「技能区没有 TypeScript」列为高级前端最明显的缺口（第 1 页/第 4 节 B 级第 1 条）。而今天 v3 项目里，<code>AgentEvent</code> 就是判别联合最典型的教科书应用。挖懂它，你在简历上就有了写「TypeScript」的第一个证据。</p>
+
+<h3>1.1 场景锚点（10 秒定位）</h3>
+
+<p>今天 v3 里，后端会一条一条推 9 种不同事件给前端。前端 reducer 要根据 <code>type</code> 字段做 9 种不同处理。<b>这里存在一个天然矛盾：</b>9 种事件的字段完全不一样（<code>text.delta</code> 有 <code>text</code>，<code>tool.started</code> 有 <code>callId</code> 和 <code>toolName</code>，<code>run.failed</code> 有 <code>code</code> 和 <code>message</code>），但它们又必须能被同一个函数 <code>reduceAgentEvent(state, event)</code> 接收。</p>
+
+<p>如果你有 6 年经验、只写过 Vue 中后台，遇到这种场景 90% 的反应会是：</p>
+
+<pre><code><span class="c">// 反应 1:偷懒</span>
+<span class="k">type</span> <span class="t">AgentEvent</span> = { type: <span class="t">string</span>; data: <span class="t">any</span> }
+
+<span class="c">// 反应 2:自以为严谨</span>
+<span class="k">interface</span> <span class="t">AgentEvent</span> {
+  type: <span class="t">string</span>
+  callId?: <span class="t">string</span>
+  text?: <span class="t">string</span>
+  code?: <span class="t">string</span>
+  message?: <span class="t">string</span>
+  toolName?: <span class="t">string</span>
+  <span class="c">// ... 20 个可选字段</span>
+}</code></pre>
+
+<p>两种都是错的。正确的写法是<b>判别联合（Discriminated Union）</b>。</p>
+
+<h3>1.2 项目代码原样</h3>
+
+<p><code>src/domain/agent/agent-event.ts</code>：</p>
+
+<pre><code><span class="k">export type</span> <span class="t">RunId</span> = <span class="t">string</span> &amp; { <span class="k">readonly</span> __brand: <span class="s">'RunId'</span> }
+
+<span class="k">type</span> <span class="t">EventMeta</span> = {
+  runId: <span class="t">RunId</span>
+  sequence: <span class="t">number</span>
+  occurredAt: <span class="t">string</span>
+}
+
+<span class="k">export type</span> <span class="t">AgentEvent</span> =
+  | (<span class="t">EventMeta</span> &amp; { type: <span class="s">'run.started'</span>;         payload: <span class="t">Record</span>&lt;<span class="t">string</span>, <span class="t">never</span>&gt; })
+  | (<span class="t">EventMeta</span> &amp; { type: <span class="s">'text.delta'</span>;          payload: { text: <span class="t">string</span> } })
+  | (<span class="t">EventMeta</span> &amp; { type: <span class="s">'tool.started'</span>;        payload: { callId: <span class="t">string</span>; toolName: <span class="t">string</span>; argumentSummary: <span class="t">string</span> } })
+  | (<span class="t">EventMeta</span> &amp; { type: <span class="s">'tool.succeeded'</span>;      payload: { callId: <span class="t">string</span>; resultSummary: <span class="t">string</span>; durationMs: <span class="t">number</span> } })
+  | (<span class="t">EventMeta</span> &amp; { type: <span class="s">'tool.failed'</span>;         payload: { callId: <span class="t">string</span>; code: <span class="t">string</span>; message: <span class="t">string</span> } })
+  | (<span class="t">EventMeta</span> &amp; { type: <span class="s">'approval.required'</span>;   payload: { approvalId: <span class="t">string</span>; action: <span class="t">string</span>; risk: <span class="s">'low'</span> | <span class="s">'medium'</span> | <span class="s">'high'</span> } })
+  | (<span class="t">EventMeta</span> &amp; { type: <span class="s">'run.cancelled'</span>;       payload: { reason: <span class="t">string</span> } })
+  | (<span class="t">EventMeta</span> &amp; { type: <span class="s">'run.failed'</span>;          payload: { code: <span class="t">string</span>; message: <span class="t">string</span> } })
+  | (<span class="t">EventMeta</span> &amp; { type: <span class="s">'run.finished'</span>;        payload: { summary: <span class="t">string</span> } })
+
+<span class="k">export function</span> <span class="f">assertNever</span>(value: <span class="t">never</span>): <span class="t">never</span> {
+  <span class="k">throw new</span> <span class="f">Error</span>(<span class="s">`Unhandled AgentEvent: ${</span><span class="f">JSON.stringify</span><span class="s">(value)}`</span>)
+}</code></pre>
+
+<div class="callout warn">
+  <b>别急着往下看。</b> 先花 30 秒问自己：
+  <ul style="margin:8px 0 0 20px; padding:0;">
+    <li>这里为什么用 <code>type</code> 不用 <code>interface</code>？</li>
+    <li><code>RunId = string &amp; { readonly __brand: 'RunId' }</code> 这个 <code>__brand</code> 是干嘛的？运行时存在吗？</li>
+    <li><code>payload: Record&lt;string, never&gt;</code> 和 <code>payload: {}</code> 一样吗？</li>
+    <li>为什么每一行都写 <code>EventMeta &amp; { ... }</code>？能不能提取到外面？</li>
+  </ul>
+  <p style="margin:12px 0 0;">这四个问题都能答上来，深挖 1 可以跳过。答不上，继续。</p>
+</div>
+
+<h3>1.3 拆解：这段代码里的 5 个设计点</h3>
+
+<h4>设计点 A：为什么用 <code>type</code> 不用 <code>interface</code></h4>
+
+<p><code>interface</code> 不能定义联合类型（union）。你不能写：</p>
+
+<pre><code><span class="k">interface</span> <span class="t">AgentEvent</span> =                              <span class="err">// ✗ 语法错误</span>
+  | { type: <span class="s">'text.delta'</span>; text: <span class="t">string</span> }
+  | { type: <span class="s">'run.started'</span> }</code></pre>
+
+<p><code>interface</code> 只能描述「一个对象的形状」，不能描述「多个对象之一」。<code>type</code> 才能用 <code>|</code> 组合。</p>
+
+<div class="callout">
+  <b>记忆法：</b><code>interface</code> 定义<b>结构</b>，<code>type</code> 定义<b>结构或组合</b>。凡是涉及「或者/联合/交叉/元组」的场景，一律用 <code>type</code>。
+</div>
+
+<h4>设计点 B：<code>RunId</code> 为什么要 branded type</h4>
+
+<pre><code><span class="k">export type</span> <span class="t">RunId</span> = <span class="t">string</span> &amp; { <span class="k">readonly</span> __brand: <span class="s">'RunId'</span> }</code></pre>
+
+<p><code>__brand</code> 字段在<b>运行时不存在</b>（它只活在 TypeScript 的类型系统里）。运行时 <code>RunId</code> 就是普通字符串。它的作用只在编译期：</p>
+
+<pre><code><span class="k">function</span> <span class="f">reduce</span>(state: <span class="t">AgentRunState</span>, event: <span class="t">AgentEvent</span>) {
+  <span class="k">const</span> otherRun = <span class="s">'run-999'</span> <span class="k">as</span> <span class="t">string</span>
+  event.runId = otherRun            <span class="err">// ✗ 编译报错:string 不能赋给 RunId</span>
+  event.runId = otherRun <span class="k">as</span> <span class="t">RunId</span>   <span class="ok">// ✓ 通过,但必须显式声明"我知道我在做什么"</span>
+}</code></pre>
+
+<p>这叫<b>「名义类型模拟」</b>（TypeScript 是结构类型系统，原生不区分同结构的两种类型）。用途：防止<b>手滑把普通 string 传给期望 RunId 的地方</b>。类似的场景还有 <code>UserId</code>、<code>OrderId</code>、<code>Timestamp</code>。</p>
+
+<h4>设计点 C：<code>payload: Record&lt;string, never&gt;</code> 和 <code>payload: {}</code> 的区别</h4>
+
+<ul>
+  <li><code>{}</code> 表示「任意非 null/undefined 的对象」，连 <code>{ foo: 1 }</code> 都能过。</li>
+  <li><code>Record&lt;string, never&gt;</code> 表示「键是 string，值必须是 never」—— 因为 never 类型不接受任何值，所以这个对象<b>必须是空的</b>。</li>
+</ul>
+
+<pre><code><span class="k">const</span> a: {} = { anything: <span class="n">1</span> }                   <span class="ok">// ✓</span>
+<span class="k">const</span> b: <span class="t">Record</span>&lt;<span class="t">string</span>, <span class="t">never</span>&gt; = { anything: <span class="n">1</span> } <span class="err">// ✗ 编译报错</span>
+<span class="k">const</span> c: <span class="t">Record</span>&lt;<span class="t">string</span>, <span class="t">never</span>&gt; = {}              <span class="ok">// ✓</span></code></pre>
+
+<p><code>run.started</code> 事件不需要任何 payload，但又不能省略 <code>payload</code> 字段（否则 9 种事件形状不一致，判别联合的一致性会崩）。用 <code>Record&lt;string, never&gt;</code> 精确表达「这里有个 payload 字段，但里面必须是空的」。</p>
+
+<h4>设计点 D：为什么每一行都写 <code>EventMeta &amp; { ... }</code></h4>
+
+<p><code>EventMeta</code> 是所有事件都有的公共字段（<code>runId</code>、<code>sequence</code>、<code>occurredAt</code>）。用 <code>&amp;</code>（交叉类型）把它拼上，等于给每种事件都加上这三个字段：</p>
+
+<pre><code>(<span class="t">EventMeta</span> &amp; { type: <span class="s">'text.delta'</span>; payload: { text: <span class="t">string</span> } })
+<span class="c">// 等价于</span>
+{
+  runId: <span class="t">RunId</span>
+  sequence: <span class="t">number</span>
+  occurredAt: <span class="t">string</span>
+  type: <span class="s">'text.delta'</span>
+  payload: { text: <span class="t">string</span> }
+}</code></pre>
+
+<p><b>为什么不提取到外层？</b>比如这样：</p>
+
+<pre><code><span class="c">// 反例:看起来更简洁,但改动更麻烦</span>
+<span class="k">type</span> <span class="t">AgentEvent</span> = <span class="t">EventMeta</span> &amp; (
+  | { type: <span class="s">'text.delta'</span>; payload: { text: <span class="t">string</span> } }
+  | { type: <span class="s">'run.started'</span>; payload: <span class="t">Record</span>&lt;<span class="t">string</span>, <span class="t">never</span>&gt; }
+)</code></pre>
+
+<p>这样其实<b>也能工作</b>。真实项目里两种写法都有，视个人偏好。但把 <code>EventMeta &amp;</code> 写在每一行有一个心理效果：<b>清楚地强调「每一种事件都是完整的 event，不要漏掉公共字段」</b>。当你未来给某种事件单独扩字段（比如 <code>text.delta</code> 加个 <code>chunkIndex</code>）时，写在每行的形式更容易改。</p>
+
+<h4>设计点 E：9 种事件的字面量类型 <code>'text.delta' | 'run.started' | ...</code></h4>
+
+<p>关键在 <code>type: 'text.delta'</code> 这里的 <code>'text.delta'</code> <b>不是 string 类型</b>，而是<b>字符串字面量类型</b>（String Literal Type）。它是<b>只有「text.delta」这一个值</b>的类型。</p>
+
+<p>正是因为每种事件的 <code>type</code> 都是字面量类型，TS 才能做<b>类型收窄</b>（narrowing）：</p>
+
+<pre><code><span class="k">function</span> <span class="f">handle</span>(event: <span class="t">AgentEvent</span>) {
+  <span class="k">if</span> (event.type === <span class="s">'text.delta'</span>) {
+    <span class="c">// 到这里,TS 知道 event 一定是 (EventMeta &amp; { type: 'text.delta'; payload: { text: string } })</span>
+    <span class="f">console.log</span>(event.payload.text)        <span class="ok">// ✓</span>
+    <span class="f">console.log</span>(event.payload.callId)      <span class="err">// ✗ 编译报错:text.delta 没有 callId</span>
+  }
+}</code></pre>
+
+<p>如果 <code>type</code> 是普通 <code>string</code> 类型，TS 无法收窄，你在 if 里访问 <code>event.payload.text</code> 就要冒着运行时 undefined 的风险。</p>
+
+<h3>1.4 原理：TS 编译期到底做了什么</h3>
+
+<p>跑一遍下面这段「心算」，你就理解了判别联合的运行机制：</p>
+
+<pre><code><span class="k">function</span> <span class="f">reduce</span>(state: <span class="t">AgentRunState</span>, event: <span class="t">AgentEvent</span>): <span class="t">AgentRunState</span> {
+  <span class="c">//                                        ↑ event 类型是 9 种事件的并集</span>
+  <span class="k">switch</span> (event.type) {
+    <span class="c">//     ↑ event.type 类型是 'run.started' | 'text.delta' | ... 9 个字面量的并集</span>
+    <span class="k">case</span> <span class="s">'text.delta'</span>:
+      <span class="c">//   ↑ 匹配到 'text.delta' 字面量</span>
+      <span class="c">//   TS 把 event 的类型从"9 种之一"收窄成"1 种(text.delta)"</span>
+      <span class="k">return</span> { ...state, timeline: [...state.timeline, { detail: event.payload.text }] }
+      <span class="c">//                                                              ↑ event.payload 已是 { text: string },直接访问 .text 无警告</span>
+    <span class="k">case</span> <span class="s">'run.started'</span>:
+      <span class="c">//   TS 把 event 类型收窄成 run.started</span>
+      <span class="k">return</span> { ...state, status: <span class="s">'running'</span> }
+    <span class="c">// ... 其余 7 种</span>
+    <span class="k">default</span>:
+      <span class="c">// 到这里,前面 9 种都处理过了,TS 认为 event 是"9-9=0 种"—— 即 never 类型</span>
+      <span class="k">return</span> <span class="f">assertNever</span>(event)
+      <span class="c">//                 ↑ 只有 never 类型能被赋给参数类型 never,编译通过</span>
+  }
+}</code></pre>
+
+<div class="callout ok">
+  <b>关键洞察：</b>判别联合的核心不是「我写了 9 个类型」，而是「<b>TS 能从一个字段的值，反推出整个对象的形状</b>」。这个反推的能力，就是它比 <code>{ type: string; data: any }</code> 强 100 倍的地方。
+</div>
+
+<h3>1.5 反例 A：如果用 <code>{ type: string; data: any }</code> 会怎样</h3>
+
+<p>假设你回退到反应 1 的写法：</p>
+
+<pre><code><span class="k">type</span> <span class="t">BadEvent</span> = { type: <span class="t">string</span>; data: <span class="t">any</span> }
+
+<span class="k">function</span> <span class="f">reduce</span>(state: <span class="t">AgentRunState</span>, event: <span class="t">BadEvent</span>) {
+  <span class="k">if</span> (event.type === <span class="s">'tool.stared'</span>) {  <span class="err">// ← 拼错了:stared 少了一个 t</span>
+    <span class="c">// TS 认为 event.type: string, 'tool.stared' 也是 string,可以比较</span>
+    <span class="c">// 编译通过,运行时永远进不来这个分支</span>
+    <span class="k">return</span> { ...state, timeline: [...state.timeline, { title: event.data.tolName }] }
+    <span class="c">//                                                            ↑ tolName 拼错,data 是 any,TS 什么都不管</span>
+    <span class="c">//                                                            运行时 event.data.tolName 是 undefined</span>
+    <span class="c">//                                                            timeline 里出现 "调用工具:undefined"</span>
+  }
+}</code></pre>
+
+<div class="callout danger">
+  <b>能编译。能运行。用户能看到 bug。</b>这就是 12 号报告第 3 页说「"智能助手"和"大模型分析报表"不能证明 AI 前端能力」的技术根源之一 —— 用 <code>any</code> 让类型系统失效，等于回到 JavaScript。
+</div>
+
+<p>判别联合的价值，反过来说就是：<b>同样的拼写错误，在判别联合里编译期就红了</b>。</p>
+
+<pre><code><span class="k">function</span> <span class="f">reduce</span>(state: <span class="t">AgentRunState</span>, event: <span class="t">AgentEvent</span>) {
+  <span class="k">if</span> (event.type === <span class="s">'tool.stared'</span>) {  <span class="err">// ✗ 编译报错:'tool.stared' 不在 9 种字面量的并集里</span>
+    <span class="c">// ...</span>
+  }
+}</code></pre>
+
+<h3>1.6 反例 B：用 interface + 手动 union（半吊子写法）</h3>
+
+<p>我见过 3 年经验的前端写成这样：</p>
+
+<pre><code><span class="k">interface</span> <span class="t">EventBase</span> {
+  type: <span class="t">string</span>
+  runId: <span class="t">string</span>
+}
+<span class="k">interface</span> <span class="t">TextDelta</span> <span class="k">extends</span> <span class="t">EventBase</span> {
+  type: <span class="s">'text.delta'</span>
+  text: <span class="t">string</span>
+}
+<span class="k">interface</span> <span class="t">ToolStarted</span> <span class="k">extends</span> <span class="t">EventBase</span> {
+  type: <span class="s">'tool.started'</span>
+  callId: <span class="t">string</span>
+  toolName: <span class="t">string</span>
+}
+<span class="k">type</span> <span class="t">AgentEvent</span> = <span class="t">TextDelta</span> | <span class="t">ToolStarted</span></code></pre>
+
+<p><b>问题在哪？</b></p>
+
+<ol>
+  <li><code>EventBase.type: string</code> 是宽类型，子接口的 <code>type: 'text.delta'</code> 是窄类型。虽然 TS 允许 <code>extends</code> 时收窄字段，但当你在 reducer 里对 <code>event: EventBase</code> 做 <code>if (event.type === 'text.delta')</code> 时，TS 无法收窄成 <code>TextDelta</code>。判别联合失效。</li>
+  <li>每个事件都用一个独立的 interface，9 种事件就是 9 个 interface，加 1 个 union。9 个文件级导出，污染 IDE 的自动补全。</li>
+  <li>想加新事件时，要写 3 处：新 interface、把它加到 union、reducer 里加 case。用 <code>type</code> 只需要写 2 处。</li>
+</ol>
+
+<p>这种写法看起来「更 OOP」，但<b>在 TypeScript 的类型系统里，<code>type</code> + union 是原生一等公民，<code>interface</code> + union 是二等公民</b>。碰到并列关系的类型，一律用 <code>type</code>。</p>
+
+<h3>1.7 分层提问 —— 先答，再看下一层的解答</h3>
+
+<div class="qa-block">
+  <div class="q-title"><span class="q-tag">问题 1（白板级）</span></div>
+  <p>如果我把 <code>AgentEvent</code> 里所有 9 种事件的 <code>type</code> 字段都改成 <code>type: string</code>，<code>reduceAgentEvent</code> 里的 switch case 还能编译通过吗？会出什么问题？</p>
+  <details>
+    <summary>展开答案</summary>
+    <p><b>能编译通过。</b>因为 <code>event.type === 'text.delta'</code> 是 <code>string === string</code> 的比较，TS 允许。</p>
+    <p>但是<b>收窄会失效</b>：switch 每一个 case 里，<code>event</code> 的类型仍然是完整的 <code>AgentEvent</code> union，访问 <code>event.payload.text</code> 会报错（因为不是所有 9 种事件都有 <code>payload.text</code>）。你只能加类型断言或者用 <code>if</code> + <code>in</code> 操作符手动缩窄，代码立刻膨胀。</p>
+    <p>更严重的是，<code>default</code> 分支里 <code>event</code> 类型不再是 <code>never</code>，<code>assertNever(event)</code> 编译报错。<b>exhaustive check 直接失效</b>。</p>
+  </details>
+</div>
+
+<div class="qa-block">
+  <div class="q-title"><span class="q-tag">问题 2（项目级）</span></div>
+  <p>今天 fixture 里的第 4 个事件是 <code>{ type: 'tool.succeeded', payload: { callId: 'c1', resultSummary: 'CPU 平均 87%', durationMs: 1800 } }</code>。如果我在 fixture 里少写一个字段，写成 <code>{ type: 'tool.succeeded', payload: { callId: 'c1' } }</code>，谁会先报错？TypeScript 编译期，还是 vitest 运行时？为什么？</p>
+  <details>
+    <summary>展开答案</summary>
+    <p><b>TypeScript 编译期先报错。</b>因为 <code>sample-run.ts</code> 里 <code>sampleEvents: AgentEvent[]</code> 有明确类型标注，TS 会检查每一个元素是否符合 <code>AgentEvent</code> 中的某一种。当 payload 缺字段时，TS 找不到能匹配的分支，报错："Type '{ callId: string }' is missing the following properties: resultSummary, durationMs"。</p>
+    <p><b>这就是判别联合的第二个价值：</b>它不仅在 reducer 里保护「消费方」，也在 fixture / 网络反序列化的地方保护「生产方」。少写一个字段，数据源头就红。</p>
+    <p>延伸思考：Day 2 要给 AgentEvent 加 Zod Schema，做的其实是同一件事的<b>运行时版本</b> —— 编译期靠 TS，运行时靠 Schema。两者一里一外，构成完整的合同边界。</p>
+  </details>
+</div>
+
+<div class="qa-block">
+  <div class="q-title"><span class="q-tag">问题 3（工程级)</span></div>
+  <p>Day 5 会把事件源从 fixture 换成 WebSocket，后端可能会发过来 <code>{ type: 'budget.exceeded', payload: { limitTokens: 10000 } }</code> 这种今天 AgentEvent 里没有的新事件。在<b>不改 AgentEvent 类型定义</b>的前提下，前端会发生什么？<b>改了 AgentEvent 类型但没在 reducer 里加 case</b>，又会发生什么？</p>
+  <details>
+    <summary>展开答案</summary>
+    <p><b>场景 A：不改 AgentEvent 类型定义</b></p>
+    <p>WebSocket 收到 JSON，反序列化后如果不经过 Schema 校验，就以 <code>unknown</code> / <code>any</code> 进入前端。你在 reducer 里做 <code>switch(event.type)</code>，匹配不到任何 case，走到 <code>default: assertNever(event)</code> —— <b>运行时抛异常</b>。UI 崩掉，但至少你会看到错误。</p>
+    <p>如果开发者偷懒把 <code>default</code> 改成 <code>return state</code> 静默忽略，budget.exceeded 事件会被<b>默默丢弃</b>，用户等到花儿都谢了也不知道 Agent 被预算限制阻断了。这就是 12 号报告说「AI 助手不能证明 AI 前端能力」的另一层原因：<b>新事件类型的接入策略，是 AI 前端的核心工程能力</b>。</p>
+    <p><b>场景 B：改了 AgentEvent 类型，但没在 reducer 里加 case</b></p>
+    <p>TS 编译报错。<code>default: assertNever(event)</code> 这一行报："Argument of type 'BudgetExceededEvent' is not assignable to parameter of type 'never'"。</p>
+    <p><b>你根本没法把这段代码 build 出去</b>，更别说部署。这就是 exhaustive check 的价值 —— 它把「忘了处理新事件」从<b>线上事故</b>变成<b>编译错误</b>。</p>
+  </details>
+</div>
+
+<div class="qa-block">
+  <div class="q-title"><span class="q-tag">问题 4（进阶）</span></div>
+  <p>在 reducer 里，<code>case 'tool.succeeded'</code> 分支需要通过 <code>callId</code> 找到之前 <code>tool.started</code> 时创建的 timeline item。假设某个恶意 payload 传了 <code>callId: '__proto__'</code>，项目会不会有原型链污染风险？为什么？</p>
+  <details>
+    <summary>展开答案</summary>
+    <p><b>项目里目前用的是 <code>state.timeline.map((item) =&gt; item.key === 'tool-' + event.payload.callId ? {...} : item)</code>，不会污染原型链。</b>因为 <code>map</code> 是数组遍历，访问 <code>item.key</code> 是字符串比较，不涉及对象属性设置。</p>
+    <p><b>但换一种写法就危险了</b>。假设 reducer 里为了性能改用 hash map：</p>
+    <pre><code><span class="k">const</span> toolsByCallId: <span class="t">Record</span>&lt;<span class="t">string</span>, <span class="t">TimelineItem</span>&gt; = {}
+toolsByCallId[event.payload.callId] = { ... }
+<span class="c">// 如果 callId 是 '__proto__',这一行会污染 Object.prototype</span></code></pre>
+    <p>这就是<b>为什么面试官问「你怎么处理 AI 场景下的安全边界」时，只答「XSS/CSRF」不够</b>。判别联合只解决「事件形状对不对」，不解决「payload 内容对不对」。后者要靠 Schema（Day 2）、沙箱、参数白名单。12 号报告 B 级第 4 条「安全与权限」的深度就是从这里开始。</p>
+  </details>
+</div>
+
+<div class="qa-block">
+  <div class="q-title"><span class="q-tag">问题 5（架构级）</span></div>
+  <p>今天 <code>AgentEvent</code> 是前后端<b>共享合同</b>。如果这个类型定义只放在前端 <code>src/domain/agent/agent-event.ts</code>，而后端（未来 Day 22 后的 NestJS）自己另写一份 TypeScript 类型或者用 class，会出什么问题？怎么设计才能避免？</p>
+  <details>
+    <summary>展开答案</summary>
+    <p><b>问题：</b>两份类型定义<b>手动同步</b>，一份改了另一份忘改，合同漂移。前端加了 <code>budget.exceeded</code>，后端还在发 v1 事件；后端加了 <code>retry.attempted</code>，前端 exhaustive check 直接崩。<b>这是 12 号报告第 2 页说「AgentEvent v1 到 v2 客户端漂移」背后的技术原因。</b></p>
+    <p><b>避免方式</b>（选一个）：</p>
+    <ol>
+      <li><b>Monorepo + 共享包：</b>在 <code>packages/contracts/</code> 里放 <code>agent-event.ts</code>，前后端都从这里 import。改一次同步两处。今天的 p1-monitor 目录如果未来变成 monorepo，应该用这个方案。</li>
+      <li><b>Schema-first：</b>用 Zod / TypeBox / Protobuf 定义 Schema，通过工具生成 TS 类型。合同的<b>权威版本</b>是 Schema 文件，前后端各自消费。Day 2 会走这条路。</li>
+      <li><b>OpenAPI + 代码生成：</b>如果通信是 HTTP，直接从 OpenAPI 生成两边的 client/server。事件流场景不太适用，更适合传统 REST。</li>
+    </ol>
+    <p>延伸思考：面试官问「你怎么维护前后端类型一致性」，一句「我们用 Zod 生成类型」是及格，能讲清「为什么不选 monorepo 共享 TS 类型 —— 因为运行时也需要校验、Zod 一次搞定两件事」就是高级。</p>
+  </details>
+</div>
+
+<h3>1.8 项目对手戏 —— 判别联合怎么和 <code>reduceAgentEvent</code> 配合</h3>
+
+<p>单独一个 <code>AgentEvent</code> 类型没什么用，它必须和消费方（reducer）配合才产生工程价值。今天 <code>agent-run-state.ts</code> 里的这段是最好的对手戏：</p>
+
+<pre><code><span class="k">export function</span> <span class="f">reduceAgentEvent</span>(
+  state: <span class="t">AgentRunState</span>,
+  event: <span class="t">AgentEvent</span>,
+): <span class="t">AgentRunState</span> {
+  <span class="k">if</span> (event.sequence &lt;= state.lastSequence) <span class="k">return</span> state
+  <span class="k">if</span> (<span class="f">isTerminal</span>(state.status)) <span class="k">return</span> state
+
+  <span class="k">switch</span> (event.type) {
+    <span class="k">case</span> <span class="s">'run.started'</span>:
+      <span class="k">return</span> { ...state, runId: event.runId, status: <span class="s">'running'</span>, lastSequence: event.sequence }
+    <span class="k">case</span> <span class="s">'text.delta'</span>:
+      <span class="k">return</span> { ...state, lastSequence: event.sequence,
+        timeline: [...state.timeline, { key: <span class="s">`text-${event.sequence}`</span>, kind: <span class="s">'text'</span>, title: <span class="s">'模型输出'</span>, detail: event.payload.text }] }
+    <span class="c">// ... 其余 7 个 case</span>
+    <span class="k">default</span>:
+      <span class="k">return</span> <span class="f">assertNever</span>(event)
+  }
+}</code></pre>
+
+<p><b>这段代码里判别联合起了三层作用：</b></p>
+
+<ol>
+  <li><b>入参保护：</b>调用 reducer 时，<code>event</code> 必须是 9 种之一；传别的形状，TS 编译期红。</li>
+  <li><b>分支收窄：</b>每个 case 里，<code>event</code> 的类型被自动缩窄到那一种，访问 payload 有精确提示。</li>
+  <li><b>遗漏检测：</b><code>default: assertNever(event)</code> 强制你必须处理完 9 种。加第 10 种时编译报错。</li>
+</ol>
+
+<p><b>Day 5 换成 WebSocket 后的心智负担分布：</b></p>
+
+<table>
+  <thead>
+    <tr><th>环节</th><th>谁在保护</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>WebSocket 反序列化（JSON → 对象）</td><td>Zod Schema（Day 2 加）</td></tr>
+    <tr><td>对象是否属于 9 种事件之一</td><td>判别联合（今天已加）</td></tr>
+    <tr><td>reducer 内部访问 payload 字段</td><td>类型收窄（今天已加）</td></tr>
+    <tr><td>未来加新事件类型时的漏处理</td><td>exhaustive check（今天已加）</td></tr>
+  </tbody>
+</table>
+
+<div class="callout ok">
+  前端安全度 = 上面 4 层的乘积。缺一层，漏洞就会出现在那一层。<b>这就是「完整的合同边界」的含义，也是简历上写「设计前端合同边界」的证据。</b>
+</div>
+
+<h3>1.9 面试真题拆解 —— 从今天的 <code>AgentEvent</code> 出发怎么答</h3>
+
+<div class="interview">
+  <h4>真题 1：「你在项目里怎么用 TypeScript？」</h4>
+  <div class="tier bad"><b>烂答法：</b>「我用 TypeScript 定义了接口，让代码更规范。」</div>
+  <div class="tier mid"><b>及格答法：</b>「我在监控项目里用 TypeScript 定义了 AgentEvent 判别联合，一共 9 种事件，每种事件有自己的 payload 形状。reducer 里的 switch 能做类型收窄，访问字段有精确提示。」</div>
+  <div class="tier good"><b>优秀答法（30 秒）：</b>「我把前后端的实时事件合同用 TypeScript 判别联合固化 —— 9 种事件、每种字面量类型、共享 EventMeta。reducer 里用 exhaustive check（default 分支 <code>assertNever</code>），加新事件类型时编译期强制我处理，避免了"新事件被 UI 静默吞掉"这类 bug。这个类型定义未来会通过 Zod Schema 生成，同时管住编译期和运行时。整个合同变化的爆炸半径，从"线上事故"降到"编译错误"。」</div>
+  <p style="margin-top:12px; font-size:14px; color:var(--muted);"><b>为什么优秀：</b>三层价值（判别、收窄、遗漏检测）+ 一层扩展（Zod 联动）+ 一句业务影响（「爆炸半径」）。这就是 12 号报告说「能不能从"背景-约束-选型-实现-权衡"讲清」的意思。</p>
+</div>
+
+<div class="interview">
+  <h4>真题 2：「<code>interface</code> 和 <code>type</code> 有什么区别？怎么选？」</h4>
+  <div class="tier bad"><b>烂答法：</b>「interface 可以继承，type 更灵活。」</div>
+  <div class="tier mid"><b>及格答法：</b>「interface 是接口，只能描述对象形状，可以被 extends 和 implements；type 是类型别名，能定义 union、intersection、tuple、conditional 等。定义联合类型必须用 type。」</div>
+  <div class="tier good"><b>优秀答法：</b>「选择规则我在项目里是这样的：定义"一个对象的形状"用 interface，因为它支持声明合并（比如给第三方库补类型）；定义"类型之间的关系"（union、intersection、mapped、conditional）一律用 type。今天项目的 AgentEvent 是 9 种事件的 union，只能用 type。如果我把它写成 interface + 手动 union，判别联合会失效 —— 因为父接口的 <code>type: string</code> 是宽类型，子接口的 <code>type: 'text.delta'</code> 是窄类型，TypeScript 在 switch 里不会自动向下收窄。我实际踩过这个坑，选 type 是因为它在这个场景是原生一等公民。」</div>
+</div>
+
+<div class="interview">
+  <h4>真题 3：「什么是 TypeScript 类型守卫？你在 AI 场景怎么用？」</h4>
+  <div class="tier bad"><b>烂答法：</b>「用 typeof、instanceof、in 判断类型。」</div>
+  <div class="tier mid"><b>及格答法：</b>「类型守卫是让 TS 缩窄类型的机制。AI 场景里，大模型返回的 JSON 是 unknown，我用 typeof / in / 自定义 is 函数 或者 Zod Schema 的 safeParse 缩窄成具体类型。」</div>
+  <div class="tier good"><b>优秀答法（挂钩今天的项目）：</b>「AI 场景下类型守卫有两类：<b>结构级</b>（TypeScript 编译期，靠判别联合的字面量 type 自动做，今天的 reduceAgentEvent 里的 switch 就是）和<b>运行时级</b>（Zod / io-ts 的 safeParse）。前者保护编译期访问字段的安全，后者保护网络数据进入类型系统的边界。我在监控项目里同时用两层 —— 判别联合管形状变体、Zod 管字段校验。这样大模型或者事件流上游随便发点什么，只要 Schema 挡住，判别联合就能保证 reducer 里代码 100% 类型安全。判别联合不加 Schema，一段 <code>type: 'text.delta', payload: null</code> 就能让 UI 白屏；Schema 不加判别联合，你在 reducer 里访问 payload.text 还是要写 <code>if(event.type === ...)</code>。两个都要，缺一不可。」</div>
+</div>
+
+<h3>1.10 下一步</h3>
+
+<ul>
+  <li><b>今天做完：</b>把这一节里 5 个提问在自己的学习日志里默写一遍答案，不看解答区。</li>
+  <li><b>本周内：</b>Day 2 要给 <code>AgentEvent</code> 加 Zod Schema，你会看到「运行时判别联合」是什么样。</li>
+  <li><b>Week 2 补深：</b>泛型、条件类型、映射类型（比如给 AgentEvent 自动生成 <code>EventByType&lt;'text.delta'&gt;</code> 的 helper），这些今天没用到但简历上应该出现。</li>
+  <li><b>面试前准备：</b>把 1.9 三个真题录音答一遍，每题控制在 45 秒以内。听回放挑毛病。</li>
+</ul>
+
+<hr>
+
+<!-- ============================================================ -->
+<h2 id="dig-2">深挖 2：JavaScript / Event Loop —— 从 <code>fixtures/sample-run.ts</code> 的 <code>setTimeout</code> 讲起</h2>
+
+<p><b>为什么挖这个：</b>12 号报告 A 级第 2 条「JavaScript 基础/Event Loop」评分 6.5/10，点名"7 年经验但原理深度不足"。今天 v3 的 fixture 用 <code>setTimeout</code> 串事件、用 <code>ref</code> 触发 Vue 响应式，看起来简单，但背后是宏任务/微任务/渲染帧三层队列的精确编排。挖懂它，面试官问"为什么文本能一段一段出现、为什么不需要 <code>requestAnimationFrame</code>"时你能答到点上。</p>
+
+<h3>2.1 场景锚点（10 秒定位）</h3>
+
+<p>今天 v3 里，<code>fixtures/sample-run.ts</code> 用 <code>setTimeout(..., 100/200/300ms)</code> 把 9 个事件串起来，模拟后端推送。前端 <code>useAgentRun</code> composable 监听 <code>events: Ref&lt;AgentEvent[]&gt;</code>，每次 push 新事件就触发 <code>watchEffect</code> 重新 reduce，Vue 自动刷新 UI。</p>
+
+<p><b>核心疑问：</b>为什么 <code>setTimeout</code> 能让 UI "一段一段出现"？如果把所有 <code>setTimeout</code> 都改成 0ms，UI 会怎样？如果改成 <code>Promise.resolve().then(...)</code>（微任务），又会怎样？</p>
+
+<h3>2.2 项目代码原样</h3>
+
+<p><code>src/features/agent-run/fixtures/sample-run.ts</code>：</p>
+
+<pre><code><span class="k">export function</span> <span class="f">startSampleRun</span>(events: <span class="t">Ref</span>&lt;<span class="t">AgentEvent</span>[]&gt;) {
+  events.value = []
+  <span class="f">setTimeout</span>(() =&gt; events.value.<span class="f">push</span>(sampleEvents[<span class="n">0</span>]), <span class="n">100</span>)
+  <span class="f">setTimeout</span>(() =&gt; events.value.<span class="f">push</span>(sampleEvents[<span class="n">1</span>]), <span class="n">200</span>)
+  <span class="f">setTimeout</span>(() =&gt; events.value.<span class="f">push</span>(sampleEvents[<span class="n">2</span>]), <span class="n">300</span>)
+  <span class="c">// ... 共 9 个 setTimeout</span>
+}</code></pre>
+
+<p><code>src/composables/useAgentRun.ts</code>（今天未写，Week 2 会补，这里先展示逻辑）：</p>
+
+<pre><code><span class="k">import</span> { ref, watchEffect } <span class="k">from</span> <span class="s">'vue'</span>
+
+<span class="k">export function</span> <span class="f">useAgentRun</span>(events: <span class="t">Ref</span>&lt;<span class="t">AgentEvent</span>[]&gt;) {
+  <span class="k">const</span> state = <span class="f">ref</span>&lt;<span class="t">AgentRunState</span>&gt;(initialState)
+
+  <span class="f">watchEffect</span>(() =&gt; {
+    state.value = events.value.<span class="f">reduce</span>(reduceAgentEvent, initialState)
+  })
+
+  <span class="k">return</span> { state }
+}</code></pre>
+
+<h3>2.3 拆解：这段代码里的 3 个设计点</h3>
+
+<h4>设计点 A：为什么用 <code>setTimeout</code> 而不是同步 push</h4>
+
+<p>如果改成同步：</p>
+
+<pre><code><span class="k">export function</span> <span class="f">startSampleRun</span>(events: <span class="t">Ref</span>&lt;<span class="t">AgentEvent</span>[]&gt;) {
+  events.value = []
+  events.value.<span class="f">push</span>(sampleEvents[<span class="n">0</span>])
+  events.value.<span class="f">push</span>(sampleEvents[<span class="n">1</span>])
+  events.value.<span class="f">push</span>(sampleEvents[<span class="n">2</span>])
+  <span class="c">// 9 个 push 在同一个宏任务里完成</span>
+}</code></pre>
+
+<p><b>结果：</b>UI 直接跳到最终状态（<code>awaiting-approval</code>），中间 8 次状态变化用户看不到。因为 Vue 的响应式更新是<b>异步批量</b>的：同一个宏任务里多次改 <code>events.value</code>，Vue 只在这个宏任务结束后、下一次渲染帧才刷新 DOM，合并成一次更新。</p>
+
+<h4>设计点 B：<code>setTimeout(..., 100/200/300)</code> 的延迟是相对起点还是相对前一个</h4>
+
+<p>答案：<b>相对起点</b>（调用 <code>startSampleRun</code> 的那一刻）。9 个 <code>setTimeout</code> 都在同一个同步代码块里注册，100ms/200ms/300ms 都是从 t=0 开始算。不是"第 1 个执行后等 100ms 再执行第 2 个"。</p>
+
+<p><b>验证：</b>如果改成 <code>setTimeout(..., 0)</code> 全部 0ms，9 个回调会在<b>同一轮宏任务队列</b>里依次执行（顺序由注册顺序决定），UI 仍然是一次性跳到最终状态。要让 UI 分段出现，延迟必须 &gt; 0，强制每个回调在不同的宏任务里执行。</p>
+
+<h4>设计点 C：为什么不用 <code>requestAnimationFrame</code>？</h4>
+
+<p>流式文本的"一段一段"不是动画帧的"逐帧渲染"。<code>requestAnimationFrame</code> 的回调在<b>浏览器准备重绘前</b>执行，每秒最多 60 次（16.6ms 一帧）；<code>setTimeout</code> 的回调在<b>宏任务队列</b>里执行，可以任意间隔。</p>
+
+<p>今天的事件间隔是 100ms/200ms/300ms（模拟网络延迟），远慢于 16.6ms。如果用 <code>requestAnimationFrame</code>：</p>
+
+<ul>
+  <li>你只能控制"在下一帧执行"，不能控制"在 200ms 后执行"；</li>
+  <li>浏览器标签页切到后台时，<code>requestAnimationFrame</code> 会暂停，<code>setTimeout</code> 不会（只是降到 1000ms 最小间隔）；</li>
+  <li><code>requestAnimationFrame</code> 适合连续动画（滚动/位移/透明度渐变），不适合离散事件流。</li>
+</ul>
+
+<h3>2.4 原理：Event Loop 三层队列的执行顺序</h3>
+
+<p>跑一遍下面这段"心算"，你就理解了为什么 <code>setTimeout</code> 能让 UI 分段更新：</p>
+
+<pre><code><span class="c">// t=0: 同步代码执行</span>
+<span class="f">startSampleRun</span>(events)
+  → events.value = []
+  → 注册 9 个 <span class="f">setTimeout</span> 回调到宏任务队列（100ms/200ms/.../900ms 后触发）
+  → 同步代码结束
+
+<span class="c">// t=0~100ms: 当前宏任务结束 → 清空微任务队列 → 渲染帧（如果需要）</span>
+  → Vue 的 <span class="f">watchEffect</span> 调度器把响应式更新放进微任务队列
+  → 微任务队列清空后，浏览器检查是否需要渲染
+  → 初始状态 UI 渲染完成（空的时间线 + idle 徽章）
+
+<span class="c">// t=100ms: 第 1 个 setTimeout 回调执行（新的宏任务）</span>
+events.value.<span class="f">push</span>(sampleEvents[<span class="n">0</span>])  <span class="c">// run.started</span>
+  → <span class="f">watchEffect</span> 检测到 events.value 变化
+  → 把 re-reduce 任务放进微任务队列
+  → 当前宏任务结束
+  → 清空微任务队列: state.value = events.value.<span class="f">reduce</span>(...) 执行
+  → 浏览器渲染: 徽章变 running，时间线出现第 1 条
+
+<span class="c">// t=200ms: 第 2 个 setTimeout 回调执行</span>
+events.value.<span class="f">push</span>(sampleEvents[<span class="n">1</span>])  <span class="c">// text.delta</span>
+  → 微任务队列: re-reduce
+  → 渲染: 时间线出现第 2 条（文本）
+
+<span class="c">// ... 以此类推，9 个事件分别在 9 个宏任务里执行</span>
+<span class="c">// 每次宏任务 → 微任务 → 渲染，用户看到 9 次 UI 更新</span></code></pre>
+
+<div class="callout">
+  <b>关键洞察：</b>分段出现的本质是<b>把数据变更拆到多个宏任务</b>。同一个宏任务里改 100 次 <code>events.value</code>，Vue 只渲染 1 次；拆到 100 个宏任务里，Vue 渲染 100 次。<code>setTimeout</code> 的作用不是"让代码慢下来"，而是"把回调推迟到下一个宏任务"。
+</div>
+
+<h3>2.5 反例：如果用 <code>Promise.resolve().then(...)</code>（微任务）会怎样</h3>
+
+<pre><code><span class="k">export function</span> <span class="f">startSampleRun</span>(events: <span class="t">Ref</span>&lt;<span class="t">AgentEvent</span>[]&gt;) {
+  events.value = []
+  <span class="t">Promise</span>.<span class="f">resolve</span>().<span class="f">then</span>(() =&gt; events.value.<span class="f">push</span>(sampleEvents[<span class="n">0</span>]))
+  <span class="t">Promise</span>.<span class="f">resolve</span>().<span class="f">then</span>(() =&gt; events.value.<span class="f">push</span>(sampleEvents[<span class="n">1</span>]))
+  <span class="t">Promise</span>.<span class="f">resolve</span>().<span class="f">then</span>(() =&gt; events.value.<span class="f">push</span>(sampleEvents[<span class="n">2</span>]))
+  <span class="c">// ... 9 个 Promise</span>
+}</code></pre>
+
+<p><b>结果：</b>UI 仍然一次性跳到最终状态。原因：</p>
+
+<ol>
+  <li>9 个 <code>Promise.resolve().then(...)</code> 的回调都进入<b>微任务队列</b>；</li>
+  <li>当前宏任务（<code>startSampleRun</code>）结束后，Event Loop 清空微任务队列 —— 9 个回调<b>在同一轮微任务清空里依次执行</b>；</li>
+  <li>9 次 <code>events.value.push</code> 都在渲染前完成，Vue 批量合并成 1 次更新。</li>
+</ol>
+
+<div class="callout warn">
+  <b>微任务 vs 宏任务的分水岭：</b>微任务在<b>当前宏任务结束后、渲染前</b>清空；宏任务在<b>下一轮 Event Loop</b> 执行。要让 UI 分段出现，必须用宏任务（<code>setTimeout</code> / <code>setInterval</code> / <code>MessageChannel</code>）把变更推到不同轮。
+</div>
+
+<h3>2.6 分层提问 —— 先答，再看下一层的解答</h3>
+
+<p><b>问题 1（白板级）：</b><br>
+如果把 9 个 <code>setTimeout</code> 的延迟都改成 0ms，UI 会怎样？会分 9 次渲染，还是 1 次？</p>
+
+<details>
+<summary>展开答案</summary>
+<p><b>会分 9 次渲染</b>（假设浏览器来得及渲染）。<code>setTimeout(..., 0)</code> 不是"立即执行"，而是"放进宏任务队列，最快下一轮 Event Loop 执行"。9 个回调虽然延迟都是 0ms，但它们仍然是 9 个独立的宏任务，按注册顺序依次执行。每个宏任务结束后，Event Loop 都有机会渲染。</p>
+
+<p><b>但有个坑：</b>浏览器的渲染帧率是 60fps（16.6ms 一帧），如果 9 个宏任务在 16.6ms 内全部执行完，浏览器可能合并成 1 次渲染。要保证 9 次渲染，延迟至少要 &gt; 16.6ms。</p>
+</details>
+
+<p><b>问题 2（项目级）：</b><br>
+今天 v3 的 <code>reduceAgentEvent</code> 是纯函数（同步、无副作用）。如果在 reducer 里加一行 <code>console.log(event.type)</code>，你会在浏览器控制台看到 9 行日志。这 9 行日志是在 9 个宏任务里打印的，还是在 9 个微任务里？</p>
+
+<details>
+<summary>展开答案</summary>
+<p><b>在 9 个微任务里打印</b>。因为 <code>watchEffect</code> 的回调是在微任务里执行的（Vue 的响应式调度器用 <code>Promise.resolve().then(...)</code> 包裹）。</p>
+
+<p>时间线：</p>
+<ol>
+  <li>t=100ms：宏任务执行 <code>events.value.push(sampleEvents[0])</code></li>
+  <li>微任务：<code>watchEffect</code> 回调执行 → <code>reduceAgentEvent</code> 执行 → <code>console.log</code> 打印第 1 行</li>
+  <li>渲染：UI 更新</li>
+  <li>t=200ms：宏任务执行 <code>events.value.push(sampleEvents[1])</code></li>
+  <li>微任务：<code>console.log</code> 打印第 2 行</li>
+  <li>渲染：UI 更新</li>
+</ol>
+
+<p><b>关键：</b>reducer 本身是纯同步函数，但它被 <code>watchEffect</code> 包裹后，执行时机由 Vue 的调度器控制 —— 进入微任务队列。</p>
+</details>
+
+<p><b>问题 3（工程级）：</b><br>
+Day 5 要把 fixture 换成真 SSE，后端每 100ms 推一个事件。如果网络突然卡顿，3 个事件在同一个瞬间到达前端（EventSource 的 <code>onmessage</code> 连续触发 3 次），UI 会怎样？</p>
+
+<details>
+<summary>展开答案</summary>
+<p><b>UI 仍然会分 3 次更新</b>，因为 <code>onmessage</code> 的每次触发都是独立的宏任务。即使 3 个事件在网络层几乎同时到达，浏览器的 EventSource 实现会把它们拆成 3 个独立的 <code>onmessage</code> 回调，每个回调在独立的宏任务里执行。</p>
+
+<p><b>但如果你手写 SSE 解析逻辑</b>（Day 5 会讲），在一个 <code>ReadableStream</code> 的 chunk 里收到 3 个完整事件，你必须手动拆成 3 次 <code>events.value.push</code>：</p>
+<pre><code><span class="k">for</span> (<span class="k">const</span> event <span class="k">of</span> parsedEvents) {
+  <span class="f">setTimeout</span>(() =&gt; events.value.<span class="f">push</span>(event), <span class="n">0</span>)
+}</code></pre>
+<p>否则 3 次 push 在同一个宏任务里，UI 只更新 1 次。</p>
+</details>
+
+<p><b>问题 4（架构级）：</b><br>
+为什么 reducer 必须是纯函数？如果在 reducer 里写 <code>localStorage.setItem(...)</code> 或者 <code>fetch(...)</code>，会出什么问题？</p>
+
+<details>
+<summary>展开答案</summary>
+<p><b>问题 1：副作用的执行时机不可控</b>。<code>watchEffect</code> 的回调在微任务里执行，但你不知道它会被触发多少次。Vue 的响应式系统在依赖收集阶段可能多次运行 <code>watchEffect</code>，如果 reducer 里有 <code>fetch(...)</code>，可能同一个请求发 3 次。</p>
+
+<p><b>问题 2：破坏时间旅行调试</b>。纯函数保证 <code>reduce(state, event)</code> 可以在任意时刻重放 —— 给定相同的 state 和 event，输出永远一样。有副作用后，重放会重复执行副作用（比如重复写 localStorage、重复发请求）。</p>
+
+<p><b>问题 3：测试成本暴涨</b>。今天的 <code>agent-run-state.spec.ts</code> 只需要 <code>expect(reduce(state, event)).toEqual(...)</code>，不需要 mock localStorage、不需要 mock fetch。有副作用后，每个测试都要 setup/teardown，测试变成集成测试。</p>
+
+<p><b>正确做法：</b>副作用放在 reducer 外面 —— 用 <code>watch</code> 监听 state 变化，在 watch 回调里执行副作用。Day 17 埋点会讲。</p>
+</details>
+
+<h3>2.7 项目对手戏 —— setTimeout 怎么和 Vue 响应式配合</h3>
+
+<p>今天 v3 的数据流：</p>
+
+<table>
+  <tbody><tr>
+    <th>环节</th>
+    <th>队列</th>
+    <th>作用</th>
+  </tr>
+  <tr>
+    <td><code>setTimeout</code> 回调</td>
+    <td>宏任务</td>
+    <td>触发数据变更（<code>events.value.push</code>）</td>
+  </tr>
+  <tr>
+    <td><code>watchEffect</code> 回调</td>
+    <td>微任务</td>
+    <td>重新 reduce，计算新 state</td>
+  </tr>
+  <tr>
+    <td>Vue 渲染</td>
+    <td>渲染帧</td>
+    <td>把新 state 刷到 DOM</td>
+  </tr>
+</tbody></table>
+
+<p><b>Day 5 换成 SSE 后的心智负担分布：</b></p>
+
+<table>
+  <tbody><tr>
+    <th>场景</th>
+    <th>你要做什么</th>
+    <th>Vue 帮你做什么</th>
+  </tr>
+  <tr>
+    <td>今天 fixture</td>
+    <td>用 <code>setTimeout</code> 拆事件到不同宏任务</td>
+    <td>响应式 + 批量更新</td>
+  </tr>
+  <tr>
+    <td>Day 5 SSE</td>
+    <td>确保每个 <code>onmessage</code> 回调只 push 1 个事件</td>
+    <td>响应式 + 批量更新</td>
+  </tr>
+  <tr>
+    <td>手写 SSE 解析</td>
+    <td>一个 chunk 里收到多个事件时，手动拆成多个 <code>setTimeout</code></td>
+    <td>响应式 + 批量更新</td>
+  </tr>
+  <tr>
+    <td>Day 17 埋点</td>
+    <td>用 <code>watch(state, ...)</code> 监听状态变化，在回调里发埋点</td>
+    <td>调度 watch 回调到微任务</td>
+  </tr>
+</tbody></table>
+
+<h3>2.8 面试真题拆解 —— 从今天的 fixture 出发怎么答</h3>
+
+<h4>真题 1："setTimeout 和 setInterval 有什么区别？"</h4>
+
+<p><span class="bad">烂答法：</span>"setTimeout 只执行 1 次，setInterval 重复执行。"</p>
+
+<p><span class="pass">及格答法：</span>"setTimeout 在延迟后执行 1 次回调；setInterval 每隔一段时间重复执行，但间隔不精确 —— 如果回调执行耗时超过间隔，下一次会立即触发。"</p>
+
+<p><span class="good">优秀答法（30 秒）：</span>"我在监控项目的 fixture 里用 setTimeout 模拟事件流 —— 9 个事件分别在 100ms/200ms/.../900ms 后触发。我不用 setInterval 是因为事件间隔不均匀，用 setTimeout 更灵活。两者的核心区别：setTimeout 把回调推到<b>指定延迟后的某一轮宏任务</b>；setInterval 尝试每隔 N ms 推一次，但如果回调执行时间 &gt; N，队列里会堆积回调 —— 浏览器的实现通常会跳过堆积的回调。真正要做定时轮询，我会用 <code>setTimeout</code> 递归（回调结束后再 <code>setTimeout</code> 下一次），这样能保证上一次执行完才开始计时下一次。"</p>
+
+<h4>真题 2："微任务和宏任务有什么区别？举例说明。"</h4>
+
+<p><span class="bad">烂答法：</span>"微任务比宏任务先执行。Promise 是微任务，setTimeout 是宏任务。"</p>
+
+<p><span class="pass">及格答法：</span>"每个宏任务结束后，Event Loop 会清空微任务队列，然后才执行下一个宏任务。微任务包括 Promise.then、MutationObserver、queueMicrotask；宏任务包括 setTimeout、setInterval、I/O、UI 渲染。"</p>
+
+<p><span class="good">优秀答法（挂钩今天的项目）：</span>"区别的本质是<b>执行时机和渲染边界</b>。我在监控项目里踩过这个坑：最开始想用 Promise.resolve().then(...) 模拟事件流，结果 UI 一次性跳到最终状态 —— 因为 9 个 Promise 回调都在<b>同一个宏任务结束后的微任务清空阶段</b>执行完，浏览器还没来得及渲染，数据已经全部 push 进去了。改成 setTimeout 后，9 个回调分散到 9 个宏任务，每个宏任务结束后都有渲染机会，UI 才能分段出现。<b>微任务的边界是当前宏任务，宏任务的边界是下一轮 Event Loop</b>。要让 UI 响应中间状态，必须用宏任务拆分数据变更。Vue 的响应式更新用的是微任务（queueMicrotask 或 Promise.then），所以同一个宏任务里改 100 次数据，Vue 只渲染 1 次。"</p>
+
+<h4>真题 3："Vue 3 的响应式更新是同步还是异步的？为什么要异步？"</h4>
+
+<p><span class="bad">烂答法：</span>"异步的，因为性能好。"</p>
+
+<p><span class="pass">及格答法：</span>"异步的。Vue 用 scheduler 把响应式更新推到微任务队列，批量执行。好处是同一个宏任务里多次改同一个响应式变量，只触发 1 次更新。"</p>
+
+<p><span class="good">优秀答法（30 秒）：</span>"Vue 3 的响应式更新是<b>异步批量</b>的 —— 用 queueMicrotask（或降级 Promise.then）把更新推到微任务队列。今天项目里我在一个 setTimeout 回调里 push 1 个事件，watchEffect 检测到 events.value 变化后，不是立即执行 reduce，而是把 reduce 任务放进微任务队列。当前宏任务结束后，微任务队列清空，reduce 执行 1 次，然后浏览器渲染。如果同步更新，每次 push 都立即 reduce + 渲染，9 个事件就是 9 次同步 reduce + 9 次同步渲染 —— 主线程阻塞，用户会看到卡顿。异步批量的价值是<b>把多次数据变更合并成 1 次计算 + 1 次渲染</b>，前提是这些变更在同一个宏任务里。要让 UI 响应中间状态，必须把变更拆到多个宏任务。"</p>
+
+<h3>2.9 下一步</h3>
+
+<ul>
+  <li><b>今天做完：</b>在浏览器控制台跑这段代码，观察打印顺序：
+<pre><code><span class="f">console</span>.<span class="f">log</span>(<span class="s">'1 sync'</span>)
+<span class="f">setTimeout</span>(() =&gt; <span class="f">console</span>.<span class="f">log</span>(<span class="s">'2 macro'</span>), <span class="n">0</span>)
+<span class="t">Promise</span>.<span class="f">resolve</span>().<span class="f">then</span>(() =&gt; <span class="f">console</span>.<span class="f">log</span>(<span class="s">'3 micro'</span>))
+<span class="f">console</span>.<span class="f">log</span>(<span class="s">'4 sync'</span>)</code></pre>
+  答案应该是 1 4 3 2。如果不是，说明你的理解有偏差。</li>
+  <li><b>本周内：</b>Day 5 换成 SSE 时，你会看到真实的流式事件怎么处理（TextDecoder 跨 chunk、手动拆事件）。</li>
+  <li><b>Week 2 补深：</b>requestAnimationFrame、requestIdleCallback、MessageChannel 三种宏任务的应用场景。</li>
+  <li><b>面试前准备：</b>把 2.8 三个真题录音答一遍，每题 45 秒，听回放看是否挂钩了今天的项目。</li>
+</ul>
+
+<hr>
+
+<!-- ============================================================ -->
+<h2 id="dig-3">深挖 3：测试纪律 —— 从 <code>agent-run-state.spec.ts</code> 为什么能测讲起</h2>
+
+<p><b>为什么挖这个：</b>12 号报告 B 级第 5 条「测试与质量体系」评分 4.5/10，点名"简历没有测试证据"。今天 v3 的 <code>agent-run-state.spec.ts</code> 只有 30 行，但它能测的原因不是"会写 vitest"，而是 <b>reducer 是纯函数</b>。挖懂它，你就理解了"为什么要把 reducer 单独抽出来、为什么不能在 reducer 里写 localStorage"—— 不是为了架构好看，是为了<b>可测试性</b>。</p>
+
+<h3>3.1 场景锚点（10 秒定位）</h3>
+
+<p>今天 v3 里，<code>reduceAgentEvent(state, event)</code> 接收旧状态 + 一个事件，返回新状态。它是纯函数：</p>
+
+<ul>
+  <li>不读外部变量（没有 <code>import { someGlobal } from ...</code> 再在函数里用）；</li>
+  <li>不写外部状态（没有 <code>localStorage.setItem</code> / <code>fetch</code> / <code>console.log</code>）；</li>
+  <li>不改入参（<code>state</code> 和 <code>event</code> 都不可变，返回新对象）。</li>
+</ul>
+
+<p><b>核心疑问：</b>如果把 reducer 写成这样（常见的"聪明"写法），测试会怎样？</p>
+
+<pre><code><span class="k">function</span> <span class="f">reduceAgentEvent</span>(state: <span class="t">AgentRunState</span>, event: <span class="t">AgentEvent</span>) {
+  <span class="k">if</span> (event.type === <span class="s">'run.started'</span>) {
+    <span class="f">localStorage</span>.<span class="f">setItem</span>(<span class="s">'lastRunId'</span>, event.runId)  <span class="c">// ← 副作用</span>
+    state.status = <span class="s">'running'</span>  <span class="c">// ← 改入参</span>
+    <span class="k">return</span> state
+  }
+  <span class="c">// ...</span>
+}</code></pre>
+
+<h3>3.2 项目代码原样</h3>
+
+<p><code>src/domain/agent/agent-run-state.spec.ts</code>：</p>
+
+<pre><code><span class="k">import</span> { describe, it, expect } <span class="k">from</span> <span class="s">'vitest'</span>
+<span class="k">import</span> { reduceAgentEvent, initialState } <span class="k">from</span> <span class="s">'./agent-run-state'</span>
+
+<span class="f">describe</span>(<span class="s">'reduceAgentEvent'</span>, () =&gt; {
+  <span class="f">it</span>(<span class="s">'应该从 idle 切到 running'</span>, () =&gt; {
+    <span class="k">const</span> event = { type: <span class="s">'run.started'</span>, runId: <span class="s">'r1'</span>, sequence: <span class="n">1</span>, occurredAt: <span class="s">'...'</span>, payload: {} }
+    <span class="k">const</span> next = <span class="f">reduceAgentEvent</span>(initialState, event)
+    <span class="f">expect</span>(next.status).<span class="f">toBe</span>(<span class="s">'running'</span>)
+    <span class="f">expect</span>(next.runId).<span class="f">toBe</span>(<span class="s">'r1'</span>)
+  })
+
+  <span class="f">it</span>(<span class="s">'应该拒绝重复 sequence'</span>, () =&gt; {
+    <span class="k">const</span> s1 = <span class="f">reduceAgentEvent</span>(initialState, { ..., sequence: <span class="n">1</span> })
+    <span class="k">const</span> s2 = <span class="f">reduceAgentEvent</span>(s1, { ..., sequence: <span class="n">1</span> })  <span class="c">// 重复</span>
+    <span class="f">expect</span>(s2).<span class="f">toBe</span>(s1)  <span class="c">// 引用相等 = 未变</span>
+  })
+
+  <span class="f">it</span>(<span class="s">'应该在终态时拒绝新事件'</span>, () =&gt; {
+    <span class="k">const</span> completed = { ...initialState, status: <span class="s">'completed'</span>, lastSequence: <span class="n">5</span> }
+    <span class="k">const</span> next = <span class="f">reduceAgentEvent</span>(completed, { ..., sequence: <span class="n">6</span> })
+    <span class="f">expect</span>(next).<span class="f">toBe</span>(completed)
+  })
+})</code></pre>
+
+<p><b>注意这些测试里没有的东西：</b></p>
+<ul>
+  <li>没有 <code>beforeEach</code> / <code>afterEach</code> 清理环境；</li>
+  <li>没有 mock localStorage / fetch / 全局变量；</li>
+  <li>没有异步（<code>async/await</code>）；</li>
+  <li>没有 DOM（<code>@vue/test-utils</code> 的 <code>mount</code>）。</li>
+</ul>
+
+<p>30 行测完 3 条核心规则。为什么能这么简单？因为 reducer 是纯函数。</p>
+
+<h3>3.3 拆解：纯函数的 3 个保证</h3>
+
+<h4>保证 A：相同输入 → 相同输出（引用透明）</h4>
+
+<pre><code><span class="k">const</span> state1 = <span class="f">reduceAgentEvent</span>(initialState, event1)
+<span class="k">const</span> state2 = <span class="f">reduceAgentEvent</span>(initialState, event1)  <span class="c">// 完全一样的入参</span>
+<span class="f">expect</span>(state1).<span class="f">toEqual</span>(state2)  <span class="c">// ✓ 深度相等</span></code></pre>
+
+<p>如果 reducer 里读了 <code>Date.now()</code> / <code>Math.random()</code> / <code>localStorage.getItem(...)</code>，这个保证就破了 —— 同样的入参，两次调用可能返回不同结果。测试变成概率通过。</p>
+
+<h4>保证 B：不可变（不改入参）</h4>
+
+<pre><code><span class="k">const</span> oldState = { status: <span class="s">'idle'</span>, runId: <span class="k">null</span>, timeline: [], lastSequence: <span class="n">0</span> }
+<span class="k">const</span> newState = <span class="f">reduceAgentEvent</span>(oldState, event)
+<span class="f">expect</span>(oldState.status).<span class="f">toBe</span>(<span class="s">'idle'</span>)  <span class="c">// ✓ 旧状态未被改</span>
+<span class="f">expect</span>(newState.status).<span class="f">toBe</span>(<span class="s">'running'</span>)  <span class="c">// ✓ 新状态是新对象</span></code></pre>
+
+<p>如果 reducer 里写 <code>state.status = 'running'; return state</code>（改入参再返回），测试里 <code>oldState</code> 和 <code>newState</code> 会指向同一个对象，断言 <code>oldState.status</code> 会失败。更严重的是：时间旅行调试（重放事件序列）会失效，因为你没法回退到"修改前的状态"。</p>
+
+<h4>保证 C：无副作用</h4>
+
+<p>副作用包括：</p>
+<ul>
+  <li>写外部状态（<code>localStorage.setItem</code> / 改全局变量 / 改入参）；</li>
+  <li>发起网络请求（<code>fetch</code>）；</li>
+  <li>操作 DOM（<code>document.querySelector</code>）；</li>
+  <li>记日志（<code>console.log</code>）—— 严格来说也是副作用，但测试时可以容忍。</li>
+</ul>
+
+<p>无副作用 = 测试不需要 setup/teardown。你可以连续跑 100 个测试用例，每个都是独立的 <code>reduceAgentEvent(state, event)</code> 调用，互不干扰。</p>
+
+<h3>3.4 原理：为什么纯函数让测试成本指数级下降</h3>
+
+<p>对比两种写法的测试成本：</p>
+
+<table>
+  <tbody><tr>
+    <th>特性</th>
+    <th>纯函数 reducer</th>
+    <th>有副作用的 reducer</th>
+  </tr>
+  <tr>
+    <td>测试代码行数</td>
+    <td>30 行（3 个测试）</td>
+    <td>120 行（每个测试要 setup localStorage mock + teardown）</td>
+  </tr>
+  <tr>
+    <td>测试运行速度</td>
+    <td>&lt; 1ms（纯内存计算）</td>
+    <td>10-50ms（要初始化 jsdom / mock 环境）</td>
+  </tr>
+  <tr>
+    <td>测试稳定性</td>
+    <td>100%（无外部依赖）</td>
+    <td>95%（localStorage mock 可能失效、并发测试可能污染）</td>
+  </tr>
+  <tr>
+    <td>时间旅行调试</td>
+    <td>✓ 可重放事件序列</td>
+    <td>✗ 副作用无法回退</td>
+  </tr>
+  <tr>
+    <td>并发测试</td>
+    <td>✓ 互不干扰</td>
+    <td>✗ 共享 localStorage，需要加锁</td>
+  </tr>
+</tbody></table>
+
+<div class="callout">
+  <b>关键洞察：</b>测试成本 = 隔离成本。纯函数的隔离成本为 0（不需要隔离，因为没有共享状态）；有副作用的函数，隔离成本随副作用种类指数增长（1 种副作用 = 1 个 mock，3 种 = 3 个 mock + 它们之间的交互）。
+</div>
+
+<h3>3.5 反例：如果 reducer 里有副作用，测试代码会膨胀成什么样</h3>
+
+<p>假设你把 reducer 写成这样（"聪明"版）：</p>
+
+<pre><code><span class="k">function</span> <span class="f">reduceAgentEvent</span>(state: <span class="t">AgentRunState</span>, event: <span class="t">AgentEvent</span>) {
+  <span class="k">if</span> (event.sequence &lt;= state.lastSequence) <span class="k">return</span> state
+
+  <span class="k">if</span> (event.type === <span class="s">'run.started'</span>) {
+    <span class="f">localStorage</span>.<span class="f">setItem</span>(<span class="s">'lastRunId'</span>, event.runId)  <span class="c">// 副作用 1</span>
+    <span class="f">fetch</span>(<span class="s">'/api/analytics'</span>, { method: <span class="s">'POST'</span>, body: <span class="t">JSON</span>.<span class="f">stringify</span>({ event: <span class="s">'run_start'</span> }) })  <span class="c">// 副作用 2</span>
+    state.status = <span class="s">'running'</span>  <span class="c">// 改入参</span>
+    <span class="k">return</span> state
+  }
+  <span class="c">// ...</span>
+}</code></pre>
+
+<p>测试代码变成：</p>
+
+<pre><code><span class="k">import</span> { describe, it, expect, beforeEach, afterEach, vi } <span class="k">from</span> <span class="s">'vitest'</span>
+
+<span class="f">describe</span>(<span class="s">'reduceAgentEvent (有副作用版)'</span>, () =&gt; {
+  <span class="k">let</span> mockLocalStorage: <span class="t">Record</span>&lt;<span class="t">string</span>, <span class="t">string</span>&gt;
+  <span class="k">let</span> fetchSpy: <span class="t">any</span>
+
+  <span class="f">beforeEach</span>(() =&gt; {
+    <span class="c">// Mock localStorage</span>
+    mockLocalStorage = {}
+    globalThis.localStorage = {
+      <span class="f">getItem</span>: (k) =&gt; mockLocalStorage[k] || <span class="k">null</span>,
+      <span class="f">setItem</span>: (k, v) =&gt; { mockLocalStorage[k] = v },
+      <span class="f">clear</span>: () =&gt; { mockLocalStorage = {} },
+    } <span class="k">as any</span>
+
+    <span class="c">// Mock fetch</span>
+    fetchSpy = <span class="f">vi</span>.<span class="f">fn</span>().<span class="f">mockResolvedValue</span>({ ok: <span class="k">true</span> })
+    globalThis.fetch = fetchSpy
+  })
+
+  <span class="f">afterEach</span>(() =&gt; {
+    <span class="f">vi</span>.<span class="f">restoreAllMocks</span>()
+  })
+
+  <span class="f">it</span>(<span class="s">'应该从 idle 切到 running'</span>, <span class="k">async</span> () =&gt; {
+    <span class="k">const</span> event = { type: <span class="s">'run.started'</span>, runId: <span class="s">'r1'</span>, sequence: <span class="n">1</span>, ... }
+    <span class="k">const</span> next = <span class="f">reduceAgentEvent</span>(initialState, event)
+
+    <span class="f">expect</span>(next.status).<span class="f">toBe</span>(<span class="s">'running'</span>)
+    <span class="f">expect</span>(mockLocalStorage[<span class="s">'lastRunId'</span>]).<span class="f">toBe</span>(<span class="s">'r1'</span>)  <span class="c">// 测副作用 1</span>
+    <span class="f">expect</span>(fetchSpy).<span class="f">toHaveBeenCalledWith</span>(<span class="s">'/api/analytics'</span>, ...)  <span class="c">// 测副作用 2</span>
+  })
+})</code></pre>
+
+<p><b>从 30 行膨胀到 50 行</b>，而且：</p>
+<ul>
+  <li>需要 beforeEach/afterEach，增加维护成本；</li>
+  <li>测试从同步变异步（因为 fetch 是 Promise）；</li>
+  <li>并发跑测试时，localStorage mock 可能被其他测试污染；</li>
+  <li>如果未来再加一个副作用（比如 WebSocket 发消息），又要加一个 mock。</li>
+</ul>
+
+<div class="callout warn">
+  <b>更严重的问题：</b>这个测试变成了<b>集成测试</b>（测 reducer + localStorage + fetch 的交互），不再是<b>单元测试</b>（只测 reducer 的逻辑）。集成测试慢、脆弱、难调试。
+</div>
+
+<h3>3.6 分层提问 —— 先答，再看下一层的解答</h3>
+
+<p><b>问题 1（白板级）：</b><br>
+如果在 reducer 里写 <code>console.log(event.type)</code>，算不算副作用？测试时需不需要 mock <code>console</code>？</p>
+
+<details>
+<summary>展开答案</summary>
+<p><b>严格来说是副作用</b>（改变了外部状态 —— 控制台输出）。但实践中可以容忍，因为：</p>
+<ol>
+  <li><code>console.log</code> 不影响函数返回值；</li>
+  <li>不影响可测试性（测试框架默认会捕获 console 输出，不会污染终端）；</li>
+  <li>调试时很有用。</li>
+</ol>
+<p>如果你的团队要求 100% 纯函数，可以把日志逻辑移到 reducer 外面 —— 用 <code>watch(state, ...)</code> 监听状态变化后打日志。但对于 <code>console.log</code> 这种"只读副作用"（不改数据，只输出），大部分团队会放行。</p>
+</details>
+
+<p><b>问题 2（项目级）：</b><br>
+今天的 reducer 测试用 <code>expect(next).toBe(state)</code> 判断"未变"（引用相等）。如果把 <code>toBe</code> 改成 <code>toEqual</code>（深度相等），测试还能通过吗？两者有什么区别？</p>
+
+<details>
+<summary>展开答案</summary>
+<p><b>能通过，但意义不同</b>：</p>
+<ul>
+  <li><code>toBe</code> 比较引用（<code>===</code>）—— 两个变量是否指向同一块内存；</li>
+  <li><code>toEqual</code> 比较内容（递归比较每个字段）—— 两个对象的字段值是否一样。</li>
+</ul>
+
+<p>今天的测试用 <code>toBe</code> 是为了验证 reducer 的<b>短路优化</b>：</p>
+<pre><code><span class="k">if</span> (event.sequence &lt;= state.lastSequence) <span class="k">return</span> state  <span class="c">// ← 直接返回旧引用</span></code></pre>
+
+<p>如果改成 <code>toEqual</code>，测试仍然能通过，但你就验证不了"reducer 没有创建新对象"这个性能优化了。<code>toBe</code> 能检测到这个细节：</p>
+<pre><code><span class="k">const</span> s1 = <span class="f">reduceAgentEvent</span>(initialState, event1)
+<span class="k">const</span> s2 = <span class="f">reduceAgentEvent</span>(s1, event1)  <span class="c">// 重复 sequence</span>
+<span class="f">expect</span>(s2).<span class="f">toBe</span>(s1)  <span class="c">// ✓ 引用相等 = 没浪费内存</span></code></pre>
+
+<p><b>在 Vue 里的价值：</b>Vue 的响应式系统用 <code>===</code> 判断状态是否变化。如果 reducer 每次都返回新对象（即使内容一样），Vue 会重新渲染；返回旧引用，Vue 跳过渲染。</p>
+</details>
+
+<p><b>问题 3（架构级）：</b><br>
+Day 17 要加埋点：每次状态变化时发一个埋点事件到后端。如果不能在 reducer 里写 <code>fetch</code>，应该在哪里写？怎么保证"状态变了才发、状态没变不发"？</p>
+
+<details>
+<summary>展开答案</summary>
+<p><b>在 watch 回调里写</b>：</p>
+<pre><code><span class="k">import</span> { watch } <span class="k">from</span> <span class="s">'vue'</span>
+
+<span class="f">watch</span>(
+  () =&gt; state.value.status,
+  (newStatus, oldStatus) =&gt; {
+    <span class="k">if</span> (newStatus !== oldStatus) {
+      <span class="f">fetch</span>(<span class="s">'/api/analytics'</span>, {
+        method: <span class="s">'POST'</span>,
+        body: <span class="t">JSON</span>.<span class="f">stringify</span>({ event: <span class="s">'status_change'</span>, from: oldStatus, to: newStatus }),
+      })
+    }
+  }
+)</code></pre>
+
+<p><b>为什么这样设计：</b></p>
+<ol>
+  <li>Reducer 保持纯净 —— 只负责计算新状态；</li>
+  <li>Watch 是"观察者" —— 状态变了它自动触发，不需要在 reducer 里手动调；</li>
+  <li><code>watch</code> 默认只在值真正变化时触发（Vue 内部用 <code>===</code> 比较）—— 和 reducer 返回旧引用的优化天然契合。</li>
+</ol>
+
+<p><b>测试策略：</b>reducer 的单元测试保持 30 行；埋点逻辑单独测（mock fetch，验证 watch 回调是否正确触发）。两层测试，互不干扰。</p>
+</details>
+
+<h3>3.7 面试真题拆解 —— 从今天的测试出发怎么答</h3>
+
+<h4>真题 1："你在项目里怎么写测试？覆盖率多少？"</h4>
+
+<p><span class="bad">烂答法：</span>"我用 vitest 写单元测试，覆盖率 80%。"</p>
+
+<p><span class="pass">及格答法：</span>"我用 vitest 测核心逻辑。监控项目里，domain 层的 reducer 有 3 个测试用例，覆盖状态机的关键路径：启动、去重、终态保护。"</p>
+
+<p><span class="good">优秀答法（30 秒）：</span>"我的测试策略是<b>分层测，纯函数优先</b>。监控项目的 <code>reduceAgentEvent</code> 是纯函数，30 行测完 3 条规则 —— 不需要 mock localStorage、不需要 async、不需要 DOM。这种测试快（&lt;1ms）、稳（100% 通过率）、可并发。副作用（埋点、localStorage）我放在 watch 回调里，单独测。这样 reducer 的单元测试和 watch 的集成测试互不干扰。覆盖率我不追求 100%，而是<b>关键路径 100%</b> —— 状态机的每条边都要有测试覆盖，UI 组件只测交互逻辑（点击、输入），不测样式。Day 2 会加 Zod Schema 的契约测试，Day 17 加埋点的集成测试。"</p>
+
+<h4>真题 2："纯函数和副作用有什么区别？为什么要分离它们？"</h4>
+
+<p><span class="bad">烂答法：</span>"纯函数没有副作用，副作用就是改变外部状态。"</p>
+
+<p><span class="pass">及格答法：</span>"纯函数：相同输入 → 相同输出，不改入参，不读写外部状态。副作用：localStorage、fetch、DOM、改入参。分离它们是为了可测试性和可预测性。"</p>
+
+<p><span class="good">优秀答法（挂钩今天的项目）：</span>"区别的本质是<b>可重放性</b>。纯函数给定相同的 state 和 event，永远返回相同的结果 —— 我可以把 9 个事件序列重放 100 次，每次都得到相同的最终状态。有副作用后，重放会重复执行副作用（比如重复写 localStorage、重复发埋点），状态不再可预测。今天项目里我把副作用严格隔离在 reducer 外面 —— reducer 只负责<b>计算</b>，watch 负责<b>观察和响应</b>。这样设计的价值：测试成本指数级下降（reducer 的单元测试 30 行，无 mock）、时间旅行调试成为可能（Day 15 会加 DevTools）、并发测试互不干扰。分离副作用不是架构洁癖，是<b>工程现实</b> —— 没分离的代码，3 个月后你自己都不敢改。"</p>
+
+<h4>真题 3："为什么 Redux / Vuex 的 reducer / mutation 都要求是纯函数？"</h4>
+
+<p><span class="bad">烂答法：</span>"为了性能和可预测性。"</p>
+
+<p><span class="pass">及格答法：</span>"因为状态管理库要做时间旅行调试、热重载、状态快照。纯函数保证重放事件时状态一致。"</p>
+
+<p><span class="good">优秀答法（30 秒）：</span>"核心原因是<b>引用相等优化 + 时间旅行</b>。Vue 的响应式系统用 <code>===</code> 判断状态是否变化 —— 如果 reducer 返回旧引用（<code>return state</code>），Vue 跳过渲染；返回新对象，Vue 重新渲染。纯函数保证这个判断是安全的 —— 内容没变就返回旧引用，内容变了才返回新引用。今天项目里我用 <code>expect(next).toBe(state)</code> 测这个优化：重复 sequence 时，reducer 直接 <code>return state</code>，引用相等，Vue 不渲染。有副作用后，你不敢返回旧引用（怕副作用没执行），只能每次返回新对象，Vue 每次都渲染 —— 性能退化。第二个原因是时间旅行：Redux DevTools 能回退到任意历史状态，前提是每个 action 都能重放。纯函数保证重放安全，有副作用后重放会炸（比如重复发 100 次埋点）。"</p>
+
+<h3>3.8 下一步</h3>
+
+<ul>
+  <li><b>今天做完：</b>把 <code>agent-run-state.spec.ts</code> 跑一遍，确保 3 个测试都通过。然后试着加第 4 个测试：验证 <code>text.delta</code> 事件会往 timeline 里 push 一条记录。</li>
+  <li><b>本周内：</b>Day 2 要加 Zod Schema 测试（契约测试）；Day 3 要测 UI 组件（@vue/test-utils）。</li>
+  <li><b>Week 2 补深：</b>测试金字塔（单元测试 / 集成测试 / E2E 测试的比例）、测试替身（mock / stub / spy / fake 的区别）。</li>
+  <li><b>面试前准备：</b>把 3.7 三个真题录音答一遍，每题 45 秒。如果你答不出"引用相等优化"这个点，回来重读 3.6 问题 2。</li>
+</ul>
+
+<hr>
+
+<!-- ============================================================ -->
+<h2 id="dig-4">深挖 4：AI 流式处理 —— 从 fixture 到真 SSE 的心智负担迁移</h2>
+
+<p><b>为什么挖这个：</b>12 号报告 C 级「AI 应用前端工程」评分 4.5/10，点名"有 AI 助手接入但流式、RAG、评测未证明"。今天 v3 用 fixture 模拟流式，Day 5 要换成真 SSE。这个迁移看起来简单（把 <code>setTimeout</code> 换成 <code>EventSource.onmessage</code>），但背后是<b>跨 chunk UTF-8 解码、手动事件拆分、取消信号传递</b>三层坑。挖懂它，面试官问"你怎么处理流式文本的中文乱码"时你能答到点上。</p>
+
+<h3>4.1 场景锚点（10 秒定位）</h3>
+
+<p>今天 v3 里，fixture 用 <code>setTimeout</code> 一个一个推事件，前端每次 push 一个完整的 <code>AgentEvent</code> 对象。Day 5 换成真 SSE 后，后端推的是：</p>
+
+<pre><code>data: {"type":"run.started","runId":"r1",...}
+
+data: {"type":"text.delta","payload":{"text":"正"}}
+
+data: {"type":"text.delta","payload":{"text":"在"}}
+
+data: {"type":"text.delta","payload":{"text":"分析"}}</code></pre>
+
+<p><b>核心疑问：</b>如果一个汉字的 UTF-8 编码（3 字节）被拆成两个 chunk —— 前一个 chunk 末尾有 2 字节、后一个 chunk 开头有 1 字节 —— 前端会看到什么？乱码 <code>��</code>，还是正常的"正"？</p>
+
+<h3>4.2 项目代码原样（Day 5 预告版）</h3>
+
+<p>Day 5 会用 <code>fetch</code> + <code>ReadableStream</code> 替换 fixture：</p>
+
+<pre><code><span class="k">const</span> response = <span class="k">await</span> <span class="f">fetch</span>(<span class="s">'/api/agent/run'</span>, {
+  method: <span class="s">'POST'</span>,
+  headers: { <span class="s">'Accept'</span>: <span class="s">'text/event-stream'</span> },
+  body: <span class="t">JSON</span>.<span class="f">stringify</span>({ prompt: <span class="s">'...'</span> }),
+})
+
+<span class="k">const</span> reader = response.body!.<span class="f">getReader</span>()
+<span class="k">const</span> decoder = <span class="k">new</span> <span class="t">TextDecoder</span>(<span class="s">'utf-8'</span>)  <span class="c">// ← 关键：带状态的解码器</span>
+<span class="k">let</span> buffer = <span class="s">''</span>
+
+<span class="k">while</span> (<span class="k">true</span>) {
+  <span class="k">const</span> { done, value } = <span class="k">await</span> reader.<span class="f">read</span>()
+  <span class="k">if</span> (done) <span class="k">break</span>
+
+  buffer += decoder.<span class="f">decode</span>(value, { stream: <span class="k">true</span> })  <span class="c">// ← stream: true 是关键</span>
+
+  <span class="k">const</span> lines = buffer.<span class="f">split</span>(<span class="s">'\n\n'</span>)
+  buffer = lines.<span class="f">pop</span>()!  <span class="c">// 最后一块可能不完整，留到下一轮</span>
+
+  <span class="k">for</span> (<span class="k">const</span> line <span class="k">of</span> lines) {
+    <span class="k">if</span> (line.<span class="f">startsWith</span>(<span class="s">'data: '</span>)) {
+      <span class="k">const</span> event = <span class="t">JSON</span>.<span class="f">parse</span>(line.<span class="f">slice</span>(<span class="n">6</span>))
+      events.value.<span class="f">push</span>(event)
+    }
+  }
+}</code></pre>
+
+<h3>4.3 拆解：这段代码里的 3 个设计点</h3>
+
+<h4>设计点 A：为什么要 <code>new TextDecoder('utf-8')</code>，不能用 <code>String.fromCharCode</code>？</h4>
+
+<p><code>TextDecoder</code> 是<b>有状态</b>的解码器。当你调用 <code>decoder.decode(chunk, { stream: true })</code> 时：</p>
+
+<ol>
+  <li>如果 chunk 末尾有不完整的 UTF-8 序列（比如汉字"正"的 3 字节 <code>E6 AD A3</code> 只收到前 2 字节 <code>E6 AD</code>），解码器会<b>暂存</b>这 2 字节；</li>
+  <li>下一个 chunk 到达时，解码器把暂存的 2 字节和新 chunk 的第 1 字节（<code>A3</code>）拼起来，解码出"正"；</li>
+  <li>如果用 <code>String.fromCharCode(...chunk)</code>，你会看到乱码 <code>��</code>（两个 <code>U+FFFD</code> 替换字符）。</li>
+</ol>
+
+<p><b>{ stream: true } 的作用：</b>告诉解码器"这不是最后一个 chunk，如果有不完整序列，别抛错，暂存起来"。最后一个 chunk 传 <code>{ stream: false }</code>（或不传），解码器会把暂存的字节强制解码（如果还不完整就输出 <code>�</code>）。</p>
+
+<h4>设计点 B：为什么要 <code>buffer.split('\n\n')</code> 再 <code>lines.pop()</code>？</h4>
+
+<p>SSE 的格式是 <code>data: ...\n\n</code>（两个换行符分隔事件）。一个 chunk 可能包含：</p>
+
+<ul>
+  <li>1.5 个事件（一个完整 + 半个）；</li>
+  <li>0.5 个事件（上一个 chunk 的后半 + 这个 chunk 的前半）。</li>
+</ul>
+
+<p><code>buffer</code> 是<b>行缓冲区</b>：</p>
+
+<pre><code><span class="c">// 第 1 个 chunk: "data: {\"type\":\"run.started\"}\n\ndata: {\"type\":"</span>
+buffer = <span class="s">"data: {\"type\":\"run.started\"}\n\ndata: {\"type\":"</span>
+lines = [<span class="s">"data: {\"type\":\"run.started\"}"</span>, <span class="s">"data: {\"type\":"</span>]
+buffer = lines.<span class="f">pop</span>()  <span class="c">// "data: {\"type\":" 留到下一轮</span>
+
+<span class="c">// 第 2 个 chunk: "\"text.delta\"}\n\n"</span>
+buffer = <span class="s">"data: {\"type\":\"text.delta\"}\n\n"</span>
+lines = [<span class="s">"data: {\"type\":\"text.delta\"}"</span>, <span class="s">""</span>]
+buffer = <span class="s">""</span>  <span class="c">// 空串，下一轮继续</span></code></pre>
+
+<p><b>为什么 <code>pop()</code>：</b>最后一块可能是不完整的行（没有 <code>\n\n</code> 结尾），留到下一轮和新 chunk 拼起来。</p>
+
+<h4>设计点 C：取消请求时怎么清理</h4>
+
+<p>用户点"停止"按钮时，要调用 <code>reader.cancel()</code> 并中止 fetch：</p>
+
+<pre><code><span class="k">const</span> abortController = <span class="k">new</span> <span class="t">AbortController</span>()
+
+<span class="k">const</span> response = <span class="k">await</span> <span class="f">fetch</span>(<span class="s">'/api/agent/run'</span>, {
+  signal: abortController.signal,
+  <span class="c">// ...</span>
+})
+
+<span class="c">// 用户点停止</span>
+<span class="k">function</span> <span class="f">onStop</span>() {
+  abortController.<span class="f">abort</span>()
+  reader.<span class="f">cancel</span>()  <span class="c">// 释放流的锁</span>
+}</code></pre>
+
+<p>不调 <code>reader.cancel()</code> 的话，<code>while (true)</code> 循环会一直等 <code>reader.read()</code>，浪费内存。</p>
+
+<h3>4.4 原理：UTF-8 跨 chunk 解码的字节级心算</h3>
+
+<p>UTF-8 编码规则：</p>
+
+<ul>
+  <li>ASCII（0-127）：1 字节，高位为 0（<code>0xxxxxxx</code>）</li>
+  <li>2 字节字符（如拉丁扩展）：<code>110xxxxx 10xxxxxx</code></li>
+  <li>3 字节字符（如中文）：<code>1110xxxx 10xxxxxx 10xxxxxx</code></li>
+  <li>4 字节字符（如 Emoji）：<code>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</code></li>
+</ul>
+
+<p>心算例子：汉字"正" = U+6B63 = UTF-8 <code>E6 AD A3</code>（3 字节）</p>
+
+<pre><code><span class="c">// Chunk 1: 前 10 字节包含 "正在" 的 "正" 的前 2 字节</span>
+[... E6 AD]
+
+decoder.<span class="f">decode</span>(chunk1, { stream: <span class="k">true</span> })
+  → 解码前面的完整字符
+  → 看到 E6（1110 0110），判断这是 3 字节字符的开头
+  → 看到 AD（1010 1101），这是第 2 字节
+  → 第 3 字节缺失 → 暂存 [E6 AD]，返回前面解码的字符串
+
+<span class="c">// Chunk 2: 第 1 字节是 "正" 的最后 1 字节</span>
+[A3 ...]
+
+decoder.<span class="f">decode</span>(chunk2, { stream: <span class="k">true</span> })
+  → 取出暂存的 [E6 AD]
+  → 拼上 chunk2 的第 1 字节 A3 → [E6 AD A3]
+  → 解码成 U+6B63 = "正"
+  → 继续解码 chunk2 剩余部分</code></pre>
+
+<div class="callout">
+  <b>关键洞察：</b><code>TextDecoder</code> 的状态是<b>暂存的不完整字节</b>。没有 <code>{ stream: true }</code>，解码器会把不完整字节当错误，输出 <code>�</code>；有了它，解码器会等下一个 chunk。
+</div>
+
+<h3>4.5 反例：如果用 <code>String.fromCharCode</code> 会怎样</h3>
+
+<pre><code><span class="k">const</span> text = <span class="t">String</span>.<span class="f">fromCharCode</span>(...chunk)  <span class="c">// ✗ 错误</span></code></pre>
+
+<p><code>String.fromCharCode</code> 把每个字节当作一个 Unicode 码点（U+0000 到 U+00FF）：</p>
+
+<pre><code><span class="c">// Chunk 1: [E6 AD]</span>
+<span class="t">String</span>.<span class="f">fromCharCode</span>(<span class="n">0xE6</span>, <span class="n">0xAD</span>) = <span class="s">"æ­"</span> = <span class="s">"æ­"</span>  <span class="c">// ✗ 乱码</span>
+
+<span class="c">// Chunk 2: [A3 ...]</span>
+<span class="t">String</span>.<span class="f">fromCharCode</span>(<span class="n">0xA3</span>, ...) = <span class="s">"£..."</span> = <span class="s">"£..."</span>  <span class="c">// ✗ 乱码</span></code></pre>
+
+<p>"正"永远拼不出来，因为它的 3 字节被拆成了 3 个独立的单字节字符。</p>
+
+<h3>4.6 分层提问 —— 先答，再看下一层的解答</h3>
+
+<p><b>问题 1（白板级）：</b><br>
+Emoji "😀" 的 UTF-8 编码是 4 字节 <code>F0 9F 98 80</code>。如果第 1 个 chunk 包含前 3 字节，第 2 个 chunk 包含最后 1 字节，<code>decoder.decode(chunk1, { stream: true })</code> 会返回什么？</p>
+
+<details>
+<summary>展开答案</summary>
+<p><b>返回空字符串 <code>""</code></b>（假设 chunk1 里只有这 3 字节）。解码器看到 <code>F0</code>（11110 000），判断这是 4 字节字符的开头，但只收到 3 字节，暂存 [F0 9F 98]，等下一个 chunk。第 2 个 chunk 到达时，拼成 [F0 9F 98 80]，解码出 "😀"。</p>
+
+<p><b>如果去掉 <code>{ stream: true }</code>：</b><code>decoder.decode(chunk1)</code> 会抛错或返回 <code>���</code>（3 个替换字符），因为解码器认为这是最后一个 chunk，3 字节无法构成完整字符。</p>
+</details>
+
+<p><b>问题 2（项目级）：</b><br>
+Day 5 的代码里，<code>buffer.split('\n\n')</code> 后为什么要 <code>lines.pop()</code>？如果不 pop，直接 <code>for (const line of lines)</code>，会出什么问题？</p>
+
+<details>
+<summary>展开答案</summary>
+<p><b>会把不完整的行当完整行解析，导致 JSON.parse 报错</b>。例如：</p>
+
+<pre><code><span class="c">// Chunk 1: "data: {\"type\":\"run.started\"}\n\ndata: {\"type\":"</span>
+lines = [<span class="s">"data: {\"type\":\"run.started\"}"</span>, <span class="s">"data: {\"type\":"</span>]
+
+<span class="c">// 如果不 pop，第 2 行进入 for 循环</span>
+<span class="t">JSON</span>.<span class="f">parse</span>(<span class="s">"{\"type\":"</span>)  <span class="c">// ✗ SyntaxError: Unexpected end of JSON input</span></code></pre>
+
+<p><code>pop()</code> 的作用是把最后一块（可能不完整）留到下一轮，和新 chunk 拼起来后再解析。</p>
+
+<p><b>边界情况：</b>如果 chunk 刚好在 <code>\n\n</code> 处断开，<code>split('\n\n')</code> 最后一个元素是空串 <code>""</code>，pop 掉也无害。</p>
+</details>
+
+<p><b>问题 3（工程级）：</b><br>
+如果后端在一个 SSE 消息里推 3 个事件（用 <code>\n\n</code> 分隔），前端会一次性收到 3 个事件吗？还是分 3 次 <code>reader.read()</code>？UI 会怎样？</p>
+
+<details>
+<summary>展开答案</summary>
+<p><b>取决于 TCP 分包</b>。如果 3 个事件的总字节数 &lt; TCP MSS（通常 1460 字节），浏览器可能在一个 <code>reader.read()</code> 里收到 3 个；如果超过，会分多个 chunk。</p>
+
+<p>关键是：<code>buffer.split('\n\n')</code> 会把一个 chunk 里的多个事件拆开：</p>
+
+<pre><code><span class="c">// 一个 chunk 包含 3 个完整事件</span>
+buffer = <span class="s">"data: {...}\n\ndata: {...}\n\ndata: {...}\n\n"</span>
+lines = [<span class="s">"data: {...}"</span>, <span class="s">"data: {...}"</span>, <span class="s">"data: {...}"</span>, <span class="s">""</span>]
+
+<span class="k">for</span> (<span class="k">const</span> line <span class="k">of</span> lines) {
+  events.value.<span class="f">push</span>(<span class="t">JSON</span>.<span class="f">parse</span>(line.<span class="f">slice</span>(<span class="n">6</span>)))  <span class="c">// 3 次 push</span>
+}</code></pre>
+
+<p><b>UI 会怎样：</b>和深挖 2 讲的一样 —— 3 次 push 在同一个宏任务里，Vue 批量更新，UI 一次跳 3 格。要让 UI 分段出现，必须把每个 push 包在 <code>setTimeout(..., 0)</code> 里（或者后端每次只推 1 个事件，间隔 &gt; 16ms）。</p>
+</details>
+
+<h3>4.7 面试真题拆解 —— 从流式处理出发怎么答</h3>
+
+<h4>真题 1："你怎么处理 AI 流式响应的中文乱码？"</h4>
+
+<p><span class="bad">烂答法：</span>"用 UTF-8 解码。"</p>
+
+<p><span class="pass">及格答法：</span>"用 <code>TextDecoder</code> 的 <code>{ stream: true }</code> 参数，让解码器暂存不完整的 UTF-8 字节，等下一个 chunk 拼起来再解码。"</p>
+
+<p><span class="good">优秀答法（30 秒）：</span>"核心问题是<b>多字节字符可能被 TCP 拆包</b>。中文是 3 字节 UTF-8，如果一个汉字的前 2 字节在 chunk 1、最后 1 字节在 chunk 2，直接 <code>String.fromCharCode</code> 会输出乱码。我用 <code>TextDecoder</code> 的 <code>{ stream: true }</code> 参数 —— 解码器看到不完整序列时会暂存，等下一个 chunk 到达后拼起来解码。监控项目 Day 5 换成真 SSE 时踩过这个坑：最开始没加 <code>{ stream: true }</code>，每次 chunk 边界刚好在中文字符中间时，UI 就出现 <code>��</code>。加上后，解码器自动处理跨 chunk 的字符。Emoji（4 字节）同理。这个参数的本质是把<b>无状态解码</b>变成<b>有状态解码</b>。"</p>
+
+<h4>真题 2："SSE 和 WebSocket 有什么区别？什么场景用 SSE？"</h4>
+
+<p><span class="bad">烂答法：</span>"SSE 是单向的，WebSocket 是双向的。"</p>
+
+<p><span class="pass">及格答法：</span>"SSE 是服务端推（Server-Sent Events），基于 HTTP，只能服务端→客户端；WebSocket 是全双工，基于 TCP，双向通信。SSE 更简单，适合服务端主动推送的场景（通知、日志流）。"</p>
+
+<p><span class="good">优秀答法（挂钩今天的项目）：</span>"两者的核心区别是<b>连接模型和复杂度</b>。SSE 是 HTTP 长连接 + <code>text/event-stream</code>，浏览器原生支持（<code>EventSource</code>），自动重连、自动解析 <code>data:</code> 格式；WebSocket 是独立协议（ws://），需要握手升级，没有自动重连。监控项目用 SSE 是因为：Agent 执行是<b>单向推送</b>（后端推事件，前端只在最开始发一次 prompt），不需要中途双向交互。SSE 的价值是简单 —— 我只需要 <code>fetch</code> + <code>ReadableStream</code>，不需要额外的 ws 库、不需要处理心跳。唯一的坑是<b>手动解析 SSE 格式</b>（<code>data: ...\n\n</code>）和<b>跨 chunk UTF-8 解码</b>，但这比 WebSocket 的帧解析 + ping/pong 简单。如果是聊天室（双向高频），我会用 WebSocket；如果是日志流、进度推送、AI 流式输出，SSE 够用且更轻。"</p>
+
+<h4>真题 3："用户点停止按钮时，怎么取消 SSE 请求？"</h4>
+
+<p><span class="bad">烂答法：</span>"关闭连接。"</p>
+
+<p><span class="pass">及格答法：</span>"用 <code>AbortController</code>，fetch 时传 <code>signal</code>，点停止时调 <code>abort()</code>。"</p>
+
+<p><span class="good">优秀答法（30 秒）：</span>"要做两件事：<b>中止 fetch</b> 和 <b>释放流的锁</b>。我用 <code>AbortController</code> 的 <code>signal</code> 传给 fetch，用户点停止时调 <code>abortController.abort()</code> —— 这会让 fetch 抛 <code>AbortError</code>，中断网络请求。同时调 <code>reader.cancel()</code> 释放 <code>ReadableStream</code> 的锁 —— 如果不调，<code>while (true)</code> 循环会一直等 <code>reader.read()</code>，内存泄漏。监控项目 Day 5 会加这个逻辑：在 <code>useAgentRun</code> composable 里，<code>onUnmounted</code> 自动调 <code>abort() + cancel()</code>，保证组件卸载时清理资源。这个模式和 Vue 的生命周期天然契合 —— 组件挂载时开始 SSE，卸载时自动清理。"</p>
+
+<h3>4.8 下一步</h3>
+
+<ul>
+  <li><b>今天做完：</b>在浏览器控制台跑这段代码，观察 <code>{ stream: true }</code> 的效果：
+<pre><code><span class="k">const</span> decoder = <span class="k">new</span> <span class="t">TextDecoder</span>(<span class="s">'utf-8'</span>)
+<span class="k">const</span> chunk1 = <span class="k">new</span> <span class="t">Uint8Array</span>([<span class="n">0xE6</span>, <span class="n">0xAD</span>])  <span class="c">// "正" 的前 2 字节</span>
+<span class="k">const</span> chunk2 = <span class="k">new</span> <span class="t">Uint8Array</span>([<span class="n">0xA3</span>])  <span class="c">// "正" 的最后 1 字节</span>
+<span class="f">console</span>.<span class="f">log</span>(decoder.<span class="f">decode</span>(chunk1, { stream: <span class="k">true</span> }))  <span class="c">// ""</span>
+<span class="f">console</span>.<span class="f">log</span>(decoder.<span class="f">decode</span>(chunk2, { stream: <span class="k">true</span> }))  <span class="c">// "正"</span></code></pre>
+  如果第 1 行去掉 <code>{ stream: true }</code>，你会看到 <code>��</code>。</li>
+  <li><b>本周内：</b>Day 5 换成真 SSE，你会亲手写一遍 <code>buffer.split('\n\n')</code> 的行缓冲逻辑。</li>
+  <li><b>Week 2 补深：</b><code>ReadableStream</code> 的 transform 流（压缩、加密）、背压（backpressure）处理。</li>
+  <li><b>面试前准备：</b>把 4.7 三个真题录音答一遍，每题 45 秒。重点是真题 1 能答出"有状态解码"这个关键词。</li>
+</ul>
+
+<hr>
+
+<!-- ============================================================ -->
+<h2 id="dig-5">深挖 5：架构表达 —— 30 秒讲清 domain / features / composables / app 四层</h2>
+
+<p><b>为什么挖这个：</b>12 号报告第 7 节「面试表达改进建议」点名"架构表达能力弱"。今天 v3 的目录结构是 <code>domain/agent</code> + <code>features/agent-run</code> + <code>App.vue</code>，看起来简单，但背后是<b>依赖方向、边界纯净度、复用粒度</b>三层设计原则。挖懂它，面试官问"你怎么组织 Vue 项目代码"时，你能 30 秒讲清楚每层的职责和依赖关系，而不是"按功能分文件夹"这种空话。</p>
+
+<h3>5.1 场景锚点（10 秒定位）</h3>
+
+<p>今天 v3 的目录：</p>
+
+<pre><code>src/
+├── domain/agent/
+│   ├── agent-event.ts        <span class="c"># 事件类型（9 种 AgentEvent）</span>
+│   ├── agent-run-state.ts    <span class="c"># 状态机（reducer + 初始状态）</span>
+│   └── agent-run-state.spec.ts
+├── features/agent-run/
+│   ├── ui/AgentRunPanel.vue  <span class="c"># UI 组件</span>
+│   └── fixtures/sample-run.ts <span class="c"># 测试数据</span>
+└── App.vue                    <span class="c"># 编排层</span></code></pre>
+
+<p><b>核心疑问：</b>为什么不直接在 <code>AgentRunPanel.vue</code> 里写 reducer，而要单独抽 <code>domain/agent</code>？为什么 fixture 放在 <code>features</code> 下而不是 <code>domain</code> 下？这个分层的价值是什么？</p>
+
+<h3>5.2 项目代码原样（依赖关系图）</h3>
+
+<pre><code>App.vue
+  ↓ import { startSampleRun } from '@/features/agent-run/fixtures/sample-run'
+features/agent-run/fixtures/sample-run.ts
+  ↓ import { type AgentEvent } from '@/domain/agent/agent-event'
+domain/agent/agent-event.ts
+  ↑ 纯类型定义，无依赖
+
+features/agent-run/ui/AgentRunPanel.vue
+  ↓ import { reduceAgentEvent, initialState } from '@/domain/agent/agent-run-state'
+  ↓ import { type AgentEvent } from '@/domain/agent/agent-event'
+domain/agent/agent-run-state.ts
+  ↓ import { type AgentEvent, assertNever } from '@/domain/agent/agent-event'</code></pre>
+
+<p><b>依赖方向规则：</b></p>
+<ul>
+  <li>App → features → domain（单向，不反转）</li>
+  <li>domain 层不依赖 features 层（纯函数 + 类型定义）</li>
+  <li>domain 层不依赖 Vue（<code>reduceAgentEvent</code> 不 import <code>ref</code> / <code>reactive</code>）</li>
+</ul>
+
+<h3>5.3 拆解：四层架构的职责分工</h3>
+
+<table>
+  <tbody><tr>
+    <th>层</th>
+    <th>职责</th>
+    <th>依赖</th>
+    <th>可测试性</th>
+  </tr>
+  <tr>
+    <td><b>domain</b></td>
+    <td>核心逻辑（reducer、类型、算法）</td>
+    <td>零依赖（纯 TS）</td>
+    <td>单元测试，无 mock</td>
+  </tr>
+  <tr>
+    <td><b>features</b></td>
+    <td>UI 组件 + fixture + 本地状态管理</td>
+    <td>domain + Vue</td>
+    <td>组件测试（@vue/test-utils）</td>
+  </tr>
+  <tr>
+    <td><b>composables</b>（Week 2 补）</td>
+    <td>响应式逻辑复用（useAgentRun）</td>
+    <td>domain + Vue</td>
+    <td>集成测试</td>
+  </tr>
+  <tr>
+    <td><b>App.vue</b></td>
+    <td>顶层编排（路由、全局状态、布局）</td>
+    <td>features + composables</td>
+    <td>E2E 测试</td>
+  </tr>
+</tbody></table>
+
+<h3>5.4 原理：为什么 domain 层不能依赖 Vue</h3>
+
+<p>如果 <code>reduceAgentEvent</code> 里 import <code>ref</code>：</p>
+
+<pre><code><span class="k">import</span> { ref } <span class="k">from</span> <span class="s">'vue'</span>  <span class="c">// ✗ 破坏 domain 纯净性</span>
+
+<span class="k">export function</span> <span class="f">reduceAgentEvent</span>(state: <span class="t">AgentRunState</span>, event: <span class="t">AgentEvent</span>) {
+  <span class="k">const</span> counter = <span class="f">ref</span>(<span class="n">0</span>)  <span class="c">// ✗ 副作用</span>
+  <span class="c">// ...</span>
+}</code></pre>
+
+<p><b>破坏了三个价值：</b></p>
+
+<ol>
+  <li><b>可移植性：</b>reducer 不能在 Node.js 环境跑（Vue 依赖 DOM）—— Day 15 要在 Node.js 里跑回放测试，有 Vue 依赖就跑不了；</li>
+  <li><b>测试成本：</b>单元测试要 import Vue 的测试工具（<code>@vue/test-utils</code>），从 &lt;1ms 的纯函数测试变成 10ms+ 的组件测试；</li>
+  <li><b>心智负担：</b>看到 domain 层文件，你不知道它是不是纯函数 —— 可能藏了 <code>ref</code> / <code>watch</code> / <code>onMounted</code>，可测试性未知。</li>
+</ol>
+
+<div class="callout">
+  <b>关键洞察：</b>domain 层的纯净度 = 项目的<b>可测试性下限</b>。domain 层越纯，单元测试越快、越稳；domain 层有副作用，整个项目的测试成本指数增长。
+</div>
+
+<h3>5.5 面试真题拆解 —— 30 秒讲清架构</h3>
+
+<h4>真题："你怎么组织 Vue 项目的代码？"</h4>
+
+<p><span class="bad">烂答法：</span>"按功能分文件夹，components 放组件，utils 放工具函数。"</p>
+
+<p><span class="pass">及格答法：</span>"分 domain 层（核心逻辑）、features 层（UI 组件）、App 层（编排）。domain 层不依赖 Vue，方便测试和复用。"</p>
+
+<p><span class="good">优秀答法（30 秒背诵版）：</span>"我用<b>四层架构</b>：domain 层放纯函数和类型（reducer、算法、事件定义），不依赖 Vue，单元测试无 mock；features 层放 UI 组件和 fixture，依赖 domain + Vue，组件测试用 @vue/test-utils；composables 层放响应式逻辑复用（比如 useAgentRun），集成测试验证 watch 和副作用；App 层做顶层编排。<b>依赖方向单向</b>：App → features → domain，不反转。监控项目的 <code>reduceAgentEvent</code> 在 domain 层，30 行单元测试覆盖 3 条规则，&lt;1ms 跑完；如果把它写在组件里，测试要 mount 组件、mock localStorage，成本 10 倍。这个分层的价值不是架构好看，是<b>测试成本和可移植性</b> —— Day 15 要在 Node.js 里跑回放测试，domain 层直接复用，零改动。"</p>
+
+<h3>5.6 下一步</h3>
+
+<ul>
+  <li><b>今天做完：</b>用 30 秒背诵上面的优秀答法，录音听回放。如果你说不出"依赖方向单向"和"测试成本"这两个关键词，重读 5.4。</li>
+  <li><b>本周内：</b>Day 2-3 会在 features 层加更多组件，你会看到多个 feature 如何共享 domain 层。</li>
+  <li><b>Week 2 补深：</b>composables 层的设计（useAgentRun 怎么复用）、Barrel Export 的反模式（为什么不用 <code>index.ts</code> 统一导出）。</li>
+  <li><b>面试前准备：</b>画一张依赖关系图（App → features → domain），能在白板上 1 分钟画出来，边画边讲职责。</li>
+</ul>
+
+<hr>
+
+<!-- ============================================================ -->
+<h2 id="dig-6">深挖 6：证据链与自述 —— 把今天的 v3 讲成 STAR + ADR</h2>
+
+<p><b>为什么挖这个：</b>12 号报告第 7 节「面试表达改进建议」点名"证据链断裂、技术决策缺乏推理过程"。今天你写了 <code>reduceAgentEvent</code>、定义了 9 种 <code>AgentEvent</code>、用 <code>setTimeout</code> 模拟流式 —— 这些都是<b>技术决策</b>，但如果面试时你只说"我写了一个 reducer"，面试官听不出你的思考深度。挖懂它，你能把今天的 v3 讲成一个完整的 STAR 案例 + 3 条 ADR（Architecture Decision Record）。</p>
+
+<h3>6.1 场景锚点（10 秒定位）</h3>
+
+<p>面试官问："讲一个你最近做的前端项目。"</p>
+
+<p><b>烂答法（证据链断裂）：</b>"我做了一个 AI 监控面板，用 Vue 3 + TypeScript，有状态机和事件流。"</p>
+
+<p><b>优秀答法（STAR + ADR）：</b>从今天 v3 提炼出：</p>
+
+<ul>
+  <li><b>Situation:</b> 监控 Agent 执行过程，后端推 9 种事件（文本、工具调用、审批），前端要实时展示状态 + 时间线；</li>
+  <li><b>Task:</b> 设计一个<b>健壮的状态机</b>，处理乱序、重复、终态保护；</li>
+  <li><b>Action:</b> 用判别联合 + reducer 模式，3 条规则（去重、终态保护、状态切换），30 行单元测试覆盖；</li>
+  <li><b>Result:</b> 0 个 runtime 错误，状态一致性 100%，测试覆盖关键路径。</li>
+</ul>
+
+<p><b>3 条 ADR（为什么这么设计）：</b></p>
+
+<ol>
+  <li><b>ADR-1:</b> 为什么用判别联合而不是 <code>type</code> 字段 + <code>any</code> payload → 编译时类型安全，<code>assertNever</code> 保证穷尽；</li>
+  <li><b>ADR-2:</b> 为什么把 reducer 抽到 domain 层 → 可测试性（无 mock）+ 可移植性（Node.js 回放）；</li>
+  <li><b>ADR-3:</b> 为什么用 <code>setTimeout</code> 模拟而不是直接 SSE → 降低 Day 1 复杂度，Day 5 平滑迁移。</li>
+</ol>
+
+<h3>6.2 项目代码原样（提炼证据点）</h3>
+
+<p>从今天 v3 的代码里，可以提炼这些<b>可量化的证据</b>：</p>
+
+<table>
+  <tbody><tr>
+    <th>证据点</th>
+    <th>代码位置</th>
+    <th>量化数据</th>
+  </tr>
+  <tr>
+    <td>类型安全</td>
+    <td><code>agent-event.ts</code> 判别联合</td>
+    <td>9 种事件，编译时穷尽检查</td>
+  </tr>
+  <tr>
+    <td>状态机规则</td>
+    <td><code>agent-run-state.ts</code> 三条 if</td>
+    <td>去重、终态保护、6 种状态切换</td>
+  </tr>
+  <tr>
+    <td>测试覆盖</td>
+    <td><code>agent-run-state.spec.ts</code></td>
+    <td>3 个测试用例，&lt;1ms，无 mock</td>
+  </tr>
+  <tr>
+    <td>依赖纯净度</td>
+    <td><code>domain/agent</code> 无 Vue import</td>
+    <td>0 个框架依赖</td>
+  </tr>
+  <tr>
+    <td>UI 响应式</td>
+    <td><code>fixtures/sample-run.ts</code> 9 个 setTimeout</td>
+    <td>100ms/200ms/.../900ms 分段出现</td>
+  </tr>
+</tbody></table>
+
+<h3>6.3 STAR 模板（背诵版）</h3>
+
+<p><b>Situation（15 秒）：</b><br>
+"监控 AI Agent 执行过程。后端推 9 种事件（文本 delta、工具调用开始/完成、审批请求），前端要实时展示状态徽章（idle/running/awaiting-approval/completed）+ 时间线。核心挑战：事件可能<b>乱序、重复、在终态后还推</b>，前端要保证状态一致性。"</p>
+
+<p><b>Task（10 秒）：</b><br>
+"设计一个<b>健壮的状态机</b>，处理这三类异常，同时保持代码可测试（不能把逻辑写在组件里）。"</p>
+
+<p><b>Action（20 秒）：</b><br>
+"用 TypeScript 判别联合定义 9 种事件，每种事件有类型安全的 payload；写一个纯函数 reducer，3 条规则：sequence 去重、终态拒绝新事件、状态切换。把 reducer 抽到 domain 层，不依赖 Vue，30 行单元测试覆盖关键路径。用 <code>setTimeout</code> 模拟流式推送，每个事件在独立宏任务里，Vue 自动批量更新 UI。"</p>
+
+<p><b>Result（15 秒）：</b><br>
+"0 个 runtime 类型错误（<code>assertNever</code> 编译时穷尽检查），状态一致性 100%（重复、乱序、终态后推送全部正确处理），单元测试 &lt;1ms 无 mock。Day 5 换成真 SSE 时，只改数据源（fixture → fetch），reducer 零改动。"</p>
+
+<h3>6.4 面试真题拆解 —— 从技术选型到推理链</h3>
+
+<h4>真题："为什么用 TypeScript 判别联合，不用 interface + type 字段？"</h4>
+
+<p><span class="bad">烂答法（无推理）：</span>"TypeScript 判别联合类型安全。"</p>
+
+<p><span class="pass">及格答法（有理由）：</span>"判别联合能让 TypeScript 自动窄化类型。<code>if (event.type === 'run.started')</code> 后，编译器知道 <code>event.payload</code> 是空对象。"</p>
+
+<p><span class="good">优秀答法（有推理 + 有反例）：</span>"对比两种方案：<b>方案 A</b>（interface + any payload）编译时不知道 payload 结构，要手动 <code>as</code> 断言，容易写错；<b>方案 B</b>（判别联合）编译器自动窄化，<code>assertNever(event)</code> 保证穷尽 —— 如果后端加了第 10 种事件、前端 reducer 没处理，编译直接报错。监控项目有 9 种事件，方案 A 每个 case 要写 3 行（判断 + 断言 + 逻辑），方案 B 只要 1 行（判断 + 逻辑）。更关键的是<b>维护成本</b>：Day 8 要加 <code>run.canceled</code> 事件，方案 B 编译器会提示我"reducer 没处理这个 case"，方案 A 编译通过、运行时才发现 bug。我选方案 B 是因为<b>编译时错误 &gt; 运行时错误</b>。"</p>
+
+<h3>6.5 下一步 —— 今晚就练的 3 件事</h3>
+
+<ol>
+  <li><b>背诵 STAR（5 分钟）：</b>
+    <ul>
+      <li>对着镜子说一遍 6.3 的 STAR 模板（60 秒版）；</li>
+      <li>录音听回放，检查是否说出"可量化证据"（9 种事件、3 条规则、&lt;1ms 测试）；</li>
+      <li>如果卡壳，重读 6.2 证据表格。</li>
+    </ul>
+  </li>
+  <li><b>提炼 ADR（10 分钟）：</b>
+    <ul>
+      <li>在纸上写 3 条 ADR（为什么用判别联合 / 为什么 domain 层分离 / 为什么先 fixture）；</li>
+      <li>每条 ADR 格式：决策 → 理由（正面价值）→ 反例（不这么做的坏处）；</li>
+      <li>明天面试时，任何"为什么"问题都用这个格式答。</li>
+    </ul>
+  </li>
+  <li><b>自测推理链（5 分钟）：</b>
+    <ul>
+      <li>假设面试官问："为什么要写单元测试？"</li>
+      <li>烂答："保证代码质量。"（空话）</li>
+      <li>优秀答："监控项目的 reducer 有 30 行单元测试，&lt;1ms 无 mock，覆盖去重、终态保护、状态切换 3 条规则。Day 8 加新事件时，测试能在 1 秒内验证没破坏旧逻辑。<b>测试的价值不是'质量好'，是'改代码时的安全网'</b> —— 没测试的话，我改一行代码要手动点 9 遍 UI 验证，有测试的话 <code>pnpm test</code> 1 秒出结果。"（有量化 + 有场景）</li>
+    </ul>
+  </li>
+</ol>
+
+<h3>6.6 总结 —— 证据链的 3 层金字塔</h3>
+
+<table>
+  <tbody><tr>
+    <th>层级</th>
+    <th>内容</th>
+    <th>时间</th>
+  </tr>
+  <tr>
+    <td><b>顶层（结论）</b></td>
+    <td>我做了 X 项目，用了 Y 技术</td>
+    <td>5 秒</td>
+  </tr>
+  <tr>
+    <td><b>中层（证据）</b></td>
+    <td>9 种事件、3 条规则、30 行测试、&lt;1ms</td>
+    <td>15 秒</td>
+  </tr>
+  <tr>
+    <td><b>底层（推理）</b></td>
+    <td>为什么这么设计 → 对比方案 → 权衡取舍</td>
+    <td>40 秒</td>
+  </tr>
+</tbody></table>
+
+<p><b>12 号报告说你"证据链断裂"，指的是只有顶层，没有中层和底层。</b>今天深挖 1-6 教你的，就是把每个技术决策都补上中层（量化证据）和底层（推理链）。</p>
+
+<div class="callout ok">
+  <b>60 天后面试时：</b>面试官问"讲一个你的项目"，你直接背 6.3 的 STAR（60 秒）。面试官追问"为什么用判别联合"，你背 6.4 的优秀答法（45 秒）。面试官再问"还有别的方案吗"，你说"方案 A 是 interface + any，我在 Day 1 的 ADR 里对比过，方案 B 编译时错误优于运行时错误，所以选了判别联合"。<b>这就是证据链完整的表达。</b>
+</div>
+
+<hr>
+
+<!-- ============================================================ -->
+<div class="footer-note">
+  <b>六个深挖到此结束</b>
+  <p>回到 <a href="/ai-teacher-agent-devolop/day/01.html">Day01.md</a> 做 7.6-7.9（测试 + 反证实验 + 验收 + commit）。</p>
+  <p><b>明天 Day 2：</b>加 Zod Schema 校验（运行时类型安全）、UI 组件测试、错误边界。</p>
+</div>
+
+<div class="footer-note">
+  <b>使用建议</b>
+  <ul style="margin:8px 0 0 20px;">
+    <li>单文件、离线可看、代码块内嵌语法高亮、答案默认折叠。</li>
+    <li>阅读顺序：<b>项目代码 → 拆解 → 原理 → 反例 → 分层提问（先自答再展开）→ 项目对手戏 → 面试真题</b>。</li>
+    <li>本文档配套主课程 <code>output/90天逐日任务/Day01.md</code>；后续深挖 2-6 待样本获批后补齐。</li>
+  </ul>
+</div>
+
+</main>
+
+
+</body></html>

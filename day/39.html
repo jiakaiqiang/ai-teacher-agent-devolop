@@ -1,0 +1,1225 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 39 · Day 39 - Agent 指标：运行质量看板与问题下钻 | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week" open="">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html" aria-current="page">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/06.html">第 6 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 39</p>
+        <h1>Day 39 - Agent 指标：运行质量看板与问题下钻</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <blockquote>
+<p><strong>《90 天拆分规则说明》校正口径（本节优先于正文中的旧阶段编号和旧时间表）</strong></p>
+<ul>
+<li><strong>路线位置</strong>：阶段二（Day 31-60，AI 前端 -&gt; AI 全栈）。继续在 <code>p1-monitor</code> 中补齐全栈与 AI 能力，并复用前 30 天的事件合同、状态管理和实时链路。</li>
+<li><strong>功能交付</strong>：本日必须交付一个能跑、能测、能从用户入口观察结果的完整模块；知识点只能由该模块自然引出。</li>
+<li><strong>三版演进</strong>：正文 §3/§4/§5 分别对应 v1 最小闭环、v2 增加一个关键设计维度、v3 生产终态；v1/v2 必须写明可观察痛点，v3 必须解决这些痛点。</li>
+<li><strong>时间盒</strong>：本日执行 180 分钟标准时间盒：A/B/C 各 30 分钟（共 90 分钟阅读）；D 60 分钟、E 20 分钟、F 10 分钟（共 90 分钟动手）。正文其他旧时间表不再作为执行口径。</li>
+<li><strong>累积复用</strong>：开始前读取上一日 commit 和当前源码；当天新增合同必须复用已有事件、Schema、状态或持久化边界，禁止复制出第二套平行实现。</li>
+<li><strong>验收门槛</strong>：核心测试 + 两个产生不同可观察失败的反证实验 + 课末三问 + 至少两道真实项目情境题 + 提交后动态教师五连问，缺一项即不通过。</li>
+</ul>
+</blockquote>
+<p>日期与时长：2026-08-21 周五，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor</code>
+阶段任务性质：教师基线；实际分发时根据上一日成绩生成补弱版、标准版或挑战版。</p>
+<blockquote>
+<p><strong>本日目录结构（先看全局，再写代码）</strong></p>
+<pre><code>apps/api/src/metrics/
+├── metrics.module.ts                 ← 样板：模块聚合
+├── sli/
+│   ├── sli-definition.ts             ← 核心：你手写（SLI 指标字典）
+│   ├── success-criteria.ts           ← 核心：你手写（Agent 成功定义）
+│   └── termination-classifier.ts     ← 核心：你手写（终止原因分类）
+├── aggregation/
+│   ├── metric-aggregator.ts          ← 核心：你手写（聚合计算 + 分母追踪）
+│   ├── cost-breakdown.ts             ← 核心：你手写（成本分解：provider/model/tenant）
+│   └── drilldown.service.ts          ← 核心：你手写（下钻到 run 级明细）
+├── slo/
+│   ├── slo-config.ts                 ← 核心：你手写（SLO 目标定义）
+│   └── slo-validator.ts              ← 核心：你手写（SLO 达成检查）
+├── collection/
+│   ├── metric-collector.ts           ← 样板：采集点埋点
+│   └── run-lifecycle-hook.ts         ← 核心：你手写（run 生命周期采集）
+└── __tests__/
+    ├── success-criteria.spec.ts
+    ├── cost-breakdown.spec.ts
+    └── metrics.e2e-spec.ts
+
+apps/web/src/pages/
+├── MetricsDashboard.vue              ← 核心：你手写（聚合看板 + 下钻入口）
+├── RunDrilldown.vue                  ← 核心：你手写（单 run 明细 + 证据链）
+└── CostBreakdown.vue                 ← 核心：你手写（成本分解视图）
+</code></pre>
+<p>说明：今天是阶段二最后一天，也是监控体系的收官。Day35 建立了 Trace 贯穿，Day37 建立了性能指标采集，今天把这些原始数据加工成<strong>业务指标</strong>：不是"请求成功率"，而是"任务完成率"；不是"平均延迟"，而是"用户等待时长"。核心是<strong>你来定义什么是成功</strong>，AI 只负责查询聚合。</p>
+</blockquote>
+<h2 id="0-今天在-90-天里的位置">§0 今天在 90 天里的位置</h2>
+<p><strong>阶段二第 9 天，也是阶段二收官。</strong> 前八天你把系统从"单点原型"推到"生产级基础设施"：</p>
+<ul>
+<li>Day31-33：可持久化 HITL（审批状态机 + 租约 + 队列恢复）</li>
+<li>Day34：失败恢复（错误分类 + DLQ + 补偿 + 重放）</li>
+<li>Day35：可观测性（Trace 贯穿 + PII 脱敏 + 采样）</li>
+<li>Day36：API 安全（CORS/上传/注入/限流/错误脱敏）</li>
+<li>Day37：性能（query plan + 索引 + 连接池 + 缓存 + 背压）</li>
+<li>Day38：稳定性（超时预算 + 有限重试 + 熔断 + 舱壁 + 降级）</li>
+</ul>
+<p><strong>今天要解决的 5 个指标问题：</strong></p>
+<ol>
+<li><strong>伪完成不可见</strong>：看板显示成功率 99.9%，但 23% 用户在 Agent 宣称完成后仍手工处理——"HTTP 200 ≠ 任务成功"，需要业务级成功定义。</li>
+<li><strong>聚合指标无法下钻</strong>：月度 Token 成本翻倍，聚合看板只显示总数，无法追溯是哪个模型、哪个租户、哪种失败导致。</li>
+<li><strong>缺乏分母和口径</strong>：指标只有结果值（"平均步数 4.2"），不知道分母是什么（所有 run？成功 run？排除超时？）。</li>
+<li><strong>终止原因不明</strong>：run 失败了，是超时、工具错误、模型拒答、还是用户主动中断？没有分类统计，无法定向优化。</li>
+<li><strong>SLO 没有明确目标</strong>：指标采集了，但没有"成功率 &gt; 95%"这样的 SLO 目标，也就没有告警，只能事后发现问题。</li>
+</ol>
+<p>今天是从"采集指标"到"定义成功"的跃迁——Day37 采集的是原始数据（延迟、错误码），今天加工成业务语义（任务完成率、成本分布）。</p>
+<h2 id="1-今天要做的事">§1 今天要做的事</h2>
+<h3 id="11-五个真实用户场景">1.1 五个真实用户场景</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>#</th>
+<th>场景</th>
+<th>没有业务指标会怎样</th>
+<th>有了之后</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>PM 问"上周成功率多少"</td>
+<td>你给了"HTTP 200 率 99.9%"，但用户实际满意度很低</td>
+<td>给"任务完成率 87%"（带证据：有 Artifact、无人工接管）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Token 成本翻倍</td>
+<td>只知道总成本涨了，不知道是哪个模型、哪个租户</td>
+<td>成本分解：gpt-4 占 60%、租户 A 占 40%、失败重试占 15%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>优化"平均步数"</td>
+<td>不知道分母是什么，改完发现数字变了但业务没改善</td>
+<td>明确口径："成功 run 的平均步数（排除超时和人工接管）"</td>
+</tr>
+<tr>
+<td>4</td>
+<td>run 失败</td>
+<td>看板只显示"失败 120 个"，不知道是工具错误还是超时</td>
+<td>终止分布：超时 50 个、工具错误 40 个、模型拒答 30 个</td>
+</tr>
+<tr>
+<td>5</td>
+<td>设 SLO</td>
+<td>指标没有目标，事后才发现成功率掉到 80%</td>
+<td>SLO：成功率 &gt; 95%，成本 &lt; $0.5/run，超标自动告警</td>
+</tr>
+</tbody>
+</table></div><h3 id="12-模块职责划分">1.2 模块职责划分</h3>
+<ul>
+<li><strong>sli（Service Level Indicator）</strong>：指标字典，定义"成功"、"步数"、"成本"的计算口径和分母。</li>
+<li><strong>aggregation（聚合）</strong>：从 run 明细聚合到租户/模型/时段维度，支持下钻到原始 run。</li>
+<li><strong>slo（Service Level Objective）</strong>：目标定义（如"成功率 &gt; 95%"），达标检查，超标告警。</li>
+<li><strong>collection（采集）</strong>：run 生命周期埋点，记录起止时间、终止原因、成本、工具证据。</li>
+<li><strong>drilldown（下钻）</strong>：从聚合数字点进去，看到贡献这个数字的所有 run，再点进单个 run 看明细。</li>
+</ul>
+<h3 id="13-三版演进">1.3 三版演进</h3>
+<p><strong>v1（最小可用）：裸 SQL 聚合 + HTTP 状态码当成功</strong></p>
+<ul>
+<li>直接 <code>SELECT COUNT(*) FROM runs WHERE status='completed'</code> 当成功率。</li>
+<li>致命问题：HTTP 200 不等于任务成功（Agent 可能伪完成）；无下钻；无成本分解；无 SLO。</li>
+</ul>
+<p><strong>v2（加业务语义）：定义任务成功 + 终止分类 + 成本分解</strong></p>
+<ul>
+<li>成功定义：has_artifact=true AND human_takeover=false AND status='completed'。</li>
+<li>终止分类：timeout / tool_error / model_refusal / user_cancel / success。</li>
+<li>成本按 provider/model/tenant 三维分解。</li>
+<li>解决了"伪完成"和"成本黑盒"，但还缺：下钻链路；SLO 目标。</li>
+</ul>
+<p><strong>v3（生产级）：SLO 目标 + 全链路下钻 + 指标口径文档</strong></p>
+<ul>
+<li>每个指标有明确 SLO（成功率 &gt; 95%、P99 &lt; 10s、成本 &lt; $0.5/run）。</li>
+<li>聚合数字可点击下钻到 run 列表，再点进单个 run 看 Trace + 工具调用 + 终止证据。</li>
+<li>指标字典文档化：每个指标写清楚"分子 / 分母 / 排除条件"。</li>
+</ul>
+<h3 id="14-目录结构5-个维度完整展示">1.4 目录结构（5 个维度完整展示）</h3>
+<p><strong>维度 1：指标模块在整个 apps/api 里的位置</strong></p>
+<pre><code>apps/api/src/
+├── agent/                    ← Day29-30 Agent 执行（今天要采集指标）
+├── tools/                    ← Tool 调用（今天要统计成功率）
+├── model/                    ← 模型调用（今天要分解成本）
+├── trace/                    ← Day35 Trace（今天要关联下钻）
+├── metrics/                  ← 【本日新增】指标采集与聚合
+│   ├── metrics.module.ts
+│   ├── sli/
+│   ├── aggregation/
+│   ├── slo/
+│   └── collection/
+└── app.module.ts
+</code></pre>
+<p><strong>维度 2：一条指标从采集到展示的流程</strong></p>
+<pre><code>run 生命周期事件
+  → MetricCollector.collect（采集原始数据：开始时间/结束时间/终止原因/成本/工具列表）
+    → 写入 metric_events 表
+      → MetricAggregator.aggregate（按时段/租户/模型聚合）
+        → 计算成功率/平均步数/成本分布
+          → SloValidator.check（对比 SLO 目标）
+            → 超标 → 告警
+  → DashboardAPI.getMetrics（聚合数字）
+    → 用户点击下钻 → DrilldownService.getRuns（run 列表）
+      → 点击单个 run → RunDetail（Trace + 工具证据 + 终止原因）
+</code></pre>
+<p><strong>维度 3：依赖箭头（谁依赖谁）</strong></p>
+<pre><code>MetricCollector ──writes──&gt; metric_events 表
+MetricAggregator ──reads──&gt; metric_events 表
+SuccessCriteria ──defines──&gt; 成功定义（SLI）
+SloValidator ──checks──&gt; SloConfig（目标）
+DrilldownService ──reads──&gt; runs 表 + traces 表
+DashboardVue ──calls──&gt; MetricsAPI + DrilldownAPI
+</code></pre>
+<p><strong>维度 4：与前几天的关系（diff 视角）</strong></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>文件</th>
+<th>Day37-38 状态</th>
+<th>Day39 改动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>agent/agent.service.ts</code></td>
+<td>执行 run</td>
+<td>加埋点：记录 start/end/termination</td>
+</tr>
+<tr>
+<td><code>tools/tool-executor.ts</code></td>
+<td>执行 tool</td>
+<td>加埋点：记录 tool 成功/失败/耗时</td>
+</tr>
+<tr>
+<td><code>model/model.service.ts</code></td>
+<td>调模型</td>
+<td>加埋点：记录 token 成本</td>
+</tr>
+<tr>
+<td><code>trace/**</code></td>
+<td>Trace 贯穿</td>
+<td>关联下钻（从指标点到 Trace）</td>
+</tr>
+<tr>
+<td><code>metrics/**</code></td>
+<td>不存在</td>
+<td>全新模块</td>
+</tr>
+<tr>
+<td><code>web/pages/MetricsDashboard.vue</code></td>
+<td>不存在</td>
+<td>聚合看板 + 下钻入口</td>
+</tr>
+</tbody>
+</table></div><p><strong>维度 5：三个灵魂问题（写代码前先答）</strong></p>
+<ol>
+<li><strong>为什么"HTTP 200"不能当成功？</strong> Agent 可以返回 200 但内容是"抱歉我做不到"，或者生成了假数据但没有证据 Artifact。真正的成功需要检查：(1) 有工具调用证据 (2) 用户没有手工接管 (3) 终止原因是正常完成而非超时。</li>
+<li><strong>为什么聚合指标必须能下钻到 run？</strong> "平均成本 $0.8" 这个数字本身没法优化——你要看到<strong>哪些 run 成本高</strong>，才能定位是模型选错了、还是重试太多、还是某个租户用量异常。下钻是从聚合到原因的桥梁。</li>
+<li><strong>SLI 和 SLO 有什么区别？</strong> SLI 是<strong>指标定义</strong>（"成功"的计算公式），SLO 是<strong>目标值</strong>（"成功率 &gt; 95%"）。SLI 回答"怎么算"，SLO 回答"多少算好"。一个是度量衡，一个是及格线。</li>
+</ol>
+<h3 id="15-今天动手前的脚手架检查">1.5 今天动手前的脚手架检查</h3>
+<pre><code class="language-bash"># 1. 确认 metrics 模块目录不存在（本日新建）
+ls apps/api/src/metrics 2&gt;/dev/null &amp;&amp; echo "已存在，检查是否残留" || echo "OK，全新"
+
+# 2. 确认前几天的采集点还在
+ls apps/api/src/agent/agent.service.ts
+ls apps/api/src/tools/tool-executor.ts
+ls apps/api/src/model/model.service.ts
+
+# 3. 需要新增 Prisma 表（metric_events + slo_targets）
+</code></pre>
+<p><strong>Prisma Schema 增量（样板，可直接用）：</strong></p>
+<pre><code class="language-prisma">model MetricEvent {
+  id              String   @id @default(cuid())
+  runId           String
+  eventType       String   // 'run_start' | 'run_end' | 'tool_call' | 'model_call'
+  timestamp       DateTime @default(now())
+  metadata        Json     // 灵活存储各类指标原始数据
+  
+  @@index([runId])
+  @@index([eventType, timestamp])
+}
+
+model SloTarget {
+  id              String   @id @default(cuid())
+  metric          String   // 'success_rate' | 'p99_latency' | 'cost_per_run'
+  targetValue     Float    // 目标值（如 0.95 表示 95%）
+  operator        String   // '&gt;' | '&lt;' | '&gt;=' | '&lt;='
+  active          Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  
+  @@unique([metric])
+}
+</code></pre>
+<p><strong>迁移脚本：</strong></p>
+<pre><code class="language-bash">cd apps/api
+npx prisma migrate dev --name add_metrics_tables
+npx prisma generate
+</code></pre>
+<h2 id="2-今天的开发节奏3-小时90-阅读-90-动手">§2 今天的开发节奏（3 小时：90 阅读 / 90 动手）</h2>
+<blockquote>
+<p>本日严格执行 3h 标准时间盒，前 90 分钟只读，后 90 分钟完成项目增量、测试和证据。</p>
+</blockquote>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>时段</th>
+<th>时长</th>
+<th>做什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原理与源码</td>
+<td>90 min</td>
+<td>读 SLI/SLO、Agent 成功定义和成本分解，画指标口径图</td>
+</tr>
+<tr>
+<td>v2 增量</td>
+<td>25 min</td>
+<td>任务成功定义 + 终止分类器 + 成本分解</td>
+</tr>
+<tr>
+<td>v3 增量</td>
+<td>35 min</td>
+<td>SLO 配置 + 全链路下钻 + 指标口径文档</td>
+</tr>
+<tr>
+<td>测试/验证</td>
+<td>20 min</td>
+<td>伪造假成功 Run，完成两个反证实验和下钻检查</td>
+</tr>
+<tr>
+<td>架构证据 + 复盘</td>
+<td>10 min</td>
+<td>指标字典 + 决策日志 + AI Review 记录</td>
+</tr>
+</tbody>
+</table></div><h2 id="3-v1裸-sql-聚合-http-状态码当成功最小可用">§3 v1：裸 SQL 聚合 + HTTP 状态码当成功（最小可用）</h2>
+<p>v1 是你最直觉的做法：从 DB 查 run 表，status='completed' 就算成功。</p>
+<pre><code class="language-typescript">// v1 的朴素写法（apps/api/src/metrics/naive-metrics.ts 早期版本）
+async getSuccessRate(): Promise&lt;number&gt; {
+  const total = await this.prisma.run.count()
+  const completed = await this.prisma.run.count({
+    where: { status: 'completed' }
+  })
+  return completed / total
+}
+
+async getAverageSteps(): Promise&lt;number&gt; {
+  const runs = await this.prisma.run.findMany({
+    select: { toolCalls: true }
+  })
+  const totalSteps = runs.reduce((sum, r) =&gt; sum + r.toolCalls.length, 0)
+  return totalSteps / runs.length
+}
+</code></pre>
+<p><strong>v1 的 5 个致命问题：</strong></p>
+<ol>
+<li><strong>伪完成不可见</strong>：status='completed' 只表示"流程走完"，不表示"任务成功"。Agent 可能返回"我做不到"也标 completed。</li>
+<li><strong>无下钻</strong>：只有聚合数字（"成功率 87%"），不知道是哪 13% 失败了，无法定向优化。</li>
+<li><strong>无分母说明</strong>：平均步数的分母是什么？所有 run？只算成功的？排除超时的？不明确。</li>
+<li><strong>成本黑盒</strong>：只有总成本，不知道是哪个模型、哪个租户花的钱。</li>
+<li><strong>无 SLO 目标</strong>：指标采了，但没有"成功率应该 &gt; 95%"这样的目标，也就没有告警，只能事后发现问题。</li>
+</ol>
+<p>这 5 个问题正好对应今天要学的 5 个知识点。v2、v3 逐个解决。</p>
+<h2 id="4-v2任务成功定义-终止分类-成本分解加业务语义">§4 v2：任务成功定义 + 终止分类 + 成本分解（加业务语义）</h2>
+<p>v2 解决 v1 的前三个问题：伪完成、成本黑盒、分母不明。这三块里，**如何定义"任务成功"**是最核心的业务决策，我给结构、原理和判断标准，代码请你手写。</p>
+<h3 id="41-v2-的目录增量">4.1 v2 的目录增量</h3>
+<pre><code>apps/api/src/metrics/
+├── sli/
+│   ├── sli-definition.ts             ← 核心：你手写（SLI 指标字典）
+│   ├── success-criteria.ts           ← 核心：你手写（任务成功判定）
+│   └── termination-classifier.ts     ← 核心：你手写（终止原因分类）
+├── aggregation/
+│   ├── metric-aggregator.ts          ← 核心：你手写（聚合 + 分母追踪）
+│   └── cost-breakdown.ts             ← 核心：你手写（成本三维分解）
+└── collection/
+    ├── metric-collector.ts           ← 样板：埋点框架
+    └── run-lifecycle-hook.ts         ← 核心：你手写（run 生命周期采集）
+</code></pre>
+<h3 id="42-定义任务成功不是-http-200是业务完成">4.2 定义任务成功：不是 HTTP 200，是业务完成</h3>
+<p><strong>知识点 1：Agent 成功定义（Success Criteria）</strong></p>
+<ul>
+<li><strong>解决什么问题</strong>：HTTP 200 ≠ 任务成功。Agent 可以正常返回但内容是"我做不到"、"权限不足"、"找不到数据"，这些都是<strong>流程成功、任务失败</strong>。</li>
+<li><strong>运行机制</strong>：多维判定。任务成功需要同时满足：(1) status='completed' (2) has_artifact=true（有产出证据）(3) human_takeover=false（未人工接管）(4) termination_reason='success'（正常完成而非超时）。任何一条不满足都算失败。</li>
+<li><strong>项目落点</strong>：<code>success-criteria.ts</code> 实现判定逻辑，从 run 数据计算 isSuccess。</li>
+<li><strong>生产误区</strong>：只看 status 字段——这是技术状态，不是业务状态。要结合工具证据、人工接管、终止原因综合判断。</li>
+<li><strong>验证方法</strong>：构造"status=completed 但无 Artifact"的 run，确认被识别为失败。</li>
+</ul>
+<p><strong>SuccessCriteria 你要手写的核心逻辑（伪代码）：</strong></p>
+<pre><code>SuccessCriteria.isSuccess(run):
+  # 技术完成
+  if run.status != 'completed': return false
+  
+  # 有产出证据（工具调用或 Artifact）
+  if not run.hasArtifact and run.toolCalls.length == 0: return false
+  
+  # 未人工接管
+  if run.humanTakeover == true: return false
+  
+  # 终止原因是正常完成
+  if run.terminationReason not in ['success', 'goal_achieved']: return false
+  
+  return true
+</code></pre>
+<h3 id="43-终止原因分类为什么这个-run-结束了">4.3 终止原因分类：为什么这个 run 结束了</h3>
+<p><strong>知识点 2：终止分类（Termination Classifier）</strong></p>
+<ul>
+<li><strong>解决什么问题</strong>：run 失败了，是超时、工具错误、模型拒答、还是用户主动中断？没有分类就无法定向优化（超时说明预算不够，工具错误说明工具实现有 bug）。</li>
+<li><strong>运行机制</strong>：枚举终止原因。success（正常完成）/ timeout（超时）/ tool_error（工具调用失败）/ model_refusal（模型拒绝回答）/ user_cancel（用户主动取消）/ rate_limit（触发限流）/ circuit_open（熔断器打开）。</li>
+<li><strong>项目落点</strong>：<code>termination-classifier.ts</code> 从 run 的最后事件推断终止原因。</li>
+<li><strong>生产误区</strong>：只有"成功"和"失败"两类——这太粗，无法定位问题。至少分 5-7 类。</li>
+<li><strong>验证方法</strong>：分别构造超时 run、工具错误 run、模型拒答 run，确认分类正确。</li>
+</ul>
+<p><strong>TerminationClassifier 你要手写的核心逻辑（伪代码）：</strong></p>
+<pre><code>TerminationClassifier.classify(run):
+  lastEvent = run.events[-1]
+  
+  # 按优先级判断（越具体的越靠前）
+  if lastEvent.type == 'user_cancel': return 'user_cancel'
+  if lastEvent.error and 'timeout' in lastEvent.error: return 'timeout'
+  if lastEvent.error and lastEvent.source == 'tool': return 'tool_error'
+  if lastEvent.error and 'rate_limit' in lastEvent.error: return 'rate_limit'
+  if lastEvent.error and 'circuit_open' in lastEvent.error: return 'circuit_open'
+  if run.modelRefused: return 'model_refusal'
+  if run.status == 'completed': return 'success'
+  
+  return 'unknown'  # 兜底
+</code></pre>
+<h3 id="44-成本分解钱花在哪了">4.4 成本分解：钱花在哪了</h3>
+<p><strong>知识点 3：成本三维分解（Cost Breakdown）</strong></p>
+<ul>
+<li><strong>解决什么问题</strong>：月度成本翻倍，只有总数无法定位原因。需要按 <strong>provider（OpenAI/Claude/本地）</strong> × <strong>model（gpt-4/gpt-3.5）</strong> × <strong>tenant（租户）</strong> 三维分解。</li>
+<li><strong>运行机制</strong>：每次模型调用记录 <code>{provider, model, tenant, tokenUsed, cost}</code>，聚合时按这三个维度 GROUP BY。</li>
+<li><strong>项目落点</strong>：<code>cost-breakdown.ts</code> 从 metric_events 表聚合成本，支持任意维度组合查询。</li>
+<li><strong>生产误区</strong>：只按时间聚合（"本月花了 $1000"），不按维度分解——无法回答"哪个租户花的多"、"gpt-4 占比多少"。</li>
+<li><strong>验证方法</strong>：构造不同 provider/model/tenant 的调用，确认成本能按这三维分解且加总正确。</li>
+</ul>
+<p><strong>CostBreakdown 你要手写的核心逻辑（伪代码）：</strong></p>
+<pre><code>CostBreakdown.getByDimensions(startDate, endDate, dimensions):
+  # dimensions = ['provider', 'model', 'tenant'] 任意组合
+  
+  events = query MetricEvent where eventType='model_call' and timestamp in [startDate, endDate]
+  
+  groupBy = dimensions  # 例如 ['provider', 'model']
+  aggregated = {}
+  
+  for event in events:
+    key = tuple([event.metadata[dim] for dim in groupBy])
+    aggregated[key] = aggregated.get(key, 0) + event.metadata.cost
+  
+  return aggregated
+</code></pre>
+<h3 id="45-聚合指标的分母追踪">4.5 聚合指标的分母追踪</h3>
+<p><strong>知识点 4：指标口径（分子 / 分母 / 排除条件）</strong></p>
+<ul>
+<li><strong>解决什么问题</strong>：平均步数 4.2，这个 4.2 的分母是什么？所有 run？只算成功的？排除人工接管的？不明确就无法解释变化。</li>
+<li><strong>运行机制</strong>：每个指标明确写出计算公式。例如：<code>avg_steps = sum(toolCalls of successful runs) / count(successful runs, excluding timeout and human_takeover)</code>。</li>
+<li><strong>项目落点</strong>：<code>sli-definition.ts</code> 文档化每个指标的计算口径，聚合时严格按口径过滤。</li>
+<li><strong>生产误区</strong>：指标定义只在代码里，没有文档——新人不知道"成功"怎么算，改代码容易改错口径。</li>
+<li><strong>验证方法</strong>：用指标口径手算一个小数据集，对比代码输出，确认一致。</li>
+</ul>
+<p><strong>SLI 定义示例（你要文档化的内容）：</strong></p>
+<pre><code class="language-typescript">// apps/api/src/metrics/sli/sli-definition.ts（样板结构，内容你填）
+export const SLI_DEFINITIONS = {
+  success_rate: {
+    name: '任务成功率',
+    numerator: 'COUNT(runs WHERE isSuccess=true)',
+    denominator: 'COUNT(runs WHERE status != "cancelled")',  // 排除用户主动取消
+    excludes: ['user_cancel'],  // 排除条件
+    unit: '%',
+  },
+  avg_steps: {
+    name: '平均步数',
+    numerator: 'SUM(toolCalls.length WHERE isSuccess=true)',
+    denominator: 'COUNT(runs WHERE isSuccess=true)',  // 只算成功的
+    excludes: ['timeout', 'human_takeover'],
+    unit: 'steps',
+  },
+  cost_per_run: {
+    name: '单次成本',
+    numerator: 'SUM(cost)',
+    denominator: 'COUNT(runs)',  // 所有 run（包括失败，因为失败也花钱）
+    excludes: [],
+    unit: 'USD',
+  },
+} as const
+</code></pre>
+<h3 id="46-v2-阶段验证">4.6 v2 阶段验证</h3>
+<pre><code class="language-bash"># 任务成功定义：构造伪完成 run
+# 插入 run: status='completed' 但 hasArtifact=false
+# 确认 SuccessCriteria.isSuccess() 返回 false
+
+# 终止分类：构造不同失败场景
+# 超时 run、工具错误 run、模型拒答 run
+# 确认 TerminationClassifier 分类正确
+
+# 成本分解：查询成本
+curl /api/metrics/cost?groupBy=provider,model
+# 期望：{ "openai_gpt-4": 600, "anthropic_claude-3": 400 }
+</code></pre>
+<h2 id="5-v3slo-目标-全链路下钻-指标口径文档生产级">§5 v3：SLO 目标 + 全链路下钻 + 指标口径文档（生产级）</h2>
+<p>v3 是今天的灵魂，解决 v1/v2 都没碰的两块：<strong>没有明确目标（SLO）就没有告警</strong>，以及<strong>聚合数字无法追溯到原始 run</strong>。SLO 配置和下钻链路是核心业务决策，我给结构、原理和验收标准，代码请你手写。</p>
+<h3 id="51-v3-的目录增量">5.1 v3 的目录增量</h3>
+<pre><code>apps/api/src/metrics/
+├── slo/
+│   ├── slo-config.ts                 ← 核心：你手写（SLO 目标定义）
+│   ├── slo-validator.ts              ← 核心：你手写（达标检查 + 告警）
+│   └── alert.service.ts              ← 样板：告警发送（可接入已有告警系统）
+├── aggregation/
+│   └── drilldown.service.ts          ← 核心：你手写（聚合 → run 列表 → 单 run 明细）
+└── docs/
+    └── metric-dictionary.md          ← 核心：你手写（指标字典文档）
+</code></pre>
+<h3 id="52-slo-目标从采集指标到定义成功">5.2 SLO 目标：从"采集指标"到"定义成功"</h3>
+<p><strong>知识点 1：SLO（Service Level Objective）</strong></p>
+<ul>
+<li><strong>解决什么问题</strong>：指标采集了，但没有"成功率应该 &gt; 95%"这样的目标，也就没有告警，只能事后发现问题。SLO 是从度量到管理的跃迁。</li>
+<li><strong>运行机制</strong>：为每个关键指标设目标值和运算符。例如 <code>success_rate &gt;= 0.95</code>、<code>p99_latency &lt;= 10000</code>、<code>cost_per_run &lt;= 0.5</code>。定时（如每小时）检查指标是否达标，不达标触发告警。</li>
+<li><strong>项目落点</strong>：<code>slo-config.ts</code> 定义目标，<code>slo-validator.ts</code> 定时检查并告警。</li>
+<li><strong>生产误区</strong>：所有指标都设 SLO——应该只对<strong>影响用户体验</strong>的核心指标设 SLO（成功率、P99、成本），内部调试指标（如 Trace 数量）不需要。</li>
+<li><strong>验证方法</strong>：手动让某指标不达标（如连续失败 10 次让成功率掉到 90%），确认告警触发。</li>
+</ul>
+<p><strong>SloConfig 你要手写的核心逻辑（伪代码）：</strong></p>
+<pre><code>SloConfig = [
+  {
+    metric: 'success_rate',
+    target: 0.95,
+    operator: '&gt;=',
+    window: '1h',  // 滚动窗口 1 小时
+    alertChannel: 'slack',
+  },
+  {
+    metric: 'p99_latency',
+    target: 10000,
+    operator: '&lt;=',
+    window: '1h',
+    alertChannel: 'slack',
+  },
+  {
+    metric: 'cost_per_run',
+    target: 0.5,
+    operator: '&lt;=',
+    window: '1d',  // 成本按天看
+    alertChannel: 'email',
+  },
+]
+
+SloValidator.check():
+  for slo in SloConfig:
+    currentValue = MetricAggregator.get(slo.metric, window=slo.window)
+    if not evaluate(currentValue, slo.operator, slo.target):
+      AlertService.send(
+        channel=slo.alertChannel,
+        message=f"{slo.metric} SLO breach: {currentValue} {slo.operator} {slo.target}"
+      )
+</code></pre>
+<h3 id="53-全链路下钻从聚合数字到单个-run">5.3 全链路下钻：从聚合数字到单个 run</h3>
+<p><strong>知识点 2：指标下钻（Metric Drilldown）</strong></p>
+<ul>
+<li><strong>解决什么问题</strong>：看板显示"成功率 87%"，那剩下 13% 是哪些 run 失败了？是超时还是工具错误？不能下钻就无法定位问题。</li>
+<li><strong>运行机制</strong>：三级下钻。Level 1: 聚合数字（成功率 87%）→ Level 2: 贡献这个数字的 run 列表（失败的 13% 共 120 个 run）→ Level 3: 单个 run 明细（Trace + 工具调用 + 终止证据）。</li>
+<li><strong>项目落点</strong>：<code>drilldown.service.ts</code> 提供 API，前端看板点击数字调用下钻接口。</li>
+<li><strong>生产误区</strong>：聚合和明细用两套数据源——导致"聚合显示 120 个失败，但下钻只查到 118 个"。必须用同一查询逻辑（WHERE 条件一致）。</li>
+<li><strong>验证方法</strong>：手算聚合数字（如失败 run 数），与下钻 run 列表数量对比，确认一致。</li>
+</ul>
+<p><strong>DrilldownService 你要手写的核心逻辑（伪代码）：</strong></p>
+<pre><code>DrilldownService.getFailedRuns(startDate, endDate, terminationReason=null):
+  # Level 2: run 列表
+  whereClause = {
+    timestamp: [startDate, endDate],
+    isSuccess: false,
+  }
+  if terminationReason:
+    whereClause.terminationReason = terminationReason
+  
+  runs = query Run where whereClause order by timestamp desc
+  
+  return runs.map(run =&gt; {
+    id: run.id,
+    startedAt: run.startedAt,
+    terminationReason: run.terminationReason,
+    cost: run.cost,
+    toolCallCount: run.toolCalls.length,
+  })
+
+DrilldownService.getRunDetail(runId):
+  # Level 3: 单 run 明细
+  run = query Run where id=runId include { toolCalls, trace, events }
+  
+  return {
+    basicInfo: { id, startedAt, endedAt, status, terminationReason },
+    toolCalls: run.toolCalls.map(t =&gt; { name, args, result, error }),
+    trace: run.trace,  // 关联 Day35 的 Trace
+    timeline: run.events.sort(e =&gt; e.timestamp),  // 时间线事件
+    evidence: {
+      hasArtifact: run.hasArtifact,
+      humanTakeover: run.humanTakeover,
+      artifacts: run.artifacts,
+    },
+  }
+</code></pre>
+<h3 id="54-指标字典文档化">5.4 指标字典文档化</h3>
+<p><strong>知识点 3：指标字典（Metric Dictionary）</strong></p>
+<ul>
+<li><strong>解决什么问题</strong>：指标定义只在代码里，新人不知道"成功"怎么算，PM 也无法理解指标含义，沟通成本高。</li>
+<li><strong>运行机制</strong>：每个指标写成文档，说明：(1) 名称 (2) 计算公式（分子/分母）(3) 排除条件 (4) 业务含义 (5) SLO 目标。</li>
+<li><strong>项目落点</strong>：<code>docs/metric-dictionary.md</code> 文档化所有指标，与代码同步维护。</li>
+<li><strong>生产误区</strong>：指标定义散落在代码、Wiki、Slack 消息里——改代码时容易漏改文档，导致不一致。文档应该在代码仓库里，与代码一起 review。</li>
+<li><strong>验证方法</strong>：让不懂代码的 PM 读指标字典，能否理解每个指标的含义和计算方式。</li>
+</ul>
+<p><strong>指标字典示例（你要手写的文档）：</strong></p>
+<pre><code class="language-markdown"># 指标字典
+
+## 任务成功率（success_rate）
+
+**业务含义**：Agent 完成任务的比例。不是"HTTP 200 率"，而是"有产出证据 + 未人工接管 + 正常完成"的比例。
+
+**计算公式**：
+- 分子：满足以下条件的 run 数量
+  - status = 'completed'
+  - hasArtifact = true 或 toolCalls.length &gt; 0
+  - humanTakeover = false
+  - terminationReason in ['success', 'goal_achieved']
+- 分母：所有 run（排除 user_cancel）
+
+**排除条件**：用户主动取消的 run 不计入分母（用户取消不应该算失败）。
+
+**SLO 目标**：&gt;= 95%（滚动 1 小时窗口）
+
+**下钻路径**：点击数字 → 失败 run 列表（按 terminationReason 分组）→ 单 run 明细
+
+---
+
+## 平均步数（avg_steps）
+
+**业务含义**：成功完成任务的 run 平均调用了多少次工具。反映任务复杂度和效率。
+
+**计算公式**：
+- 分子：所有成功 run 的 toolCalls.length 之和
+- 分母：成功 run 数量（isSuccess=true）
+
+**排除条件**：失败 run、超时 run、人工接管 run 不计入（它们的步数没有参考价值）。
+
+**SLO 目标**：无（这是效率指标，不是质量指标）
+
+**下钻路径**：点击数字 → 成功 run 列表（按 toolCalls.length 倒序）→ 单 run 工具调用链
+
+---
+
+## 单次成本（cost_per_run）
+
+**业务含义**：每个 run 的平均 token 成本（USD）。包括成功和失败的 run（失败也花钱）。
+
+**计算公式**：
+- 分子：所有 run 的 token 成本之和
+- 分母：所有 run 数量
+
+**排除条件**：无（失败也计入成本）
+
+**SLO 目标**：&lt;= $0.5（滚动 1 天窗口）
+
+**下钻路径**：点击数字 → 按 provider/model/tenant 三维分解 → 高成本 run 列表
+
+---
+</code></pre>
+<h3 id="55-前端看板的下钻交互">5.5 前端看板的下钻交互</h3>
+<pre><code class="language-vue">&lt;!-- apps/web/src/pages/MetricsDashboard.vue（结构示意，你手写） --&gt;
+&lt;template&gt;
+  &lt;div class="metrics-dashboard"&gt;
+    &lt;!-- 聚合卡片 --&gt;
+    &lt;MetricCard
+      title="任务成功率"
+      :value="metrics.successRate"
+      :slo="0.95"
+      @click="drilldown('success_rate')"
+    /&gt;
+    
+    &lt;!-- 下钻面板（点击后展开） --&gt;
+    &lt;DrilldownPanel v-if="drilldownActive"&gt;
+      &lt;!-- Level 2: run 列表 --&gt;
+      &lt;RunList
+        :runs="failedRuns"
+        :groupBy="'terminationReason'"
+        @selectRun="showRunDetail"
+      /&gt;
+      
+      &lt;!-- Level 3: 单 run 明细 --&gt;
+      &lt;RunDetailModal
+        v-if="selectedRun"
+        :run="selectedRun"
+      /&gt;
+    &lt;/DrilldownPanel&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="56-v3-阶段验证">5.6 v3 阶段验证</h3>
+<pre><code class="language-bash"># SLO 告警：让成功率不达标
+# 连续失败 10 次，让成功率掉到 90%
+# 确认告警触发（Slack/Email）
+
+# 下钻链路：从聚合到 run
+curl /api/metrics/summary  # 获取聚合数字
+# { successRate: 0.87, failedCount: 120 }
+curl /api/metrics/drilldown/failed?reason=timeout
+# 返回 120 个失败 run 的列表
+curl /api/metrics/run/:runId
+# 返回单 run 明细（Trace + 工具 + 证据）
+
+# 指标口径一致性：手算 vs 代码输出
+# 手算失败 run 数（WHERE isSuccess=false）
+# 对比 /api/metrics/drilldown/failed 返回的数量
+# 确认一致
+</code></pre>
+<h2 id="6-前端底子深挖数据可视化与交互下钻">§6 前端底子深挖：数据可视化与交互下钻</h2>
+<p>今天不是加个图表库就行。前端要回答一个真问题：怎么让非技术的 PM 从聚合数字<strong>快速定位到问题根因</strong>？面试官问"怎么展示 Agent 指标、怎么下钻"，答不到交互层次和视觉信息密度就是背组件。</p>
+<h3 id="61-聚合卡片的信息密度">6.1 聚合卡片的信息密度</h3>
+<p><strong>深挖点 1：一个指标卡片要显示什么？</strong></p>
+<ul>
+<li>不只是一个数字"87%"。完整的指标卡片包含：(1) 当前值 (2) SLO 目标（带视觉对比）(3) 趋势（过去 24h 变化）(4) 分母（"87% (120/138)"）(5) 下钻入口。</li>
+<li><strong>运行机制</strong>：卡片用颜色编码达标状态（绿色达标 / 黄色接近 / 红色不达标）；趋势用迷你折线图（sparkline）而非数字。</li>
+<li><strong>项目落点</strong>：MetricCard 组件显示值 + 目标 + 趋势 + 分母，点击进入下钻。</li>
+<li><strong>生产误区</strong>：只显示数字不显示分母——"成功率 87%" 不知道是 120/138 还是 8700/10000，规模感完全不同。</li>
+<li><strong>验证方法</strong>：让 PM 看卡片，能否在 3 秒内判断指标是否健康、问题规模多大。</li>
+</ul>
+<p><strong>深挖点 2：为什么用 Sparkline 而不是数字显示趋势？</strong></p>
+<ul>
+<li>数字"昨天 89%，今天 87%"需要大脑计算差异。折线图一眼看出上升/下降/波动。</li>
+<li><strong>运行机制</strong>：Sparkline 是迷你折线图（无坐标轴、无标签），只显示形状。24 小时趋势用 24 个数据点，宽度 60px。</li>
+<li><strong>项目落点</strong>：每个卡片右上角嵌入 Sparkline。</li>
+<li><strong>生产误区</strong>：用完整折线图（带坐标轴、标签）占太多空间——卡片只需要趋势形状，不需要精确读数。</li>
+<li><strong>验证方法</strong>：对比数字和 Sparkline，哪个更快发现"昨晚 2 点有个异常尖峰"。</li>
+</ul>
+<h3 id="62-下钻面板的层次导航">6.2 下钻面板的层次导航</h3>
+<p><strong>深挖点 3：三级下钻的导航面包屑</strong></p>
+<ul>
+<li>Level 1（聚合）→ Level 2（run 列表）→ Level 3（单 run）需要导航线索，否则用户不知道自己在哪。</li>
+<li><strong>运行机制</strong>：面包屑显示当前路径。例如："任务成功率 → 失败 run (120) → timeout (50) → run-abc123"。</li>
+<li><strong>项目落点</strong>：DrilldownPanel 顶部显示面包屑，点击任一级返回。</li>
+<li><strong>生产误区</strong>：弹窗套弹窗——用户点进 3 层后不知道怎么回到聚合视图。面包屑 + URL 路由才是正解。</li>
+<li><strong>验证方法</strong>：从 Level 3 点面包屑任一级，能否直接跳回对应层级。</li>
+</ul>
+<p><strong>深挖点 4：run 列表的分组与排序</strong></p>
+<ul>
+<li>120 个失败 run 平铺看不出规律。按 terminationReason 分组后发现"超时 50 个、工具错误 40 个"，立刻知道问题集中在哪。</li>
+<li><strong>运行机制</strong>：默认按 terminationReason 分组，组内按时间倒序。支持切换排序（按成本、按步数）。</li>
+<li><strong>项目落点</strong>：RunList 组件支持 groupBy 和 sortBy 参数。</li>
+<li><strong>生产误区</strong>：只有一个大列表——用户要手动找规律。分组把规律直接呈现。</li>
+<li><strong>验证方法</strong>：120 个 run 分组后，能否在 5 秒内看出"超时占了 40%"。</li>
+</ul>
+<h3 id="63-成本分解的可视化">6.3 成本分解的可视化</h3>
+<p><strong>深挖点 5：成本三维分解的树状图</strong></p>
+<ul>
+<li>成本分解有三维（provider / model / tenant），平铺表格看不出占比关系。树状图（treemap）用面积表示占比，一眼看出"gpt-4 占 60%"。</li>
+<li><strong>运行机制</strong>：树状图的矩形面积 = 成本占比。颜色编码 provider，矩形内标注 model + tenant。</li>
+<li><strong>项目落点</strong>：CostBreakdown 组件用 treemap 可视化成本分解。</li>
+<li><strong>生产误区</strong>：用饼图——饼图只能显示一个维度（如 provider），看不出 model × tenant 的交叉。树状图可以显示层级结构。</li>
+<li><strong>验证方法</strong>：让 PM 看树状图，能否在 10 秒内找出"成本最高的 provider + model 组合"。</li>
+</ul>
+<h3 id="64-前端指标看板清单今日必做">6.4 前端指标看板清单（今日必做）</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>机制</th>
+<th>前端动作</th>
+<th>验证</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>信息密度</td>
+<td>卡片显示值 + 目标 + 趋势 + 分母</td>
+<td>PM 3 秒判断健康</td>
+</tr>
+<tr>
+<td>下钻导航</td>
+<td>面包屑 + URL 路由</td>
+<td>任意层级可返回</td>
+</tr>
+<tr>
+<td>分组规律</td>
+<td>run 列表按原因分组</td>
+<td>5 秒看出主要问题</td>
+</tr>
+<tr>
+<td>成本可视化</td>
+<td>树状图显示三维分解</td>
+<td>10 秒找出最贵组合</td>
+</tr>
+</tbody>
+</table></div><h2 id="7-测试与验证指标测试四件套">§7 测试与验证：指标测试四件套</h2>
+<p>指标功能的验证核心是<strong>数据一致性</strong>：聚合数字、下钻列表、手算结果三者必须一致。任何不一致说明口径错了。</p>
+<h3 id="71-单元测试任务成功判定与终止分类">7.1 单元测试：任务成功判定与终止分类</h3>
+<pre><code class="language-typescript">// success-criteria.spec.ts
+describe('SuccessCriteria', () =&gt; {
+  it('completed + hasArtifact + 未接管 = 成功', () =&gt; {
+    const run = {
+      status: 'completed',
+      hasArtifact: true,
+      humanTakeover: false,
+      terminationReason: 'success',
+    }
+    expect(SuccessCriteria.isSuccess(run)).toBe(true)
+  })
+
+  it('completed 但无 Artifact = 失败', () =&gt; {
+    const run = {
+      status: 'completed',
+      hasArtifact: false,
+      toolCalls: [],
+      humanTakeover: false,
+      terminationReason: 'success',
+    }
+    expect(SuccessCriteria.isSuccess(run)).toBe(false)
+  })
+
+  it('completed 但人工接管 = 失败', () =&gt; {
+    const run = {
+      status: 'completed',
+      hasArtifact: true,
+      humanTakeover: true,
+      terminationReason: 'success',
+    }
+    expect(SuccessCriteria.isSuccess(run)).toBe(false)
+  })
+})
+
+// termination-classifier.spec.ts
+describe('TerminationClassifier', () =&gt; {
+  it('最后事件是超时错误 = timeout', () =&gt; {
+    const run = {
+      events: [{ type: 'error', error: 'Request timeout' }],
+    }
+    expect(TerminationClassifier.classify(run)).toBe('timeout')
+  })
+
+  it('最后事件是工具错误 = tool_error', () =&gt; {
+    const run = {
+      events: [{ type: 'error', source: 'tool', error: 'Tool execution failed' }],
+    }
+    expect(TerminationClassifier.classify(run)).toBe('tool_error')
+  })
+})
+</code></pre>
+<h3 id="72-集成测试聚合与下钻一致性">7.2 集成测试：聚合与下钻一致性</h3>
+<pre><code class="language-typescript">// metrics.e2e-spec.ts
+describe('指标聚合与下钻一致性', () =&gt; {
+  it('聚合失败数 = 下钻 run 列表数', async () =&gt; {
+    // 插入 10 个成功 run + 5 个失败 run
+    await seedRuns({ success: 10, failed: 5 })
+    
+    // 获取聚合数字
+    const summary = await request(app.getHttpServer())
+      .get('/api/metrics/summary')
+    expect(summary.body.failedCount).toBe(5)
+    
+    // 下钻获取失败 run 列表
+    const drilldown = await request(app.getHttpServer())
+      .get('/api/metrics/drilldown/failed')
+    expect(drilldown.body.runs.length).toBe(5)
+  })
+
+  it('成本分解加总 = 总成本', async () =&gt; {
+    await seedModelCalls([
+      { provider: 'openai', model: 'gpt-4', cost: 0.6 },
+      { provider: 'openai', model: 'gpt-3.5', cost: 0.1 },
+      { provider: 'anthropic', model: 'claude-3', cost: 0.4 },
+    ])
+    
+    const breakdown = await request(app.getHttpServer())
+      .get('/api/metrics/cost?groupBy=provider')
+    
+    const totalFromBreakdown = Object.values(breakdown.body).reduce((a, b) =&gt; a + b, 0)
+    expect(totalFromBreakdown).toBeCloseTo(1.1, 2)
+  })
+})
+</code></pre>
+<h3 id="73-反证实验两个">7.3 反证实验（两个）</h3>
+<p><strong>反证 1：移除成功定义的工具证据检查会怎样？</strong></p>
+<ul>
+<li>操作：修改 SuccessCriteria，只检查 status='completed'，不检查 hasArtifact。</li>
+<li>现象：伪完成 run 被算作成功，成功率虚高（复现情境题 1）。</li>
+<li>证据：构造 status='completed' 但无 Artifact 的 run，确认被算作成功。看板显示成功率 99%，但实际用户满意度低。</li>
+<li>结论：工具证据检查是识别伪完成的关键。</li>
+</ul>
+<p><strong>反证 2：移除下钻的 WHERE 条件过滤会怎样？</strong></p>
+<ul>
+<li>操作：聚合用 WHERE isSuccess=false，下钻用 WHERE status='failed'（条件不一致）。</li>
+<li>现象：聚合显示 120 个失败，下钻只查到 80 个（因为有些是 completed 但无证据，status 不是 failed）。</li>
+<li>证据：对比聚合数字和下钻列表数量，发现不一致。</li>
+<li>结论：聚合和下钻必须用同一套 WHERE 逻辑。</li>
+</ul>
+<h3 id="74-架构证据四件套">7.4 架构证据四件套</h3>
+<ol>
+<li><strong>指标字典</strong>：<code>docs/metric-dictionary.md</code>，每个指标的计算公式、分母、排除条件、SLO 目标。</li>
+<li><strong>决策日志</strong>：为什么这样定义"成功"（有工具证据 + 未接管 + 正常完成）？记录业务讨论和权衡。</li>
+<li><strong>下钻链路图</strong>：Level 1（聚合）→ Level 2（run 列表）→ Level 3（单 run 明细）的数据流和 API。</li>
+<li><strong>一致性验证报告</strong>：聚合数字、下钻列表、手算结果的对比表格（证明三者一致）。</li>
+</ol>
+<h2 id="8-通关检查清单v3-规范-11-项">§8 通关检查清单（v3 规范 11 项）</h2>
+<ul>
+<li>[ ] §0 本日在 90 天路线图的坐标已说明（阶段二第 9 天收官，承接 Day35-38，启阶段三）</li>
+<li>[ ] §1 用户场景 5 个 + 模块职责 + 三版演进 + 完整目录结构 + 脚手架检查齐全</li>
+<li>[ ] §2 6 小时开发节奏已列出（原理 40 / 增量 100 / 测试 25 / 复盘 15，本日 3h 基线按比例折算）</li>
+<li>[ ] §3 v1（裸 SQL + HTTP 状态码当成功）完整代码 + 5 个致命问题</li>
+<li>[ ] §4 v2（任务成功定义 + 终止分类 + 成本分解）完整代码</li>
+<li>[ ] §5 v3（SLO 目标 + 全链路下钻 + 指标口径文档）完整代码 + 6 个知识点五要素</li>
+<li>[ ] §6 前端底子深挖（信息密度 + 下钻导航 + 分组规律 + 成本树状图）</li>
+<li>[ ] §7 测试四件套（单元 + 集成 + 2 个反证实验 + 架构证据）</li>
+<li>[ ] §8 本清单</li>
+<li>[ ] §9 增量到下一站的伏笔</li>
+<li>[ ] §10-14 收尾章节 + 原文情境题/PDF 映射/五连问原样保留</li>
+</ul>
+<h2 id="9-从今天的增量到下一站">§9 从今天的增量到下一站</h2>
+<p>今天你把系统从"采集指标"推到"定义成功"——不再用 HTTP 200 当成功，而是用工具证据 + 人工接管 + 终止原因综合判定。但你会发现一个新问题：<strong>成功的定义是静态的</strong>，实际上不同类型任务的成功标准应该不同（问答任务有 Artifact 就算成功，监控任务需要连续 7 天无告警才算成功）。</p>
+<p>阶段三（Day41 起）进入多 Agent 编排，你会遇到<strong>编排级指标</strong>：不是单个 Agent 的成功率，而是整个编排图的完成率、节点间传递延迟、分支覆盖率。今天手写的成功判定、下钻链路、SLO 检查，都是理解"分布式指标聚合"的具体锚点。而动态化成功定义的需求，也会在后续的 Eval 标签体系里收敛。</p>
+<p><strong>阶段二收官总结</strong>：Day31-39 你建立了完整的生产级基础设施——HITL 审批、失败恢复、可观测性、安全、性能、稳定性、指标。这 9 天是从"能跑的原型"到"可上线的系统"的跃迁。阶段三将在这个地基上建多 Agent 编排，而不是从零开始。</p>
+<h2 id="10-本日小结">§10 本日小结</h2>
+<p><strong>标题党 30 字</strong>：定义什么是"任务成功"，从 HTTP 200 跃迁到工具证据+人工接管+终止原因，让聚合数字可下钻到单 run 明细。</p>
+<p><strong>三句话</strong>：</p>
+<ol>
+<li>Agent 指标不是技术指标（HTTP 200、P99），而是业务指标（任务完成率、人工接管率）——"完成"需要有工具证据、未人工接管、正常终止三个条件同时满足。</li>
+<li>聚合数字必须能下钻到原始 run，否则"成功率 87%"只是个数字，不知道剩下 13% 是超时、工具错误还是模型拒答，也就无法优化。</li>
+<li>每个指标必须明确分子、分母、排除条件，并文档化成指标字典——口径不明确，指标就会被误读，改代码时也容易改错。</li>
+</ol>
+<h2 id="11-课后三道核心问题必答先于教师五连问">§11 课后三道核心问题（必答，先于教师五连问）</h2>
+<ol>
+<li>请从今天项目的真实入口到最终输出，解释"Agent 指标"的数据流或控制流；当天知识链"SLI/SLO、Agent 成功定义、成本、人工接管率、终止分布"分别在哪一层起作用，为什么按这个顺序学习？</li>
+<li>如果故意移除今天最关键的保护机制，线上会出现什么可观察现象？请给出最小复现、定位证据、恢复动作和一条防复发测试。</li>
+<li>请引用今天的具体代码、测试和架构证据，证明项目目标已经达到；再说明当前实现距离企业生产标准还缺什么，下一步如何演进而不破坏已有合同。</li>
+</ol>
+<h2 id="12-真实项目情境题联网更新-2026-07-13">§12 真实项目情境题（联网更新 2026-07-13）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。题目中的规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>模拟情境：看板显示请求成功率 99.9%，但 23% 用户在 Agent 宣称完成后仍手工处理，且 9% run 没有证据 Artifact。请从 run 终态、工具证据、人工接管和用户行为下钻，先停止把"HTTP 200"等同成功，再定义任务成功 SLI/SLO，回放样本验证指标能识别伪完成。
+依据：<a href="https://jobs.bytedance.com/experienced/position/7309098238475831562/detail" target="_blank" rel="noopener noreferrer">S2 AgentOps</a></li>
+<li>模拟情境：月度 Token 成本翻倍，聚合看板无法解释是模型、租户还是失败重试导致。请按 provider、model、tenant、terminationReason 和 humanTakeover 分解成本，先限制异常租户预算，再修复指标口径和 run 级下钻，验证每个聚合数字可追溯到原始调用。
+依据：<a href="https://jobs.bytedance.com/experienced/position/7651517511770818869/detail" target="_blank" rel="noopener noreferrer">S6 Agent Harness</a>
+知识映射：对应 Agent 成功定义、SLO、成本、接管率和终止分布。</li>
+</ol>
+<h2 id="13-完成后教师五连问">§13 完成后教师五连问</h2>
+<p>学生提交 commit、测试输出、学习日志、反证记录和架构证据后，教师依据真实 diff 按"局部机制 -&gt; 边界一致性 -&gt; 线上事故 -&gt; 工程权衡 -&gt; 架构演进"现场提出 5 道问题。五连问不预先固定，也不由下面的 PDF 题替代；评分规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<h2 id="14-pdf-面试题映射">§14 PDF 面试题映射</h2>
+<ol>
+<li>如何衡量 AI 前端产品体验？TTFT、TPS、成功率和反馈闭环如何定义？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E9%25AB%2598%25E5%25BE%25B7%2520Al%2520agent%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026高德 Al agent 前端开发》</a>，第 10 页。</li>
+<li>如何评估 AI 前端项目成功，技术、业务、成本和用户反馈指标各看什么？<br>
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E9%2598%25BF%25E9%2587%258C%25E4%25BA%2591%25E5%2589%258D%25E7%25AB%25AF%25E6%258A%2580%25E6%259C%25AF%25E4%25B8%2593%25E5%25AE%25B6-AI%25E9%25A2%2586%25E5%259F%259F.pdf" class="missing-link">《2026阿里云前端技术专家-AI领域》</a>，第 10 页。
+题目说明：直接匹配 SLI 指标字典与业务成功口径；回答必须说明分母、终止分布和下钻 run。</li>
+</ol>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day39-old.html">查看 Day 39 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <a href="/ai-teacher-agent-devolop/day/38.html">← Day 38 · 稳定性</a>
+            <a href="/ai-teacher-agent-devolop/day/40.html">Day 40 · Node 全栈门禁 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E9%87%8C%E7%9A%84%E4%BD%8D%E7%BD%AE">§0 今天在 90 天里的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B">§1 今天要做的事</a></li><li><a href="#2-%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%BC%80%E5%8F%91%E8%8A%82%E5%A5%8F3-%E5%B0%8F%E6%97%B690-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">§2 今天的开发节奏（3 小时：90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E8%A3%B8-sql-%E8%81%9A%E5%90%88-http-%E7%8A%B6%E6%80%81%E7%A0%81%E5%BD%93%E6%88%90%E5%8A%9F%E6%9C%80%E5%B0%8F%E5%8F%AF%E7%94%A8">§3 v1：裸 SQL 聚合 + HTTP 状态码当成功（最小可用）</a></li><li><a href="#4-v2%E4%BB%BB%E5%8A%A1%E6%88%90%E5%8A%9F%E5%AE%9A%E4%B9%89-%E7%BB%88%E6%AD%A2%E5%88%86%E7%B1%BB-%E6%88%90%E6%9C%AC%E5%88%86%E8%A7%A3%E5%8A%A0%E4%B8%9A%E5%8A%A1%E8%AF%AD%E4%B9%89">§4 v2：任务成功定义 + 终止分类 + 成本分解（加业务语义）</a></li><li><a href="#5-v3slo-%E7%9B%AE%E6%A0%87-%E5%85%A8%E9%93%BE%E8%B7%AF%E4%B8%8B%E9%92%BB-%E6%8C%87%E6%A0%87%E5%8F%A3%E5%BE%84%E6%96%87%E6%A1%A3%E7%94%9F%E4%BA%A7%E7%BA%A7">§5 v3：SLO 目标 + 全链路下钻 + 指标口径文档（生产级）</a></li><li><a href="#6-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E6%B7%B1%E6%8C%96%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B8%8E%E4%BA%A4%E4%BA%92%E4%B8%8B%E9%92%BB">§6 前端底子深挖：数据可视化与交互下钻</a></li><li><a href="#7-%E6%B5%8B%E8%AF%95%E4%B8%8E%E9%AA%8C%E8%AF%81%E6%8C%87%E6%A0%87%E6%B5%8B%E8%AF%95%E5%9B%9B%E4%BB%B6%E5%A5%97">§7 测试与验证：指标测试四件套</a></li><li><a href="#8-%E9%80%9A%E5%85%B3%E6%A3%80%E6%9F%A5%E6%B8%85%E5%8D%95v3-%E8%A7%84%E8%8C%83-11-%E9%A1%B9">§8 通关检查清单（v3 规范 11 项）</a></li><li><a href="#9-%E4%BB%8E%E4%BB%8A%E5%A4%A9%E7%9A%84%E5%A2%9E%E9%87%8F%E5%88%B0%E4%B8%8B%E4%B8%80%E7%AB%99">§9 从今天的增量到下一站</a></li><li><a href="#10-%E6%9C%AC%E6%97%A5%E5%B0%8F%E7%BB%93">§10 本日小结</a></li><li><a href="#11-%E8%AF%BE%E5%90%8E%E4%B8%89%E9%81%93%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E5%BF%85%E7%AD%94%E5%85%88%E4%BA%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">§11 课后三道核心问题（必答，先于教师五连问）</a></li><li><a href="#12-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-13">§12 真实项目情境题（联网更新 2026-07-13）</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">§13 完成后教师五连问</a></li><li><a href="#14-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%98%A0%E5%B0%84">§14 PDF 面试题映射</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>

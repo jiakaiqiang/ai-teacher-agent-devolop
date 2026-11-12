@@ -1,0 +1,1645 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 01 · Agent 运行时展示面板（v1 → v2 → v3 三版演进） | 学习计划</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/ai-teacher-agent-devolop/reader.css">
+  <script defer="" src="/ai-teacher-agent-devolop/reader.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="/ai-teacher-agent-devolop/" aria-label="学习计划首页"><span class="brand-mark" aria-hidden="true">AI</span><span>学习计划</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="plan-menu">课程目录</button>
+    <div class="topbar-actions">
+      <a class="back-link" data-back="" href="/ai-teacher-agent-devolop/course/index.html">← 返回</a>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="plan-menu">
+    <nav aria-label="学习计划目录">
+      <div class="sidebar-heading"><strong>课程目录</strong><span>13 周 · 90 天</span></div>
+      <ul class="overview-links">
+        <li><a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a></li>
+        <li><a href="/ai-teacher-agent-devolop/course/days.html">逐日任务索引</a></li>
+      </ul>
+      <div class="week-list">
+        <details class="week" open="">
+          <summary><span>第 1 周</span><span class="week-range">Day 01–07</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/01.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/01.html" aria-current="page">
+                <span class="day-label">Day 01</span><span>AI 前端架构</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/02.html">
+                <span class="day-label">Day 02</span><span>领域合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/03.html">
+                <span class="day-label">Day 03</span><span>异步与竞态</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/04.html">
+                <span class="day-label">Day 04</span><span>Vue/ECharts 原理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/05.html">
+                <span class="day-label">Day 05</span><span>WebSocket 全栈</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/06.html">
+                <span class="day-label">Day 06</span><span>实时可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/07.html">
+                <span class="day-label">Day 07</span><span>事件与算法</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 2 周</span><span class="week-range">Day 08–14</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/02.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/08.html">
+                <span class="day-label">Day 08</span><span>API/分页</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/09.html">
+                <span class="day-label">Day 09</span><span>状态机</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/10.html">
+                <span class="day-label">Day 10</span><span>M2 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/11.html">
+                <span class="day-label">Day 11</span><span>Tool Registry</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/12.html">
+                <span class="day-label">Day 12</span><span>Agent Loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/13.html">
+                <span class="day-label">Day 13</span><span>持久化/幂等</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/14.html">
+                <span class="day-label">Day 14</span><span>SSE 合同演进</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 3 周</span><span class="week-range">Day 15–21</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/03.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/15.html">
+                <span class="day-label">Day 15</span><span>Agent 时间线</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/16.html">
+                <span class="day-label">Day 16</span><span>证据与 XSS</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/17.html">
+                <span class="day-label">Day 17</span><span>Human-in-the-loop</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/18.html">
+                <span class="day-label">Day 18</span><span>Trace/性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/19.html">
+                <span class="day-label">Day 19</span><span>生产演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/20.html">
+                <span class="day-label">Day 20</span><span>项目毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/21.html">
+                <span class="day-label">Day 21</span><span>NestJS 架构深化</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 4 周</span><span class="week-range">Day 22–28</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/04.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/22.html">
+                <span class="day-label">Day 22</span><span>API 合同</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/23.html">
+                <span class="day-label">Day 23</span><span>数据建模</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/24.html">
+                <span class="day-label">Day 24</span><span>鉴权/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/25.html">
+                <span class="day-label">Day 25</span><span>后端测试</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/26.html">
+                <span class="day-label">Day 26</span><span>流式 BFF</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/27.html">
+                <span class="day-label">Day 27</span><span>Postgres 持久化</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/28.html">
+                <span class="day-label">Day 28</span><span>Redis</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 5 周</span><span class="week-range">Day 29–35</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/05.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/29.html">
+                <span class="day-label">Day 29</span><span>队列/BullMQ</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/30.html">
+                <span class="day-label">Day 30</span><span>月度门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/31.html">
+                <span class="day-label">Day 31</span><span>Tool Registry v2</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/32.html">
+                <span class="day-label">Day 32</span><span>Orchestrator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/33.html">
+                <span class="day-label">Day 33</span><span>Durable HITL</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/34.html">
+                <span class="day-label">Day 34</span><span>失败恢复</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/35.html">
+                <span class="day-label">Day 35</span><span>可观测性</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 6 周</span><span class="week-range">Day 36–42</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/06.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/36.html">
+                <span class="day-label">Day 36</span><span>API 安全</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/37.html">
+                <span class="day-label">Day 37</span><span>性能</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/38.html">
+                <span class="day-label">Day 38</span><span>稳定性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/39.html">
+                <span class="day-label">Day 39</span><span>Agent 指标</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/40.html">
+                <span class="day-label">Day 40</span><span>Node 全栈门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/41.html">
+                <span class="day-label">Day 41</span><span>Python 工程边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/42.html">
+                <span class="day-label">Day 42</span><span>FastAPI</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 7 周</span><span class="week-range">Day 43–49</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/07.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/43.html">
+                <span class="day-label">Day 43</span><span>模型网关</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/44.html">
+                <span class="day-label">Day 44</span><span>结构化输出</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/45.html">
+                <span class="day-label">Day 45</span><span>Prompt 版本</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/46.html">
+                <span class="day-label">Day 46</span><span>RAG 摄取</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/47.html">
+                <span class="day-label">Day 47</span><span>Embedding/pgvector</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/48.html">
+                <span class="day-label">Day 48</span><span>Hybrid/Rerank</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/49.html">
+                <span class="day-label">Day 49</span><span>RAG 引用闭环</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 8 周</span><span class="week-range">Day 50–56</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/08.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/50.html">
+                <span class="day-label">Day 50</span><span>五十日门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/51.html">
+                <span class="day-label">Day 51</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/52.html">
+                <span class="day-label">Day 52</span><span>LLM Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/53.html">
+                <span class="day-label">Day 53</span><span>LangChain 适用边界</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/54.html">
+                <span class="day-label">Day 54</span><span>多租户/权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/55.html">
+                <span class="day-label">Day 55</span><span>Docker Compose</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/56.html">
+                <span class="day-label">Day 56</span><span>CI/CD</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 9 周</span><span class="week-range">Day 57–63</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/09.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/57.html">
+                <span class="day-label">Day 57</span><span>监控/Trace</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/58.html">
+                <span class="day-label">Day 58</span><span>事故演练</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/59.html">
+                <span class="day-label">Day 59</span><span>求职证据</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/60.html">
+                <span class="day-label">Day 60</span><span>AI 全栈毕业考</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/61.html">
+                <span class="day-label">Day 61</span><span>Agent 系统分层</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/62.html">
+                <span class="day-label">Day 62</span><span>双 Agent/Event Sourcing</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/63.html">
+                <span class="day-label">Day 63</span><span>双 CLI Runtime</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 10 周</span><span class="week-range">Day 64–70</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/10.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/64.html">
+                <span class="day-label">Day 64</span><span>双 CLI 流协议</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/65.html">
+                <span class="day-label">Day 65</span><span>协同 Context</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/66.html">
+                <span class="day-label">Day 66</span><span>角色/CLI 权限</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/67.html">
+                <span class="day-label">Day 67</span><span>Tool Loop/Validator</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/68.html">
+                <span class="day-label">Day 68</span><span>协同 Memory/RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/69.html">
+                <span class="day-label">Day 69</span><span>Worktree/DAG 并行</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/70.html">
+                <span class="day-label">Day 70</span><span>多 Agent 主链路门禁</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 11 周</span><span class="week-range">Day 71–77</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/11.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/71.html">
+                <span class="day-label">Day 71</span><span>MCP 设计</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/72.html">
+                <span class="day-label">Day 72</span><span>MCP Server</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/73.html">
+                <span class="day-label">Day 73</span><span>MCP Runtime Adapter</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/74.html">
+                <span class="day-label">Day 74</span><span>MCP 权限治理</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/75.html">
+                <span class="day-label">Day 75</span><span>Human Runtime</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/76.html">
+                <span class="day-label">Day 76</span><span>Agent 审批 UX</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/77.html">
+                <span class="day-label">Day 77</span><span>Durable 恢复</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 12 周</span><span class="week-range">Day 78–84</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/12.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/78.html">
+                <span class="day-label">Day 78</span><span>RAG Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/79.html">
+                <span class="day-label">Day 79</span><span>Hybrid RAG</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/80.html">
+                <span class="day-label">Day 80</span><span>MCP/Human/RAG 门禁</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/81.html">
+                <span class="day-label">Day 81</span><span>动态委派语义</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/82.html">
+                <span class="day-label">Day 82</span><span>自主委派调度</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/83.html">
+                <span class="day-label">Day 83</span><span>并行冲突/Handoff</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/84.html">
+                <span class="day-label">Day 84</span><span>对抗 Validation Agent</span>
+              </a></li>
+          </ul>
+        </details><details class="week">
+          <summary><span>第 13 周</span><span class="week-range">Day 85–90</span></summary>
+          <ul>
+            <li class="week-overview"><a href="/ai-teacher-agent-devolop/week/13.html">本周总览</a></li>
+            <li><a href="/ai-teacher-agent-devolop/day/85.html">
+                <span class="day-label">Day 85</span><span>Agent Eval</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/86.html">
+                <span class="day-label">Day 86</span><span>Trace/Replay/A-B</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/87.html">
+                <span class="day-label">Day 87</span><span>SLO/成本/告警</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/88.html">
+                <span class="day-label">Day 88</span><span>Chaos/可靠性</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/89.html">
+                <span class="day-label">Day 89</span><span>生产就绪/求职</span>
+              </a></li><li><a href="/ai-teacher-agent-devolop/day/90.html">
+                <span class="day-label">Day 90</span><span>最终答辩</span>
+              </a></li>
+          </ul>
+        </details>
+      </div>
+      <details class="week materials">
+        <summary>课程资料</summary>
+        <ul><li><a href="/ai-teacher-agent-devolop/course/guide.html">项目课程说明</a></li>
+        <li><a href="/ai-teacher-agent-devolop/materials/output/30%E5%A4%A9AI%E5%89%8D%E7%AB%AF%E8%BD%AC%E5%9E%8B%E8%AE%A1%E5%88%92-2026-07-14.html">30 天 AI 前端转型计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E.html">90 天拆分规则说明</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E5%B2%97%E4%BD%8D%E9%A9%B1%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%AF%BE%E7%A8%8B-v2.html">90 天岗位驱动项目课程 v2</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9AI%E5%85%A8%E6%A0%88%E4%B8%8EAgent%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AE%A1%E5%88%92-2026-07-14.html">90 天 AI 全栈与 Agent 工程师计划</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AC%AC%E4%B8%80%E8%8A%82%E7%82%B9Day1-20%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E4%B8%8E%E8%AF%84%E5%88%86%E6%A0%87%E5%87%86.html">第一节点 Day 1-20 高级前端架构视角项目任务与评分标准</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%A7%86%E8%A7%92%E6%95%99%E5%AD%A6%E6%80%BB%E7%BA%B2.html">高级前端架构视角教学总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83-v3-%E7%9C%9F%E5%AE%9E%E9%A3%8E%E6%A0%BC.html">教学文档规范 · Day 风格与深挖 HTML 规范（v3 真实风格版）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%95%99%E5%AD%A6%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83-Day%E9%A3%8E%E6%A0%BC%E4%B8%8E%E6%B7%B1%E6%8C%96HTML%E8%A7%84%E8%8C%83.html">教学文档规范 · Day 风格与深挖 HTML 规范（v2）</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%81%94%E7%BD%91%E8%B0%83%E7%A0%94%E4%B8%8E%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E9%A2%98%E6%9D%A5%E6%BA%90-2026-07-13.html">联网调研与真实项目题来源</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E6%AF%8F%E6%97%A5%E4%BB%BB%E5%8A%A1%E5%88%86%E5%8F%91%E5%8D%8F%E8%AE%AE.html">每日任务分发协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E4%B8%AD%E5%9B%BDAI%E5%89%8D%E7%AB%AF%E4%B8%8EAgent%E5%B2%97%E4%BD%8D%E5%8A%A8%E6%80%81-2026-07-13.html">中国 AI 前端与 Agent 岗位动态</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/%E8%B5%84%E6%BA%90%E7%9F%A5%E8%AF%86%E7%B4%A2%E5%BC%95.html">前端与 AI 面试资源知识索引</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E6%AF%8F%E6%97%A5%E4%B8%89%E9%97%AE%E6%89%A7%E8%A1%8C%E5%8D%8F%E8%AE%AE.html">兼容入口：每日三问协议已升级为五连问</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">AI 教师五连问验收协议</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/AI%E5%89%8D%E7%AB%AF%E5%88%B0AI-Agent%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%88%90%E9%95%BF%E8%B7%AF%E7%BA%BF.html">AI 前端 -&gt; AI 全栈 -&gt; AI Agent 工程师成长路线</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E4%BB%BB%E5%8A%A1%E5%8D%95-AI%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E4%B8%8EAgent%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B.html">Day 1 任务单：AI 前端架构与 Agent 事件模型</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01 深挖 · 前端底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02-90%E9%A1%B9%E7%9B%AE%E9%A9%B1%E5%8A%A8%E4%BB%BB%E5%8A%A1%E6%80%BB%E7%BA%B2.html">Day 2-90 项目驱动任务总纲</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/Day02%E6%B7%B1%E6%8C%96-%E9%A2%86%E5%9F%9F%E5%90%88%E5%90%8C%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day02 深挖 · 领域合同底子补弱</a></li><li><a href="/ai-teacher-agent-devolop/materials/output/p2-agent-workbench%E9%A1%B9%E7%9B%AE%E8%BE%B9%E7%95%8C.html">p2-agent-workbench 项目边界</a></li></ul>
+      </details>
+    </nav>
+  </aside>
+    <main id="content" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置">
+        <a href="/ai-teacher-agent-devolop/course/index.html">课程总览</a>
+        <a href="/ai-teacher-agent-devolop/week/01.html">第 1 周</a>
+        
+      </nav>
+      <header class="article-header">
+        <p class="article-day">Day 01</p>
+        <h1>Agent 运行时展示面板（v1 → v2 → v3 三版演进）</h1>
+      </header>
+      <div class="article-layout">
+        <article class="prose">
+          <p>任务版本：标准版
+日期与时长：2026-07-14 周二，180 分钟（90 分钟阅读 + 90 分钟动手）
+项目：<code>D:\demo\ai-techer\p1-monitor\frontend</code>
+角色视角：有 Vue 中后台经验、第一次为 Agent 场景搭前端的开发者</p>
+<hr>
+<h2 id="0-今天在-90-天路线中的位置">0. 今天在 90 天路线中的位置</h2>
+<p>90 天转型路线的三个阶段：</p>
+<pre><code>阶段一（Day 1-30）：前端 → AI 前端
+   项目：p1-monitor 智能运维监控（Vue 3 + TypeScript + WebSocket + Agent UI）
+
+阶段二（Day 31-60）：AI 前端 → AI 全栈
+   项目：p1-monitor 后端 + p1-monitor 全栈（NestJS + Python/FastAPI + RAG）
+
+阶段三（Day 61-90）：AI 全栈 → AI Agent 工程师
+   项目：p2-agent-workbench 多 Agent 协同工作台
+</code></pre>
+<p><strong>Day 1 处在阶段一起点</strong>，任务是搭建 <code>p1-monitor</code> 前端里第一个功能模块——<strong>Agent 运行时展示面板</strong>。这个面板会被后面 Day 5（WebSocket）、Day 14（SSE 升级）、Day 15（历史恢复）、Day 17（审批交互）反复扩展。</p>
+<hr>
+<h2 id="1-今天要交付的功能模块">1. 今天要交付的功能模块</h2>
+<p>在 <code>p1-monitor/frontend</code> 里交付一个组件 <strong><code>AgentRunPanel</code></strong>：当后端 Agent 执行一次诊断时，把它的执行过程（模型说了什么、调了什么工具、要不要用户批准、成功还是失败）实时展示给运维工程师。</p>
+<h3 id="11-用户能看到什么">1.1 用户能看到什么</h3>
+<p>浏览器里能看到一个面板，从上到下依次滚动出现：</p>
+<pre><code>┌────────────────────────────────────────────────┐
+│  诊断执行  状态：awaiting-approval             │
+├────────────────────────────────────────────────┤
+│  • 模型输出                                    │
+│    正在检查服务器 srv-042 的 CPU 指标...       │
+│                                                │
+│  • 调用工具：read_metrics                      │
+│    参数：last 10min                            │
+│    完成 (1800ms)：CPU 平均 87%，异常           │
+│                                                │
+│  • 模型输出                                    │
+│    检测到 CPU 持续过载，建议重启异常进程       │
+│                                                │
+│  • 等待审批：restart_process                   │
+│    风险级别：high                              │
+│    [ 批准 ]  [ 拒绝 ]                          │
+└────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="12-这个模块在项目里承担什么">1.2 这个模块在项目里承担什么</h3>
+<ul>
+<li><strong>输入</strong>：一段 <code>AgentEvent[]</code>（今天先用 fixture 假数据，Day 5 换成 WebSocket 真事件）；</li>
+<li><strong>输出</strong>：一个 Vue 组件，把事件流渲染成用户可读的时间线；</li>
+<li><strong>对齐后续</strong>：今天定义的<strong>事件类型</strong>和<strong>状态模型</strong>，是 Day 2-17 前端主线都要遵守的合同。</li>
+</ul>
+<h3 id="13-三版演进的目标">1.3 三版演进的目标</h3>
+<p>同一个"Agent 运行时展示"功能，本教程给三个版本。每一版都能跑起来，功能一版比一版多，代码结构一版比一版正规：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>实现的功能</th>
+<th>代码结构</th>
+<th>引入的知识</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td>只展示<strong>模型的文本输出</strong></td>
+<td>单组件、几个 <code>ref</code></td>
+<td>Vue 响应式、事件流 vs 请求-响应</td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td>v1 + <strong>工具调用</strong> + <strong>审批</strong></td>
+<td>组合式函数、TypeScript 类型、事件数组</td>
+<td>判别联合、事件形状、组件内 computed 归约</td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>v2 + <strong>错误</strong> + <strong>完成</strong> + <strong>取消</strong> + <strong>边界处理</strong></td>
+<td>分层架构（domain + features）、纯 reducer、状态机</td>
+<td>状态机、reducer、终态保护、exhaustive check、UI 依赖倒转</td>
+</tr>
+</tbody>
+</table></div><p><strong>用户最终在项目里交付的是 v3</strong>（也就是完整版）。v1 和 v2 是<strong>教程用的过渡版本</strong>，让你看清"为什么最终代码要长成 v3 那样"——每一步重构都在解决前一版的具体痛点。</p>
+<hr>
+<h2 id="14-本日项目目录结构动手前先看骨架">1.4 本日项目目录结构（动手前先看骨架）</h2>
+<p><strong>为什么放在最前面</strong>：每天动手前必须先在脑子里立起骨架，再往里面填内容。骨架决定了每个知识点会落在哪个文件、哪一层。看完这棵树，下面章节里再出现 <code>src/domain/agent/agent-event.ts</code> 时，你就能立刻定位它在项目中的位置。</p>
+<p><strong>今天在 <code>p1-monitor/frontend/</code> 下要建立的完整前端源码树（v3 完整版）</strong>：</p>
+<pre><code>src/
+├── domain/                             ← 领域层（纯类型 + 纯逻辑，不依赖 Vue）
+│   └── agent/
+│       ├── agent-event.ts              ← 事件类型（9 种事件的判别联合 + RunId branded type + assertNever）
+│       ├── agent-run-state.ts          ← 状态类型 + 初始状态 + 纯函数 reducer
+│       └── agent-run-state.spec.ts     ← reducer 单元测试（vitest，纯函数 → 无需 mock DOM）
+├── features/                           ← 功能层（依赖 domain + Vue）
+│   └── agent-run/
+│       ├── ui/AgentRunPanel.vue        ← 只接 state prop 的展示组件（无副作用）
+│       └── fixtures/sample-run.ts      ← 假事件序列（未来 WebSocket / SSE 的替身）
+├── composables/
+│   └── useAgentRun.ts                  ← 把事件源 + reducer 粘合成 Vue 响应式 state（v2 起引入）
+└── App.vue                             ← 编排层：拉 fixture → reduce → 传给 Panel
+</code></pre>
+<p><strong>三版演进对应的文件差异</strong>：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>版本</th>
+<th>建的文件</th>
+<th>不建的文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td><code>App.vue</code>（全部塞这一个）</td>
+<td>其余都不建</td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td><code>App.vue</code> + <code>composables/useAgentRun.ts</code> + 内联的 <code>AgentEvent</code> 类型</td>
+<td>还没拆 <code>domain/</code> 和 <code>features/</code></td>
+</tr>
+<tr>
+<td><strong>v3</strong></td>
+<td>完整树（上图 5 个源码文件 + 1 个测试文件）</td>
+<td>——</td>
+</tr>
+</tbody>
+</table></div><p><strong>依赖方向（务必单向，反过来一次都不行）</strong>：</p>
+<pre><code>App.vue → composables/useAgentRun.ts → features/agent-run/ → domain/agent/
+                                       features/agent-run/fixtures/ → domain/agent/
+</code></pre>
+<p><strong>红线</strong>：<code>domain/agent/*.ts</code> 里出现 <code>import { ref } from 'vue'</code> 就是架构塌方的第一步。domain 必须能在纯 Node 里跑起来、跑测试。</p>
+<p><strong>动手前先问自己 3 个问题</strong>（答不上就带着问题往下读 v1 → v2 → v3）：</p>
+<ol>
+<li><code>domain/</code> 和 <code>features/</code> 为什么必须分开？—— 见 v3 的第 5.4 节「层与依赖方向」。</li>
+<li><code>agent-event.ts</code> 为什么放在 <code>domain/</code> 而不是 <code>features/agent-run/</code>？—— 因为事件类型是前后端合同，不属于 UI 特性。</li>
+<li><code>fixtures/sample-run.ts</code> 存在的意义是什么？为什么不直接接 WebSocket？—— 见 v3 的第 5.6 节「fixture 作为传输层替身」。</li>
+</ol>
+<hr>
+<h2 id="15-阶段-d动手脚手架20-分钟先搭骨架再看正文">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</h2>
+<p><strong>为什么放在正文前面</strong>：下面第 3-6 节以及 <code>Day01深挖-前端底子补弱.html</code> 都在讲"代码为什么这么写"。如果你手上没有一个能跑起来的项目，代码讲得再深也只是纸上谈兵。先用 20 分钟把 v3 骨架立起来、能在浏览器里跑，再回过头读代码解释才有感觉；写 reducer 测试和反证实验也才有地方放。</p>
+<p><strong>动手节奏建议</strong>：本节 1.5.1-1.5.5 快速过一遍（20 分钟） → 读第 2-6 节正文 + 深挖 HTML（约 120 分钟） → 到第 7 节做测试 + 反证 + 验收（60 分钟）。</p>
+<h3 id="151-d-1搭工程骨架10-分钟">1.5.1 D-1：搭工程骨架（10 分钟）</h3>
+<pre><code class="language-powershell"># 检查工作区状态
+git -C D:\demo\ai-techer status --short
+Test-Path D:\demo\ai-techer\p1-monitor\frontend
+
+# 如果 frontend 不存在，创建它
+Set-Location D:\demo\ai-techer\p1-monitor
+pnpm create vite frontend --template vue-ts
+Set-Location frontend
+pnpm install
+pnpm add -D vitest @vue/test-utils jsdom
+</code></pre>
+<p>在 <code>vite.config.ts</code> 加 alias：</p>
+<pre><code class="language-typescript">import { fileURLToPath, URL } from 'node:url'
+
+export default defineConfig({
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+})
+</code></pre>
+<p>在 <code>package.json</code> 里补 scripts：</p>
+<pre><code class="language-json">{
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b &amp;&amp; vite build",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run",
+    "lint": "eslint . --ext .ts,.vue"
+  }
+}
+</code></pre>
+<h3 id="152-d-2创建目录2-分钟">1.5.2 D-2：创建目录（2 分钟）</h3>
+<p>按 §1.4 目录树建目录（此时先建空目录，文件在 1.5.3-1.5.5 里逐个填上）：</p>
+<pre><code>src/
+├── domain/agent/
+├── features/agent-run/ui/
+└── features/agent-run/fixtures/
+</code></pre>
+<h3 id="153-d-3实现-domain-层20-分钟">1.5.3 D-3：实现 domain 层（20 分钟）</h3>
+<p>打开第 5.3 节的完整代码，整段复制到对应文件（<strong>代码在下面正文，现在快速过清单可以先跳过，读到 5.3 时再回填</strong>）：</p>
+<ul>
+<li><code>src/domain/agent/agent-event.ts</code> —— 定义九种事件的判别联合和 <code>RunId</code> branded type；</li>
+<li><code>src/domain/agent/agent-run-state.ts</code> —— 定义状态机和纯函数 reducer <code>reduceAgentEvent</code>。</li>
+</ul>
+<p><strong>边写边问自己</strong>：</p>
+<ul>
+<li><code>RunId</code> 为什么要 branded type？（防止手滑把普通 string 传进去）</li>
+<li><code>EventMeta</code> 里为什么要有 <code>sequence</code>？（去重和排序）</li>
+<li>规则 A 和规则 B 谁先谁后？（先去重再判终态，反过来的话终态收到重复事件会走进 return state 但又更新了 lastSequence——实际两条规则都会短路返回 state，谁先谁后不影响正确性，但 sequence 去重放在最前面语义上最清晰）</li>
+</ul>
+<h3 id="154-d-4实现-features-层15-分钟">1.5.4 D-4：实现 features 层（15 分钟）</h3>
+<p>同样照抄第 5.3 节正文的现成代码（<strong>现在可先跳过，读到 5.3 时回填</strong>）：</p>
+<ul>
+<li><code>src/features/agent-run/ui/AgentRunPanel.vue</code> —— 只接 <code>state</code> prop 的展示组件，不知道事件从哪来；</li>
+<li><code>src/features/agent-run/fixtures/sample-run.ts</code> —— 一段假的诊断执行事件序列，用来喂给 reducer。</li>
+</ul>
+<h3 id="155-d-5接入-appvue10-分钟">1.5.5 D-5：接入 App.vue（10 分钟）</h3>
+<p>打开第 5.3 节最后一块 <code>src/App.vue</code> 代码，整段替换你现有的 <code>App.vue</code>（<strong>代码在正文，现在可先跳过，读到 5.3 时回填</strong>）。这段做的事：用 <code>ref</code> 存收到的事件，用 <code>computed</code> 每次从头 reduce 出最新 <code>state</code>，<code>onMounted</code> 里用 <code>setTimeout</code> 模拟事件按 800ms 间隔逐条到达。</p>
+<pre><code class="language-powershell">pnpm dev
+</code></pre>
+<p>浏览器打开 <code>http://localhost:5173</code>，观察：</p>
+<ul>
+<li>徽章依次显示 <code>running</code> → <code>running</code> → <code>awaiting-approval</code>；</li>
+<li>时间线依次冒出：文本 → 工具调用（开始）→ 工具卡片更新为"完成 1800ms" → 文本 → 审批。</li>
+</ul>
+<p>看到这个画面就说明 v3 已经跑起来了。<strong>卡住不要死磕</strong>：先跳过继续读第 2-6 节正文，读完再回来调试；测试和反证实验放到第 7 节做。</p>
+<hr>
+<h2 id="2-学习节奏90-阅读-90-动手">2. 学习节奏（90 阅读 / 90 动手）</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>阶段</th>
+<th>时长</th>
+<th>内容</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>30 分钟</td>
+<td>阅读第 3 节（v1 教程）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td>B</td>
+<td>30 分钟</td>
+<td>阅读第 4 节（v2 教程）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td>C</td>
+<td>30 分钟</td>
+<td>阅读第 5 节（v3 教程）</td>
+<td>阅读</td>
+</tr>
+<tr>
+<td>D</td>
+<td>60 分钟</td>
+<td>在自己项目里实现 v3 完整功能</td>
+<td>动手</td>
+</tr>
+<tr>
+<td>E</td>
+<td>20 分钟</td>
+<td>写 reducer 测试 + 两个反证实验</td>
+<td>动手</td>
+</tr>
+<tr>
+<td>F</td>
+<td>10 分钟</td>
+<td>运行 lint/typecheck/test/build，提交 commit</td>
+<td>动手</td>
+</tr>
+</tbody>
+</table></div><p>前 90 分钟只读、不写；后 90 分钟只写、不读。<strong>中途遇到不懂的先跳过、别停下</strong>，读完 v3 你会发现前面卡住的地方多半是"没看到全景"造成的。</p>
+<hr>
+<h2 id="3-v1只展示模型的文本输出">3. v1：只展示模型的文本输出</h2>
+<h3 id="31-v1-要实现什么">3.1 v1 要实现什么</h3>
+<p>只做一件事：Agent 后端会一段一段地吐出文本（就像 ChatGPT 打字机效果），前端把它们<strong>按顺序拼接</strong>并展示出来。</p>
+<p><strong>用户看到</strong>：一段文字慢慢冒出来，每次追加一小段。</p>
+<p><strong>技术上要处理</strong>：</p>
+<ul>
+<li>接收多次 <code>text.delta</code> 事件（每次带一小段文字）；</li>
+<li>收到 <code>run.started</code> 时把状态从"空闲"切到"运行中"；</li>
+<li>收到 <code>run.finished</code> 时把状态切到"完成"。</li>
+</ul>
+<h3 id="32-v1-完整代码">3.2 v1 完整代码</h3>
+<p><strong>src/App.vue</strong></p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+
+// 你熟悉的 Vue 响应式：几个 ref 描述 UI 状态
+const status = ref&lt;'idle' | 'running' | 'completed'&gt;('idle')
+const text = ref('')
+
+// 假的事件流：一秒后开始，然后每 300ms 追加一段文字，最后完成
+function startFakeRun() {
+  status.value = 'running'
+  text.value = ''
+
+  const chunks = [
+    '正在检查服务器 srv-042 的 CPU 指标...',
+    '\n\n最近 10 分钟平均 CPU 为 87%，超过阈值。',
+    '\n\n建议进一步排查异常进程。',
+  ]
+
+  chunks.forEach((chunk, i) =&gt; {
+    setTimeout(() =&gt; {
+      text.value += chunk  // 追加到已有文本后面
+      if (i === chunks.length - 1) {
+        status.value = 'completed'
+      }
+    }, (i + 1) * 800)
+  })
+}
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;section&gt;
+    &lt;header&gt;
+      &lt;h2&gt;诊断执行&lt;/h2&gt;
+      &lt;output :data-status="status"&gt;{{ status }}&lt;/output&gt;
+    &lt;/header&gt;
+
+    &lt;button @click="startFakeRun" :disabled="status === 'running'"&gt;
+      开始诊断
+    &lt;/button&gt;
+
+    &lt;p style="white-space: pre-wrap;"&gt;{{ text }}&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+output[data-status='running'] { color: orange; }
+output[data-status='completed'] { color: green; }
+&lt;/style&gt;
+</code></pre>
+<h3 id="33-v1-用到的知识点">3.3 v1 用到的知识点</h3>
+<p><strong>知识点 1：Agent 的输出是"事件流"，不是"请求-响应"</strong></p>
+<p>你熟悉的 axios 是这样：</p>
+<pre><code class="language-typescript">const data = await axios.get('/api/report')  // 一次调用 → 一个完整结果
+</code></pre>
+<p>Agent 不一样：</p>
+<pre><code>后端逐步产生事件：
+  t=0ms   → run.started
+  t=800ms → text.delta("正在检查...")
+  t=1600ms → text.delta("最近 10 分钟...")
+  t=2400ms → text.delta("建议进一步...")
+  t=2400ms → run.finished
+</code></pre>
+<p>前端不能等所有事件到齐再渲染，必须<strong>每来一个就更新一次 UI</strong>。v1 用 <code>text.value += chunk</code> 就是这个思路的最小体现。</p>
+<p><strong>知识点 2：用响应式 <code>ref</code> 承接流式增量</strong></p>
+<p>Vue 3 的 <code>ref</code> 天然适合这种场景：<code>text.value += chunk</code> 修改后，模板里的 <code>{{ text }}</code> 会自动重新渲染。这是从"一次性拿到 data 再显示"到"数据到一点显示一点"的第一步。</p>
+<h3 id="34-v1-暴露的痛点引出-v2">3.4 v1 暴露的痛点（引出 v2）</h3>
+<p>v1 只处理了 <code>text.delta</code>。但真实的 Agent 还会：</p>
+<ul>
+<li>调用工具（比如"读取 CPU 指标"）；</li>
+<li>等待你批准某个高风险操作；</li>
+<li>可能失败。</li>
+</ul>
+<p>如果继续用 v1 的写法，你会发现要不断加 <code>ref</code>：</p>
+<pre><code class="language-typescript">const status = ref(...)
+const text = ref(...)
+const isCallingTool = ref(false)
+const currentToolName = ref('')
+const toolResult = ref('')
+const isWaitingApproval = ref(false)
+const approvalAction = ref('')
+// ...
+</code></pre>
+<p>而且事件之间<strong>没有顺序</strong>——<code>text</code> 和"工具调用"发生的先后关系丢了。用户看到的时间线会乱。</p>
+<p>v2 要解决这两个问题。</p>
+<hr>
+<h2 id="4-v2加工具调用-审批引入判别联合">4. v2：加工具调用 + 审批（引入判别联合）</h2>
+<h3 id="41-v2-要实现什么">4.1 v2 要实现什么</h3>
+<p>在 v1 基础上，额外支持：</p>
+<ul>
+<li><strong>工具调用卡片</strong>：显示 Agent 调用了什么工具、参数是什么、结果是什么、耗时多少；</li>
+<li><strong>审批提示</strong>：显示"Agent 想执行 XX 高风险操作，需要你批准"（今天只做展示，交互留给 Day 17）；</li>
+<li><strong>保留时间顺序</strong>：文本和工具卡片在页面上按发生顺序排列。</li>
+</ul>
+<p><strong>用户看到</strong>：混排的时间线——文本段、工具卡片、审批提示按时间先后垂直排列。</p>
+<h3 id="42-v2-完整代码">4.2 v2 完整代码</h3>
+<p><strong>src/composables/useAgentRun.ts</strong>（新增）</p>
+<pre><code class="language-typescript">import { ref, computed } from 'vue'
+
+// 事件类型：用判别联合精确描述每种事件的形状
+// 判别联合 = 用一个共同字段（type）作为"标签"，
+// TypeScript 会根据 type 的值自动收窄其他字段的类型
+export type AgentEvent =
+  | { type: 'run.started' }
+  | { type: 'text.delta'; text: string }
+  | { type: 'tool.started'; callId: string; toolName: string; args: string }
+  | { type: 'tool.succeeded'; callId: string; result: string; durationMs: number }
+  | { type: 'approval.required'; approvalId: string; action: string; risk: 'low' | 'medium' | 'high' }
+  | { type: 'run.finished' }
+
+// UI 时间线上要渲染的每一项
+export type TimelineItem = {
+  key: string
+  kind: 'text' | 'tool' | 'approval'
+  title: string
+  detail?: string
+}
+
+export function useAgentRun() {
+  // 所有收到的事件，按顺序存起来
+  const events = ref&lt;AgentEvent[]&gt;([])
+
+  // 从事件流算出当前状态（computed 会缓存，事件变了才重算）
+  const status = computed&lt;'idle' | 'running' | 'awaiting-approval' | 'completed'&gt;(() =&gt; {
+    if (events.value.length === 0) return 'idle'
+    const last = events.value[events.value.length - 1]
+    if (last.type === 'run.finished') return 'completed'
+    if (last.type === 'approval.required') return 'awaiting-approval'
+    return 'running'
+  })
+
+  // 从事件流算出时间线（同样按顺序）
+  const timeline = computed&lt;TimelineItem[]&gt;(() =&gt; {
+    const items: TimelineItem[] = []
+
+    events.value.forEach((event, index) =&gt; {
+      switch (event.type) {
+        case 'text.delta':
+          // 注意：TS 在这里知道 event 一定是 { type: 'text.delta'; text: string }
+          // 写 event.text 有类型提示，写 event.toolName 会报错
+          items.push({
+            key: `text-${index}`,
+            kind: 'text',
+            title: '模型输出',
+            detail: event.text,
+          })
+          break
+
+        case 'tool.started':
+          items.push({
+            key: `tool-${event.callId}`,
+            kind: 'tool',
+            title: `调用工具：${event.toolName}`,
+            detail: `参数：${event.args}`,
+          })
+          break
+
+        case 'tool.succeeded':
+          // 通过 callId 找到对应的 tool 卡片，更新它的 detail
+          // 这就是"事件关联"：succeeded 事件和 started 事件通过 callId 关联
+          const existing = items.find((item) =&gt; item.key === `tool-${event.callId}`)
+          if (existing) {
+            existing.detail = `完成 (${event.durationMs}ms)：${event.result}`
+          }
+          break
+
+        case 'approval.required':
+          items.push({
+            key: `approval-${event.approvalId}`,
+            kind: 'approval',
+            title: `等待审批：${event.action}`,
+            detail: `风险级别：${event.risk}`,
+          })
+          break
+
+        // run.started / run.finished 不产生时间线项，只影响 status
+        case 'run.started':
+        case 'run.finished':
+          break
+      }
+    })
+
+    return items
+  })
+
+  function pushEvent(event: AgentEvent) {
+    events.value.push(event)
+  }
+
+  return { status, timeline, pushEvent }
+}
+</code></pre>
+<p><strong>src/App.vue</strong>（改造）</p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import { useAgentRun, type AgentEvent } from './composables/useAgentRun'
+
+const { status, timeline, pushEvent } = useAgentRun()
+
+// 假事件序列
+const fakeEvents: AgentEvent[] = [
+  { type: 'run.started' },
+  { type: 'text.delta', text: '正在检查服务器 srv-042 的 CPU 指标...' },
+  { type: 'tool.started', callId: 'c1', toolName: 'read_metrics', args: 'last 10min' },
+  { type: 'tool.succeeded', callId: 'c1', result: 'CPU 平均 87%，异常', durationMs: 1800 },
+  { type: 'text.delta', text: '检测到 CPU 持续过载，建议重启异常进程。' },
+  { type: 'approval.required', approvalId: 'a1', action: 'restart_process', risk: 'high' },
+]
+
+function startFakeRun() {
+  fakeEvents.forEach((event, i) =&gt; {
+    setTimeout(() =&gt; pushEvent(event), (i + 1) * 700)
+  })
+}
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;section&gt;
+    &lt;header&gt;
+      &lt;h2&gt;诊断执行&lt;/h2&gt;
+      &lt;output :data-status="status"&gt;{{ status }}&lt;/output&gt;
+    &lt;/header&gt;
+
+    &lt;button @click="startFakeRun" :disabled="status !== 'idle' &amp;&amp; status !== 'completed'"&gt;
+      开始诊断
+    &lt;/button&gt;
+
+    &lt;ol&gt;
+      &lt;li v-for="item in timeline" :key="item.key" :data-kind="item.kind"&gt;
+        &lt;strong&gt;{{ item.title }}&lt;/strong&gt;
+        &lt;p v-if="item.detail" style="white-space: pre-wrap;"&gt;{{ item.detail }}&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="43-v2-用到的知识点">4.3 v2 用到的知识点</h3>
+<p><strong>知识点 3：判别联合（Discriminated Union）——用类型描述"多种可能形状"</strong></p>
+<p>在 v1 里，事件只有 <code>text.delta</code> 一种，直接用一个 <code>string</code> 就够了。到了 v2，事件有 6 种，每种带的字段都不一样：</p>
+<pre><code class="language-typescript">{ type: 'text.delta', text: '...' }
+{ type: 'tool.started', callId: '...', toolName: '...', args: '...' }
+{ type: 'approval.required', approvalId: '...', action: '...', risk: 'high' }
+</code></pre>
+<p>如果你写成 <code>{ type: string, data: any }</code>，TS 检查不出任何错误：</p>
+<pre><code class="language-typescript">type BadEvent = { type: string; data: any }
+function handle(e: BadEvent) {
+  if (e.type === 'tool.stared') {  // 拼错了 → TS 不报错
+    console.log(e.data.tolName)    // 字段拼错 → TS 不报错
+  }
+}
+</code></pre>
+<p>判别联合就是让 TS 知道<strong>这个字段等于这个值时，其他字段一定长什么样</strong>：</p>
+<pre><code class="language-typescript">type AgentEvent =
+  | { type: 'text.delta'; text: string }
+  | { type: 'tool.started'; callId: string; toolName: string; args: string }
+  //   ↑ type 字段是"判别符"，值不同 → 其他字段就不同
+
+function handle(e: AgentEvent) {
+  if (e.type === 'text.delta') {
+    console.log(e.text)        // ✓ TS 知道有 text
+    console.log(e.toolName)    // ✗ 编译错误：text.delta 没有 toolName
+  }
+}
+</code></pre>
+<p><strong>知识点 4：通过共同字段关联事件——<code>callId</code></strong></p>
+<p><code>tool.started</code> 和 <code>tool.succeeded</code> 是两个独立事件，可能中间还夹着其他事件。它们通过 <code>callId</code> 关联：</p>
+<pre><code>tool.started    { callId: 'c1', toolName: 'read_metrics' }
+text.delta      { text: '正在读取...' }
+tool.succeeded  { callId: 'c1', result: '87%' }
+                   ↑ 用同一个 callId 找到上面的 tool 卡片
+</code></pre>
+<p>v2 的 <code>timeline</code> computed 里，<code>items.find(item =&gt; item.key === 'tool-' + event.callId)</code> 就是在做这个关联。</p>
+<p><strong>知识点 5：用 <code>computed</code> 从"事件流"派生"UI 状态"</strong></p>
+<p>v1 的做法是收到事件时直接改 UI 状态（<code>text.value += chunk</code>）。v2 的做法是<strong>只把事件塞进 <code>events</code> 数组，UI 状态用 computed 从事件流算出来</strong>：</p>
+<pre><code>events （原始数据，只增不改）
+  ↓ computed
+status（UI 用的当前阶段）
+timeline（UI 用的时间线）
+</code></pre>
+<p>好处：<code>events</code> 永远保留完整历史，任何时候都能重新算出 UI 状态。如果哪天要"回放"这段执行，把 <code>events</code> 从头喂一遍就能复现——这是 v3 的 reducer 思想的雏形。</p>
+<h3 id="44-v2-暴露的痛点引出-v3">4.4 v2 暴露的痛点（引出 v3）</h3>
+<p><strong>痛点 1：归约逻辑塞在 composable 的 computed 里，没法单独测试</strong></p>
+<p><code>timeline</code> 是个 computed，测试它要装载 Vue、创建组件实例、mock 响应式系统。而 v3 的 reducer 是<strong>纯函数</strong>，<code>expect(reduce(state, event)).toEqual(...)</code> 就能直接测。</p>
+<p><strong>痛点 2：<code>status</code> 只看"最后一个事件"，遇到乱序/重复就错</strong></p>
+<p>v2 的 status 判断是：</p>
+<pre><code class="language-typescript">const last = events.value[events.value.length - 1]
+if (last.type === 'run.finished') return 'completed'
+if (last.type === 'approval.required') return 'awaiting-approval'
+</code></pre>
+<p>如果网络乱序，<code>run.finished</code> 先到、<code>approval.required</code> 后到：</p>
+<pre><code>events = [run.started, ..., run.finished, approval.required]
+             ↑ 最后一个是 approval.required
+             → status 显示 awaiting-approval
+             → 但实际上 run 已经结束了
+</code></pre>
+<p><strong>用户会看到"已经完成的 Run 却在等待批准"这种不可能状态。</strong></p>
+<p><strong>痛点 3：没有 <code>run.failed</code> / <code>run.cancelled</code> / <code>tool.failed</code>，也没有"事件序号去重"</strong></p>
+<p>真实 Agent 可能：</p>
+<ul>
+<li>中途报错（<code>run.failed</code>）；</li>
+<li>被用户取消（<code>run.cancelled</code>）；</li>
+<li>工具执行失败（<code>tool.failed</code>）；</li>
+<li>网络重发导致同一个事件收到两次。</li>
+</ul>
+<p>v2 都没处理。加上这些之后，if-else 组合会爆炸——<strong>必须引入状态机</strong>。</p>
+<p><strong>痛点 4：<code>AgentEvent</code> 类型和 UI 组件强耦合在同一个 composable 里</strong></p>
+<p>Day 2 要给事件加运行时校验，Day 5 要接 WebSocket，Day 14 要升级到 SSE v1——每次都要动这个 composable。v3 会把类型、状态、UI 分成三层，让每一层独立演进。</p>
+<hr>
+<h2 id="5-v3加错误-完成-取消-边界处理引入状态机-reducer-分层">5. v3：加错误 + 完成 + 取消 + 边界处理（引入状态机 + reducer + 分层）</h2>
+<h3 id="51-v3-要实现什么">5.1 v3 要实现什么</h3>
+<p>在 v2 基础上，额外支持：</p>
+<ul>
+<li><strong>完整的 Run 生命周期</strong>：<code>run.started</code> → <code>running</code> → <code>completed</code> / <code>failed</code> / <code>cancelled</code>；</li>
+<li><strong>工具失败</strong>：<code>tool.failed</code> 事件显示在对应的 tool 卡片上；</li>
+<li><strong>乱序、重复事件的正确处理</strong>：通过 <code>sequence</code> 字段去重；</li>
+<li><strong>终态保护</strong>：Run 结束后再来事件必须被忽略；</li>
+<li><strong>可测试</strong>：核心归约逻辑是纯函数，能直接单元测试；</li>
+<li><strong>可演进</strong>：类型、状态、UI 分层，Day 2-17 每一层独立扩展。</li>
+</ul>
+<p><strong>用户看到</strong>：任何事件序列（正常、乱序、重复、失败、取消）都能得到确定的、正确的 UI 表现。</p>
+<h3 id="52-v3-目录结构">5.2 v3 目录结构</h3>
+<pre><code>src/
+├── domain/                          ← 领域层（纯类型 + 纯逻辑，不依赖 Vue）
+│   └── agent/
+│       ├── agent-event.ts           ← 事件类型（v2 的 AgentEvent 升级版）
+│       ├── agent-run-state.ts       ← 状态类型 + 初始状态 + reducer
+│       └── agent-run-state.spec.ts  ← reducer 单元测试
+├── features/                        ← 功能层（依赖 domain + Vue）
+│   └── agent-run/
+│       ├── ui/AgentRunPanel.vue     ← 只接 state prop 的展示组件
+│       └── fixtures/sample-run.ts   ← 假事件序列（未来 WebSocket 的替身）
+└── App.vue                          ← 把 fixture reduce 后传给 Panel
+</code></pre>
+<p><strong>为什么这么分层</strong>：</p>
+<ul>
+<li><strong>domain 层</strong>：不依赖 Vue、不依赖任何框架，可以在 Node 里直接跑测试。事件类型和 reducer 都属于业务规则，不属于 UI。</li>
+<li><strong>features 层</strong>：只依赖 domain，通过 props 消费 state。换成 Pinia Store、换成 SSE 事件源、换成 fixture，UI 组件都不用改。</li>
+<li><strong>App.vue</strong>：只做"事件源和 UI 的粘合"。</li>
+</ul>
+<h3 id="53-v3-完整代码">5.3 v3 完整代码</h3>
+<p><strong>src/domain/agent/agent-event.ts</strong></p>
+<pre><code class="language-typescript">// runId 是字符串，但用 branded type 区分它和普通 string，避免手滑传错
+export type RunId = string &amp; { readonly __brand: 'RunId' }
+
+// 所有事件共享的元数据字段
+type EventMeta = {
+  runId: RunId
+  sequence: number         // 全局递增的序号，用于去重和排序
+  occurredAt: string       // ISO 时间戳
+}
+
+// 九种事件的完整判别联合
+export type AgentEvent =
+  | (EventMeta &amp; { type: 'run.started'; payload: Record&lt;string, never&gt; })
+  | (EventMeta &amp; { type: 'text.delta'; payload: { text: string } })
+  | (EventMeta &amp; { type: 'tool.started'; payload: { callId: string; toolName: string; argumentSummary: string } })
+  | (EventMeta &amp; { type: 'tool.succeeded'; payload: { callId: string; resultSummary: string; durationMs: number } })
+  | (EventMeta &amp; { type: 'tool.failed'; payload: { callId: string; code: string; message: string } })
+  | (EventMeta &amp; { type: 'approval.required'; payload: { approvalId: string; action: string; risk: 'low' | 'medium' | 'high' } })
+  | (EventMeta &amp; { type: 'run.cancelled'; payload: { reason: string } })
+  | (EventMeta &amp; { type: 'run.failed'; payload: { code: string; message: string } })
+  | (EventMeta &amp; { type: 'run.finished'; payload: { summary: string } })
+
+// 辅助工具：exhaustive check 时使用
+// 当 switch 没有覆盖所有分支时，未覆盖的分支会走到 default，
+// default 里把 value 赋给 never 类型，TS 会在编译期报错
+export function assertNever(value: never): never {
+  throw new Error(`Unhandled AgentEvent: ${JSON.stringify(value)}`)
+}
+</code></pre>
+<p><strong>src/domain/agent/agent-run-state.ts</strong></p>
+<pre><code class="language-typescript">import type { AgentEvent, RunId } from './agent-event'
+import { assertNever } from './agent-event'
+
+// Run 只能处于这六种状态之一（互斥的枚举）
+export type RunStatus =
+  | 'idle'                // 还没开始
+  | 'running'             // 执行中
+  | 'awaiting-approval'   // 停下来等用户批准
+  | 'completed'           // 正常结束（终态）
+  | 'failed'              // 失败结束（终态）
+  | 'cancelled'           // 取消结束（终态）
+
+// 时间线上要渲染的每一项
+export type TimelineItem = {
+  key: string
+  kind: 'text' | 'tool' | 'approval' | 'error' | 'result'
+  title: string
+  detail?: string
+}
+
+export type AgentRunState = {
+  runId?: RunId
+  status: RunStatus
+  lastSequence: number     // 最后处理的事件序号
+  timeline: TimelineItem[]
+  error?: { code: string; message: string }
+}
+
+export const initialAgentRunState: AgentRunState = {
+  status: 'idle',
+  lastSequence: -1,
+  timeline: [],
+}
+
+// 判断是否为终态
+function isTerminal(status: RunStatus): boolean {
+  return status === 'completed' || status === 'failed' || status === 'cancelled'
+}
+
+/**
+ * Reducer：给定当前状态和一个事件，返回新的状态。
+ * 必须是纯函数：
+ *   - 相同输入永远得到相同输出
+ *   - 不读 Date.now() / Math.random() / 不发请求 / 不改 DOM
+ *   - 不修改 state 参数（用 spread / map / filter 返回新对象）
+ */
+export function reduceAgentEvent(
+  state: AgentRunState,
+  event: AgentEvent,
+): AgentRunState {
+  // 规则 A：sequence 去重
+  // 如果收到的 sequence 不比已处理过的大，说明是重复或迟到，忽略
+  if (event.sequence &lt;= state.lastSequence) {
+    return state
+  }
+
+  // 规则 B：终态保护
+  // Run 已结束（completed/failed/cancelled）之后，任何事件都被忽略
+  // 避免"已完成还在追加工具卡片"这种不可能状态
+  if (isTerminal(state.status)) {
+    return state
+  }
+
+  // 规则 C：按事件类型分派处理
+  switch (event.type) {
+    case 'run.started':
+      return {
+        ...state,
+        runId: event.runId,
+        status: 'running',
+        lastSequence: event.sequence,
+      }
+
+    case 'text.delta':
+      return {
+        ...state,
+        lastSequence: event.sequence,
+        timeline: [
+          ...state.timeline,
+          {
+            key: `text-${event.sequence}`,
+            kind: 'text',
+            title: '模型输出',
+            detail: event.payload.text,
+          },
+        ],
+      }
+
+    case 'tool.started':
+      return {
+        ...state,
+        lastSequence: event.sequence,
+        timeline: [
+          ...state.timeline,
+          {
+            key: `tool-${event.payload.callId}`,
+            kind: 'tool',
+            title: `调用工具：${event.payload.toolName}`,
+            detail: `参数：${event.payload.argumentSummary}`,
+          },
+        ],
+      }
+
+    case 'tool.succeeded':
+      return {
+        ...state,
+        lastSequence: event.sequence,
+        timeline: state.timeline.map((item) =&gt;
+          item.key === `tool-${event.payload.callId}`
+            ? { ...item, detail: `完成 (${event.payload.durationMs}ms)：${event.payload.resultSummary}` }
+            : item,
+        ),
+      }
+
+    case 'tool.failed':
+      return {
+        ...state,
+        lastSequence: event.sequence,
+        timeline: state.timeline.map((item) =&gt;
+          item.key === `tool-${event.payload.callId}`
+            ? { ...item, detail: `失败 [${event.payload.code}]：${event.payload.message}` }
+            : item,
+        ),
+      }
+
+    case 'approval.required':
+      return {
+        ...state,
+        status: 'awaiting-approval',
+        lastSequence: event.sequence,
+        timeline: [
+          ...state.timeline,
+          {
+            key: `approval-${event.payload.approvalId}`,
+            kind: 'approval',
+            title: `等待审批：${event.payload.action}`,
+            detail: `风险级别：${event.payload.risk}`,
+          },
+        ],
+      }
+
+    case 'run.cancelled':
+      return {
+        ...state,
+        status: 'cancelled',
+        lastSequence: event.sequence,
+        timeline: [
+          ...state.timeline,
+          {
+            key: `cancel-${event.sequence}`,
+            kind: 'error',
+            title: '已取消',
+            detail: event.payload.reason,
+          },
+        ],
+      }
+
+    case 'run.failed':
+      return {
+        ...state,
+        status: 'failed',
+        lastSequence: event.sequence,
+        error: event.payload,
+        timeline: [
+          ...state.timeline,
+          {
+            key: `error-${event.sequence}`,
+            kind: 'error',
+            title: `执行失败 [${event.payload.code}]`,
+            detail: event.payload.message,
+          },
+        ],
+      }
+
+    case 'run.finished':
+      return {
+        ...state,
+        status: 'completed',
+        lastSequence: event.sequence,
+        timeline: [
+          ...state.timeline,
+          {
+            key: `result-${event.sequence}`,
+            kind: 'result',
+            title: '完成',
+            detail: event.payload.summary,
+          },
+        ],
+      }
+
+    default:
+      // 如果未来 AgentEvent 加了一种新类型（比如 budget.exceeded），
+      // 而这个 switch 没有处理，TypeScript 会在这一行编译报错：
+      // "Argument of type 'BudgetExceededEvent' is not assignable to parameter of type 'never'"
+      // 这样就不会有"新事件被 UI 静默吞掉"的 Bug
+      return assertNever(event)
+  }
+}
+</code></pre>
+<p><strong>src/features/agent-run/ui/AgentRunPanel.vue</strong></p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import type { AgentRunState } from '@/domain/agent/agent-run-state'
+
+// 组件只接 state prop，不知道也不关心事件从哪来
+defineProps&lt;{ state: AgentRunState }&gt;()
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;section aria-labelledby="agent-run-title"&gt;
+    &lt;header&gt;
+      &lt;h2 id="agent-run-title"&gt;诊断执行&lt;/h2&gt;
+      &lt;output :data-status="state.status"&gt;{{ state.status }}&lt;/output&gt;
+    &lt;/header&gt;
+
+    &lt;ol aria-live="polite"&gt;
+      &lt;li
+        v-for="item in state.timeline"
+        :key="item.key"
+        :data-kind="item.kind"
+      &gt;
+        &lt;strong&gt;{{ item.title }}&lt;/strong&gt;
+        &lt;p v-if="item.detail" style="white-space: pre-wrap;"&gt;{{ item.detail }}&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+output[data-status='running'] { color: orange; }
+output[data-status='awaiting-approval'] { color: goldenrod; }
+output[data-status='completed'] { color: green; }
+output[data-status='failed'] { color: red; }
+output[data-status='cancelled'] { color: gray; }
+
+li[data-kind='tool'] { border-left: 3px solid steelblue; padding-left: 8px; }
+li[data-kind='approval'] { border-left: 3px solid gold; padding-left: 8px; }
+li[data-kind='error'] { border-left: 3px solid crimson; padding-left: 8px; }
+li[data-kind='result'] { border-left: 3px solid green; padding-left: 8px; }
+&lt;/style&gt;
+</code></pre>
+<p><strong>src/features/agent-run/fixtures/sample-run.ts</strong></p>
+<pre><code class="language-typescript">import type { AgentEvent, RunId } from '@/domain/agent/agent-event'
+
+const runId = 'run-fixture-1' as RunId
+
+export const sampleEvents: AgentEvent[] = [
+  { runId, sequence: 0, occurredAt: '2026-07-14T10:00:00Z',
+    type: 'run.started', payload: {} },
+  { runId, sequence: 1, occurredAt: '2026-07-14T10:00:01Z',
+    type: 'text.delta', payload: { text: '正在检查服务器 srv-042 的 CPU 指标...' } },
+  { runId, sequence: 2, occurredAt: '2026-07-14T10:00:02Z',
+    type: 'tool.started',
+    payload: { callId: 'c1', toolName: 'read_metrics', argumentSummary: 'last 10min' } },
+  { runId, sequence: 3, occurredAt: '2026-07-14T10:00:04Z',
+    type: 'tool.succeeded',
+    payload: { callId: 'c1', resultSummary: 'CPU 平均 87%，异常', durationMs: 1800 } },
+  { runId, sequence: 4, occurredAt: '2026-07-14T10:00:05Z',
+    type: 'text.delta', payload: { text: '检测到 CPU 持续过载，建议重启异常进程。' } },
+  { runId, sequence: 5, occurredAt: '2026-07-14T10:00:06Z',
+    type: 'approval.required',
+    payload: { approvalId: 'a1', action: 'restart_process', risk: 'high' } },
+]
+</code></pre>
+<p><strong>src/App.vue</strong></p>
+<pre><code class="language-vue">&lt;script setup lang="ts"&gt;
+import { computed, ref, onMounted } from 'vue'
+import AgentRunPanel from '@/features/agent-run/ui/AgentRunPanel.vue'
+import { sampleEvents } from '@/features/agent-run/fixtures/sample-run'
+import { initialAgentRunState, reduceAgentEvent } from '@/domain/agent/agent-run-state'
+import type { AgentEvent } from '@/domain/agent/agent-event'
+
+// 实时收到的事件（模拟 WebSocket 一条一条推）
+const receivedEvents = ref&lt;AgentEvent[]&gt;([])
+
+// 每次 receivedEvents 变化，从头 reduce 一遍得到最新状态
+// Day 5 会改成"增量 reduce"，只处理新事件
+const state = computed(() =&gt;
+  receivedEvents.value.reduce(reduceAgentEvent, initialAgentRunState),
+)
+
+// 模拟事件按时间到达
+onMounted(() =&gt; {
+  sampleEvents.forEach((event, i) =&gt; {
+    setTimeout(() =&gt; receivedEvents.value.push(event), (i + 1) * 800)
+  })
+})
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;AgentRunPanel :state="state" /&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="54-v3-用到的知识点">5.4 v3 用到的知识点</h3>
+<p><strong>知识点 6：状态机——用单一字段表示"当前处于什么阶段"</strong></p>
+<p>v2 的问题是 <code>status</code> 通过"看最后一个事件"临时算出来，遇到乱序就崩。v3 把 <code>status</code> 提升为<strong>状态的一部分</strong>：它是 <code>AgentRunState</code> 里的一个字段，由 reducer 显式更新。</p>
+<p>允许的迁移只有这几条：</p>
+<pre><code>idle ──run.started──&gt; running
+running ──approval.required──&gt; awaiting-approval
+awaiting-approval ──其他非终态事件──&gt; running（可以退回执行）
+running / awaiting-approval ──run.finished──&gt; completed（终态）
+running / awaiting-approval ──run.failed──&gt; failed（终态）
+非终态 ──run.cancelled──&gt; cancelled（终态）
+终态 ──任何事件──&gt; 保持终态（规则 B 兜底）
+</code></pre>
+<p>其他组合都被 reducer 显式拒绝或忽略。这就杜绝了"既完成又等待批准"这种不可能状态。</p>
+<p><strong>知识点 7：reducer 是纯函数——可测试、可回放</strong></p>
+<p>回想 <code>Array.prototype.reduce</code>：</p>
+<pre><code class="language-typescript">const sum = [1, 2, 3].reduce((acc, x) =&gt; acc + x, 0)  // 0 → 1 → 3 → 6
+</code></pre>
+<p>Agent 状态的更新是同样模式：</p>
+<pre><code class="language-typescript">const state = events.reduce(reduceAgentEvent, initialAgentRunState)
+</code></pre>
+<p>因为是纯函数：</p>
+<ul>
+<li><strong>可测试</strong>：<code>expect(reduceAgentEvent(state, event)).toEqual(newState)</code> 直接就能测；</li>
+<li><strong>可回放</strong>：把事件日志保存下来，任何时候重新 reduce 一遍就能还原状态。Day 6 断线重连后靠这个恢复；</li>
+<li><strong>不可变</strong>：<code>state</code> 参数永远不被修改，React/Vue 都能高效对比是否需要重渲染。</li>
+</ul>
+<p><strong>知识点 8：exhaustive check——编译期抓遗漏</strong></p>
+<p><code>switch</code> 的 <code>default</code> 分支写：</p>
+<pre><code class="language-typescript">default:
+  return assertNever(event)
+</code></pre>
+<p>它做的事：把 <code>event</code> 变量赋给 <code>never</code> 类型的参数。因为 <code>switch</code> 前面处理了所有九种事件，走到 <code>default</code> 时 TS 认为 <code>event</code> 的类型是 <code>never</code>——<strong>任何类型都能赋给 <code>never</code></strong>，编译通过。</p>
+<p>一旦未来 <code>AgentEvent</code> 加了新类型（比如 <code>budget.exceeded</code>）而这个 switch 没处理，<code>event</code> 在 <code>default</code> 里就不再是 <code>never</code> 而是 <code>BudgetExceededEvent</code>，赋给 <code>never</code> 参数会<strong>编译报错</strong>。</p>
+<p><strong>编译器变成了你的自动化 code review 工具</strong>——加了新事件就必须处理，不处理就发布不了。</p>
+<p><strong>知识点 9：UI 依赖倒转——组件只依赖 state，不依赖事件源</strong></p>
+<p>v2 的 composable 把"事件"和"UI 逻辑"耦合在一起。v3 明确切开：</p>
+<pre><code>事件源（fixture / WebSocket / SSE）
+  ↓ AgentEvent
+Reducer（domain 层，纯函数）
+  ↓ AgentRunState
+UI 组件（features 层，只接 state prop）
+</code></pre>
+<p>好处：</p>
+<ul>
+<li>Day 5 把事件源从 fixture 换成 WebSocket → 只改 <code>App.vue</code>，<code>AgentRunPanel</code> 一行不动；</li>
+<li>Day 15 加历史恢复 → 只改 reducer，UI 组件不动；</li>
+<li>Day 17 加审批交互 → UI 组件接一个新 prop <code>onApprove</code>，reducer 不动。</li>
+</ul>
+<p><strong>知识点 10：分层——domain / features / app</strong></p>
+<p>三层各司其职：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>层</th>
+<th>依赖什么</th>
+<th>被谁依赖</th>
+<th>变化频率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>domain</td>
+<td>只有 TypeScript 标准库</td>
+<td>features、app</td>
+<td>低（合同稳定）</td>
+</tr>
+<tr>
+<td>features</td>
+<td>domain + Vue</td>
+<td>app</td>
+<td>中（UI 迭代）</td>
+</tr>
+<tr>
+<td>app</td>
+<td>features + domain + 事件源</td>
+<td>无</td>
+<td>高（每次接入新数据源）</td>
+</tr>
+</tbody>
+</table></div><p>面试时你能说清"我把领域逻辑和 UI 隔离了，测试直接跑纯函数不需要 mount 组件"——这是从"写页面"到"设计架构"的分界线。</p>
+<hr>
+<h2 id="6-三版对比一览表">6. 三版对比一览表</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="表格"><table><thead>
+<tr>
+<th>维度</th>
+<th>v1</th>
+<th>v2</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>功能</strong></td>
+<td>只显示文本流</td>
+<td>加工具、审批</td>
+<td>加错误、完成、取消、去重、终态保护</td>
+</tr>
+<tr>
+<td><strong>事件类型</strong></td>
+<td>隐式（不显式建模）</td>
+<td>判别联合（6 种）</td>
+<td>判别联合（9 种）+ sequence + runId</td>
+</tr>
+<tr>
+<td><strong>状态存储</strong></td>
+<td>多个 <code>ref</code></td>
+<td>事件数组 + computed</td>
+<td>reducer 结果的 <code>AgentRunState</code></td>
+</tr>
+<tr>
+<td><strong>归约逻辑</strong></td>
+<td>塞在事件回调里</td>
+<td>塞在 computed 里</td>
+<td>独立的纯函数 reducer</td>
+</tr>
+<tr>
+<td><strong>可测试</strong></td>
+<td>只能 E2E</td>
+<td>需要 mount 组件</td>
+<td>纯函数直接单测</td>
+</tr>
+<tr>
+<td><strong>架构层次</strong></td>
+<td>单文件</td>
+<td>composable 抽离</td>
+<td>domain / features / app 三层</td>
+</tr>
+<tr>
+<td><strong>换事件源代价</strong></td>
+<td>UI 重写</td>
+<td>composable 改造</td>
+<td>只改 App.vue 粘合处</td>
+</tr>
+<tr>
+<td><strong>编译期抓遗漏</strong></td>
+<td>无</td>
+<td>部分（判别联合）</td>
+<td>完整（exhaustive check）</td>
+</tr>
+<tr>
+<td><strong>对齐后续 Day</strong></td>
+<td>✗</td>
+<td>部分</td>
+<td>✓（Day 2-17 都基于 v3）</td>
+</tr>
+</tbody>
+</table></div><hr>
+<h2 id="65-前端底子补弱独立深挖文档">6.5 前端底子补弱（独立深挖文档）</h2>
+<p>针对 12 号报告点出的弱点（TypeScript 深度、JS/Event Loop、测试纪律、AI 流式、架构表达、证据链），补弱内容已从本文迁出到独立 HTML 深挖文档，避免主课程被撑爆：</p>
+<p><strong>→ 打开 <a href="/ai-teacher-agent-devolop/materials/output/Day01%E6%B7%B1%E6%8C%96-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1.html">Day01深挖-前端底子补弱.html</a></strong></p>
+<p>每个弱点都锚定今天 v3 项目里的一段真实代码，按 <strong>场景锚点 → 项目代码原样 → 设计点拆解 → 原理 → 反例 → 分层提问（折叠答案）→ 项目对手戏 → 面试真题三档答法</strong> 的结构展开。当前已完成深挖 1（TS 判别联合），2-6 待补。</p>
+<p>自检依据：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F12%25E5%258F%25B7%25E5%25AD%25A6%25E7%2594%259F%25E4%25B8%25A5%25E6%25A0%25BC%25E8%25AE%25AD%25E7%25BB%2583%25E6%258A%25A5%25E5%2591%258A.md" class="missing-link">12 号学生严格训练报告</a> · <a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F%25E5%25BD%2593%25E5%2589%258D%25E7%2594%25A8%25E6%2588%25B7%25E8%2583%25BD%25E5%258A%259B%25E7%2594%25BB%25E5%2583%258F%25E4%25B8%258E%25E8%25AF%2584%25E7%25BA%25A7.md" class="missing-link">当前能力画像</a> · <a href="/ai-teacher-agent-devolop/materials/output/%E7%AE%80%E5%8E%86%E7%94%A8%E8%AF%8D%E7%BA%A2%E7%BA%BF%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95.html">简历用词红线自检清单</a></p>
+<hr>
+<h2 id="7-项目验收清单阶段-e-f55-分钟">7. 项目验收清单（阶段 E-F，55 分钟）</h2>
+<p>阶段 D（搭骨架 / 7.1-7.5）已在前面 §1.5 完成。这一节是<strong>收尾验收</strong>——测试、反证、lint/typecheck/build、提交。</p>
+<h3 id="76-e写-reducer-测试20-分钟">7.6 E：写 reducer 测试（20 分钟）</h3>
+<p><strong>src/domain/agent/agent-run-state.spec.ts</strong></p>
+<pre><code class="language-typescript">import { describe, expect, it } from 'vitest'
+import type { AgentEvent, RunId } from './agent-event'
+import { initialAgentRunState, reduceAgentEvent } from './agent-run-state'
+
+const runId = 'run-1' as RunId
+
+// 测试用的事件工厂：自动填 runId 和 occurredAt
+type EventInput = AgentEvent extends infer T
+  ? T extends AgentEvent
+    ? Omit&lt;T, 'runId' | 'sequence' | 'occurredAt'&gt;
+    : never
+  : never
+
+function event(value: EventInput, sequence: number): AgentEvent {
+  return {
+    ...value,
+    runId,
+    sequence,
+    occurredAt: '2026-07-14T00:00:00.000Z',
+  } as AgentEvent
+}
+
+describe('reduceAgentEvent', () =&gt; {
+  it('starts run and enters running state', () =&gt; {
+    const state = reduceAgentEvent(
+      initialAgentRunState,
+      event({ type: 'run.started', payload: {} }, 0),
+    )
+    expect(state.status).toBe('running')
+    expect(state.runId).toBe(runId)
+  })
+
+  it('replays the same events deterministically', () =&gt; {
+    const events: AgentEvent[] = [
+      event({ type: 'run.started', payload: {} }, 0),
+      event({ type: 'text.delta', payload: { text: 'hello' } }, 1),
+      event({ type: 'run.finished', payload: { summary: 'done' } }, 2),
+    ]
+    const replay = () =&gt; events.reduce(reduceAgentEvent, initialAgentRunState)
+    expect(replay()).toEqual(replay())
+  })
+
+  it('ignores duplicated sequence', () =&gt; {
+    let state = initialAgentRunState
+    state = reduceAgentEvent(state, event({ type: 'run.started', payload: {} }, 0))
+    state = reduceAgentEvent(state, event({ type: 'text.delta', payload: { text: 'a' } }, 1))
+    const before = state
+    state = reduceAgentEvent(state, event({ type: 'text.delta', payload: { text: 'a' } }, 1))
+    expect(state).toBe(before)  // 完全相等，说明被忽略了
+  })
+
+  it('correlates tool completion by callId', () =&gt; {
+    let state = initialAgentRunState
+    state = reduceAgentEvent(state, event({ type: 'run.started', payload: {} }, 0))
+    state = reduceAgentEvent(state, event({
+      type: 'tool.started',
+      payload: { callId: 'c1', toolName: 'read_metrics', argumentSummary: 'x' },
+    }, 1))
+    state = reduceAgentEvent(state, event({
+      type: 'tool.succeeded',
+      payload: { callId: 'c1', resultSummary: '87%', durationMs: 100 },
+    }, 2))
+    const tool = state.timeline.find((i) =&gt; i.key === 'tool-c1')
+    expect(tool?.detail).toContain('完成 (100ms)')
+    expect(tool?.detail).toContain('87%')
+  })
+
+  it('enters awaiting-approval after approval.required', () =&gt; {
+    let state = initialAgentRunState
+    state = reduceAgentEvent(state, event({ type: 'run.started', payload: {} }, 0))
+    state = reduceAgentEvent(state, event({
+      type: 'approval.required',
+      payload: { approvalId: 'a1', action: 'restart', risk: 'high' },
+    }, 1))
+    expect(state.status).toBe('awaiting-approval')
+  })
+
+  it('does not mutate a terminal state after a late event', () =&gt; {
+    let state = initialAgentRunState
+    state = reduceAgentEvent(state, event({ type: 'run.started', payload: {} }, 0))
+    state = reduceAgentEvent(state, event({ type: 'run.finished', payload: { summary: 'ok' } }, 1))
+    const before = state
+    // 终态之后来一个晚到的事件
+    state = reduceAgentEvent(state, event({ type: 'text.delta', payload: { text: 'late' } }, 2))
+    expect(state).toBe(before)
+  })
+
+  it('enters cancelled from a non-terminal state', () =&gt; {
+    let state = initialAgentRunState
+    state = reduceAgentEvent(state, event({ type: 'run.started', payload: {} }, 0))
+    state = reduceAgentEvent(state, event({ type: 'run.cancelled', payload: { reason: 'user' } }, 1))
+    expect(state.status).toBe('cancelled')
+  })
+
+  it('records a run failure', () =&gt; {
+    let state = initialAgentRunState
+    state = reduceAgentEvent(state, event({ type: 'run.started', payload: {} }, 0))
+    state = reduceAgentEvent(state, event({
+      type: 'run.failed',
+      payload: { code: 'MODEL_TIMEOUT', message: '超时' },
+    }, 1))
+    expect(state.status).toBe('failed')
+    expect(state.error?.code).toBe('MODEL_TIMEOUT')
+  })
+
+  it('records a tool failure without ending the run', () =&gt; {
+    let state = initialAgentRunState
+    state = reduceAgentEvent(state, event({ type: 'run.started', payload: {} }, 0))
+    state = reduceAgentEvent(state, event({
+      type: 'tool.started',
+      payload: { callId: 'c1', toolName: 'read_metrics', argumentSummary: 'x' },
+    }, 1))
+    state = reduceAgentEvent(state, event({
+      type: 'tool.failed',
+      payload: { callId: 'c1', code: 'DB_DOWN', message: '连接失败' },
+    }, 2))
+    // 工具失败不等于 run 失败，run 状态仍是 running
+    expect(state.status).toBe('running')
+    const tool = state.timeline.find((i) =&gt; i.key === 'tool-c1')
+    expect(tool?.detail).toContain('DB_DOWN')
+  })
+})
+</code></pre>
+<p>跑测试：</p>
+<pre><code class="language-powershell">pnpm test
+</code></pre>
+<p>九个测试应该全绿。</p>
+<h3 id="77-f-1反证实验-1去掉去重会怎样5-分钟">7.7 F-1：反证实验 1——去掉去重会怎样（5 分钟）</h3>
+<p>临时把 <code>agent-run-state.ts</code> 里规则 A 的两行注释掉：</p>
+<pre><code class="language-typescript">// if (event.sequence &lt;= state.lastSequence) {
+//   return state
+// }
+</code></pre>
+<p>重新跑测试，<code>ignores duplicated sequence</code> 会失败。把失败输出截图保存到 <code>docs/evidence/day-01/dedup.md</code>，然后<strong>恢复代码</strong>。</p>
+<h3 id="78-f-2反证实验-2去掉-exhaustive-check-会怎样5-分钟">7.8 F-2：反证实验 2——去掉 exhaustive check 会怎样（5 分钟）</h3>
+<p>临时把 <code>agent-run-state.ts</code> 里 <code>default</code> 分支改成 <code>return state</code>：</p>
+<pre><code class="language-typescript">default:
+  return state  // 原来是 return assertNever(event)
+</code></pre>
+<p>在 <code>agent-event.ts</code> 加一个新事件：</p>
+<pre><code class="language-typescript">export type AgentEvent =
+  | ...
+  | (EventMeta &amp; { type: 'budget.exceeded'; payload: { limit: number } })
+</code></pre>
+<p>跑 <code>pnpm typecheck</code>——<strong>编译通过了</strong>。这意味着新事件被 UI 静默吞掉。</p>
+<p>把 <code>default</code> 改回 <code>return assertNever(event)</code>，再跑 <code>pnpm typecheck</code>——现在<strong>编译报错</strong>，逼你去处理 <code>budget.exceeded</code>。</p>
+<p>把编译错误截图保存到 <code>docs/evidence/day-01/exhaustive-check.md</code>，然后<strong>删除 budget.exceeded 那一行、恢复 default 分支</strong>。</p>
+<h3 id="79-f-3验证-提交10-分钟">7.9 F-3：验证 + 提交（10 分钟）</h3>
+<pre><code class="language-powershell">pnpm lint
+pnpm typecheck
+pnpm test
+pnpm build
+</code></pre>
+<p>四条命令都通过后：</p>
+<pre><code class="language-powershell">git add .
+git commit -m "day-01: agent event model and run panel v3"
+</code></pre>
+<hr>
+<h2 id="8-通过标准">8. 通过标准</h2>
+<p><strong>功能层面</strong>：</p>
+<ul>
+<li>[ ] 浏览器能看到 v3 的完整效果（状态徽章 + 时间线）；</li>
+<li>[ ] 全项目 <code>grep "data: any"</code> 结果为 0；</li>
+<li>[ ] <code>reduceAgentEvent</code> 是纯函数（没有 <code>Date.now()</code> / <code>fetch</code> / DOM 操作）；</li>
+<li>[ ] 至少 9 个 reducer 测试全部通过。</li>
+</ul>
+<p><strong>架构层面</strong>：</p>
+<ul>
+<li>[ ] 目录结构分了 <code>domain/</code> 和 <code>features/</code> 两层；</li>
+<li>[ ] <code>AgentRunPanel.vue</code> 只有一个 prop：<code>state: AgentRunState</code>；</li>
+<li>[ ] fixture 只出现在 <code>features/**/fixtures/</code>，Pinia Store（如果建了）里 grep 不到。</li>
+</ul>
+<p><strong>工程层面</strong>：</p>
+<ul>
+<li>[ ] <code>pnpm lint / typecheck / test / build</code> 四条命令真实通过；</li>
+<li>[ ] 两个反证实验都有截图证据；</li>
+<li>[ ] commit 已提交。</li>
+</ul>
+<p><strong>能脱口说清</strong>：</p>
+<ul>
+<li>[ ] v1 → v2 → v3 每一步重构解决的<strong>具体痛点</strong>（不是"更清晰了"这种空话）；</li>
+<li>[ ] 判别联合 + exhaustive check 在<strong>编译期</strong>抓到了什么、在<strong>运行时</strong>没抓到什么；</li>
+<li>[ ] <code>AgentRunPanel</code> 为什么不能接 <code>AgentEvent[]</code> prop——Day 5 换 WebSocket 时会付出什么代价。</li>
+</ul>
+<hr>
+<h2 id="9-提交物">9. 提交物</h2>
+<ul>
+<li><code>p1-monitor/frontend/</code> 工程源码（含 v3 完整实现）；</li>
+<li><code>docs/evidence/day-01/commands.md</code>（四条命令真实输出）；</li>
+<li><code>docs/evidence/day-01/dedup.md</code>（反证 1 截图）；</li>
+<li><code>docs/evidence/day-01/exhaustive-check.md</code>（反证 2 截图）；</li>
+<li><code>docs/learning/day-01.md</code>（学习日志，回答第 10 节课末三问）；</li>
+<li>commit：<code>day-01: agent event model and run panel v3</code>。</li>
+</ul>
+<hr>
+<h2 id="10-课末-3-个核心问题提交前先自己写下答案">10. 课末 3 个核心问题（提交前先自己写下答案）</h2>
+<ol>
+<li>v1 → v2 → v3 每一次重构，<strong>具体解决了哪个现象</strong>？请从"用户会看到什么 Bug"的角度回答，不要说"代码更好了"。</li>
+<li><code>AgentEvent</code> 判别联合、<code>AgentRunState</code> 状态机、<code>reduceAgentEvent</code> 纯函数，这三样<strong>任选一样去掉</strong>，说出会出现的一个真实 Bug 和它的复现步骤。</li>
+<li>Day 5 要把事件源从 fixture 换成 WebSocket。在 v3 架构下<strong>需要改哪些文件、不需要改哪些文件</strong>？如果当初选了 v2 的架构，改动范围会有什么不同？</li>
+</ol>
+<hr>
+<h2 id="11-真实项目情境题联网更新-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</h2>
+<blockquote>
+<p>以下是依据当前中国岗位职责和官方技术机制构造的教学模拟，不代表来源企业真实发生过相同事故。规模和指标是练习约束，不是本项目已经取得的生产数据。</p>
+</blockquote>
+<ol>
+<li>
+<p><code>AgentRunPanel</code> 在 1 秒内收到 <code>tool.started</code>、<code>approval.required</code>、<code>run.finished</code> 三个事件，其中最后两个乱序，UI 同时显示"已完成"和"等待批准"。请用事件日志、sequence 与 reducer 输入输出定位不可能状态；先禁止终态继续归约止损，再修复判别联合和转换表，并用乱序、重复、晚到事件测试验证。回答必须按"定位证据 → 临时止损 → 根因修复 → 回归验证"组织。
+依据：<a href="https://jobs.bytedance.com/experienced/position/7650035429911824693/detail" target="_blank" rel="noopener noreferrer">S1 Aime</a></p>
+</li>
+<li>
+<p>200 个并发 Agent Run 通过同一 Transport 进入页面，某个 Provider 新增事件类型后旧 UI 静默忽略，5% 的运行永远停在 <code>running</code>。请给出合同版本、exhaustive switch 编译证据和 runId 时间线；先降级为"未知事件/可重试"，再设计 Provider-BFF-Transport-Vue 边界及兼容策略，并以回放 10 万事件验证无悬挂 Run。回答必须按"定位证据 → 临时止损 → 根因修复 → 回归验证"组织。
+依据：<a href="https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html" target="_blank" rel="noopener noreferrer">S20 TypeScript unions</a></p>
+</li>
+</ol>
+<p>知识映射：事件合同、判别联合、FSM、Tool/Approval UI；从单次归约错误扩展到 Provider 演进。</p>
+<hr>
+<h2 id="12-pdf-面试题">12. PDF 面试题</h2>
+<ol>
+<li>手写一个简单状态机，模拟 AI Agent 的 Idle、Thinking、Calling_Tool、Responding、Error 状态切换。
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E9%25AB%2598%25E5%25BE%25B7%2520Al%2520agent%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026高德 Al agent 前端开发》</a>，第 8 页。</li>
+<li>如果从零设计 AI Agent 前端架构，会考虑哪些核心模块？
+来源：<a href="/ai-teacher-agent-devolop/missing.html?ref=..%2F..%2F%25E8%25B5%2584%25E6%25BA%2590%2F2026%25E9%25AB%2598%25E5%25BE%25B7%2520Al%2520agent%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591.pdf" class="missing-link">《2026高德 Al agent 前端开发》</a>，第 9 页。</li>
+</ol>
+<p>题目边界：文件名不等于官方题库；答案必须引用今天的事件合同、状态机、测试和边界图。</p>
+<hr>
+<h2 id="13-完成后教师五连问">13. 完成后教师五连问</h2>
+<p>教师核验真实 commit、测试、反证记录后，按"局部机制 → 边界一致性 → 线上事故 → 工程权衡 → 架构演进"提出 5 道问题。规则见<a href="/ai-teacher-agent-devolop/materials/output/AI%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE%E9%AA%8C%E6%94%B6%E5%8D%8F%E8%AE%AE.html">《AI 教师五连问验收协议》</a>。</p>
+<hr>
+<h2 id="14-本-day-在-90-天路线中的锚点">14. 本 Day 在 90 天路线中的锚点</h2>
+<p><strong>已完成</strong>：Agent 事件合同 + Run 状态机 + 时间线 UI。</p>
+<p><strong>明天 Day 2 要做</strong>：给 <code>AgentEvent</code> 加<strong>运行时</strong>校验（Zod Schema），因为 TypeScript 只在编译期起作用，网络传来的 JSON 到手时是 <code>unknown</code>。今天定的类型合同是 Day 2 校验规则的基础。</p>
+<p><strong>Day 5-17 复用今天的</strong>：</p>
+<ul>
+<li><code>AgentEvent</code> 类型（Day 5 WebSocket 直接吐这个格式）；</li>
+<li><code>reduceAgentEvent</code>（Day 5 增量 reduce、Day 6 用 lastSequence 做重连去重）；</li>
+<li><code>AgentRunPanel</code>（Day 15 加历史恢复、Day 17 加审批交互，组件签名不变）。</li>
+</ul>
+<p><strong>如果今天没完成到 v3</strong>：Day 2 会直接卡住（没有类型合同就没法加 Schema）。今天必须交付 v3 完整版。</p>
+
+          <p class="old-version"><a href="/ai-teacher-agent-devolop/materials/output/90%E5%A4%A9%E9%80%90%E6%97%A5%E4%BB%BB%E5%8A%A1/Day01-old.html">查看 Day 01 历史版本</a></p>
+          <nav class="day-pagination" aria-label="前后课程">
+            <span></span>
+            <a href="/ai-teacher-agent-devolop/day/02.html">Day 02 · 领域合同 →</a>
+          </nav>
+        </article>
+        <nav class="outline" aria-label="本页目录">
+          <strong>本页目录</strong>
+          <ul><li><a href="#0-%E4%BB%8A%E5%A4%A9%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE">0. 今天在 90 天路线中的位置</a></li><li><a href="#1-%E4%BB%8A%E5%A4%A9%E8%A6%81%E4%BA%A4%E4%BB%98%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97">1. 今天要交付的功能模块</a></li><li><a href="#14-%E6%9C%AC%E6%97%A5%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8A%A8%E6%89%8B%E5%89%8D%E5%85%88%E7%9C%8B%E9%AA%A8%E6%9E%B6">1.4 本日项目目录结构（动手前先看骨架）</a></li><li><a href="#15-%E9%98%B6%E6%AE%B5-d%E5%8A%A8%E6%89%8B%E8%84%9A%E6%89%8B%E6%9E%B620-%E5%88%86%E9%92%9F%E5%85%88%E6%90%AD%E9%AA%A8%E6%9E%B6%E5%86%8D%E7%9C%8B%E6%AD%A3%E6%96%87">1.5 阶段 D：动手脚手架（20 分钟，先搭骨架再看正文）</a></li><li><a href="#2-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F90-%E9%98%85%E8%AF%BB-90-%E5%8A%A8%E6%89%8B">2. 学习节奏（90 阅读 / 90 动手）</a></li><li><a href="#3-v1%E5%8F%AA%E5%B1%95%E7%A4%BA%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%87%E6%9C%AC%E8%BE%93%E5%87%BA">3. v1：只展示模型的文本输出</a></li><li><a href="#4-v2%E5%8A%A0%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8-%E5%AE%A1%E6%89%B9%E5%BC%95%E5%85%A5%E5%88%A4%E5%88%AB%E8%81%94%E5%90%88">4. v2：加工具调用 + 审批（引入判别联合）</a></li><li><a href="#5-v3%E5%8A%A0%E9%94%99%E8%AF%AF-%E5%AE%8C%E6%88%90-%E5%8F%96%E6%B6%88-%E8%BE%B9%E7%95%8C%E5%A4%84%E7%90%86%E5%BC%95%E5%85%A5%E7%8A%B6%E6%80%81%E6%9C%BA-reducer-%E5%88%86%E5%B1%82">5. v3：加错误 + 完成 + 取消 + 边界处理（引入状态机 + reducer + 分层）</a></li><li><a href="#6-%E4%B8%89%E7%89%88%E5%AF%B9%E6%AF%94%E4%B8%80%E8%A7%88%E8%A1%A8">6. 三版对比一览表</a></li><li><a href="#65-%E5%89%8D%E7%AB%AF%E5%BA%95%E5%AD%90%E8%A1%A5%E5%BC%B1%E7%8B%AC%E7%AB%8B%E6%B7%B1%E6%8C%96%E6%96%87%E6%A1%A3">6.5 前端底子补弱（独立深挖文档）</a></li><li><a href="#7-%E9%A1%B9%E7%9B%AE%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95%E9%98%B6%E6%AE%B5-e-f55-%E5%88%86%E9%92%9F">7. 项目验收清单（阶段 E-F，55 分钟）</a></li><li><a href="#8-%E9%80%9A%E8%BF%87%E6%A0%87%E5%87%86">8. 通过标准</a></li><li><a href="#9-%E6%8F%90%E4%BA%A4%E7%89%A9">9. 提交物</a></li><li><a href="#10-%E8%AF%BE%E6%9C%AB-3-%E4%B8%AA%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E6%8F%90%E4%BA%A4%E5%89%8D%E5%85%88%E8%87%AA%E5%B7%B1%E5%86%99%E4%B8%8B%E7%AD%94%E6%A1%88">10. 课末 3 个核心问题（提交前先自己写下答案）</a></li><li><a href="#11-%E7%9C%9F%E5%AE%9E%E9%A1%B9%E7%9B%AE%E6%83%85%E5%A2%83%E9%A2%98%E8%81%94%E7%BD%91%E6%9B%B4%E6%96%B0-2026-07-13">11. 真实项目情境题（联网更新 2026-07-13）</a></li><li><a href="#12-pdf-%E9%9D%A2%E8%AF%95%E9%A2%98">12. PDF 面试题</a></li><li><a href="#13-%E5%AE%8C%E6%88%90%E5%90%8E%E6%95%99%E5%B8%88%E4%BA%94%E8%BF%9E%E9%97%AE">13. 完成后教师五连问</a></li><li><a href="#14-%E6%9C%AC-day-%E5%9C%A8-90-%E5%A4%A9%E8%B7%AF%E7%BA%BF%E4%B8%AD%E7%9A%84%E9%94%9A%E7%82%B9">14. 本 Day 在 90 天路线中的锚点</a></li></ul>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+</body></html>
