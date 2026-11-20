@@ -1,0 +1,8 @@
+# 声明哪些目录是工作区里的包：apps 放可运行的应用，packages 放被应用共享的库
+packages:
+  - apps/*
+  - packages/*
+# pnpm 10 的 deploy 从共享锁文件派生运行包；构建后同步 shared 的注入副本。
+injectWorkspacePackages: true
+syncInjectedDepsAfterScripts:
+  - build

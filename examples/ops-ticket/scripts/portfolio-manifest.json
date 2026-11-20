@@ -1,0 +1,44 @@
+[
+  {
+    "id": "proxy-config",
+    "root": "verify",
+    "path": "infra/nginx/stream-lab.conf",
+    "scope": "reference-code",
+    "sha256": "c547192ec1ab21a3553c8ec875f60618f29335be4d9f635ff83af633fe09aaa6"
+  },
+  {
+    "id": "latency-code",
+    "root": "verify",
+    "path": "apps/server/src/retrieval/latency.ts",
+    "scope": "reference-code",
+    "sha256": "260a2e587c2485e1523e7d9e86473198754d85598d07099e6130e4fe4c9919d6"
+  },
+  {
+    "id": "quote-code",
+    "root": "verify",
+    "path": "apps/server/src/assistant/cost-quote.ts",
+    "scope": "reference-code",
+    "sha256": "1709d8295e73f859ec438bd66ff0f4c8e09472c7c860ab38e65eb07dd813a0cd"
+  },
+  {
+    "id": "rag-boundary",
+    "root": "verify",
+    "path": "apps/server/src/retrieval/recommendation.controller.ts",
+    "scope": "reference-code",
+    "sha256": "0007edd1374566468468a86223ee62e311a0ece433d016f7159ffb168a9ff75b"
+  },
+  {
+    "id": "retrieval-results",
+    "root": "lesson",
+    "path": ".cache/验证/新版验收/D83逐题.json",
+    "scope": "local-model",
+    "sha256": "de49197ee808a10b3ebac5c1421557369e304cab72ee571af8e65017f8fb4964"
+  },
+  {
+    "id": "handoff-http",
+    "root": "lesson",
+    "path": ".cache/验证/新版验收/D70-http.log",
+    "scope": "local-fixture",
+    "sha256": "420581da34a581aaadfc2cb7ae072394c2d8819238439dbd2467771d0aa75467"
+  }
+]

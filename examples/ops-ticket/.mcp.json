@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "ticket": {
+      "command": "node",
+      "args": [
+        "apps/server/dist/mcp/stdio.js"
+      ],
+      "env": {
+        "TICKET_API_ORIGIN": "${TICKET_API_ORIGIN}",
+        "TICKET_RUN_ID": "${TICKET_RUN_ID}",
+        "TICKET_API_AUTH": "${TICKET_API_AUTH}"
+      }
+    }
+  }
+}

@@ -1,0 +1,412 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Company {
+  id      String   @id @default(uuid(7)) @db.Uuid
+  name    String   @unique
+  users   User[]
+  tickets Ticket[]
+
+  @@map("companies")
+}
+
+model Department {
+  id         String     @id @default(uuid(7)) @db.Uuid
+  name       String     @unique
+  users      User[]
+  categories Category[]
+  tickets    Ticket[]
+
+  @@map("departments")
+}
+
+model Category {
+  id           String     @id @default(uuid(7)) @db.Uuid
+  name         String     @unique
+  departmentId String     @map("department_id") @db.Uuid
+  department   Department @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+  tickets      Ticket[]
+
+  @@map("categories")
+}
+
+model User {
+  preferences AgentPreference[]
+  id                 String        @id @default(uuid(7)) @db.Uuid
+  username           String        @unique
+  displayName        String        @map("display_name")
+  role               String
+  registrationStatus String        @default("pending") @map("registration_status")
+  companyId          String?       @map("company_id") @db.Uuid
+  departmentId       String?       @map("department_id") @db.Uuid
+  company            Company?      @relation(fields: [companyId], references: [id], onDelete: Restrict)
+  department         Department?   @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+  reported           Ticket[]      @relation("reporter")
+  assigned           Ticket[]      @relation("assignee")
+  events             TicketEvent[]
+
+  passwordHash String? @map("password_hash")
+  conversations AiConversation[]
+  aiQuotas AiQuota[]
+  notes AgentToolNote[]
+  audits AuditLog[]
+  roles UserRole[]
+  agentRuns AgentRun[]
+  @@map("users")
+}
+
+model Ticket {
+  id           String           @id @default(uuid(7)) @db.Uuid
+  ticketNo     String           @unique @map("ticket_no")
+  title        String
+  description  String
+  companyId    String           @map("company_id") @db.Uuid
+  categoryId   String           @map("category_id") @db.Uuid
+  departmentId String           @map("department_id") @db.Uuid
+  reporterId   String           @map("reporter_id") @db.Uuid
+  assigneeId   String?          @map("assignee_id") @db.Uuid
+  status       String           @default("agent_processing")
+  version      Int              @default(0)
+  createdAt    DateTime         @default(now()) @map("created_at") @db.Timestamptz(3)
+  completedAt  DateTime?        @map("completed_at") @db.Timestamptz(3)
+  company      Company          @relation(fields: [companyId], references: [id], onDelete: Restrict)
+  category     Category         @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  department   Department       @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+  reporter     User             @relation("reporter", fields: [reporterId], references: [id], onDelete: Restrict)
+  assignee     User?            @relation("assignee", fields: [assigneeId], references: [id], onDelete: Restrict)
+  notes AgentToolNote[]
+  materials    TicketMaterial[]
+  events       TicketEvent[]
+
+  @@index([companyId, createdAt(sort: Desc), id(sort: Desc)], map: "tickets_company_time")
+  @@index([departmentId, status, createdAt(sort: Desc), id(sort: Desc)], map: "tickets_department_status_time")
+  requestKey String? @map("request_key")
+  requestHash String? @map("request_hash")
+  @@unique([reporterId,requestKey])
+  @@map("tickets")
+}
+
+model TicketMaterial {
+  id       String @id @default(uuid(7)) @db.Uuid
+  ticketId String @map("ticket_id") @db.Uuid
+  logText  String @map("log_text")
+  ticket   Ticket @relation(fields: [ticketId], references: [id], onDelete: Restrict)
+
+  @@map("ticket_materials")
+}
+
+model TicketEvent {
+  id         String   @id @default(uuid(7)) @db.Uuid
+  ticketId   String   @map("ticket_id") @db.Uuid
+  actorId    String?  @map("actor_id") @db.Uuid
+  source     String
+  action     String
+  fromStatus String?  @map("from_status")
+  toStatus   String   @map("to_status")
+  comment    String   @default("")
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  ticket     Ticket   @relation(fields: [ticketId], references: [id], onDelete: Restrict)
+  actor      User?    @relation(fields: [actorId], references: [id], onDelete: Restrict)
+
+  previousVersion Int? @map("previous_version")
+  resultingVersion Int? @map("resulting_version")
+  @@map("ticket_events")
+}
+
+model Role {
+  id        String   @id @default(uuid(7)) @db.Uuid
+  code      String   @unique @db.VarChar(32)
+  name      String   @db.VarChar(64)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  permissions RolePermission[]
+  users       UserRole[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id          String @id @default(uuid(7)) @db.Uuid
+  code        String @unique @db.VarChar(64)
+  description String @db.VarChar(200)
+
+  roles RolePermission[]
+
+  @@map("permissions")
+}
+
+// 关联表：删除角色或权限时，关联行跟着删（Cascade）。
+// 这是对“外键一律 RESTRICT”（D1）的有意例外：关联行不是业务历史，留着没有意义
+model RolePermission {
+  roleId       String @map("role_id") @db.Uuid
+  permissionId String @map("permission_id") @db.Uuid
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  // 主键以 role_id 开头，按权限查角色要单独的索引
+  @@index([permissionId], map: "role_permissions_permission_id_idx")
+  @@map("role_permissions")
+}
+
+model UserRole {
+  userId    String   @map("user_id") @db.Uuid
+  roleId    String   @map("role_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+  @@index([roleId], map: "user_roles_role_id_idx")
+  @@map("user_roles")
+}
+
+model RegistrationAudit {
+  id String @id @default(uuid(7)) @db.Uuid
+  approverId String @map("approver_id") @db.Uuid
+  applicantId String @map("applicant_id") @db.Uuid
+  companyId String @map("company_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  @@map("registration_audits")
+}
+
+model DispatchEvent {
+  id String @id @default(uuid(7)) @db.Uuid
+  ticketNo String @map("ticket_no")
+  version Int
+  kind String
+  sentAt DateTime? @map("sent_at") @db.Timestamptz(3)
+  @@unique([ticketNo,version,kind])
+  @@map("dispatch_events")
+}
+model Notice {
+  id Int @id @default(autoincrement())
+  ticketNo String @map("ticket_no")
+  version Int
+  recipientId String @map("recipient_id") @db.Uuid
+  action String
+  readAt DateTime? @map("read_at") @db.Timestamptz(3)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  @@unique([ticketNo,version,recipientId,action])
+  @@map("notices")
+}
+
+model AiQuota {
+  userId String @map("user_id") @db.Uuid
+  period String @db.VarChar(10)
+  available Int @default(200000)
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+  usages AiUsage[]
+  @@id([userId, period])
+  @@map("ai_quotas")
+}
+
+model AiUsage {
+  id String @id @default(uuid(7)) @db.Uuid
+  userId String @map("user_id") @db.Uuid
+  period String @db.VarChar(10)
+  requestKey String @map("request_key") @db.Uuid
+  reserved Int
+  charged Int?
+  status String @default("pending") @db.VarChar(16)
+  inputTokens Int? @map("input_tokens")
+  outputTokens Int? @map("output_tokens")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  settledAt DateTime? @map("settled_at") @db.Timestamptz
+  quota AiQuota @relation(fields: [userId, period], references: [userId, period], onDelete: Restrict)
+  @@unique([userId, requestKey], map: "ai_usage_user_request_unique")
+  @@index([userId, period])
+  @@map("ai_usage")
+}
+
+model AiConversation {
+  id String @id @default(uuid(7)) @db.Uuid
+  userId String @map("user_id") @db.Uuid
+  scopeHash String @map("scope_hash") @db.VarChar(64)
+  title String @db.VarChar(200)
+  version Int @default(0)
+  activeTurnId String? @map("active_turn_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+  turns AiChatTurn[]
+  @@index([userId, updatedAt(sort: Desc)])
+  @@map("ai_conversations")
+}
+
+model AiChatTurn {
+  id String @id @default(uuid(7)) @db.Uuid
+  conversationId String @map("conversation_id") @db.Uuid
+  requestKey String @map("request_key") @db.Uuid
+  ordinal Int
+  question String @db.VarChar(2000)
+  status String @default("running") @db.VarChar(16)
+  mode String? @db.VarChar(8)
+  transcript Json @default("[]")
+  answer String @default("")
+  errorCode String? @map("error_code") @db.VarChar(64)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  endedAt DateTime? @map("ended_at") @db.Timestamptz
+  conversation AiConversation @relation(fields: [conversationId], references: [id], onDelete: Restrict)
+  @@unique([conversationId, requestKey])
+  @@unique([conversationId, ordinal])
+  @@map("ai_chat_turns")
+}
+
+// 只有通用正文用于检索；私有手册绑定公司，草稿和撤回版本不投影。
+model KnowledgeEntry {
+  id String @id @default(uuid(7)) @db.Uuid
+  sourceTicketId String? @map("source_ticket_id") @db.Uuid
+  approvedVersion Int? @map("approved_version")
+  approvedDigest String? @map("approved_digest")
+  reviewerId String? @map("reviewer_id") @db.Uuid
+  kind String
+  companyId String? @map("company_id") @db.Uuid
+  title String
+  body String
+  version Int @default(1)
+  state String
+  @@map("knowledge_entries")
+}
+
+model AgentRun {
+  packets AgentContextPacket[]
+  id String @id @default(uuid(7)) @db.Uuid
+  userId String @map("user_id") @db.Uuid
+  requestKey String @map("request_key") @db.Uuid
+  ticketNo String @map("ticket_no") @db.VarChar(64)
+  goal String @db.VarChar(500)
+  scopeHash String @map("scope_hash") @db.VarChar(64)
+  status String @default("queued") @db.VarChar(16)
+  stopReason String? @map("stop_reason") @db.VarChar(32)
+  version Int @default(0)
+  stepCount Int @default(0) @map("step_count")
+  eventSeq Int @default(0) @map("event_seq")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  startedAt DateTime? @map("started_at") @db.Timestamptz
+  endedAt DateTime? @map("ended_at") @db.Timestamptz
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+  steps AgentStep[]
+  events AgentEvent[]
+  traces AgentTrace[]
+  @@unique([userId, requestKey])
+  @@index([userId, createdAt(sort: Desc)])
+  @@map("agent_runs")
+}
+
+model AgentStep {
+  id String @id @default(uuid(7)) @db.Uuid
+  runId String @map("run_id") @db.Uuid
+  ordinal Int
+  phase String @db.VarChar(16)
+  status String @default("running") @db.VarChar(16)
+  summary String @default("") @db.VarChar(500)
+  errorCode String? @map("error_code") @db.VarChar(64)
+  startedAt DateTime @default(now()) @map("started_at") @db.Timestamptz
+  endedAt DateTime? @map("ended_at") @db.Timestamptz
+  run AgentRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  trace AgentTrace?
+  events AgentEvent[]
+  @@unique([runId, ordinal])
+  @@map("agent_steps")
+}
+
+model AgentEvent {
+  id String @id @default(uuid(7)) @db.Uuid
+  runId String @map("run_id") @db.Uuid
+  stepId String? @map("step_id") @db.Uuid
+  seq Int
+  type String @db.VarChar(32)
+  payload Json @default("{}")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  run AgentRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  step AgentStep? @relation(fields: [stepId], references: [id], onDelete: Cascade)
+  @@unique([runId, seq])
+  @@index([runId, seq])
+  @@map("agent_events")
+}
+
+model AgentTrace {
+  id String @id @default(uuid(7)) @db.Uuid
+  runId String @map("run_id") @db.Uuid
+  stepId String @unique @map("step_id") @db.Uuid
+  ordinal Int
+  kind String @db.VarChar(16)
+  input String @db.VarChar(2000)
+  output String @db.VarChar(2000)
+  inputTokens Int @default(0) @map("input_tokens")
+  outputTokens Int @default(0) @map("output_tokens")
+  durationMs Int @default(0) @map("duration_ms")
+  truncated Boolean @default(false)
+  requestId String? @map("request_id") @db.VarChar(64)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  run AgentRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  step AgentStep @relation(fields: [stepId], references: [id], onDelete: Cascade)
+  @@index([runId, ordinal])
+  @@map("agent_traces")
+}
+
+model AgentToolNote {
+  id         String @id @default(uuid(7)) @db.Uuid
+  userId     String @map("user_id") @db.Uuid
+  ticketId   String @map("ticket_id") @db.Uuid
+  requestKey String @map("request_key") @db.Uuid
+  hash       String @db.VarChar(64)
+  text       String @db.VarChar(300)
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ticket     Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  @@unique([userId, requestKey], map: "agent_tool_notes_actor_key")
+  @@index([userId, ticketId, id], map: "agent_tool_notes_page")
+  @@map("agent_tool_notes")
+}
+
+model AuditLog {
+  id            String   @id @default(uuid(7)) @db.Uuid
+  occurredAt    DateTime @default(now()) @map("occurred_at") @db.Timestamptz
+  actorId       String   @map("actor_id") @db.Uuid
+  // 操作时的用户名快照：以后用户改名，审计里仍是当时的名字
+  actorUsername String   @map("actor_username") @db.VarChar(64)
+  // 做了什么，例如 ticket.transition、ticket.batch_assign
+  action        String   @db.VarChar(64)
+  entityType    String   @map("entity_type") @db.VarChar(32)
+  // 业务上的标识（工单编号、设备编码），不用外键：被审计的数据删了，审计也要留着
+  entityKey     String   @map("entity_key") @db.VarChar(64)
+  before        Json?
+  after         Json?
+  // 同一个请求产生的审计、日志用它串起来
+  requestId     String?  @map("request_id") @db.VarChar(64)
+
+  actor User @relation(fields: [actorId], references: [id], onDelete: Restrict)
+
+  // 按工单查审计时间线
+  @@index([entityType, entityKey, occurredAt], map: "audit_logs_entity_idx")
+  @@map("audit_logs")
+}
+
+model AgentContextPacket {
+  runId String @map("run_id") @db.Uuid
+  ordinal Int
+  snapshot Json
+  run AgentRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  @@id([runId, ordinal])
+  @@map("agent_context_packets")
+}
+
+model AgentPreference {
+  tenantKey String @map("tenant_key") @db.VarChar(64)
+  userId String @map("user_id") @db.Uuid
+  revision String @db.Uuid
+  layout String @db.VarChar(24)
+  expiresAt DateTime @map("expires_at") @db.Timestamptz
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@id([tenantKey,userId])
+  @@map("agent_preferences")
+}

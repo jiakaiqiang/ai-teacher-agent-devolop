@@ -1,0 +1,6 @@
+fastapi==0.163.2
+pydantic==2.14.3
+httpx2==2.16.2
+uvicorn==0.54.0
+pymilvus==2.5.18
+grpcio==1.85.3

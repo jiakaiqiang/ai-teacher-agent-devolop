@@ -1,0 +1,33 @@
+import { appendFileSync } from 'node:fs';
+import { parseToolReply, type ToolCall, type ToolMessage } from './tool-protocol.js';
+import { runToolLoop } from './tool-loop.js';
+const call: ToolCall = { id: 'call_1', type: 'function', function: { name: 'find_ticket', arguments: '{"ticketNo":"T1"}' } };
+const tools = (calls: ToolCall[] = [call]) => ({ choices: [{ index: 0, finish_reason: 'tool_calls', message: { content: null, tool_calls: calls } }] });
+const answer = (text = '请人工检查') => ({ choices: [{ index: 0, finish_reason: 'stop', message: { content: text } }] });
+const messages: ToolMessage[] = [{ role: 'user', content: '检查合成工单T1' }];
+afterEach(() => vi.useRealTimers());
+describe('有界工具循环（D64）', () => {
+  it('调用和结果按ID配对后再总结', async () => {
+    const complete = vi.fn().mockResolvedValueOnce(tools()).mockResolvedValueOnce(answer());
+    const execute = vi.fn().mockResolvedValue({ status: 'pending' });
+    const events: string[] = [];
+    const result = await runToolLoop({ messages, complete, execute, onProgress: e => { events.push(e.kind); } });
+    expect(result.appended[1]).toEqual({ role: 'tool', tool_call_id: 'call_1', content: '{"status":"pending"}' });
+    expect(complete.mock.calls[1]![2]).toBe(false);
+    expect(events).toEqual(['tool-start', 'tool-result']);
+    expect(messages).toHaveLength(1);
+    if (process.env.D64_EVIDENCE_FILE) appendFileSync(process.env.D64_EVIDENCE_FILE, JSON.stringify({ case: 'tool-pair', fixture: true, modelCalls: complete.mock.calls.length, toolCalls: execute.mock.calls.length, pairedId: 'call_1', events, text: result.text }) + '\n');
+  });
+  it('直接回答不执行工具', async () => { const execute = vi.fn(); expect((await runToolLoop({ messages, complete: async () => answer(), execute })).text).toBe('请人工检查'); expect(execute).not.toHaveBeenCalled(); });
+  it('重复调用ID在任何执行前拒绝', async () => { const execute = vi.fn().mockResolvedValue({}); const complete = vi.fn().mockResolvedValueOnce(tools([call, call])).mockResolvedValueOnce(answer()); await expect(runToolLoop({ messages, complete, execute })).rejects.toThrow('TOOL_PROTOCOL_ERROR'); expect(execute).not.toHaveBeenCalled(); });
+  it('未知工具名和过多调用拒绝', () => { expect(() => parseToolReply(tools([{ ...call, function: { name: 'delete_all' as never, arguments: '{}' } }]))).toThrow('TOOL_PROTOCOL_ERROR'); expect(() => parseToolReply(tools(Array(4).fill(call)))).toThrow(); });
+  it('空工具批次与矛盾终止拒绝', () => { expect(() => parseToolReply(tools([]))).toThrow(); expect(() => parseToolReply({ choices: [{ index: 0, finish_reason: 'stop', message: { content: 'done', tool_calls: [call] } }] })).toThrow(); });
+  it('截断和拒绝不会执行工具', () => { expect(() => parseToolReply({ choices: [{ index: 0, finish_reason: 'length', message: { content: '{}' } }] })).toThrow('MODEL_TRUNCATED'); expect(() => parseToolReply({ choices: [{ index: 0, finish_reason: 'stop', message: { content: null, refusal: 'no' } }] })).toThrow('MODEL_REFUSED'); });
+  it('第二次模型仍调用工具则停止', async () => { const complete = vi.fn().mockResolvedValue(tools()); const execute = vi.fn().mockResolvedValue({}); await expect(runToolLoop({ messages, complete, execute })).rejects.toThrow('TOOL_STEP_LIMIT'); expect(complete).toHaveBeenCalledTimes(2); expect(execute).toHaveBeenCalledTimes(1); });
+  it('三个不同工具串行执行并逐项配对', async () => { const calls = [call, { ...call, id: 'call_2' }, { ...call, id: 'call_3' }]; const complete = vi.fn().mockResolvedValueOnce(tools(calls)).mockResolvedValueOnce(answer()); const result = await runToolLoop({ messages, complete, execute: async c => ({ id: c.id }) }); expect(result.appended.filter(m => m.role === 'tool').map(m => m.tool_call_id)).toEqual(calls.map(c => c.id)); });
+  it('预先取消不调用模型', async () => { const c = new AbortController(); c.abort(); const complete = vi.fn(); await expect(runToolLoop({ messages, complete, execute: vi.fn(), signal: c.signal })).rejects.toThrow('TOOL_CANCELLED'); expect(complete).not.toHaveBeenCalled(); });
+  it('不合作模型也在总预算结束且清理定时器', async () => { vi.useFakeTimers(); const result = runToolLoop({ messages, complete: () => new Promise(() => {}), execute: vi.fn(), budgetMs: 50 }); const check = expect(result).rejects.toThrow('TOOL_TIMEOUT'); await vi.advanceTimersByTimeAsync(50); await check; expect(vi.getTimerCount()).toBe(0); });
+  it('取消后迟到工具结果不发事件', async () => { let finish!: (v: unknown) => void; const c = new AbortController(); const events: string[] = []; const result = runToolLoop({ messages, complete: async () => tools(), execute: () => new Promise(r => { finish = r; }), signal: c.signal, onProgress: e => { events.push(e.kind); } }); await vi.waitFor(() => expect(finish).toBeDefined()); const check = expect(result).rejects.toThrow('TOOL_CANCELLED'); c.abort(); await check; finish({}); await Promise.resolve(); await Promise.resolve(); expect(events).toEqual(['tool-start']); });
+  it('工具结果按UTF8字节限制', async () => { await expect(runToolLoop({ messages, complete: async () => tools(), execute: async () => ({ text: '中'.repeat(1400) }) })).rejects.toThrow('TOOL_RESULT_LIMIT'); });
+  it('模型协议限制参数与正文长度', () => { expect(() => parseToolReply(answer('x'.repeat(8193)))).toThrow(); expect(() => parseToolReply(tools([{ ...call, function: { ...call.function, arguments: 'x'.repeat(1025) } }]))).toThrow(); });
+});

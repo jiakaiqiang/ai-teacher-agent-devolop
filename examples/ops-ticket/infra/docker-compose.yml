@@ -1,0 +1,46 @@
+# 本机开发用的依赖服务。今天只有 PostgreSQL，W4 加 Redis，W11 加 Milvus
+name: ops-ticket-course-v2
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ops
+      # 只用于本机开发的密码，真实环境的密码不能写进仓库
+      POSTGRES_PASSWORD: ops_local_only
+      POSTGRES_DB: ops_ticket
+    ports:
+      # 宿主机用 55433：5432 常被本机其他项目的 PostgreSQL 占用
+      - "127.0.0.1:55433:5432"
+    volumes:
+      # 数据存在命名卷里，容器删除后数据仍在；docker compose down -v 才会删除
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ops -d ops_ticket"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+
+  redis:
+    image: redis:7-alpine
+    # 只做缓存和限流，丢了可以重建，不开持久化；--maxmemory 防止缓存把内存吃满
+    command: ["redis-server", "--save", "", "--appendonly", "no", "--maxmemory", "256mb", "--maxmemory-policy", "allkeys-lru"]
+    ports:
+      # 宿主机用 56379：6379 常被本机其他项目的 Redis 占用
+      - "127.0.0.1:56379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+
+  queue:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory-policy", "noeviction"]
+    ports:
+      - "127.0.0.1:56380:6379"
+    volumes:
+      - queuedata:/data
+volumes:
+  queuedata:
+  pgdata:

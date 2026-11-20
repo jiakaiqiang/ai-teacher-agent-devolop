@@ -1,0 +1,11 @@
+/* 全局基础样式：只放字体、颜色和页面边距，组件样式写在各自的组件里 */
+:root {
+  font-family: system-ui, 'Microsoft YaHei', sans-serif;
+  color: #1f2328;
+  background: #f6f8fa;
+}
+
+body {
+  margin: 0;
+  padding: 32px;
+}

@@ -1,0 +1,1 @@
+CREATE TABLE registration_audits (id UUID PRIMARY KEY, approver_id UUID NOT NULL REFERENCES users(id) ON DELETE RESTRICT, applicant_id UUID NOT NULL, company_id UUID NOT NULL REFERENCES companies(id) ON DELETE RESTRICT, created_at TIMESTAMPTZ(3) NOT NULL DEFAULT now());

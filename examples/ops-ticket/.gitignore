@@ -1,0 +1,15 @@
+# 依赖与构建产物
+node_modules/
+dist/
+coverage/
+# Prisma 生成的客户端，每次 prisma generate 重新生成
+generated/
+
+# 本机环境变量，可能包含密钥，绝不提交；只提交 .env.example
+.env
+.env.*
+!.env.example
+
+# 日志与系统文件
+*.log
+.DS_Store

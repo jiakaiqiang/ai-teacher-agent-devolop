@@ -1,0 +1,41 @@
+# 单独的本地检索栈。MinIO 和 etcd 仅对栈内服务开放。
+services:
+  etcd:
+    image: quay.io/coreos/etcd:v3.5.18
+    command: etcd --advertise-client-urls=http://etcd:2379 --listen-client-urls=http://0.0.0.0:2379 --data-dir=/etcd
+    volumes: [etcd-data:/etcd]
+    healthcheck:
+      test: ["CMD", "etcdctl", "endpoint", "health"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+  minio:
+    image: milvusdb/minio:RELEASE.2024-12-18T13-15-44Z
+    command: server /data
+    volumes: [minio-data:/data]
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+  milvus:
+    image: milvusdb/milvus:v2.5.16
+    command: ["milvus", "run", "standalone"]
+    environment:
+      ETCD_ENDPOINTS: etcd:2379
+      MINIO_ADDRESS: minio:9000
+      MINIO_REGION: us-east-1
+    depends_on:
+      etcd: {condition: service_healthy}
+      minio: {condition: service_healthy}
+    ports: ["127.0.0.1:19531:19530", "127.0.0.1:19091:9091"]
+    volumes: [milvus-data:/var/lib/milvus]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9091/healthz"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+volumes:
+  etcd-data: {}
+  minio-data: {}
+  milvus-data: {}

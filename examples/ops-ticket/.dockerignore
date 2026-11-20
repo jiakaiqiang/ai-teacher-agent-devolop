@@ -1,0 +1,10 @@
+# 构建上下文不能带入本机依赖、产物、历史和凭据。
+**/node_modules
+**/dist
+**/.env
+**/.env.*
+.git
+.cache
+**/*.log
+**/*.tsbuildinfo
+apps/server/src/generated

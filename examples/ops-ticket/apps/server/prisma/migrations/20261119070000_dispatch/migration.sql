@@ -1,0 +1,2 @@
+CREATE TABLE dispatch_events(id UUID PRIMARY KEY,ticket_no TEXT NOT NULL,version INTEGER NOT NULL,kind TEXT NOT NULL,sent_at TIMESTAMPTZ(3),UNIQUE(ticket_no,version,kind));
+CREATE TABLE notices(id SERIAL PRIMARY KEY,ticket_no TEXT NOT NULL,version INTEGER NOT NULL,recipient_id UUID NOT NULL,action TEXT NOT NULL,read_at TIMESTAMPTZ(3),created_at TIMESTAMPTZ(3) DEFAULT now() NOT NULL,UNIQUE(ticket_no,version,recipient_id,action));
