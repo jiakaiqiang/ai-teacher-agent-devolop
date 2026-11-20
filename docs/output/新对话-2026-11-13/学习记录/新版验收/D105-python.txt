@@ -1,0 +1,6 @@
+.....................................................s.................. [ 70%]
+...........................s..                                           [100%]
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_embedding.py:219: 需要本机Ollama与固定模型
+SKIPPED [1] tests\test_vector_store.py:184: 需要本机Milvus测试实例
+100 passed, 2 skipped in 6.39s

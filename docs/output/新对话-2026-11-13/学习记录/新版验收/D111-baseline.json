@@ -1,0 +1,109 @@
+{
+  "rows": [
+    {
+      "id": "N1",
+      "predicted": "network",
+      "reason": "answered",
+      "ms": 2286,
+      "steps": 2,
+      "tokens": 210,
+      "expected": "network",
+      "correct": true
+    },
+    {
+      "id": "N2",
+      "predicted": "network",
+      "reason": "answered",
+      "ms": 577,
+      "steps": 2,
+      "tokens": 200,
+      "expected": "network",
+      "correct": true
+    },
+    {
+      "id": "N3",
+      "predicted": "network",
+      "reason": "answered",
+      "ms": 623,
+      "steps": 2,
+      "tokens": 203,
+      "expected": "network",
+      "correct": true
+    },
+    {
+      "id": "S1",
+      "predicted": "network",
+      "reason": "answered",
+      "ms": 761,
+      "steps": 2,
+      "tokens": 198,
+      "expected": "storage",
+      "correct": false
+    },
+    {
+      "id": "S2",
+      "predicted": "network",
+      "reason": "answered",
+      "ms": 598,
+      "steps": 2,
+      "tokens": 201,
+      "expected": "storage",
+      "correct": false
+    },
+    {
+      "id": "S3",
+      "predicted": "network",
+      "reason": "answered",
+      "ms": 621,
+      "steps": 2,
+      "tokens": 210,
+      "expected": "storage",
+      "correct": false
+    },
+    {
+      "id": "P1",
+      "predicted": "power",
+      "reason": "answered",
+      "ms": 614,
+      "steps": 2,
+      "tokens": 190,
+      "expected": "power",
+      "correct": true
+    },
+    {
+      "id": "P2",
+      "predicted": "network",
+      "reason": "answered",
+      "ms": 606,
+      "steps": 2,
+      "tokens": 197,
+      "expected": "power",
+      "correct": false
+    },
+    {
+      "id": "U1",
+      "predicted": "network",
+      "reason": "answered",
+      "ms": 593,
+      "steps": 2,
+      "tokens": 200,
+      "expected": "unknown",
+      "correct": false
+    },
+    {
+      "id": "U2",
+      "predicted": "network",
+      "reason": "answered",
+      "ms": 621,
+      "steps": 2,
+      "tokens": 193,
+      "expected": "unknown",
+      "correct": false
+    }
+  ],
+  "correct": 4,
+  "total": 10,
+  "answered": 10,
+  "p95Ms": 2286,
+  "tokens": 2002
+}

@@ -1,0 +1,22 @@
+{
+  "browser": "149.0.7827.55",
+  "roles": [
+    "reporter",
+    "department_lead",
+    "operator"
+  ],
+  "events": [
+    "agent_processing",
+    "handoff_offered",
+    "pending_assignment",
+    "human_processing",
+    "handled",
+    "reviewed",
+    "human_processing",
+    "handled",
+    "reviewed",
+    "completed"
+  ],
+  "version": 9,
+  "notificationReconnect": true
+}

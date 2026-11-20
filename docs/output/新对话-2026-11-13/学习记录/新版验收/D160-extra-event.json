@@ -1,0 +1,114 @@
+[
+  {
+    "sample": "offer",
+    "events": [
+      {
+        "actor": "agent",
+        "action": "offer_handoff",
+        "from": "agent_processing",
+        "to": "handoff_offered",
+        "before": 0,
+        "after": 1
+      },
+      {
+        "actor": "reporter",
+        "action": "request_human",
+        "from": "handoff_offered",
+        "to": "pending_assignment",
+        "before": 1,
+        "after": 2
+      }
+    ]
+  },
+  {
+    "sample": "click",
+    "events": [
+      {
+        "actor": "reporter",
+        "action": "request_human",
+        "from": "handoff_offered",
+        "to": "pending_assignment",
+        "before": 1,
+        "after": 2
+      }
+    ]
+  },
+  {
+    "sample": "assign",
+    "events": [
+      {
+        "actor": "department_lead",
+        "action": "assign",
+        "from": "pending_assignment",
+        "to": "human_processing",
+        "before": 2,
+        "after": 3
+      }
+    ]
+  },
+  {
+    "sample": "handled",
+    "events": [
+      {
+        "actor": "operator",
+        "action": "handle",
+        "from": "human_processing",
+        "to": "handled",
+        "before": 3,
+        "after": 4
+      }
+    ]
+  },
+  {
+    "sample": "review",
+    "events": [
+      {
+        "actor": "department_lead",
+        "action": "approve",
+        "from": "handled",
+        "to": "reviewed",
+        "before": 4,
+        "after": 5
+      }
+    ]
+  },
+  {
+    "sample": "rework",
+    "events": [
+      {
+        "actor": "reporter",
+        "action": "unresolved",
+        "from": "reviewed",
+        "to": "human_processing",
+        "before": 5,
+        "after": 6
+      }
+    ]
+  },
+  {
+    "sample": "finish",
+    "events": [
+      {
+        "actor": "reporter",
+        "action": "resolved",
+        "from": "reviewed",
+        "to": "completed",
+        "before": 8,
+        "after": 9
+      }
+    ]
+  },
+  {
+    "sample": "suggestion_failed",
+    "events": [
+      {
+        "actor": "reporter",
+        "action": "unresolved",
+        "from": "awaiting_feedback",
+        "to": "pending_assignment",
+        "before": 1,
+        "after": 2
+      }
+    ]
+  }
+]

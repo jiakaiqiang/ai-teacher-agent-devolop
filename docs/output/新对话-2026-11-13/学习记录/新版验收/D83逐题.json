@@ -1,0 +1,823 @@
+{
+  "schema": 1,
+  "digest": "ed77f45ea81056de050a2a360dfb78e98f0954341e4ff0e935cb94e46012ed31",
+  "space": "qwen3_06b_q8_06507c7b_chunks_v1",
+  "model": "ops-teacher-qwen3-embedding:q8",
+  "weightSha256": "06507c7b42688469c4e7298b0a1e16deff06caf291cf0a5b278c308249c3e439",
+  "collectionName": "verify_w12_ed77f45ea81056de_qwen3_06b_q8_06507c7b_chunks_v1",
+  "corpus": [
+    {
+      "id": "vpn",
+      "group": "shared",
+      "text": "VPN E401：更换手机后动态口令失效。核对账户后重新绑定验证器，再尝试远程连接。"
+    },
+    {
+      "id": "remote",
+      "group": "A",
+      "text": "远程桌面 R17 超时：确认 VPN 已连通，再检查桌面主机是否休眠。"
+    },
+    {
+      "id": "paper",
+      "group": "A",
+      "text": "打印机 P21 卡纸：断开打印机电源，取出进纸通道内的纸张，再自检打印。"
+    },
+    {
+      "id": "queue",
+      "group": "A",
+      "text": "打印任务 Q18 停在队列但未卡纸：取消阻塞作业并恢复打印队列。"
+    },
+    {
+      "id": "cert",
+      "group": "A",
+      "text": "网关 C32 证书过期：核对有效期，申请续签并更新证书链。"
+    },
+    {
+      "id": "disk",
+      "group": "A",
+      "text": "磁盘 D09 空间告警：检查日志目录占用，按保留策略归档旧日志。"
+    },
+    {
+      "id": "screen",
+      "group": "A",
+      "text": "会议室投影 V24 黑屏：先切换到正确的 HDMI 输入源，再检查连接线。"
+    },
+    {
+      "id": "dns",
+      "group": "B",
+      "text": "内网 N72 无法解析域名：确认 DNS 地址和对应区域记录。"
+    },
+    {
+      "id": "adapter",
+      "group": "B",
+      "text": "投影 V90 没有供电：复核适配器与插座，联系设备组更换。"
+    }
+  ],
+  "k": 3,
+  "grid": [
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    1.01
+  ],
+  "calibration": {
+    "threshold": 0.7,
+    "cost": 0
+  },
+  "rows": [
+    {
+      "id": "d1",
+      "split": "dev",
+      "family": "auth",
+      "group": "A",
+      "query": "换了新手机，公司 VPN 口令不对怎么办？",
+      "expectedSources": [
+        "vpn"
+      ],
+      "dense": [
+        "vpn",
+        "remote",
+        "cert"
+      ],
+      "hybrid": [
+        "vpn",
+        "remote",
+        "cert"
+      ],
+      "gated": [
+        "vpn"
+      ],
+      "scores": [
+        {
+          "id": "vpn",
+          "similarity": 0.7725053
+        },
+        {
+          "id": "remote",
+          "similarity": 0.4669979
+        },
+        {
+          "id": "cert",
+          "similarity": 0.4297773
+        },
+        {
+          "id": "paper",
+          "similarity": 0.34187916
+        },
+        {
+          "id": "screen",
+          "similarity": 0.30585167
+        },
+        {
+          "id": "queue",
+          "similarity": 0.29875293
+        },
+        {
+          "id": "disk",
+          "similarity": 0.22601415
+        }
+      ],
+      "elapsedMs": 441.3332999999998
+    },
+    {
+      "id": "d2",
+      "split": "dev",
+      "family": "auth",
+      "group": "A",
+      "query": "E401，远程身份验证失败",
+      "expectedSources": [
+        "vpn"
+      ],
+      "dense": [
+        "vpn",
+        "remote",
+        "cert"
+      ],
+      "hybrid": [
+        "vpn",
+        "remote",
+        "cert"
+      ],
+      "gated": [
+        "vpn"
+      ],
+      "scores": [
+        {
+          "id": "vpn",
+          "similarity": 0.7083634
+        },
+        {
+          "id": "remote",
+          "similarity": 0.59582186
+        },
+        {
+          "id": "cert",
+          "similarity": 0.40109822
+        },
+        {
+          "id": "paper",
+          "similarity": 0.3508149
+        },
+        {
+          "id": "screen",
+          "similarity": 0.34761736
+        },
+        {
+          "id": "queue",
+          "similarity": 0.26390335
+        },
+        {
+          "id": "disk",
+          "similarity": 0.2617609
+        }
+      ],
+      "elapsedMs": 387.6825999999992
+    },
+    {
+      "id": "d3",
+      "split": "dev",
+      "family": "print",
+      "group": "A",
+      "query": "P21 进纸卡住怎么处理？",
+      "expectedSources": [
+        "paper"
+      ],
+      "dense": [
+        "paper",
+        "queue",
+        "vpn"
+      ],
+      "hybrid": [
+        "paper",
+        "queue",
+        "vpn"
+      ],
+      "gated": [
+        "paper"
+      ],
+      "scores": [
+        {
+          "id": "paper",
+          "similarity": 0.78387696
+        },
+        {
+          "id": "queue",
+          "similarity": 0.584738
+        },
+        {
+          "id": "vpn",
+          "similarity": 0.36093402
+        },
+        {
+          "id": "screen",
+          "similarity": 0.33762652
+        },
+        {
+          "id": "remote",
+          "similarity": 0.32454255
+        },
+        {
+          "id": "cert",
+          "similarity": 0.3011146
+        },
+        {
+          "id": "disk",
+          "similarity": 0.28409234
+        }
+      ],
+      "elapsedMs": 398.47350000000006
+    },
+    {
+      "id": "d4",
+      "split": "dev",
+      "family": "print",
+      "group": "A",
+      "query": "Q18 打印作业暂停，纸路检查正常",
+      "expectedSources": [
+        "queue"
+      ],
+      "dense": [
+        "queue",
+        "paper",
+        "remote"
+      ],
+      "hybrid": [
+        "queue",
+        "remote",
+        "paper"
+      ],
+      "gated": [
+        "queue"
+      ],
+      "scores": [
+        {
+          "id": "queue",
+          "similarity": 0.76130146
+        },
+        {
+          "id": "remote",
+          "similarity": 0.34850958
+        },
+        {
+          "id": "paper",
+          "similarity": 0.6733628
+        },
+        {
+          "id": "disk",
+          "similarity": 0.31954885
+        },
+        {
+          "id": "screen",
+          "similarity": 0.29935598
+        },
+        {
+          "id": "vpn",
+          "similarity": 0.2885089
+        },
+        {
+          "id": "cert",
+          "similarity": 0.27989796
+        }
+      ],
+      "elapsedMs": 410.0578000000005
+    },
+    {
+      "id": "d5",
+      "split": "dev",
+      "family": "benefits",
+      "group": "A",
+      "query": "差旅报销的餐费标准是多少？",
+      "expectedSources": [],
+      "dense": [
+        "disk",
+        "remote",
+        "screen"
+      ],
+      "hybrid": [
+        "disk",
+        "remote",
+        "screen"
+      ],
+      "gated": [],
+      "scores": [
+        {
+          "id": "disk",
+          "similarity": 0.21006493
+        },
+        {
+          "id": "remote",
+          "similarity": 0.19696043
+        },
+        {
+          "id": "screen",
+          "similarity": 0.186683
+        },
+        {
+          "id": "cert",
+          "similarity": 0.16183515
+        },
+        {
+          "id": "vpn",
+          "similarity": 0.15856059
+        },
+        {
+          "id": "paper",
+          "similarity": 0.14342679
+        },
+        {
+          "id": "queue",
+          "similarity": 0.10743339
+        }
+      ],
+      "elapsedMs": 390.33460000000014
+    },
+    {
+      "id": "d6",
+      "split": "dev",
+      "family": "auth",
+      "group": "B",
+      "query": "E401 动态口令重绑流程是什么？",
+      "expectedSources": [
+        "vpn"
+      ],
+      "dense": [
+        "vpn",
+        "dns",
+        "adapter"
+      ],
+      "hybrid": [
+        "vpn",
+        "dns",
+        "adapter"
+      ],
+      "gated": [
+        "vpn"
+      ],
+      "scores": [
+        {
+          "id": "vpn",
+          "similarity": 0.7246862
+        },
+        {
+          "id": "dns",
+          "similarity": 0.34405977
+        },
+        {
+          "id": "adapter",
+          "similarity": 0.31342593
+        }
+      ],
+      "elapsedMs": 400.46230000000014
+    },
+    {
+      "id": "d7",
+      "split": "dev",
+      "family": "print",
+      "group": "A",
+      "query": "打印任务不出纸，现场还没确认是卡纸还是队列阻塞",
+      "expectedSources": [
+        "paper",
+        "queue"
+      ],
+      "dense": [
+        "queue",
+        "paper",
+        "remote"
+      ],
+      "hybrid": [
+        "queue",
+        "paper",
+        "remote"
+      ],
+      "gated": [
+        "queue"
+      ],
+      "scores": [
+        {
+          "id": "queue",
+          "similarity": 0.8082878
+        },
+        {
+          "id": "paper",
+          "similarity": 0.6775278
+        },
+        {
+          "id": "remote",
+          "similarity": 0.38288596
+        },
+        {
+          "id": "vpn",
+          "similarity": 0.33810726
+        },
+        {
+          "id": "screen",
+          "similarity": 0.3320924
+        },
+        {
+          "id": "disk",
+          "similarity": 0.3036868
+        },
+        {
+          "id": "cert",
+          "similarity": 0.29302716
+        }
+      ],
+      "elapsedMs": 400.09599999999955
+    },
+    {
+      "id": "h1",
+      "split": "holdout",
+      "family": "tls",
+      "group": "A",
+      "query": "网关提示 C32 有效期已过，怎么续期？",
+      "expectedSources": [
+        "cert"
+      ],
+      "dense": [
+        "cert",
+        "vpn",
+        "remote"
+      ],
+      "hybrid": [
+        "cert",
+        "vpn",
+        "remote"
+      ],
+      "gated": [
+        "cert"
+      ],
+      "scores": [
+        {
+          "id": "cert",
+          "similarity": 0.84963655
+        },
+        {
+          "id": "vpn",
+          "similarity": 0.4771406
+        },
+        {
+          "id": "remote",
+          "similarity": 0.41627428
+        },
+        {
+          "id": "paper",
+          "similarity": 0.3313428
+        },
+        {
+          "id": "disk",
+          "similarity": 0.3044657
+        },
+        {
+          "id": "queue",
+          "similarity": 0.29307294
+        },
+        {
+          "id": "screen",
+          "similarity": 0.24112035
+        }
+      ],
+      "elapsedMs": 399.9426999999996
+    },
+    {
+      "id": "h2",
+      "split": "holdout",
+      "family": "storage",
+      "group": "A",
+      "query": "D09 磁盘快满了，日志占用太大",
+      "expectedSources": [
+        "disk"
+      ],
+      "dense": [
+        "disk",
+        "remote",
+        "queue"
+      ],
+      "hybrid": [
+        "disk",
+        "remote",
+        "queue"
+      ],
+      "gated": [
+        "disk"
+      ],
+      "scores": [
+        {
+          "id": "disk",
+          "similarity": 0.7684483
+        },
+        {
+          "id": "remote",
+          "similarity": 0.30934733
+        },
+        {
+          "id": "queue",
+          "similarity": 0.27344307
+        },
+        {
+          "id": "paper",
+          "similarity": 0.23362662
+        },
+        {
+          "id": "screen",
+          "similarity": 0.22157326
+        },
+        {
+          "id": "vpn",
+          "similarity": 0.21615621
+        },
+        {
+          "id": "cert",
+          "similarity": 0.16947676
+        }
+      ],
+      "elapsedMs": 399.35519999999997
+    },
+    {
+      "id": "h3",
+      "split": "holdout",
+      "family": "display",
+      "group": "A",
+      "query": "V24 会议室投影有电却一直黑屏",
+      "expectedSources": [
+        "screen"
+      ],
+      "dense": [
+        "screen",
+        "remote",
+        "vpn"
+      ],
+      "hybrid": [
+        "screen",
+        "remote",
+        "vpn"
+      ],
+      "gated": [
+        "screen"
+      ],
+      "scores": [
+        {
+          "id": "screen",
+          "similarity": 0.8367672
+        },
+        {
+          "id": "remote",
+          "similarity": 0.4414569
+        },
+        {
+          "id": "vpn",
+          "similarity": 0.40549114
+        },
+        {
+          "id": "paper",
+          "similarity": 0.39439335
+        },
+        {
+          "id": "queue",
+          "similarity": 0.3173327
+        },
+        {
+          "id": "disk",
+          "similarity": 0.26014158
+        },
+        {
+          "id": "cert",
+          "similarity": 0.23337041
+        }
+      ],
+      "elapsedMs": 400.33250000000044
+    },
+    {
+      "id": "h4",
+      "split": "holdout",
+      "family": "name",
+      "group": "B",
+      "query": "N72 内网主机名字解析失败",
+      "expectedSources": [
+        "dns"
+      ],
+      "dense": [
+        "dns",
+        "vpn",
+        "adapter"
+      ],
+      "hybrid": [
+        "dns",
+        "vpn",
+        "adapter"
+      ],
+      "gated": [
+        "dns"
+      ],
+      "scores": [
+        {
+          "id": "dns",
+          "similarity": 0.8464599
+        },
+        {
+          "id": "vpn",
+          "similarity": 0.43819734
+        },
+        {
+          "id": "adapter",
+          "similarity": 0.30589637
+        }
+      ],
+      "elapsedMs": 399.53399999999965
+    },
+    {
+      "id": "h5",
+      "split": "holdout",
+      "family": "name",
+      "group": "A",
+      "query": "N72 内网域名解析流程",
+      "expectedSources": [],
+      "dense": [
+        "cert",
+        "vpn",
+        "remote"
+      ],
+      "hybrid": [
+        "cert",
+        "vpn",
+        "remote"
+      ],
+      "gated": [],
+      "scores": [
+        {
+          "id": "cert",
+          "similarity": 0.35082874
+        },
+        {
+          "id": "vpn",
+          "similarity": 0.33544487
+        },
+        {
+          "id": "remote",
+          "similarity": 0.30695876
+        },
+        {
+          "id": "queue",
+          "similarity": 0.27147233
+        },
+        {
+          "id": "paper",
+          "similarity": 0.25101057
+        },
+        {
+          "id": "disk",
+          "similarity": 0.22959684
+        },
+        {
+          "id": "screen",
+          "similarity": 0.16498229
+        }
+      ],
+      "elapsedMs": 401.77239999999983
+    },
+    {
+      "id": "h6",
+      "split": "holdout",
+      "family": "leave",
+      "group": "A",
+      "query": "陪产假应该在什么系统申请？",
+      "expectedSources": [],
+      "dense": [
+        "remote",
+        "vpn",
+        "queue"
+      ],
+      "hybrid": [
+        "cert",
+        "remote",
+        "vpn"
+      ],
+      "gated": [],
+      "scores": [
+        {
+          "id": "cert",
+          "similarity": 0.2199307
+        },
+        {
+          "id": "remote",
+          "similarity": 0.2851547
+        },
+        {
+          "id": "vpn",
+          "similarity": 0.2783864
+        },
+        {
+          "id": "queue",
+          "similarity": 0.2741074
+        },
+        {
+          "id": "paper",
+          "similarity": 0.25697544
+        },
+        {
+          "id": "disk",
+          "similarity": 0.24552915
+        },
+        {
+          "id": "screen",
+          "similarity": 0.23874898
+        }
+      ],
+      "elapsedMs": 397.8135000000002
+    },
+    {
+      "id": "h7",
+      "split": "holdout",
+      "family": "display",
+      "group": "B",
+      "query": "V90 投影仪电源灯不亮",
+      "expectedSources": [
+        "adapter"
+      ],
+      "dense": [
+        "adapter",
+        "vpn",
+        "dns"
+      ],
+      "hybrid": [
+        "adapter",
+        "vpn",
+        "dns"
+      ],
+      "gated": [
+        "adapter"
+      ],
+      "scores": [
+        {
+          "id": "adapter",
+          "similarity": 0.73666817
+        },
+        {
+          "id": "vpn",
+          "similarity": 0.2985754
+        },
+        {
+          "id": "dns",
+          "similarity": 0.28447866
+        }
+      ],
+      "elapsedMs": 401.0438000000013
+    }
+  ],
+  "heldout": {
+    "dense": {
+      "queries": 7,
+      "answerable": 5,
+      "noAnswer": 2,
+      "cited": 21,
+      "correct": 5,
+      "forbidden": 0,
+      "recallAtK": 1,
+      "mrrAtK": 1,
+      "sourcePrecision": 0.23809523809523808,
+      "correctAbstention": 0
+    },
+    "hybrid": {
+      "queries": 7,
+      "answerable": 5,
+      "noAnswer": 2,
+      "cited": 21,
+      "correct": 5,
+      "forbidden": 0,
+      "recallAtK": 1,
+      "mrrAtK": 1,
+      "sourcePrecision": 0.23809523809523808,
+      "correctAbstention": 0
+    },
+    "gated": {
+      "queries": 7,
+      "answerable": 5,
+      "noAnswer": 2,
+      "cited": 5,
+      "correct": 5,
+      "forbidden": 0,
+      "recallAtK": 1,
+      "mrrAtK": 1,
+      "sourcePrecision": 1,
+      "correctAbstention": 1
+    }
+  },
+  "timing": {
+    "setupMs": 3310.6266,
+    "p50": 399.9426999999996,
+    "p95": 441.3332999999998
+  },
+  "usage": {
+    "queryCalls": 14,
+    "passageCalls": 1,
+    "inputCodePoints": 523,
+    "generatedTokens": 0,
+    "monetaryCost": null
+  }
+}

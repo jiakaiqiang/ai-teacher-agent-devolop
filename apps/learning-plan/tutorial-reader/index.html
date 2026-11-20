@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 工程实践 · 教程阅读</title>
+  <meta name="description" content="智能运维工单系统实践教程，从全栈基础到 AI Agent，按天阅读讲义与面试题。">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23409eff'/%3E%3Cpath d='M10 11h8a4 4 0 0 1 4 4v15a7 7 0 0 0-5-2h-7zm20 0h-8v19a7 7 0 0 1 5-2h3z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="reader.css">
+  <script src="reader.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#article">跳到正文</a>
+  <header class="topbar">
+    <button id="menu" class="menu" aria-controls="sidebar" aria-expanded="false" aria-label="展开课程目录">☰</button>
+    <a class="brand" href="?doc=d001-lesson"><span class="brand-icon" aria-hidden="true">A</span><span>AI 工程实践<small>智能运维工单系统</small></span></a>
+    <span class="edition">持续更新的项目教程</span>
+    <span id="sync-status" class="sync-status" role="status">正在加载课程…</span>
+  </header>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="课程目录">
+      <div class="sidebar-heading"><span>课程目录</span><span id="count"></span></div>
+      <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索课程标题 / D01" aria-label="搜索课程标题"></label>
+      <nav id="chapters" aria-label="按周浏览课程"></nav>
+      <p class="sidebar-note">从 D01 开始，逐日搭建自己的项目。<br>讲义和面试题随教程发布同步更新。</p>
+    </aside>
+    <main id="main">
+      <div class="document-header"><div id="breadcrumb" class="breadcrumb">教程阅读</div><div id="document-meta" class="document-meta"></div></div>
+      <div id="notice" class="notice" hidden role="status"></div>
+      <details id="contents" class="contents"><summary>本章目录</summary><nav id="heading-links" aria-label="本章目录"></nav></details>
+      <article id="article" class="prose" tabindex="-1" aria-busy="true"><p>正在加载教程正文…</p></article>
+      <nav id="pagination" class="pagination" aria-label="相邻章节"></nav>
+      <footer>AI 工程实践 · 每一天都有具体的实现与验收</footer>
+    </main>
+  </div>
+</body>
+</html>

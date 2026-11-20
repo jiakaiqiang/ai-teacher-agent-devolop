@@ -1,0 +1,1 @@
+{"source":"local-nginx-fixture","kind":"flow","frames":6,"sample":{"outcome":"completed","firstTextMs":34.198499999999996,"totalMs":3536.924,"codePoints":10},"summary":{"settled":1,"completed":1,"failed":0,"cancelled":0,"failureRate":0,"completedTotalP95Ms":3536.924,"completedFirstTextP95Ms":34.198499999999996,"completedWithText":1}}

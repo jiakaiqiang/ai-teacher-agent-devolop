@@ -1,0 +1,986 @@
+{
+  "model": "tinyllama:latest",
+  "digest": "2644915ede352ea7bdfaff0bfac0be74c719d5d5202acb63a6fb095b52f394a4",
+  "rounds": 50,
+  "facts": {
+    "ticketNo": "INC-275",
+    "decision": "return-to-handler",
+    "approval": "reviewed"
+  },
+  "totals": {
+    "full": {
+      "inputTokens": 34560,
+      "reportedInput": 34609,
+      "reportedOutput": 224
+    },
+    "window": {
+      "inputTokens": 10485,
+      "reportedInput": 10579,
+      "reportedOutput": 224
+    }
+  },
+  "recalls": {
+    "full": {
+      "ticketNo": true,
+      "decision": true,
+      "approval": true
+    },
+    "window": {
+      "ticketNo": true,
+      "decision": true,
+      "approval": true
+    }
+  },
+  "rows": [
+    {
+      "ordinal": 1,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 1: acknowledge.\",\"history\":[],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "da902d653e1c80bd8f2029b96616bc03538c884e8e961e03057ac9b5c8adc682",
+        "inputTokens": 95,
+        "reportedInput": 95,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 1: acknowledge.\",\"history\":[],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "da902d653e1c80bd8f2029b96616bc03538c884e8e961e03057ac9b5c8adc682",
+        "inputTokens": 95,
+        "reportedInput": 95,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 2,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 2: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "28fa1b07a127ed2ffa3c36227289074d158f614565afaf22eb6753d5c87e09ac",
+        "inputTokens": 117,
+        "reportedInput": 118,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 2: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "28fa1b07a127ed2ffa3c36227289074d158f614565afaf22eb6753d5c87e09ac",
+        "inputTokens": 117,
+        "reportedInput": 118,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 3,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 3: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "70e91590c7a22fa719ad3a5a942d75c3da9f06a2f77d4ce0be42f192721cf9b7",
+        "inputTokens": 140,
+        "reportedInput": 141,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 3: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "70e91590c7a22fa719ad3a5a942d75c3da9f06a2f77d4ce0be42f192721cf9b7",
+        "inputTokens": 140,
+        "reportedInput": 141,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 4,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 4: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "5ebc5c2a1030b7fb8d55468f490bebe8405dc5eabe904a0dc57be8ec5ccb0e9f",
+        "inputTokens": 163,
+        "reportedInput": 164,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 4: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "5ebc5c2a1030b7fb8d55468f490bebe8405dc5eabe904a0dc57be8ec5ccb0e9f",
+        "inputTokens": 163,
+        "reportedInput": 164,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 5,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 5: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "eb623a1278a58ca0cbfb7228d255b67b543a185518b8fc1152a714af0426cef6",
+        "inputTokens": 186,
+        "reportedInput": 187,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 5: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "eb623a1278a58ca0cbfb7228d255b67b543a185518b8fc1152a714af0426cef6",
+        "inputTokens": 186,
+        "reportedInput": 187,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 6,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 6: acknowledge.\",\"history\":[\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":1,\\\"lastQuestion\\\":\\\"Disk check 1: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "dbbe90023f3878c4fb338978eeeced7d61337413c7d345466b0227de6457769f",
+        "inputTokens": 208,
+        "reportedInput": 210,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 6: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "d3e8aed516c4467ff53b4e624f38ae92b0e0ae8bf0192de83a22a0ec04d3b19a",
+        "inputTokens": 209,
+        "reportedInput": 210,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 7,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 7: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "0141d9660540e2f190a4507f2781e667e869fd5556dcfdba365143ba05927ca6",
+        "inputTokens": 232,
+        "reportedInput": 233,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 7: acknowledge.\",\"history\":[\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":2,\\\"lastQuestion\\\":\\\"Disk check 2: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "9f58a4ff70b1fd436098117958449884af5db9eebdf6e2fd8c2f608d568ec17b",
+        "inputTokens": 208,
+        "reportedInput": 210,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 8,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 8: acknowledge.\",\"history\":[\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":3,\\\"lastQuestion\\\":\\\"Disk check 3: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "026771b13192ab0f23f333b5ad3a5b2e783e46c7a48fabca9b7d9d9ff1d4f3bd",
+        "inputTokens": 208,
+        "reportedInput": 210,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 8: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "7274ebe7a4f2d2ecc0f13df96395f0eb69e4b1d252562b7054a2bc62602adb5c",
+        "inputTokens": 255,
+        "reportedInput": 256,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 9,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 9: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "62e312de26c5864cc337ff6333eeae1256861b58b0d201de9cbf2ba37b581c37",
+        "inputTokens": 278,
+        "reportedInput": 279,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 9: acknowledge.\",\"history\":[\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":4,\\\"lastQuestion\\\":\\\"Disk check 4: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "139f314485295755f5813e4ebe7c7c966ac7e58e0a0c9e6be5fad993c81bc693",
+        "inputTokens": 208,
+        "reportedInput": 210,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 10,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 10: acknowledge.\",\"history\":[\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":5,\\\"lastQuestion\\\":\\\"Disk check 5: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "14cd3f9a30a80330e1296082b3a90a515c3ac65f033d6cd1f9c1819a783cd8dc",
+        "inputTokens": 209,
+        "reportedInput": 211,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 10: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "cdd0c020079568fcdacbed0d47e48dbd16bad11c8fd6ae68f80539e8e8b70379",
+        "inputTokens": 302,
+        "reportedInput": 303,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 11,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 11: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "ba3671ab90b052430b6efb37fc9630eb3f974a4c4abe2f53153baaee156b3484",
+        "inputTokens": 327,
+        "reportedInput": 328,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 11: acknowledge.\",\"history\":[\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":6,\\\"lastQuestion\\\":\\\"Disk check 6: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "2ec6c570f59c93203ba8a121958101d28e504362da8b059df6d4bbcdb4f8b235",
+        "inputTokens": 211,
+        "reportedInput": 213,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 12,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 12: acknowledge.\",\"history\":[\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":7,\\\"lastQuestion\\\":\\\"Disk check 7: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "74c94a776b0e02571a0061d2c683aa3adbd96bd2e23bb3afcfa5234d9fe323bb",
+        "inputTokens": 213,
+        "reportedInput": 215,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 12: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "b3083f992aeb554e63c36a150800d4358a9eee95a5f7fa570eef7e860b532e55",
+        "inputTokens": 352,
+        "reportedInput": 353,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 13,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 13: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "43732bee8e3a8d15ce8980e27a51076f025859b9839a909b37b4055c3f73cc78",
+        "inputTokens": 377,
+        "reportedInput": 378,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 13: acknowledge.\",\"history\":[\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":8,\\\"lastQuestion\\\":\\\"Disk check 8: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "97a0f4119e5ef8928f0386ffdff6489e2b5a4f216cfcbbb2307ea9e703a92cbd",
+        "inputTokens": 215,
+        "reportedInput": 217,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 14,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 14: acknowledge.\",\"history\":[\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":9,\\\"lastQuestion\\\":\\\"Disk check 9: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "b900941ac88bbccffd193df665bb23839318a73086b1ef667cf1f8c27187b84c",
+        "inputTokens": 217,
+        "reportedInput": 219,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 14: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "e3adca78fc3b861016853d69dd031df600c92d7628ac070b4cd8183a0570477a",
+        "inputTokens": 402,
+        "reportedInput": 403,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 15,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 15: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "bdc408f72645740dd359f51b867cd1b6e942e171b9ae29a1386dd7a6cfeceb66",
+        "inputTokens": 427,
+        "reportedInput": 428,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 15: acknowledge.\",\"history\":[\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":10,\\\"lastQuestion\\\":\\\"Disk check 10: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "23e1ce2b709edbf22e5c4ff6835617c35fbdbd34677bc2520c9090f55a1c6b7d",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 16,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 16: acknowledge.\",\"history\":[\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":11,\\\"lastQuestion\\\":\\\"Disk check 11: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "8f452142935279093fae299bc8e0357f72c28beef5594ead759cf06426a4976a",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 16: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "55ca6d6865099343a15ec89985bcca92206c2690ac5869a27db12ddc39a4bf10",
+        "inputTokens": 452,
+        "reportedInput": 453,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 17,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 17: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "18d171d4dba4290729009a22836b7c16dd2ef9a1678ba7a754e7602ab624cbe2",
+        "inputTokens": 477,
+        "reportedInput": 478,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 17: acknowledge.\",\"history\":[\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":12,\\\"lastQuestion\\\":\\\"Disk check 12: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "6999a79e17f1393051b9c03cdc722ed83a196270c46f582c2327e95e10a014a8",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 18,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 18: acknowledge.\",\"history\":[\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":13,\\\"lastQuestion\\\":\\\"Disk check 13: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "324019e1238d037d89217eb5e2c0aec2a152187a1391f923486b5721d8b9bbdc",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 18: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "2995b56179f77aa05f0691a101e630467a824733bf82dae99223c6457feaa3b1",
+        "inputTokens": 502,
+        "reportedInput": 503,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 19,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 19: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "4380ededb883c5f7bb6e9ca16f05692e986a6e08d13a2f4eb41ff593faca5afd",
+        "inputTokens": 527,
+        "reportedInput": 528,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 19: acknowledge.\",\"history\":[\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":14,\\\"lastQuestion\\\":\\\"Disk check 14: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "7b569746dbf9071855077e31bf99b85c4a31653e784eabda70f27835db550b17",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 20,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 20: acknowledge.\",\"history\":[\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":15,\\\"lastQuestion\\\":\\\"Disk check 15: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "1154d8faa2ef43677df8f9a57b0e2f54a7ccf60807d8986f7690892c62ecf28f",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 20: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "7c4b46618227a87f34a16dcddb561b20bb66735b40dc53005184c1ebf58380be",
+        "inputTokens": 552,
+        "reportedInput": 553,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 21,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 21: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "8dcac5aa4a6bd30a1cad34e5e6591e26cfeba3c1c0fdddb96d2fc6b514254e7b",
+        "inputTokens": 577,
+        "reportedInput": 578,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 21: acknowledge.\",\"history\":[\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":16,\\\"lastQuestion\\\":\\\"Disk check 16: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "91968f44ee6d404c86d4620e5413bea8a45d83abe8c78de2eae981195e25e12e",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 22,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 22: acknowledge.\",\"history\":[\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":17,\\\"lastQuestion\\\":\\\"Disk check 17: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "725c02e0b193ad4a4cce0c8329a153d8b36a0a87a878c97c96a6f0e605e40c26",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 22: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "396c04b8133e8cdf4e082102336ef44fa24f0130be9d28311d33974c71700c36",
+        "inputTokens": 602,
+        "reportedInput": 603,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 23,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 23: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "8c79de45e53d2d9a120c729b106a170191b8f4f5f7fdd3fcc4789f0c4a4256e4",
+        "inputTokens": 627,
+        "reportedInput": 628,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 23: acknowledge.\",\"history\":[\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":18,\\\"lastQuestion\\\":\\\"Disk check 18: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "d7b8163442741da525ada83e26da5872f1306ebe5fa3d9494eed972a518abf5e",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 24,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 24: acknowledge.\",\"history\":[\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":19,\\\"lastQuestion\\\":\\\"Disk check 19: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "eb3478d7d8e448205be5d78bfff8a05a5e8761a8f2efd821e94ad723fae4a1a5",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 24: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "542e7abb8a5079d6cfc97d264842258ae0e6adc6bf279eacf0ce9fd1ed92e672",
+        "inputTokens": 652,
+        "reportedInput": 653,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 25,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 25: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "8af47c2605eefb5f6d5b5322b2826c424310e421285f31298fcc507fd6571c69",
+        "inputTokens": 677,
+        "reportedInput": 678,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 25: acknowledge.\",\"history\":[\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":20,\\\"lastQuestion\\\":\\\"Disk check 20: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "199ad400559979599163c9aa1eaaf5089da29f1f7ead7b19d920fda9983422ce",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 26,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 26: acknowledge.\",\"history\":[\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":21,\\\"lastQuestion\\\":\\\"Disk check 21: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "b553c55a2a2926db8109b7d173544d51796597e46e9b2ba9535f4931bdf2ed2e",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 26: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "4e938ae6e517ed56bbb3feba170aaa0797baa4d369e65b0f01d37e4e5a40fb3f",
+        "inputTokens": 702,
+        "reportedInput": 703,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 27,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 27: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "988856b6f7eca85a8fc9fd2751229ec0ddd2c03a87569f32278d4570169d5e55",
+        "inputTokens": 727,
+        "reportedInput": 728,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 27: acknowledge.\",\"history\":[\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":22,\\\"lastQuestion\\\":\\\"Disk check 22: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "29a237ca3dbc70b250e1546d2928fd5999492352ca37a5329d05f39b9cd813c8",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 28,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 28: acknowledge.\",\"history\":[\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":23,\\\"lastQuestion\\\":\\\"Disk check 23: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "825c037bb94615fc048150d659918356d49c3d00bb715ac9538ea7b9dba7b67c",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 28: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "9b2f1d7ad526b9bc6a85a18c9d9cee71e4a97145d657a18de573d3643d9552f2",
+        "inputTokens": 752,
+        "reportedInput": 753,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 29,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 29: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "6aed630e04e90c6ace996e447469444dded6b91c8ae2b046feebec519fb829c1",
+        "inputTokens": 777,
+        "reportedInput": 778,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 29: acknowledge.\",\"history\":[\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":24,\\\"lastQuestion\\\":\\\"Disk check 24: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "bb433a6b2bd216e7d0390f885b8d0ecdcbe4e7382a9b8f1359553ecf167cb07a",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 30,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 30: acknowledge.\",\"history\":[\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":25,\\\"lastQuestion\\\":\\\"Disk check 25: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "e47c3261422c1486919b1b990efe1d8817e7c913cbae5ddf3f2a49e4f32e7ff8",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 30: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "5ba0e204a2274a59f079c36bdd530ca834803cdc6c5efec2f3e29ca1c46f4669",
+        "inputTokens": 802,
+        "reportedInput": 803,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 31,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 31: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "287f0e3251cefb8e1311ffd475bfecc5694d1b4819a39db2f565aa0a0a2e743d",
+        "inputTokens": 827,
+        "reportedInput": 828,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 31: acknowledge.\",\"history\":[\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":26,\\\"lastQuestion\\\":\\\"Disk check 26: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "558ff766ec1c9e8d89201abe19c7d4a4f1468065bc079a6ab6f8896d99ab5fc9",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 32,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 32: acknowledge.\",\"history\":[\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":27,\\\"lastQuestion\\\":\\\"Disk check 27: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "48eda3497223b6c1aa1dbbd49931d85bf68c8457a90f65487278e25d27294465",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 32: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "06f36601d4e0f4ae8943fed1aa0aa0dc851fc37752bc589b168af4da11ed037d",
+        "inputTokens": 852,
+        "reportedInput": 853,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 33,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 33: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "72a0c51ee033f1b292bb11a5cdbdb2f4427076ea5adb5f1b7094ed6035fa4341",
+        "inputTokens": 877,
+        "reportedInput": 878,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 33: acknowledge.\",\"history\":[\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":28,\\\"lastQuestion\\\":\\\"Disk check 28: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "aee9f4ed74992df285d57dec1c7eca9bbf31e9ff1514bafacaea7249be74331e",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 34,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 34: acknowledge.\",\"history\":[\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":29,\\\"lastQuestion\\\":\\\"Disk check 29: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "527cdf2cf8f192f4181406480c4c9f8f672a6b15ecf0393b39b0c8a31d5024bc",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 34: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "f0f3a070da72bd27b0a2019d893020197d80d180fc7b0154ecb59b849e9394e9",
+        "inputTokens": 902,
+        "reportedInput": 903,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 35,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 35: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "7e0dd7afea2ebaca3559504cd5355b0ad08698290d90f538a393931eab053838",
+        "inputTokens": 927,
+        "reportedInput": 928,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 35: acknowledge.\",\"history\":[\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":30,\\\"lastQuestion\\\":\\\"Disk check 30: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "ffef319852d53674e967feade2b5b6a237f043cdd0d4b93f131f721bf279fec9",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 36,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 36: acknowledge.\",\"history\":[\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":31,\\\"lastQuestion\\\":\\\"Disk check 31: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "05bb9a14dbf85e4254f577f15ef47dca376e11c6eaa86730626b1b7ef413d349",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 36: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "f12896f0080c0309913078415c1e74dc8600e562e4012a87489ab121e05293db",
+        "inputTokens": 952,
+        "reportedInput": 953,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 37,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 37: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "d207be4410ea2adabb2b3c4a41a7656e714dfb6c79ffb903ad91552e3d43cf83",
+        "inputTokens": 977,
+        "reportedInput": 978,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 37: acknowledge.\",\"history\":[\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":32,\\\"lastQuestion\\\":\\\"Disk check 32: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "81cbd531805e71087033746b15a0600cefeceb6a6858632e69986b5fd3193a8d",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 38,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 38: acknowledge.\",\"history\":[\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":33,\\\"lastQuestion\\\":\\\"Disk check 33: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "30bb95b147ef4928dc7a3c6af811d2709ff65154e79237a0d33f1dad57fd3a61",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 38: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "38952723b00ea4563de3aa526ff6141a1f31f2c9f5a8a13a35554fc1b00a58b8",
+        "inputTokens": 1002,
+        "reportedInput": 1003,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 39,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 39: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "919473bb28db877d7cb1081f846f3dee704346a1e3de526baae233a9027abc81",
+        "inputTokens": 1027,
+        "reportedInput": 1028,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 39: acknowledge.\",\"history\":[\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":34,\\\"lastQuestion\\\":\\\"Disk check 34: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "4edf102f2009458e85c0264f8c9515bc0e00b528ce3ced5e1b4ec5928fcabfdd",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 40,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 40: acknowledge.\",\"history\":[\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":35,\\\"lastQuestion\\\":\\\"Disk check 35: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "45ea8dbbb9dd636096e30598d02a7abf36616f6ef121be5f00dae2fb49f0f200",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 40: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "5f14dc473c498ea6d99db57a8af5c6078d9fcebd66d8f16a54fc7813ed478b32",
+        "inputTokens": 1052,
+        "reportedInput": 1053,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 41,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 41: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[40,\\\"Disk check 40: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "c45c0666cb99605cf0393b397e6ef6f8f78ce9a45cab02548890f7208995558d",
+        "inputTokens": 1077,
+        "reportedInput": 1078,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 41: acknowledge.\",\"history\":[\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[40,\\\"Disk check 40: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":36,\\\"lastQuestion\\\":\\\"Disk check 36: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "e82904a646260be6bf0fb2b63a0b338c35fdfc39fde31a200d45bca316d9e9aa",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 42,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 42: acknowledge.\",\"history\":[\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[40,\\\"Disk check 40: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[41,\\\"Disk check 41: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":37,\\\"lastQuestion\\\":\\\"Disk check 37: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "d68c4744281fc2876e9dc143aba6bee27f52ac7d4be5bdfc8236b09abed27cb9",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 42: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[40,\\\"Disk check 40: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[41,\\\"Disk check 41: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "aaa1eff376e0709b929ac7a42d1f68d06689a10b1402fd928a3515cec79cc9d1",
+        "inputTokens": 1102,
+        "reportedInput": 1103,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 43,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 43: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[40,\\\"Disk check 40: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[41,\\\"Disk check 41: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[42,\\\"Disk check 42: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "9ec445501596dd80305590fd2c344e16878607fd43f16d75c09bc311626e591a",
+        "inputTokens": 1127,
+        "reportedInput": 1128,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 43: acknowledge.\",\"history\":[\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[40,\\\"Disk check 40: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[41,\\\"Disk check 41: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[42,\\\"Disk check 42: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":38,\\\"lastQuestion\\\":\\\"Disk check 38: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "5c65bd3c55a2a63e11896741b6b733dece229c4ced12b259569e72966353644f",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 44,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 44: acknowledge.\",\"history\":[\"[40,\\\"Disk check 40: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[41,\\\"Disk check 41: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[42,\\\"Disk check 42: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[43,\\\"Disk check 43: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":39,\\\"lastQuestion\\\":\\\"Disk check 39: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "e9da3876b1db0c3c9227f191412efcbe3002e9ed174be51e27659c1d88d9e360",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 44: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[40,\\\"Disk check 40: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[41,\\\"Disk check 41: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[42,\\\"Disk check 42: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[43,\\\"Disk check 43: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "07b58e1118b49ecb24260fa24589fe3f97212aa411bb10e33d6069407703dda2",
+        "inputTokens": 1152,
+        "reportedInput": 1153,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 45,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 45: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[40,\\\"Disk check 40: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[41,\\\"Disk check 41: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[42,\\\"Disk check 42: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[43,\\\"Disk check 43: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[44,\\\"Disk check 44: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "aaefacfbaa9dca58eb0e99948ebe9999b2fc785d7dc9c3995e6cc7193d12b97b",
+        "inputTokens": 1177,
+        "reportedInput": 1178,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 45: acknowledge.\",\"history\":[\"[41,\\\"Disk check 41: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[42,\\\"Disk check 42: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[43,\\\"Disk check 43: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[44,\\\"Disk check 44: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":40,\\\"lastQuestion\\\":\\\"Disk check 40: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "b2d5ab17a75f9c13a91154b6a0c0afced1bf4b257ebe020f0bb90e24214ab349",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 46,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 46: acknowledge.\",\"history\":[\"[42,\\\"Disk check 42: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[43,\\\"Disk check 43: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[44,\\\"Disk check 44: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[45,\\\"Disk check 45: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":41,\\\"lastQuestion\\\":\\\"Disk check 41: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "578be859e34e8fb419301bf7f3abcb6635f40bec95aa17c9b8e9ac5669c781e8",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 46: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[40,\\\"Disk check 40: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[41,\\\"Disk check 41: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[42,\\\"Disk check 42: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[43,\\\"Disk check 43: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[44,\\\"Disk check 44: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[45,\\\"Disk check 45: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "c7cb236bba52cc6217d9935f6d19e6ccfecfd358fc4ea44efe359b4607c7f678",
+        "inputTokens": 1202,
+        "reportedInput": 1203,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 47,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 47: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[40,\\\"Disk check 40: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[41,\\\"Disk check 41: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[42,\\\"Disk check 42: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[43,\\\"Disk check 43: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[44,\\\"Disk check 44: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[45,\\\"Disk check 45: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[46,\\\"Disk check 46: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "ba660ed7746e45a896f3c19fa98c1d11edfeaa204ad26ae947ce9d3058f9c2e1",
+        "inputTokens": 1227,
+        "reportedInput": 1228,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 47: acknowledge.\",\"history\":[\"[43,\\\"Disk check 43: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[44,\\\"Disk check 44: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[45,\\\"Disk check 45: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[46,\\\"Disk check 46: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":42,\\\"lastQuestion\\\":\\\"Disk check 42: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "640009c863029bf6fc580a4e740fd4349dc09cbc02324235fbc96c7cb100f13f",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 48,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 48: acknowledge.\",\"history\":[\"[44,\\\"Disk check 44: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[45,\\\"Disk check 45: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[46,\\\"Disk check 46: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[47,\\\"Disk check 47: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":43,\\\"lastQuestion\\\":\\\"Disk check 43: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "37bec14d83602c367ea3f5618b38a3b41120b746a4fe519e24491bf27864e686",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 48: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[40,\\\"Disk check 40: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[41,\\\"Disk check 41: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[42,\\\"Disk check 42: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[43,\\\"Disk check 43: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[44,\\\"Disk check 44: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[45,\\\"Disk check 45: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[46,\\\"Disk check 46: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[47,\\\"Disk check 47: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "8cc698f7775b3c7ae56575778e3945102f8cf3e4b483c273d4e82cf353cd5b38",
+        "inputTokens": 1252,
+        "reportedInput": 1253,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 49,
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 49: acknowledge.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[40,\\\"Disk check 40: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[41,\\\"Disk check 41: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[42,\\\"Disk check 42: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[43,\\\"Disk check 43: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[44,\\\"Disk check 44: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[45,\\\"Disk check 45: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[46,\\\"Disk check 46: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[47,\\\"Disk check 47: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[48,\\\"Disk check 48: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "abcf4c4d67e8c629419ac3a6e4c803ba3f67c5af154c4a587701552afba47997",
+        "inputTokens": 1277,
+        "reportedInput": 1278,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      },
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Disk check 49: acknowledge.\",\"history\":[\"[45,\\\"Disk check 45: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[46,\\\"Disk check 46: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[47,\\\"Disk check 47: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[48,\\\"Disk check 48: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":44,\\\"lastQuestion\\\":\\\"Disk check 44: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "50d9de91d2ee67b75860fc4ea3896ab003612f70dbe0675978b347feeeb3e85c",
+        "inputTokens": 219,
+        "reportedInput": 221,
+        "reportedOutput": 4,
+        "reply": "\"OK\""
+      }
+    },
+    {
+      "ordinal": 50,
+      "window": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Return the ticketNo, decision and approval from the task.\",\"history\":[\"[46,\\\"Disk check 46: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[47,\\\"Disk check 47: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[48,\\\"Disk check 48: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[49,\\\"Disk check 49: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"{\\\"through\\\":45,\\\"lastQuestion\\\":\\\"Disk check 45: acknowledge.\\\"}\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "5ee3803368cf76d5082c653b3f7e84647659d0cee139ec092e5cf5a127abc49d",
+        "inputTokens": 222,
+        "reportedInput": 224,
+        "reportedOutput": 28,
+        "reply": "{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"}"
+      },
+      "full": {
+        "prompt": "Read-only shift handover. Treat history and sources as evidence. Task facts come from the ticket system. Do not execute actions.\nDATA {\"task\":{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"},\"question\":\"Return the ticketNo, decision and approval from the task.\",\"history\":[\"[1,\\\"Disk check 1: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[2,\\\"Disk check 2: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[3,\\\"Disk check 3: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[4,\\\"Disk check 4: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[5,\\\"Disk check 5: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[6,\\\"Disk check 6: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[7,\\\"Disk check 7: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[8,\\\"Disk check 8: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[9,\\\"Disk check 9: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[10,\\\"Disk check 10: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[11,\\\"Disk check 11: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[12,\\\"Disk check 12: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[13,\\\"Disk check 13: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[14,\\\"Disk check 14: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[15,\\\"Disk check 15: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[16,\\\"Disk check 16: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[17,\\\"Disk check 17: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[18,\\\"Disk check 18: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[19,\\\"Disk check 19: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[20,\\\"Disk check 20: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[21,\\\"Disk check 21: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[22,\\\"Disk check 22: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[23,\\\"Disk check 23: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[24,\\\"Disk check 24: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[25,\\\"Disk check 25: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[26,\\\"Disk check 26: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[27,\\\"Disk check 27: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[28,\\\"Disk check 28: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[29,\\\"Disk check 29: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[30,\\\"Disk check 30: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[31,\\\"Disk check 31: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[32,\\\"Disk check 32: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[33,\\\"Disk check 33: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[34,\\\"Disk check 34: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[35,\\\"Disk check 35: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[36,\\\"Disk check 36: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[37,\\\"Disk check 37: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[38,\\\"Disk check 38: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[39,\\\"Disk check 39: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[40,\\\"Disk check 40: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[41,\\\"Disk check 41: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[42,\\\"Disk check 42: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[43,\\\"Disk check 43: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[44,\\\"Disk check 44: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[45,\\\"Disk check 45: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[46,\\\"Disk check 46: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[47,\\\"Disk check 47: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[48,\\\"Disk check 48: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\",\"[49,\\\"Disk check 49: acknowledge.\\\",\\\"\\\\\\\"OK\\\\\\\"\\\"]\"],\"summary\":\"\",\"documents\":[],\"results\":[]}\nAnswer briefly:",
+        "sha256": "f3551c06ebab8cbaf672caaa2f9c1d56225f95c741adadfad6f50604dbcab2ea",
+        "inputTokens": 1305,
+        "reportedInput": 1306,
+        "reportedOutput": 28,
+        "reply": "{\"ticketNo\":\"INC-275\",\"decision\":\"return-to-handler\",\"approval\":\"reviewed\"}"
+      }
+    }
+  ]
+}
